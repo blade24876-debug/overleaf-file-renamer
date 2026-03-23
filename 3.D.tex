@@ -1,0 +1,1621 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 3.D — Integrated Phase Calendars Compact Form}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 3.D — Integrated Phase Calendars Compact Form}
+
+\subsection*{3.D.1 Calendar Encoding and Use Rules (Binding)}
+\phantomsection
+\addcontentsline{toc}{subsection}{3.D.1 Calendar Encoding and Use Rules (Binding)}
+
+\begin{enumerate}
+\item This deliverable provides compact, phase-level calendars. It defines protected window placement by week-in-phase and identifies the intended major test constructs inside those protected windows. It does not prescribe day-level schedules, workouts, sets/reps, pacing, or microcycle design.
+
+\item “Deload+Test” weeks are protected windows by default doctrine. They are the authorized weeks for gate-grade test execution when validity, safety, and comparability prerequisites are satisfied. “Build” and “Intensify” weeks are execution weeks where major gate-grade tests are not scheduled by default; low-cost monitoring continues.
+
+\item Stage 2 is authoritative for test definitions, protocol IDs, metric IDs, validity fields, Evidence Ref rules, and environment/tool identity posture. Stage 3 is authoritative for placement and reslot posture. Any mismatch must be reconciled in favor of Stage 2 identifiers and Stage 1.F admissibility posture.
+
+\item Major test event caps and spacing doctrine apply inside each Deload+Test week (protected window):
+\begin{itemize}
+\item Ideal cap: 2 major test events per Deload+Test week.
+\item Hard cap: 3 major test events per Deload+Test week.
+\item Any two major test events \textbf{MUST} NOT start within the same 72-hour window (start-to-start).
+\item Maximal \textbf{RUN} and maximal \textbf{RUCK} \textbf{MUST} NOT start within the same 96-hour window (start-to-start).
+\item If caps/spacing cannot be maintained inside the Deload+Test week, the correct posture is partial completion and reslot of remaining major tests to the next protected window. Compression is prohibited.
+\end{itemize}
+
+\item Major test events (count toward cap/spacing when executed as formal tests):
+\begin{itemize}
+\item \textbf{CAL} battery: \textbf{C4} (push-ups), \textbf{C5} (sit-ups/curl-ups), \textbf{C6} (pull-ups), \textbf{C7} (plank) executed as a standardized battery may be treated as one major test event for cap/spacing purposes.
+\item \textbf{RUN} time trials: \textbf{C8} (1.5 mi), \textbf{C9} (2 mi), \textbf{C10} (3 mi), \textbf{C11} (5 mi).
+\item \textbf{RUCK} time trials: \textbf{C12} (distance/load variants by \textbf{MET-2B-018}–021).
+\item \textbf{SWIM} time trials: \textbf{C13} (500 yd / 500 m, unit locked).
+\item \textbf{STR} proxy testing: \textbf{C17} (submax proxy set; \textbf{MET-2B-027}–031).
+\item \textbf{AER} time trials: \textbf{C18} (rower/bike/elliptical time trials; \textbf{MET-2B-032}–034).
+\end{itemize}
+
+\item Low-cost monitoring does not count toward major test caps and may occur in any week:
+\begin{itemize}
+\item \textbf{BODYCOMP} trend capture (\textbf{C1}–\textbf{C3}) at the required cadence.
+\item \textbf{RECOVERY} marker capture (\textbf{C15}) daily/per session.
+\item \textbf{DURABILITY} screen flags and pain/foot tracking (\textbf{C16}) daily/per session.
+\end{itemize}
+
+\item Environment and tool identity are mandatory for gate-grade tests:
+\begin{itemize}
+\item \textbf{RUN}/\textbf{RUCK} route or machine identity must use Environment Unit IDs (\textbf{ROUTE}-2E-\#\#\# / \textbf{TM}-2E-\#\#\#) and must meet Stage 2 logging requirements (grade settings for treadmill; route verification posture).
+\item \textbf{SWIM} requires \textbf{POOL}-2E-\#\#\# and verified unit/length; yards and meters are separate evidence streams.
+\item Major tool changes (timer method, footwear, ruck configuration, pool unit/length) are comparability breaks and bias toward reslot until stabilized and replicated under the new stable configuration.
+\end{itemize}
+
+\item Underwater (\textbf{C14}) is conditional and governance-gated:
+\begin{itemize}
+\item Scheduled only in Phase 10–Phase 13 and only when certified lifeguard plus dedicated safety spotter and facility permission prerequisites are satisfied and logged.
+\item If prerequisites are not met, underwater is not scheduled and is not attempted; no proxy substitutions are used for underwater readiness claims.
+\end{itemize}
+
+\item “Approx Program Week Range” is a convenience index computed from the frozen phase-duration ledger for the 182-week horizon. Phase-relative weeks (Week-in-Phase) are the controlling schedule coordinates.
+\end{enumerate}
+
+\newpage
+
+\begin{landscape}
+
+\subsection*{Phase 00 — Bodily Reactivation and Baseline Creation}
+\phantomsection
+\addcontentsline{toc}{subsubsection}{Phase 00 — Bodily Reactivation and Baseline Creation}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=.7in]
+    Q[l,wd=.80in]
+    Q[l,wd=2.05in]
+    X[l,1.25]
+    X[l,3.50]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Week-in-Phase} &
+\Hdr{Week Range} &
+\Hdr{Stress Type} &
+\Hdr{Key Tests This Week (Major Tests Only)} &
+\Hdr{Notes / Adjustments (Validity, Caps/Spacing, Environment, Reslot)} \\
+
+Week 1 (baseline) &
+Program W1 &
+Deload+Test &
+\textbf{BODYCOMP}: \textbf{C1} (\textbf{MET-2B-001}); \textbf{C2} (\textbf{MET-2B-002}); optional minimal \textbf{C3} (\textbf{MET-2B-007} only)
+\textbf{CAL} minimal: \textbf{C7} (\textbf{MET-2B-013}) &
+Baseline window is infrastructure-first: stable tool identity, stable Site \textbf{ID}, and clean Stage 2.E logging posture.
+\textbf{CAL} is limited to plank as low-risk format/timing check.
+Do not schedule major locomotion (\textbf{RUN}/\textbf{RUCK}) unless mechanics and safety posture are stable and environment is safe.
+Major event count typically ≤1.
+Any missing required fields make evidence inadmissible for gate use and drive reslot. \\
+
+Weeks 2–3 &
+Program W2–W3 &
+Build &
+None (major tests not scheduled) &
+Training-focused.
+Low-cost monitoring continues (\textbf{C15} \textbf{RECOVERY} daily; \textbf{C16} \textbf{DURABILITY} flags per session; \textbf{BODYCOMP} weekly).
+No gate-grade \textbf{RUN}/\textbf{RUCK} tests outside protected windows.
+Preserve environment/tool stability approaching Week 4. \\
+
+Week 4 &
+Program W4 &
+Deload+Test &
+Optional walk-based aerobic monitor only (Phase 00-local construct until reconciled) &
+Phase 00 \textbf{RUN} is optional and conservative; do not force impact.
+If outdoor footing/visibility is unsafe, treadmill is allowed only with \textbf{TM}-2E-\#\#\# and full settings logging.
+If neither is feasible safely, reslot \textbf{RUN} to Week 8.
+Major event count typically ≤1.
+Do not introduce \textbf{CAL} battery here unless explicitly authorized later; plank-only remains default. \\
+
+Weeks 5–7 &
+Program W5–W7 &
+Build &
+None (major tests not scheduled) &
+Training-focused.
+Grand Forks winter hazards bias toward indoor substitutions for training exposures; do not attempt gate-grade tests outside windows.
+Maintain stable footwear interface; footwear changes are logged and treated as comparability breaks near test windows. \\
+
+Week 8 &
+Program W8 &
+Deload+Test &
+Walk-based aerobic monitor check-in only (Phase 00-local construct until reconciled)
+\textbf{BODYCOMP} minimal set continues as trend support &
+\textbf{RUN} check-in remains capacity-focused, not performance-chasing.
+Enforce Stage 2 validity fields and Evidence Ref.
+If fatigue or durability flags are elevated (\textbf{C16} gait/foot flags; \textbf{C15} fatigue trend), treat the window as recovery-first and reslot \textbf{RUN} to Week 12 rather than forcing compromised evidence.
+Major event cap ≤1. \\
+
+Weeks 9–11 &
+Program W9–W11 &
+Intensify &
+None (major tests not scheduled) &
+Training-focused.
+Preserve route/machine stability and timing method stability approaching Week 12.
+Do not introduce new environment unit IDs immediately before the next protected window unless forced (if forced, log as comparability break and plan conservative interpretation). \\
+
+Week 12 &
+Program W12 &
+Deload+Test &
+\textbf{RUN} check-in: \textbf{C8} (\textbf{MET-2B-014}) (repeat under comparable conditions to support early replication posture when feasible) &
+Replication enablement is optional in Phase 00; if only one \textbf{VALID} run exists in-window, do not force additional attempts in the same week.
+Reslot to Week 16 if replication is needed and conditions can be stabilized.
+Any mechanics-altering pain triggers \textbf{STOP} \textbf{NOW} and reslot.
+Major event cap ≤1. \\
+
+Weeks 13–15 &
+Program W13–W15 &
+Intensify &
+None (major tests not scheduled) &
+Training-focused.
+Validity protection posture increases approaching end-of-phase.
+Avoid novelty in footwear, timing method, and route selection in the last 2 weeks before Week 16. \\
+
+Week 16 &
+Program W16 &
+Deload+Test &
+End-of-phase conservative verification: walk-based aerobic monitor only (Phase 00-local construct until reconciled)
+\textbf{CAL} minimal \textbf{C7} (\textbf{MET-2B-013}) if needed for replication &
+End-of-phase window remains conservative.
+Do not “upgrade” this window into a multi-domain battery.
+If conditions are compromised (ice, wind, illness, missing logging), reslot rather than forcing evidence.
+Treat this as an exit touchpoint for infrastructure readiness to support Phase 01’s more formal \textbf{CAL} battery. \\
+
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\subsection*{Phase 01 — Base Conditioning and Hypertrophy}
+\phantomsection
+\addcontentsline{toc}{subsubsection}{Phase 01 — Base Conditioning and Hypertrophy}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=.7in]
+    Q[l,wd=.80in]
+    Q[l,wd=2.05in]
+    X[l,1.25]
+    X[l,3.50]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Week-in-Phase} &
+\Hdr{Week Range} &
+\Hdr{Stress Type} &
+\Hdr{Key Tests This Week (Major Tests Only)} &
+\Hdr{Notes / Adjustments (Validity, Caps/Spacing, Environment, Reslot)} \\
+
+Week 1 (baseline) &
+Program W17 &
+Deload+Test &
+\textbf{BODYCOMP}: \textbf{C1} (\textbf{MET-2B-001}); \textbf{C2} (\textbf{MET-2B-002}); \textbf{C3} minimal if used
+\textbf{CAL} baseline battery intent: \textbf{C4}–\textbf{C7} (\textbf{MET-2B-010}–013) &
+Baseline \textbf{CAL} battery intent exists to establish strict standards and artifact workflow.
+\textbf{CAL} gate-validity requires compliant artifact evidence; missing/non-compliant artifact makes \textbf{CAL} tests \textbf{INVALID} for gate use and triggers reslot to Week 4.
+Keep major event count at 1 (\textbf{CAL} battery) unless explicitly adding \textbf{RUN} is necessary and spacing can be preserved (usually not in baseline). \\
+
+Weeks 2–3 &
+Program W18–W19 &
+Build &
+None (major tests not scheduled) &
+Training-focused.
+Low-cost monitoring continues.
+Protect tool/environment stability approaching Week 4: route identity, treadmill identity, footwear, timer method, and \textbf{CAL} artifact setup. \\
+
+Week 4 &
+Program W20 &
+Deload+Test &
+\textbf{CAL} battery: \textbf{C4}–\textbf{C7}
+\textbf{RUN} \textbf{TT}: \textbf{C8} (\textbf{MET-2B-014}) &
+Two major events.
+Enforce 72-hour spacing between \textbf{CAL} battery and \textbf{RUN} \textbf{TT} within the week; if spacing cannot be preserved due to schedule constraints, reslot \textbf{RUN} to Week 8.
+\textbf{RUN} is gate-relevant only if fully logged per Stage 2 (\textbf{ROUTE}-2E-\#\#\# or \textbf{TM}-2E-\#\#\#; treadmill grade logged). \\
+
+Weeks 5–7 &
+Program W21–W23 &
+Intensify &
+None (major tests not scheduled) &
+Training-focused.
+No gate-grade time trials outside protected windows.
+Avoid novelty in footwear and routes approaching Week 8. \\
+
+Week 8 &
+Program W24 &
+Deload+Test &
+\textbf{CAL} battery: \textbf{C4}–\textbf{C7}
+\textbf{RUN} \textbf{TT}: \textbf{C9} (\textbf{MET-2B-015}) &
+Two major events.
+Enforce 72-hour spacing.
+If outdoor conditions compromise validity, treadmill substitution is permitted only with full settings logged.
+Do not treat treadmill and outdoor results as interchangeable unless environment/tool stability is maintained across replication events. \\
+
+Weeks 9–11 &
+Program W25–W27 &
+Intensify &
+None (major tests not scheduled) &
+Training-focused.
+Preserve no-novelty posture approaching Week 12. \\
+
+Week 12 &
+Program W28 &
+Deload+Test &
+\textbf{CAL} battery: \textbf{C4}–\textbf{C7} (replication support window) &
+Single major event by default to support \textbf{CAL} replication without overloading.
+If \textbf{CAL} evidence is already replicated and stable, this window may be treated as recovery-first and used for conservative monitoring only; do not insert additional major tests unless replication gaps require it and spacing remains protected. \\
+
+Weeks 13–15 &
+Program W29–W31 &
+Intensify &
+None (major tests not scheduled) &
+Training-focused. \\
+
+Week 16 &
+Program W32 &
+Deload+Test &
+\textbf{CAL} battery: \textbf{C4}–\textbf{C7}
+\textbf{RUN} \textbf{TT}: \textbf{C9} (\textbf{MET-2B-015}) &
+Two major events.
+This window supports \textbf{RUN} replication in the 2-mile construct under stable conditions.
+If replication status is still 1/3 for \textbf{RUN}, do not force immediate reattempts in the same week; plan next attempt in Week 20 or Week 22 per phase priorities and spacing rules. \\
+
+Weeks 17–19 &
+Program W33–W35 &
+Intensify &
+None (major tests not scheduled) &
+Training-focused.
+Avoid tool drift (new treadmill, new route, new timer method) immediately before Week 20. \\
+
+Week 20 &
+Program W36 &
+Deload+Test &
+\textbf{STR} proxy session: \textbf{C17}, only if finalized and deployable, (\textbf{MET-2B-027}-031)
+\textbf{CAL} battery: \textbf{C4}–\textbf{C7} &
+Two major events.
+\textbf{STR} remains submax proxy only; treat as major event and enforce 72-hour spacing from \textbf{CAL} battery if both occur in the same week.
+If spacing cannot be preserved, reslot \textbf{STR} to Week 22 or to the next phase baseline window.
+Do not add \textbf{RUN} in Week 20 by default to avoid hard cap pressure. \\
+
+Week 21 &
+Program W37 &
+Intensify &
+None (major tests not scheduled) &
+Training-focused.
+This is a short runway into the end gate (Week 22).
+No make-up stacking is permitted; preserve freshness and validity posture. \\
+
+Week 22 (end gate) &
+Program W38 &
+Deload+Test &
+\textbf{RUN} \textbf{TT}: \textbf{C9} (\textbf{MET-2B-015})
+\textbf{CAL} battery: \textbf{C4}–\textbf{C7} &
+End-of-phase exit gate window (22-week default).
+Two major events.
+Enforce 72-hour spacing and preserve stable environment/tool identity to support replication (2 of last 3 \textbf{VALID}).
+If any required test is \textbf{INVALID}, default posture is reslot to the next available protected window under the chosen Phase 01 variant, or to Phase 02 Week 1 baseline. \\
+
+\end{longtblr}
+
+\endgroup
+
+\paragraph*{Phase 01 variant note (24-week variant; 26-week extension):}
+
+\begin{itemize}
+\item 24-week variant: adds Weeks 23–24. Week 24 is a Deload+Test end gate window using the same major test set as Week 22. Program week ranges for all subsequent phases shift by +2 after Phase 01 under this variant.
+\item 26-week extension: adds Weeks 25–26 as Transition and optional retest buffer only; no new major test types are introduced. Retests replace \textbf{INVALID} evidence or missing replication; they are not used to stack additional gate demands. Program week ranges for all subsequent phases shift by +4 after Phase 01 under this extension.
+\end{itemize}
+
+\newpage
+
+\subsection*{Phase 02 — Maximal Strength Development (12 weeks; 3:1)}
+\phantomsection
+\addcontentsline{toc}{subsubsection}{Phase 02 — Maximal Strength Development}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=.7in]
+    Q[l,wd=.80in]
+    Q[l,wd=2.05in]
+    X[l,1.25]
+    X[l,3.50]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Week-in-Phase} &
+\Hdr{Week Range} &
+\Hdr{Stress Type} &
+\Hdr{Key Tests This Week (Major Tests Only)} &
+\Hdr{Notes / Adjustments (Validity, Caps/Spacing, Environment, Reslot)} \\
+
+Week 1 (baseline) &
+Program W39 &
+Deload+Test &
+\textbf{CAL} battery: \textbf{C4}–\textbf{C7};
+\textbf{STR} proxy baseline: \textbf{C17}, only if finalized and deployable, (conservative) &
+Baseline window introduces \textbf{STR} proxy under conservative submax posture.
+If cap/spacing pressure exists, prioritize \textbf{CAL} battery and treat \textbf{STR} proxy as optional baseline marker.
+Do not add \textbf{RUN} in baseline by default. \\
+
+Weeks 2–3 &
+Program W40–W41 &
+Build &
+None (major tests not scheduled) &
+Training-focused; monitor \textbf{RECOVERY}/\textbf{DURABILITY} trends for readiness and to protect the Week 4 window. \\
+
+Week 4 &
+Program W42 &
+Deload+Test &
+\textbf{STR} proxy session: \textbf{C17}
+\textbf{CAL} battery: \textbf{C4}–\textbf{C7} &
+Two major events.
+Enforce spacing within the week.
+If mechanics-altering pain appears, terminate and reslot; do not force completion. \\
+
+Weeks 5–7 &
+Program W43–W45 &
+Intensify &
+None (major tests not scheduled) &
+Training-focused; preserve environment/tool stability ahead of Week 8 \textbf{RUN} window. \\
+
+Week 8 &
+Program W46 &
+Deload+Test &
+\textbf{RUN} \textbf{TT}: \textbf{C9} (\textbf{MET-2B-015})
+\textbf{CAL} battery: \textbf{C4}–\textbf{C7} &
+Two major events.
+Enforce 72-hour spacing.
+If \textbf{RUN} is compromised by environment (ice/visibility), treadmill is allowed only under full \textbf{TM}-2E-\#\#\# logging.
+Do not schedule \textbf{STR} proxy in Week 8 by default (would push toward hard cap and create spacing risk). \\
+
+Weeks 9–11 &
+Program W47–W49 &
+Intensify &
+None (major tests not scheduled) &
+Training-focused; protect validity posture approaching Week 12 exit gate. \\
+
+Week 12 &
+Program W50 &
+Deload+Test &
+Exit gate intent: \textbf{RUN} \textbf{TT} \textbf{C9}
+\textbf{CAL} battery
+\textbf{STR} proxy session \textbf{C17} (staged; cap-limited) &
+End-of-phase gate week may require up to 3 major events.
+Execute only if hard cap and spacing can be satisfied inside the week.
+Default prioritization if spacing cannot be protected: \textbf{RUN} + \textbf{CAL} as decisive; reslot \textbf{STR} to Phase 03 Week 1 baseline window.
+Do not compress by placing two major events inside 72 hours.
+Any \textbf{INVALID} test forces reslot posture. \\
+
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\subsection*{Phase 03 — Converting Strength to Power and Endurance for SOF Selection}
+\phantomsection
+\addcontentsline{toc}{subsubsection}{Phase 03 — Converting Strength to Power and Endurance for SOF Selection}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=.7in]
+    Q[l,wd=.80in]
+    Q[l,wd=2.05in]
+    X[l,1.25]
+    X[l,3.50]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Week-in-Phase} &
+\Hdr{Week Range} &
+\Hdr{Stress Type} &
+\Hdr{Key Tests This Week (Major Tests Only)} &
+\Hdr{Notes / Adjustments (Validity, Caps/Spacing, Environment, Reslot)} \\
+
+Week 1 (baseline) &
+Program W51 &
+Deload+Test &
+\textbf{CAL} battery: \textbf{C4}–\textbf{C7}
+Optional \textbf{RUN} check-in: \textbf{C8} (\textbf{MET-2B-014}) &
+Baseline \textbf{RUN} is check-in only.
+Do not treat as decisive gate by default.
+Maintain low density: 1–2 major events maximum; if adding \textbf{RUN} would create spacing problems with \textbf{CAL}, reslot \textbf{RUN} to Week 4. \\
+
+Weeks 2–3 &
+Program W52–W53 &
+Build &
+None (major tests not scheduled) &
+Training-focused. \\
+
+Week 4 &
+Program W54 &
+Deload+Test &
+\textbf{RUN} \textbf{TT}: \textbf{C8} (\textbf{MET-2B-014})
+\textbf{CAL} battery: \textbf{C4}–\textbf{C7} &
+Two major events.
+Enforce 72-hour spacing.
+If \textbf{RUN} mechanics are unstable or environment unsafe, reslot rather than forcing a compromised attempt. \\
+
+Weeks 5–7 &
+Program W55–W57 &
+Intensify &
+None (major tests not scheduled) &
+Training-focused; preserve route/tool stability. \\
+
+Week 8 &
+Program W58 &
+Deload+Test &
+\textbf{RUN} \textbf{TT}: \textbf{C9} (\textbf{MET-2B-015})
+\textbf{CAL} battery
+Optional \textbf{STR} proxy \textbf{C17}, only if finalized and deployable, (cap-limited) &
+Default is \textbf{RUN} + \textbf{CAL} (2 major events).
+\textbf{STR} proxy is supporting and should be reslotted first if cap/spacing is threatened.
+If three events are executed, enforce spacing within the week; do not cluster \textbf{RUN} and \textbf{STR} in a way that contaminates the \textbf{CAL} battery or produces durability breakdown signals. \\
+
+Weeks 9–11 &
+Program W59–W61 &
+Intensify &
+None (major tests not scheduled) &
+Training-focused; protect validity posture approaching Week 12. \\
+
+Week 12 &
+Program W62 &
+Deload+Test &
+\textbf{RUN} \textbf{TT}: \textbf{C10} (\textbf{MET-2B-016})
+\textbf{CAL} battery: \textbf{C4}–\textbf{C7} &
+End-of-phase exit gate includes introduction of 3-mile \textbf{RUN} time trial.
+Keep the week at 2 major events by default.
+Any attempt to add \textbf{RUCK} in the same week must respect cap/spacing and should be avoided unless explicitly required by phase contract. \\
+
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\subsection*{Phase 04 — Strength-Endurance and Work Capacity Development}
+\phantomsection
+\addcontentsline{toc}{subsubsection}{Phase 04 — Strength-Endurance and Work Capacity Development}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=.7in]
+    Q[l,wd=.80in]
+    Q[l,wd=2.05in]
+    X[l,1.25]
+    X[l,3.50]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Week-in-Phase} &
+\Hdr{Week Range} &
+\Hdr{Stress Type} &
+\Hdr{Key Tests This Week (Major Tests Only)} &
+\Hdr{Notes / Adjustments (Validity, Caps/Spacing, Environment, Reslot)} \\
+
+Week 1 (baseline) &
+Program W63 &
+Deload+Test &
+\textbf{CAL} battery: \textbf{C4}–\textbf{C7} &
+Baseline window for Phase 04 remains conservative.
+Keep major event count at 1 unless explicit replication gaps exist. \\
+
+Weeks 2–3 &
+Program W64–W65 &
+Build &
+None (major tests not scheduled) &
+Training-focused; monitor \textbf{DURABILITY} foot/gait markers to determine readiness for ruck testing later in the phase. \\
+
+Week 4 &
+Program W66 &
+Deload+Test &
+\textbf{RUCK} \textbf{TT}: \textbf{C12} (\textbf{MET-2B-019}; 6 mi / 35 lb dry)
+\textbf{CAL} battery (optional if cap allows) &
+\textbf{RUCK} is high-cost; if \textbf{CAL} battery is included, enforce hard cap and spacing.
+Default posture may be \textbf{RUCK} stand-alone (1 major event) if foot integrity is marginal or environment volatility is high.
+Load must be verified (dry load); water logged separately.
+Any foot hotspot trend forces reslot. \\
+
+Weeks 5–7 &
+Program W67–W69 &
+Intensify &
+None (major tests not scheduled) &
+Training-focused; avoid novelty in ruck configuration and footwear approaching next \textbf{RUN} window. \\
+
+Week 8 &
+Program W70 &
+Deload+Test &
+\textbf{RUN} \textbf{TT}: \textbf{C10} (\textbf{MET-2B-016})
+\textbf{CAL} battery &
+Two major events.
+Keep \textbf{RUCK} out of this window by default to protect spacing and durability.
+\textbf{RUN} environment must be stable and logged; treadmill allowed only under full settings logging. \\
+
+Weeks 9–11 &
+Program W71–W73 &
+Intensify &
+None (major tests not scheduled) &
+Training-focused; protect stability ahead of end-of-phase gate. \\
+
+Week 12 &
+Program W74 &
+Deload+Test &
+Exit gate intent:
+\textbf{RUN} \textbf{TT} \textbf{C9} (\textbf{MET-2B-015})
+\textbf{RUCK} \textbf{TT} \textbf{C12} (\textbf{MET-2B-019})
+\textbf{CAL} battery (staged; cap-limited) &
+End-of-phase may require up to 3 major events only if spacing is feasible.
+Default prioritization if spacing/caps are threatened: execute the single most gate-decisive locomotion test first (\textbf{RUN} or \textbf{RUCK}, per phase contract) plus \textbf{CAL} battery; reslot the remaining locomotion test to Phase 05 Week 1 baseline window.
+Never violate 96-hour maximal \textbf{RUN} vs maximal \textbf{RUCK} separation. \\
+
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\subsection*{Phase 05 — Aerobic Base and Extended Stamina Development}
+\phantomsection
+\addcontentsline{toc}{subsubsection}{Phase 05 — Aerobic Base and Extended Stamina Development}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=.7in]
+    Q[l,wd=.80in]
+    Q[l,wd=2.05in]
+    X[l,1.25]
+    X[l,3.50]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Week-in-Phase} &
+\Hdr{Week Range} &
+\Hdr{Stress Type} &
+\Hdr{Key Tests This Week (Major Tests Only)} &
+\Hdr{Notes / Adjustments (Validity, Caps/Spacing, Environment, Reslot)} \\
+
+Week 1 (baseline) &
+Program W75 &
+Deload+Test &
+\textbf{CAL} battery;
+\textbf{RUN} check-in: \textbf{C9} (\textbf{MET-2B-015}) (optional) &
+Baseline window may include a conservative \textbf{RUN} check-in only if it does not compromise \textbf{CAL} battery validity.
+Default is \textbf{CAL}-only if spacing is a concern. \\
+
+Weeks 2–3 &
+Program W76–W77 &
+Build &
+None (major tests not scheduled) &
+Training-focused. \\
+
+Week 4 &
+Program W78 &
+Deload+Test &
+\textbf{RUN} \textbf{TT}: \textbf{C10} (\textbf{MET-2B-016})
+\textbf{CAL} battery &
+Two major events.
+Enforce spacing. \\
+
+Weeks 5–7 &
+Program W79–W81 &
+Intensify &
+None (major tests not scheduled) &
+Training-focused; preserve pool access planning and verification posture ahead of Week 8 if \textbf{SWIM} is scheduled. \\
+
+Week 8 &
+Program W82 &
+Deload+Test &
+\textbf{SWIM} \textbf{TT}: \textbf{C13} (\textbf{MET-2B-022} or \textbf{MET-2B-023}; unit locked)
+\textbf{RUCK} \textbf{TT}: \textbf{C12} (\textbf{MET-2B-019}) &
+Two major events.
+\textbf{SWIM} requires \textbf{POOL}-2E-\#\#\# and verified unit/length; if pool is unavailable/unverifiable, reslot \textbf{SWIM} rather than substituting \textbf{AER}.
+\textbf{RUCK} requires dry load verification and foot integrity.
+Enforce spacing between \textbf{SWIM} and \textbf{RUCK} inside the week; if spacing cannot be preserved, prioritize the phase contract’s decisive event and reslot the other. \\
+
+Weeks 9–11 &
+Program W83–W85 &
+Intensify &
+None (major tests not scheduled) &
+Training-focused; protect no-novelty posture approaching end-of-phase 5-mile \textbf{RUN} gate. \\
+
+Week 12 &
+Program W86 &
+Deload+Test &
+\textbf{RUN} \textbf{TT}: \textbf{C11} (\textbf{MET-2B-017}; 5-mile)
+\textbf{CAL} battery (optional; cap-limited) &
+End-of-phase gate anchored to high-cost \textbf{RUN}.
+Default posture is \textbf{RUN} stand-alone (1 major event) or \textbf{RUN} + \textbf{CAL} (2 major events) if spacing allows and durability posture is stable.
+Do not stack \textbf{RUCK} in the same week by default.
+Any route/tool/footwear novelty is a comparability break and biases toward reslot for gate-grade use. \\
+
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\subsection*{Phase 06 — Lactate Threshold and Power-Endurance Development}
+\phantomsection
+\addcontentsline{toc}{subsubsection}{Phase 06 — Lactate Threshold and Power-Endurance Development}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=.7in]
+    Q[l,wd=.80in]
+    Q[l,wd=2.05in]
+    X[l,1.25]
+    X[l,3.50]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Week-in-Phase} &
+\Hdr{Week Range} &
+\Hdr{Stress Type} &
+\Hdr{Key Tests This Week (Major Tests Only)} &
+\Hdr{Notes / Adjustments (Validity, Caps/Spacing, Environment, Reslot)} \\
+
+Week 1 (baseline) &
+Program W87 &
+Deload+Test &
+\textbf{CAL} battery (optional);
+\textbf{RUN} check-in: \textbf{C8} (optional) &
+Baseline is conservative.
+Keep major event count minimal; do not insert multiple high-cost tests. \\
+
+Weeks 2–4 &
+Program W88–W90 &
+Build &
+None (major tests not scheduled) &
+Training-focused. \\
+
+Week 5 &
+Program W91 &
+Deload+Test &
+\textbf{RUN} \textbf{TT}: \textbf{C8} (\textbf{MET-2B-014})
+\textbf{CAL} battery &
+Two major events.
+Enforce spacing and preserve no-novelty posture. \\
+
+Weeks 6–9 &
+Program W92–W95 &
+Intensify &
+None (major tests not scheduled) &
+Training-focused; avoid novelty in pool/machines approaching Week 10. \\
+
+Week 10 &
+Program W96 &
+Deload+Test &
+\textbf{RUCK} \textbf{TT}: \textbf{C12} (\textbf{MET-2B-019})
+\textbf{SWIM} \textbf{TT}: \textbf{C13} (unit locked) &
+Two major events.
+Enforce spacing.
+If pool access is compromised, reslot \textbf{SWIM}.
+If foot integrity is compromised, reslot \textbf{RUCK}.
+Do not substitute \textbf{SWIM} with \textbf{AER} for gate purposes. \\
+
+Week 11 (taper intent) &
+Program W97 &
+Transition &
+None (major tests not scheduled) &
+Taper-aware stabilization week.
+No new major tests.
+Use only low-cost monitoring and readiness constraints to decide whether Week 12 can be executed gate-grade or must become recovery-first with reslot. \\
+
+Week 12 (end gate) &
+Program W98 &
+Deload+Test &
+\textbf{RUN} \textbf{TT}: single locked phase-contract variant only;
+\textbf{CAL} battery &
+End-of-phase gate week.
+Keep to 1–2 major events.
+If replication gaps exist, reslot rather than inserting a third major test that violates spacing. \\
+
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\subsection*{Phase 07 — Advanced Hybrid Overload}
+\phantomsection
+\addcontentsline{toc}{subsubsection}{Phase 07 — Advanced Hybrid Overload}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=.7in]
+    Q[l,wd=.80in]
+    Q[l,wd=2.05in]
+    X[l,1.25]
+    X[l,3.50]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Week-in-Phase} &
+\Hdr{Week Range} &
+\Hdr{Stress Type} &
+\Hdr{Key Tests This Week (Major Tests Only)} &
+\Hdr{Notes / Adjustments (Validity, Caps/Spacing, Environment, Reslot)} \\
+
+Week 1 (baseline) &
+Program W99 &
+Deload+Test &
+\textbf{CAL} battery (optional) &
+Conservative baseline. \\
+
+Weeks 2–4 &
+Program W100–W102 &
+Build &
+None &
+Training-focused. \\
+
+Week 5 &
+Program W103 &
+Deload+Test &
+\textbf{STR} proxy session: \textbf{C17}, only if finalized and deployable;
+\textbf{CAL} battery &
+Two major events.
+If spacing cannot be preserved inside the week, reslot \textbf{STR} to Week 10 or Week 12 (as phase needs permit). \\
+
+Weeks 6–9 &
+Program W104–W107 &
+Intensify &
+None &
+Training-focused; preserve route/pool stability approaching Week 10. \\
+
+Week 10 &
+Program W108 &
+Deload+Test &
+\textbf{RUN} \textbf{TT}: \textbf{C10} (\textbf{MET-2B-016})
+\textbf{SWIM} \textbf{TT}: \textbf{C13} &
+Two major events.
+Enforce spacing. \\
+
+Week 11 (taper intent) &
+Program W109 &
+Transition &
+None &
+Stabilization week.
+No new major tests. \\
+
+Week 12 (end gate) &
+Program W110 &
+Deload+Test &
+\textbf{RUCK} \textbf{TT}: \textbf{C12} (\textbf{MET-2B-019})
+\textbf{CAL} battery &
+End-of-phase gate week.
+Enforce spacing.
+If durability flags are active, reslot \textbf{RUCK} rather than forcing a compromised attempt. \\
+
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\subsection*{Phase 08 — Structural Durability and Load Tolerance}
+\phantomsection
+\addcontentsline{toc}{subsubsection}{Phase 08 — Structural Durability and Load Tolerance}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=.7in]
+    Q[l,wd=.80in]
+    Q[l,wd=2.05in]
+    X[l,1.25]
+    X[l,3.50]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Week-in-Phase} &
+\Hdr{Week Range} &
+\Hdr{Stress Type} &
+\Hdr{Key Tests This Week (Major Tests Only)} &
+\Hdr{Notes / Adjustments (Validity, Caps/Spacing, Environment, Reslot)} \\
+
+Week 1 (baseline) &
+Program W111 &
+Deload+Test &
+\textbf{CAL} battery (optional)
+\textbf{RUN} check-in (optional) &
+Conservative baseline. \\
+
+Weeks 2–4 &
+Program W112–W114 &
+Build &
+None &
+Training-focused. \\
+
+Week 5 &
+Program W115 &
+Deload+Test &
+\textbf{RUN} \textbf{TT}: \textbf{C10} (\textbf{MET-2B-016})
+\textbf{CAL} battery &
+Two major events.
+Enforce spacing. \\
+
+Weeks 6–9 &
+Program W116–W119 &
+Intensify &
+None &
+Training-focused; protect foot integrity ahead of long ruck milestone. \\
+
+Week 10 &
+Program W120 &
+Deload+Test &
+Long \textbf{RUCK} milestone: \textbf{C12} (\textbf{MET-2B-021}; 12 mi / 55 lb dry) (stand-alone by intent) &
+Stand-alone major event by default (1 major event week).
+Do not pair with maximal \textbf{RUN} in this week.
+If the long ruck construct is invalid due to execution or logging defects, reslot rather than substituting.
+Dry load verification required; water logged separately; environment hazards trigger reslot. \\
+
+Week 11 (taper intent) &
+Program W121 &
+Transition &
+None &
+Stabilization week; no new major tests. \\
+
+Week 12 (end gate) &
+Program W122 &
+Deload+Test &
+\textbf{SWIM} \textbf{TT}: \textbf{C13}
+\textbf{RUCK} \textbf{TT}: \textbf{C12} (\textbf{MET-2B-019}) (cap/spacing permitting) &
+Keep to 1–2 major events.
+If Week 10 executed long ruck, treat Week 12 as lower density and prioritize the most gate-decisive remaining domain.
+If spacing/caps are threatened, reslot the lesser-priority event. \\
+
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\subsection*{Phase 09 — High-Volume Calisthenics and Stamina}
+\phantomsection
+\addcontentsline{toc}{subsubsection}{Phase 09 — High-Volume Calisthenics and Stamina}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=.7in]
+    Q[l,wd=.80in]
+    Q[l,wd=2.05in]
+    X[l,1.25]
+    X[l,3.50]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Week-in-Phase} &
+\Hdr{Week Range} &
+\Hdr{Stress Type} &
+\Hdr{Key Tests This Week (Major Tests Only)} &
+\Hdr{Notes / Adjustments (Validity, Caps/Spacing, Environment, Reslot)} \\
+
+Week 1 (baseline) &
+Program W123 &
+Deload+Test &
+\textbf{CAL} battery (central)
+\textbf{RUN} check-in optional &
+Baseline emphasizes \textbf{CAL} execution quality and artifact compliance. \\
+
+Weeks 2–4 &
+Program W124–W126 &
+Build &
+None &
+Training-focused; do not introduce gate-grade tests outside protected windows. \\
+
+Week 5 &
+Program W127 &
+Deload+Test &
+\textbf{CAL} battery
+\textbf{RUN} \textbf{TT}: \textbf{C9} (optional if replication needed) &
+Keep density controlled: \textbf{CAL} battery is primary; add \textbf{RUN} only when replication gaps exist and spacing can be preserved. \\
+
+Weeks 6–9 &
+Program W128–W131 &
+Intensify &
+None &
+Training-focused; monitor durability flags closely due to high calisthenics volume. \\
+
+Week 10 &
+Program W132 &
+Deload+Test &
+\textbf{SWIM} \textbf{TT}: \textbf{C13}
+\textbf{RUCK} \textbf{TT}: \textbf{C12} (\textbf{MET-2B-019}) &
+Two major events.
+Enforce spacing.
+Reslot if pool access fails or foot integrity fails. \\
+
+Week 11 (taper intent) &
+Program W133 &
+Transition &
+None &
+Stabilization week; no new major tests. \\
+
+Week 12 (end gate) &
+Program W134 &
+Deload+Test &
+\textbf{RUN} \textbf{TT}: \textbf{C11} (\textbf{MET-2B-017})
+\textbf{CAL} battery &
+High-cost \textbf{RUN}.
+Keep to 1–2 major events; default is \textbf{RUN} + \textbf{CAL} only.
+Do not add ruck in this week by default. \\
+
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\subsection*{Phase 10 — Advanced Tactical Readiness}
+\phantomsection
+\addcontentsline{toc}{subsubsection}{Phase 10 — Advanced Tactical Readiness}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=.7in]
+    Q[l,wd=.80in]
+    Q[l,wd=2.05in]
+    X[l,1.25]
+    X[l,3.50]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Week-in-Phase} &
+\Hdr{Week Range} &
+\Hdr{Stress Type} &
+\Hdr{Key Tests This Week (Major Tests Only)} &
+\Hdr{Notes / Adjustments (Validity, Caps/Spacing, Environment, Reslot)} \\
+
+Week 1 (baseline) &
+Program W135 &
+Deload+Test &
+\textbf{CAL} battery
+\textbf{RUN} check-in: \textbf{C8} (optional) &
+Baseline remains conservative. \\
+
+Weeks 2–4 &
+Program W136–W138 &
+Build &
+None &
+Training-focused; protect pool governance prerequisites if underwater is ever expected later. \\
+
+Week 5 &
+Program W139 &
+Deload+Test &
+\textbf{SWIM} \textbf{TT}: \textbf{C13}
+\textbf{CAL} battery &
+Two major events.
+Enforce spacing. \\
+
+Weeks 6–9 &
+Program W140–W143 &
+Intensify &
+None &
+Training-focused; strict no-novelty posture approaching Week 10–12 windows. \\
+
+Week 10 &
+Program W144 &
+Deload+Test &
+\textbf{RUN} \textbf{TT}: \textbf{C10} (\textbf{MET-2B-016})
+Underwater governed test: \textbf{C14} (\textbf{MET-2B-025}; \textbf{MET-2B-026}) conditional &
+If underwater prerequisites are not fully satisfied and logged, underwater is not scheduled.
+If underwater is scheduled, keep the week at 1–2 major events and do not schedule long ruck in the same protected week.
+Enforce spacing and treat any governance ambiguity as a reslot trigger. \\
+
+Week 11 (taper intent) &
+Program W145 &
+Transition &
+None &
+Stabilization week; no new major tests. \\
+
+Week 12 (end gate) &
+Program W146 &
+Deload+Test &
+\textbf{RUN} \textbf{TT}: \textbf{C11} (\textbf{MET-2B-017})
+\textbf{RUCK} \textbf{TT}: \textbf{C12} (\textbf{MET-2B-019}) (staged; cap/spacing permitting) &
+Two major events.
+Enforce 96-hour separation if maximal variants are involved.
+If spacing cannot be preserved inside the week, prioritize the dominant gate objective and reslot the other test to Phase 11 Week 1 baseline or the next protected window.
+Underwater is not added to this week by default. \\
+
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\subsection*{Phase 11 — Pre-Selection Conditioning and Recovery}
+\phantomsection
+\addcontentsline{toc}{subsubsection}{Phase 11 — Pre-Selection Conditioning and Recovery}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=.7in]
+    Q[l,wd=.80in]
+    Q[l,wd=2.05in]
+    X[l,1.25]
+    X[l,3.50]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Week-in-Phase} &
+\Hdr{Week Range} &
+\Hdr{Stress Type} &
+\Hdr{Key Tests This Week (Major Tests Only)} &
+\Hdr{Notes / Adjustments (Validity, Caps/Spacing, Environment, Reslot)} \\
+
+Week 1 (baseline) &
+Program W147 &
+Deload+Test &
+\textbf{CAL} battery (optional) &
+Conservative baseline; recovery-sensitive phase. \\
+
+Weeks 2–4 &
+Program W148–W150 &
+Build &
+None &
+Training-focused. \\
+
+Week 5 &
+Program W151 &
+Deload+Test &
+\textbf{RUN} \textbf{TT}: \textbf{C10} (\textbf{MET-2B-016})
+\textbf{CAL} battery &
+Two major events.
+Enforce spacing. \\
+
+Weeks 6–9 &
+Program W152–W155 &
+Intensify &
+None &
+Training-focused; maintain configuration stability approaching Week 10–12. \\
+
+Week 10 &
+Program W156 &
+Deload+Test &
+Long \textbf{RUCK} milestone: \textbf{C12} (\textbf{MET-2B-021}) (stand-alone)
+or
+\textbf{SWIM} \textbf{TT} \textbf{C13} + \textbf{RUCK} \textbf{TT} \textbf{MET-2B-019} &
+If long ruck is scheduled, treat it as stand-alone major event by default.
+If long ruck is not scheduled, the alternative is two major events (\textbf{SWIM} + 6-mile ruck) under spacing rules.
+Any foot/gait flags force reslot. \\
+
+Week 11 (taper intent) &
+Program W157 &
+Transition &
+None &
+Stabilization week; no new major tests. \\
+
+Week 12 (end gate) &
+Program W158 &
+Deload+Test &
+\textbf{RUN} \textbf{TT}: \textbf{C11} (\textbf{MET-2B-017})
+\textbf{CAL} battery &
+High-cost \textbf{RUN}.
+Keep to 1–2 major events.
+Underwater is optional only under prerequisites and is not scheduled by default. \\
+
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\subsection*{Phase 12 — Final Pre-Selection Conditioning}
+\phantomsection
+\addcontentsline{toc}{subsubsection}{Phase 12 — Final Pre-Selection Conditioning}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=.7in]
+    Q[l,wd=.80in]
+    Q[l,wd=2.05in]
+    X[l,1.25]
+    X[l,3.50]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Week-in-Phase} &
+\Hdr{Week Range} &
+\Hdr{Stress Type} &
+\Hdr{Key Tests This Week (Major Tests Only)} &
+\Hdr{Notes / Adjustments (Validity, Caps/Spacing, Environment, Reslot)} \\
+
+Week 1 (baseline) &
+Program W159 &
+Deload+Test &
+\textbf{CAL} battery (optional);
+\textbf{RUN} check-in: optional &
+Conservative baseline; begin configuration-freeze posture for routes/tools used in final verification windows. \\
+
+Weeks 2–4 &
+Program W160–W162 &
+Build &
+None &
+Training-focused; no gate-grade time trials. \\
+
+Week 5 &
+Program W163 &
+Deload+Test &
+\textbf{RUN} \textbf{TT}: \textbf{C9} (\textbf{MET-2B-015})
+\textbf{CAL} battery &
+Two major events.
+Enforce spacing. \\
+
+Weeks 6–8 &
+Program W164–W166 &
+Intensify &
+None &
+Training-focused; strict no-novelty posture approaching verification block. \\
+
+Weeks 9–10 (verification block) &
+Program W167–W168 &
+Deload+Test (two-week verification block) &
+Targeted retests only: \textbf{RUN} (\textbf{C8}–\textbf{C11}), \textbf{RUCK} (\textbf{C12}), \textbf{SWIM} (\textbf{C13}), \textbf{STR} (\textbf{C17}), \textbf{AER} (\textbf{C18}) as applicable; staged to satisfy replication without stacking &
+Treat as two consecutive protected windows with spacing enforced across both weeks.
+Do not attempt to execute all domains; prioritize weakest domains needing replication (2 of last 3 \textbf{VALID}).
+If a comparability break occurs (new route/machine/pool), treat outcomes conservatively and extend verification rather than compressing.
+Underwater (\textbf{C14}) is optional only under prerequisites and is not scheduled by default. \\
+
+Week 11 (taper intent) &
+Program W169 &
+Transition &
+None &
+Stabilization week; no new major tests. \\
+
+Week 12 (final gate) &
+Program W170 &
+Deload+Test &
+Final gate selection: \textbf{CAL} battery + \textbf{RUN} \textbf{TT} \textbf{C11}
+or
+long \textbf{RUCK} milestone \textbf{C12} (\textbf{MET-2B-021}) &
+Choose dominant gate need; do not stack all maximal domains.
+Maintain cap discipline (1–2 major events).
+If the dominant event is long ruck, keep the week otherwise minimal.
+If replication gaps remain after W9–10, reslot remaining gaps rather than adding extra major events that violate spacing. \\
+
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\subsection*{Phase 13 — Full-Spectrum Readiness Consolidation}
+\phantomsection
+\addcontentsline{toc}{subsubsection}{Phase 13 — Full-Spectrum Readiness Consolidation}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=.7in]
+    Q[l,wd=.80in]
+    Q[l,wd=2.05in]
+    X[l,1.25]
+    X[l,3.50]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Week-in-Phase} &
+\Hdr{Week Range} &
+\Hdr{Stress Type} &
+\Hdr{Key Tests This Week (Major Tests Only)} &
+\Hdr{Notes / Adjustments (Validity, Caps/Spacing, Environment, Reslot)} \\
+
+Week 1 (baseline) &
+Program W171 &
+Deload+Test &
+\textbf{CAL} battery (optional)
+\textbf{BODYCOMP} trend capture continues &
+Conservative baseline; confirm configuration freeze posture for the final verification cycle (routes, pool unit/length, treadmill IDs, footwear). \\
+
+Weeks 2–4 &
+Program W172–W174 &
+Build &
+None &
+Training-focused; no gate-grade time trials. \\
+
+Week 5 &
+Program W175 &
+Deload+Test &
+\textbf{SWIM} \textbf{TT}: \textbf{C13} (unit locked)
+\textbf{CAL} battery &
+Two major events.
+Enforce spacing.
+Pool verification is mandatory; if pool access is compromised, reslot \textbf{SWIM}. \\
+
+Weeks 6–8 &
+Program W176–W178 &
+Intensify &
+None &
+Training-focused; preserve stability and avoid novelty. \\
+
+Weeks 9–10 (targeted retest block) &
+Program W179–W180 &
+Deload+Test (two-week retest block) &
+Targeted weakest-domain retests only: \textbf{RUN} \textbf{C8}–\textbf{C11}; \textbf{RUCK} \textbf{C12}; \textbf{SWIM} \textbf{C13}; \textbf{STR} \textbf{C17}; \textbf{AER} \textbf{C18} as applicable; staged for replication completion &
+Treat as two consecutive protected windows with spacing enforced across both weeks.
+Objective is replication closure (2 of last 3 \textbf{VALID}) under stable configurations.
+Do not schedule “simulation” constructs outside Stage 2 protocols.
+Underwater remains optional only under prerequisites; if unsupported it is not scheduled and cannot be claimed via proxy. \\
+
+Week 11 (taper intent) &
+Program W181 &
+Transition &
+None &
+Stabilization week; no new major tests. \\
+
+Week 12 (final verification) &
+Program W182 &
+Deload+Test &
+Final verification selection: prioritized \textbf{RUN} \textbf{TT} (\textbf{C8}–\textbf{C11}) + \textbf{CAL} battery
+or
+long \textbf{RUCK} milestone \textbf{C12} (\textbf{MET-2B-021}) as dominant event &
+Keep the week minimal and decisive.
+Do not stack all maximal domains.
+If the dominant event is long ruck, do not add maximal \textbf{RUN} in the same week; preserve spacing and validity.
+If final replication gaps remain, default posture is \textbf{HOLD} (Replication) for the affected metric rather than forcing compromised evidence. \\
+
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+\subsection*{Calendar Integrity Check}
+\phantomsection
+\addcontentsline{toc}{subsection}{Calendar Integrity Check}
+
+\begin{itemize}
+\item Every phase includes at least one mid-phase protected Deload+Test window and an end-of-phase Deload+Test exit gate window by design.
+\item Week 1 (baseline) exists in every phase and is treated as an infrastructure and standards touchpoint rather than a maximal gate posture by default.
+\item Major tests are scheduled only in Deload+Test weeks (protected windows) or in explicitly defined two-week verification blocks (Phase 12–13 Week 9–10). Build/Intensify/Transition weeks do not schedule gate-grade major tests by default.
+\item When multiple domains appear in the same Deload+Test week, the Notes/Adjustments field encodes staged battery intent and prioritization consistent with cap and spacing doctrine.
+\item \textbf{CAL} gate-grade validity requires compliant artifact evidence per Stage 2.C; missing/non-compliant artifacts force \textbf{INVALID} for gate use and trigger reslot posture rather than stacking immediate reattempts.
+\item \textbf{RUN} and \textbf{RUCK} scheduling respects the separation intent: maximal \textbf{RUN} and maximal \textbf{RUCK} are not co-located within the same 96-hour window; long ruck milestones are treated as stand-alone major events by default.
+\item \textbf{SWIM} unit handling is explicit and unit locked: 500-yard and 500-meter tests are separate evidence streams; no conversion is implied for gate claims. \textbf{POOL}-2E-\#\#\# verification is mandatory.
+\item Underwater governance posture is explicit: underwater appears only as conditional, supervised-only \textbf{C14} constructs in Phase 10–13, and is explicitly “not scheduled” when prerequisites cannot be guaranteed.
+\item Environment volatility and tool drift are treated as predictable constraints: unsafe conditions or comparability breaks trigger reslot posture or indoor substitution only when Stage 2 validity/logging preserves comparability.
+\item Replication posture is supported without overtesting: two-week verification blocks exist in Phases 12–13 to close replication gaps across windows while preserving cap and spacing discipline.
+\end{itemize}
+
+\end{document}

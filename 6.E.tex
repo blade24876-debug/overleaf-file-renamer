@@ -1,0 +1,359 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 6.E — Consistency, Safety, and Compliance Check}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 6.E — Consistency, Safety, and Compliance Check}
+
+\subsection*{6.E.1 Narrative Check}
+\phantomsection
+\addcontentsline{toc}{subsection}{6.E.1 Narrative Check}
+
+\subsubsection*{Consistency}
+\phantomsection
+
+\begin{itemize}
+\item Phase demand earlier than Tier 1 introduction check: A Stage 5 capability intent demand is present for Phase 02 and is satisfied by Stage 6.B. Stage 5 capability notes for Phase 02 include 7.09 Health Monitoring, Diagnostics, and Biometrics, while Stage 6.B assigns 7.09 \textbf{BIO} as T1 in Phase 02. This is aligned between “phase intent demand posture” and the Stage 6.B minimal tier timeline. Resolved in Stage 6.B; no open tier or timing mismatch remains in the final copy.
+\item Phase 00 minimal posture check: Stage 6.B keeps Phase 00 minimal and aligned to Stage 4 constraints:
+  \begin{itemize}
+  \item 7.07 \textbf{RUCK} is T0 (no heavy ruck requirement).
+  \item 7.17 \textbf{AQUA} is T0 (no underwater; no swim requirement implied).
+  \item 7.01 \textbf{STR} is T0 (no maximal strength infrastructure requirement).
+  \item Phase 00 entry-critical essentials are present as Tier 1 (feet, measurement/logging, basic recovery surface, hygiene, basic apparel continuity).
+  \end{itemize}
+\item Timing-token integrity check against Phase 00 “entry-critical” dependencies: Stage 4 and Stage 1.C depict several Phase 00 dependencies as “before Phase 00 Week 1,” but Stage 6.B expresses minimum-by-end-gate tiers and does not consistently mark these as entry-critical with (E). Example: 7.10 \textbf{LOG} is T1 (E) in Phase 00 even though Stage 4 execution posture treats sustainment/logistical feasibility as an early-phase continuity control. This is not a tier conflict, but it is a timing-token mismatch that can cause implementation drift. Requires Stage 8 review (timing token adjustment in Stage 6.B may be needed).
+\item Internal Stage 6.B monotonicity check: Stage 6.B increases some categories to T3 in Phase 12 for verification reliability and then maintains 7.09 \textbf{BIO} at T3 in Phase 13. This preserves the stated rationale of Phase 13 as consolidation with low variance.
+\end{itemize}
+
+\subsubsection*{Safety}
+\phantomsection
+
+\begin{itemize}
+\item Higher-risk capability introductions are staged in the expected sequence:
+  \begin{itemize}
+  \item First meaningful resistance capability beyond household-only appears in Phase 01 (7.01 T1 by end gate).
+  \item First barbell/rack-level-allowed minimum deployable strength posture is introduced at Phase 02 (7.01 allowed to be T1 by entry in Stage 6.B).
+  \item First Tier 1 ruck capability is introduced at Phase 03 (7.07 T1 first appears in Phase 03 per locked rule).
+  \item First Tier 1 aquatic capability is introduced at Phase 04 (7.17 T1 first appears in Phase 04 per locked rule; underwater remains governance-gated and is not implied by Tier).
+  \item Climate continuity dependency increases are staged later (7.14 rises to T2 at Phase 06 in Stage 6.B), which is safety-justified for Grand Forks execution continuity.
+  \end{itemize}
+\item Environmental and anchoring controls are acknowledged by the Stage 6.B posture:
+  \begin{itemize}
+  \item 7.18 \textbf{TEST}/\textbf{TIME} is Tier 1 early, increasing to Tier 2 in Phase 03 to reduce validity drift in complex gates.
+  \item 7.08 \textbf{COND} is Tier 1 by Phase 01 end gate, supporting indoor substitution when outdoor conditions are unsafe.
+  \end{itemize}
+\item Improvised substitutions are explicitly constrained by the Stage 6 architecture:
+  \begin{itemize}
+  \item Capability prerequisites are staged so higher-risk exposures are not forced by missing systems.
+  \item When capability is missing, the correct posture is to delay escalation and reslot, not to improvise a higher-risk workaround.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{Compliance}
+\phantomsection
+
+\begin{itemize}
+\item OTC-only posture is maintained in Stage 6.B Matrix B2: no supplement category is framed as prescription, no dosing, and no procurement guidance appears.
+\item Category 7.02 Hormonal Support and Adaptogens is represented as education-only and never required (T1 education-only). This complies with the non-negotiable posture that 7.02 is education-only and cannot be required.
+\item Water governance is respected:
+  \begin{itemize}
+  \item 7.17 \textbf{AQUA} becoming Tier 1 does not imply underwater authorization.
+  \item Underwater remains governed and supervised-only when it becomes relevant, and it is not forced by equipment tiers.
+  \end{itemize}
+\item No new categories, new tier system, or renamed categories appear. The Stage 7 taxonomy is preserved as the vocabulary.
+\end{itemize}
+
+\clearpage
+\begin{landscape}
+
+\subsection*{6.E.2 Risk Milestone Table}
+\phantomsection
+\addcontentsline{toc}{subsection}{6.E.2 Risk Milestone Table}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.45in]
+    X[l,2.35]
+    X[l,1.55]
+    X[l,3.65]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Phase \#} &
+\Hdr{New Higher-Risk Capability Introduced} &
+\Hdr{Required Equipment\\Category/Tier} &
+\Hdr{Key Risk Controls / Notes} \\
+
+00 &
+Establish minimum safe locomotion interface and measurement and logging capability under start-from-zero &
+7.11 T1; 7.18 T1; 7.12 T1; 7.13 T1; 7.20 T1; 7.16 T1 &
+\textbf{RISK-1B-009} — Footwear and footcare failure causing hotspots, blisters, gait alteration, and injury cascade: lock footwear interface early; downshift on hotspots. \textbf{RISK-1B-014} — Testing invalidity and evidence contamination: stable measurement tools and same-day logging. Environment controls: indoor substitution when unsafe; do not force outdoor exposure. \\
+
+01 &
+First minimum deployable resistance and controllable indoor conditioning capability &
+7.01 T1; 7.08 T1 &
+\textbf{RISK-1B-001} — Musculoskeletal injury from overuse, impact, or load escalation too fast: conservative exposure and technique gates. \textbf{RISK-1B-008} — Environment and weather constraints causing unsafe exposures or execution collapse: indoor substitution posture prevents unsafe ice/heat exposure. \\
+
+02 &
+Strength capability class escalation permitted (barbell/rack-level allowed as minimum deployable when Phase 02 requires it) &
+7.01 T1 (E) &
+\textbf{RISK-1B-001} — Musculoskeletal injury from overuse, impact, or load escalation too fast: enforce stable setup and conservative progression posture; no novelty near protected windows. Tool standardization: measurement/logging remains required for comparability. \\
+
+03 &
+First Tier 1 ruck capability; first Tier 1 protective posture; measurement/posture upgrade for complex gate days &
+7.07 T1 (End); 7.19 T1 (End); 7.18 T2 (End) &
+\textbf{RISK-1B-009} — Footwear and footcare failure causing hotspots, blisters, gait alteration, and injury cascade: fit configuration and load verification; prevent hotspots/blisters. \textbf{RISK-1B-014} — Testing invalidity and evidence contamination: upgraded testing and timing posture reduces tool drift; no novelty in ruck interface inside protected windows. \\
+
+04 &
+First Tier 1 aquatic capability (surface-only feasibility and safety logistics) &
+7.17 T1 (End) &
+\textbf{RISK-1B-010} — Water safety governance breach including any unsupervised underwater or breath-hold attempt: surface-only readiness; underwater remains not authorized without governance prerequisites. Validity control: pool-verification and logging posture required; if access fails, reslot rather than forcing. \\
+
+05 &
+None &
+N/A &
+N/A \\
+
+06 &
+Broad escalation to Tier 2 minimum posture across systems; first Tier 1 \textbf{BIO} posture; first climate-driven \textbf{ENV} apparel expansion &
+7.14 T2; 7.07 T2; 7.11 T2; 7.12 T2; 7.10 T2; 7.09 T1 &
+\textbf{RISK-1B-008} — Environment and weather constraints causing unsafe exposures or execution collapse: expanded apparel reduces forced reslots; indoor substitution remains primary when unsafe. \textbf{RISK-1B-001} — Musculoskeletal injury from overuse, impact, or load escalation too fast: feet, ruck, and recovery escalation reduces predictable injury drift. \textbf{BIO} remains non-diagnostic and supports trend visibility only. \\
+
+07 &
+None &
+N/A &
+N/A \\
+
+08 &
+None &
+N/A &
+N/A \\
+
+09 &
+None &
+N/A &
+N/A \\
+
+10 &
+None &
+N/A &
+N/A \\
+
+11 &
+None &
+N/A &
+N/A \\
+
+12 &
+Verification reliability overbuild introduced (Tier 3 across key categories) &
+7.18 T3; 7.07 T3; 7.11 T3; 7.12 T3; 7.19 T3; 7.17 T3; 7.16 T3; 7.10 T3; 7.09 T3 &
+\textbf{RISK-1B-014} — Testing invalidity and evidence contamination: redundancy reduces single-point tool failure; stabilize changes outside protected windows. \textbf{RISK-1B-009} — Footwear and footcare failure causing hotspots, blisters, gait alteration, and injury cascade: redundancy in feet/ruck/recovery reduces variance and reduces last-minute substitutions. Aquatics remains surface-focused unless governance exists. \\
+
+13 &
+None &
+N/A &
+N/A \\
+
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+\clearpage
+
+\subsection*{6.E.3 Compliance Checklist}
+\phantomsection
+\addcontentsline{toc}{subsection}{6.E.3 Compliance Checklist}
+
+\begin{itemize}
+\item \textbf{PASS} — Stage 6.B Phase 02 assigns 7.09 \textbf{BIO} at T1, matching Stage 5 capability intent.
+\item \textbf{PASS} — Phase 00 remains minimal and consistent with Stage 4 constraints: no ruck requirement (7.07 T0), no aquatic requirement (7.17 T0), no maximal strength infrastructure requirement (7.01 T0), and early essentials for admissibility are present.
+\item \textbf{PASS} — No 7.02 requirement appears in any phase: 7.02 is represented as education-only and never required.
+\item \textbf{PASS} — Supplements posture remains OTC-only and contains no prescription or dosing guidance.
+\item \textbf{PASS} — Water governance is respected and no unsupervised underwater or breath-hold is implied by capability tiers.
+\item \textbf{PASS} — Stage 6 internal consistency: 7.09 \textbf{BIO} remains T3 in Phase 13 to preserve the low-variance consolidation posture.
+\end{itemize}
+
+\end{document}

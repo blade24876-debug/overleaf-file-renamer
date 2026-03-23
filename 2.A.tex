@@ -1,0 +1,709 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 2.A — Domain Taxonomy}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 2.A — Domain Taxonomy}
+
+\subsection*{2.A.1 Taxonomy Principles and Rationale}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.A.1 Taxonomy Principles and Rationale}
+
+\begin{itemize}
+\item Domains exist to lock a controlled measurement vocabulary so evidence remains comparable across 182 weeks and cannot be reinterpreted by convenience, motivation spikes, or documentation drift.
+\item Domain tags are governance controls. They are not motivational labels, not “training styles,” and not narrative framing.
+\item Domain tags are crosswalk keys. Stage 8 auditing depends on stable domain tagging to reconcile standards, tests, phases, and resources without ambiguity.
+\item Domain tags prevent interpretation drift by defining what a measurement construct IS and IS NOT (for example, low-impact aerobic conditioning \textbf{MUST} NOT be treated as running performance or running impact tolerance).
+\item Domain tags prevent double-counting by enforcing a single owner construct per metric/test (exactly one Primary Domain Tag).
+\item Domain tags protect safety governance by preventing high-consequence constructs (impact running, load carriage, aquatic governance) from being relabeled as “recovery” or “conditioning” to downplay controls.
+\item Domain tags protect validity and admissibility by making misclassification visible and correctable; validity tagging (\textbf{VALID} / \textbf{INVALID}) is separate from domain tagging, but both must be consistent for auditability.
+\item Domain tags are required fields in metrics (Stage 2.B), protocol cards (Stage 2.C), thresholds (Stage 2.D), and logging conventions (Stage 2.E). Missing or non-canonical tags break crosswalk integrity.
+\item Misclassification is an evidence integrity risk. If a metric/test is tagged to the wrong domain, downstream gates, thresholds, and crosswalks become non-auditable and may enable unsafe progression decisions.
+\end{itemize}
+
+\subsubsection*{2.A.1.1 Definitions and Terms}
+\phantomsection
+
+\begin{itemize}
+\item Domain Tag: the canonical domain label assigned to a metric/test to define “what construct this evidence is.” Domain Tags are stable join keys.
+\item Domain \textbf{ID}: the stage-scoped identifier for the domain entry in this taxonomy table (DOM-2A-\#\#\#). Domain IDs are stable join keys.
+\item Domain Name: plain-language label for the domain construct (informational; does not replace the tag).
+\item Metric: a named measurement construct defined in Stage 2.B with an \textbf{ID} (\textbf{MET-2B}-\#\#\#), unit, directionality, and protocol card references.
+\item Test: a measurement event executed under a protocol card (Stage 2.C) that produces a recorded result for one or more metrics.
+\item Primary Domain Tag: the single construct owner domain tag required for every metric/test. Primary is mandatory.
+\item Secondary Domain Tag: an optional modifier domain tag used only to improve crosswalk interpretation (for example, performance constrained by durability flags) without transferring ownership or allowing double credit.
+\item Subdomain Directory: internal descriptors that refine interpretation within a domain (e.g., \textbf{RUN-PERF} vs \textbf{RUN-TOL}). Subdomains are not primary tags and must not replace the primary domain tag.
+\item Evidence: logged results plus required context fields that permit admissibility determination (\textbf{VALID}/\textbf{INVALID}) under Stage 1.F and Stage 2.E.
+\end{itemize}
+
+\newpage
+
+\subsubsection*{2.A.1.2 Non-Negotiables}
+\phantomsection
+
+\begin{itemize}
+\item Exactly one Primary Domain Tag per metric/test.
+\item Primary Domain Tag must be selected from the Canonical Domain List Locked in 2.A.2.
+\item Secondary Domain Tag is optional and limited to one (see 2.A.3).
+\item Domain tagging does not change validity. Domain tagging classifies the construct; validity tags classify admissibility.
+\item Domain tagging must not be altered for optics, convenience, or to bypass governance controls.
+\item Domain tags must be applied consistently across:
+  \begin{itemize}
+  \item metric inventory (2.B),
+  \item protocol cards (2.C),
+  \item thresholds (2.D),
+  \item logging conventions (2.E),
+  \item phase references and crosswalks (Stages 3–5 and Stage 8).
+  \end{itemize}
+\end{itemize}
+
+\clearpage
+\begin{landscape}
+
+\subsection*{2.A.2 Canonical Domain List Locked}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.A.2 Canonical Domain List: Locked}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.65in]
+    Q[l,wd=0.65in]
+    X[l,1.05]
+    X[l,1.35]
+    X[l,1.70]
+    X[l,1.45]
+    Q[l,wd=1.35in]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-7} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Domain \textbf{ID}} &
+\Hdr{Domain Tag} &
+\Hdr{Domain Name} &
+\Hdr{Definition} &
+\Hdr{Includes Examples} &
+\Hdr{Excludes Examples} &
+\Hdr{Primary Consumers Stages} \\
+\textbf{DOM-2A-001} & \textbf{RUN} & Running Performance and Running Tolerance (Impact-Managed) & Measures running-specific performance and running-specific tolerance under impact mechanics. \textbf{RUN} evidence is not interchangeable with low-impact conditioning evidence. & Timed 1.5-mile/2-mile/3-mile/5-mile run trials; run interval benchmarks when defined as \textbf{RUN} tests; run tolerance markers where running mechanics are present and recorded as such. & Bike/rower/elliptical time trials; treadmill walking; generic “cardio minutes” without a running construct; ruck time trials; “felt easy” sessions mislabeled as recovery. & Stage 2.B–2.E; Stage 3; Stages 4–5; Stage 7; Stage 8 \\
+\textbf{DOM-2A-002} & \textbf{RUCK} & Load Carriage Performance and Load Carriage Tolerance & Measures load carriage performance under a declared ruck construct, including load verification posture and configuration comparability requirements. & Timed ruck trials (distance/time) with documented load; ruck configuration lock notes used to preserve comparability; ruck tolerance markers tied to load carriage exposure. & Running time trials; unloaded hiking/walking without a declared ruck construct; farmer carries or non-ruck carries (tag \textbf{STR}); swim tests. & Stage 2.B–2.E; Stage 3; Stages 4–5; Stage 6; Stage 8 \\
+\textbf{DOM-2A-003} & \textbf{SWIM} & Aquatic Performance (Surface) and Governance-Constrained Underwater Constructs & Measures aquatic performance under unit-locked swim constructs and includes governance-constrained underwater/breath-hold constructs where explicitly permitted by safety prerequisites. & Surface 500-yard/500-meter swim time trials (unit locked); swim technique/efficiency markers tied to swim performance; underwater exposure admissibility flags; underwater 25 m performance only when governance prerequisites are met. & Any unsupervised underwater/breath-hold attempt; dry-land conditioning mislabeled as swim; non-aquatic cardio time. & Stage 2.B–2.E; Stage 3; Stages 4–5; Stage 6; Stage 8 \\
+\textbf{DOM-2A-004} & \textbf{CAL} & Calisthenics Performance (Strict Standards) & Measures strict bodyweight performance under standardized rep/hold rules where the construct is calisthenics capacity rather than external-load strength. & Push-ups (timed strict); sit-ups (timed standard); pull-ups (strict dead-hang); plank holds; other strict bodyweight standards explicitly adopted as \textbf{CAL} tests. & External-load strength tests (tag \textbf{STR}); generic “core work” volume; low-impact cardio time; ruck/swim/run tests. & Stage 2.B–2.E; Stage 3; Stages 4–5; Stage 8 \\
+\textbf{DOM-2A-005} & \textbf{STR} & Strength and External Load Capacity (Non-Ruck) & Measures strength and external-load capacity constructs that are not ruck time trials, including standardized strength proxies and non-ruck loaded carries. & Strength proxy tests (squat/hinge/press/pull patterns); load × reps strength estimates where defined; loaded carry tests that are not executed as ruck constructs (for example, farmer carry distance/time). & Timed ruck trials (tag \textbf{RUCK}); calisthenics strict rep tests (tag \textbf{CAL}); generic work capacity circuits tagged as \textbf{DURABILITY} in governance posture; aerobic machines used for conditioning performance (tag \textbf{AER}). & Stage 2.B–2.E; Stage 3; Stages 4–5; Stage 6; Stage 8 \\
+\textbf{DOM-2A-006} & \textbf{BODYCOMP} & Body Composition and Anthropometrics & Measures bodyweight and body composition trend constructs using method-recorded measurement posture for comparability. & Bodyweight (single measurement and/or weekly average); body fat percent (method/device recorded; trend validity requires method consistency); waist/tape anthropometrics; circumference sites when explicitly adopted. & Performance outcomes (run/ruck/swim/calisthenics/strength); recovery readiness markers (sleep/fatigue); pain flags. & Stage 2.B–2.E; Stages 4–5; Stage 8; Stage 10 \\
+\textbf{DOM-2A-007} & \textbf{DURABILITY} & Durability, Structural Integrity Flags, and Disqualifier Signals & Owns non-diagnostic durability signals and constraint flags that control exposure eligibility, test admissibility posture, and conservative gate decisions. \textbf{DURABILITY} is not a “PR domain.” & Pain severity + location; gait-altering pain flags; foot hotspot/blister flags; acute injury instability/swelling flags; movement quality screens recorded as pass/flag under non-diagnostic posture. & Timed performance tests; “recovery day” narratives; medical diagnosis or treatment claims; prescription guidance. & Stage 2.E; Stage 1.F (interface); Stages 4–5; Stage 8 \\
+\textbf{DOM-2A-008} & \textbf{RECOVERY} & Recovery and Readiness Markers (Decision Support) & Owns readiness and recovery markers used to protect safety, preserve validity, and constrain gate decisions. \textbf{RECOVERY} does not own performance outputs. & Sleep hours; soreness/fatigue markers; session RPE; resting/trend markers when recorded as non-diagnostic trends; compliance-support markers used to assess whether evidence is admissible and repeatable. & Running/rucking/swimming/calisthenics/strength performance outcomes; relabeling performance constructs as recovery to downplay consequence. & Stage 2.E; Stage 1.F (interface); Stages 4–5; Stage 8 \\
+\textbf{DOM-2A-009} & \textbf{AER} & Low-Impact Aerobic Conditioning Performance (Non-Run) & Owns non-impact or low-impact aerobic conditioning performance constructs that are not \textbf{RUN}, \textbf{RUCK}, or \textbf{SWIM}. \textbf{AER} evidence \textbf{MUST} NOT be treated as interchangeable proof of \textbf{RUN} tolerance or \textbf{RUN} performance. & Bike time trials; rower/erg time trials; elliptical time trials; step tests; walk-based aerobic checks where the construct is explicitly non-running conditioning performance. & Timed run trials; run tolerance constructs under impact mechanics; ruck time trials; swim tests; labeling \textbf{AER} as \textbf{RUN} to inflate readiness claims. & Stage 2.B–2.E; Stage 3; Stages 4–5; Stage 8 \\
+\end{longtblr}
+
+\endgroup
+
+\textbf{AER} exists to prevent non-run, low-impact conditioning constructs from being mislabeled as \textbf{RUN}, \textbf{RUCK}, or \textbf{SWIM}, which would contaminate comparability and enable unsafe impact escalation.
+
+\end{landscape}
+\clearpage
+
+\subsubsection*{2.A.2.1 Domain Tag Formatting and Storage Rules}
+\phantomsection
+
+\begin{itemize}
+\item Domain Tag storage format: uppercase token exactly matching the Canonical Domain Tag column in 2.A.2.
+\item Domain Tag must be stored as a single token (no spaces, no slashes, no synonyms).
+\item Domain Tag must be used consistently in:
+  \begin{itemize}
+  \item \textbf{MET-2B}-\#\#\# records,
+  \item \textbf{C1}–\textbf{C18} protocol card headers and validity condition sections,
+  \item threshold tables and tier labels,
+  \item test logs and evidence packets,
+  \item crosswalk joins in Stage 8.
+  \end{itemize}
+\item Domain \textbf{ID} and Domain Tag must remain 1:1 mapped. Domain \textbf{ID} is the stage-scoped row identifier; Domain Tag is the canonical token used everywhere else.
+\item Any appearance of “ROCK” is non-canonical and must be treated as an error. The only canonical tag is \textbf{RUCK}. Any artifact containing “ROCK” is Draft — Non-Deployable until corrected.
+\end{itemize}
+
+\subsubsection*{2.A.2.2 Primary Construct Ownership Test}
+\phantomsection
+
+A metric or test’s Primary Domain Tag is determined by the construct being measured. Apply the first matching rule below:
+
+\begin{enumerate}
+\item If the measured construct is a timed run or running exposure where running mechanics and impact tolerance are present → Primary = \textbf{RUN}.
+\item Else if the construct is a timed load carriage event with declared load and ruck configuration posture → Primary = \textbf{RUCK}.
+\item Else if the construct is an aquatic performance event (surface swim) or a governance-constrained underwater construct under explicit prerequisites → Primary = \textbf{SWIM}.
+\item Else if the construct is strict bodyweight calisthenics under standardized rep/hold rules → Primary = \textbf{CAL}.
+\item Else if the construct is external load capacity (strength proxies, non-ruck carries) → Primary = \textbf{STR}.
+\item Else if the construct is body composition or anthropometrics → Primary = \textbf{BODYCOMP}.
+\item Else if the construct is a non-diagnostic durability flag/disqualifier signal (pain, gait, foot hotspots, instability) → Primary = \textbf{DURABILITY}.
+\item Else if the construct is recovery/readiness decision support (sleep, soreness/fatigue, RPE, trend markers) → Primary = \textbf{RECOVERY}.
+\item Else if the construct is low-impact aerobic conditioning performance explicitly not running, not ruck, not swim → Primary = \textbf{AER}.
+\item If none match, the construct is not defined correctly and must not be instantiated as a metric/test until classified.
+\end{enumerate}
+
+\subsubsection*{2.A.2.3 Domain-Specific Boundary Tests}
+\phantomsection
+
+\textbf{RUN} boundary tests (impact-managed)
+
+\begin{itemize}
+\item If the measurement requires running mechanics under impact → \textbf{RUN}.
+\item If the measurement is a walk, incline walk, bike, rower, elliptical, step test, or any non-running construct → not \textbf{RUN}; classify as \textbf{AER} (or another domain as applicable).
+\item If “running tolerance” is being claimed without running mechanics exposure → invalid claim; classify as \textbf{AER} and/or \textbf{DURABILITY} flags may apply, but \textbf{RUN} must not be used.
+\end{itemize}
+
+\textbf{RUCK} boundary tests (load-carriage construct)
+
+\begin{itemize}
+\item If the measurement is timed distance under declared carried load with a ruck configuration posture → \textbf{RUCK}.
+\item If load is absent, not declared, or not verified, it is not a ruck construct; it may be \textbf{AER-WALK} or \textbf{DURABILITY} or \textbf{RECOVERY} supportive evidence depending on intent, but must not be tagged \textbf{RUCK}.
+\end{itemize}
+
+\textbf{SWIM} boundary tests (aquatic construct)
+
+\begin{itemize}
+\item If the measurement is in-water surface swim performance under unit-locked distance → \textbf{SWIM}.
+\item If underwater/breath-hold is attempted without governance prerequisites → not a valid \textbf{SWIM} test; it is a governance breach and the evidence is inadmissible regardless of performance.
+\end{itemize}
+
+\textbf{CAL} boundary tests (strict bodyweight)
+
+\begin{itemize}
+\item If the measurement is strict bodyweight repetition/hold performance under standardized calisthenics rules → \textbf{CAL}.
+\item If external load is a defining feature (weighted pull-ups, weighted carries, loaded strength tests) → not \textbf{CAL}; classify \textbf{STR} or other applicable domain.
+\end{itemize}
+
+\textbf{STR} boundary tests (external load, non-ruck)
+
+\begin{itemize}
+\item If the measurement is external load capacity (strength proxies, non-ruck carries) → \textbf{STR}.
+\item If the measurement is executed as a ruck construct (load carriage with pack over distance/time) → not \textbf{STR}; classify \textbf{RUCK}.
+\end{itemize}
+
+\textbf{BODYCOMP} boundary tests (composition constructs)
+
+\begin{itemize}
+\item If the measurement is bodyweight, body fat percent, waist/tape, anthropometrics → \textbf{BODYCOMP}.
+\item If the measurement is performance output (time, reps, distance under performance constructs) → not \textbf{BODYCOMP}.
+\end{itemize}
+
+\textbf{DURABILITY} boundary tests (flags/disqualifiers)
+
+\begin{itemize}
+\item If the measurement is a non-diagnostic constraint/flag (pain, gait alteration, foot hotspot) used to constrain exposure and admissibility → \textbf{DURABILITY}.
+\item \textbf{DURABILITY} must not own timed performance outcomes.
+\end{itemize}
+
+\textbf{RECOVERY} boundary tests (readiness markers)
+
+\begin{itemize}
+\item If the measurement is readiness/recovery marker (sleep, soreness/fatigue, RPE, trend marker) used for decision support → \textbf{RECOVERY}.
+\item \textbf{RECOVERY} must not absorb performance outcomes to downplay consequence.
+\end{itemize}
+
+\textbf{AER} boundary tests (low-impact aerobic conditioning performance)
+
+\begin{itemize}
+\item If the construct is aerobic conditioning performance and is not running, not rucking, not swimming → \textbf{AER}.
+\item \textbf{AER} must not be relabeled as \textbf{RUN}. \textbf{AER} evidence is not interchangeable proof of \textbf{RUN} performance or \textbf{RUN} tolerance.
+\end{itemize}
+
+\newpage
+
+\subsection*{Subdomain Directory}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.A.2.4 Subdomain Directory}
+
+\begin{itemize}
+\item \textbf{RUN}
+
+  \begin{itemize}
+  \item \textbf{RUN-PERF}: Timed run performance constructs (1.5-mile/2-mile/3-mile/5-mile) under recorded conditions.
+  \item \textbf{RUN-TOL}: Running tolerance constructs where impact mechanics are present and durability signals determine whether running exposure is permitted.
+  \item \textbf{RUN-INT}: Interval benchmark constructs executed as running (fixed distance/rest) and treated as \textbf{RUN} evidence.
+  \end{itemize}
+
+\item \textbf{RUCK}
+
+  \begin{itemize}
+  \item \textbf{RUCK-TIME}: Timed ruck constructs (distance/time) under declared load and route verification posture.
+  \item \textbf{RUCK-LOAD}: Load verification and configuration lock constructs required to preserve ruck test comparability (supporting admissibility).
+  \item \textbf{RUCK-TOL}: Load carriage tolerance constructs (feet/shoulder interface constraints) that govern whether ruck exposure escalation is permitted.
+  \end{itemize}
+
+\item \textbf{SWIM}
+
+  \begin{itemize}
+  \item \textbf{SWIM-SURF}: Surface swim performance constructs with unit-locked distance and recorded pool verification.
+  \item \textbf{SWIM-UW-GOV}: Underwater/breath-hold constructs that exist only under governance prerequisites; evidence is inadmissible without certified supervision.
+  \item \textbf{SWIM-CONF}: Water confidence constructs (surface-only) that support safe progression without implying underwater permission.
+  \end{itemize}
+
+\item \textbf{CAL}
+
+  \begin{itemize}
+  \item \textbf{CAL-PUSH}: Push-dominant calisthenics constructs (push-ups) under strict standards.
+  \item \textbf{CAL-PULL}: Pull-dominant calisthenics constructs (pull-ups) under strict standards.
+  \item \textbf{CAL-CORE}: Trunk endurance constructs (plank; sit-ups) under strict standards.
+  \end{itemize}
+
+\item \textbf{STR}
+
+  \begin{itemize}
+  \item \textbf{STR-LOWER}: Lower-body strength proxy constructs (squat pattern) under standardized setup and safe loading posture.
+  \item \textbf{STR-HINGE}: Hinge/posterior chain strength proxy constructs (deadlift pattern) under standardized setup and safe loading posture.
+  \item \textbf{STR-UPPER}: Upper-body strength proxy constructs (press/pull patterns) under standardized setup and safe loading posture.
+  \item \textbf{STR-CARRY}: Non-ruck loaded carry constructs where the measurement construct is strength/load capacity rather than ruck performance.
+  \end{itemize}
+
+\item \textbf{BODYCOMP}
+
+  \begin{itemize}
+  \item \textbf{BODYCOMP-WT}: Bodyweight constructs (single measurement and/or weekly average) with consistent measurement conditions.
+  \item \textbf{BODYCOMP-BF}: Body fat percent constructs where method/device and conditions are recorded every time to preserve trend validity.
+  \item \textbf{BODYCOMP-TAPE}: Waist and anthropometric tape constructs with consistent sites and technique posture.
+  \end{itemize}
+
+\newpage
+
+\item \textbf{DURABILITY}
+
+  \begin{itemize}
+  \item \textbf{DURABILITY-PAIN}: Pain severity/location constructs used as safety and progression constraints (non-diagnostic).
+  \item \textbf{DURABILITY-GAIT}: Mechanics and gait-altering flags that function as disqualifiers and regression triggers.
+  \item \textbf{DURABILITY-FOOT}: Foot hotspot/blister constructs that constrain impact/load exposure and invalidate “push through” behavior.
+  \item \textbf{DURABILITY-MOV}: Movement quality / mobility screens recorded as pass/flag controls (non-diagnostic; supports safe exposure gating).
+  \item \textbf{DURABILITY-EVENT}: Acute injury/instability and stop-rule event flags recorded as governance controls (non-diagnostic).
+  \end{itemize}
+
+\item \textbf{RECOVERY}
+
+  \begin{itemize}
+  \item \textbf{RECOVERY-READ}: Sleep, soreness/fatigue, and session RPE readiness constructs used to constrain testing and interpret validity.
+  \item \textbf{RECOVERY-TREND}: Resting marker trend constructs recorded as non-diagnostic trends only (where available and permitted).
+  \item \textbf{RECOVERY-COMP}: Compliance-support constructs (session validity tag, Cardio Minimum Standard Met, weekly admissible compliance percent) used to determine gate eligibility.
+  \end{itemize}
+
+\item \textbf{AER}
+
+  \begin{itemize}
+  \item \textbf{AER-WALK}: Walk-based aerobic checks (including treadmill walking) where the construct is explicitly non-running conditioning performance.
+  \item \textbf{AER-BIKE}: Bike-based aerobic performance constructs (time trials, fixed-duration output checks) not treated as \textbf{RUN} evidence.
+  \item \textbf{AER-ROW}: Rower/erg aerobic performance constructs not treated as \textbf{RUN} evidence.
+  \item \textbf{AER-ELLIP}: Elliptical/cross-trainer aerobic performance constructs not treated as \textbf{RUN} evidence.
+  \item \textbf{AER-STEP}: Step-test constructs used as low-impact conditioning checks with recorded setup for comparability.
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\subsection*{2.A.3 Tagging Rules: Primary and Secondary}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.A.3 Tagging Rules: Primary and Secondary}
+
+Primary tagging rules (mandatory):
+
+\begin{itemize}
+\item Every metric and every test \textbf{MUST} have exactly one Primary Domain Tag selected from the canonical domain tags in 2.A.2.
+\item The Primary Domain Tag identifies the measurement construct owner. Owner means: the construct is interpreted, thresholded, and crosswalked under that domain.
+\item A metric/test MAY carry one Secondary Domain Tag (optional) only when it materially improves crosswalk interpretation (for example, a performance construct that is gated by durability signals).
+\item If a Secondary Domain Tag is used, it \textbf{MUST} be treated as a modifier only. It \textbf{MUST} NOT be treated as a second owner, \textbf{MUST} NOT be used to double-count evidence, and \textbf{MUST} NOT be used to “claim credit” in two domains.
+\item Metrics and tests \textbf{MUST} NOT be re-tagged to avoid scrutiny, controls, or gate disqualification. Retagging for optics is a governance violation and an evidence integrity breach.
+\end{itemize}
+
+Correct tagging examples (minimum set; primary always required; secondary shown only when justified):
+
+\begin{itemize}
+\item 1.5-mile run time trial → Primary: \textbf{RUN}; Secondary: \textbf{DURABILITY} (optional when the result is used in a gate where gait flags are disqualifiers).
+\item Ruck time trial (measured route, load documented) → Primary: \textbf{RUCK}; Secondary: \textbf{DURABILITY} (optional when foot/hotspot constraints are gate-relevant).
+\item Push-ups (2-minute timed strict) → Primary: \textbf{CAL}.
+\item Sit-ups (2-minute timed standard) -> Primary: \textbf{CAL}.
+\item Pull-ups (strict dead-hang) → Primary: \textbf{CAL}.
+\item Plank hold (forearm) → Primary: \textbf{CAL}.
+\item Strength proxy (squat/hinge/press/pull pattern) → Primary: \textbf{STR}.
+\item Bodyweight (weekly average) / body fat percent (method recorded) / waist tape → Primary: \textbf{BODYCOMP}.
+\item Sleep hours / soreness-fatigue / session RPE → Primary: \textbf{RECOVERY}.
+\item Gait-altering pain flag / foot hotspot flag → Primary: \textbf{DURABILITY}.
+\item Rower or bike time trial / elliptical time trial / step test / walk-based aerobic check (non-run construct) → Primary: \textbf{AER}.
+\end{itemize}
+
+Prohibited tagging behaviors (non-negotiable):
+
+\begin{itemize}
+\item Labeling a \textbf{RUN} construct as \textbf{RECOVERY} to downplay impact, consequence, or gate disqualification risk.
+\item Labeling \textbf{AER} constructs as \textbf{RUN}, including “because it felt hard” or “because it improved aerobic fitness.”
+\item Assigning multiple Primary Domain Tags to a single metric/test (double ownership is prohibited).
+\item Using a Secondary Domain Tag to obscure ownership, inflate progress, or create double-counted gate credit.
+\item Re-tagging after the fact to make a week “look compliant” or to avoid documenting that evidence is not admissible.
+\item Using non-canonical domain tags, synonyms, or “custom” labels that fracture crosswalk integrity.
+\end{itemize}
+
+\subsubsection*{2.A.3.1 Secondary Domain Tag Allowance}
+\phantomsection
+
+Secondary tag is permitted only when it adds crosswalk interpretability without changing ownership.
+
+Permitted patterns (examples):
+
+\begin{itemize}
+\item \textbf{RUN} (Primary) + \textbf{DURABILITY} (Secondary) when gait/foot flags materially constrain admissibility or gate interpretation.
+\item \textbf{RUCK} (Primary) + \textbf{DURABILITY} (Secondary) when foot hotspots or mechanics-altering pain determine whether ruck evidence can be credited.
+\item \textbf{SWIM} (Primary) + \textbf{DURABILITY} (Secondary) only when the metric/test includes explicit durability disqualifiers (e.g., shoulder pain flags) without redefining the primary construct.
+\item \textbf{RECOVERY} is generally not a valid Secondary tag for performance tests. Recovery markers influence readiness but do not co-own performance constructs. If needed, reference recovery constraints in validity conditions rather than applying \textbf{RECOVERY} as a secondary performance tag.
+\end{itemize}
+
+Forbidden secondary usage:
+
+\begin{itemize}
+\item Using \textbf{AER} as Secondary on \textbf{RUN} tests to claim “aerobic transfer.”
+\item Using \textbf{RECOVERY} as a secondary tag on \textbf{RUN} or \textbf{RUCK} constructs to hide consequence.
+\item Using \textbf{BODYCOMP} as Secondary on performance constructs to imply performance equals composition change.
+\end{itemize}
+
+\subsubsection*{2.A.3.2 Composite Evidence and Multi-Metric Test}
+\phantomsection
+
+If a single test event yields multiple metrics:
+
+\begin{itemize}
+\item Each metric retains its own Primary Domain Tag.
+\item The test event itself must have one Primary Domain Tag that matches the primary intent of the event (protocol card determines intent).
+\item Supporting fields (load confirmation, footwear record, environment record) do not change domain ownership; they support admissibility.
+\end{itemize}
+
+Example handling:
+
+\begin{itemize}
+\item A ruck test event producing:
+  \begin{itemize}
+  \item ruck time metric (Primary \textbf{RUCK}),
+  \item load confirmation metric (Primary \textbf{RUCK}; subdomain \textbf{RUCK-LOAD}),
+  \item foot hotspot flag (Primary \textbf{DURABILITY}),
+  \end{itemize}
+  is not “multi-primary.” Each metric is singly owned.
+\end{itemize}
+
+\subsubsection*{2.A.3.3 Retagging and Correction Rules}
+\phantomsection
+
+\begin{itemize}
+\item If a metric/test is found to be misclassified, the correction must be explicit and traceable:
+  \begin{itemize}
+  \item original domain tag,
+  \item corrected domain tag,
+  \item rationale referencing taxonomy boundary definitions,
+  \item date of correction,
+  \item owner and reviewer acknowledgment.
+  \end{itemize}
+\item Misclassification correction triggers a crosswalk impact review:
+  \begin{itemize}
+  \item check thresholds, phase references, and any gate interpretations that consumed the mis-tagged evidence,
+  \item determine whether any gate decisions were contaminated and require rerun under admissible evidence.
+  \end{itemize}
+\item Misclassification is not a “cosmetic fix.” Until corrected and impact-checked, affected artifacts are Draft — Non-Deployable.
+\end{itemize}
+
+\subsection*{2.A.4 Domain Boundary Notes High Risk Clarifications}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.A.4 Domain Boundary Notes High Risk Clarifications}
+
+\begin{itemize}
+\item \textbf{RUN} boundary (impact governance)
+
+  \begin{itemize}
+  \item \textbf{RUN} owns running-specific constructs under impact mechanics.
+  \item Low-impact conditioning improvements (\textbf{AER}) \textbf{MUST} NOT be interpreted as \textbf{RUN} tolerance proof or \textbf{RUN} performance proof.
+  \item If running mechanics are absent (no running construct), the domain \textbf{MUST} NOT be \textbf{RUN}.
+  \item If a test is “treadmill walking,” it is \textbf{AER-WALK}, not \textbf{RUN}, even if performed at high effort.
+  \end{itemize}
+
+\item \textbf{SWIM} boundary (surface-only unless governed)
+
+  \begin{itemize}
+  \item \textbf{SWIM} includes surface swim performance and governance-constrained underwater constructs.
+  \item Underwater or breath-hold exposure is governed and \textbf{MUST} NOT occur unsupervised under any circumstances.
+  \item Any underwater/breath-hold attempt without certified supervision is a safety violation and the resulting evidence is not admissible for readiness claims regardless of performance.
+  \item Surface swim performance does not imply underwater permission or underwater readiness.
+  \end{itemize}
+
+\item \textbf{AER} boundary (non-impact conditioning performance)
+
+  \begin{itemize}
+  \item \textbf{AER} owns low-impact aerobic conditioning performance constructs (bike/row/elliptical/step/walk-based checks) that are not \textbf{RUN}, \textbf{RUCK}, or \textbf{SWIM}.
+  \item \textbf{AER} evidence is not a substitute label for \textbf{RUN} readiness and \textbf{MUST} NOT be used to authorize impact escalation.
+  \item \textbf{AER} is permitted specifically to prevent mislabeling and evidence contamination.
+  \item \textbf{AER} may support general conditioning readiness posture but cannot be used to claim \textbf{RUN} test thresholds were met.
+  \end{itemize}
+
+\item \textbf{DURABILITY} boundary (flags and constraints; not a PR domain)
+
+  \begin{itemize}
+  \item \textbf{DURABILITY} owns non-diagnostic flags, constraints, and disqualifier signals (pain, gait change, hotspots, instability, movement screens).
+  \item \textbf{DURABILITY} is not a performance PR domain and \textbf{MUST} NOT be used to “win” numbers; it exists to constrain risk and protect admissibility and safe progression.
+  \item \textbf{DURABILITY} constructs \textbf{MUST} be treated as decision constraints that can force \textbf{HOLD}, \textbf{REGRESS}, or \textbf{MEDICAL} \textbf{HOLD} posture when triggered (per upstream governance).
+  \item \textbf{DURABILITY} signals are not diagnoses and must not be described as diagnoses.
+  \end{itemize}
+
+\item \textbf{RECOVERY} boundary (decision support for validity and risk; not performance)
+
+  \begin{itemize}
+  \item \textbf{RECOVERY} owns readiness and recovery markers (sleep, fatigue, soreness, RPE, trend markers where applicable) and compliance-support markers used for gate eligibility.
+  \item \textbf{RECOVERY} \textbf{MUST} NOT absorb performance outcomes "because it was easy."
+  \item \textbf{RECOVERY} constructs inform whether performance evidence can be safely expressed and whether testing is admissible; they do not replace performance domain evidence.
+  \item \textbf{RECOVERY} does not provide gate credit; it constrains whether gate credit can be safely pursued.
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\subsection*{2.A.5 Taxonomy Change Control Requirements}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.A.5 Taxonomy Change Control Requirements}
+
+\begin{itemize}
+\item Domain IDs and Domain Tags are frozen once published.
+\item Domain IDs are stable crosswalk keys and \textbf{MUST} NOT be reused, repurposed, or reassigned.
+\item Any change to domains, tags, or IDs \textbf{MUST} use \textbf{PATCH}-2A-\#\#\#.
+\item Any taxonomy change triggers downstream revalidation at minimum across Stage 2.B through Stage 2.E and requires a crosswalk impact check (Stage 8 impact posture).
+\item No silent edits. If taxonomy meaning changes, the change \textbf{MUST} be explicit, logged, and traceable.
+\end{itemize}
+
+\subsubsection*{2.A.5.1 Patch \textbf{ID} Convention}
+\phantomsection
+
+\begin{itemize}
+\item Taxonomy patches for this deliverable use: \textbf{PATCH-2A-001}, \textbf{PATCH-2A-002}, … sequential with no gaps unless retired.
+\item Patch record must include:
+  \begin{itemize}
+  \item Patch \textbf{ID},
+  \item date,
+  \item change description,
+  \item rationale,
+  \item affected domains/tags,
+  \item downstream artifacts impacted,
+  \item revalidation scope,
+  \item owner.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{2.A.5.2 Change-Type Table}
+\phantomsection
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.15]
+    X[l,1.55]
+    Q[l,wd=1.10in]
+    X[l,2.35]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-4} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Change Type} & \Hdr{Examples} & \Hdr{Requires Patch} & \Hdr{Revalidation Scope} \\
+Clarification (no meaning change) & Add examples; tighten wording without changing boundaries; improve definition clarity & Yes (\textbf{PATCH}-2A-\#\#\#) & Stage 2.B–2.E compatibility check + crosswalk impact check to confirm no downstream re-tagging is required \\
+Boundary change (meaning change) & Move a construct between domains; redefine \textbf{RUN} vs \textbf{AER} boundary; redefine what \textbf{DURABILITY} owns & Yes (\textbf{PATCH}-2A-\#\#\#) & Stage 2.B–2.E revalidation required + crosswalk impact check; affected downstream artifacts default Draft — Non-Deployable until revalidated \\
+Domain addition & Introduce a new domain tag because an evidence construct cannot be classified without ambiguity & Yes (\textbf{PATCH}-2A-\#\#\#) & Full Stage 2.B–2.E revalidation + crosswalk impact check; downstream artifacts remain Draft — Non-Deployable until updated to use the new domain \\
+Domain retirement & Retire a domain \textbf{ID}/tag due to consolidation; preserve non-reuse rule & Yes (\textbf{PATCH}-2A-\#\#\#) & Stage 2.B–2.E revalidation + crosswalk impact check; retired \textbf{ID} remains reserved and \textbf{MUST} NOT be reused \\
+\textbf{ID} correction (administrative but crosswalk-critical) & Fix an \textbf{ID} formatting defect; correct sequencing record while preserving non-reuse & Yes (\textbf{PATCH}-2A-\#\#\#) & Full crosswalk impact check required; Stage 2.B–2.E reviewed for join-key integrity; any affected artifacts default Draft — Non-Deployable until corrected \\
+\end{longtblr}
+
+\endgroup
+
+\subsection*{2.A.6 Conflict-Resolution Rule}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.A.6 Conflict-Resolution Rule}
+
+If any downstream artifact uses non-canonical domain tags, violates the one-primary rule, violates the one-secondary limit, or ignores boundary definitions, that artifact is Draft — Non-Deployable until corrected and re-versioned.
+
+\end{document}

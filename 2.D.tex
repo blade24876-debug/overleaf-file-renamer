@@ -1,0 +1,850 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 2.D — Performance Thresholds and Alignment for Entry, Intermediate, and Selection-Ready}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 2.D — Performance Thresholds and Alignment for Entry, Intermediate, and Selection-Ready}
+
+
+
+\subsection*{2.D.1 Tier Definitions}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.D.1 Tier Definitions}
+
+\textbf{ENTRY} tier (governance definition):
+
+\begin{itemize}
+\item \textbf{ENTRY} \textbf{MUST} be treated as minimum safe participation and baseline admissibility under \textbf{VALID} conditions.
+\item \textbf{ENTRY} indicates the candidate can complete baseline test constructs without violating safety posture and without producing invalid evidence.
+\item \textbf{ENTRY} is not “ready” and \textbf{MUST} NOT be used to justify early specificity escalation, impact escalation, or aggressive intensity increases.
+\end{itemize}
+
+\textbf{INTERMEDIATE} tier (governance definition):
+
+\begin{itemize}
+\item \textbf{INTERMEDIATE} \textbf{MUST} represent stabilized tolerance and progressing capacity under \textbf{VALID} conditions.
+\item \textbf{INTERMEDIATE} indicates performance improvement combined with sufficient durability and recovery stability to support higher specificity and controlled intensity increases without predictably triggering breakdown.
+\item \textbf{INTERMEDIATE} classification \textbf{MUST} remain constrained by safety governance (stop rules, pain-altered mechanics rules, water governance) and \textbf{MUST} NOT be treated as permission to “push through” risk flags.
+\end{itemize}
+
+\textbf{SELECTION-READY} tier (governance definition):
+
+\begin{itemize}
+\item \textbf{SELECTION-READY} \textbf{MUST} align to the Stage 0.3 end-state envelope and \textbf{MUST} be interpreted as a converged system state across domains, not a single “hit it once” outcome.
+\item \textbf{SELECTION-READY} tier attainment \textbf{MUST} be supported by repeatable, \textbf{VALID} evidence and stable durability/recovery posture.
+\end{itemize}
+
+Replication rule (locked; applies to any tier classification used in gates):
+
+\begin{itemize}
+\item A tier classification used for progression decisions \textbf{MUST} be supported by stability: at least 2 of the last 3 \textbf{VALID} test events within the decision window for that metric.
+\item If replication is not met, the result MAY be recorded, but tier classification defaults to \textbf{HOLD} for progression decisions for that metric until replication exists.
+\end{itemize}
+
+Evidence rule (locked):
+
+\begin{itemize}
+\item Thresholds apply only to \textbf{VALID} tests.
+\item \textbf{INVALID} tests do not qualify for tier attainment and provide no gate credit.
+\end{itemize}
+
+\subsubsection*{2.D.1.1 Tier Classification Is Conditional on Admissibility and Comparability}
+\phantomsection
+\begin{itemize}
+\item Tier classification is not assigned from results that cannot be verified under Stage 2 validity conditions (\textbf{ENV}/\textbf{EQUIP}/\textbf{WARMUP}/\textbf{SAFETY}/\textbf{MEASURE}) and Stage 1.F admissibility posture.
+\item Tier classification is not assigned across a comparability break unless the comparability break is explicitly logged and the evidence is repeated under comparable conditions.
+\item Tier classification is not assigned when disqualifier controls are active (for example, gait-altering pain flags, active stop-rule events, or underwater governance failures).
+\end{itemize}
+
+\subsubsection*{2.D.1.2 Metric Posture States for Gate Use}
+\phantomsection
+
+For each Metric \textbf{ID} in the threshold table, the gate interpretation posture \textbf{MUST} be one of the following:
+
+\begin{itemize}
+\item \textbf{UNCLASSIFIED} — no \textbf{VALID} evidence exists in the decision window for the metric (missing or invalid tests; missing trend evidence).
+\item \textbf{CLASSIFIED} (\textbf{ENTRY}) — meets \textbf{ENTRY} threshold under replication rule and admissibility rules.
+\item \textbf{CLASSIFIED} (\textbf{INTERMEDIATE}) — meets \textbf{INTERMEDIATE} threshold under replication rule and admissibility rules.
+\item \textbf{CLASSIFIED} (\textbf{SELECTION-READY}) — meets \textbf{SELECTION-READY} threshold under replication rule and admissibility rules.
+\item \textbf{HOLD} (Replication) — a result exists but replication rule (2 of last 3 \textbf{VALID}) is not met.
+\item \textbf{HOLD} (Disqualifier) — replication exists but disqualifier controls constrain tier use for progression decisions.
+\item NOT \textbf{APPLICABLE} — metric is not applicable by design for the current phase or gate context (used only when the metric is explicitly out-of-scope for the gate).
+\end{itemize}
+\clearpage
+\subsection*{2.D.2 Threshold Schema and Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.D.2 Threshold Schema and Rules}
+
+Threshold applicability (locked):
+
+\begin{itemize}
+\item Thresholds apply only to \textbf{VALID} tests. Any threshold claim based on \textbf{INVALID} evidence is inadmissible.
+\item If a test is missing or invalid, no tier classification is assigned for that metric; the metric posture is \textbf{UNCLASSIFIED} (no valid data) for gate use.
+\end{itemize}
+
+Directionality definitions (locked):
+
+\begin{itemize}
+\item Lower is better: time metrics (\textbf{RUN}, \textbf{RUCK}, \textbf{SWIM}, \textbf{AER} time trials, underwater time where governed).
+\item Higher is better: reps (\textbf{CAL}) and holds (\textbf{CAL} hold time in seconds).
+\item Pass band: \textbf{BODYCOMP} envelope targets (bodyweight and body fat range).
+\item Binary: \textbf{COMPLIANCE} and safety flags (Y/N; or enumerated tags where defined).
+\end{itemize}
+
+Service-test anchoring rule (locked posture):
+
+\begin{itemize}
+\item \textbf{ENTRY} and \textbf{INTERMEDIATE} tiers \textbf{SHOULD} be anchored to published minimums and competitive equivalents where the metric exists in common feeder tests (\textbf{CAL} and common timed runs).
+\item Where no direct feeder-test analog exists, \textbf{ENTRY} and \textbf{INTERMEDIATE} thresholds \textbf{MUST} be derived conservatively from \textbf{SELECTION-READY} anchors and safety posture, and \textbf{MUST} NOT imply early readiness.
+\item Any derived threshold \textbf{MUST} include a brief derivation basis statement in Notes in the master table.
+\end{itemize}
+
+Replication rule (explicit and numeric; locked):
+
+\begin{itemize}
+\item Tier classification used for gate decisions requires at least 2 of last 3 \textbf{VALID} test events within the decision window.
+\end{itemize}
+
+Use posture and crosswalk posture (locked):
+
+\begin{itemize}
+\item Phase Rows import thresholds by Metric \textbf{ID} and reference Protocol Cards where applicable.
+\item Stage 3 schedules test cadence and deload placement; this deliverable defines tier numbers only and does not place tests on a calendar.
+\end{itemize}
+
+Inputs and Assumptions (required)
+
+Inputs (Binding):
+
+\begin{itemize}
+\item Stage 0.3 Selection-Ready anchors (bodyweight/body fat; calisthenics; running; swimming; rucking; underwater time range framing under governance).
+\item Stage 2.A canonical domain tags.
+\item Stage 2.B metric IDs (\textbf{MET-2B}-\#\#\#).
+\item Stage 2.C protocol cards (\textbf{C1}–\textbf{C18}), where applicable.
+\item Replication rule: 2 of last 3 \textbf{VALID} tests required for tier classification used in gates.
+\item Validity posture: thresholds apply only to \textbf{VALID} tests; invalid tests yield no gate credit.
+\end{itemize}
+
+Assumption Ledger (minimum; required due to \textbf{ID}/protocol coverage gaps):
+
+\begin{itemize}
+\item \textbf{MET-2B-TBD-001} and \textbf{MET-2B-TBD-002} are used to express required session validity distribution posture as measurable compliance thresholds (weekly \textbf{MODIFIED} count and weekly \textbf{INVALID} count). These placeholders \textbf{MUST} be reconciled into Stage 2.B before Stage 2 is considered complete.
+\item \textbf{MET-2B-018} through \textbf{MET-2B-021} are covered by \textbf{C12}. No separate \textbf{TBD} protocol card is required; gate use depends on compliant \textbf{C12} execution.
+\item \textbf{MET-2B-032} through \textbf{MET-2B-034} are covered by \textbf{C18}. Numeric thresholds remain supporting only until \textbf{C18} is finalized and its placeholder sections are fully resolved.
+\item Strength proxy thresholds (\textbf{MET-2B-027} through \textbf{MET-2B-031}) are not anchored in Stage 0.3. Numeric thresholds are provided as conservative governance thresholds subject to versioned refinement once the fixed construct and implement posture are stabilized in protocol.
+\end{itemize}
+
+Reconciliation Notes (conflict resolved; adopted posture applied here):
+
+\begin{itemize}
+\item Legacy materials use non-stage-scoped metric IDs (e.g., \textbf{MET}-\#\#\#) and differing protocol card numbering for some constructs. This deliverable adopts the locked conventions for this package: metric IDs are \textbf{MET-2B}-\#\#\# and protocol cards are \textbf{C1}–\textbf{C18}. Any legacy \textbf{ID} references are treated as non-authoritative identifiers and must be mapped in the crosswalk layer; downstream phases \textbf{MUST} reference \textbf{MET-2B}-\#\#\# only.
+\end{itemize}
+
+\subsubsection*{2.D.2.1 Decision Window Definition}
+\phantomsection
+
+\begin{itemize}
+\item The “decision window” is the gate’s evidence window as defined by Stage 1.F gate doctrine and Stage 3 calendar posture.
+\item Thresholds and replication are evaluated within the decision window only.
+\item A test event outside the decision window may remain in the historical record but cannot be used to satisfy “2 of last 3 \textbf{VALID} within the decision window” unless the decision window explicitly includes it.
+\end{itemize}
+
+\subsubsection*{2.D.2.2 “Last 3 \textbf{VALID} Tests” Definition }
+\phantomsection
+
+\begin{itemize}
+\item “Last 3 \textbf{VALID} test events” refers to the three most recent test events for the metric that are tagged \textbf{VALID} and fall within the decision window.
+\item If fewer than three \textbf{VALID} test events exist within the decision window, use all available \textbf{VALID} events for replication evaluation and apply the replication rule conservatively:
+  \begin{itemize}
+  \item 0 \textbf{VALID} → \textbf{UNCLASSIFIED}.
+  \item 1 \textbf{VALID} → \textbf{HOLD} (Replication).
+  \item 2 \textbf{VALID} → tier may be classified if both meet threshold; if mixed, classify to the lower tier or \textbf{HOLD} depending on gate posture.
+  \item 3+ \textbf{VALID} → apply “2 of last 3” rule.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{2.D.2.3 Comparability Preconditions for Applying Thresholds}
+\phantomsection
+
+Threshold claims are admissible only when the test events are comparable under recorded conditions:
+
+\begin{itemize}
+\item ROCK is not used; the canonical tag is \textbf{RUCK}.
+\item \textbf{RUN} metrics: measured route or treadmill allowed only when the protocol card validity fields are satisfied; treadmill grade and settings must be stable across the events used for replication.
+\item \textbf{RUCK} metrics: dry load only; load verification and configuration must be stable across replication events; route/machine identity must be stable.
+\item \textbf{SWIM} metrics: pool unit (yards vs meters) must match; allowable strokes and no fins posture must be satisfied; pool length must be verified consistently.
+\item \textbf{BODYCOMP} metrics: method consistency within the window is required for trend interpretability; method drift requires comparability break handling.
+\item \textbf{AER} metrics: construct definition (distance or duration) and machine settings must be fixed in protocol before tiering is gate-admissible.
+\end{itemize}
+
+If comparability is materially broken across replication events, tier classification defaults to \textbf{HOLD} until repeated under comparable conditions.
+\newpage
+\begin{landscape}
+\subsection*{2.D.3 Master Threshold Table}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.D.3 Master Threshold Table}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,0.85]
+    X[l,1.50]
+    X[l,0.75]
+    X[l,0.75]
+    X[l,1.15]
+    X[l,0.95]
+    X[l,1.10]
+    X[l,1.35]
+    X[l,2.80]
+    X[l,1.05]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-10} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Metric \textbf{ID}} &
+\Hdr{Metric Name} &
+\Hdr{Domain Tag} &
+\Hdr{Protocol Card} &
+\Hdr{Directionality} &
+\Hdr{Entry Threshold} &
+\Hdr{Intermediate Threshold} &
+\Hdr{Selection-Ready Threshold} &
+\Hdr{Notes} &
+\Hdr{Overbuild Preferred} \\
+\textbf{MET-2B-001} & Bodyweight — Weekly Average & \textbf{BODYCOMP} & \textbf{C1} & Pass band (lb) & ≤260 lb (weekly average) & ≤220 lb (weekly average) & 175–185 lb (center-point 180 lb) & \textbf{ENTRY}/\textbf{INTERMEDIATE} are conservative staging anchors to prevent premature readiness claims; Selection-Ready is expressed as a pass band around the ~180 lb center-point; weekly average required (not single weigh-in) & 175–180 lb (weekly average) \\
+\textbf{MET-2B-002} & Body Fat Estimate Percent — Method/Device Recorded & \textbf{BODYCOMP} & \textbf{C2} & Pass band (\%) & ≤40\% (method recorded) & ≤25\% (method consistent within window) & 12–17.5\% & Method-agnostic at governance level; trend validity requires consistent method across measurement windows; Selection-Ready range matches end-state envelope & 12–15\% \\
+\textbf{MET-2B-010} & Push-Ups — 2-Minute Timed, Strict & \textbf{CAL} & \textbf{C4} & Higher is better (reps) & ≥25 reps & ≥60 reps & ≥100 reps & \textbf{ENTRY}/\textbf{INTERMEDIATE} are conservative placeholders to stage progression safely; \textbf{VALID} gate use requires compliant \textbf{CAL} artifact evidence and replication posture & ≥110 reps \\
+\textbf{MET-2B-011} & Sit-Ups — 2-Minute Timed, Standard & \textbf{CAL} & \textbf{C5} & Higher is better (reps) & ≥25 reps & ≥60 reps & ≥100 reps & APPLY ONLY TO \textbf{VALID} tests; do not tier from invalid counting conditions; replication required for gate classification & ≥110 reps \\
+\textbf{MET-2B-012} & Pull-Ups — Strict Dead-Hang & \textbf{CAL} & \textbf{C6} & Higher is better (reps) & ≥3 reps & ≥10 reps & ≥20 reps & Pronated strict dead-hang standard governs validity; missing required artifact evidence yields \textbf{INVALID} for gate use & ≥22 reps \\
+\textbf{MET-2B-013} & Plank — Forearm & \textbf{CAL} & \textbf{C7} & Higher is better (seconds) & ≥120 s (2:00) & ≥180 s (3:00) & ≥225 s (3:45) & Termination on form failure; validity requires standardized setup and auditable timing; replication required & ≥240 s (4:00) \\
+\textbf{MET-2B-014} & 1.5-Mile Run Time Trial & \textbf{RUN} & \textbf{C8} & Lower is better (mm:ss) & ≤15:00 & ≤12:00 & ≤9:00 & Impact-managed; measured route OR treadmill permitted when declared and logged; \textbf{ENTRY}/\textbf{INTERMEDIATE} are staging markers and do not authorize unsafe impact escalation & ≤8:30 \\
+\textbf{MET-2B-015} & 2-Mile Run Time Trial & \textbf{RUN} & \textbf{C9} & Lower is better (mm:ss) & ≤20:00 & ≤16:00 & ≤12:30 & Validity requires measured distance or treadmill settings logged; do not tier from \textbf{INVALID} conditions; replication required & ≤12:00 \\
+\textbf{MET-2B-016} & 3-Mile Run Time Trial & \textbf{RUN} & \textbf{C10} & Lower is better (mm:ss) & ≤33:00 & ≤27:00 & ≤20:00 & Entry/Intermediate are conservative staging markers; phases govern impact exposure ramps and fatigue control & ≤19:00 \\
+\textbf{MET-2B-017} & 5-Mile Run Time Trial & \textbf{RUN} & \textbf{C11} & Lower is better (mm:ss) & ≤60:00 & ≤45:00 & ≤35:00 & Selection-Ready threshold is 35:00 or faster; longer duration increases heat/hydration confounders; conditions logging required & ≤30:00 \\
+\textbf{MET-2B-022} & Swim 500 yd Time — No Fins & \textbf{SWIM} & \textbf{C13} & Lower is better (mm:ss) & ≤20:00 & ≤14:00 & ≤10:30 & No fins; allowable strokes per protocol; pool length must be verified; lane interruptions can invalidate; replication required & ≤9:30 \\
+\textbf{MET-2B-023} & Swim 500 m Time — No Fins & \textbf{SWIM} & \textbf{C13} & Lower is better (mm:ss) & ≤20:00 & ≤14:00 & ≤10:00 & No fins; allowable strokes per protocol; meters unit is locked; no conversions without mode declaration; replication required & ≤9:00 \\
+\textbf{MET-2B-025} & Underwater Exposure Admissibility Flag & \textbf{SWIM} & \textbf{C14} & Binary (Y/N) & N/A (domain remains prohibited unless admissibility passes) & Y required before any underwater testing & Y required before any underwater performance metric & Governance gate, not performance target; if “N,” underwater remains prohibited; any governance breach invalidates readiness claims and forces conservative posture & Y (maintained across decision window) \\
+\textbf{MET-2B-026} & Underwater 25 m Time — One Breath & \textbf{SWIM} & \textbf{C14} & Lower is better (seconds) & Not required at \textbf{ENTRY}; governed domain locked out until admissibility passes & Not required at \textbf{INTERMEDIATE}; governance prerequisites dominate & 30–45 s (controlled) & Performance threshold applies only after admissibility passes (\textbf{MET-2B-025} = Y) and under certified supervision + safety spotter; thresholds \textbf{MUST} NOT be interpreted as encouragement for unsupervised practice & <30 s (controlled; not required) \\
+\textbf{MET-2B-018} & 3-Mile Ruck Time Trial — 25 lb (dry) & \textbf{RUCK} & \textbf{C12} & Lower is better (mm:ss) & ≤75:00 & ≤60:00 & ≤45:00 & Dry load only; water carried logged separately; treadmill allowed only with Environment Unit \textbf{ID} and settings logged; \textbf{ENTRY}/\textbf{INTERMEDIATE} use looser times to avoid early heavy-load speed demands & ≤42:00 \\
+\textbf{MET-2B-019} & 6-Mile Ruck Time Trial — 35 lb (dry) & \textbf{RUCK} & \textbf{C12} & Lower is better (mm:ss) & ≤150:00 & ≤120:00 & ≤90:00 & Dry load only; water carried logged separately; validity requires load verification and stable route/tools; looser Entry/Intermediate times prevent premature speed/load escalation & ≤85:00 \\
+\textbf{MET-2B-020} & 9-Mile Ruck Time Trial — 45 lb (dry) & \textbf{RUCK} & \textbf{C12} & Lower is better (mm:ss) & ≤240:00 & ≤195:00 & ≤135:00 & \textbf{C12} governs this metric; dry load only; water logged separately; times are staged to avoid early heavy-load speed & ≤125:00 \\
+\textbf{MET-2B-021} & 12-Mile Ruck Time Trial — 55 lb (dry) & \textbf{RUCK} & \textbf{C12} & Lower is better (mm:ss) & ≤300:00 & ≤240:00 & ≤180:00 & \textbf{C12} governs this metric; dry load only; water logged separately; selection-ready aligns to 15:00/mi pace standard & ≤165:00 \\
+\textbf{MET-2B-046} & Weekly Admissible Session Compliance Percent & \textbf{RECOVERY} & N/A & Higher is better (\%) & ≥67\% (≥4 of 6 admissible, average across decision window) & ≥83\% (≥5 of 6 admissible, average across decision window) & ≥83\% (≥5 of 6 admissible, average across decision window) & Admissible = \textbf{VALID} + admissible \textbf{MODIFIED} within cap posture; \textbf{INVALID} is non-admissible; thresholds apply to the decision window used by the gate; replication posture does not apply (weekly compliance is a governance statistic) & ≥92\% (≥11 of 12 across a 2-week window) \\
+\textbf{MET-2B-TBD-001} & Weekly \textbf{MODIFIED} Session Count (non-medical) & \textbf{RECOVERY} & N/A & Lower is better (count) & ≤2 per week & ≤1 per week & ≤1 per week & Expresses session validity distribution posture; outside medical issues, \textbf{MODIFIED} sessions must be capped; repeated \textbf{MODIFIED} weeks force conservative gate posture even if test performance improves & 0 per week \\
+\textbf{MET-2B-TBD-002} & Weekly \textbf{INVALID} Session Count & \textbf{RECOVERY} & N/A & Lower is better (count) & ≤1 per week & 0 per week & 0 per week & Expresses session validity distribution posture; \textbf{INVALID} sessions are non-admissible and break gate eligibility; any sustained \textbf{INVALID} pattern forces \textbf{HOLD}/\textbf{REGRESS} posture & 0 per week (maintained) \\
+\textbf{MET-2B-045} & Cardio Minimum Standard Met (Decision Window) & \textbf{RECOVERY} & N/A & Higher is better (\%) & ≥83\% of sessions in window & 100\% of sessions in window & 100\% of sessions in window & This is a compliance metric; “met” means cardio minimum standard satisfied per session; failure reduces admissible session count and degrades gate eligibility & 100\% with stable modality logging \\
+\textbf{MET-2B-036} & Gait-Altering Pain Flag & \textbf{DURABILITY} & N/A & Binary (Y/N) & No during any \textbf{VALID} test event; if Yes in window, tier classification defaults \textbf{HOLD} for progression decisions & No & No & Binary pass condition for tier classification used in progression: must be No at \textbf{INTERMEDIATE} and \textbf{SELECTION-READY}; any Yes triggers conservative posture and invalidates escalation claims & No (maintained) \\
+\textbf{MET-2B-027} & Hinge Strength Proxy — \textbf{3-RM} or \textbf{5-RM} Load (submax) & \textbf{STR} & \textbf{C17} & Higher is better (lb) & ≥135 lb & ≥225 lb & ≥315 lb & Governance thresholds (not Stage 0.3 anchored); evaluated only under submax proxy posture (no \textbf{1-RM}); implement type and load method must be held stable within verification windows & ≥365 lb \\
+\textbf{MET-2B-028} & Squat Strength Proxy — \textbf{3-RM} or \textbf{5-RM} Load (submax) & \textbf{STR} & \textbf{C17} & Higher is better (lb) & ≥115 lb & ≥205 lb & ≥275 lb & Governance thresholds (not Stage 0.3 anchored); submax proxy only; validity requires implement identity and standardized depth/controls per protocol & ≥315 lb \\
+\textbf{MET-2B-029} & Upper Push Strength Proxy — \textbf{3-RM} or \textbf{5-RM} Load (submax) & \textbf{STR} & \textbf{C17} & Higher is better (lb) & ≥75 lb & ≥135 lb & ≥185 lb & Governance thresholds (not Stage 0.3 anchored); submax proxy only; implement identity and rep scheme must be logged and held stable within verification windows & ≥205 lb \\
+\textbf{MET-2B-030} & Upper Pull Strength Proxy — \textbf{3-RM} or \textbf{5-RM} Load (submax) & \textbf{STR} & \textbf{C17} & Higher is better (lb) & ≥80 lb & ≥150 lb & ≥200 lb & Governance thresholds (not Stage 0.3 anchored); submax proxy only; validity requires stable implement posture and logged method & ≥225 lb \\
+\textbf{MET-2B-031} & Carry Capacity — Load Outcome (submax proxy) & \textbf{STR} & \textbf{C17} & Higher is better (lb) & ≥150 lb & ≥250 lb & ≥350 lb & Governance thresholds (not Stage 0.3 anchored); carry distance/time construct must be fixed in protocol; until fixed, treat tiering as provisional and interpret conservatively & ≥400 lb \\
+\textbf{MET-2B-032} & Rower Time Trial & \textbf{AER} & \textbf{C18} & Lower is better (mm:ss) & ≤12:00 & ≤10:00 & ≤8:30 & Numeric thresholds remain supporting until \textbf{C18} is finalized and non-placeholder; \textbf{AER} is not interchangeable evidence for \textbf{RUN} readiness & ≤8:00 \\
+\textbf{MET-2B-033} & Bike Time Trial & \textbf{AER} & \textbf{C18} & Lower is better (mm:ss) & ≤30:00 & ≤25:00 & ≤22:00 & Numeric thresholds remain supporting until \textbf{C18} is finalized and non-placeholder; do not use \textbf{AER} tier attainment to justify impact escalation & ≤20:00 \\
+\textbf{MET-2B-034} & Elliptical Time Trial & \textbf{AER} & \textbf{C18} & Lower is better (mm:ss) & ≤20:00 & ≤16:00 & ≤14:00 & Numeric thresholds remain supporting until \textbf{C18} is finalized and non-placeholder; \textbf{AER} remains non-impact conditioning domain & ≤13:00 \\
+\end{longtblr}
+
+\end{landscape}
+\endgroup
+\subsection*{2.D.4 Alignment Notes}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.D.4 Alignment Notes}
+
+How thresholds are consumed downstream:
+
+\begin{itemize}
+\item Phase Rows (Stages 4–5) reference Metric IDs (\textbf{MET-2B}-\#\#\#) and tier thresholds (\textbf{ENTRY} / \textbf{INTERMEDIATE} / \textbf{SELECTION-READY}) as gate context. Phase Rows do not rewrite thresholds; they import them.
+\item Protocol Cards (Stage 2.C) define how tests are executed and what makes them \textbf{VALID} or \textbf{INVALID}. Thresholds have no operational meaning without \textbf{VALID} tests.
+\item Stage 3 schedules testing and deload placement at a high level and preserves validity by controlling fatigue confounders and reducing novelty near verification windows. This deliverable does not place tests on a calendar.
+\end{itemize}
+
+How tiers prevent premature escalation:
+
+\begin{itemize}
+\item \textbf{RUN} thresholds do not authorize unsafe impact progression. Meeting an \textbf{ENTRY}/\textbf{INTERMEDIATE} run time does not override pain-altered mechanics rules, durability flags, or environmental risk posture.
+\item \textbf{RUCK} thresholds do not authorize unsafe load progression. Meeting a ruck time under unsafe conditions or with unstable foot/skin integrity does not justify escalation.
+\item \textbf{SWIM} and underwater thresholds remain governed. Underwater performance is governance-gated and supervised-only; thresholds do not create permission to practice unsupervised.
+\item \textbf{STR} thresholds support capability classification under submax proxy posture and do not override tissue tolerance, technique breakdown, or safety flags.
+\item \textbf{AER} thresholds are non-impact conditioning constructs and \textbf{MUST} NOT be treated as interchangeable evidence for \textbf{RUN} tolerance or \textbf{RUN} performance.
+\end{itemize}
+
+Decision posture (tier classification logic):
+
+\begin{itemize}
+\item Tier classification for progression decisions requires replication: at least 2 of the last 3 \textbf{VALID} tests in the decision window at or above the tier threshold (or at or below, for time metrics).
+\item If the last 3 \textbf{VALID} tests straddle tiers, classify to the highest tier that meets replication; otherwise default to the last stable tier that meets replication.
+\item If only one \textbf{VALID} test exists in the decision window, the tier classification defaults to \textbf{HOLD} for progression decisions for that metric until replication exists.
+\end{itemize}
+
+Versioning note (embedded; governance posture):
+
+\begin{itemize}
+\item \textbf{SELECTION-READY} thresholds aligned to Stage 0.3 anchors are frozen as the end-state envelope and \textbf{MUST} NOT move without versioned change control.
+\item \textbf{ENTRY} and \textbf{INTERMEDIATE} thresholds anchored to published minimums or competitive equivalents are reference anchors and \textbf{MUST} be verified against current official standards prior to operational use.
+\item \textbf{STR} and \textbf{AER} thresholds are governance thresholds not anchored in Stage 0.3 and are versionable via logged change with downstream revalidation once constructs, equipment access, and protocol details are stabilized.
+\end{itemize}
+
+\clearpage
+\subsection*{2.D.5 Conflict Resolution Rule}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.D.5 Conflict Resolution Rule}
+
+\begin{itemize}
+\item If any downstream phase or gate standard does not map to these tier thresholds by Metric \textbf{ID}, or changes thresholds without versioned change control, that downstream artifact is Draft — Non-Deployable until corrected and re-versioned.
+\item Threshold use requires \textbf{VALID} tests. Invalid evidence cannot be used to claim tier attainment.
+\end{itemize}
+
+\SubTitleLine
+
+\subsection*{2.D.6 Master Threshold Table Field Definitions and Completion Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.D.6 Master Threshold Table Field Definitions and Completion Rules}
+
+This section defines completion standards for the master threshold table to ensure every row is auditable and non-ambiguous.
+
+Metric \textbf{ID}
+
+\begin{itemize}
+\item Required format: \textbf{MET-2B}-\#\#\# or explicitly noted placeholder \textbf{MET-2B-TBD}-\#\#\#.
+\item Completion rule: must match Stage 2.B inventory exactly (placeholders are allowed only under the Assumption Ledger constraints and must be reconciled before Stage 2 is deployable).
+\end{itemize}
+
+Metric Name
+
+\begin{itemize}
+\item Must match Stage 2.B metric name exactly (or include a crosswalk note if Stage 2.B name differs).
+\item Must remain stable for crosswalk joins and phase-row imports.
+\end{itemize}
+
+Domain Tag
+
+\begin{itemize}
+\item Must match Stage 2.A canonical domain tags: \textbf{RUN}, \textbf{RUCK}, \textbf{SWIM}, \textbf{CAL}, \textbf{STR}, \textbf{BODYCOMP}, \textbf{DURABILITY}, \textbf{RECOVERY}, \textbf{AER}.
+\item Must not use synonyms or non-canonical labels.
+\end{itemize}
+
+Protocol Card
+
+\begin{itemize}
+\item Must be one of:
+  \begin{itemize}
+  \item \textbf{C1}–\textbf{C18} where protocol exists, or
+  \item \textbf{TBD} (2.C) where protocol is not yet drafted, or
+  \item N/A only when the metric is a governance-computed compliance statistic (e.g., percent rate) rather than a discrete test procedure.
+  \end{itemize}
+\item Gate-admissible threshold use requires a drafted protocol for any discrete test metric; where protocol is \textbf{TBD} (2.C), thresholds are placeholders and must be treated as non-gate-admissible until protocol exists.
+\end{itemize}
+
+Directionality
+
+\begin{itemize}
+\item Must state how the threshold is evaluated:
+  \begin{itemize}
+  \item Lower is better (time),
+  \item Higher is better (reps/seconds),
+  \item Pass band (range),
+  \item Binary (Y/N).
+  \end{itemize}
+\item For time thresholds, the mm:ss representation must be interpreted as “at or below” the stated time.
+\end{itemize}
+
+Entry Threshold / Intermediate Threshold / Selection-Ready Threshold
+
+\begin{itemize}
+\item Must be expressed in the correct unit and directionality for the metric.
+\item Must not be based on \textbf{INVALID} evidence.
+\item Must not be used without replication when tier classification is used for gate decisions.
+\end{itemize}
+
+Notes
+
+\begin{itemize}
+\item Required when:
+  \begin{itemize}
+  \item threshold is derived rather than anchored,
+  \item protocol is \textbf{TBD},
+  \item comparability breaks are expected,
+  \item governance gating controls apply (underwater, disqualifier flags, compliance statistics).
+  \end{itemize}
+\item Must include derivation basis statement for any derived \textbf{ENTRY}/\textbf{INTERMEDIATE} thresholds and any \textbf{STR}/\textbf{AER} thresholds.
+\end{itemize}
+
+Overbuild Preferred
+
+\begin{itemize}
+\item Optional performance preference posture only.
+\item Must not be interpreted as a gate requirement.
+\item Must not be used to justify unsafe escalation or to override validity, durability, or safety posture.
+\end{itemize}
+\clearpage
+\subsection*{2.D.7 Deterministic Tier Classification Algorithm for Gate Use}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.D.7 Deterministic Tier Classification Algorithm for Gate Use}
+
+Tier classification for progression decisions must be determined by an explicit, repeatable algorithm.
+
+\subsubsection*{2.D.7.1 Pre-checks}
+\phantomsection
+
+For a given Metric \textbf{ID}:
+
+1. Evidence availability
+
+\begin{itemize}
+\item If there are 0 \textbf{VALID} test events in the decision window → \textbf{UNCLASSIFIED}.
+\item If there is 1 \textbf{VALID} test event in the decision window → \textbf{HOLD} (Replication).
+\item If there are 2+ \textbf{VALID} test events in the decision window → proceed to replication evaluation.
+\end{itemize}
+
+2. Comparability pre-check
+
+\begin{itemize}
+\item Confirm the events used are comparable under the protocol’s validity requirements:
+  \begin{itemize}
+  \item same unit (yards vs meters),
+  \item consistent measurement integrity posture (route verified vs treadmill distance basis),
+  \item consistent treadmill grade posture where applicable,
+  \item load verification posture consistent for rucks,
+  \item method consistency posture for trend windows where applicable.
+  \end{itemize}
+\end{itemize}
+
+If comparability is broken and not stabilized by repeated comparable events → \textbf{HOLD} (Comparability).
+
+3. Disqualifier pre-check
+
+Before tiering performance results, confirm disqualifier controls do not constrain progression use:
+
+\begin{itemize}
+\item Any stop-rule event relevant to the metric that compromises safety posture → tier classification may be recorded informationally, but gate use defaults conservative (\textbf{HOLD} or \textbf{MEDICAL} \textbf{HOLD}).
+\item Any gait-altering pain flag = Yes within the decision window -> tier classification defaults to \textbf{HOLD} for progression decisions for metrics affected by gait integrity (\textbf{RUCK} and \textbf{RUN} constructs affected).
+\item Underwater governance:
+  \begin{itemize}
+  \item If \textbf{MET-2B-025} is not Y → underwater performance tiering is NOT \textbf{APPLICABLE}; \textbf{MET-2B-026} must not be tiered for gate use.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{2.D.7.2 Replication Evaluation }
+\phantomsection
+
+For each tier (\textbf{ENTRY} → \textbf{INTERMEDIATE} → \textbf{SELECTION-READY}):
+
+\begin{itemize}
+\item Identify the last 3 \textbf{VALID} test events within the decision window (or fewer if less exist).
+\item Count how many of those events meet the tier threshold under directionality:
+  \begin{itemize}
+  \item time metrics: time ≤ threshold,
+  \item rep/hold metrics: value ≥ threshold,
+  \item pass-band: value within band,
+  \item binary: matches required state.
+  \end{itemize}
+\item Tier is satisfied for gate use only if at least 2 events satisfy the tier threshold.
+\end{itemize}
+
+Classification output:
+
+\begin{itemize}
+\item Assign the highest tier satisfied under replication.
+\item If none are satisfied, assign \textbf{UNCLASSIFIED} for gate context and treat progression conservatively.
+\end{itemize}
+
+\subsubsection*{2.D.7.3 Straddling Tiers}
+\phantomsection
+
+If the last 3 \textbf{VALID} events include mixed tier performance:
+
+\begin{itemize}
+\item Classify to the highest tier that meets replication.
+\item If no tier meets replication but the best single event meets a higher tier:
+  \begin{itemize}
+  \item record the result,
+  \item tier posture remains \textbf{HOLD} (Replication),
+  \item do not use the higher tier for progression decisions.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{2.D.7.4 Gate Context Usage}
+\phantomsection
+
+\begin{itemize}
+\item Tiering can support readiness classification and gate interpretation.
+\item Tiering cannot override:
+  \begin{itemize}
+  \item safety stop rules,
+  \item durability disqualifiers,
+  \item missing validity condition fields,
+  \item missing finalized protocol coverage (placeholder or unresolved protocols cannot be gate-admissible),
+  \item Stage 1.F gate evidence rules.
+  \end{itemize}
+\end{itemize}
+
+\clearpage
+\subsection*{2.D.8 Compliance and Disqualifier Metrics: Computation Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.D.8 Compliance and Disqualifier Metrics: Computation Rules}
+
+These metrics are not “performance tests” but are tiered for governance decision support.
+
+\subsubsection*{2.D.8.1 \textbf{MET-2B-046} Weekly Admissible Session Compliance Percent}
+\phantomsection
+
+Definition:
+
+\begin{itemize}
+\item Percent of admissible sessions in a week.
+\item Admissible session definition aligns to Stage 1.F: \textbf{VALID} plus admissible \textbf{MODIFIED} within cap posture; \textbf{INVALID} excluded.
+\end{itemize}
+
+Computation rules:
+
+\begin{itemize}
+\item Weekly percent = (admissible sessions ÷ 6) × 100.
+\item Decision window percent (two-week window) is the average of the two weekly percents, unless Stage 1.F defines an alternate computation for a specific gate.
+\end{itemize}
+
+Minimum data rule:
+
+\begin{itemize}
+\item If session tags are missing or were not assigned same day, admissible session count cannot be verified; weekly compliance defaults conservative and may be treated as below threshold for gate decisions.
+\end{itemize}
+
+\subsubsection*{2.D.8.2 \textbf{MET-2B-045} Cardio Minimum Standard Met}
+\phantomsection
+
+Definition:
+
+\begin{itemize}
+\item Y/N per session indicating whether the Cardio minimum standard was met and documented.
+\end{itemize}
+
+Computation rules:
+
+\begin{itemize}
+\item Cardio met requires:
+  \begin{itemize}
+  \item modality recorded,
+  \item minutes recorded,
+  \item continuity posture satisfied,
+  \item intensity anchor recorded (RPE + talk-test cue),
+  \item and the underlying session is not invalidated by missing required elements.
+  \end{itemize}
+\end{itemize}
+
+If Cardio minimum is missed:
+
+\begin{itemize}
+\item The session is invalidated per Stage 1.F posture and cannot be counted admissible for gate computations.
+\item Therefore the decision-window cardio-compliance rate derived from \textbf{MET-2B-045} is both:
+  \begin{itemize}
+  \item a direct compliance metric, and
+  \item an indirect driver of admissible session count.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{2.D.8.3 \textbf{MET-2B-TBD-001} Weekly \textbf{MODIFIED} Session Count (Draft — Non-Deployable until reconciled into Stage 2.B)}
+\phantomsection
+
+Definition:
+
+\begin{itemize}
+\item Count of \textbf{MODIFIED} sessions per week where the modification is not driven by clinician-imposed restriction posture or stop-rule events requiring conservative substitution.
+\end{itemize}
+
+Interpretation posture:
+
+\begin{itemize}
+\item This metric expresses drift and substitution frequency.
+\item If this count exceeds thresholds repeatedly, gate posture defaults to conservative even if performance thresholds are improving.
+\end{itemize}
+
+\subsubsection*{2.D.8.4 \textbf{MET-2B-TBD-002} Weekly \textbf{INVALID} Session Count (Draft — Non-Deployable until reconciled into Stage 2.B)}
+\phantomsection
+
+Definition:
+
+\begin{itemize}
+\item Count of \textbf{INVALID} sessions per week.
+\end{itemize}
+
+Interpretation posture:
+
+\begin{itemize}
+\item \textbf{INVALID} sessions are non-admissible.
+\item Any sustained pattern of \textbf{INVALID} sessions forces conservative gate posture:
+  \begin{itemize}
+  \item \textbf{HOLD} by default,
+  \item \textbf{REGRESS} if tolerance failure or repeated invalidity persists,
+  \item \textbf{MEDICAL} \textbf{HOLD} if invalidity is driven by stop-rule categories.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{2.D.8.5 \textbf{MET-2B-036} Gait-Altering Pain Flag}
+\phantomsection 
+
+Interpretation posture:
+
+\begin{itemize}
+\item For progression decisions:
+  \begin{itemize}
+  \item Any Yes within the decision window forces \textbf{HOLD} for tier-based progression decisions in impact/load domains.
+  \end{itemize}
+\item For test events:
+  \begin{itemize}
+  \item The flag \textbf{MUST} be No during any \textbf{VALID} test event for tier-classification use at \textbf{INTERMEDIATE} and \textbf{SELECTION-READY}.
+  \end{itemize}
+\end{itemize}
+
+\clearpage
+\subsection*{2.D.9 Protocol Coverage Gaps and Gate-Admissibility Handling}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.D.9 Protocol Coverage Gaps and Gate-Admissibility Handling}
+
+Protocol coverage gaps must be treated conservatively.
+
+\begin{itemize}
+\item If Protocol Card = \textbf{TBD} (2.C):
+  \begin{itemize}
+  \item Thresholds are placeholders only.
+  \item The metric cannot be treated as gate-admissible until the protocol exists and defines:
+    \begin{itemize}
+    \item validity fields,
+    \item measurement integrity rules,
+    \item stop-rule overlays,
+    \item and invalidation triggers.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+This applies explicitly and only to metrics whose protocol card remains unresolved or placeholder-incomplete:
+
+\begin{itemize}
+\item \textbf{MET-2B-032} through \textbf{MET-2B-034} (\textbf{AER} time trials) remain supporting only until \textbf{C18} is fully finalized and non-placeholder.
+\end{itemize}
+\clearpage
+\subsection*{2.D.10 Change Control and Revalidation Posture for Thresholds}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.D.10 Change Control and Revalidation Posture for Thresholds}
+
+Thresholds are governance-critical. Changes must be controlled.
+
+\begin{itemize}
+\item Any change to \textbf{SELECTION-READY} thresholds aligned to Stage 0.3 anchors is treated as a constraint-level change and requires explicit change control and downstream revalidation.
+\item Any change to \textbf{ENTRY}/\textbf{INTERMEDIATE} thresholds must include:
+  \begin{itemize}
+  \item rationale,
+  \item derivation basis,
+  \item comparability impact statement (if any),
+  \item and downstream revalidation of affected phase rows and gate logic.
+  \end{itemize}
+\item Any change to a metric’s protocol reference (C\#) is a comparability-impacting change and requires revalidation of:
+  \begin{itemize}
+  \item the protocol card,
+  \item affected thresholds,
+  \item and any downstream consumers referencing the metric.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{2.D.11 Acceptance Criteria for Stage 2.D}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.D.11 Acceptance Criteria for Stage 2.D}
+
+Stage 2.D is deployable only when:
+
+\begin{itemize}
+\item Every Gate-Critical metric in Stage 2.B has:
+  \begin{itemize}
+  \item tier thresholds for \textbf{ENTRY}, \textbf{INTERMEDIATE}, \textbf{SELECTION-READY} (or explicit N/A posture where governance locks the domain, e.g., underwater).
+  \end{itemize}
+\item Directionality is explicit and consistent with units and protocol constructs.
+\item Replication rule is explicitly applied and does not conflict with Stage 1.F gate evidence posture.
+\item Any placeholder metrics (\textbf{MET-2B-TBD}-\#\#\#) are either:
+  \begin{itemize}
+  \item reconciled into Stage 2.B with permanent IDs, or
+  \item explicitly marked as Draft — Non-Deployable dependencies until reconciled.
+  \end{itemize}
+\item Any metrics with Protocol Card = \textbf{TBD} (2.C) are treated as non-gate-admissible until protocol coverage is drafted and validated.
+\item No thresholds imply permission to violate safety posture, durability disqualifiers, or water governance boundaries.
+\end{itemize}
+
+\end{document}

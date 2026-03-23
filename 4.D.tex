@@ -1,0 +1,695 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 4.D — Intensity, Volume, and Progression Rules — Phase 00}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 4.D — Intensity, Volume, and Progression Rules — Phase 00}
+
+\subsection*{4.D.1 Cardio and Low-Impact Locomotion}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.D.1 Cardio and Low-Impact Locomotion}
+
+Phase 00 Cardio intensity anchoring posture
+
+\begin{itemize}
+\item Cardio intensity is governed by RPE 0–10 plus a talk-test cue. Phase 00 is submax and explicitly avoids breathless work.
+\item RPE anchors and talk-test cues (coach-applied, consistent language):
+  \begin{itemize}
+  \item RPE 2–3: full sentences easily; calm breathing; stable nasal breathing often possible.
+  \item RPE 4: full sentences with deeper breathing; controlled; no urgency.
+  \item RPE 5: short sentences; deliberate breathing; still controlled; not breathless.
+  \item RPE 6: few words only; Phase 00 ceiling posture—permitted only briefly and only if it does not produce next-day drift.
+  \item RPE 7–10: not authorized for Cardio intent in Phase 00.
+  \end{itemize}
+\item Talk-test cue must be logged in plain language (full sentences, short sentences, few words). Do not invent alternate scales.
+\end{itemize}
+
+Cardio minimum rule in body text
+
+\begin{itemize}
+\item Cardio occurs in every session and must meet the minimum standard: minimum 30 minutes continuous every session.
+\item If continuous work cannot be maintained safely:
+  \begin{itemize}
+  \item downgrade intensity first, then
+  \item substitute to a lower-risk modality to preserve continuous duration.
+  \end{itemize}
+\item If the session is aborted due to stop posture, tag validity per Stage 1.F and do not treat the session as progression-eligible evidence.
+\end{itemize}
+
+Step integration posture embedded inside Cardio execution and logging
+
+\begin{itemize}
+\item 10,000 steps per day is a hard minimum from Week 1 and must be logged.
+\item Step-based locomotion is the default Cardio approach where feasible and safe, because it supports both Cardio intent and the step minimum posture.
+\item Steps are not a standalone program inside Phase 00. Steps are pursued through Cardio intent and baseline daily activity, and are verified through logging discipline.
+\end{itemize}
+
+Segment-based Cardio duration envelopes (per-session ranges; ceilings are not targets)
+
+\begin{itemize}
+\item Segment 1 Weeks 1–4:
+  \begin{itemize}
+  \item Range: 30–40 minutes continuous per session
+  \item Ceiling: 45 minutes continuous per session
+  \end{itemize}
+\item Segment 2 Weeks 5–8:
+  \begin{itemize}
+  \item Range: 35–45 minutes continuous per session
+  \item Ceiling: 55 minutes continuous per session
+  \end{itemize}
+\item Segment 3 Weeks 9–12:
+  \begin{itemize}
+  \item Range: 40–55 minutes continuous per session
+  \item Ceiling: 65 minutes continuous per session
+  \end{itemize}
+\item Segment 4 Weeks 13–16:
+  \begin{itemize}
+  \item Range: 45–60 minutes continuous per session
+  \item Ceiling: 70 minutes continuous per session
+  \end{itemize}
+\item Ceiling definition (enforceable):
+  \begin{itemize}
+  \item Ceilings are maximum allowable durations under stable mechanics and stable recovery. They are not targets and are not “earned” by pushing intensity.
+  \end{itemize}
+\end{itemize}
+
+Weekly total Cardio minutes guidance (counts only Cardio block minutes performed inside the six sessions)
+
+\begin{itemize}
+\item Counting rule (binding):
+  \begin{itemize}
+  \item weekly totals count only Cardio block minutes performed inside the 6 training sessions.
+  \item warm-up or cooldown locomotion counts only if explicitly logged as Cardio time.
+  \item do not convert non-session steps into Cardio minutes unless explicitly logged as Cardio inside a session.
+  \end{itemize}
+\item Floor:
+  \begin{itemize}
+  \item 6 sessions × 30 minutes continuous = 180 minutes per week minimum Cardio time (Cardio block minutes only).
+  \end{itemize}
+\item Weekly increase cap (apply the more conservative cap each week):
+  \begin{itemize}
+  \item Percent cap: no more than 10 percent week-over-week in planned weekly Cardio block minutes.
+  \item Absolute cap: no more than +30 minutes/week in planned weekly Cardio block minutes.
+  \end{itemize}
+\item Hold or reduce posture (mandatory when drift triggers appear):
+  \begin{itemize}
+  \item If pain trends, foot hotspots worsen, gait drift appears, sleep streak trigger is active, session RPE rises at unchanged intent, or repeated \textbf{MODIFIED} / \textbf{INVALID} sessions occur, hold weekly Cardio minutes or reduce within the segment range until stability returns.
+  \item Do not compensate missed Cardio by stacking or by increasing intensity.
+  \end{itemize}
+\end{itemize}
+
+Modality posture (Phase 00-safe)
+
+\begin{itemize}
+\item Step-based locomotion is the default modality where feasible and safe.
+\item Elliptical and bike are permitted as lower-impact substitutes to preserve continuous Cardio safely when:
+  \begin{itemize}
+  \item footwear interface is unstable,
+  \item surface conditions are unsafe,
+  \item pain-risk posture increases mechanics risk.
+  \end{itemize}
+\item Substitutions must preserve intent and be loggable with:
+  \begin{itemize}
+  \item modality,
+  \item minutes,
+  \item intensity anchor (RPE + talk-test),
+  \item continuity statement,
+  \item environment/tool identity posture where relevant.
+  \end{itemize}
+\end{itemize}
+
+Impact governance statement (Phase 00)
+
+\begin{itemize}
+\item Phase 00 does not introduce impact escalation posture.
+\item No breathless conditioning, no intensity chasing, and no “time trial” behavior outside protected testing posture already defined upstream.
+\end{itemize}
+
+\subsection*{4.D.2 Strength and Calisthenics Exposure Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.D.2 Strength and Calisthenics Exposure Rules}
+
+Scope rule for this section
+
+\begin{itemize}
+\item Phase 00 pattern exposure is regressed by design and executed using minimal kit posture (chair or bench, mat, light resistance band optional).
+\item No maximal strength testing and no true \textbf{1RM} testing is authorized.
+\item No breathless density posture is authorized; the objective is stable mechanics, tolerance, and repeatability.
+\end{itemize}
+
+Technique-quality gates and RPE ceilings (Phase 00 main work exposures)
+
+\begin{itemize}
+\item Technique is the gate:
+  \begin{itemize}
+  \item stop before form degradation,
+  \item stop immediately on mechanics change or pain-driven compensation,
+  \item do not accumulate fatigue to “see what happens.”
+  \end{itemize}
+\item RPE ceilings for main work exposures:
+  \begin{itemize}
+  \item typical: RPE 3–6 under controlled mechanics,
+  \item ceiling: RPE 7 is a hard ceiling and should be rare; reaching RPE 7 triggers conservative review and reduced next exposures,
+  \item RPE 8–10 is not authorized in Phase 00 main work.
+  \end{itemize}
+\item No-failure rule (explicit and enforceable):
+  \begin{itemize}
+  \item stop 2–3 reps before form loss where reps exist,
+  \item terminate holds at the first form breakdown where holds exist,
+  \item terminate immediately if pain alters mechanics.
+  \end{itemize}
+\end{itemize}
+
+Pattern-level exposure guidance as safe envelopes (no exercise lists; no day-by-day programming)
+
+\begin{itemize}
+\item Gait and locomotion:
+  \begin{itemize}
+  \item present in every session via Cardio; gait quality is monitored continuously.
+  \end{itemize}
+\item Squat and sit-to-stand patterning:
+  \begin{itemize}
+  \item frequency posture: up to 3 sessions/week as a primary pattern emphasis; other days treat as brief patterning only if risk-neutral.
+  \item envelope posture: conservative and stable; do not increase both complexity and volume in the same week.
+  \end{itemize}
+\item Hinge and hip extension patterning:
+  \begin{itemize}
+  \item frequency posture: 2–3 sessions/week as a primary pattern emphasis.
+  \item envelope posture: smaller ROM first; progress only by stability, not depth or speed.
+  \end{itemize}
+\item Push patterning:
+  \begin{itemize}
+  \item frequency posture: 2–4 sessions/week as a primary pattern emphasis, constrained by shoulder tolerance and no pain-driven compensation.
+  \item vertical pattern work remains mechanics-only regressions; no loaded overhead posture is introduced.
+  \end{itemize}
+\item Pull patterning:
+  \begin{itemize}
+  \item frequency posture: 2–4 sessions/week emphasizing scapular control and horizontal pull intent with minimal kit.
+  \item anchored band work is not authorized unless stability is verifiable; anchor-free posture is default.
+  \end{itemize}
+\item Core and bracing:
+  \begin{itemize}
+  \item frequency posture: 4–6 sessions/week as low-strain consistency work.
+  \item plank termination standard is controlled and must be consistent; do not chase longer holds by compensation.
+  \end{itemize}
+\item Mobility:
+  \begin{itemize}
+  \item occurs every session (see 4.D.3) and is treated as a safety and quality control, not a performance goal.
+  \end{itemize}
+\end{itemize}
+
+One-lever-at-a-time posture (applies to strength/calisthenics as well as Cardio)
+
+\begin{itemize}
+\item In any given week, do not increase more than one primary lever across:
+  \begin{itemize}
+  \item total weekly Cardio block minutes,
+  \item duration of the longest Cardio-primary exposure,
+  \item total pattern exposure volume or complexity.
+  \end{itemize}
+\item If a progression occurs in one pattern (e.g., lower incline for push regressions), do not simultaneously increase total exposure volume for that same pattern category in the same week.
+\end{itemize}
+
+Regression and substitution rules (Phase 00-safe; governance-level)
+
+\begin{itemize}
+\item Immediate same-day regression or substitution posture is mandatory when:
+  \begin{itemize}
+  \item pain is greater than 5/10, or
+  \item pain alters mechanics, or
+  \item dizziness/lightheadedness occurs, or
+  \item unusual/disproportionate breathlessness occurs relative to planned effort, or
+  \item instability/swelling is present, or
+  \item any Stage 1.F red-flag symptom posture applies.
+  \end{itemize}
+\item 24–48 hour downgrade posture is mandatory:
+  \begin{itemize}
+  \item if pain persists or escalates over 24–48 hours, or swelling/hotspots worsen, downshift the next exposures and remove progression attempts until stable.
+  \end{itemize}
+\item Documentation and validity-tag impact:
+  \begin{itemize}
+  \item trigger-driven changes require \textbf{MODIFIED} tagging with reason-code posture and an observable-trigger note.
+  \item missing required elements or missing required documentation yields \textbf{INVALID} for progression decision use.
+  \end{itemize}
+\end{itemize}
+
+Joint-history conservatism (non-diagnostic; operational)
+
+\begin{itemize}
+\item Shoulder history: avoid aggressive overhead and end-range loading; prefer controlled range; prioritize scapular control; terminate on pain-driven compensation.
+\item Hip history: avoid twisting or pivoting under load; avoid deep end-range flexion if it provokes compensation; regress ROM and leverage before increasing complexity.
+\item Ankle history: avoid unstable surfaces early; prioritize stable stance and controlled dorsiflexion; regress locomotion exposure when gait changes appear.
+\end{itemize}
+
+\subsection*{4.D.3 Mobility and Recovery Dose Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.D.3 Mobility and Recovery Dose Rules}
+
+Mobility dose per session (range)
+
+\begin{itemize}
+\item Minimum mobility time per session: 8–15 minutes.
+\item Increase mobility emphasis when readiness is compromised, while reducing main work density, without reducing the six-session cadence.
+\end{itemize}
+
+Priority regions (Phase 00 posture)
+
+\begin{itemize}
+\item Ankle: controlled dorsiflexion readiness and stability without forcing painful range.
+\item Hip: controlled range and stability; avoid twist/pivot stress.
+\item Thoracic spine: gentle mobility to support posture and shoulder mechanics.
+\item Shoulder: controlled flexion mechanics without rib flare compensation and without end-range forcing.
+\end{itemize}
+
+Recovery dose rules (governance-level)
+
+\begin{itemize}
+\item Cooldown exists to downshift and close the session; it is not a place to “add work.”
+\item Recovery notes and post-session notes are mandatory and must include:
+  \begin{itemize}
+  \item sleep hours,
+  \item soreness 0–10,
+  \item fatigue 0–10,
+  \item pain 0–10 plus location when pain is present,
+  \item foot hotspot or blister notes,
+  \item session RPE,
+  \item deviation notes and reason-code posture when applicable.
+  \end{itemize}
+\end{itemize}
+
+Deload and test week bias (Weeks 4/8/12/16)
+
+\begin{itemize}
+\item Mobility and recovery emphasis increases relative to work weeks.
+\item No novelty and no aggressive end-range chasing near test windows.
+\item Preserve Cardio minimum every session and protect validity posture by reducing main work density.
+\end{itemize}
+
+\subsection*{4.D.4 Progression Safeguards and Downshift Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.D.4 Progression Safeguards and Downshift Rules}
+
+Signals used for downshift decisions (use existing posture; do not invent new metrics)
+
+\begin{itemize}
+\item \textbf{RECOVERY} signals: sleep, soreness, fatigue, session RPE, and execution stability.
+\item \textbf{DURABILITY} signals: pain severity and location, gait mechanics change, and foot hotspot or blister trend posture.
+\item Governance signals: session validity tags and documentation completeness (missing fields degrade admissibility posture).
+\end{itemize}
+
+Phase 00 Minimum Viable Session posture (preserves frequency; preserves required elements)
+
+\begin{itemize}
+\item Safety self-check first.
+\item Warm-up and mobility completed.
+\item Main work reduced to minimal patterning under strict technique gates.
+\item Cardio preserved as the labeled block and maintained as continuous duration using downshifted intensity and/or lower-risk modality.
+\item Cooldown completed.
+\item Recovery notes and post-session notes completed same day.
+\item Validity tagging applied correctly:
+  \begin{itemize}
+  \item \textbf{MODIFIED} when downshifted/substituted but required elements remain present and documentation is complete,
+  \item \textbf{INVALID} when required elements or required documentation are missing, or when safety posture was violated.
+  \end{itemize}
+\end{itemize}
+
+Staged downshift ladder (apply in order; preserve six-session cadence)
+
+\begin{enumerate}
+\item Downshift intensity first:
+  \begin{itemize}
+  \item slow down, reduce incline/resistance, reduce pace, choose a gentler modality while preserving continuous duration.
+  \end{itemize}
+
+\item Reduce density next:
+  \begin{itemize}
+  \item reduce optional add-ons, reduce complexity, shorten main work blocks while preserving session structure.
+  \end{itemize}
+
+\item Substitute modality next:
+  \begin{itemize}
+  \item step-based walking to treadmill or indoor substitute; if foot friction is a risk, substitute to elliptical or bike.
+  \end{itemize}
+
+\item Abort only when safety posture requires:
+  \begin{itemize}
+  \item \textbf{STOP} \textbf{NOW} triggers terminate the session or provoking exposure; document and apply escalation posture as required.
+  \end{itemize}
+\end{enumerate}
+
+Explicit do-not rules
+
+\begin{itemize}
+\item Do not compress missed work by stacking.
+\item Do not chase intensity to “make up” for low-compliance weeks.
+\item Do not treat \textbf{INVALID} evidence as gate credit or as justification to progress.
+\item Do not reduce weekly frequency as the default fatigue-management strategy; downshift dose and risk instead, unless a safety stop posture or Medical restriction requires deviation.
+\end{itemize}
+
+Gate-week decision-window reminder (Week 16)
+
+\begin{itemize}
+\item For Week 16 \textbf{ADVANCE} decisions, Stage 1.F decision-window disqualifiers apply, including the rule that any \textbf{INVALID} session within the decision window disqualifies \textbf{ADVANCE} regardless of phase-wide trends.
+\end{itemize}
+
+\subsection*{4.D.5 Deload and Test Week Volume Reduction Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.D.5 Deload and Test Week Volume Reduction Rules}
+
+Typical reduction band (Phase 00 deload and test weeks)
+
+\begin{itemize}
+\item Apply a 30–50 percent reduction in volume and density primarily to main work and optional add-ons.
+\end{itemize}
+
+Preservation rules (non-negotiable)
+
+\begin{itemize}
+\item Preserve six-session rhythm.
+\item Preserve Cardio as the labeled block and preserve continuous minimum duration each session.
+\item No intensity spikes and no “prove it” efforts.
+\item Testing occurs only as scheduled battery items under lock fields; inability to meet \textbf{VALID} conditions triggers \textbf{INVALID} and reslot posture.
+\end{itemize}
+
+Application rules (what reduces first; what must remain)
+
+\begin{itemize}
+\item Reduce first:
+  \begin{itemize}
+  \item optional add-ons,
+  \item complexity of main work patterns,
+  \item ROM/leverage demands for joint-sensitive patterns.
+  \end{itemize}
+\item Preserve:
+  \begin{itemize}
+  \item session element order,
+  \item Cardio continuous minimum,
+  \item mobility and recovery note completeness,
+  \item documentation discipline.
+  \end{itemize}
+\item Avoid hidden spikes:
+  \begin{itemize}
+  \item no extra “bonus work” to compensate for reductions,
+  \item no unplanned Cardio intensity spikes during deload weeks.
+  \end{itemize}
+\end{itemize}
+
+Fixed deload and test placement (Phase 00 hard-locked)
+
+\begin{itemize}
+\item Week 4, Week 8, Week 12, Week 16.
+\end{itemize}
+
+\begin{landscape}
+
+\subsubsection*{Table 1 — Cardio progression by segment}
+\phantomsection
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.35in]
+    Q[l,wd=1.35in]
+    X[l,1.65]
+    X[l,1.65]
+    X[l,3.35]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Segment} &
+\Hdr{Target Session Cardio Range min} &
+\Hdr{Intensity Anchor} &
+\Hdr{Weekly Increase Cap} &
+\Hdr{Notes} \\
+Segment 1 Weeks 1–4 &
+30–40 &
+RPE 2–4; talk test full sentences &
+Up to 10 percent or 30 minutes weekly Cardio block total, whichever is more conservative &
+Step-based default where feasible. 10,000 steps per day hard minimum posture is pursued through Cardio intent and baseline activity and must be logged. Weekly totals count only Cardio minutes inside the 6 sessions. Substitution posture: downshift intensity first, then substitute to lower-impact modalities to preserve continuous duration safely. \\
+Segment 2 Weeks 5–8 &
+35–45 &
+RPE 2–5; talk test full to short sentences &
+Up to 10 percent or 30 minutes weekly Cardio block total, whichever is more conservative &
+Step-based default where feasible; maintain stable footwear and surface class. Counting rule applies: only Cardio block minutes in the 6 sessions. Use elliptical or bike substitution to preserve continuity when footwear/surface/pain posture increases risk. Hold or reduce if drift triggers appear. \\
+Segment 3 Weeks 9–12 &
+40–55 &
+RPE 3–5; talk test short sentences permitted but controlled &
+Up to 10 percent or 30 minutes weekly Cardio block total, whichever is more conservative &
+Step-based default where feasible. No novelty near Week 12. Preserve continuous duration and log intensity using RPE + talk test cue every session. Reduce or substitute when durability/recovery drift appears. \\
+Segment 4 Weeks 13–16 &
+45–60 &
+RPE 3–5; talk test short sentences permitted but controlled &
+Up to 10 percent or 30 minutes weekly Cardio block total, whichever is more conservative &
+Stability prioritized approaching Week 16. Counting rule applies; do not convert non-session steps into Cardio minutes unless logged as Cardio. If drift triggers appear, hold or reduce and preserve gate-grade validity posture. \\
+\end{longtblr}
+
+\endgroup
+
+\subsubsection*{Table 2 — Strength exposure by segment pattern-level}
+\phantomsection
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.35in]
+    X[l,2.65]
+    X[l,1.70]
+    X[l,1.70]
+    X[l,2.35]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Segment} &
+\Hdr{Pattern Exposure qualitative} &
+\Hdr{Set/Rep Range Envelope} &
+\Hdr{Technique Gate} &
+\Hdr{Notes} \\
+Segment 1 Weeks 1–4 &
+Minimal patterning emphasis: sit-to-stand familiarity, incline-push familiarity, plank basics, scapular-control pulls, controlled hinge/hip extension &
+1–3 conservative sets per pattern when used; 5–12 reps or 10–30 seconds holds; stop early &
+Stop 2–3 reps before form loss; terminate on mechanics change; no breath-holding strain &
+Regression triggers: pain > 5/10; pain alters mechanics; dizziness/lightheadedness; unusual/disproportionate breathlessness; instability/swelling; Stage 1.F red-flag posture. RPE cap: 3–6 typical; ceiling 7. No-failure technique gate is mandatory. \\
+Segment 2 Weeks 5–8 &
+Moderate consistency: repeatable sit-to-stand and incline-push exposures, trunk endurance consolidation, mobility daily, pull/scapular control continuity &
+2–4 conservative sets per pattern when used; 6–15 reps or 15–45 seconds holds; stop early &
+Clean reps only; terminate at first form drift; maintain stable lock fields for test-linked patterns &
+Regression triggers and 24–48 hour downgrade posture enforced. Do not progress complexity and volume in the same week. Trigger-driven changes are \textbf{MODIFIED} with reason-code posture; missing required elements/logs yields \textbf{INVALID}. \\
+Segment 3 Weeks 9–12 &
+Consolidation and repeatability: stable mechanics under low variance; no new pattern complexity &
+2–4 conservative sets per pattern when used; 6–20 reps or 20–60 seconds holds; stop early &
+Technique-first; no grinding; no compensation; controlled breathing &
+Maintain lock-field stability near Week 12. If pain/hotspots worsen over 24–48 hours, downshift the next exposures and remove progression attempts until stable. \\
+Segment 4 Weeks 13–16 &
+Stability proof: maintain consistent mechanics and preserve readiness for exit evidence &
+2–3 conservative sets per pattern when used; keep within stable envelope; avoid expansion &
+Terminate before fatigue-induced drift; maintain conservative effort &
+No novelty near Week 16. Regression triggers enforced immediately. Do not increase total pattern volume and Cardio load in the same week. If drift triggers appear, preserve Minimum Viable Session posture rather than chasing progression. \\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+\subsection*{Assumption Ledger}
+\phantomsection
+\addcontentsline{toc}{subsection}{Assumption Ledger}
+
+\begin{itemize}
+\item Assumption: Phase 00 reference materials may contain more aggressive intensity anchors or mixed “conditioning benchmark” constructs. Adopted posture for 4.D follows binding constraints in this prompt: Phase 00 avoids breathless work, uses RPE + talk test anchoring, enforces Cardio minimum continuous duration, and prohibits impact escalation, rucking escalation, swim time trials, underwater, and maximal strength testing.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,1194 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\clearpage
+\begin{landscape}
+
+\section*{7.08.A - Walking Pad}
+\phantomsection
+\addcontentsline{toc}{section}{7.08.A - Walking Pad}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Walking pad & UREVO Strol 2-E & \$280 & Compact treadmill & Phase-01 & Creates a low-speed indoor walk option for ice days, and this unit was chosen for simple apartment-friendly storage. \\
+Budget & Walking pad & Sunny Health and Fitness Walkstation Slim & \$300 & Compact treadmill & Phase-01 & Supports easy daily cardio without a full treadmill footprint, and this model was chosen for its straightforward basic controls. \\
+Budget & Walking pad & DeerRun Walking Pad & \$260 & Compact treadmill & Phase-01 & Keeps beginner cardio accessible in tight rooms, and this model was chosen for quiet operation during longer easy sessions. \\
+Standard & Walking pad & WalkingPad \textbf{C2} & \$399 & Compact treadmill & Phase-01 & Makes indoor recovery walking easy between bad-weather days, and this unit was chosen for its foldable low-profile design. \\
+Standard & Walking pad & Egofit Walker Pro-M1 & \$450 & Compact treadmill & Phase-01 & Gives a compact incline-capable walking option, and this unit was chosen for slightly more training variability than flat pads. \\
+Standard & Walking pad & LifeSpan TR1000 GlowUp & \$699 & Compact treadmill & Phase-01 & Supports reliable year-round indoor cardio, and this unit was chosen for a sturdier frame than ultra-budget pads. \\
+Elite & Walking pad & LifeSpan TR1200 GlowUp & \$999 & Compact treadmill & Phase-01 & Handles frequent low-impact mileage with more confidence, and this unit was chosen for stronger durability under repeated use. \\
+Elite & Walking pad & InMovement Unsit Treadmill & \$2495 & Compact treadmill & Phase-01 & Creates a premium stable walk platform for long easy sessions, and this unit was chosen for commercial-feeling smoothness. \\
+Elite & Walking pad & WalkingPad X21 & \$999 & Compact treadmill & Phase-01 & Gives a more polished fold-up indoor walk station, and this unit was chosen for better integration into small living spaces. \\
+\end{longtblr}
+
+\newpage
+
+\subsection*{7.08.B - Motorized Treadmill}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.B - Motorized Treadmill}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Motorized treadmill & Sunny Health and Fitness SF-T4400 & \$500 & Cardio machine & Phase-01 & Provides a safer controlled walk-to-jog lane indoors, and this unit was chosen for entry-level handrail security. \\
+Budget & Motorized treadmill & XTERRA TR150 & \$550 & Cardio machine & Phase-01 & Preserves cardio continuity when routes are unsafe, and this unit was chosen for basic incline and a stable starter deck. \\
+Budget & Motorized treadmill & Horizon T101 & \$800 & Cardio machine & Phase-01 & Builds reliable indoor aerobic continuity, and this unit was chosen for better overall consistency than bargain treadmills. \\
+Standard & Motorized treadmill & Sole F63 & \$1099 & Cardio machine & Phase-01 & Supports higher bodyweight indoor conditioning with more confidence, and this unit was chosen for stronger frame stability. \\
+Standard & Motorized treadmill & NordicTrack T Series 8 & \$1299 & Cardio machine & Phase-01 & Enables graded walk and run work indoors, and this unit was chosen for broader incline utility during controlled progression. \\
+Standard & Motorized treadmill & Horizon 7.0 AT & \$1499 & Cardio machine & Phase-01 & Handles both easy walking and later faster work well, and this unit was chosen for a strong motor-to-price balance. \\
+Elite & Motorized treadmill & Life Fitness F3 & \$2999 & Cardio machine & Phase-01 & Delivers a smoother premium indoor run-walk platform, and this unit was chosen for dependable long-term repeatability. \\
+Elite & Motorized treadmill & Landice L7 & \$4799 & Cardio machine & Phase-01 & Supports high-use indoor conditioning with excellent deck feel, and this unit was chosen for durable near-commercial build quality. \\
+Elite & Motorized treadmill & Precor TRM 835 & \$8995 & Cardio machine & Phase-01 & Creates a very stable test-like treadmill environment, and this unit was chosen for top-tier consistency and reliability. \\
+\end{longtblr}
+
+\newpage
+
+\subsection*{7.08.C - Upright Exercise Bike}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.C - Upright Exercise Bike}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Upright exercise bike & Marcy \textbf{ME}-708 & \$180 & Stationary bike & Phase-01 & Offers a very simple seated low-impact option, and this bike was chosen for cheap basic aerobic access. \\
+Budget & Upright exercise bike & Exerpeutic Folding Upright Bike & \$220 & Stationary bike & Phase-01 & Keeps cardio possible in very small rooms, and this bike was chosen for fold-away storage convenience. \\
+Budget & Upright exercise bike & Sunny Health and Fitness SF-B2721 & \$300 & Stationary bike & Phase-01 & Supports steady beginner cardio with a little more structure, and this bike was chosen for basic magnetic resistance. \\
+Standard & Upright exercise bike & Schwinn 130 & \$699 & Stationary bike & Phase-01 & Makes consistent zone-style cardio easier to tolerate, and this bike was chosen for smoother pedaling than entry models. \\
+Standard & Upright exercise bike & Nautilus U618 & \$799 & Stationary bike & Phase-01 & Gives a more stable seated conditioning tool, and this bike was chosen for stronger console and resistance control. \\
+Standard & Upright exercise bike & Horizon 5.0U & \$899 & Stationary bike & Phase-01 & Preserves low-impact cardio with better fit adjustability, and this bike was chosen for a sturdier ride feel. \\
+Elite & Upright exercise bike & Life Fitness \textbf{C1} & \$1799 & Stationary bike & Phase-01 & Delivers a refined commercial-style seated ride, and this bike was chosen for smoother long-session comfort. \\
+Elite & Upright exercise bike & Matrix U30 & \$1999 & Stationary bike & Phase-01 & Supports frequent indoor aerobic work with premium stability, and this bike was chosen for strong build quality. \\
+Elite & Upright exercise bike & Technogym Bike Personal & \$3950 & Stationary bike & Phase-01 & Creates a polished high-end conditioning station, and this bike was chosen for premium fit and finish. \\
+\end{longtblr}
+
+\newpage
+
+\subsection*{7.08.D - Recumbent Exercise Bike}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.D - Recumbent Exercise Bike}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Recumbent exercise bike & Marcy NS-908R & \$230 & Stationary bike & Phase-01 & Reduces joint stress during early conditioning, and this bike was chosen for a simple low-step access design. \\
+Budget & Recumbent exercise bike & Exerpeutic 400XL & \$220 & Stationary bike & Phase-01 & Makes low-back-friendly cardio more accessible, and this bike was chosen for very easy beginner mounting. \\
+Budget & Recumbent exercise bike & Sunny Health and Fitness SF-RB4708 & \$350 & Stationary bike & Phase-01 & Supports longer easy cardio with better seat support, and this bike was chosen for more comfort than bare-bones models. \\
+Standard & Recumbent exercise bike & Schwinn 230 & \$799 & Stationary bike & Phase-01 & Helps preserve aerobic volume when upright posture feels irritating, and this bike was chosen for better ride smoothness. \\
+Standard & Recumbent exercise bike & Nautilus R618 & \$899 & Stationary bike & Phase-01 & Keeps cardio viable during orthopedic downshifts, and this bike was chosen for stronger frame stability. \\
+Standard & Recumbent exercise bike & Sole R92 & \$1299 & Stationary bike & Phase-01 & Gives a more durable seated conditioning option, and this bike was chosen for heavier-use reliability. \\
+Elite & Recumbent exercise bike & Life Fitness RS1 & \$1699 & Stationary bike & Phase-01 & Creates a premium low-impact fallback tool, and this bike was chosen for refined comfort during repeated longer sessions. \\
+Elite & Recumbent exercise bike & Matrix R30 & \$2199 & Stationary bike & Phase-01 & Supports frequent controlled aerobic work with less body-position frustration, and this bike was chosen for a commercial feel. \\
+Elite & Recumbent exercise bike & NordicTrack Commercial R35 & \$1499 & Stationary bike & Phase-01 & Provides a more full-featured recumbent setup, and this bike was chosen for stronger adjustment and comfort options. \\
+\end{longtblr}
+
+\newpage
+
+\subsection*{7.08.E - Elliptical Trainer}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.E - Elliptical Trainer}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Elliptical trainer & Sunny Health and Fitness SF-E3912 & \$650 & Low-impact trainer & Phase-01 & Delivers non-impact cardio with arm involvement, and this unit was chosen for a practical entry-level stride path. \\
+Budget & Elliptical trainer & Schwinn 411 & \$799 & Low-impact trainer & Phase-01 & Supports easy continuous cardio in smaller rooms, and this unit was chosen for compact home-friendly sizing. \\
+Budget & Elliptical trainer & Horizon EX-59 & \$999 & Low-impact trainer & Phase-01 & Creates a steady indoor aerobic option for weather-disrupted weeks, and this unit was chosen for better overall motion quality. \\
+Standard & Elliptical trainer & Sole E25 & \$1399 & Low-impact trainer & Phase-01 & Gives smoother low-impact work under higher bodyweight, and this unit was chosen for stronger stability and incline options. \\
+Standard & Elliptical trainer & NordicTrack AirGlide 14i & \$1499 & Low-impact trainer & Phase-01 & Expands indoor conditioning variety without running impact, and this unit was chosen for a more engaging stride profile. \\
+Standard & Elliptical trainer & BowFlex Max Trainer M6 & \$1599 & Low-impact trainer & Phase-01 & Increases conditioning intensity options with less joint pounding, and this unit was chosen for a compact upright footprint. \\
+Elite & Elliptical trainer & Life Fitness E1 & \$2899 & Low-impact trainer & Phase-01 & Creates a premium repeatable non-impact cardio lane, and this unit was chosen for long-session smoothness. \\
+Elite & Elliptical trainer & Matrix A30 Ascent Trainer & \$3799 & Low-impact trainer & Phase-01 & Provides a very stable premium motion path, and this unit was chosen for strong feel under frequent use. \\
+Elite & Elliptical trainer & Precor EFX 835 & \$7695 & Low-impact trainer & Phase-01 & Supports high-use indoor conditioning with near-gym consistency, and this unit was chosen for excellent durability. \\
+\end{longtblr}
+
+\newpage
+
+\subsection*{7.08.F - Rowing Machine}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.F - Rowing Machine}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Rowing machine & Stamina ATS Air Rower 1399 & \$400 & Rowing erg & Phase-01 & Offers whole-body low-impact cardio at low cost, and this rower was chosen for basic air-resistance simplicity. \\
+Budget & Rowing machine & Sunny Health and Fitness Magnetic Rower & \$450 & Rowing erg & Phase-01 & Creates a quieter indoor cardio option, and this rower was chosen for apartment-friendly lower noise output. \\
+Budget & Rowing machine & XTERRA ERG160 & \$500 & Rowing erg & Phase-01 & Supports full-session indoor conditioning without route risk, and this rower was chosen for accessible beginner resistance control. \\
+Standard & Rowing machine & Concept2 RowErg & \$990 & Rowing erg & Phase-01 & Delivers the most defensible standard home rower baseline, and this model was chosen for proven repeatability and durability. \\
+Standard & Rowing machine & WaterRower Original & \$1299 & Rowing erg & Phase-01 & Provides smoother-feeling longer rows for users who dislike harsher air resistance, and this model was chosen for comfort and build quality. \\
+Standard & Rowing machine & Aviron Strong Series Rower & \$1799 & Rowing erg & Phase-01 & Helps maintain engagement during indoor endurance work, and this rower was chosen for stronger home-use versatility. \\
+Elite & Rowing machine & Hydrow Wave & \$1895 & Rowing erg & Phase-01 & Encourages repeat indoor aerobic work through a more polished experience, and this rower was chosen for adherence support. \\
+Elite & Rowing machine & Concept2 RowErg Tall Legs & \$1140 & Rowing erg & Phase-01 & Keeps the same dependable rower platform with easier access height, and this model was chosen for more comfortable mounting. \\
+Elite & Rowing machine & RP3 Model T & \$3195 & Rowing erg & Phase-01 & Provides a premium dynamic rowing feel, and this rower was chosen for advanced stroke realism and control. \\
+\end{longtblr}
+
+\newpage
+
+\subsection*{7.08.G - Mini Stepper}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.G - Mini Stepper}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Mini stepper & Sunny Health and Fitness Mini Stepper & \$80 & Step trainer & Phase-01 & Gives a tiny-footprint cardio fallback, and this stepper was chosen for simple home backup use. \\
+Budget & Mini stepper & Niceday Mini Stair Stepper & \$90 & Step trainer & Phase-01 & Preserves movement on bad-weather days in very small rooms, and this stepper was chosen for stable compact design. \\
+Budget & Mini stepper & Sportsroyals Stair Stepper & \$100 & Step trainer & Phase-01 & Supports easy indoor sweat sessions without a large machine, and this stepper was chosen for budget-friendly practicality. \\
+Standard & Mini stepper & Sunny Health and Fitness Twist Stepper & \$120 & Step trainer & Phase-01 & Adds a slightly more varied stepping pattern, and this stepper was chosen for more movement variety than the smallest models. \\
+Standard & Mini stepper & Cubii Go & \$349 & Step trainer & Phase-01 & Enables seated low-impact motion when tolerance is low, and this compact unit was chosen for minimal friction daily use. \\
+Standard & Mini stepper & Teeter FreeStep LT3 & \$399 & Step trainer & Phase-01 & Reduces joint loading while preserving rhythmic cardio work, and this unit was chosen for a smoother linked-arm stepping feel. \\
+Elite & Mini stepper & Teeter FreeStep Recumbent Cross Trainer & \$699 & Step trainer & Phase-01 & Creates a premium low-impact stepping option, and this unit was chosen for comfort during longer beginner sessions. \\
+Elite & Mini stepper & Cubii Total Body+ & \$449 & Step trainer & Phase-01 & Fits tiny spaces while adding upper-body motion, and this unit was chosen for easy consistency in constrained environments. \\
+Elite & Mini stepper & BowFlex Max Total 16 & \$2499 & Step trainer & Phase-01 & Offers a more advanced compact stepping station, and this unit was chosen for broader intensity range without road exposure. \\
+\end{longtblr}
+
+\newpage
+
+\subsection*{7.08.H - Indoor Conditioning Fan}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.H - Indoor Conditioning Fan}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Indoor conditioning fan & Honeywell HT-900 TurboForce & \$22 & Airflow support & Phase-01 & Improves cooling during indoor cardio, and this fan was chosen for cheap reliable directed airflow. \\
+Budget & Indoor conditioning fan & Lasko Wind Machine 3300 & \$28 & Airflow support & Phase-01 & Helps prevent overheated basement or garage sessions, and this fan was chosen for strong simple airflow output. \\
+Budget & Indoor conditioning fan & Amazon Basics Air Circulator & \$30 & Airflow support & Phase-01 & Adds basic indoor ventilation during long cardio blocks, and this fan was chosen for straightforward budget function. \\
+Standard & Indoor conditioning fan & Vornado 630 Mid-Size Air Circulator & \$70 & Airflow support & Phase-01 & Creates steadier room-wide airflow during indoor conditioning, and this fan was chosen for stronger circulation quality. \\
+Standard & Indoor conditioning fan & Rowenta Turbo Silence Extreme & \$85 & Airflow support & Phase-01 & Supports cooling without harsh noise, and this fan was chosen for quieter operation during longer sessions. \\
+Standard & Indoor conditioning fan & Dreo Cruiser Pro Tower Fan & \$90 & Airflow support & Phase-01 & Fits tighter cardio spaces more neatly, and this fan was chosen for convenient remote-adjusted airflow. \\
+Elite & Indoor conditioning fan & Vornado 660 Air Circulator & \$100 & Airflow support & Phase-01 & Moves more air for hotter indoor sessions, and this fan was chosen for stronger full-room conditioning support. \\
+Elite & Indoor conditioning fan & Shark FlexBreeze & \$200 & Airflow support & Phase-01 & Adds more adaptable cooling angles and placement options, and this fan was chosen for premium flexibility. \\
+Elite & Indoor conditioning fan & Dyson AM07 & \$370 & Airflow support & Phase-01 & Provides refined cooling in visible home spaces, and this fan was chosen for a cleaner premium footprint. \\
+\end{longtblr}
+
+\newpage
+
+\subsection*{7.08.I - Portable Cooling Fan}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.I - Portable Cooling Fan}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Portable cooling fan & JISULIFE Handheld Mini Fan & \$18 & Cooling aid & Phase-01 & Gives quick face cooling between indoor intervals, and this fan was chosen for easy pocket carry. \\
+Budget & Portable cooling fan & O2COOL Treva 5-Inch Fan & \$15 & Cooling aid & Phase-01 & Helps cool small personal training spaces, and this fan was chosen for basic battery-powered simplicity. \\
+Budget & Portable cooling fan & Honeywell Turbo On-The-Go Fan & \$17 & Cooling aid & Phase-01 & Creates a compact personal airflow option, and this fan was chosen for dependable mainstream build quality. \\
+Standard & Portable cooling fan & Woozoo Compact Personal Fan & \$35 & Cooling aid & Phase-01 & Improves comfort during stationary cardio work, and this fan was chosen for stronger airflow than pocket fans. \\
+Standard & Portable cooling fan & JISULIFE Life7 Desk Fan & \$30 & Cooling aid & Phase-01 & Supports longer indoor sessions without constant battery swaps, and this fan was chosen for rechargeable convenience. \\
+Standard & Portable cooling fan & Vornado Flippi V6 & \$25 & Cooling aid & Phase-01 & Directs air neatly in small cardio corners, and this fan was chosen for stable desk-level positioning. \\
+Elite & Portable cooling fan & Dreo Pilot Portable Fan & \$80 & Cooling aid & Phase-01 & Delivers stronger portable airflow for hotter rooms, and this fan was chosen for longer runtime and output. \\
+Elite & Portable cooling fan & Shark FlexBreeze HydroGo & \$130 & Cooling aid & Phase-01 & Gives premium portable cooling with more power, and this fan was chosen for better adaptability across training locations. \\
+Elite & Portable cooling fan & Vornado Pivot6 & \$70 & Cooling aid & Phase-01 & Provides durable directional airflow in compact spaces, and this fan was chosen for rugged easy repositioning. \\
+\end{longtblr}
+
+\newpage
+
+\subsection*{7.08.J - Air Purifier}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.J - Air Purifier}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Air purifier & Levoit Core 300 & \$100 & Air-quality support & Phase-01 & Makes indoor fallback cardio more tolerable in dusty rooms, and this purifier was chosen for affordable small-room coverage. \\
+Budget & Air purifier & Winix A230 & \$130 & Air-quality support & Phase-01 & Supports cleaner indoor breathing during winter substitution blocks, and this purifier was chosen for simple reliable home use. \\
+Budget & Air purifier & Coway Airmega 100 & \$140 & Air-quality support & Phase-01 & Improves room air during basement cardio sessions, and this purifier was chosen for proven compact performance. \\
+Standard & Air purifier & Coway Airmega \textbf{AP}-1512HH & \$230 & Air-quality support & Phase-01 & Handles medium rooms more confidently, and this purifier was chosen for strong long-standing reputation and simple upkeep. \\
+Standard & Air purifier & Blueair Blue Pure 311i Max & \$250 & Air-quality support & Phase-01 & Supports cleaner indoor endurance sessions at higher room volume, and this purifier was chosen for stronger airflow capacity. \\
+Standard & Air purifier & Levoit Core 400S & \$220 & Air-quality support & Phase-01 & Helps preserve indoor cardio continuity when air quality is poor, and this purifier was chosen for larger-room coverage. \\
+Elite & Air purifier & Dyson Purifier Cool TP07 & \$649 & Air-quality support & Phase-01 & Combines cooling and filtration in one station, and this purifier was chosen for dual-function indoor conditioning support. \\
+Elite & Air purifier & Austin Air HealthMate & \$715 & Air-quality support & Phase-01 & Supports high-volume filtration in dedicated cardio spaces, and this purifier was chosen for heavy-duty build and capacity. \\
+Elite & Air purifier & Blueair HealthProtect 7470i & \$749 & Air-quality support & Phase-01 & Creates a premium air-cleaning environment for regular indoor cardio, and this purifier was chosen for advanced filtration features. \\
+\end{longtblr}
+
+\newpage
+
+\subsection*{7.08.K - Dehumidifier}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.K - Dehumidifier}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Dehumidifier & Frigidaire 22-Pint Dehumidifier & \$180 & Climate support & Phase-01 & Reduces damp basement air during indoor cardio, and this unit was chosen for simple affordable moisture control. \\
+Budget & Dehumidifier & GE 22-Pint Dehumidifier & \$190 & Climate support & Phase-01 & Helps keep indoor training air less muggy, and this unit was chosen for straightforward small-room suitability. \\
+Budget & Dehumidifier & Midea Cube 20-Pint & \$220 & Climate support & Phase-01 & Supports indoor cardio comfort with easier water storage, and this unit was chosen for compact bucket design. \\
+Standard & Dehumidifier & Honeywell 30-Pint Dehumidifier & \$260 & Climate support & Phase-01 & Improves medium-room air stability for longer indoor sessions, and this unit was chosen for dependable home moisture control. \\
+Standard & Dehumidifier & Frigidaire 35-Pint Dehumidifier & \$280 & Climate support & Phase-01 & Handles heavier dampness in training spaces, and this unit was chosen for stronger everyday capacity. \\
+Standard & Dehumidifier & Midea 35-Pint Cube & \$300 & Climate support & Phase-01 & Keeps indoor fallback rooms more usable in humid months, and this unit was chosen for high-capacity compact storage. \\
+Elite & Dehumidifier & AprilAire E070 & \$599 & Climate support & Phase-01 & Creates a more professional-feeling training room climate, and this unit was chosen for stronger sustained moisture handling. \\
+Elite & Dehumidifier & Santa Fe Compact70 & \$1299 & Climate support & Phase-01 & Supports a dedicated conditioning room with heavier-duty performance, and this unit was chosen for premium durability. \\
+Elite & Dehumidifier & Quest 70 & \$1599 & Climate support & Phase-01 & Provides overbuilt moisture control for demanding indoor environments, and this unit was chosen for commercial-grade capability. \\
+\end{longtblr}
+
+\newpage
+
+\subsection*{7.08.L - Air Bike}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.L - Air Bike}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Air bike & Titan Fan Bike & \$699 & Fan-resistance bike & Phase-01 & Gives joint-friendly full-body conditioning indoors, and this bike was chosen for value-priced air resistance. \\
+Budget & Air bike & Bells of Steel Blitz Bike & \$749 & Fan-resistance bike & Phase-01 & Supports hard non-impact cardio blocks at home, and this bike was chosen for solid budget construction. \\
+Budget & Air bike & Fringe Sport Raptor AirBike & \$799 & Fan-resistance bike & Phase-01 & Creates a tougher indoor conditioning option than standard bikes, and this unit was chosen for accessible price-to-output value. \\
+Standard & Air bike & Rogue Echo Bike & \$895 & Fan-resistance bike & Phase-01 & Handles frequent hard conditioning with strong stability, and this bike was chosen for excellent home-gym durability. \\
+Standard & Air bike & Schwinn Airdyne AD7 & \$999 & Fan-resistance bike & Phase-01 & Gives a smoother full-body conditioning feel, and this bike was chosen for solid mainstream reliability. \\
+Standard & Air bike & AssaultBike Classic & \$799 & Fan-resistance bike & Phase-01 & Preserves intense indoor cardio with less impact than running, and this bike was chosen for proven conditioning use. \\
+Elite & Air bike & AssaultBike ProX & \$999 & Fan-resistance bike & Phase-01 & Supports heavier repeated use with upgraded build quality, and this bike was chosen for improved durability over entry air bikes. \\
+Elite & Air bike & Schwinn Airdyne AD8 & \$1299 & Fan-resistance bike & Phase-01 & Creates a premium stable hard-cardio option, and this bike was chosen for a stronger drive and console package. \\
+Elite & Air bike & Rogue Echo Bike V3.0 & \$995 & Fan-resistance bike & Phase-01 & Delivers very stable repeatable fan-bike work, and this unit was chosen for strong long-term reliability under frequent sessions. \\
+\end{longtblr}
+
+\newpage
+
+\subsection*{7.08.M - Manual Curved Treadmill}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.M - Manual Curved Treadmill}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Manual curved treadmill & Tru Grit Runner & \$2495 & Self-powered runner & Phase-06 & Adds self-paced indoor run mechanics without motor lag, and this unit was chosen for entry access to curved running. \\
+Budget & Manual curved treadmill & Bells of Steel Blitz AirRunner & \$2799 & Self-powered runner & Phase-06 & Supports harder indoor pace work in a compact way, and this unit was chosen for value-focused curved-tread design. \\
+Budget & Manual curved treadmill & Xebex AirPlus Runner & \$2999 & Self-powered runner & Phase-06 & Provides a motor-free speed-control option, and this unit was chosen for strong conditioning value versus premium brands. \\
+Standard & Manual curved treadmill & AssaultRunner Pro & \$3699 & Self-powered runner & Phase-06 & Improves indoor run specificity with instant pace response, and this unit was chosen for established performance reliability. \\
+Standard & Manual curved treadmill & REP Curve Runner & \$3999 & Self-powered runner & Phase-06 & Delivers a stable self-powered running platform, and this unit was chosen for a sturdy commercial-feeling frame. \\
+Standard & Manual curved treadmill & TrueForm Trainer & \$4495 & Self-powered runner & Phase-06 & Reinforces efficient self-driven stride mechanics, and this unit was chosen for stronger premium movement feel. \\
+Elite & Manual curved treadmill & Woodway Curve LTG & \$6999 & Self-powered runner & Phase-06 & Creates a very refined indoor run environment, and this unit was chosen for exceptional deck quality and durability. \\
+Elite & Manual curved treadmill & Technogym Skillrun TX 500 & \$15900 & Self-powered runner & Phase-06 & Supports premium indoor run control and advanced pacing work, and this unit was chosen for elite facility-grade capability. \\
+Elite & Manual curved treadmill & TrueForm Runner & \$6995 & Self-powered runner & Phase-06 & Delivers high-end self-paced run specificity, and this unit was chosen for premium responsiveness and build quality. \\
+\end{longtblr}
+
+\newpage
+
+\subsection*{7.08.N - Spin Bike}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.N - Spin Bike}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Spin bike & Sunny Health and Fitness SF-B1805 & \$500 & Performance bike & Phase-06 & Adds a more training-oriented bike feel than upright models, and this bike was chosen for strong budget flywheel value. \\
+Budget & Spin bike & Yosuda Pro Magnetic Bike & \$400 & Performance bike & Phase-06 & Supports steady indoor conditioning with simple resistance changes, and this bike was chosen for affordable home use. \\
+Budget & Spin bike & Pooboo Magnetic Exercise Bike & \$350 & Performance bike & Phase-06 & Creates a low-cost spin-style option for indoor cardio, and this bike was chosen for accessible entry pricing. \\
+Standard & Spin bike & Schwinn IC4 & \$999 & Performance bike & Phase-06 & Gives a smoother more controlled spin-bike experience, and this bike was chosen for strong mainstream home-training value. \\
+Standard & Spin bike & BowFlex \textbf{C6} & \$999 & Performance bike & Phase-06 & Supports repeatable cadence-focused conditioning indoors, and this bike was chosen for reliable magnetic resistance feel. \\
+Standard & Spin bike & Echelon EX-5s & \$1249 & Performance bike & Phase-06 & Makes indoor ride sessions more engaging, and this bike was chosen for a more polished connected setup. \\
+Elite & Spin bike & Peloton Bike+ & \$2495 & Performance bike & Phase-06 & Helps maintain consistency through a premium guided ride platform, and this bike was chosen for stronger adherence appeal. \\
+Elite & Spin bike & Keiser M3i & \$2495 & Performance bike & Phase-06 & Delivers excellent smoothness and durability, and this bike was chosen for premium ride feel and strong reputation. \\
+Elite & Spin bike & Stages SB20 Smart Bike & \$2999 & Performance bike & Phase-06 & Creates a very stable high-end indoor bike setup, and this bike was chosen for stronger serious-training capability. \\
+\end{longtblr}
+
+\newpage
+
+\subsection*{7.08.O - Smart Bike Trainer}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.O - Smart Bike Trainer}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Smart bike trainer & Garmin Tacx Flow Smart & \$369 & Trainer system & Phase-06 & Converts an owned bicycle into indoor cardio equipment, and this trainer was chosen for affordable smart resistance entry. \\
+Budget & Smart bike trainer & Wahoo KICKR Snap & \$499 & Trainer system & Phase-06 & Keeps indoor bike training possible without a separate spin bike, and this trainer was chosen for accessible wheel-on setup. \\
+Budget & Smart bike trainer & Saris M2 Smart Trainer & \$399 & Trainer system & Phase-06 & Adds controllable indoor ride resistance, and this trainer was chosen for established value in home bike training. \\
+Standard & Smart bike trainer & Elite Direto XR-T & \$799 & Trainer system & Phase-06 & Improves indoor ride realism and control, and this trainer was chosen for stronger direct-drive performance. \\
+Standard & Smart bike trainer & Wahoo KICKR Core & \$599 & Trainer system & Phase-06 & Delivers a more stable direct-drive feel, and this trainer was chosen for wide software compatibility and reliable resistance. \\
+Standard & Smart bike trainer & Garmin Tacx Flux S & \$749 & Trainer system & Phase-06 & Supports repeatable indoor endurance rides, and this trainer was chosen for smoother direct-drive resistance than wheel-on models. \\
+Elite & Smart bike trainer & Wahoo KICKR V6 & \$1299 & Trainer system & Phase-06 & Creates a premium indoor cycling setup with strong accuracy, and this trainer was chosen for top-tier home-training reliability. \\
+Elite & Smart bike trainer & Garmin Tacx Neo 2T & \$1399 & Trainer system & Phase-06 & Gives a very refined premium ride feel, and this trainer was chosen for strong realism and high-end resistance control. \\
+Elite & Smart bike trainer & Elite Justo 2 & \$1299 & Trainer system & Phase-06 & Supports a higher-end indoor cycling environment, and this trainer was chosen for premium direct-drive performance. \\
+\end{longtblr}
+
+\newpage
+
+\subsection*{7.08.P - Bike Rollers}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.P - Bike Rollers}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Bike rollers & Minoura MoZ-Roller & \$329 & Balance trainer & Phase-06 & Improves smooth bike handling indoors, and this roller was chosen for a portable compact entry option. \\
+Budget & Bike rollers & Tacx Antares & \$269 & Balance trainer & Phase-06 & Creates a simple free-rolling indoor ride setup, and this roller was chosen for approachable starter use. \\
+Budget & Bike rollers & Elite Arion & \$299 & Balance trainer & Phase-06 & Supports smoother cadence work on a real bike, and this roller was chosen for a respected beginner-friendly roller design. \\
+Standard & Bike rollers & Tacx Galaxia & \$399 & Balance trainer & Phase-06 & Adds a more forgiving floating ride feel, and this roller was chosen for better control during longer sessions. \\
+Standard & Bike rollers & Kreitler Challenger Rollers & \$549 & Balance trainer & Phase-06 & Delivers more stable high-quality roller work, and this setup was chosen for durable mainstream premium construction. \\
+Standard & Bike rollers & Feedback Sports Omnium Over-Drive & \$499 & Balance trainer & Phase-06 & Offers a more travel-ready indoor bike solution, and this trainer was chosen for compact portability and good stability. \\
+Elite & Bike rollers & Kreitler Alloy Rollers & \$699 & Balance trainer & Phase-06 & Creates a premium smooth roller experience, and this setup was chosen for strong reputation and refined ride quality. \\
+Elite & Bike rollers & TruTrainer SmartLoad Rollers & \$899 & Balance trainer & Phase-06 & Adds higher-end resistance control to roller riding, and this system was chosen for advanced indoor bike refinement. \\
+Elite & Bike rollers & InsideRide E-Motion Rollers & \$949 & Balance trainer & Phase-06 & Provides a more natural moving-platform roller feel, and this system was chosen for premium dynamic stability. \\
+\end{longtblr}
+
+\newpage
+
+\subsection*{7.08.Q - Ski Erg}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.Q - Ski Erg}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Ski erg & Bells of Steel Ski Machine & \$799 & Ski erg & Phase-06 & Adds upper-body-dominant aerobic work without leg impact, and this unit was chosen for value-oriented ski-erg access. \\
+Budget & Ski erg & Xebex Ski Trainer & \$899 & Ski erg & Phase-06 & Supports conditioning variety when lower-body impact needs limiting, and this unit was chosen for a budget-friendly ski format. \\
+Budget & Ski erg & Get RX'd Ski Trainer & \$899 & Ski erg & Phase-06 & Expands low-impact cardio variety indoors, and this unit was chosen for practical entry into ski-style erg work. \\
+Standard & Ski erg & Concept2 SkiErg PM5 Wall Mount & \$890 & Ski erg & Phase-06 & Creates a proven ski-erg standard for conditioning variety, and this unit was chosen for excellent reliability and repeatability. \\
+Standard & Ski erg & Concept2 SkiErg PM5 Floor Stand & \$1090 & Ski erg & Phase-06 & Adds the same trusted ski-erg platform with easier placement, and this unit was chosen for home-use flexibility. \\
+Standard & Ski erg & Rogue Echo Ski Erg & \$995 & Ski erg & Phase-06 & Supports strong upper-body conditioning continuity, and this unit was chosen for solid brand-supported training use. \\
+Elite & Ski erg & Technogym Skillrow Upper Pull Integration & \$3495 & Ski erg & Phase-06 & Creates a high-end integrated conditioning environment, and this setup was chosen for premium versatility. \\
+Elite & Ski erg & Concept2 SkiErg PM5 + Floor Stand Package & \$1150 & Ski erg & Phase-06 & Keeps the gold-standard ski-erg setup fully freestanding, and this package was chosen for easier premium home deployment. \\
+Elite & Ski erg & ThoraxTrainer SkiErg System & \$1499 & Ski erg & Phase-06 & Offers a more specialized premium ski-erg alternative, and this system was chosen for overbuilt indoor conditioning variety. \\
+\end{longtblr}
+
+\newpage
+
+\subsection*{7.08.R - Upper-Body Ergometer}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.R - Upper-Body Ergometer}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Upper-body ergometer & Sunny Health and Fitness Arm Bike SF-B0418 & \$140 & Arm erg & Phase-06 & Maintains cardio when lower-body loading needs relief, and this unit was chosen for low-cost seated arm work. \\
+Budget & Upper-body ergometer & Stamina Upper Body Cycle 15-0125 & \$120 & Arm erg & Phase-06 & Gives a simple upper-body aerobic fallback, and this unit was chosen for basic home accessibility. \\
+Budget & Upper-body ergometer & MagneTrainer-ER Mini Arm Trainer & \$199 & Arm erg & Phase-06 & Supports very controlled low-load upper-body conditioning, and this unit was chosen for small-space portability. \\
+Standard & Upper-body ergometer & Monark Rehab Trainer 881E & \$1499 & Arm erg & Phase-06 & Delivers a more serious rehab-style conditioning option, and this unit was chosen for stronger controllability and build quality. \\
+Standard & Upper-body ergometer & SportsArt UB521M & \$1699 & Arm erg & Phase-06 & Creates a sturdier upper-body conditioning station, and this unit was chosen for more professional-grade use. \\
+Standard & Upper-body ergometer & Body-Solid Endurance UBE & \$1495 & Arm erg & Phase-06 & Preserves aerobic continuity during lower-body flare periods, and this unit was chosen for reliable commercial-style function. \\
+Elite & Upper-body ergometer & SciFit PRO1 Arm Ergometer & \$3995 & Arm erg & Phase-06 & Offers a premium clinical-grade upper-body cardio option, and this unit was chosen for exceptional controllability. \\
+Elite & Upper-body ergometer & Matrix Krankcycle & \$3199 & Arm erg & Phase-06 & Expands upper-body conditioning with a premium training feel, and this unit was chosen for high-end focused arm work. \\
+Elite & Upper-body ergometer & Technogym Excite Top & \$5495 & Arm erg & Phase-06 & Creates a very refined upper-body aerobic station, and this unit was chosen for elite facility-grade durability. \\
+\end{longtblr}
+
+\newpage
+
+\subsection*{7.08.S - Stepmill / Stair Climber}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.S - Stepmill / Stair Climber}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Stepmill / stair climber & MaxiClimber XL & \$199 & Stair trainer & Phase-06 & Adds upright stepping variety in a small footprint, and this unit was chosen for very compact vertical storage. \\
+Budget & Stepmill / stair climber & Sunny Health and Fitness Stair Stepper SF-SC1117 & \$160 & Stair trainer & Phase-06 & Gives a more climbing-like feel than mini steppers, and this unit was chosen for affordable compact use. \\
+Budget & Stepmill / stair climber & BowFlex Max Trainer SE & \$999 & Stair trainer & Phase-06 & Supports harder low-impact cardio indoors, and this unit was chosen for compact climbing-style intensity. \\
+Standard & Stepmill / stair climber & Spirit CSC900 Stair Climber & \$2999 & Stair trainer & Phase-06 & Creates a more serious stair-conditioning lane, and this unit was chosen for sturdy gym-style step mechanics. \\
+Standard & Stepmill / stair climber & Matrix C50 ClimbMill & \$4299 & Stair trainer & Phase-06 & Improves climbing-specific conditioning continuity, and this unit was chosen for premium stability and feel. \\
+Standard & Stepmill / stair climber & StairMaster 8Gx & \$5999 & Stair trainer & Phase-06 & Delivers a recognized stepmill standard, and this unit was chosen for strong repeatable stair conditioning quality. \\
+Elite & Stepmill / stair climber & StairMaster 10G & \$8999 & Stair trainer & Phase-06 & Supports high-end stair conditioning with very stable mechanics, and this unit was chosen for commercial-grade durability. \\
+Elite & Stepmill / stair climber & Life Fitness PowerMill Climber & \$9999 & Stair trainer & Phase-06 & Creates a premium climbing station for late-phase conditioning variety, and this unit was chosen for elite build quality. \\
+Elite & Stepmill / stair climber & Technogym Climb Live & \$11990 & Stair trainer & Phase-06 & Offers a very refined premium stair environment, and this unit was chosen for top-tier fit, finish, and consistency. \\
+\end{longtblr}
+
+\newpage
+
+\subsection*{7.08.T - Aerobic Step Platform}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.T - Aerobic Step Platform}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Aerobic step platform & The Step Original Health Club Step & \$110 & Step platform & Phase-06 & Adds simple repeatable step conditioning indoors, and this platform was chosen for the classic stable step standard. \\
+Budget & Aerobic step platform & Yes4All Adjustable Aerobic Stepper & \$60 & Step platform & Phase-06 & Creates low-cost step-based conditioning options, and this platform was chosen for adjustable beginner-friendly height changes. \\
+Budget & Aerobic step platform & KLB Sport Aerobic Step & \$45 & Step platform & Phase-06 & Provides a cheap indoor elevation tool, and this platform was chosen for easy home storage and basic use. \\
+Standard & Aerobic step platform & Reebok Original Aerobic Step & \$120 & Step platform & Phase-06 & Supports more confident dynamic stepping work, and this platform was chosen for strong mainstream stability. \\
+Standard & Aerobic step platform & Escape Fitness Deck 2.0 & \$160 & Step platform & Phase-06 & Expands step work with more setup options, and this platform was chosen for extra exercise versatility. \\
+Standard & Aerobic step platform & JTX Aerobic Step & \$95 & Step platform & Phase-06 & Gives a more polished mid-tier platform, and this step was chosen for good stability under repetitive stepping. \\
+Elite & Aerobic step platform & Escape Fitness Deck V2 Package & \$220 & Step platform & Phase-06 & Creates a premium multi-use step station, and this platform was chosen for higher-end versatility and sturdiness. \\
+Elite & Aerobic step platform & The Step Circuit Size Platform & \$140 & Step platform & Phase-06 & Supports heavier repeated use with more surface area, and this platform was chosen for stronger planted feel. \\
+Elite & Aerobic step platform & LivePro Studio Step & \$180 & Step platform & Phase-06 & Offers a premium professional-style step option, and this platform was chosen for refined finish and stability. \\
+\end{longtblr}
+
+\newpage
+\subsection*{When These Items Are Needed}
+\phantomsection
+\addcontentsline{toc}{subsection}{When These Items Are Needed}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[c,wd=2.20in]
+    Q[c,wd=1.25in]
+    Q[l,wd=3.10in]
+    Q[l,wd=3.10in]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, valign=m},
+  column{1-2} = {halign=c},
+  column{3-4} = {halign=l},
+  cell{1-Z}{1-4} = {fg=black},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Item} &
+\Hdr{First required phase} &
+\Hdr{Why it becomes necessary} &
+\Hdr{What happens if missing} \\
+Walking pad & Phase-01 & A compact indoor walking tool fits the first Tier-1 requirement for safe year-round cardio continuity. & Easy indoor walking continuity is weaker during ice, wind, or air-quality disruption. \\
+Motorized treadmill & Phase-01 & It is a core indoor fallback when outdoor route safety or weather makes walking and later running invalid. & Route-driven disruption forces more reslots and removes one of the cleanest indoor substitutes. \\
+Upright exercise bike & Phase-01 & A simple seated low-impact modality expands indoor cardio continuity beyond walking alone. & Cardio fallback becomes narrower when walking tolerance, weather, or space limits interfere. \\
+Recumbent exercise bike & Phase-01 & It provides an even lower-stress indoor option when orthopedics or fatigue make upright work less tolerable. & Low-back-friendly and lower-joint-load indoor cardio options become thinner. \\
+Elliptical trainer & Phase-01 & It offers a non-impact full-body indoor modality that matches the low-impact early risk posture. & Non-impact indoor conditioning variety is reduced, especially when impact must be avoided. \\
+Rowing machine & Phase-01 & It adds another controllable indoor low-impact modality that remains useful when outdoor continuity fails. & Indoor conditioning variety narrows and weather-driven continuity becomes harder to preserve. \\
+Mini stepper & Phase-01 & It gives a very small-footprint fallback when space or budget blocks larger machines. & Tight-space indoor cardio continuity becomes more fragile. \\
+Indoor conditioning fan & Phase-01 & Basic indoor environment support is part of keeping substitute cardio sessions safe and tolerable. & Hot stagnant indoor air increases friction and may reduce adherence to indoor fallback work. \\
+Portable cooling fan & Phase-01 & It helps smaller spaces and personal stations stay usable during warmer indoor training sessions. & Local cooling becomes less controllable, especially in improvised home training areas. \\
+Air purifier & Phase-01 & Indoor fallback only works well if air quality is tolerable enough for repeated aerobic sessions. & Poor indoor air quality can push more reslots or make indoor substitution less usable. \\
+Dehumidifier & Phase-01 & Damp indoor environments can undermine consistent fallback cardio and room comfort during longer sessions. & Muggy indoor rooms remain harder to use consistently for daily cardio minimum completion. \\
+Air bike & Phase-01 & It is still a controllable non-impact modality and fits the first indoor-substitution capability layer. & One high-output non-impact modality is absent, reducing indoor conditioning options. \\
+Manual curved treadmill & Phase-06 & It fits the first Tier-2 expanded-modality point where higher-control and higher-specificity indoor options become reasonable. & Advanced indoor run-specific substitution options remain more limited. \\
+Spin bike & Phase-06 & It belongs to the expanded conditioning layer once broader modality control is justified. & Indoor bike work stays simpler but less training-specific. \\
+Smart bike trainer & Phase-06 & It is an expanded-modality tool that improves controllability and redundancy once the category reaches Tier-2. & Indoor riding redundancy and bike-specific control remain weaker. \\
+Bike rollers & Phase-06 & They fit the expanded modality class rather than the essential continuity class. & One specialized indoor bike-control option is unavailable without affecting minimum deployability. \\
+Ski erg & Phase-06 & It is a later added low-impact conditioning option that expands modality variety rather than meeting the first essential requirement. & Upper-body-dominant conditioning variety is reduced. \\
+Upper-body ergometer & Phase-06 & It belongs in the expanded substitute set for later phases when lower-body load management becomes more consequential. & A useful lower-body-relief conditioning tool is not available. \\
+Stepmill / stair climber & Phase-06 & It is an expanded higher-demand indoor modality better placed after the first essential tool set is established. & Indoor climbing-specific conditioning options remain narrower. \\
+Aerobic step platform & Phase-06 & It functions as a later simple indoor conditioning expansion rather than a first essential continuity tool. & One compact step-based conditioning option is absent, but minimum deployability remains intact. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+\end{landscape}
+\clearpage
+
+\subsection*{Compliance Checklist}
+\phantomsection
+\addcontentsline{toc}{subsection}{Compliance Checklist}
+
+\begin{itemize}
+\item Only one deliverable is provided for Target Category 7.08.
+\item The title, group headers, and required output structure follow the locked schema.
+\item The chart uses the exact required columns.
+\item Twenty distinct items are included, and each item contains three Budget rows, three Standard rows, and three Elite rows.
+\item Rows are grouped by item and ordered from foundational indoor-substitution capability toward expanded-modality tools and specialized indoor supports.
+\item Notes state the intended effect or use and also explain why that specific item was chosen.
+\item Stage-6 timing is treated as authoritative, and timing assumptions are limited to foundational Tier-1 mapping at Phase-01 and expanded Tier-2 mapping at Phase-06.
+\item No training programming, sets, reps, tests, thresholds, retailer links, or live price research are included.
+\item The required post-chart timing table is included and matches the chart timing.
+\item Safety posture remains explicit through low-impact bias, indoor fallback logic, and environment-continuity emphasis.
+\end{itemize}
+
+
+\end{document}

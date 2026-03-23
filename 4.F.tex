@@ -1,0 +1,443 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 4.F — Safety, Red-Flag Criteria, and Stop Rules for Phase 00}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 4.F — Safety, Red-Flag Criteria, and Stop Rules for Phase 00}
+
+\subsection*{4.F.1 Phase 00 Safety Overlays}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.F.1 Phase 00 Safety Overlays}
+
+Stage 0.5 and Stage 1.F remain the controlling authorities for \textbf{STOP} \textbf{NOW} posture, escalation posture, admissibility, validity tagging, and gate outcomes. Stage 3.E remains authoritative for reslotting, phase extension posture, and adjustment rules. This section defines Phase 00 overlays only and must be applied without modifying upstream authorities.
+
+Phase 00 overlays are enforceable controls:
+
+\begin{itemize}
+\item Conservative start-state risk posture is mandatory. Phase 00 is a reactivation and baseline-creation phase; it is not a performance phase and does not authorize “prove-it” behavior.
+\item Impact governance for Phase 00 is strict:
+  \begin{itemize}
+  \item no impact running progression,
+  \item no rucking,
+  \item no swim time trials,
+  \item no underwater exposure,
+  \item no maximal strength testing and no true \textbf{1RM} attempts,
+  \item no plyometrics, no ballistic end-range work, no breathless conditioning intent.
+  \end{itemize}
+\item Pain trigger threshold for Phase 00:
+  \begin{itemize}
+  \item immediate same-day regression or substitution when pain is greater than 5 out of 10, or pain alters mechanics such as limp, compensation, or unstable joint position.
+  \item mechanics-altering pain terminates the provoking exposure immediately; do not “finish the set,” “finish the interval,” or “finish the route.”
+  \end{itemize}
+\item Excessive \textbf{DOMS} operational trigger for Phase 00:
+  \begin{itemize}
+  \item treat \textbf{DOMS} as a hard downshift signal when either:
+    \begin{itemize}
+    \item cannot perform normal stairs or sit-to-stand without compensation, or
+    \item soreness causes missed work or sleep disruption.
+    \end{itemize}
+  \item response is downshift and simplification; do not reduce frequency first.
+  \end{itemize}
+\item Sleep streak trigger for Phase 00:
+  \begin{itemize}
+  \item downshift posture is triggered by either:
+    \begin{itemize}
+    \item two consecutive nights under 6 hours, or
+    \item sleep quality at or below 3 out of 10 for three nights.
+    \end{itemize}
+  \item response is conservative intensity reduction and density reduction; preserve the six-session rhythm using Minimum Viable Sessions.
+  \end{itemize}
+\item Environment hazard posture for Phase 00 (mixed triggers):
+  \begin{itemize}
+  \item qualitative triggers include unsafe footing/ice, unsafe heat exposure, and poor air quality.
+  \item hard-stop examples that mandate indoor substitution or postponement include:
+    \begin{itemize}
+    \item ice glaze or slip-risk surface class,
+    \item lightning or storm risk,
+    \item an official air-quality warning,
+    \item unsafe heat conditions where the planned exposure cannot be executed without predictable heat illness risk.
+    \end{itemize}
+  \item environment hazards are treated as safety and validity controls; forcing outdoor exposure under hazard conditions is non-compliant.
+  \end{itemize}
+\item Footwear and footcare strictness for Phase 00:
+  \begin{itemize}
+  \item any hotspot trending toward blister requires downshifting the next session and modifying exposure to protect tissue.
+  \item any blister triggers no run or ruck exposure until resolved (Phase 00 already prohibits those domains); operationally this means:
+    \begin{itemize}
+    \item no step-based escalation on abrasive surfaces,
+    \item preserve Cardio via lower-friction, lower-impact substitutes,
+    \item treat the episode as a durability constraint that can invalidate gait-dependent test attempts until resolved.
+    \end{itemize}
+  \end{itemize}
+\item Illness posture for Phase 00:
+  \begin{itemize}
+  \item fever or acute respiratory illness defaults to \textbf{MEDICAL} \textbf{HOLD} until symptom-free, then resume conservatively per Stage 1.F and Stage 3.E.
+  \item testing is canceled or postponed during illness; testing under illness posture is inadmissible for gate use.
+  \end{itemize}
+\item Downshift-not-drop-frequency rule:
+  \begin{itemize}
+  \item maintain six sessions per week; manage risk by dose reduction and modality substitution, not by collapsing frequency.
+  \item Minimum Viable Sessions preserve the session element order and documentation discipline while reducing risk.
+  \end{itemize}
+\item Minimum Viable Session posture for Phase 00:
+  \begin{itemize}
+  \item preserves the required session element order per Stage 1.F,
+  \item reduces main-work density and complexity first,
+  \item preserves the Cardio block as the labeled block and preserves the minimum standard via intensity downshift and/or safer modality selection,
+  \item ends with cooldown and required recovery/post-session notes.
+  \end{itemize}
+\item Mental stop-rule triggers for Phase 00 are explicit and enforceable:
+  \begin{itemize}
+  \item acute panic or dissociation,
+  \item suicidal ideation or self-harm statements,
+  \item inability to safely self-regulate in-session,
+  \item These triggers invoke \textbf{STOP} \textbf{NOW} and escalation posture; they override schedule and performance.
+  \end{itemize}
+\item Legacy term handling:
+  \begin{itemize}
+  \item if a reference file uses “Compromised,” treat it as \textbf{INVALID} test evidence for gate decisions under Stage 1.F posture and apply \textbf{TEST-RC} with an observable-trigger note.
+  \end{itemize}
+\end{itemize}
+
+Documentation posture (tagging, reason codes, and gate linkage):
+
+\begin{itemize}
+\item Session validity tagging (Stage 1.F authority; Phase 00 application):
+  \begin{itemize}
+  \item \textbf{VALID} only when all required session elements are completed and documented.
+  \item \textbf{MODIFIED} when executed with conservative substitutions/downshifts that preserve required elements and preserve safety; \textbf{MODIFIED} requires a \textbf{SESSION-RC} plus an observable-trigger note.
+  \item \textbf{INVALID} when required elements or required documentation are missing, or when a \textbf{STOP} \textbf{NOW} trigger occurred and the session continued in a way that compromised safety governance.
+  \end{itemize}
+\item Test validity tagging (Stage 1.F authority; Phase 00 application):
+  \begin{itemize}
+  \item tests are tagged \textbf{VALID} or \textbf{INVALID} only.
+  \item any test executed under red-flag posture, compromised conditions, missing lock fields, missing measurement integrity, or missing documentation is \textbf{INVALID} for gate use and must be reason-coded with \textbf{TEST-RC}.
+  \item \textbf{INVALID} tests provide no gate credit and are treated as not yet tested until repeated under \textbf{VALID} conditions in the next protected window per Stage 3.E.
+  \end{itemize}
+\item Reason-code posture (use Stage 1.F canonical codes; do not create new codes):
+  \begin{itemize}
+  \item \textbf{SESSION-RC-001} (\textbf{ENV}), \textbf{SESSION-RC-002} (PAIN), \textbf{SESSION-RC-003} (\textbf{ILL}), \textbf{SESSION-RC-004} (\textbf{EQUIP}), \textbf{SESSION-RC-005} (\textbf{TIME}), \textbf{SESSION-RC-006} (\textbf{TRAVEL}), \textbf{SESSION-RC-007} (\textbf{SAFETY}), \textbf{SESSION-RC-008} (\textbf{WEATHER}), \textbf{SESSION-RC-009} (\textbf{ADMIN}), \textbf{SESSION-RC-010} (\textbf{WATER}).
+  \item \textbf{TEST-RC-001} (\textbf{MEAS}), \textbf{TEST-RC-002} (\textbf{ENV}), \textbf{TEST-RC-003} (\textbf{PROTO}), \textbf{TEST-RC-004} (\textbf{SAFETY}), \textbf{TEST-RC-005} (\textbf{ADMIN}), \textbf{TEST-RC-006} (\textbf{WATER}).
+  \item \textbf{WATER} codes are expected N/A in Phase 00; they exist for breach documentation only. Any use indicates a major violation and triggers \textbf{MEDICAL} \textbf{HOLD} posture for aquatic progression governance.
+  \end{itemize}
+\item Gate posture linkage:
+  \begin{itemize}
+  \item unresolved safety issues default to \textbf{HOLD} or \textbf{MEDICAL} \textbf{HOLD}.
+  \item tests impacted by safety issues are reslotted to the next deload and test window per Stage 3.E.
+  \item if safety issues prevent valid gate execution at the end-of-phase window, default gate posture is \textbf{HOLD} or \textbf{MEDICAL} \textbf{HOLD} and Phase 00 is extended per authorized adjustment posture.
+  \end{itemize}
+\end{itemize}
+
+\begin{landscape}
+
+\subsection*{4.F.2 Decision Table}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.F.2 Decision Table}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.55]
+    X[l,1.75]
+    X[l,1.35]
+    X[l,1.95]
+    X[l,2.40]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Situation} &
+\Hdr{Example Trigger} &
+\Hdr{Immediate Action} &
+\Hdr{Subsequent Adjustment} &
+\Hdr{Notes} \\
+
+Excessive \textbf{DOMS} impairing daily function &
+Cannot perform normal stairs or sit-to-stand without compensation; soreness causes missed work or sleep disruption &
+\textbf{STOP} \textbf{NOW} posture for any exposure that would force compensation; execute Minimum Viable Session posture &
+Downshift next 24–48 hours: reduce main-work density and complexity; preserve six-session cadence using Minimum Viable Sessions; reslot any planned testing to next deload and test window per Stage 3.E if validity would be compromised &
+Log same day: session tag \textbf{MODIFIED} if all required elements were completed; \textbf{INVALID} if required elements/documentation missing; \textbf{SESSION-RC-007} (\textbf{SAFETY}) or \textbf{SESSION-RC-002} (PAIN) as primary driver; free-text note describing functional impairment and substitutions used \\
+
+Joint pain during or after sessions &
+Pain greater than 5 out of 10; or pain alters mechanics (limp, compensation, unstable joint position); new swelling/instability &
+\textbf{STOP} \textbf{NOW} for provoking exposure; terminate that pattern for the day; substitute to lowest-risk option that preserves intent &
+Next-session downshift: regress range of motion/leverage/speed; remove progression attempts until stable; preserve cadence via Minimum Viable Sessions; if a test week is upcoming and lock fields cannot be met pain-free, reslot the affected test per Stage 3.E &
+Log same day: pain location + 0–10; mechanics change Y/N; session tag \textbf{MODIFIED} with \textbf{SESSION-RC-002} (PAIN) if completed safely; session tag \textbf{INVALID} if session structure breaks or documentation is missing \\
+
+Unusual fatigue or poor sleep streak &
+Two consecutive nights under 6 hours; or sleep quality at or below 3 out of 10 for three nights; rising session RPE trend at unchanged intent &
+If symptoms are only fatigue-related: immediate downshift of intensity and density; if dizziness/lightheadedness occurs, \textbf{STOP} \textbf{NOW} for that exposure &
+Apply Minimum Viable Sessions until sleep stabilizes; keep Cardio continuous at the safest intensity; avoid adding complexity; if test week is imminent, downgrade to deload-only or check-in-only and reslot maximal or gate-grade attempts per Stage 3.E &
+Log same day: sleep hours and quality; session RPE; session tag \textbf{MODIFIED} with \textbf{SESSION-RC-007} (\textbf{SAFETY}) or \textbf{SESSION-RC-003} (\textbf{ILL}) if illness present; note that gate posture defaults \textbf{HOLD} when sleep trends compromise validity \\
+
+Suspected cardiovascular red flag &
+Chest pain or pressure; syncope/near-syncope; disproportionate shortness of breath; palpitations with dizziness &
+\textbf{STOP} \textbf{NOW}; terminate session; apply escalation posture per Stage 0.5/Stage 1.F; do not “cool down and continue” &
+\textbf{MEDICAL} \textbf{HOLD} posture until evaluated and symptom-free per governing stop posture; all testing canceled and reslotted; Phase 00 continues only with clinician-cleared low-risk activity when authorized &
+Log same day: symptom description, onset context, immediate action, escalation/notification; session tag \textbf{INVALID} with \textbf{SESSION-RC-007} (\textbf{SAFETY}); any test attempt is \textbf{INVALID} with \textbf{TEST-RC-004} (\textbf{SAFETY}) \\
+
+Illness such as fever or acute respiratory illness &
+Feverishness; systemic symptoms; respiratory illness reducing exertion tolerance &
+\textbf{STOP} \textbf{NOW} for any planned hard exposure; cancel testing that day; apply conservative recovery posture &
+\textbf{MEDICAL} \textbf{HOLD} posture when indicated by symptom severity; otherwise downshift to Minimum Viable Sessions once symptom-free; reslot all tests to next deload and test window per Stage 3.E &
+Log same day: symptoms category; session tag \textbf{MODIFIED} or \textbf{INVALID} based on whether required session structure was completed; \textbf{SESSION-RC-003} (\textbf{ILL}); any attempted test is \textbf{INVALID} with \textbf{TEST-RC-004} (\textbf{SAFETY}) \\
+
+Environment hazard such as ice, heat, poor air quality &
+Ice glaze/unsafe footing; lightning/storm risk; official air-quality warning; unsafe heat exposure &
+\textbf{STOP} \textbf{NOW} for the planned outdoor exposure; substitute indoors or postpone &
+Preserve six-session cadence via indoor Minimum Viable Sessions; postpone or reslot tests until environment conditions permit \textbf{VALID} execution; if environment is unstable inside a protected test window, tag tests \textbf{INVALID} and reslot per Stage 3.E &
+Log same day: hazard type and location; session tag \textbf{MODIFIED} with \textbf{SESSION-RC-001} (\textbf{ENV}) or \textbf{SESSION-RC-008} (\textbf{WEATHER}); any test attempted under hazard is \textbf{INVALID} with \textbf{TEST-RC-002} (\textbf{ENV}) \\
+
+Foot hotspot progression or blister event &
+Hotspot trending toward blister; blister present; foot pain causes altered gait &
+\textbf{STOP} \textbf{NOW} for aggravating exposure; do not continue step-based work that worsens tissue; substitute to lower-friction modality &
+Next-session downshift mandatory: reduce abrasive locomotion exposure; preserve Cardio via lowest-friction substitutes; no run/ruck exposure until resolved; reslot tests that require stable gait/footwear lock fields until resolved &
+Log same day: hotspot/blister location; gait change Y/N; session tag \textbf{MODIFIED} with \textbf{SESSION-RC-002} (PAIN) and/or \textbf{SESSION-RC-007} (\textbf{SAFETY}); if testing is impacted, tag test \textbf{INVALID} with \textbf{TEST-RC-004} (\textbf{SAFETY}) or \textbf{TEST-RC-003} (\textbf{PROTO}) if execution becomes non-comparable \\
+
+Mental stop-rule trigger such as panic, dissociation, self-harm statement, inability to self-regulate &
+Acute panic/dissociation; suicidal ideation/self-harm statements; inability to safely self-regulate in-session &
+\textbf{STOP} \textbf{NOW}; terminate session; remove from exposure; apply escalation posture consistent with Stage 1.F and safety hierarchy &
+\textbf{MEDICAL} \textbf{HOLD} posture when indicated; do not resume higher-cost exposures the same day; resume only under conservative, controlled conditions once stable; cancel/reslot any testing to next window per Stage 3.E &
+Log same day: observable trigger and action taken; session tag \textbf{INVALID} with \textbf{SESSION-RC-007} (\textbf{SAFETY}); if any test attempt occurred, tag \textbf{INVALID} with \textbf{TEST-RC-004} (\textbf{SAFETY}) \\
+
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+\subsection*{4.F.3 Regression Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.F.3 Regression Rules}
+
+Immediate step-down rules in-session (Phase 00 movement-menu language; safety-first):
+
+\begin{itemize}
+\item Regress or substitute today when any of the following occur:
+  \begin{itemize}
+  \item pain is greater than 5 out of 10, OR
+  \item pain alters mechanics (limp, compensation, unstable joint position), OR
+  \item dizziness/lightheadedness occurs, OR
+  \item unusual/disproportionate breathlessness occurs relative to planned effort, OR
+  \item instability or swelling is present, OR
+  \item any Stage 1.F red-flag symptom posture applies.
+  \end{itemize}
+\item Step-down order (default; apply conservatively):
+  \begin{enumerate}
+  \item \textbf{STOP} \textbf{NOW} for the provoking exposure when required by symptoms or mechanics change.
+  \item Simplify the task (reduce coordination and complexity; return to the lowest-risk pattern option).
+  \item Reduce range of motion.
+  \item Reduce leverage (more supportive regression).
+  \item Reduce speed (controlled tempo only).
+  \item Substitute modality while preserving intent (low-impact substitute; stable surface; stable tool identity).
+  \item Abort the session only if safety posture requires; documentation follows after the stop decision.
+  \end{enumerate}
+\end{itemize}
+
+Downshifting sessions to Minimum Viable Sessions while preserving 6 sessions per week:
+
+\begin{itemize}
+\item Preserve the six-session rhythm; do not “skip sessions” as a fatigue strategy unless \textbf{STOP} \textbf{NOW} or clinician restrictions require it.
+\item Minimum Viable Sessions remain compliant only when:
+  \begin{itemize}
+  \item Safety self-check is first,
+  \item warm-up, mobility, minimal main work patterning, Cardio, cooldown, and required recovery/post-session notes are completed,
+  \item the Cardio block remains present as the labeled block and is executed continuously using the safest modality and intensity,
+  \item documentation is completed same day with the correct validity tag.
+  \end{itemize}
+\item Tagging posture:
+  \begin{itemize}
+  \item tag \textbf{MODIFIED} when downshifts preserve required elements and are documented with the applicable \textbf{SESSION-RC} and observable-trigger note,
+  \item tag \textbf{INVALID} when required elements are missing, required documentation is missing, or a \textbf{STOP} \textbf{NOW} trigger occurred and the session continued in a way that compromised safety governance.
+  \end{itemize}
+\end{itemize}
+
+\textbf{HOLD} and reslot posture:
+
+\begin{itemize}
+\item Missed, unsafe, or invalid tests cannot be used for advancement.
+\item Tests impacted by safety issues are reslotted to the next deload and test week per Stage 3.E.
+\item If safety issues prevent valid gate execution in the exit window, default gate posture is \textbf{HOLD} or \textbf{MEDICAL} \textbf{HOLD} per Stage 1.F and reslot/extension posture applies per Stage 3.E.
+\end{itemize}
+
+\end{document}

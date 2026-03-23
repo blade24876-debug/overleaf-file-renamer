@@ -1,0 +1,1171 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{landscape}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\section*{7.11.A — Walking / Base-Building Shoe}
+\phantomsection
+\addcontentsline{toc}{section}{7.11.A — Walking / Base-Building Shoe}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Walking / Base-Building Shoe & New Balance 608v5 & \$75 & Supportive Shoe & Phase 00 (End) & Stable wide-platform walker supports early daily time-on-feet, and it is chosen for its durable upper and predictable fit. \\
+Budget & Walking / Base-Building Shoe & Skechers Arch Fit 2.0 & \$95 & Supportive Shoe & Phase 00 (End) & Cushioned walking shoe reduces early foot fatigue, and it is chosen for its comfortable underfoot feel at a modest price. \\
+Budget & Walking / Base-Building Shoe & ASICS Gel-Contend 9 & \$70 & Supportive Shoe & Phase 00 (End) & Basic cushioned trainer keeps beginner walking tolerable, and it is chosen because it is easy to replace and widely available. \\
+Standard & Walking / Base-Building Shoe & Brooks Ghost Max 2 & \$150 & Supportive Shoe & Phase 00 (End) & Rockered cushioning smooths long easy walking, and it is chosen for its stable broad base and forgiving ride. \\
+Standard & Walking / Base-Building Shoe & Hoka Clifton 9 & \$145 & Supportive Shoe & Phase 00 (End) & Light cushioning reduces repetitive pavement shock, and it is chosen for its easy rollover during longer easy sessions. \\
+Standard & Walking / Base-Building Shoe & New Balance Fresh Foam X 1080v14 & \$165 & Supportive Shoe & Phase 00 (End) & Plush neutral platform supports steady volume accumulation, and it is chosen for its soft ride without feeling sloppy. \\
+Elite & Walking / Base-Building Shoe & Hoka Bondi 9 & \$170 & Supportive Shoe & Phase 00 (End) & Max-cushion geometry protects heavy early mileage, and it is chosen for its very stable thick midsole feel. \\
+Elite & Walking / Base-Building Shoe & Brooks Glycerin Max & \$200 & Supportive Shoe & Phase 00 (End) & High-stack comfort supports longer recovery walks, and it is chosen for its premium cushioning and stable transition. \\
+Elite & Walking / Base-Building Shoe & New Balance Fresh Foam X More v5 & \$155 & Supportive Shoe & Phase 00 (End) & Deep foam platform softens repetitive loading, and it is chosen for its broad contact surface and calm underfoot feel. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.11.B — Running Shoe}
+\phantomsection
+\addcontentsline{toc}{section}{7.11.B — Running Shoe}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Running Shoe & ASICS Gel-Excite 10 & \$85 & Run Shoe & Phase 01 (End) & Entry running shoe supports first controlled impact exposure, and it is chosen for its accessible price and dependable cushioning. \\
+Budget & Running Shoe & Nike Winflo 11 & \$110 & Run Shoe & Phase 01 (End) & Daily trainer supports beginner run progression, and it is chosen for its balanced feel and easy retail availability. \\
+Budget & Running Shoe & Adidas Duramo Speed 2 & \$100 & Run Shoe & Phase 01 (End) & Light trainer helps make short run segments feel less clunky, and it is chosen for its simple versatile ride. \\
+Standard & Running Shoe & Brooks Ghost 16 & \$140 & Run Shoe & Phase 01 (End) & Neutral daily trainer supports repeatable run testing and training, and it is chosen for its consistent fit and durable ride. \\
+Standard & Running Shoe & Saucony Ride 17 & \$140 & Run Shoe & Phase 01 (End) & Balanced cushioning supports steady run volume without excess softness, and it is chosen for its dependable all-around feel. \\
+Standard & Running Shoe & Hoka Clifton 9 & \$145 & Run Shoe & Phase 01 (End) & Lightweight cushioning reduces impact harshness on novice legs, and it is chosen for its smooth rocker and low fatigue feel. \\
+Elite & Running Shoe & ASICS Superblast 2 & \$200 & Run Shoe & Phase 01 (End) & Premium foam supports longer faster sessions with less leg beat-up, and it is chosen for its efficient high-stack ride. \\
+Elite & Running Shoe & Nike Pegasus Plus & \$180 & Run Shoe & Phase 01 (End) & Responsive premium trainer supports repeat tempo-style work, and it is chosen for its lively ride without race-shoe instability. \\
+Elite & Running Shoe & New Balance FuelCell SC Trainer v3 & \$180 & Run Shoe & Phase 01 (End) & High-cushion plated trainer softens longer efforts, and it is chosen for its strong protection-to-speed balance. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.11.C — Trail Running Shoe}
+\phantomsection
+\addcontentsline{toc}{section}{7.11.C — Trail Running Shoe}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Trail Running Shoe & ASICS Gel-Venture 9 & \$80 & Trail Shoe & Phase 06 (End) & Budget trail shoe protects footing on dirt and gravel, and it is chosen for its simple lug pattern and approachable price. \\
+Budget & Trail Running Shoe & Saucony Excursion TR16 & \$80 & Trail Shoe & Phase 06 (End) & Entry trail model supports mixed-surface running, and it is chosen for its durable outsole and easy fit. \\
+Budget & Trail Running Shoe & Adidas Terrex Soulstride & \$100 & Trail Shoe & Phase 06 (End) & Trail-oriented upper and outsole improve grip off pavement, and it is chosen for its stable crossover feel. \\
+Standard & Trail Running Shoe & Brooks Cascadia 18 & \$140 & Trail Shoe & Phase 06 (End) & Stable trail platform supports rougher routes with better foot placement control, and it is chosen for its reliable all-terrain balance. \\
+Standard & Trail Running Shoe & Salomon Sense Ride 5 & \$140 & Trail Shoe & Phase 06 (End) & Versatile trail trainer supports both fire roads and moderate technical ground, and it is chosen for its secure foothold. \\
+Standard & Trail Running Shoe & Hoka Speedgoat 6 & \$155 & Trail Shoe & Phase 06 (End) & Aggressive lugs improve footing on softer terrain, and it is chosen for its cushioned feel without giving up grip. \\
+Elite & Trail Running Shoe & Salomon S/Lab Genesis & \$200 & Trail Shoe & Phase 06 (End) & Premium trail chassis improves control on unstable ground, and it is chosen for its locked-in upper and technical confidence. \\
+Elite & Trail Running Shoe & Hoka Tecton X 3 & \$275 & Trail Shoe & Phase 06 (End) & High-end cushioned trail shoe supports faster uneven-surface work, and it is chosen for its smooth roll and protected ride. \\
+Elite & Trail Running Shoe & Norda 001 & \$285 & Trail Shoe & Phase 06 (End) & Premium upper and outsole prioritize durability and traction, and it is chosen for its exceptionally rugged build quality. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.11.D — Ruck Footwear}
+\phantomsection
+\addcontentsline{toc}{section}{7.11.D — Ruck Footwear}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Ruck footwear & Columbia Newton Ridge Plus II & \$100 & Ruck Boot & Phase 03 (End) & Affordable boot supports first loaded walking exposure, and it is chosen for its light structure and easy break-in. \\
+Budget & Ruck footwear & Merrell Moab 3 Mid & \$150 & Ruck Boot & Phase 03 (End) & Mid-cut hiking shoe adds ankle structure for loaded walking, and it is chosen for its familiar fit and broad user base. \\
+Budget & Ruck footwear & Danner Trail 2650 Mid & \$170 & Ruck Boot & Phase 03 (End) & Light boot supports faster unloaded-to-loaded transitions, and it is chosen for its comfortable hiking-shoe feel. \\
+Standard & Ruck footwear & Garmont T8 NFS & \$165 & Ruck Boot & Phase 03 (End) & Lightweight tactical boot supports longer dry-load movement, and it is chosen for its strong field reputation and agile feel. \\
+Standard & Ruck footwear & Danner Tachyon & \$170 & Ruck Boot & Phase 03 (End) & Light tactical platform reduces boot bulk during ruck progression, and it is chosen for its quick-footed feel and durable upper. \\
+Standard & Ruck footwear & Salomon XA Forces Mid & \$200 & Ruck Boot & Phase 03 (End) & Secure mid-cut design stabilizes foot placement under load, and it is chosen for its snug hold and grippy outsole. \\
+Elite & Ruck footwear & Lowa Zephyr MK2 GTX Mid & \$280 & Ruck Boot & Phase 03 (End) & Premium boot supports long loaded movement with better structure, and it is chosen for its refined fit and stable chassis. \\
+Elite & Ruck footwear & Salomon Quest 4 GTX & \$230 & Ruck Boot & Phase 03 (End) & Heavier-support hiking boot improves control under longer loads, and it is chosen for its cushioning and strong heel hold. \\
+Elite & Ruck footwear & Danner Reckoning & \$240 & Ruck Boot & Phase 03 (End) & Rugged military boot supports sustained field-style use, and it is chosen for its durability and structured underfoot feel. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.11.E — General Training Shoe}
+\phantomsection
+\addcontentsline{toc}{section}{7.11.E — General Training Shoe}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & General Training Shoe & Nike MC Trainer 3 & \$80 & Training Shoe & Phase 00 (End) & Flat stable trainer supports bodyweight work and basic resistance sessions, and it is chosen for its low cost and general usefulness. \\
+Budget & General Training Shoe & Reebok Nano Gym & \$100 & Training Shoe & Phase 00 (End) & Broad base supports general gym-style movement, and it is chosen for its simple stable platform. \\
+Budget & General Training Shoe & Under Armour Charged Commit TR 4 & \$90 & Training Shoe & Phase 00 (End) & Entry cross-trainer handles mixed movement days, and it is chosen for its moderate stability and easy replacement. \\
+Standard & General Training Shoe & Reebok Nano X4 & \$140 & Training Shoe & Phase 00 (End) & Stable versatile trainer supports squats, carries, and circuit work, and it is chosen for its proven all-around cross-training feel. \\
+Standard & General Training Shoe & Nike Metcon 9 & \$150 & Training Shoe & Phase 00 (End) & Firmer heel improves loaded stability, and it is chosen for its dependable platform under strength-biased work. \\
+Standard & General Training Shoe & Under Armour TriBase Reign 6 & \$130 & Training Shoe & Phase 00 (End) & Wide low-profile base supports controlled multi-direction work, and it is chosen for its secure planted feel. \\
+Elite & General Training Shoe & TYR CXT-2 Trainer & \$150 & Training Shoe & Phase 00 (End) & Premium wide stable trainer supports stronger foot splay under load, and it is chosen for its broad forefoot platform. \\
+Elite & General Training Shoe & Inov-8 F-Lite Max & \$170 & Training Shoe & Phase 00 (End) & Low-drop stable trainer supports cleaner ground feel, and it is chosen for its strong mix of grip and structure. \\
+Elite & General Training Shoe & R.A.D ONE & \$150 & Training Shoe & Phase 00 (End) & Premium all-around trainer supports both lifting and short dynamic work, and it is chosen for its balanced cushioning and stability. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.11.F — Recovery Slide / Sandal}
+\phantomsection
+\addcontentsline{toc}{section}{7.11.F — Recovery Slide / Sandal}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Recovery Slide / Sandal & Adidas Adilette Comfort & \$35 & Recovery Footwear & Phase 06 (End) & Easy slip-on slide helps feet air out after wet or sweaty sessions, and it is chosen for its low cost and simple comfort. \\
+Budget & Recovery Slide / Sandal & Crocs Mellow Slide & \$40 & Recovery Footwear & Phase 06 (End) & Soft molded slide reduces post-session shoe re-wear time, and it is chosen for its cushioned easy-clean design. \\
+Budget & Recovery Slide / Sandal & Nike Victori One Slide & \$35 & Recovery Footwear & Phase 06 (End) & Simple slide keeps feet out of damp shoes between sessions, and it is chosen for its easy availability and light feel. \\
+Standard & Recovery Slide / Sandal & Hoka Ora Recovery Slide 3 & \$60 & Recovery Footwear & Phase 06 (End) & Rockered cushioned slide helps unloaded foot turnover feel easier, and it is chosen for its soft resilient foam. \\
+Standard & Recovery Slide / Sandal & OOFOS OOahh Slide & \$60 & Recovery Footwear & Phase 06 (End) & Soft recovery slide reduces barefoot-on-hard-floor irritation, and it is chosen for its plush underfoot feel. \\
+Standard & Recovery Slide / Sandal & Kane Revive & \$80 & Recovery Footwear & Phase 06 (End) & Ventilated recovery slide improves airflow after wet sessions, and it is chosen for its drainage and sturdy molded structure. \\
+Elite & Recovery Slide / Sandal & OOFOS OOmega OOahh & \$100 & Recovery Footwear & Phase 06 (End) & Premium cushioned slide improves post-session foot comfort, and it is chosen for its thicker softer platform. \\
+Elite & Recovery Slide / Sandal & Hoka Ora Luxe & \$80 & Recovery Footwear & Phase 06 (End) & Higher-end recovery slide gives softer step-down comfort, and it is chosen for its upgraded strap and plush underfoot feel. \\
+Elite & Recovery Slide / Sandal & Kane Revive AC & \$90 & Recovery Footwear & Phase 06 (End) & Premium recovery slide supports quick drying and airflow, and it is chosen for its durable perforated shell and stable base. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.11.G — Technical Running Sock}
+\phantomsection
+\addcontentsline{toc}{section}{7.11.G — Technical Running Sock}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Technical Running Sock & Saucony RunDry Performance No-Show & \$12 & Running Sock & Phase 00 (End) & Thin synthetic sock reduces moisture and bunching during early cardio, and it is chosen for its inexpensive everyday usability. \\
+Budget & Technical Running Sock & Balega Hidden Comfort & \$16 & Running Sock & Phase 00 (End) & Cushioned running sock softens repetitive footstrike, and it is chosen for its smooth interior and reliable comfort. \\
+Budget & Technical Running Sock & Feetures Elite Light Cushion No-Show & \$18 & Running Sock & Phase 00 (End) & Targeted fit reduces in-shoe drift during short runs, and it is chosen for its snug shape and blister-aware construction. \\
+Standard & Technical Running Sock & Darn Tough Run No-Show Tab & \$20 & Running Sock & Phase 00 (End) & Merino blend helps moisture control across changing weather, and it is chosen for its durable knit and dependable fit. \\
+Standard & Technical Running Sock & Smartwool Run Targeted Cushion & \$22 & Running Sock & Phase 00 (End) & Light cushioning helps protect hot spots over rising volume, and it is chosen for its merino feel and structured fit. \\
+Standard & Technical Running Sock & Swiftwick Aspire Four & \$20 & Running Sock & Phase 00 (End) & Firmer compression-like fit reduces slippage, and it is chosen for its secure sock-to-shoe interface. \\
+Elite & Technical Running Sock & Drymax Hyper Thin Running & \$22 & Running Sock & Phase 00 (End) & Moisture-shedding knit helps feet stay drier in heat, and it is chosen for its fast-drying dual-layer fabric system. \\
+Elite & Technical Running Sock & CEP Run Ultralight & \$25 & Running Sock & Phase 00 (End) & Very light technical knit reduces bunching in snug shoes, and it is chosen for its precise locked-on fit. \\
+Elite & Technical Running Sock & Balega Silver No-Show & \$22 & Running Sock & Phase 00 (End) & Soft premium running sock improves all-day comfort, and it is chosen for its smooth toe finish and durable construction. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.11.H — Ruck Sock}
+\phantomsection
+\addcontentsline{toc}{section}{7.11.H — Ruck Sock}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Ruck Sock & Dickies Dri-Tech Boot Crew & \$15 & Ruck Sock & Phase 03 (End) & Affordable boot sock adds basic cushion for loaded walking, and it is chosen for its easy replacement and thicker structure. \\
+Budget & Ruck Sock & Fox River Wick Dry Military Mid-Calf & \$16 & Ruck Sock & Phase 03 (End) & Synthetic boot sock manages sweat under load, and it is chosen for its military-use orientation and durable knit. \\
+Budget & Ruck Sock & Columbia Moisture Control Crew & \$18 & Ruck Sock & Phase 03 (End) & Midweight sock supports longer boot sessions, and it is chosen for its balance of padding and cost. \\
+Standard & Ruck Sock & Darn Tough Hiker Boot Midweight & \$28 & Ruck Sock & Phase 03 (End) & Midweight merino sock improves moisture and friction control, and it is chosen for its dense knit and reliable hold. \\
+Standard & Ruck Sock & Smartwool Hike Classic Full Cushion & \$25 & Ruck Sock & Phase 03 (End) & Full-cushion boot sock helps reduce repetitive underfoot pressure, and it is chosen for its thick merino blend and trail reputation. \\
+Standard & Ruck Sock & Farm to Feet Damascus Crew & \$27 & Ruck Sock & Phase 03 (End) & Structured hiking sock supports longer loaded time-on-feet, and it is chosen for its durable merino construction and secure fit. \\
+Elite & Ruck Sock & Bridgedale Hike Midweight Merino Performance Boot & \$28 & Ruck Sock & Phase 03 (End) & Premium boot sock balances cushioning and moisture control, and it is chosen for its locked heel and stable midfoot wrap. \\
+Elite & Ruck Sock & Darn Tough Tactical OTC Extra Cushion & \$32 & Ruck Sock & Phase 03 (End) & Extra-cushion over-calf sock protects taller boot use, and it is chosen for its dense padding and high-durability knit. \\
+Elite & Ruck Sock & Point6 Hiking Heavy Crew & \$30 & Ruck Sock & Phase 03 (End) & Heavy hiking sock adds plush load-day protection, and it is chosen for its soft merino hand and supportive structure. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.11.I — Liner Sock}
+\phantomsection
+\addcontentsline{toc}{section}{7.11.I — Liner Sock}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Liner Sock & Fox River Wick Dry Liner & \$15 & Liner Sock & Phase 03 (End) & Thin liner reduces skin-on-sock shear under ruck socks, and it is chosen for its simple friction-management role. \\
+Budget & Liner Sock & REI Co-op Coolmax Liner Crew & \$18 & Liner Sock & Phase 03 (End) & Lightweight liner helps moisture move off the skin first, and it is chosen for its easy compatibility with bulkier outer socks. \\
+Budget & Liner Sock & Injinji Liner Crew & \$16 & Liner Sock & Phase 03 (End) & Toe-separated liner reduces toe-on-toe rubbing inside heavier sock systems, and it is chosen for its low-bulk friction control. \\
+Standard & Liner Sock & Wrightsock Coolmesh II Crew & \$18 & Liner Sock & Phase 03 (End) & Double-layer concept reduces blister shear in long walks, and it is chosen for its long-standing anti-blister reputation. \\
+Standard & Liner Sock & Bridgedale Liner Base Crew & \$20 & Liner Sock & Phase 03 (End) & Smooth thin liner keeps outer hiking socks sliding over it rather than on skin, and it is chosen for its dependable low-bulk knit. \\
+Standard & Liner Sock & Smartwool Liner Crew & \$22 & Liner Sock & Phase 03 (End) & Merino-blend liner adds moisture control without much added thickness, and it is chosen for its comfortable soft feel. \\
+Elite & Liner Sock & Injinji Liner Crew NuWool & \$22 & Liner Sock & Phase 03 (End) & Premium toe liner reduces interdigital rubbing under load, and it is chosen for its toe-by-toe separation with merino comfort. \\
+Elite & Liner Sock & Darn Tough Ultra-Light Liner & \$24 & Liner Sock & Phase 03 (End) & Premium low-volume liner helps preserve fit inside tighter boots, and it is chosen for its thin durable construction. \\
+Elite & Liner Sock & Lorpen Merino Liner & \$20 & Liner Sock & Phase 03 (End) & Fine merino liner keeps the skin interface softer during long load carriage, and it is chosen for its light smooth feel. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.11.J — Toe Sock}
+\phantomsection
+\addcontentsline{toc}{section}{7.11.J — Toe Sock}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Toe Sock & Injinji Run Lightweight No-Show & \$14 & Toe Sock & Phase 06 (End) & Toe-separated design reduces skin-on-skin rubbing, and it is chosen for its straightforward entry price and proven format. \\
+Budget & Toe Sock & XOSKIN Toesox Mini-Crew & \$18 & Toe Sock & Phase 06 (End) & Technical toe layout supports blister-prone feet, and it is chosen for its moisture-focused knit and snug fit. \\
+Budget & Toe Sock & Knitido+ Running Toe Sock & \$20 & Toe Sock & Phase 06 (End) & Toe-separated sock helps manage interdigital hotspots, and it is chosen for its clean toe construction and moderate cushioning. \\
+Standard & Toe Sock & Injinji Run Midweight Mini-Crew & \$17 & Toe Sock & Phase 06 (End) & Slightly thicker toe sock adds more underfoot protection, and it is chosen for its balance of padding and toe separation. \\
+Standard & Toe Sock & Creepers Merino Toe Sock & \$22 & Toe Sock & Phase 06 (End) & Merino toe sock improves moisture control on longer days, and it is chosen for its softer natural-fiber feel. \\
+Standard & Toe Sock & Injinji Trail Midweight Crew & \$18 & Toe Sock & Phase 06 (End) & Trail-oriented toe sock helps on uneven terrain and longer outings, and it is chosen for its stronger cushioning and secure cuff. \\
+Elite & Toe Sock & Injinji Ultra Run Crew & \$20 & Toe Sock & Phase 06 (End) & Plush toe sock supports longer high-friction sessions, and it is chosen for its extra cushioning without losing toe separation. \\
+Elite & Toe Sock & XOSKIN HIKER Toesox & \$24 & Toe Sock & Phase 06 (End) & Premium toe sock suits long loaded movement, and it is chosen for its durable moisture-managing yarns. \\
+Elite & Toe Sock & Creepers Performance Merino Toe Sock & \$24 & Toe Sock & Phase 06 (End) & Premium merino toe sock supports all-day comfort, and it is chosen for its low-rub interface and high-end knit feel. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.11.K — Blister Tape}
+\phantomsection
+\addcontentsline{toc}{section}{7.11.K — Blister Tape}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Blister Tape & Mueller Moleskin Plus & \$6 & Friction Barrier & Phase 00 (End) & Soft barrier patch protects known rub points early, and it is chosen for its very low cost and easy trimming. \\
+Budget & Blister Tape & Nexcare Absolute Waterproof Tape & \$8 & Friction Barrier & Phase 00 (End) & Waterproof tape helps hold a quick hotspot cover in sweat, and it is chosen for its easy retail access. \\
+Budget & Blister Tape & Leukotape P & \$12 & Friction Barrier & Phase 00 (End) & Strong adhesive tape locks onto skin for durable hotspot management, and it is chosen for its field-proven staying power. \\
+Standard & Blister Tape & KT Tape Blister Prevention Tape & \$10 & Friction Barrier & Phase 00 (End) & Pre-cut blister-focused tape speeds application, and it is chosen for its sport-specific shaping. \\
+Standard & Blister Tape & RockTape H2O & \$15 & Friction Barrier & Phase 00 (End) & Water-resistant stretch tape stays on through sweat and wet exposure, and it is chosen for its better hold under movement. \\
+Standard & Blister Tape & Leukotape K & \$14 & Friction Barrier & Phase 00 (End) & Lighter stretchier tape gives a softer barrier feel, and it is chosen for users who find rigid tape too harsh. \\
+Elite & Blister Tape & ENGO Blister Prevention Patches & \$15 & Friction Barrier & Phase 00 (End) & Adhesive patches stick inside the shoe to reduce rubbing at the source, and they are chosen for lasting several sessions. \\
+Elite & Blister Tape & Leukotape P Roll + backing paper carry setup & \$15 & Friction Barrier & Phase 00 (End) & Premium field-ready setup supports fast repeat hotspot coverage, and it is chosen for combining high hold with easier carry. \\
+Elite & Blister Tape & Hypafix Retention Tape & \$14 & Friction Barrier & Phase 00 (End) & Wide soft tape secures patches over larger friction areas, and it is chosen for its gentler skin feel and strong adherence. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.11.L — Hydrocolloid Blister Bandage}
+\phantomsection
+\addcontentsline{toc}{section}{7.11.L — Hydrocolloid Blister Bandage}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Hydrocolloid Blister Bandage & Band-Aid Hydro Seal Blister & \$9 & Protective Dressing & Phase 00 (End) & Hydrocolloid dressing cushions active hot spots and blisters, and it is chosen for easy retail availability. \\
+Budget & Hydrocolloid Blister Bandage & Nexcare Blister Waterproof Cushions & \$8 & Protective Dressing & Phase 00 (End) & Waterproof blister patch protects friction points during daily use, and it is chosen for its compact travel-friendly packaging. \\
+Budget & Hydrocolloid Blister Bandage & All Health Blister Cushions & \$7 & Protective Dressing & Phase 00 (End) & Budget hydrocolloid pads create a simple friction buffer, and they are chosen for keeping cost low on a baseline kit. \\
+Standard & Hydrocolloid Blister Bandage & Compeed Blister Cushions Mixed Pack & \$12 & Protective Dressing & Phase 00 (End) & Well-shaped blister cushions reduce shoe pressure over several locations, and they are chosen for their strong adhesion and comfort. \\
+Standard & Hydrocolloid Blister Bandage & Band-Aid Hydro Seal Variety Pack & \$11 & Protective Dressing & Phase 00 (End) & Mixed sizes help match different hotspot locations, and it is chosen for broader coverage in one pack. \\
+Standard & Hydrocolloid Blister Bandage & Spenco 2nd Skin Blister Pads & \$10 & Protective Dressing & Phase 00 (End) & Cooling pad format protects tender spots with a softer feel, and it is chosen for reducing pressure on irritated skin. \\
+Elite & Hydrocolloid Blister Bandage & Compeed Extreme Blister Cushions & \$14 & Protective Dressing & Phase 00 (End) & Extra-cushion hydrocolloid supports heavier friction exposure, and it is chosen for thicker protection under load. \\
+Elite & Hydrocolloid Blister Bandage & ENGO Oval Blister Patches + hydrocolloid combo carry kit & \$18 & Protective Dressing & Phase 00 (End) & Combined inside-shoe and on-skin strategy improves blister control, and it is chosen for covering both friction sources. \\
+Elite & Hydrocolloid Blister Bandage & Band-Aid Hydro Seal Large Heel Pack & \$10 & Protective Dressing & Phase 00 (End) & Heel-focused sizing protects the most common rearfoot hotspot, and it is chosen for its targeted heel coverage. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.11.M — Anti-Friction Balm}
+\phantomsection
+\addcontentsline{toc}{section}{7.11.M — Anti-Friction Balm}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Anti-Friction Balm & Gold Bond Friction Defense & \$8 & Friction Reducer & Phase 00 (End) & Budget stick reduces skin shear in predictable rub zones, and it is chosen for its low cost and easy drugstore access. \\
+Budget & Anti-Friction Balm & BodyGlide Foot Glide & \$10 & Friction Reducer & Phase 00 (End) & Foot-specific glide stick reduces hotspot formation inside shoes, and it is chosen for its clean no-mess application. \\
+Budget & Anti-Friction Balm & 2Toms SportShield Roll-On & \$13 & Friction Reducer & Phase 00 (End) & Liquid barrier helps on small localized rub points, and it is chosen for its easy spot application. \\
+Standard & Anti-Friction Balm & Squirrel's Nut Butter & \$15 & Friction Reducer & Phase 00 (End) & Thick natural-feeling balm reduces repeated skin-on-fabric rub, and it is chosen for its durable coating feel. \\
+Standard & Anti-Friction Balm & Trail Toes & \$18 & Friction Reducer & Phase 00 (End) & Foot-focused balm supports longer hot-weather sessions, and it is chosen for its staying power on sweat-prone feet. \\
+Standard & Anti-Friction Balm & BodyGlide Original & \$12 & Friction Reducer & Phase 00 (End) & Multipurpose glide stick works for both feet and clothing-rub zones, and it is chosen for its simple reliable application. \\
+Elite & Anti-Friction Balm & Squirrel's Nut Butter Hiker Tube & \$18 & Friction Reducer & Phase 00 (End) & Thicker premium formula suits longer load-bearing days, and it is chosen for its durable coating under repeated friction. \\
+Elite & Anti-Friction Balm & Trail Toes Performance & \$20 & Friction Reducer & Phase 00 (End) & Premium foot-focused balm is built for sustained sweaty use, and it is chosen for its strong longer-duration feel. \\
+Elite & Anti-Friction Balm & 2Toms SportShield Extra Wide & \$16 & Friction Reducer & Phase 00 (End) & Wide applicator covers larger heel and arch zones quickly, and it is chosen for fast full-foot prep. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.11.N — Foot Powder / Moisture Control}
+\phantomsection
+\addcontentsline{toc}{section}{7.11.N — Foot Powder / Moisture Control}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Foot Powder / Moisture Control & Gold Bond Maximum Strength Foot Powder & \$8 & Moisture Control & Phase 00 (End) & Powder reduces wet friction inside shoes, and it is chosen for its low cost and easy daily use. \\
+Budget & Foot Powder / Moisture Control & Arm \& Hammer Foot Powder & \$7 & Moisture Control & Phase 00 (End) & Basic powder helps reduce dampness and odor buildup, and it is chosen for simple budget-friendly coverage. \\
+Budget & Foot Powder / Moisture Control & Zeasorb Super Absorbent Powder & \$10 & Moisture Control & Phase 00 (End) & Drying powder helps lower maceration risk after sweaty sessions, and it is chosen for strong moisture absorption. \\
+Standard & Foot Powder / Moisture Control & 2Toms StinkFree Powder & \$13 & Moisture Control & Phase 00 (End) & Sport-focused powder supports drier footwear interface during frequent sessions, and it is chosen for its fine non-clumping feel. \\
+Standard & Foot Powder / Moisture Control & Zeasorb AF & \$12 & Moisture Control & Phase 00 (End) & Drying powder suits prolonged warm-shoe wear, and it is chosen for its strong moisture-control reputation. \\
+Standard & Foot Powder / Moisture Control & Carpe Foot Lotion & \$15 & Moisture Control & Phase 00 (End) & Lotion-style sweat control suits users who dislike powder residue, and it is chosen for cleaner application. \\
+Elite & Foot Powder / Moisture Control & Carpe Antiperspirant Foot Lotion & \$16 & Moisture Control & Phase 00 (End) & Premium lotion reduces persistent sweaty-foot friction, and it is chosen for targeted moisture control without loose powder. \\
+Elite & Foot Powder / Moisture Control & On Your Toes Foot Powder & \$18 & Moisture Control & Phase 00 (End) & Premium sport powder supports all-day dryness, and it is chosen for its cleaner finer texture. \\
+Elite & Foot Powder / Moisture Control & Lavilin Foot Deodorant Cream & \$19 & Moisture Control & Phase 00 (End) & Cream format supports moisture-and-odor management with less dust, and it is chosen for users who prefer a non-powder option. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.11.O — Insole}
+\phantomsection
+\addcontentsline{toc}{section}{7.11.O — Insole}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Insole & Dr. Scholl's Run Active Comfort & \$15 & Foot Insert & Phase 06 (End) & Entry insole adds a simple cushioning change when stock footbeds are too flat, and it is chosen for easy retail replacement. \\
+Budget & Insole & Spenco RX Comfort & \$18 & Foot Insert & Phase 06 (End) & Basic cushioning insert softens firm shoe interiors, and it is chosen for its simple low-cost comfort role. \\
+Budget & Insole & Sof Sole Athlete & \$20 & Foot Insert & Phase 06 (End) & Light cushioning insert helps tune shoe feel without fully changing the footwear system, and it is chosen for its straightforward fit. \\
+Standard & Insole & Powerstep Pinnacle & \$45 & Foot Insert & Phase 06 (End) & Structured support improves underfoot stability when stock insoles feel vague, and it is chosen for its durable support shape. \\
+Standard & Insole & Superfeet All-Purpose Support Low Arch & \$40 & Foot Insert & Phase 06 (End) & Firmer support insert helps stabilize the foot interface, and it is chosen for its consistent shape and trim-to-fit ease. \\
+Standard & Insole & Currex RunPro & \$60 & Foot Insert & Phase 06 (End) & Activity-specific insert refines run-shoe fit and feel, and it is chosen for its better shape matching across foot types. \\
+Elite & Insole & Superfeet Run Support High Arch & \$55 & Foot Insert & Phase 06 (End) & Premium run-focused insert improves loaded shoe consistency, and it is chosen for its stronger support geometry. \\
+Elite & Insole & Currex HikePro & \$60 & Foot Insert & Phase 06 (End) & Premium hiking insert supports longer loaded walking, and it is chosen for its stable shape and hiking-focused fit. \\
+Elite & Insole & Sidas 3Feet Run Sense & \$70 & Foot Insert & Phase 06 (End) & Premium insert refines shoe interface for repeatability, and it is chosen for its precise foot-profile matching. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.11.P — Lace-Lock System}
+\phantomsection
+\addcontentsline{toc}{section}{7.11.P — Lace-Lock System}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Lace-Lock System & Lock Laces & \$10 & Lacing System & Phase 06 (End) & Elastic no-tie laces keep tension more consistent across repeated sessions, and they are chosen for easy quick-adjust convenience. \\
+Budget & Lace-Lock System & Nathan Run Laces & \$8 & Lacing System & Phase 06 (End) & Simple elastic laces reduce mid-session retie stops, and they are chosen for low cost and easy setup. \\
+Budget & Lace-Lock System & Caterpy Air+ Laces & \$14 & Lacing System & Phase 06 (End) & Segment-tension laces reduce uneven pressure points, and they are chosen for their easy pressure tuning. \\
+Standard & Lace-Lock System & Xpand No-Tie Lacing System & \$12 & Lacing System & Phase 06 (End) & Elastic system helps hold heel security with less knot drift, and it is chosen for a cleaner lower-profile look. \\
+Standard & Lace-Lock System & Salomon Quicklace Kit & \$18 & Lacing System & Phase 06 (End) & Fast-pull lace system speeds fit adjustment on trail or field days, and it is chosen for one-pull tightening. \\
+Standard & Lace-Lock System & Sidas Run Lace & \$12 & Lacing System & Phase 06 (End) & Technical lace option helps fine-tune pressure without over-tightening the forefoot, and it is chosen for stable stretch control. \\
+Elite & Lace-Lock System & BOA Fit Repair / Retrofit-Compatible Lace Hardware Tier Equivalent & \$25 & Lacing System & Phase 06 (End) & Premium dial-style tensioning improves repeatable closure, and it is chosen for precise micro-adjustability. \\
+Elite & Lace-Lock System & Caterpy AIR+ Premium Set & \$18 & Lacing System & Phase 06 (End) & Premium segmented system reduces lace bite across the top of the foot, and it is chosen for easier pressure distribution control. \\
+Elite & Lace-Lock System & Salomon Quicklace Spare Kit + garage carry setup & \$20 & Lacing System & Phase 06 (End) & Premium field-ready spare lacing setup protects continuity when a closure fails, and it is chosen for low-volume redundancy. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.11.Q — Toenail Care Kit}
+\phantomsection
+\addcontentsline{toc}{section}{7.11.Q — Toenail Care Kit}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Toenail Care Kit & Revlon Toenail Clipper & \$8 & Nail Tool & Phase 00 (End) & Basic large-jaw clipper helps keep nails short enough to reduce toe-box impact, and it is chosen for easy low-cost replacement. \\
+Budget & Toenail Care Kit & Harperton Nail Clipper Set & \$10 & Nail Tool & Phase 00 (End) & Dual-clipper set supports both fingernail and toenail upkeep, and it is chosen for a simple complete starter kit. \\
+Budget & Toenail Care Kit & Tweezerman Stainless Toenail Clipper & \$12 & Nail Tool & Phase 00 (End) & Sturdier clipper gives cleaner cuts that lower snag risk, and it is chosen for durable stainless construction. \\
+Standard & Toenail Care Kit & Zwilling TWINOX Toenail Clipper & \$25 & Nail Tool & Phase 00 (End) & Sharper premium clipper helps cleaner nail trimming, and it is chosen for stronger cutting action and durable build. \\
+Standard & Toenail Care Kit & Seki Edge SS-106 & \$22 & Nail Tool & Phase 00 (End) & Precise Japanese clipper supports cleaner nail edges, and it is chosen for its sharp controlled cut feel. \\
+Standard & Toenail Care Kit & Victorinox Nail Clip 580 & \$35 & Nail Tool & Phase 00 (End) & Multi-tool nail option improves travel carry convenience, and it is chosen for combining trim and small-file capability. \\
+Elite & Toenail Care Kit & Niegeloh Solingen Toenail Clipper & \$40 & Nail Tool & Phase 00 (End) & Premium clipper supports cleaner repeated trimming, and it is chosen for high-end steel and precise cutting action. \\
+Elite & Toenail Care Kit & Rubis Switzerland Nail Clip & \$45 & Nail Tool & Phase 00 (End) & Premium precision tool helps avoid jagged nail edges, and it is chosen for excellent finish quality and durable build. \\
+Elite & Toenail Care Kit & Klhip Nail Clipper & \$80 & Nail Tool & Phase 00 (End) & High-end lever design improves controlled trimming force, and it is chosen for exceptionally strong build and smooth action. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.11.R — Callus Care Tool}
+\phantomsection
+\addcontentsline{toc}{section}{7.11.R — Callus Care Tool}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Callus Care Tool & Mr. Pumice Ultimate Pumice Bar & \$6 & Skin Tool & Phase 06 (End) & Simple pumice helps reduce thick rough friction points, and it is chosen for very low cost and easy replacement. \\
+Budget & Callus Care Tool & Microplane Colossal Foot File & \$15 & Skin Tool & Phase 06 (End) & Hand file smooths excess callus before it cracks or bunches in socks, and it is chosen for fast visible material removal. \\
+Budget & Callus Care Tool & Tweezerman Sole Smoother & \$18 & Skin Tool & Phase 06 (End) & Dual-sided file supports gradual rough-skin control, and it is chosen for a simple sturdy handheld design. \\
+Standard & Callus Care Tool & Amope Pedi Perfect & \$30 & Skin Tool & Phase 06 (End) & Electric roller makes routine callus control quicker, and it is chosen for easier repeat use than manual filing alone. \\
+Standard & Callus Care Tool & Emjoi Micro-Pedi & \$35 & Skin Tool & Phase 06 (End) & Electric callus tool reduces manual effort during frequent foot maintenance, and it is chosen for convenient powered smoothing. \\
+Standard & Callus Care Tool & Revlon Pediprep Foot File & \$20 & Skin Tool & Phase 06 (End) & Manual file helps keep thickened skin more even, and it is chosen for a simple no-battery maintenance option. \\
+Elite & Callus Care Tool & Beurer MP59 & \$50 & Skin Tool & Phase 06 (End) & Premium electric foot-care tool offers cleaner maintenance control, and it is chosen for stronger rechargeable convenience. \\
+Elite & Callus Care Tool & Silk'n VacuPedi & \$70 & Skin Tool & Phase 06 (End) & Premium powered file captures debris during use, and it is chosen for tidier indoor maintenance workflow. \\
+Elite & Callus Care Tool & Amope Pedi Perfect Wet and Dry & \$40 & Skin Tool & Phase 06 (End) & Waterproof premium version adds easier cleaning and use flexibility, and it is chosen for simpler maintenance hygiene. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.11.S — Shoe Deodorizer / Drying Insert}
+\phantomsection
+\addcontentsline{toc}{section}{7.11.S — Shoe Deodorizer / Drying Insert}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Shoe Deodorizer / Drying Insert & Arm \& Hammer Odor Busterz Balls & \$8 & Drying Aid & Phase 06 (End) & Small deodorizer inserts reduce stale-shoe odor between uses, and they are chosen for cheap easy drop-in use. \\
+Budget & Shoe Deodorizer / Drying Insert & Sof Sole Sneaker Balls & \$7 & Drying Aid & Phase 06 (End) & Compact insert helps keep shoes fresher after sweaty sessions, and it is chosen for simple rotating use across pairs. \\
+Budget & Shoe Deodorizer / Drying Insert & Cedar Elements Cedar Inserts & \$12 & Drying Aid & Phase 06 (End) & Cedar insert helps absorb moisture and reduce odor, and it is chosen for a natural low-tech drying role. \\
+Standard & Shoe Deodorizer / Drying Insert & PEET M97 DryPorts & \$18 & Drying Aid & Phase 06 (End) & Portable dryer ports improve airflow into damp shoes, and they are chosen for pairing well with existing dryers or vented storage. \\
+Standard & Shoe Deodorizer / Drying Insert & Boot Bananas Original & \$20 & Drying Aid & Phase 06 (End) & Insert pair helps shoes dry with better odor control, and it is chosen for easy leave-in simplicity between sessions. \\
+Standard & Shoe Deodorizer / Drying Insert & Rocket Pure Natural Deodorizer Bags & \$15 & Drying Aid & Phase 06 (End) & Charcoal bags help reduce trapped moisture smell, and they are chosen for reusable odor-control convenience. \\
+Elite & Shoe Deodorizer / Drying Insert & StinkBOSS Shoe Refresher Capsule & \$70 & Drying Aid & Phase 06 (End) & Powered odor-control system refreshes heavily used shoes faster, and it is chosen for stronger active deodorizing effect. \\
+Elite & Shoe Deodorizer / Drying Insert & PEET Shoe Drying Module Set & \$25 & Drying Aid & Phase 06 (End) & Premium insert-style dryer pieces improve repeat footwear turnover, and they are chosen for cleaner directed airflow into shoes. \\
+Elite & Shoe Deodorizer / Drying Insert & Boot Bananas Max & \$25 & Drying Aid & Phase 06 (End) & Premium insert pair improves odor control during heavy weekly use, and it is chosen for stronger longer-lasting insert performance. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.11.T — Redundant Rotation Shoe Pair}
+\phantomsection
+\addcontentsline{toc}{section}{7.11.T — Redundant Rotation Shoe Pair}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Redundant Rotation Shoe Pair & ASICS GT-1000 13 & \$110 & Backup Shoe & Phase 12 (End) & Secondary trainer protects continuity when the primary pair is wet or flattened, and it is chosen for stable value-oriented daily use. \\
+Budget & Redundant Rotation Shoe Pair & Brooks Launch 10 & \$110 & Backup Shoe & Phase 12 (End) & Backup shoe adds a lighter second feel for rotation, and it is chosen for easy turnover and reasonable durability. \\
+Budget & Redundant Rotation Shoe Pair & Saucony Axon 3 & \$100 & Backup Shoe & Phase 12 (End) & Budget backup trainer adds a cushioned second option, and it is chosen for high-value foam and simple versatile use. \\
+Standard & Redundant Rotation Shoe Pair & Brooks Ghost 16 & \$140 & Backup Shoe & Phase 12 (End) & Second proven daily trainer protects final-window continuity, and it is chosen for dependable fit and broad availability. \\
+Standard & Redundant Rotation Shoe Pair & New Balance 880v14 & \$140 & Backup Shoe & Phase 12 (End) & Reliable backup trainer preserves consistent daily-run feel, and it is chosen for durable cushioning and straightforward geometry. \\
+Standard & Redundant Rotation Shoe Pair & Hoka Clifton 9 & \$145 & Backup Shoe & Phase 12 (End) & Cushioned second pair shortens wet-time and compression-time between sessions, and it is chosen for light stable cushioning. \\
+Elite & Redundant Rotation Shoe Pair & ASICS Superblast 2 & \$200 & Backup Shoe & Phase 12 (End) & Premium rotation pair preserves high-end run feel into protected windows, and it is chosen for strong cushioning resilience. \\
+Elite & Redundant Rotation Shoe Pair & On Cloudmonster 2 & \$180 & Backup Shoe & Phase 12 (End) & Premium backup trainer offers another durable high-stack option, and it is chosen for its lively yet protected ride. \\
+Elite & Redundant Rotation Shoe Pair & Nike Pegasus Plus & \$180 & Backup Shoe & Phase 12 (End) & Premium second trainer protects against last-minute novelty or foam collapse, and it is chosen for versatile faster daily-use feel. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.11.U — When These Items Are Needed}
+\phantomsection
+\addcontentsline{toc}{section}{7.11.U — When These Items Are Needed}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=1.95in]
+    Q[c,wd=1.10in]
+    X[l,1.80]
+    X[l,1.80]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-2} = {halign=c, valign=m},
+  column{3-4} = {halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Item} &
+\Hdr{First Required Phase} &
+\Hdr{Why it becomes necessary} &
+\Hdr{What happens if missing} \\
+Walking / Base-Building Shoe & Phase 00 (End) & Stage 6 makes Stage 7.11 Tier 1 active at Phase 00 (End) entry because safe locomotion starts with a controlled footwear interface. & Early cardio continuity becomes less safe and gait drift risk rises. \\
+Running Shoe & Phase 01 (End) & The first run-dependent standards begin to matter by Phase 01 (End), so a dedicated repeatable run interface becomes necessary. & Early run exposure stays less controlled and test comparability weakens. \\
+Trail Running Shoe & Phase 06 (End) & Condition-specific footwear fits the expanded Tier-2 posture when outdoor surface variation becomes a repeated execution problem. & Mixed-surface running remains more slip-prone and less stable in poor conditions. \\
+Ruck footwear & Phase 03 (End) & First ruck standards depend on 7.11 once loaded walking formally enters the pipeline. & Ruck exposure becomes less safe and more likely to create avoidable hotspots or gait change. \\
+General Training Shoe & Phase 00 (End) & A basic stable trainer is part of the minimum supportive-footwear posture for home and mixed training use. & Strength and movement sessions rely on less stable footwear or improvised shoes. \\
+Recovery Slide / Sandal & Phase 06 (End) & It fits Tier-2 expanded footcare once repeated wet-time and footwear turnover become a real friction source. & Feet spend more time trapped in damp or heavily used shoes between sessions. \\
+Technical Running Sock & Phase 00 (End) & Stage 6 Tier 1 explicitly includes the sock system from the start. & Moisture management and in-shoe friction control remain weaker from day one. \\
+Ruck sock & Phase 03 (End) & The first ruck window makes a thicker load-day sock interface relevant. & Load carriage friction rises and blister risk increases under heavier walking. \\
+Liner sock & Phase 03 (End) & It becomes useful once ruck interface management matters and longer friction windows appear. & Heel and toe shear remain harder to manage under heavier socks and boots. \\
+Toe sock & Phase 06 (End) & It belongs to the expanded footcare toolkit rather than the earliest essentials layer. & Interdigital hotspot options remain narrower for feet that need toe separation. \\
+Blister Tape & Phase 00 (End) & Tier-1 blister-prevention supplies are explicitly part of the first acquisition delta. & Small hotspots escalate faster into blisters and session disruption. \\
+Hydrocolloid Blister Bandage & Phase 00 (End) & The first locomotion phase needs basic blister containment, not just prevention. & Active hot spots and early blisters are harder to protect while maintaining continuity. \\
+Anti-Friction Balm & Phase 00 (End) & It is part of the earliest blister-prevention supply class when wet friction starts immediately. & Sweat-driven rubbing is harder to control before hotspots appear. \\
+Foot Powder / Moisture Control & Phase 00 (End) & Moisture control directly supports the early sock-and-footcare system. & Damp skin, maceration, and friction accumulation increase. \\
+Insole & Phase 06 (End) & It fits the improved Tier-2 toolkit once finer foot-interface tuning becomes justified. & Stock footbeds remain the only option even when repeated fit friction appears. \\
+Lace-Lock System & Phase 06 (End) & Expanded fit-control tools become reasonable once execution density and precision needs rise. & Lace bite, heel slip, and fit drift remain harder to solve cleanly. \\
+Toenail Care Kit & Phase 00 (End) & Basic footcare from the start includes reducing nail-related toe-box pressure and sock damage. & Nail length becomes an avoidable source of toe irritation and shoe contact pain. \\
+Callus Care Tool & Phase 06 (End) & It belongs to the improved footcare toolkit once higher friction and longer time-on-feet exposures accumulate. & Thickened skin remains more likely to crack, bunch, or rub unpredictably. \\
+Shoe Deodorizer / Drying Insert & Phase 06 (End) & Expanded sustainment of the foot system includes improving drying and odor control beyond simple air-out posture. & Shoes stay wetter and harder to turn around cleanly between sessions. \\
+Redundant Rotation Shoe Pair & Phase 12 (End) & Stage 6 Tier 3 overbuild is introduced to reduce final-window variance and last-minute footwear failure. & A single wet, worn, or collapsed pair can disrupt protected verification windows. \\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+\clearpage
+
+\section*{7.11.V — Compliance Checklist}
+\phantomsection
+\addcontentsline{toc}{section}{7.11.V — Compliance Checklist}
+
+\begin{itemize}
+\item Only one deliverable is provided for Target Category 7.11.
+\item The title and output structure follow the locked schema.
+\item The chart uses the exact required columns.
+\item Twenty distinct items are included, and each item contains exactly three Budget rows, three Standard rows, and three Elite rows.
+\item Rows are grouped by item and progress from foundational footwear interface control toward expanded and redundant footcare posture.
+\item Notes are concise, plain-language, and describe both the intended use/effect and why the specific item was chosen.
+\item Stage 6 timing is treated as authoritative, with Tier 1 mapped to Phase 00, Tier 2 to Phase 06, and Tier 3 to Phase 12 unless a ruck- or run-specific dependency justifies a later first-use point inside the same capability class.
+\item No programming, workouts, sets, reps, new tests, new thresholds, retailer links, affiliate links, promo codes, or live price research are included.
+\item The post-chart timing table matches the chart timing.
+\item Safety and validity posture remain consistent with the locked footwear-governance doctrine.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,1397 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 3.B — Phase-Level Stress and Test Map}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 3.B — Phase-Level Stress and Test Map}
+
+\subsection*{3.B.1 Phase Map Table}
+\phantomsection
+\addcontentsline{toc}{subsection}{3.B.1 Phase Map Table}
+
+\subsubsection*{3.B.1.1 Global Interpretation Rules for This Map}
+\phantomsection
+
+\begin{enumerate}
+\item Week numbering is week-in-phase. “Week 1 (baseline)” is the initial baseline capture week for the phase and is treated as a protected window for baseline capture and infrastructure checks; it may include phase-appropriate baseline major tests under conservative posture, but it is not automatically a maximal gate attempt. “Weeks 4, 8, 12, …” are protected deload/test windows by doctrine unless explicitly reclassified as recovery-first due to safety/validity constraints.
+
+\item Protected windows are the default authorization windows for gate-grade testing. Tests executed outside protected windows may be logged informationally, but are not treated as gate-grade by default when fatigue, novelty, unsafe environment conditions, or incomplete Stage 2 logging exist. This map therefore treats protected windows as the default decision-grade testing layer and all other weeks as execution-first weeks unless an explicit exception is recorded.
+
+\item Major test event caps and spacing apply inside each protected window week (start-to-start) and govern scheduling feasibility:
+\begin{itemize}
+\item Ideal cap: 2 major test events per protected window week.
+\item Hard cap: 3 major test events per protected window week.
+\item Any two major test events \textbf{MUST} NOT start within the same 72-hour window.
+\item Maximal \textbf{RUN} and maximal \textbf{RUCK} \textbf{MUST} NOT start within the same 96-hour window.
+\item If caps/spacing cannot be met inside the protected window week, the correct action is partial execution and reslotting remaining major tests to the next protected window. Compression is prohibited.
+\end{itemize}
+
+\item Major test event caps are interpreted conservatively. The hard cap is an upper boundary, not a target. A week that reaches the hard cap must still preserve validity, safety, and phase intent. If the schedule can satisfy the cap numerically but introduces obvious fatigue carryover, excessive foot stress, gait instability, or recovery collapse, that week is treated as over-dense and the correct action is reslotting.
+
+\item Major test events include: \textbf{RUN} time trials (\textbf{C8}–\textbf{C11}), \textbf{RUCK} time trials (\textbf{C12}), \textbf{SWIM} time trials (\textbf{C13}), \textbf{CAL} battery events (\textbf{C4}–\textbf{C7}) when executed as the standardized battery, \textbf{STR} proxy sessions (\textbf{C17}) when executed as formal test events, and \textbf{AER} time trials (\textbf{C18}) when executed as formal test events.
+
+\item Low-cost monitoring does not count as a major test event and may occur in work weeks or protected windows without violating major-event caps: \textbf{BODYCOMP} (\textbf{C1}–\textbf{C3}), \textbf{RECOVERY} (\textbf{C15}), \textbf{DURABILITY} screen flags (\textbf{C16}), and compliance metrics (derived). These low-cost items still require logging quality and minimum required fields, but they do not consume a major-event slot for density accounting.
+
+\item Safety and validity override schedule. Any stop-rule trigger, mechanics-altering pain, unsafe environment condition, or missing required Stage 2 fields (\textbf{ENV}, \textbf{EQUIP}, \textbf{WARMUP}, \textbf{SAFETY}, \textbf{MEASURE}, Evidence Ref where required) forces conservative handling: \textbf{INVALID} for gate use and reslot posture for gate-required constructs. Under no condition does completion bias override stop posture, environment hazards, or missing-data doctrine.
+
+\item Protected windows are not “max-out weeks” by default. Their function is controlled evidence capture. A protected window may be used for conservative verification, stability checks, re-runs of previously invalid attempts, or low-density monitoring depending on phase intent and active constraints. The map therefore distinguishes protected-window authorization from maximal-demand obligation.
+
+\item If a window is partially executed, the completed components retain their own validity status independently. A partially completed protected window does not force the entire week to become unusable; it simply means the incomplete gate package must be closed by reslotting the remaining major event(s) to the next protected window under the same doctrinal constraints.
+
+\item \textbf{SWIM} and underwater are strictly constrained:
+\begin{itemize}
+\item \textbf{SWIM} time trials (\textbf{C13}) occur only when pool unit/length can be verified and logged (\textbf{POOL}-2E-### recorded).
+\item Underwater (\textbf{C14}) is scheduled only in Phase 10–Phase 13 and only when certified lifeguard plus dedicated safety spotter prerequisites are satisfied; otherwise it is not scheduled.
+\end{itemize}
+
+\item “If viable” language for \textbf{CAL} pull-ups (\textbf{C6}) means: the strict standard is executable without violating mechanics rules and the artifact evidence standard can be met. If strict reps do not exist, \textbf{C6} may be logged as informational attempts only and must not be used to claim gate-grade tier classification.
+
+\item When a treadmill is used for \textbf{RUN} substitution inside a protected window, comparability depends on explicit logging of treadmill identity, incline/grade, and execution settings. A treadmill entry without stable logging support may still be informational, but it is not assumed equivalent to a valid route-based \textbf{RUN} time trial for gate purposes.
+
+\item When a pool unit changes (yards to meters or meters to yards), no automatic equivalence is assumed. The unit distinction is treated as comparability-relevant and must be preserved in records and in gate interpretation.
+
+\item Route change, footwear change, pack configuration change, timer/tool change, or surface change inside or near a protected window are all comparability-sensitive events. They do not automatically invalidate evidence, but they force conservative interpretation and may require replication under stabilized conditions before gate use.
+
+\item This map is phase-level doctrine, not day-level scheduling. It states the authorized windows, density boundaries, and intent posture. Daily sequencing inside a protected week is still governed by Stage 3.A spacing rules, Stage 1.F validity doctrine, and Stage 0 safety boundaries.
+\end{enumerate}
+
+\subsubsection*{3.B.1.2 Major Event Packaging Rules Used in This Map (Binding)}
+\phantomsection
+
+\begin{itemize}
+\item \textbf{CAL} battery packaging: \textbf{C4} + \textbf{C5} + \textbf{C6} + \textbf{C7} executed as a standardized battery may be treated as one major test event for cap/spacing purposes.
+\item A “staged battery” entry in the Major Tests column indicates multiple major test events within the same protected week. This is permitted only when the cap and spacing rules can be satisfied inside that week; otherwise reslot the overflow.
+\item \textbf{RUN} and \textbf{RUCK} are treated as high-consequence. When both appear in the same phase’s gate posture, they must be rotated across protected windows when feasible, and when they appear inside the same window, maximal variants must respect the 96-hour separation rule.
+\item \textbf{BODYCOMP} bundles may be packaged together without consuming a major-event slot, but the bundle still requires stable method posture and comparability controls.
+\item Optional domains do not become mandatory merely because they appear as authorized. “Optional” in this map means schedulable if prerequisites and density allow; it does not mean required for every protected window.
+\item A major-event package is only valid if each component test inside the package meets its own protocol and evidence requirements. Packaging does not relax protocol standards.
+\item When a phase includes a “dominant event” posture, that event controls density planning for the window. Other major events become subordinate and are reslotted first if spacing or safety margins tighten.
+\end{itemize}
+
+\clearpage
+\begin{landscape}
+
+\subsubsection*{3.B.1.3 Phase Summary Table}
+\phantomsection
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+width=\linewidth,
+rowhead=1,
+colspec = {
+Q[l,wd=0.45in]
+Q[l,wd=2.45in]
+Q[l,wd=1.00in]
+Q[l,wd=1.25in]
+Q[l,wd=2.55in]
+Q[l,wd=2.30in]
+},
+hlines,
+vlines,
+cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+cell{1-Z}{1-6} = {fg=black},
+row{odd} = {bg=white},
+row{even} = {bg=LightGray},
+row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Phase #} &
+\Hdr{Phase Name} &
+\Hdr{Duration (weeks)} &
+\Hdr{Default Work/Deload Pattern} &
+\Hdr{Protected Deload/Test Windows} &
+\Hdr{Window Type / Intent} \\
+
+00 &
+Phase 00 — Bodily Reactivation and Baseline Creation &
+16 &
+3:1 &
+Week 1; Weeks 4, 8, 12, 16 &
+W1 Baseline; W4/W8/W12 Mid; W16 End \\
+
+01 &
+Phase 01 — Base Conditioning and Hypertrophy &
+22 default; 24-week variant; 26-week extension (patch-controlled) &
+3:1 &
+Week 1; Weeks 4, 8, 12, 16, 20, 22 (default); Week 24 (24-week variant) &
+W1 Baseline; W4/W8/W12 Mid; W16 Mid; W20 Mid; W22 End (default); W24 End (24-week variant) \\
+
+02 &
+Phase 02 — Maximal Strength Development &
+12 &
+3:1 &
+Week 1; Weeks 4, 8, 12 &
+W1 Baseline; W4 Mid; W8 Mid; W12 End \\
+
+03 &
+Phase 03 — Converting Strength to Power and Endurance for SOF Selection &
+12 &
+3:1 &
+Week 1; Weeks 4, 8, 12 &
+W1 Baseline; W4 Mid; W8 Mid; W12 End \\
+
+04 &
+Phase 04 — Strength-Endurance and Work Capacity Development &
+12 &
+3:1 &
+Week 1; Weeks 4, 8, 12 &
+W1 Baseline; W4 Mid; W8 Mid; W12 End \\
+
+05 &
+Phase 05 — Aerobic Base and Extended Stamina Development &
+12 &
+3:1 &
+Week 1; Weeks 4, 8, 12 &
+W1 Baseline; W4 Mid; W8 Mid; W12 End \\
+
+06 &
+Phase 06 — Lactate Threshold and Power-Endurance Development &
+12 &
+4:1 &
+Week 1; Week 5; Week 10; Week 12 &
+W1 Baseline; W5 Mid; W10 Mid; W12 End \\
+
+07 &
+Phase 07 — Advanced Hybrid Overload &
+12 &
+4:1 &
+Week 1; Week 5; Week 10; Week 12 &
+W1 Baseline; W5 Mid; W10 Mid; W12 End \\
+
+08 &
+Phase 08 — Structural Durability and Load Tolerance &
+12 &
+4:1 &
+Week 1; Week 5; Week 10; Week 12 &
+W1 Baseline; W5 Mid; W10 Mid; W12 End \\
+
+09 &
+Phase 09 — High-Volume Calisthenics and Stamina &
+12 &
+4:1 &
+Week 1; Week 5; Week 10; Week 12 &
+W1 Baseline; W5 Mid; W10 Mid; W12 End \\
+
+10 &
+Phase 10 — Advanced Tactical Readiness &
+12 &
+4:1 &
+Week 1; Week 5; Week 10; Week 12 &
+W1 Baseline; W5 Mid; W10 Mid; W12 End \\
+
+11 &
+Phase 11 — Pre-Selection Conditioning and Recovery &
+12 &
+4:1 &
+Week 1; Week 5; Week 10; Week 12 &
+W1 Baseline; W5 Mid; W10 Mid; W12 End \\
+
+12 &
+Phase 12 — Final Pre-Selection Conditioning &
+12 &
+mixed &
+Week 1; Week 5; Week 9–10; Week 12 &
+W1 Baseline; W5 Mid; W9–10 Verification Block; W12 Final Gate \\
+
+13 &
+Phase 13 — Full-Spectrum Readiness Consolidation &
+12 &
+mixed &
+Week 1; Week 5; Week 9–10; Week 12 &
+W1 Baseline; W5 Mid; W9–10 Targeted Retest Block; W12 Final Verification \\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+\clearpage
+
+\subsubsection*{3.B.1.4 Phase-by-Phase Test Intent and Reslot Doctrine}
+\phantomsection
+
+\paragraph*{Phase 00 — Bodily Reactivation and Baseline Creation}
+
+Phase Identity and Window Structure
+
+\begin{itemize}
+\item Duration: 16 weeks
+\item Default work/deload pattern: 3:1
+\item Protected deload/test windows: Week 1; Weeks 4, 8, 12, 16
+\item Window type/intent: W1 Baseline; W4/W8/W12 Mid; W16 End
+\end{itemize}
+
+Role of This Phase in the Map
+
+\begin{itemize}
+\item Phase 00 is not a performance-proving phase. It is a tolerance-building and infrastructure-stabilizing phase.
+\item The map therefore treats \textbf{BODYCOMP}, minimal \textbf{CAL}, and low-consequence locomotion checks as the primary protected-window uses.
+\item The function of Phase 00 windows is to establish comparability, logging quality, environment handling, and mechanics protection before later phases increase event density.
+\end{itemize}
+
+Major Tests in This Phase
+
+\begin{itemize}
+\item W1: \textbf{BODYCOMP} set (\textbf{C1} / \textbf{MET-2B-001}; \textbf{C2} / \textbf{MET-2B-002}; \textbf{C3} / \textbf{MET-2B-007} as minimum waist site anchor).
+\item W1: \textbf{CAL} minimal (\textbf{C7} / \textbf{MET-2B-013}) as tolerance/format check only.
+\item W4: \textbf{BODYCOMP} set (\textbf{C1}/\textbf{C2}/\textbf{C3}).
+\item W4: \textbf{CAL} minimal (\textbf{C7}).
+\item W4: Walk-based aerobic monitor only (Phase 00-local construct until reconciled).
+\item W8: repeat W4 posture.
+\item W12: repeat W4 posture.
+\item W16: repeat W4 posture and treat as Phase 00 exit verification (still conservative; no performance-chasing posture).
+\end{itemize}
+
+Window Intent Clarification
+
+\begin{itemize}
+\item W1 establishes the initial record and confirms that minimum logging, equipment notation, and basic comparability controls exist.
+\item W4 is the first meaningful protected verification week and should be treated as the first check of whether the phase is producing stable, valid, low-risk evidence.
+\item W8 and W12 are repetition windows. Their value lies in repeatability and stable conditions, not in escalating demand.
+\item W16 functions as a conservative exit verification window and should not be treated like a later-phase high-cost gate.
+\end{itemize}
+
+Major Event Density Notes
+
+\begin{itemize}
+\item Major event posture is intentionally minimal.
+\item \textbf{RUN} time trial is treated as a single major test event only when executed as a true time trial under protocol fields; otherwise it is logged as informational and not counted as major gate-grade evidence.
+\item \textbf{CAL} minimal (plank only) is not treated as a major battery in this phase.
+\item Hard cap violations are prohibited; default is ≤1 major event per protected window week in Phase 00.
+\item Density control in this phase is less about numerical cap pressure and more about preventing premature escalation.
+\end{itemize}
+
+Gate Use and Evidence Posture
+
+\begin{itemize}
+\item Gate-grade use is conservative and is tied to stability and validity rather than performance magnitude.
+\item Any failure in environment logging, equipment identity, or mechanics stability should shift interpretation toward informational-only use.
+\item This phase should build the habit of valid protected-window evidence rather than chase thresholds.
+\end{itemize}
+
+Reslot / Substitution Notes
+
+\begin{itemize}
+\item Grand Forks winter hazards bias toward indoor substitution for \textbf{RUN} (treadmill) when outdoor footing/visibility is unsafe, but only when \textbf{TM}-2E-### and grade settings are logged.
+\item If neither safe route nor stable treadmill access exists, \textbf{RUN} is reslotted.
+\item \textbf{RUCK} time trials are not scheduled.
+\item \textbf{SWIM} is not scheduled as gate-grade.
+\item Underwater is never scheduled.
+\item Any equipment/tool novelty (new shoes, new treadmill, new timer) within a window must be logged and treated as a comparability break; gate-grade use defaults conservative until stabilized.
+\item If pain alters mechanics, the window may still preserve \textbf{BODYCOMP} and other low-cost monitoring while the locomotion construct is reslotted.
+\end{itemize}
+
+\newpage
+\paragraph*{Phase 01 — Base Conditioning and Hypertrophy}
+
+Phase Identity and Window Structure
+
+\begin{itemize}
+\item Duration: 22 default; 24 variant; 26 extension (patch-controlled)
+\item Default work/deload pattern: 3:1
+\item Protected deload/test windows: Week 1; Weeks 4, 8, 12, 16, 20, 22 (default); Week 24 (24-week variant)
+\item Window type/intent: W1 Baseline; W4/W8/W12 Mid; W16 Mid; W20 Mid; W22 End (default); W24 End (24-week variant)
+\end{itemize}
+
+Role of This Phase in the Map
+
+\begin{itemize}
+\item Phase 01 transitions from minimal baseline capture to structured repeated exposure across \textbf{CAL} and short-to-moderate \textbf{RUN} constructs.
+\item This is the first phase where repeated protected-window pairing of \textbf{CAL} and \textbf{RUN} becomes normal.
+\item The phase still remains infrastructure-sensitive and does not assume dense three-event windows except under explicit feasibility.
+\end{itemize}
+
+Major Tests in This Phase
+
+\begin{itemize}
+\item W1: \textbf{BODYCOMP} set (\textbf{C1}/\textbf{C2}/\textbf{C3}).
+\item W1: \textbf{CAL} baseline battery intent: \textbf{C4} (\textbf{MET-2B-010}), \textbf{C5} (\textbf{MET-2B-011}), \textbf{C7} (\textbf{MET-2B-013}), plus \textbf{C6} (\textbf{MET-2B-012}) only if strict reps exist and artifact standard can be satisfied.
+\item W4: \textbf{CAL} battery (\textbf{C4}/\textbf{C5}/\textbf{C6} if viable/\textbf{C7}) + \textbf{RUN} \textbf{TT} (\textbf{C8} / \textbf{MET-2B-014}).
+\item W8: \textbf{CAL} battery + \textbf{RUN} \textbf{TT} (\textbf{C9} / \textbf{MET-2B-015}).
+\item W12: \textbf{CAL} battery + \textbf{RUN} \textbf{TT} (\textbf{C8}).
+\item W16: \textbf{CAL} battery + \textbf{RUN} \textbf{TT} (\textbf{C9}).
+\item W20: \textbf{STR} proxy session (\textbf{C17}, only if finalized and deployable, / \textbf{MET-2B-027}-031) + \textbf{CAL} battery (\textbf{C4}/\textbf{C5}/\textbf{C6} if viable/\textbf{C7}).
+\item W22 (default): Exit gate: \textbf{RUN} \textbf{TT} (\textbf{C9} / \textbf{MET-2B-015}) + \textbf{CAL} battery (\textbf{C4}/\textbf{C5}/\textbf{C6} if viable/\textbf{C7}).
+\item W24 (24-week variant): Exit gate: \textbf{RUN} \textbf{TT} (\textbf{C9} / \textbf{MET-2B-015}) + \textbf{CAL} battery (\textbf{C4}/\textbf{C5}/\textbf{C6} if viable/\textbf{C7}).
+\item Optional \textbf{SWIM} \textbf{TT} (\textbf{C13} / \textbf{MET-2B-022} or \textbf{MET-2B-023}) is permitted only if pool verification is stable and doing so does not violate major event caps/spacing (\textbf{SWIM} is a major event).
+\item 26-week extension: Weeks 25–26 are stabilization + retest-only (no new major test types; only rerun invalid/compromised tests under valid conditions).
+\end{itemize}
+
+Window Intent Clarification
+
+\begin{itemize}
+\item W1 is still baseline-oriented and should not be interpreted as a maximal-demand week.
+\item W4/W8/W12 establish a repeating protected-window pattern that tests whether \textbf{CAL} and \textbf{RUN} can coexist without eroding validity.
+\item W16 and W20 continue that rhythm while adding stronger monitoring of whether density can remain stable.
+\item W22 or W24 is the phase exit posture, depending on the authorized phase length variant.
+\item The 26-week extension exists only to stabilize or rerun compromised evidence; it is not permission to invent additional test types.
+\end{itemize}
+
+Major Event Density Notes
+
+\begin{itemize}
+\item Typical protected windows in Phase 01 hold 2 major events (\textbf{CAL} battery + \textbf{RUN}).
+\item W20 and the end-gate week may reach hard cap (up to 3) only if spacing can be satisfied within the week; otherwise reslot \textbf{STR} proxy or one of the other major events.
+\item \textbf{CAL} battery counts as one major event.
+\item \textbf{STR} proxy counts as one major event when executed as test session.
+\item \textbf{RUN} time trial counts as one major event.
+\item Maximal \textbf{RUN} is not scheduled frequently; Phase 01 rotates shorter \textbf{RUN} variants.
+\item Optional \textbf{SWIM} should be treated as density-sensitive and should not be inserted casually into already dense windows.
+\end{itemize}
+
+Gate Use and Evidence Posture
+
+\begin{itemize}
+\item The phase exit emphasis is repeatable \textbf{CAL} and \textbf{RUN} evidence under stable standards.
+\item If \textbf{C6} remains non-viable, that does not void the entire phase, but it narrows what may be claimed as gate-grade.
+\item \textbf{STR} proxy introduction at W20 is deliberate and should not destabilize the dominant \textbf{CAL}/\textbf{RUN} validation posture.
+\end{itemize}
+
+Reslot / Substitution Notes
+
+\begin{itemize}
+\item Environment volatility may force treadmill substitution for \textbf{RUN}; if treadmill used, \textbf{TM}-2E-### and grade/speed profile must be logged.
+\item If pool access is volatile, \textbf{SWIM} is reslotted rather than substituted by \textbf{AER}.
+\item \textbf{RUCK} remains training exposure only; no formal ruck time trials scheduled as phase gates.
+\item If \textbf{CAL} artifacts cannot be produced (non-compliant video), \textbf{CAL} tests are \textbf{INVALID} for gate use; reslot inside the next protected window.
+\item Any window that cannot satisfy caps/spacing becomes partial completion + reslot, not stacking.
+\item If a footwear or route comparability break occurs late in the phase, the exit gate should default conservative and seek stabilized replication rather than forced closure.
+\end{itemize}
+
+\newpage
+\paragraph*{Phase 02 — Maximal Strength Development}
+
+Phase Identity and Window Structure
+
+\begin{itemize}
+\item Duration: 12 weeks
+\item Default work/deload pattern: 3:1
+\item Protected deload/test windows: Week 1; Weeks 4, 8, 12
+\item Window type/intent: W1 Baseline; W4 Mid; W8 Mid; W12 End
+\end{itemize}
+
+Role of This Phase in the Map
+
+\begin{itemize}
+\item Phase 02 introduces stronger \textbf{STR} test posture while preserving \textbf{CAL} and \textbf{RUN} as gate-relevant companion domains.
+\item This is the first phase where a three-event exit week is a realistic planning scenario.
+\item Because \textbf{STR} proxy and \textbf{RUN} are both high-cost in different ways, the phase exists as an early demonstration of density control under pressure.
+\end{itemize}
+
+Major Tests in This Phase
+
+\begin{itemize}
+\item W1: \textbf{BODYCOMP} set (\textbf{C1}/\textbf{C2}/\textbf{C3}).
+\item W1: \textbf{CAL} baseline battery (\textbf{C4}/\textbf{C5}/\textbf{C6} if viable/\textbf{C7}).
+\item W1: \textbf{STR} proxy baseline (\textbf{C17}, only if finalized and deployable, / \textbf{MET-2B-027}-031) under conservative submax posture only.
+\item W4: \textbf{STR} proxy session (\textbf{C17}) + \textbf{CAL} battery.
+\item W8: \textbf{RUN} \textbf{TT} (\textbf{C9} / \textbf{MET-2B-015}) + \textbf{CAL} battery.
+\item W12: Exit gate staged battery: \textbf{STR} proxy session (\textbf{C17}) + \textbf{RUN} \textbf{TT} (\textbf{C9}) + \textbf{CAL} battery (\textbf{C4}/\textbf{C5}/\textbf{C6} if viable/\textbf{C7}), executed only if the 3-event week can meet hard cap and 72-hour spacing; otherwise reslot the overflow (default: keep \textbf{RUN} + \textbf{CAL} in W12 and reslot \textbf{STR} proxy to the next window of the subsequent phase).
+\end{itemize}
+
+Window Intent Clarification
+
+\begin{itemize}
+\item W1 establishes baseline \textbf{STR} proxy posture without demanding true maximal testing.
+\item W4 confirms whether \textbf{STR} proxy testing can coexist with \textbf{CAL} without compromising session structure or recovery.
+\item W8 protects \textbf{RUN} verification without overloading the week with additional high-cost domains.
+\item W12 is the principal phase exit gate and should be treated as a staged decision week rather than an all-at-once performance week.
+\end{itemize}
+
+Major Event Density Notes
+
+\begin{itemize}
+\item Phase 02 introduces a common three-event end-phase gate intention.
+\item This is permitted only as a staged week under the hard cap and spacing rules.
+\item If the required spacing cannot be satisfied inside the week (or if maximal fatigue spillover is evident in \textbf{RECOVERY}/\textbf{DURABILITY} markers), reduce density: prioritize the gate-required constructs and reslot the remaining major event.
+\item \textbf{STR} proxy and \textbf{RUN} are both high-cost; treat them as separate major events requiring spacing.
+\item The \textbf{CAL} battery remains the most packaging-efficient major event in the phase, but it does not erase fatigue carryover from \textbf{STR} or \textbf{RUN}.
+\end{itemize}
+
+Gate Use and Evidence Posture
+
+\begin{itemize}
+\item W12 is not valid merely because all three constructs appear on paper. It is valid only when spacing, safety, and evidence quality remain intact.
+\item If density control fails, the phase still supports a conservative gate result through partial completion and documented reslot.
+\item The phase should never claim success through compressed \textbf{STR}+\textbf{RUN} exposure that breaks recovery logic.
+\end{itemize}
+
+Reslot / Substitution Notes
+
+\begin{itemize}
+\item Grand Forks constraints: \textbf{RUN} uses \textbf{ROUTE}-2E-### if safe; otherwise treadmill \textbf{TM}-2E-### with grade logged.
+\item \textbf{RUCK} remains non-gate by default.
+\item \textbf{SWIM} remains optional and is not scheduled as a default major event in this phase map unless pool verification is stable and it can be inserted without violating caps/spacing (rare).
+\item Any pain/mechanics flags force reslot and may downgrade the window to recovery-first.
+\item If \textbf{STR} proxy equipment identity changes late in the phase, the safest interpretation is a comparability break requiring conservative gate handling.
+\end{itemize}
+
+\newpage
+
+\paragraph*{Phase 03 — Converting Strength to Power and Endurance for SOF Selection}
+
+Phase Identity and Window Structure
+
+\begin{itemize}
+\item Duration: 12 weeks
+\item Default work/deload pattern: 3:1
+\item Protected deload/test windows: Week 1; Weeks 4, 8, 12
+\item Window type/intent: W1 Baseline; W4 Mid; W8 Mid; W12 End
+\end{itemize}
+
+Role of This Phase in the Map
+
+\begin{itemize}
+\item Phase 03 shifts specificity toward stronger \textbf{RUN} emphasis while keeping \textbf{CAL} as a persistent gate construct.
+\item The phase introduces 3-mile verification (\textbf{C10}) at end-phase, making the \textbf{RUN} domain more consequential than in earlier phases.
+\item \textbf{STR} proxy remains present, but its role is subordinate to the phase’s locomotion-development logic.
+\end{itemize}
+
+Major Tests in This Phase
+
+\begin{itemize}
+\item W1: \textbf{BODYCOMP} set (\textbf{C1}/\textbf{C2}/\textbf{C3}).
+\item W1: \textbf{CAL} battery (\textbf{C4}/\textbf{C5}/\textbf{C6} if viable/\textbf{C7}).
+\item W1: \textbf{RUN} \textbf{TT} (\textbf{C8} / \textbf{MET-2B-014}) only as a conservative baseline marker if safe and fully logged (not a maximal demand).
+\item W4: \textbf{RUN} \textbf{TT} (\textbf{C8}) + \textbf{CAL} battery.
+\item W8: \textbf{RUN} \textbf{TT} (\textbf{C9} / \textbf{MET-2B-015}) + \textbf{STR} proxy session (\textbf{C17}, only if finalized and deployable) only if spacing/caps allow + \textbf{CAL} battery (cap enforced; if three events cannot be spaced, reslot \textbf{STR} proxy).
+\item W12: Exit gate: \textbf{RUN} \textbf{TT} (\textbf{C10} / \textbf{MET-2B-016}) + \textbf{CAL} battery (\textbf{C4}/\textbf{C5}/\textbf{C6}/\textbf{C7}).
+\end{itemize}
+
+Window Intent Clarification
+
+\begin{itemize}
+\item W1 is still conservative and should not be interpreted as a phase-defining maximal \textbf{RUN} attempt.
+\item W4 and W8 serve as the transition windows that move the phase toward stronger \textbf{RUN} specificity.
+\item W12 is the principal proof-of-phase window and centers on 3-mile performance under valid conditions.
+\item \textbf{STR} proxy at W8 is optional in practical density terms even when authorized on paper; it is the first construct to reslot when the week cannot remain clean.
+\end{itemize}
+
+Major Event Density Notes
+
+\begin{itemize}
+\item Phase 03 increases \textbf{RUN} specificity by introducing 3-mile (\textbf{C10}) at end-phase.
+\item W8 can be a three-event week only under hard cap and spacing rules.
+\item Default posture remains 2 major events per protected week (\textbf{RUN} + \textbf{CAL}).
+\item \textbf{STR} proxy is supporting; it is the first reslot candidate when density exceeds safe scheduling limits.
+\item Because \textbf{RUN} now carries stronger phase identity, compromised \textbf{RUN} evidence is more serious here than in prior phases.
+\end{itemize}
+
+Gate Use and Evidence Posture
+
+\begin{itemize}
+\item The phase exit emphasis is valid 3-mile \textbf{RUN} performance plus supporting \textbf{CAL} evidence.
+\item Any comparison between W1 and W12 must preserve route or treadmill comparability rules.
+\item If W12 \textbf{RUN} is compromised, the phase should default to reslot rather than downgrade standards through interpretive generosity.
+\end{itemize}
+
+Reslot / Substitution Notes
+
+\begin{itemize}
+\item Environment posture: if outdoor route conditions are unsafe (ice/low visibility), use treadmill mode only when \textbf{TM}-2E-### and full settings are logged; otherwise reslot \textbf{RUN}.
+\item \textbf{RUCK} remains training-focused and is not scheduled as default time trial here unless explicitly authorized and it does not violate cap/spacing (rare; treated as major event if added).
+\item \textbf{SWIM} remains optional; underwater not scheduled.
+\item If a footwear change, route change, or timer change occurs late in the phase, the safest posture is to preserve the attempt as informational and seek re-run under stabilized conditions.
+\end{itemize}
+
+\newpage
+\paragraph*{Phase 04 — Strength-Endurance and Work Capacity Development}
+
+Phase Identity and Window Structure
+
+\begin{itemize}
+\item Duration: 12 weeks
+\item Default work/deload pattern: 3:1
+\item Protected deload/test windows: Week 1; Weeks 4, 8, 12
+\item Window type/intent: W1 Baseline; W4 Mid; W8 Mid; W12 End
+\end{itemize}
+
+Role of This Phase in the Map
+
+\begin{itemize}
+\item Phase 04 marks the first formal integration of \textbf{RUCK} \textbf{TT} into the protected-window doctrine.
+\item The phase therefore becomes the first real test of how \textbf{RUN}, \textbf{RUCK}, and \textbf{CAL} can coexist without collapsing spacing logic.
+\item Because both locomotion domains now matter, this phase is one of the strongest candidates for reslot discipline.
+\end{itemize}
+
+Major Tests in This Phase
+
+\begin{itemize}
+\item W1: \textbf{BODYCOMP} set (\textbf{C1}/\textbf{C2}/\textbf{C3}).
+\item W1: \textbf{CAL} battery.
+\item W1: \textbf{RUN} \textbf{TT} (\textbf{C9} / \textbf{MET-2B-015}) conservative marker only if safe.
+\item W4: \textbf{RUCK} \textbf{TT} (\textbf{C12} / \textbf{MET-2B-019}) + \textbf{CAL} battery.
+\item W8: \textbf{RUN} \textbf{TT} (\textbf{C10} / \textbf{MET-2B-016}) + \textbf{CAL} battery.
+\item W12: Exit gate staged battery: \textbf{RUN} \textbf{TT} (\textbf{C9}) + \textbf{RUCK} \textbf{TT} (\textbf{C12} / \textbf{MET-2B-019}) + \textbf{CAL} battery (\textbf{C4}/\textbf{C5}/\textbf{C6}/\textbf{C7}), executed only if cap/spacing can be satisfied.
+\item If maximal \textbf{RUN} and \textbf{RUCK} variants are both present in W12, enforce the 96-hour separation rule; if not feasible, prioritize one domain and reslot the other.
+\item Optional \textbf{SWIM} \textbf{TT} (\textbf{C13}) may be introduced only if pool verification exists and it does not violate cap/spacing; otherwise not scheduled.
+\end{itemize}
+
+Window Intent Clarification
+
+\begin{itemize}
+\item W4 begins formal \textbf{RUCK} verification.
+\item W8 preserves \textbf{RUN} emphasis separately rather than crowding both locomotion domains into every window.
+\item W12 is the high-density exit posture and should be planned like a staged sequence, not a compressed battery.
+\item Optional \textbf{SWIM} is always subordinate to the phase’s primary \textbf{RUN}/\textbf{RUCK}/\textbf{CAL} logic.
+\end{itemize}
+
+Major Event Density Notes
+
+\begin{itemize}
+\item Phase 04 introduces formal ruck time trial as high-cost.
+\item Treat \textbf{RUCK} \textbf{TT} and \textbf{RUN} \textbf{TT} as separate major events with strict spacing intent.
+\item W12 is a high-density potential week; default posture is to avoid three-event weeks unless absolutely required for gate completeness and spacing is feasible inside the week.
+\item \textbf{CAL} battery remains one major event.
+\item If both locomotion events are required in W12, the phase becomes one of the clearest examples of why partial completion and reslot are valid doctrinal responses.
+\end{itemize}
+
+Gate Use and Evidence Posture
+
+\begin{itemize}
+\item The exit gate is only valid if both locomotion events are independently valid and spacing has not contaminated either.
+\item \textbf{RUCK} evidence is especially sensitive to foot integrity, pack consistency, and route comparability.
+\item If one locomotion event degrades the other, the correct interpretation is over-dense scheduling, not “good toughness.”
+\end{itemize}
+
+Reslot / Substitution Notes
+
+\begin{itemize}
+\item Footwear and footcare constraints are treated as schedule-level prerequisites for ruck \textbf{TT}.
+\item If foot hotspot patterns or gait flags are active, \textbf{RUCK} \textbf{TT} is reslotted.
+\item Treadmill substitution is permitted for \textbf{RUN} or \textbf{RUCK} only when settings and logging preserve comparability.
+\item If any “work capacity benchmark” concept does not map to Stage 2 protocols, it is not scheduled as a major test; only Stage 2 protocols are schedulable.
+\item Underwater not scheduled.
+\item If the route becomes unsafe or the load interface changes unexpectedly, reslotting has priority over forced completion.
+\end{itemize}
+
+\newpage
+\paragraph*{Phase 05 — Aerobic Base and Extended Stamina Development}
+
+Phase Identity and Window Structure
+
+\begin{itemize}
+\item Duration: 12 weeks
+\item Default work/deload pattern: 3:1
+\item Protected deload/test windows: Week 1; Weeks 4, 8, 12
+\item Window type/intent: W1 Baseline; W4 Mid; W8 Mid; W12 End
+\end{itemize}
+
+Role of This Phase in the Map
+
+\begin{itemize}
+\item Phase 05 increases locomotion consequence by introducing the 5-mile \textbf{RUN} and by formalizing \textbf{SWIM} \textbf{TT} as a recurring major-event possibility when pool access exists.
+\item This is the first phase where \textbf{RUN}, \textbf{RUCK}, and \textbf{SWIM} may all plausibly compete for protected-window space.
+\item The phase therefore relies heavily on staged execution and strict refusal to compress maximal domains.
+\end{itemize}
+
+Major Tests in This Phase
+
+\begin{itemize}
+\item W1: \textbf{BODYCOMP} set (\textbf{C1}/\textbf{C2}/\textbf{C3}).
+\item W1: \textbf{CAL} battery.
+\item W1: \textbf{RUN} \textbf{TT} (\textbf{C9} / \textbf{MET-2B-015}) conservative marker only if safe.
+\item W4: \textbf{RUN} \textbf{TT} (\textbf{C10} / \textbf{MET-2B-016}) + \textbf{CAL} battery.
+\item W8: \textbf{SWIM} \textbf{TT} (\textbf{C13} / \textbf{MET-2B-022} or \textbf{MET-2B-023}; unit-locked) + \textbf{RUCK} \textbf{TT} (\textbf{C12} / \textbf{MET-2B-019}) only if cap/spacing allow.
+\item W12: Exit gate staged battery: \textbf{RUN} \textbf{TT} (\textbf{C11} / \textbf{MET-2B-017}) + \textbf{CAL} battery + \textbf{RUCK} \textbf{TT} (\textbf{C12} / \textbf{MET-2B-019}), executed only if spacing can preserve validity and maximal \textbf{RUN} vs \textbf{RUCK} separation is satisfied; otherwise reslot the ruck \textbf{TT} or move it to the next phase’s early protected window.
+\end{itemize}
+
+Window Intent Clarification
+
+\begin{itemize}
+\item W4 is a transition window toward longer-run demand.
+\item W8 is a mixed-domain window where \textbf{SWIM} and \textbf{RUCK} may coexist, but only if spacing remains clean and pool verification is stable.
+\item W12 is the most consequential window of the phase because 5-mile \textbf{RUN} introduces a high recovery cost and strong comparability demands.
+\end{itemize}
+
+Major Event Density Notes
+
+\begin{itemize}
+\item Phase 05 introduces longer \textbf{RUN} (5-mile) and formalizes \textbf{SWIM} \textbf{TT} as a periodic major event when pool access is stable.
+\item Because \textbf{RUN} 5-mile is high-cost, do not co-locate maximal \textbf{RUN} and maximal \textbf{RUCK} inside tight spacing unless a staged schedule inside the week can meet the 96-hour separation rule.
+\item If spacing is not feasible, the correct posture is partial completion and reslot.
+\item \textbf{SWIM} does not become “free” just because it is non-impact. It still consumes a major-event slot and still interacts with fatigue and scheduling density.
+\end{itemize}
+
+Gate Use and Evidence Posture
+
+\begin{itemize}
+\item The phase’s exit posture is highly sensitive to stale fatigue and environmental variability.
+\item \textbf{RUN} 5-mile evidence should be treated as gate-grade only when route/treadmill conditions, footwear, and tool identity remain stable.
+\item If W12 becomes too dense, the phase should preserve the dominant locomotion construct and reslot the remainder.
+\end{itemize}
+
+Reslot / Substitution Notes
+
+\begin{itemize}
+\item Pool access volatility: \textbf{SWIM} \textbf{TT} is reslotted rather than replaced by \textbf{AER}.
+\item Environment hazards: \textbf{RUN} may use treadmill only under full settings logging; otherwise reslot.
+\item \textbf{RUCK} \textbf{TT} is sensitive to foot integrity; if foot hotspots or gait-altering pain are present, reslot.
+\item Underwater not scheduled.
+\item If the pool unit changes or cannot be verified, \textbf{SWIM} should be treated as non-comparable and deferred rather than improvised.
+\end{itemize}
+
+\newpage
+\paragraph*{Phase 06 — Lactate Threshold and Power-Endurance Development}
+
+Phase Identity and Window Structure
+
+\begin{itemize}
+\item Duration: 12 weeks
+\item Default work/deload pattern: 4:1
+\item Protected deload/test windows: Week 1; Week 5; Week 10; Week 12
+\item Window type/intent: W1 Baseline; W5 Mid; W10 Mid; W12 End
+\end{itemize}
+
+Role of This Phase in the Map
+
+\begin{itemize}
+\item Phase 06 reduces window frequency but increases the importance of each window.
+\item The shift to 4:1 means fewer test opportunities and therefore stronger pressure to preserve validity whenever a window opens.
+\item The phase also starts to look more taper-aware; not every protected week is equally dense or equally aggressive.
+\end{itemize}
+
+Major Tests in This Phase
+
+\begin{itemize}
+\item W1: \textbf{BODYCOMP} set (\textbf{C1}/\textbf{C2}/\textbf{C3}).
+\item W1: \textbf{CAL} battery.
+\item W1: \textbf{RUN} \textbf{TT} (\textbf{C8} / \textbf{MET-2B-014}) conservative marker only if safe.
+\item W5: \textbf{CAL} battery + \textbf{RUN} \textbf{TT} (\textbf{C8}).
+\item W10: \textbf{RUCK} \textbf{TT} (\textbf{C12} / \textbf{MET-2B-019}) + \textbf{SWIM} \textbf{TT} (\textbf{C13}) (unit locked).
+\item W12: Taper+gate: \textbf{RUN} \textbf{TT} (single locked phase-contract variant only) + \textbf{CAL} battery.
+\item Treat Week 11 as taper intent week (no new maximal tests; reslot invalid tests to W12 only if spacing remains feasible).
+\end{itemize}
+
+Window Intent Clarification
+
+\begin{itemize}
+\item W1 is conservative and infrastructure-confirming.
+\item W5 is the first meaningful mid-phase \textbf{RUN}/\textbf{CAL} verification.
+\item W10 is a mixed-domain locomotion window with notable density sensitivity.
+\item W12 must respect taper logic and should not be overloaded by attempts to “catch up” on earlier misses.
+\end{itemize}
+
+Major Event Density Notes
+
+\begin{itemize}
+\item 4:1 pattern reduces test frequency but increases consequence per window.
+\item W10 is a two-major-event week; keep it at 2 unless a gate-critical deficiency requires a third event and spacing allows.
+\item W12 is intended as taper+gate; do not insert additional major events that violate spacing or degrade taper intent.
+\item The reduced number of windows means invalidity hurts more here than in earlier 3:1 phases.
+\end{itemize}
+
+Gate Use and Evidence Posture
+
+\begin{itemize}
+\item Taper integrity is part of evidence quality in this phase.
+\item A valid W12 can be worth more than a denser but compromised window.
+\item The phase should resist the temptation to rescue every missed earlier event by stacking W12.
+\end{itemize}
+
+Reslot / Substitution Notes
+
+\begin{itemize}
+\item Environment-driven reslot remains active.
+\item Any “interval benchmark” concept not represented as Stage 2 protocolized test is not scheduled as major test.
+\item Underwater not scheduled by default.
+\item If \textbf{SWIM} pool cannot be verified, reslot \textbf{SWIM}.
+\item If \textbf{RUN} cannot be safely executed outdoors and treadmill cannot be standardized, reslot \textbf{RUN}.
+\item If W10 becomes invalidated in part, the correct response is selective carry-forward into later windows, not forced recovery inside taper week unless spacing is still clean.
+\end{itemize}
+
+\newpage
+\paragraph*{Phase 07 — Advanced Hybrid Overload}
+
+Phase Identity and Window Structure
+
+\begin{itemize}
+\item Duration: 12 weeks
+\item Default work/deload pattern: 4:1
+\item Protected deload/test windows: Week 1; Week 5; Week 10; Week 12
+\item Window type/intent: W1 Baseline; W5 Mid; W10 Mid; W12 End
+\end{itemize}
+
+Role of This Phase in the Map
+
+\begin{itemize}
+\item Phase 07 is a multi-domain phase where density creep becomes a serious design risk.
+\item The phase explicitly acknowledges that hybrid intent does not authorize uncontrolled accumulation of major events.
+\item This is where stand-alone long ruck logic becomes more important and must be protected from being treated like an add-on.
+\end{itemize}
+
+Major Tests in This Phase
+
+\begin{itemize}
+\item W1: \textbf{BODYCOMP} set (\textbf{C1}/\textbf{C2}/\textbf{C3}).
+\item W1: \textbf{CAL} battery.
+\item W1: \textbf{RUN} \textbf{TT} (\textbf{C9} / \textbf{MET-2B-015}) conservative marker only if safe.
+\item W5: \textbf{STR} proxy session (\textbf{C17}, only if finalized and deployable, / \textbf{MET-2B-027}-031) + \textbf{CAL} battery (count as 2 major events).
+\item W10: \textbf{RUN} \textbf{TT} (\textbf{C10} / \textbf{MET-2B-016}) + \textbf{SWIM} \textbf{TT} (\textbf{C13}).
+\item W12: Taper+gate: \textbf{RUCK} \textbf{TT} (\textbf{C12} / \textbf{MET-2B-019}) + \textbf{CAL} battery, staged under spacing rules.
+\item If a long ruck milestone is required in this phase, it must be scheduled as a stand-alone major event in a protected window (replacing another major event), not added as a fourth event.
+\end{itemize}
+
+Window Intent Clarification
+
+\begin{itemize}
+\item W5 is a structured \textbf{STR}/\textbf{CAL} density check.
+\item W10 emphasizes \textbf{RUN}/\textbf{SWIM} coexistence.
+\item W12 protects \textbf{RUCK} as the dominant end-phase event.
+\item Any long-ruck milestone changes the week’s entire density posture and must be planned as such.
+\end{itemize}
+
+Major Event Density Notes
+
+\begin{itemize}
+\item Multi-domain phase with risk of density creep.
+\item Maintain default of 2 major events per protected week; 3 only when spacing can be satisfied and gate necessity is explicit.
+\item If long ruck is introduced, treat it as the primary major event for that window and remove another major event rather than stacking.
+\item Because the phase naturally tempts “hybrid showcase” thinking, density enforcement must be especially strict.
+\end{itemize}
+
+Gate Use and Evidence Posture
+
+\begin{itemize}
+\item The phase should prove controlled multi-domain scheduling, not glorify overload.
+\item If multiple domains are valid but one was produced under compromised spacing, the week should be interpreted conservatively.
+\item Dominant-event logic is not optional here; it is a primary control.
+\end{itemize}
+
+Reslot / Substitution Notes
+
+\begin{itemize}
+\item Underwater remains permissioned-only; if governance is absent it is not scheduled.
+\item Grand Forks environment volatility and equipment access changes require reslot discipline.
+\item \textbf{RUN} or \textbf{RUCK} treadmill substitution is permitted only with full \textbf{TM}-2E-### logging; otherwise reslot.
+\item If access instability affects two domains in the same window, the correct action is not to salvage both through improvisation but to protect the dominant domain and defer the subordinate one.
+\end{itemize}
+
+\newpage
+\paragraph*{Phase 08 — Structural Durability and Load Tolerance}
+
+Phase Identity and Window Structure
+
+\begin{itemize}
+\item Duration: 12 weeks
+\item Default work/deload pattern: 4:1
+\item Protected deload/test windows: Week 1; Week 5; Week 10; Week 12
+\item Window type/intent: W1 Baseline; W5 Mid; W10 Mid; W12 End
+\end{itemize}
+
+Role of This Phase in the Map
+
+\begin{itemize}
+\item Phase 08 centers load tolerance and structural durability.
+\item The long ruck milestone becomes the defining high-consequence construct of the phase.
+\item This phase is therefore one of the least tolerant phases for careless event stacking, especially near long ruck weeks.
+\end{itemize}
+
+Major Tests in This Phase
+
+\begin{itemize}
+\item W1: \textbf{BODYCOMP} set (\textbf{C1}/\textbf{C2}/\textbf{C3}).
+\item W1: \textbf{CAL} battery.
+\item W1: \textbf{RUN} \textbf{TT} (\textbf{C10} / \textbf{MET-2B-016}) conservative marker only if safe.
+\item W5: \textbf{RUN} \textbf{TT} (\textbf{C10}) + \textbf{CAL} battery.
+\item W10: Long \textbf{RUCK} milestone (\textbf{C12} / \textbf{MET-2B-021}) as stand-alone major event (no other major test event in the same 72-hour/96-hour conflict window; default: treat as the only major event that week).
+\item W12: Taper+gate: \textbf{SWIM} \textbf{TT} (\textbf{C13}) + \textbf{RUCK} \textbf{TT} (\textbf{C12} / \textbf{MET-2B-019}) only if cap/spacing allow; otherwise prioritize one (typically \textbf{SWIM}) and reslot the other.
+\end{itemize}
+
+Window Intent Clarification
+
+\begin{itemize}
+\item W10 is the decisive structural-durability window and must be protected as a stand-alone major-event week.
+\item W12 is only a mixed-domain gate if foot integrity, recovery state, and spacing remain stable after W10.
+\item The phase should not use W10 and W12 to compress backlogged locomotion demands into a single short span.
+\end{itemize}
+
+Major Event Density Notes
+
+\begin{itemize}
+\item Phase 08 is load tolerance heavy.
+\item Long ruck is treated as the dominant high-consequence major event and should not be paired with maximal \textbf{RUN} in the same protected week.
+\item If a long ruck week occurs, reduce other major testing to preserve validity and reduce injury risk.
+\item Even when the schedule seems numerically possible, long ruck fatigue can create a false sense of density feasibility. Conservative interpretation remains mandatory.
+\end{itemize}
+
+Gate Use and Evidence Posture
+
+\begin{itemize}
+\item Long-ruck evidence is only meaningful if foot integrity, gait stability, and post-event recovery remain acceptable.
+\item If W10 produces structural warnings, W12 should be recovery-aware and may need partial reslot rather than full gate packaging.
+\item Validity in this phase depends heavily on not confusing “completed under stress” with “admissible under control.”
+\end{itemize}
+
+Reslot / Substitution Notes
+
+\begin{itemize}
+\item Foot and gait integrity controls are decisive.
+\item If hotspots/gait flags are active, long ruck milestone is reslotted.
+\item Environment hazards may require treadmill substitution for rucks only when \textbf{TM}-2E-### and full settings are logged; otherwise reslot.
+\item Underwater not scheduled.
+\item If footwear, socks, or load interface change materially inside the protected block, conservative interpretation or reslot should be preferred over forced comparability claims.
+\end{itemize}
+
+\newpage
+\paragraph*{Phase 09 — High-Volume Calisthenics and Stamina}
+
+Phase Identity and Window Structure
+
+\begin{itemize}
+\item Duration: 12 weeks
+\item Default work/deload pattern: 4:1
+\item Protected deload/test windows: Week 1; Week 5; Week 10; Week 12
+\item Window type/intent: W1 Baseline; W5 Mid; W10 Mid; W12 End
+\end{itemize}
+
+Role of This Phase in the Map
+
+\begin{itemize}
+\item Phase 09 increases calisthenics-related fatigue pressure while preserving locomotion testing as an important gate layer.
+\item The main scheduling risk is not lack of test authorization, but cumulative fatigue undermining \textbf{RUN} and \textbf{CAL} quality simultaneously.
+\item The phase therefore depends heavily on disciplined protected-window simplification.
+\end{itemize}
+
+Major Tests in This Phase
+
+\begin{itemize}
+\item W1: \textbf{BODYCOMP} set (\textbf{C1}/\textbf{C2}/\textbf{C3}).
+\item W1: \textbf{CAL} battery.
+\item W1: \textbf{RUN} \textbf{TT} (\textbf{C9} / \textbf{MET-2B-015}) conservative marker only if safe.
+\item W5: \textbf{CAL} battery + \textbf{RUN} \textbf{TT} (\textbf{C9}).
+\item W10: \textbf{SWIM} \textbf{TT} (\textbf{C13}) + \textbf{RUCK} \textbf{TT} (\textbf{C12} / \textbf{MET-2B-019}).
+\item W12: Taper+gate: \textbf{RUN} \textbf{TT} (\textbf{C11} / \textbf{MET-2B-017}) + \textbf{CAL} battery.
+\item Long ruck milestone is scheduled only if explicitly required and only as a stand-alone major event (replacing other events) due to fatigue and foot risk.
+\end{itemize}
+
+Window Intent Clarification
+
+\begin{itemize}
+\item W5 checks whether \textbf{CAL}-heavy work has preserved, not degraded, \textbf{RUN} evidence quality.
+\item W10 is a mixed \textbf{SWIM}/\textbf{RUCK} window and should remain strict about density caps.
+\item W12 centers the phase exit around \textbf{RUN} plus \textbf{CAL} rather than an overloaded all-domain battery.
+\end{itemize}
+
+Major Event Density Notes
+
+\begin{itemize}
+\item Calisthenics density increases fatigue risk; protected windows must avoid overloading with additional major events.
+\item Default of 2 major events per window; 3 only when spacing can be satisfied and when it does not create predictable fatigue carryover into \textbf{RUN} 5-mile.
+\item Long ruck, when present, must displace rather than augment other major events.
+\end{itemize}
+
+Gate Use and Evidence Posture
+
+\begin{itemize}
+\item \textbf{CAL} battery remains essential, but not at the expense of degrading the dominant \textbf{RUN} evidence.
+\item A valid but simpler W12 is stronger than a denser window that muddies fatigue interpretation.
+\item If high-volume \textbf{CAL} work has made form quality unstable, the correct posture is to preserve strict artifact standards, not loosen them.
+\end{itemize}
+
+Reslot / Substitution Notes
+
+\begin{itemize}
+\item Underwater remains governance-gated and is not scheduled as default.
+\item If pool is unavailable or not verifiable, \textbf{SWIM} is reslotted.
+\item If Grand Forks environment prevents safe outdoor running and treadmill cannot be standardized, \textbf{RUN} is reslotted.
+\item If cumulative upper-body fatigue compromises \textbf{CAL} artifact quality, the \textbf{CAL} battery should be deferred to the next protected window rather than forced through form breakdown.
+\end{itemize}
+
+\newpage
+\paragraph*{Phase 10 — Advanced Tactical Readiness}
+
+Phase Identity and Window Structure
+
+\begin{itemize}
+\item Duration: 12 weeks
+\item Default work/deload pattern: 4:1
+\item Protected deload/test windows: Week 1; Week 5; Week 10; Week 12
+\item Window type/intent: W1 Baseline; W5 Mid; W10 Mid; W12 End
+\end{itemize}
+
+Role of This Phase in the Map
+
+\begin{itemize}
+\item Phase 10 is the first phase where underwater may appear in the map at all.
+\item Because underwater is high-consequence and governance-gated, it must be treated as a replacement event, not an additive bonus.
+\item This phase is therefore one of the strictest phases for “not scheduled unless all prerequisites exist” enforcement.
+\end{itemize}
+
+Major Tests in This Phase
+
+\begin{itemize}
+\item W1: \textbf{BODYCOMP} set (\textbf{C1}/\textbf{C2}/\textbf{C3}).
+\item W1: \textbf{CAL} battery.
+\item W1: \textbf{RUN} \textbf{TT} (\textbf{C8} / \textbf{MET-2B-014}) conservative marker only if safe.
+\item W5: \textbf{SWIM} \textbf{TT} (\textbf{C13}) + \textbf{CAL} battery.
+\item W10: \textbf{RUN} \textbf{TT} (\textbf{C10} / \textbf{MET-2B-016}) + Underwater governed test (\textbf{C14} / \textbf{MET-2B-025}; \textbf{MET-2B-026}) only if governance prerequisites are satisfied; if underwater is scheduled, do not add long ruck in this window and maintain cap/spacing.
+\item W12: Taper+gate: \textbf{RUN} \textbf{TT} (\textbf{C11} / \textbf{MET-2B-017}) + \textbf{RUCK} \textbf{TT} (\textbf{C12} / \textbf{MET-2B-019}) staged under spacing; if maximal variants conflict, prioritize one and reslot the other.
+\end{itemize}
+
+Window Intent Clarification
+
+\begin{itemize}
+\item W5 tests whether \textbf{SWIM} and \textbf{CAL} can coexist as a mid-phase controlled package.
+\item W10 is the only plausible underwater window in the phase and must remain governance-first.
+\item W12 remains a locomotion-centered taper+gate week and must not be destabilized by earlier underwater novelty or governance gaps.
+\end{itemize}
+
+Major Event Density Notes
+
+\begin{itemize}
+\item Phase 10 windows are high consequence.
+\item Maintain discipline: avoid three-event weeks unless spacing can be satisfied and it does not create maximal \textbf{RUN} vs maximal \textbf{RUCK} conflict.
+\item Underwater is never “extra”; it replaces another major event when governance is available.
+\item If underwater prerequisites are unstable, the phase does not “owe” an underwater proxy event; it simply records underwater as not scheduled.
+\end{itemize}
+
+Gate Use and Evidence Posture
+
+\begin{itemize}
+\item Underwater evidence is only admissible when all governance prerequisites are satisfied and fully documented.
+\item A missing prerequisite does not create an interpretive gray zone; it creates a not-scheduled posture.
+\item The phase’s dominant exit posture remains valid \textbf{RUN}/\textbf{RUCK}/\textbf{CAL} evidence rather than underwater novelty.
+\end{itemize}
+
+Reslot / Substitution Notes
+
+\begin{itemize}
+\item Underwater scheduling is contingent.
+\item If lifeguard + dedicated spotter + facility permission cannot be guaranteed, underwater is not scheduled and no proxy is used.
+\item Any underwater governance breach triggers \textbf{STOP} \textbf{NOW} and conservative posture.
+\item Long ruck milestone (\textbf{MET-2B-021}) may be scheduled only as stand-alone major event when required; otherwise not scheduled.
+\item If pool access or governance posture collapses mid-phase, protect the dominant gate domains instead of improvising an aquatic substitute.
+\end{itemize}
+
+\newpage
+\paragraph*{Phase 11 — Pre-Selection Conditioning and Recovery}
+
+Phase Identity and Window Structure
+
+\begin{itemize}
+\item Duration: 12 weeks
+\item Default work/deload pattern: 4:1
+\item Protected deload/test windows: Week 1; Week 5; Week 10; Week 12
+\item Window type/intent: W1 Baseline; W5 Mid; W10 Mid; W12 End
+\end{itemize}
+
+Role of This Phase in the Map
+
+\begin{itemize}
+\item Phase 11 is recovery-sensitive by design and therefore treats taper protection as a primary doctrinal concern.
+\item It allows long ruck or \textbf{SWIM}/ruck pairing at W10, but W12 is explicitly protected against density creep.
+\item This phase tests whether late-cycle evidence can remain stable under reduced tolerance for noise and recovery disruption.
+\end{itemize}
+
+Major Tests in This Phase
+
+\begin{itemize}
+\item W1: \textbf{BODYCOMP} set (\textbf{C1}/\textbf{C2}/\textbf{C3}).
+\item W1: \textbf{CAL} battery.
+\item W1: \textbf{RUN} \textbf{TT} (\textbf{C9} / \textbf{MET-2B-015}) conservative marker only if safe.
+\item W5: \textbf{RUN} \textbf{TT} (\textbf{C10} / \textbf{MET-2B-016}) + \textbf{CAL} battery.
+\item W10: Long \textbf{RUCK} milestone (\textbf{C12} / \textbf{MET-2B-021}) as stand-alone major event OR (if long ruck not scheduled) \textbf{SWIM} \textbf{TT} (\textbf{C13}) + \textbf{RUCK} \textbf{TT} (\textbf{C12} / \textbf{MET-2B-019}).
+\item W12: Taper+gate: \textbf{RUN} \textbf{TT} (\textbf{C11} / \textbf{MET-2B-017}) + \textbf{CAL} battery.
+\item Underwater (\textbf{C14}) is scheduled only if governance prerequisites are satisfied and only when it does not violate cap/spacing or compromise taper intent.
+\end{itemize}
+
+Window Intent Clarification
+
+\begin{itemize}
+\item W10 is the flexible but still high-consequence window.
+\item W12 is taper-protected and should remain limited in major-event count and complexity.
+\item If W10 becomes unusually costly, W12 should become even more conservative, not more crowded.
+\end{itemize}
+
+Major Event Density Notes
+
+\begin{itemize}
+\item Phase 11 is recovery-sensitive; treat W12 as taper-protected.
+\item Avoid inserting additional major tests into W12.
+\item If long ruck occurs at W10, treat it as stand-alone and minimize other major tests to protect durability and to preserve the validity of subsequent \textbf{RUN} verification.
+\item Any attempt to recover missed earlier domains by loading W12 more heavily violates the phase’s taper posture.
+\end{itemize}
+
+Gate Use and Evidence Posture
+
+\begin{itemize}
+\item Evidence quality in this phase depends on reducing noise, not demonstrating maximal event count.
+\item A cleaner W12 with fewer events should be favored over a denser but less interpretable week.
+\item Underwater remains secondary and optional; it must never destabilize dominant late-phase gate constructs.
+\end{itemize}
+
+Reslot / Substitution Notes
+
+\begin{itemize}
+\item Underwater remains governed and optional only under prerequisites.
+\item Pool access volatility drives reslot.
+\item Grand Forks winter hazards drive treadmill substitution only under full settings logging.
+\item Any “underwater interval” or “simulation” concept not in Stage 2 is not scheduled; only Stage 2 underwater test construct is schedulable.
+\item If W10 and W12 compete for locomotion recovery bandwidth, W12 gate integrity has priority.
+\end{itemize}
+
+\newpage
+\paragraph*{Phase 12 — Final Pre-Selection Conditioning}
+
+Phase Identity and Window Structure
+
+\begin{itemize}
+\item Duration: 12 weeks
+\item Default work/deload pattern: mixed
+\item Protected deload/test windows: Week 1; Week 5; Week 9–10; Week 12
+\item Window type/intent: W1 Baseline; W5 Mid; W9–10 Verification Block; W12 Final Gate
+\end{itemize}
+
+Role of This Phase in the Map
+
+\begin{itemize}
+\item Phase 12 is the first explicit verification-block phase.
+\item Its function is to create room for replication without forcing all important domains into one final week.
+\item This phase shifts emphasis from “test more” to “verify under stable configuration.”
+\end{itemize}
+
+Major Tests in This Phase
+
+\begin{itemize}
+\item W1: \textbf{BODYCOMP} set (\textbf{C1}/\textbf{C2}/\textbf{C3}).
+\item W1: \textbf{CAL} battery.
+\item W1: \textbf{RUN} \textbf{TT} (\textbf{C8} / \textbf{MET-2B-014}) conservative marker only if safe.
+\item W5: \textbf{RUN} \textbf{TT} (\textbf{C9} / \textbf{MET-2B-015}) + \textbf{CAL} battery.
+\item W9–10: Verification window: selected retests from \textbf{RUN} (\textbf{C8}–\textbf{C11} / \textbf{MET-2B-014}–017) and \textbf{RUCK} (\textbf{C12} / \textbf{MET-2B-019} or \textbf{MET-2B-021}) and \textbf{SWIM} (\textbf{C13} / \textbf{MET-2B-022} or \textbf{MET-2B-023}), staged to remain within caps/spacing and to maximize replication (2 of last 3 \textbf{VALID}) for the weakest domains.
+\item W12: Final gate: \textbf{CAL} battery + (choose dominant locomotion gate need) \textbf{RUN} \textbf{TT} (\textbf{C11} / \textbf{MET-2B-017}) OR long \textbf{RUCK} \textbf{TT} (\textbf{C12} / \textbf{MET-2B-021}).
+\item Do not stack all maximal domains.
+\item Underwater (\textbf{C14}) is optional only under governance prerequisites and must not compromise the dominant gate objective.
+\end{itemize}
+
+Window Intent Clarification
+
+\begin{itemize}
+\item W9–10 exists specifically to absorb replication pressure that would otherwise overcrowd W12.
+\item W12 should reflect final-gate clarity, not final-gate overload.
+\item The dominant locomotion gate concept is controlling: choose the main gate need and protect it rather than distributing stress equally across all domains.
+\end{itemize}
+
+Major Event Density Notes
+
+\begin{itemize}
+\item Phase 12 uses a verification block (W9–10) specifically to enable replication without stacking.
+\item Treat W9–10 as multiple protected windows across two weeks: enforce spacing across both weeks, not just within a single week.
+\item Final gate week (W12) should be limited to 1–2 major events unless specific replication gaps require a third event and spacing can be satisfied.
+\item The presence of W9–10 removes any doctrinal excuse for compressing everything into W12.
+\end{itemize}
+
+Gate Use and Evidence Posture
+
+\begin{itemize}
+\item Replication quality is a central aim of the phase.
+\item If a comparability break occurs, the correct response is to extend the verification process across protected windows, not reinterpret the break away.
+\item Final gate claims in this phase should be built on the cleanest recent evidence, not the busiest week.
+\end{itemize}
+
+Reslot / Substitution Notes
+
+\begin{itemize}
+\item Verification window is configuration-freeze dependent: routes/tools/footwear/pool units must remain stable.
+\item If a comparability break occurs (new route/machine/pool unit), treat results conservatively and extend verification across additional windows rather than compressing.
+\item Underwater is scheduled only if governance prerequisites exist; otherwise not scheduled.
+\item “Simulation” constructs not defined in Stage 2 are not scheduled.
+\item If W9–10 produces only partial closure of weak domains, W12 should still remain selective rather than becoming an uncontrolled catch-up week.
+\end{itemize}
+
+\newpage
+\paragraph*{Phase 13 — Full-Spectrum Readiness Consolidation}
+
+Phase Identity and Window Structure
+
+\begin{itemize}
+\item Duration: 12 weeks
+\item Default work/deload pattern: mixed
+\item Protected deload/test windows: Week 1; Week 5; Week 9–10; Week 12
+\item Window type/intent: W1 Baseline; W5 Mid; W9–10 Targeted Retest Block; W12 Final Verification
+\end{itemize}
+
+Role of This Phase in the Map
+
+\begin{itemize}
+\item Phase 13 is the stability-and-confirmation phase.
+\item Its main task is not discovering new capability but consolidating low-variance evidence across the final protected windows.
+\item The phase is therefore highly resistant to novelty, proxy constructs, and late-phase configuration drift.
+\end{itemize}
+
+Major Tests in This Phase
+
+\begin{itemize}
+\item W1: \textbf{BODYCOMP} set (\textbf{C1}/\textbf{C2}/\textbf{C3}).
+\item W1: \textbf{CAL} battery.
+\item W1: \textbf{RUN} \textbf{TT} (\textbf{C9} / \textbf{MET-2B-015}) conservative marker only if safe.
+\item W5: Deload+test: \textbf{CAL} battery + \textbf{SWIM} \textbf{TT} (\textbf{C13}) (unit locked).
+\item W9–10: Targeted retest window: selected weakest-domain retests using existing Stage 2 IDs only (\textbf{RUN} \textbf{C8}–\textbf{C11}; \textbf{RUCK} \textbf{C12}; \textbf{SWIM} \textbf{C13}; \textbf{STR} \textbf{C17}; \textbf{AER} \textbf{C18} as applicable), staged to remain within caps/spacing and designed to finish replication requirements for \textbf{SELECTION-READY} tier classification across domains.
+\item W12: Final taper+verification: prioritize \textbf{RUN} \textbf{TT} (selected among \textbf{C8}–\textbf{C11}) + \textbf{CAL} battery OR long \textbf{RUCK} \textbf{TT} (\textbf{C12} / \textbf{MET-2B-021}) as dominant event.
+\item Underwater remains optional and governance-gated only; if unsupported, it is not scheduled.
+\end{itemize}
+
+Window Intent Clarification
+
+\begin{itemize}
+\item W5 is a controlled mid-phase check, not a license for density escalation.
+\item W9–10 is the primary closure block for any remaining replication gaps.
+\item W12 is the final verification window and should be kept low-variance, low-novelty, and dominant-event oriented.
+\end{itemize}
+
+Major Event Density Notes
+
+\begin{itemize}
+\item Phase 13 emphasizes stability and low-variance repeatability.
+\item W9–10 is used as a controlled retest block to close replication gaps without compressing into a single week.
+\item W12 should be kept minimal (dominant event + optional \textbf{CAL} battery) to preserve verification quality; additional major events are reslotted rather than stacked.
+\item This phase treats “less but cleaner” as better than “more but noisier.”
+\end{itemize}
+
+Gate Use and Evidence Posture
+
+\begin{itemize}
+\item Final verification should be anchored to stable route, pool, tool, and footwear conditions.
+\item The phase should default conservative if any final-window evidence is contaminated by novelty or comparability breaks.
+\item Dominant-event logic still controls: a final valid dominant event plus a clean \textbf{CAL} battery is stronger than an overcrowded mixed-domain showcase.
+\end{itemize}
+
+Reslot / Substitution Notes
+
+\begin{itemize}
+\item Configuration freeze is mandatory: routes/tools/footwear/pool units remain stable across W9–10 and W12.
+\item If any required environment unit cannot be verified, reslot rather than substituting with non-comparable evidence.
+\item Underwater remains supervised-only; any absence of prerequisites makes underwater not scheduled.
+\item No “peak simulation” constructs are scheduled unless they map entirely to existing Stage 2 protocols.
+\item Late-phase novelty is treated as a validity threat, not as harmless variety.
+\end{itemize}
+
+\newpage
+
+\subsection*{3.B.2 Progression Integrity Check}
+\phantomsection
+\addcontentsline{toc}{subsection}{3.B.2 Progression Integrity Check}
+
+\begin{itemize}
+\item Early phases (Phase 00–Phase 01) are conservative: frequent protected windows, low-risk emphasis, and priority on validity/logging infrastructure and environment/tool stability. Major event density is intentionally low; gate-grade evidence is biased toward \textbf{BODYCOMP} trend stability and foundational \textbf{CAL}/\textbf{RUN} markers under strict validity.
+
+\item Early-phase protected windows are designed to normalize good evidence habits before performance demand increases. This means the map intentionally values repeatability, clean logging, environment control, and stable tool identity over rapid threshold chasing.
+
+\item Mid phases (Phase 02–Phase 05) expand multi-domain gate-grade testing inside protected windows while maintaining anti-stacking caps and spacing intent. The map introduces ruck time trials and swim time trials as major events only when prerequisites and environment verification exist, and rotates major domains to avoid repeated maximal exposures inside a single window.
+
+\item Mid-phase progression integrity is preserved by separating phase intent from density temptation. Just because more domains become available does not mean all domains are tested together. The map deliberately rotates, stages, and defers to preserve valid evidence rather than symbolic completeness.
+
+\item Late phases (Phase 06–Phase 11) use taper-aware protected windows: fewer but more consequential verification blocks, with explicit posture that taper-intent weeks do not receive new maximal tests. Long ruck milestones, when scheduled, are treated as stand-alone major events to protect durability and to preserve the validity of subsequent \textbf{RUN} verification.
+
+\item Late-phase integrity depends on protecting the quality of the dominant events. This is why the map resists crowding taper windows, treats long ruck as a controlling event, and limits underwater to tightly governed contexts only.
+
+\item Final phases (Phase 12–Phase 13) emphasize verification quality, configuration freeze, and targeted retest blocks (W9–10) to satisfy replication requirements (2 of last 3 \textbf{VALID}) without overtesting. The map explicitly prevents “stack all maximal domains” behavior by requiring selection of a dominant gate objective in the final windows and reslotting everything else.
+
+\item Final-phase integrity depends on low-variance repetition, not novelty, hero weeks, or high event count. This is why verification blocks are spread across W9–10 and why W12 remains selective instead of attempting to serve every unresolved domain simultaneously.
+
+\item Every phase includes at least one mid-phase decision touchpoint window and one end-phase exit gate window by design. Where a phase is short (12 weeks), mid-phase windows occur at Week 4 or Week 5 depending on the default pattern.
+
+\item Underwater governance posture is respected: underwater is listed only in Phase 10–Phase 13 and only as supervised-only and governance-gated; if prerequisites are not met, it is not scheduled and cannot be substituted by proxy metrics.
+
+\item The map is compatible with Stage 3.D integrated calendars: week markers are phase-level windows and do not attempt day-by-day scheduling. Day-level spacing is handled by Stage 3.A spacing doctrine and applied inside the protected window.
+
+\item Major tests listed are limited to those defined in Stage 2 (protocol cards and metrics). Any legacy “benchmark/simulation” concepts not defined in Stage 2 are treated as non-schedulable as major tests unless they map entirely to existing Stage 2 IDs.
+
+\item The map also preserves a critical audit principle: a protected window that closes with partial valid evidence and documented reslot is preferable to a crowded window that reaches nominal completeness but produces contaminated evidence. Progression integrity is therefore a product of discipline, not density.
+\end{itemize}
+
+\newpage
+
+\subsection*{3.B.3 Reconciliation Notes}
+\phantomsection
+\addcontentsline{toc}{subsection}{3.B.3 Reconciliation Notes}
+
+\begin{itemize}
+\item Identifier conflict: reference materials include legacy protocol card numbers and legacy metric identifiers that do not match the current Stage 2 naming system. This map uses the authoritative Stage 2 identifiers (C# and \textbf{MET-2B}-###) only. Legacy identifiers remain non-authoritative labels and must be handled via Stage 8 crosswalk mapping; downstream phases must reference \textbf{MET-2B}-### only.
+
+\item Phase naming conflict: reference materials use slightly different phase naming strings in places. This map adopts the canonical phase names shown in the Phase Summary Table and the Phase-by-Phase Test Intent and Reslot Doctrine blocks as binding within Stage 3.
+
+\item Test inventory conflict: reference materials include “mixed-modal benchmark,” “interval benchmark,” and “simulation” constructs as schedule ideas. These are not scheduled as major tests unless they map entirely to existing Stage 2 protocol cards and metrics. Where intent exists to simulate multi-domain stress, Stage 3 posture is staged retests across protected windows rather than inventing new test constructs.
+
+\item Underwater conflict: reference materials may imply underwater exposure progression earlier or without explicit governance. Stage 3 enforces the strict governance posture: underwater is never scheduled without certified lifeguard plus dedicated safety spotter prerequisites and remains optional only in Phase 10–Phase 13. Any absence of prerequisites forces “not scheduled” posture; no proxy tests are substituted for underwater readiness claims.
+
+\item Density conflict: some reference concepts imply aggressive combined-event verification inside single weeks. This map resolves that conflict in favor of Stage 3.A spacing doctrine, Stage 1.F validity doctrine, and Stage 0 safety boundaries. When dense scheduling collides with valid spacing and recovery logic, density loses and reslot posture controls.
+
+\item Comparability conflict: some source ideas treat treadmill and outdoor route data, or yards and meters pool data, as informally interchangeable when operationally convenient. This map rejects that posture. Unit identity, route identity, treadmill identity, and logging completeness are all treated as comparability-relevant.
+
+\item Late-phase closure conflict: source material may imply that all domains should be maximally re-verified at the end. This map resolves that conflict by adopting dominant-event gate posture, replication-first logic, and selective W9–10 verification blocks rather than all-domain compression into W12.
+\end{itemize}
+
+\end{document}

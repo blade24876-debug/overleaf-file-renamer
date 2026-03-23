@@ -1,0 +1,1313 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{landscape}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\section*{7.15.A - Moisture-Wicking Training T-Shirt}
+\phantomsection
+\addcontentsline{toc}{section}{7.15.A - Moisture-Wicking Training T-Shirt}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.45in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD\\Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase\\Required} &
+\Hdr{Notes} \\
+Budget & Moisture-wicking training T-shirt & Under Armour Tech 2.0 Tee & \$25 & Training top & Phase-00 & Moves sweat off the skin during routine sessions; chosen for its light quick-dry knit and easy replacement availability. \\
+Budget & Moisture-wicking training T-shirt & adidas Train Essentials Tee & \$25 & Training top & Phase-00 & Reduces damp cling during cardio and floor work; chosen for its soft synthetic fabric and simple athletic cut. \\
+Budget & Moisture-wicking training T-shirt & Baleaf Quick-Dry Athletic Shirt & \$20 & Training top & Phase-00 & Supports lower-chafe daily wear during frequent sessions; chosen for its inexpensive wicking fabric and flat-feeling seams. \\
+Standard & Moisture-wicking training T-shirt & Nike Dri-FIT Legend Tee & \$35 & Training top & Phase-00 & Keeps the torso drier during repeated work; chosen for its dependable moisture management and familiar trim fit. \\
+Standard & Moisture-wicking training T-shirt & Patagonia Capilene Cool Daily Shirt & \$55 & Training top & Phase-00 & Improves comfort across sweat-heavy sessions; chosen for its odor-resistant feel and very breathable fabric. \\
+Standard & Moisture-wicking training T-shirt & lululemon Metal Vent Tech Short-Sleeve & \$78 & Training top & Phase-00 & Helps reduce sticky fabric drag during movement; chosen for its seamless body construction and high breathability. \\
+Elite & Moisture-wicking training T-shirt & Arc'teryx Cormac Crew & \$70 & Training top & Phase-00 & Keeps sweat and heat build-up lower during long sessions; chosen for its premium lightweight fabric and smooth seam placement. \\
+Elite & Moisture-wicking training T-shirt & Rhone Reign Short Sleeve & \$68 & Training top & Phase-00 & Supports daily high-frequency wear with less clammy feel; chosen for its soft performance fabric and clean athletic drape. \\
+Elite & Moisture-wicking training T-shirt & Ten Thousand Versatile Shirt & \$58 & Training top & Phase-00 & Maintains comfort during mixed cardio and strength days; chosen for its durable quick-dry knit and low-friction construction. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.15.B - Long-Sleeve Training Top}
+\phantomsection
+\addcontentsline{toc}{section}{7.15.B - Long-Sleeve Training Top}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.45in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD\\Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase\\Required} &
+\Hdr{Notes} \\
+Budget & Long-sleeve training top & Under Armour Tech Long Sleeve & \$30 & Training top & Phase-00 & Adds light arm coverage without heavy warmth; chosen for its simple quick-dry fabric and easy-care use. \\
+Budget & Long-sleeve training top & Baleaf Long Sleeve Workout Shirt & \$24 & Training top & Phase-00 & Helps limit skin-to-surface abrasion on cooler days; chosen for its low-cost wicking build and relaxed mobility. \\
+Budget & Long-sleeve training top & adidas Own The Run Long Sleeve & \$35 & Training top & Phase-00 & Gives modest coverage for cool-air sessions; chosen for its breathable knit and familiar running-oriented cut. \\
+Standard & Long-sleeve training top & Nike Dri-FIT Miler Long Sleeve & \$40 & Training top & Phase-00 & Keeps the arms covered while still venting sweat; chosen for its airy mesh feel and easy layering shape. \\
+Standard & Long-sleeve training top & Patagonia Capilene Cool Daily Long-Sleeve & \$65 & Training top & Phase-00 & Supports cooler non-extreme sessions without overheating fast; chosen for its soft breathable fabric and odor control. \\
+Standard & Long-sleeve training top & Rabbit EZ Tee LS & \$58 & Training top & Phase-00 & Adds smooth skin coverage during repetitive arm swing and strap contact; chosen for its very soft knit and run-friendly fit. \\
+Elite & Long-sleeve training top & Arc'teryx Cormac Long Sleeve & \$80 & Training top & Phase-00 & Helps manage sun, sweat, and mild chill in one layer; chosen for its premium featherweight fabric and refined seam layout. \\
+Elite & Long-sleeve training top & lululemon Metal Vent Tech Long Sleeve & \$88 & Training top & Phase-00 & Supports frequent wear with less rub in the torso and arm seams; chosen for its near-seamless construction and breathable stretch. \\
+Elite & Long-sleeve training top & Rhone Reign Long Sleeve & \$78 & Training top & Phase-00 & Maintains a dry less-slick feel during extended sessions; chosen for its premium soft-touch fabric and durable everyday use profile. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.15.C - Sleeveless Training Tank}
+\phantomsection
+\addcontentsline{toc}{section}{7.15.C - Sleeveless Training Tank}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.45in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD\\Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase\\Required} &
+\Hdr{Notes} \\
+Budget & Sleeveless training tank & Under Armour Tech Tank & \$25 & Training top & Phase-00 & Improves heat release during hot indoor or outdoor work; chosen for its light fabric and easy arm movement. \\
+Budget & Sleeveless training tank & Nike Dri-FIT Tank & \$30 & Training top & Phase-00 & Reduces upper-arm fabric drag during repeated pushing and pulling; chosen for its simple cut and reliable wicking. \\
+Budget & Sleeveless training tank & adidas Train Essentials Tank & \$28 & Training top & Phase-00 & Keeps the torso cooler during sweat-heavy sessions; chosen for its breathable synthetic knit and low-bulk feel. \\
+Standard & Sleeveless training tank & Patagonia Capilene Cool Tank & \$45 & Training top & Phase-00 & Supports hot-weather comfort without carrying excess fabric; chosen for its airy knit and cleaner odor handling. \\
+Standard & Sleeveless training tank & Ten Thousand Lightweight Tank & \$44 & Training top & Phase-00 & Improves comfort in higher-sweat blocks; chosen for its minimal fabric weight and durable training-focused construction. \\
+Standard & Sleeveless training tank & Vuori Strato Tech Tank & \$54 & Training top & Phase-00 & Adds a softer less abrasive next-to-skin feel; chosen for its very smooth knit and relaxed daily-wear crossover. \\
+Elite & Sleeveless training tank & lululemon Metal Vent Breathe Tank & \$68 & Training top & Phase-00 & Maximizes airflow during hotter sessions; chosen for its premium knit ventilation and low-seam body design. \\
+Elite & Sleeveless training tank & Rhone Reign Tank & \$58 & Training top & Phase-00 & Keeps the upper body cooler across repeated work intervals; chosen for its premium quick-dry fabric and stable athletic fit. \\
+Elite & Sleeveless training tank & On Performance Tank & \$80 & Training top & Phase-00 & Supports heat management with minimal cling; chosen for its ultra-light premium fabric and high-breathability panels. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.15.D - Quarter-Zip Training Top}
+\phantomsection
+\addcontentsline{toc}{section}{7.15.D - Quarter-Zip Training Top}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.45in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD\\Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase\\Required} &
+\Hdr{Notes} \\
+Budget & Quarter-zip training top & Under Armour Tech 1/2 Zip & \$40 & Training layer & Phase-06 & Adds quick vent-adjustable coverage during cool starts; chosen for its easy zip control and light performance knit. \\
+Budget & Quarter-zip training top & adidas Own The Run 1/2 Zip & \$45 & Training layer & Phase-06 & Supports cooler warm-ups without needing a bulky outer layer; chosen for its breathable fabric and simple athletic fit. \\
+Budget & Quarter-zip training top & Baleaf Quarter-Zip Pullover & \$35 & Training layer & Phase-06 & Provides low-bulk torso warmth in variable conditions; chosen for its inexpensive quick-dry fabric and easy layering. \\
+Standard & Quarter-zip training top & Nike Element Dri-FIT 1/2 Zip & \$65 & Training layer & Phase-06 & Makes cool-weather aerobic starts easier to manage; chosen for its soft brushed feel and effective venting zip. \\
+Standard & Quarter-zip training top & Rabbit EZ Zip 2.0 & \$70 & Training layer & Phase-06 & Adds a smoother layer for repetitive movement in cooler air; chosen for its run-oriented stretch and clean shoulder feel. \\
+Standard & Quarter-zip training top & Patagonia Capilene Midweight Zip-Neck & \$89 & Training layer & Phase-06 & Improves thermal control without jumping to a heavy fleece; chosen for its breathable midweight knit and stable layering role. \\
+Elite & Quarter-zip training top & Arc'teryx Delta 1/2 Zip & \$130 & Training layer & Phase-06 & Balances warmth and movement during denser cool-weather weeks; chosen for its premium active-fleece feel and refined fit. \\
+Elite & Quarter-zip training top & lululemon Metal Vent Tech 1/2 Zip & \$118 & Training layer & Phase-06 & Supports repeated wear with less seam irritation; chosen for its premium knit structure and vent-friendly zip design. \\
+Elite & Quarter-zip training top & Tracksmith Session Quarter Zip & \$118 & Training layer & Phase-06 & Adds polished cool-air coverage for running-heavy blocks; chosen for its light premium fabric and very clean movement feel. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.15.E - Lightweight Hoodie}
+\phantomsection
+\addcontentsline{toc}{section}{7.15.E - Lightweight Hoodie}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.45in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD\\Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase\\Required} &
+\Hdr{Notes} \\
+Budget & Lightweight hoodie & Hanes Cool DRI Hoodie & \$25 & Training layer & Phase-06 & Gives easy low-cost extra coverage for early or late sessions; chosen for its simple quick-dry fabric and loose comfort. \\
+Budget & Lightweight hoodie & Baleaf UPF Lightweight Hoodie & \$35 & Training layer & Phase-06 & Provides light torso and arm coverage without heavy insulation; chosen for its breathable knit and minimal carry weight. \\
+Budget & Lightweight hoodie & adidas Train Essentials Hoodie & \$45 & Training layer & Phase-06 & Supports casual warm-up and cooldown use; chosen for its familiar athletic cut and light synthetic fabric. \\
+Standard & Lightweight hoodie & Patagonia Capilene Cool Daily Hoody & \$69 & Training layer & Phase-06 & Adds breathable coverage for cooler starts and higher sun exposure; chosen for its proven fabric comfort and low-bulk hood. \\
+Standard & Lightweight hoodie & Under Armour Unstoppable Fleece Hoodie & \$80 & Training layer & Phase-06 & Gives light structured warmth without feeling overly heavy; chosen for its mobility-friendly cut and smoother outer face. \\
+Standard & Lightweight hoodie & Vuori Strato Tech Hoodie & \$98 & Training layer & Phase-06 & Improves comfort during long low-intensity sessions; chosen for its soft premium knit and relaxed recovery-day wearability. \\
+Elite & Lightweight hoodie & Arc'teryx Cormac Hoody & \$100 & Training layer & Phase-06 & Supports variable-weather movement with minimal bulk; chosen for its premium technical fabric and refined hood shape. \\
+Elite & Lightweight hoodie & Tracksmith Session Hoodie & \$108 & Training layer & Phase-06 & Keeps cooler sessions comfortable without heavy sweat trapping; chosen for its premium running-oriented fabric and clean fit. \\
+Elite & Lightweight hoodie & Rhone Reign Hoodie & \$108 & Training layer & Phase-06 & Adds polished light coverage for daily training and transition wear; chosen for its premium drape and quick-dry comfort. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.15.F - Full-Zip Training Jacket}
+\phantomsection
+\addcontentsline{toc}{section}{7.15.F - Full-Zip Training Jacket}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.45in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD\\Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase\\Required} &
+\Hdr{Notes} \\
+Budget & Full-zip training jacket & adidas Warm-Up Tricot Jacket & \$45 & Training layer & Phase-06 & Makes on-off changes easier during warm-up and cooldown; chosen for its simple zip access and light athletic structure. \\
+Budget & Full-zip training jacket & Under Armour Sportstyle Tricot Jacket & \$50 & Training layer & Phase-06 & Provides light structured coverage for routine transitions; chosen for its easy layering and smooth sleeve movement. \\
+Budget & Full-zip training jacket & Baleaf Track Jacket & \$40 & Training layer & Phase-06 & Supports cooler start logistics without a full weather shell; chosen for its low-cost stretch knit and straightforward fit. \\
+Standard & Full-zip training jacket & Nike Dri-FIT Full-Zip Training Jacket & \$70 & Training layer & Phase-06 & Helps regulate temperature across repeated start-stop use; chosen for its athletic cut and better moisture handling. \\
+Standard & Full-zip training jacket & lululemon License to Train Jacket & \$128 & Training layer & Phase-06 & Adds a cleaner mobility-friendly outer layer for general training days; chosen for its premium stretch and refined construction. \\
+Standard & Full-zip training jacket & Ten Thousand Recover Jacket & \$118 & Training layer & Phase-06 & Gives a stable transition layer between work and recovery; chosen for its durable fabric and streamlined fit. \\
+Elite & Full-zip training jacket & Arc'teryx Delta Jacket & \$180 & Training layer & Phase-06 & Offers premium active warmth and clean layering for denser use; chosen for its technical fleece quality and strong mobility. \\
+Elite & Full-zip training jacket & Rhone Spar Full Zip & \$138 & Training layer & Phase-06 & Supports daily use with a polished low-bulk feel; chosen for its premium fabric hand and consistent athletic drape. \\
+Elite & Full-zip training jacket & Tracksmith Session Jacket & \$145 & Training layer & Phase-06 & Improves comfort in cool active conditions without crossing into shell territory; chosen for its premium running-focused construction. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.15.G - Linerless Training Short}
+\phantomsection
+\addcontentsline{toc}{section}{7.15.G - Linerless Training Short}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.45in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD\\Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase\\Required} &
+\Hdr{Notes} \\
+Budget & Linerless training short & Under Armour Tech Graphic Shorts & \$25 & Training short & Phase-00 & Supports daily general training with less thigh restriction; chosen for its loose fit and simple wicking fabric. \\
+Budget & Linerless training short & adidas Train Essentials Shorts & \$30 & Training short & Phase-00 & Keeps lower-body movement freer during mixed sessions; chosen for its lightweight build and everyday durability. \\
+Budget & Linerless training short & Russell Athletic Wicking Shorts & \$18 & Training short & Phase-00 & Provides a cheap non-cotton baseline short for frequent use; chosen for its straightforward fit and quick-dry fabric. \\
+Standard & Linerless training short & Ten Thousand Interval Short & \$68 & Training short & Phase-00 & Balances movement freedom and durability during repeated sessions; chosen for its strong construction and low-chafe waistband. \\
+Standard & Linerless training short & Vuori Kore Short & \$68 & Training short & Phase-00 & Works across both training and daily wear with minimal fuss; chosen for its soft stretch and comfortable waistband design. \\
+Standard & Linerless training short & lululemon Pace Breaker Linerless Short & \$68 & Training short & Phase-00 & Supports a wide range of lower-body movement comfortably; chosen for its premium fabric and clean leg opening. \\
+Elite & Linerless training short & Rhone 7-in Training Short & \$78 & Training short & Phase-00 & Improves comfort across repeated mixed-use days; chosen for its premium mobility fabric and durable waistband feel. \\
+Elite & Linerless training short & Nike Dri-FIT Unlimited Linerless Short & \$80 & Training short & Phase-00 & Handles varied general training without excess bunching; chosen for its premium cut and stable pocket layout. \\
+Elite & Linerless training short & Tracksmith Session Shorts & \$88 & Training short & Phase-00 & Keeps movement unrestricted with a refined lightweight feel; chosen for its premium fabric and cleaner stride comfort. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.15.H - Lined Running Short}
+\phantomsection
+\addcontentsline{toc}{section}{7.15.H - Lined Running Short}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.45in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD\\Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase\\Required} &
+\Hdr{Notes} \\
+Budget & Lined running short & Under Armour Launch 5-in Shorts & \$40 & Running short & Phase-06 & Supports running-specific movement with an all-in-one lower-body interface; chosen for its light liner and simple anti-bounce fit. \\
+Budget & Lined running short & Nike Dri-FIT Challenger 5-in Shorts & \$45 & Running short & Phase-06 & Reduces layer complexity on run days; chosen for its familiar liner comfort and easy stride clearance. \\
+Budget & Lined running short & adidas Own The Run Shorts & \$40 & Running short & Phase-06 & Keeps run-day clothing lighter and simpler; chosen for its airy shell and stable inner support. \\
+Standard & Lined running short & Rabbit FKT 5-in Short & \$68 & Running short & Phase-06 & Improves comfort on higher-mileage days; chosen for its premium liner feel and low-bulk shell. \\
+Standard & Lined running short & Patagonia Strider Pro 5-in & \$79 & Running short & Phase-06 & Supports longer run sessions with less bounce and better ventilation; chosen for its premium storage and airy build. \\
+Standard & Lined running short & lululemon Fast and Free 5-in Short & \$78 & Running short & Phase-06 & Helps keep run-day kit streamlined; chosen for its premium liner integration and smooth waistband. \\
+Elite & Lined running short & Tracksmith Session Speed Short & \$88 & Running short & Phase-06 & Supports fast or longer running with a very refined feel; chosen for its premium liner quality and clean motion. \\
+Elite & Lined running short & Ten Thousand Set Short with Liner & \$74 & Running short & Phase-06 & Combines support and mobility for repeat run use; chosen for its premium durability and stable liner construction. \\
+Elite & Lined running short & On Lightweight Shorts & \$90 & Running short & Phase-06 & Keeps run-day clothing extremely light; chosen for its premium airy shell and minimal distraction feel. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.15.I - Compression Short / Liner Short}
+\phantomsection
+\addcontentsline{toc}{section}{7.15.I - Compression Short / Liner Short}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.45in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD\\Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase\\Required} &
+\Hdr{Notes} \\
+Budget & Compression short / liner short & Under Armour HeatGear Compression Shorts & \$30 & Base short & Phase-06 & Adds close lower-body support under outer shorts; chosen for its accessible price and reliable compression feel. \\
+Budget & Compression short / liner short & adidas Techfit Short Tights & \$35 & Base short & Phase-06 & Helps reduce fabric bunching and thigh rub; chosen for its snug fit and easy layering. \\
+Budget & Compression short / liner short & Baleaf Compression Shorts & \$20 & Base short & Phase-06 & Provides a low-cost anti-rub base layer; chosen for its smooth fabric and simple flat seams. \\
+Standard & Compression short / liner short & 2XU Core Compression Shorts & \$50 & Base short & Phase-06 & Supports a more locked-in lower-body interface for longer sessions; chosen for its stronger graduated feel and durable knit. \\
+Standard & Compression short / liner short & Nike Pro Dri-FIT Shorts & \$35 & Base short & Phase-06 & Gives a familiar fitted layer for high-friction days; chosen for its stable waistband and light compression. \\
+Standard & Compression short / liner short & CEP Core Run Compression Shorts & \$60 & Base short & Phase-06 & Helps keep the thigh interface more uniform under repeated movement; chosen for its premium compression structure and run-focused cut. \\
+Elite & Compression short / liner short & lululemon SenseKnit Running Short & \$118 & Base short & Phase-06 & Supports high-output running with a very refined fitted feel; chosen for its premium mapped knit and minimal seam bulk. \\
+Elite & Compression short / liner short & Tracksmith Allston Half Tights & \$88 & Base short & Phase-06 & Improves lower-body stability and storage on run-heavy days; chosen for its premium compressive fabric and very clean fit. \\
+Elite & Compression short / liner short & Ten Thousand Compression Short & \$54 & Base short & Phase-06 & Gives a premium anti-chafe underlayer for mixed training use; chosen for its durable compressive knit and low-slip fit. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.15.J - Breathable Training Pant}
+\phantomsection
+\addcontentsline{toc}{section}{7.15.J - Breathable Training Pant}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.45in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD\\Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase\\Required} &
+\Hdr{Notes} \\
+Budget & Breathable training pant & Under Armour Challenger Training Pants & \$45 & Training pant & Phase-00 & Adds light lower-body coverage for non-extreme conditions; chosen for its breathable fabric and tapered athletic fit. \\
+Budget & Breathable training pant & adidas Tiro 24 Training Pants & \$50 & Training pant & Phase-00 & Keeps the legs covered without feeling heavy during movement; chosen for its ventilated build and zip-ankle convenience. \\
+Budget & Breathable training pant & Baleaf Lightweight Jogger Pants & \$35 & Training pant & Phase-00 & Supports daily movement and easy cardio in cooler air; chosen for its light stretch fabric and affordable fit. \\
+Standard & Breathable training pant & lululemon License to Train Pant & \$128 & Training pant & Phase-00 & Maintains mobility during general training while giving more coverage than shorts; chosen for its premium stretch and durable build. \\
+Standard & Breathable training pant & Vuori Fleet Pant & \$128 & Training pant & Phase-00 & Balances training and daily wear with low friction; chosen for its breathable smooth fabric and polished fit. \\
+Standard & Breathable training pant & Ten Thousand Interval Pant & \$98 & Training pant & Phase-00 & Supports movement-first lower-body coverage on mixed days; chosen for its premium mobility fabric and stable cut. \\
+Elite & Breathable training pant & Arc'teryx Gamma Lightweight Pant & \$180 & Training pant & Phase-00 & Gives high-end movement freedom with breathable protection; chosen for its premium articulated fit and durable stretch weave. \\
+Elite & Breathable training pant & Rhone Pursuit Pant & \$138 & Training pant & Phase-00 & Supports cleaner daily rotation across training and off-duty wear; chosen for its premium smooth hand and easy movement. \\
+Elite & Breathable training pant & Tracksmith Session Pants & \$128 & Training pant & Phase-00 & Keeps the legs covered without dulling stride mechanics; chosen for its premium lightweight fabric and run-friendly taper. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.15.K - Warm-Up Track Pant}
+\phantomsection
+\addcontentsline{toc}{section}{7.15.K - Warm-Up Track Pant}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.45in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD\\Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase\\Required} &
+\Hdr{Notes} \\
+Budget & Warm-up track pant & adidas Entrada 22 Track Pants & \$35 & Warm-up pant & Phase-06 & Makes pre-session and post-session transitions easier in cool air; chosen for its zip ankles and simple athletic structure. \\
+Budget & Warm-up track pant & Under Armour Rival Track Pants & \$45 & Warm-up pant & Phase-06 & Adds a more forgiving top layer over shorts for starts and cooldowns; chosen for its light fabric and easy pull-on use. \\
+Budget & Warm-up track pant & New Balance Accelerate Pants & \$50 & Warm-up pant & Phase-06 & Supports quick coverage changes without a heavy winter layer; chosen for its light run-friendly cut and ankle zips. \\
+Standard & Warm-up track pant & Nike Dri-FIT Academy Track Pants & \$55 & Warm-up pant & Phase-06 & Keeps cool-weather preparation tidy without blurring into environmental gear; chosen for its smooth fabric and fast on-off design. \\
+Standard & Warm-up track pant & Patagonia Terrebonne Joggers & \$99 & Warm-up pant & Phase-06 & Provides very light full-leg coverage for warm-up and recovery windows; chosen for its packable feel and high breathability. \\
+Standard & Warm-up track pant & lululemon Surge Jogger & \$118 & Warm-up pant & Phase-06 & Supports movement during warm-up without restrictive drag; chosen for its premium stretch and clean taper. \\
+Elite & Warm-up track pant & Tracksmith Session Pants & \$128 & Warm-up pant & Phase-06 & Gives refined leg coverage for run-adjacent transitions; chosen for its premium motion-friendly fit and light fabric. \\
+Elite & Warm-up track pant & Arc'teryx Norvan Pants & \$160 & Warm-up pant & Phase-06 & Supports active movement in variable cool conditions without shell-level bulk; chosen for its premium cut and very low drag. \\
+Elite & Warm-up track pant & Rhone Sport Jogger & \$118 & Warm-up pant & Phase-06 & Offers polished transition wear that still moves well during prep or cooldown; chosen for its premium comfort and athletic silhouette. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.15.L - Seam-Minimized Boxer Brief}
+\phantomsection
+\addcontentsline{toc}{section}{7.15.L - Seam-Minimized Boxer Brief}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.45in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD\\Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase\\Required} &
+\Hdr{Notes} \\
+Budget & Seam-minimized boxer brief & Under Armour Performance Tech Boxerjock & \$25 & Underlayer & Phase-00 & Reduces inner-thigh rubbing during frequent sessions; chosen for its moisture-wicking fabric and stable leg hold. \\
+Budget & Seam-minimized boxer brief & adidas Performance Boxer Briefs & \$22 & Underlayer & Phase-00 & Improves daily comfort compared with cotton underwear; chosen for its smooth synthetic blend and simple fit. \\
+Budget & Seam-minimized boxer brief & Pair of Thieves SuperFit Boxer Brief & \$18 & Underlayer & Phase-00 & Supports all-day training and daily wear with less bunching; chosen for its soft quick-dry fabric and low-bulk seams. \\
+Standard & Seam-minimized boxer brief & SAXX Sport Mesh Boxer Brief & \$34 & Underlayer & Phase-00 & Helps keep the underlayer more stable during movement; chosen for its supportive pouch design and breathable mesh panels. \\
+Standard & Seam-minimized boxer brief & BN3TH Pro Boxer Brief & \$35 & Underlayer & Phase-00 & Reduces shifting and hot spots during repeated sessions; chosen for its premium support design and soft performance knit. \\
+Standard & Seam-minimized boxer brief & lululemon Always in Motion Boxer & \$28 & Underlayer & Phase-00 & Adds a smoother high-comfort underlayer for frequent wear; chosen for its premium stretch knit and reduced seam irritation. \\
+Elite & Seam-minimized boxer brief & Smartwool Merino Boxer Brief & \$48 & Underlayer & Phase-00 & Helps manage moisture and odor across denser use; chosen for its premium merino blend and softer next-to-skin feel. \\
+Elite & Seam-minimized boxer brief & Icebreaker Anatomica Boxer Brief & \$45 & Underlayer & Phase-00 & Supports long daily wear with less damp cling; chosen for its premium merino stretch and refined seam profile. \\
+Elite & Seam-minimized boxer brief & SAXX Kinetic HD Boxer Brief & \$38 & Underlayer & Phase-00 & Improves movement stability on harder days; chosen for its premium support system and durable performance fabric. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.15.M - Training Tights / Leggings}
+\phantomsection
+\addcontentsline{toc}{section}{7.15.M - Training Tights / Leggings}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.45in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD\\Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase\\Required} &
+\Hdr{Notes} \\
+Budget & Training tights / leggings & Under Armour HeatGear Leggings & \$40 & Legging & Phase-06 & Adds a close lower-body layer for friction control and light coverage; chosen for its accessible compression feel and durable fabric. \\
+Budget & Training tights / leggings & adidas Techfit Long Tights & \$45 & Legging & Phase-06 & Supports a more unified lower-body interface during cool sessions; chosen for its snug fit and easy layering. \\
+Budget & Training tights / leggings & Baleaf Running Tights & \$35 & Legging & Phase-06 & Gives low-cost full-leg coverage for cool run or training days; chosen for its smooth fabric and practical pocket layout. \\
+Standard & Training tights / leggings & Nike Pro Dri-FIT Tights & \$55 & Legging & Phase-06 & Helps reduce leg fabric slap and skin friction in cool conditions; chosen for its stable compression and familiar fit. \\
+Standard & Training tights / leggings & 2XU Light Speed Compression Tights & \$120 & Legging & Phase-06 & Supports a tighter lower-body feel during dense run blocks; chosen for its premium compression structure and secure waistband. \\
+Standard & Training tights / leggings & lululemon Surge Tight & \$118 & Legging & Phase-06 & Gives premium cool-weather leg coverage without heavy drag; chosen for its refined stretch and high-motion comfort. \\
+Elite & Training tights / leggings & Tracksmith Turnover Tights & \$128 & Legging & Phase-06 & Supports repeated cool-weather running with a cleaner feel; chosen for its premium fabric and polished fit. \\
+Elite & Training tights / leggings & Arc'teryx Essent High-Rise Tights equivalent men's active tight tier & \$130 & Legging & Phase-06 & Provides premium mobility and coverage on cooler movement days; chosen for its refined fabric quality and durable stretch. \\
+Elite & Training tights / leggings & CEP Core Run Tights & \$110 & Legging & Phase-06 & Adds premium compressive coverage for higher-output run use; chosen for its supportive knit and lower-leg stability feel. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.15.N - Baseball Cap}
+\phantomsection
+\addcontentsline{toc}{section}{7.15.N - Baseball Cap}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.45in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD\\Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase\\Required} &
+\Hdr{Notes} \\
+Budget & Baseball cap & adidas Superlite Cap & \$22 & Headwear & Phase-00 & Helps manage sweat and light sun during routine sessions; chosen for its light perforated build and easy daily wear. \\
+Budget & Baseball cap & Nike Dri-FIT Club Cap & \$28 & Headwear & Phase-00 & Keeps sun and sweat off the face during general outdoor work; chosen for its moisture-managing fabric and familiar fit. \\
+Budget & Baseball cap & Under Armour Blitzing Cap & \$30 & Headwear & Phase-00 & Supports routine outdoor comfort without a full sun hat; chosen for its stretch fit and quick-dry performance fabric. \\
+Standard & Baseball cap & Patagonia Airshed Cap & \$39 & Headwear & Phase-00 & Maintains a light breathable head interface during warm sessions; chosen for its airy premium build and soft brim feel. \\
+Standard & Baseball cap & Outdoor Research Swift Cap & \$30 & Headwear & Phase-00 & Provides clean sweat and light-weather control; chosen for its technical fabric and secure active fit. \\
+Standard & Baseball cap & lululemon Fast and Free Run Hat & \$38 & Headwear & Phase-00 & Helps keep sweat off the eyes during run days; chosen for its lightweight premium fabric and low-profile shape. \\
+Elite & Baseball cap & Ciele GOCap & \$45 & Headwear & Phase-00 & Improves hot-session comfort and easy wash rotation; chosen for its premium breathable build and runner-friendly fit. \\
+Elite & Baseball cap & On Performance Cap & \$50 & Headwear & Phase-00 & Adds a refined light headwear option for hotter work; chosen for its premium ventilation and very low carry weight. \\
+Elite & Baseball cap & Arc'teryx Calidum 5-Panel Hat & \$60 & Headwear & Phase-00 & Gives premium sweat and sun management in a cleaner technical format; chosen for its refined fit and durable construction. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.15.O - Visor}
+\phantomsection
+\addcontentsline{toc}{section}{7.15.O - Visor}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.45in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD\\Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase\\Required} &
+\Hdr{Notes} \\
+Budget & Visor & adidas Superlite Visor & \$20 & Headwear & Phase-06 & Shields the eyes while letting more heat escape than a full cap; chosen for its light build and simple adjustability. \\
+Budget & Visor & Under Armour Launch Visor & \$22 & Headwear & Phase-06 & Keeps forehead coverage minimal in hotter work; chosen for its quick-dry fabric and low-bulk profile. \\
+Budget & Visor & Headsweats Supervisor Visor & \$23 & Headwear & Phase-06 & Supports hot-weather visibility with less crown heat retention; chosen for its breathable run-focused design. \\
+Standard & Visor & Nike AeroBill Featherlight Visor & \$28 & Headwear & Phase-06 & Reduces sun glare without trapping as much head heat; chosen for its premium lightness and sweat handling. \\
+Standard & Visor & Ciele FSTVisor & \$35 & Headwear & Phase-06 & Supports hot run days with a very airy feel; chosen for its premium lightweight fabric and easy washability. \\
+Standard & Visor & Brooks Chaser Visor & \$28 & Headwear & Phase-06 & Keeps sweat and glare controlled during run-heavy work; chosen for its simple run-friendly fit and low weight. \\
+Elite & Visor & On Performance Visor & \$45 & Headwear & Phase-06 & Adds a very light premium hot-weather option; chosen for its refined ventilation and low-profile shape. \\
+Elite & Visor & Tracksmith Eliot Runner's Visor & \$48 & Headwear & Phase-06 & Supports hot outdoor sessions with a polished feel; chosen for its premium construction and easy run use. \\
+Elite & Visor & Ciele VLV Visor & \$40 & Headwear & Phase-06 & Gives premium low-heat forehead shade for faster sessions; chosen for its ultralight build and strong sweat handling. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.15.P - Sweat Headband}
+\phantomsection
+\addcontentsline{toc}{section}{7.15.P - Sweat Headband}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.45in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD\\Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase\\Required} &
+\Hdr{Notes} \\
+Budget & Sweat headband & Nike Dri-FIT Head Tie & \$12 & Sweat control & Phase-06 & Helps keep sweat out of the eyes during hotter sessions; chosen for its simple tie fit and washable quick-dry fabric. \\
+Budget & Sweat headband & Under Armour Performance Headband & \$10 & Sweat control & Phase-06 & Adds a cheap forehead sweat barrier for run and gym days; chosen for its stretch fit and easy replacement cost. \\
+Budget & Sweat headband & Halo Headband Pullover & \$16 & Sweat control & Phase-06 & Helps redirect forehead sweat before it reaches the eyes; chosen for its sweat-channel design and light feel. \\
+Standard & Sweat headband & Junk Brands Headband & \$18 & Sweat control & Phase-06 & Improves comfort in heat without a full hat; chosen for its breathable wide-band construction and simple wash cycle. \\
+Standard & Sweat headband & lululemon Metal Vent Headband & \$18 & Sweat control & Phase-06 & Keeps sweat control light and low-bulk; chosen for its premium knit and comfortable stretch. \\
+Standard & Sweat headband & Buff Fastwick Headband & \$18 & Sweat control & Phase-06 & Supports warm-session sweat management with minimal forehead pressure; chosen for its quick-dry fabric and low profile. \\
+Elite & Sweat headband & Halo II Pullover & \$18 & Sweat control & Phase-06 & Provides stronger sweat-channel control during longer work; chosen for its premium sweat-diversion strip and stable fit. \\
+Elite & Sweat headband & Ciele FSTHeadband & \$22 & Sweat control & Phase-06 & Gives premium hot-weather sweat control in a light format; chosen for its breathable performance fabric and easy washability. \\
+Elite & Sweat headband & On Performance Headband & \$25 & Sweat control & Phase-06 & Supports heat-heavy sessions with a very refined low-bulk interface; chosen for its premium fabric hand and stable stretch. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.15.Q - Sweat Wristband}
+\phantomsection
+\addcontentsline{toc}{section}{7.15.Q - Sweat Wristband}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.45in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD\\Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase\\Required} &
+\Hdr{Notes} \\
+Budget & Sweat wristband & Nike Swoosh Wristbands & \$10 & Sweat control & Phase-06 & Gives a quick way to clear sweat from the face during hotter sessions; chosen for its simple absorbent knit and easy wash cycle. \\
+Budget & Sweat wristband & Under Armour Performance Wristbands & \$10 & Sweat control & Phase-06 & Supports sweat management without grabbing the shirt hem; chosen for its snug stretch and low price. \\
+Budget & Sweat wristband & adidas Interval Wristbands & \$10 & Sweat control & Phase-06 & Adds a simple small sweat-control tool for run or gym use; chosen for its durable cotton-blend absorbency. \\
+Standard & Sweat wristband & Lululemon Double Up Wristband & \$18 & Sweat control & Phase-06 & Improves face-wipe convenience in heat-heavy sessions; chosen for its cleaner finish and comfortable stretch. \\
+Standard & Sweat wristband & Headsweats Wristband Set & \$14 & Sweat control & Phase-06 & Gives a running-specific wipe surface without much hand bulk; chosen for its simple absorbent build and easy replacement. \\
+Standard & Sweat wristband & Halo Wristband & \$14 & Sweat control & Phase-06 & Adds a more premium absorbent wrist option for hotter work; chosen for its soft feel and steady fit. \\
+Elite & Sweat wristband & CEP Compression Wristband & \$20 & Sweat control & Phase-06 & Keeps a slim refined sweat-wipe option on the wrist; chosen for its premium fit and lower slippage. \\
+Elite & Sweat wristband & On Sweat Wristband & \$22 & Sweat control & Phase-06 & Supports hot-session sweat control with very low bulk; chosen for its premium knit and cleaner athletic finish. \\
+Elite & Sweat wristband & Tracksmith Wristband Set & \$24 & Sweat control & Phase-06 & Adds a polished premium wipe tool for higher-frequency outdoor work; chosen for its soft absorbent feel and durable finish. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.15.R - Basic Daily Training Sock}
+\phantomsection
+\addcontentsline{toc}{section}{7.15.R - Basic Daily Training Sock}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.45in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD\\Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase\\Required} &
+\Hdr{Notes} \\
+Budget & Basic daily training sock & Under Armour Essential Crew Socks & \$20 & Basic sock & Phase-00 & Provides a default synthetic sock rotation for training and daily wear; chosen for its common availability and moderate cushioning. \\
+Budget & Basic daily training sock & adidas Athletic Cushioned Crew Socks & \$18 & Basic sock & Phase-00 & Gives a simple non-cotton baseline for frequent sessions; chosen for its inexpensive multi-pack format and familiar fit. \\
+Budget & Basic daily training sock & Dickies Dri-Tech Crew Socks & \$18 & Basic sock & Phase-00 & Improves moisture handling over household cotton socks; chosen for its low cost and easy daily replacement. \\
+Standard & Basic daily training sock & Feetures Everyday Max Cushion Crew & \$20 & Basic sock & Phase-00 & Adds more comfortable daily cushioning with better fit control; chosen for its premium knit and reduced in-shoe bunching. \\
+Standard & Basic daily training sock & Smartwool Everyday Athletic Crew & \$22 & Basic sock & Phase-00 & Supports daily wear with better odor and moisture handling; chosen for its merino blend and soft feel. \\
+Standard & Basic daily training sock & Balega Blister Resist Crew & \$22 & Basic sock & Phase-00 & Improves daily friction control compared with generic packs; chosen for its plush knit and smoother interior feel. \\
+Elite & Basic daily training sock & Darn Tough Lifestyle / training-capable crew tier & \$24 & Basic sock & Phase-00 & Gives a very durable daily sock rotation with strong moisture control; chosen for its premium knit life and secure fit. \\
+Elite & Basic daily training sock & Farm to Feet Damascus Light Crew & \$24 & Basic sock & Phase-00 & Supports frequent use with a softer premium daily interface; chosen for its merino comfort and durable build. \\
+Elite & Basic daily training sock & Point6 Essential Crew & \$22 & Basic sock & Phase-00 & Maintains a premium daily sock feel under repeated wear; chosen for its refined merino blend and consistent fit. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.15.S - No-Show Training Sock}
+\phantomsection
+\addcontentsline{toc}{section}{7.15.S - No-Show Training Sock}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.45in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD\\Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase\\Required} &
+\Hdr{Notes} \\
+Budget & No-show training sock & Saucony Performance Heel Tab Socks & \$16 & Basic sock & Phase-00 & Gives a lighter low-cut sock option for warm sessions; chosen for its heel tab and easy multi-pack value. \\
+Budget & No-show training sock & adidas Superlite No-Show Socks & \$14 & Basic sock & Phase-00 & Supports low-bulk shoe fit in hotter weather; chosen for its thin fabric and inexpensive rotation depth. \\
+Budget & No-show training sock & ASICS Quick Lyte No-Show & \$18 & Basic sock & Phase-00 & Reduces sock bulk inside run-oriented shoes; chosen for its light knit and performance-focused shape. \\
+Standard & No-show training sock & Feetures Elite Light Cushion No Show Tab & \$18 & Basic sock & Phase-00 & Keeps a low-profile shoe interface with better fit stability; chosen for its anatomical shape and lower bunching risk. \\
+Standard & No-show training sock & Balega Hidden Comfort & \$18 & Basic sock & Phase-00 & Adds more comfort in a low-cut format; chosen for its soft cushioning and secure heel tab design. \\
+Standard & No-show training sock & Swiftwick Aspire Zero & \$18 & Basic sock & Phase-00 & Gives a snug premium low-cut feel for hotter run or gym days; chosen for its compression-style hold and thin profile. \\
+Elite & No-show training sock & Darn Tough Run No Show Tab Ultra-Lightweight & \$20 & Basic sock & Phase-00 & Provides a durable premium low-cut option with little bulk; chosen for its strong knit life and precise fit. \\
+Elite & No-show training sock & Drymax Hyper Thin Running Sock & \$19 & Basic sock & Phase-00 & Keeps the shoe interface very light and dry-feeling; chosen for its ultra-thin construction and moisture handling. \\
+Elite & No-show training sock & On Performance Run Sock Low & \$24 & Basic sock & Phase-00 & Supports a premium low-volume in-shoe feel; chosen for its refined thin knit and clean heel hold. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.15.T - Change-of-Clothes Go-Bag Set}
+\phantomsection
+\addcontentsline{toc}{section}{7.15.T - Change-of-Clothes Go-Bag Set}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.45in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD\\Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase\\Required} &
+\Hdr{Notes} \\
+Budget & Change-of-clothes go-bag set & adidas Essentials tee/short/sock multi-item rotation & \$60 & Clothing set & Phase-06 & Supports post-session continuity when a full change is needed; chosen for its low-cost bundled apparel ecosystem and easy replacement. \\
+Budget & Change-of-clothes go-bag set & Under Armour Tech shirt + short + boxer set & \$75 & Clothing set & Phase-06 & Keeps one complete dry backup set ready for travel or double-use days; chosen for its simple quick-dry pieces and easy matching. \\
+Budget & Change-of-clothes go-bag set & Baleaf training top + short + sock backup set & \$50 & Clothing set & Phase-06 & Reduces damp-clothing reuse after sweaty sessions; chosen for its inexpensive quick-dry components and pack-friendly weight. \\
+Standard & Change-of-clothes go-bag set & Nike Dri-FIT shirt + short + sock set & \$95 & Clothing set & Phase-06 & Maintains cleaner day-to-day continuity after training away from home; chosen for its mainstream availability and coordinated performance pieces. \\
+Standard & Change-of-clothes go-bag set & Patagonia Capilene + Strider + sock set & \$140 & Clothing set & Phase-06 & Gives a more reliable premium backup uniform for travel and long offsite days; chosen for its low-bulk packability and fast drying. \\
+Standard & Change-of-clothes go-bag set & lululemon Metal Vent + Pace Breaker + sock set & \$160 & Clothing set & Phase-06 & Supports a polished backup system that can go from session to daily wear smoothly; chosen for its premium comfort and reduced chafe profile. \\
+Elite & Change-of-clothes go-bag set & Rhone Reign + training short + boxer + sock set & \$180 & Clothing set & Phase-06 & Creates a high-quality always-ready spare uniform; chosen for its premium fabric hand and easy all-day wear after training. \\
+Elite & Change-of-clothes go-bag set & Tracksmith session kit backup set & \$210 & Clothing set & Phase-06 & Provides a refined run-adjacent backup change kit for denser travel or field days; chosen for its premium light fabrics and movement-focused fit. \\
+Elite & Change-of-clothes go-bag set & Arc'teryx Cormac + lower-body rotation backup set & \$220 & Clothing set & Phase-06 & Gives a premium redundancy kit for continuity when sweat load or travel friction is high; chosen for its technical fabric quality and packable low-bulk pieces. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{When These Items Are Needed}
+\phantomsection
+\addcontentsline{toc}{section}{When These Items Are Needed}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=1.25in]
+    Q[l,wd=1.15in]
+    X[l,2.75]
+    X[l,2.75]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1} = {halign=l, valign=m},
+  column{2} = {halign=c, valign=m},
+  column{3-4} = {halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Item} &
+\Hdr{First required phase} &
+\Hdr{Why it becomes necessary} &
+\Hdr{What happens if missing} \\
+Moisture-wicking training T-shirt & Phase-00 & It is part of the first standardized training uniform that lowers friction and sweat-retention problems. & Routine sessions are more likely to rely on damp, abrasive, or cotton-heavy tops that reduce comfort and compliance. \\
+Long-sleeve training top & Phase-00 & It gives a second basic upper-body interface for mild cool conditions without crossing into environmental layering. & Early outdoor continuity becomes narrower when a short-sleeve-only rotation is not enough. \\
+Sleeveless training tank & Phase-00 & It provides a hot-session upper-body option inside the same basic uniform system. & Higher-sweat sessions remain more likely to feel overheated or fabric-heavy. \\
+Quarter-zip training top & Phase-06 & It fits the first expanded apparel posture where vent-adjustable tops reduce friction during denser cool-weather use. & Cool-session upper-body control stays more binary between simple tops and bulkier layers. \\
+Lightweight hoodie & Phase-06 & It belongs to the expanded rotation and function-upgrade tier rather than the minimum launch kit. & Warm-up and transition clothing remain less flexible once session density rises. \\
+Full-zip training jacket & Phase-06 & It adds fast on-off transition control that becomes more useful once clothing throughput and repetition increase. & Pre-session and post-session clothing changes stay less efficient and less tidy. \\
+Linerless training short & Phase-00 & It is a basic lower-body training interface needed to reduce chafe and movement restriction from casual clothing. & Lower-body sessions are more likely to use poor-fit shorts that increase friction and limit movement. \\
+Lined running short & Phase-06 & It is an expanded running-specific garment rather than a minimum day-one clothing need. & Running-day clothing remains less streamlined and more dependent on separate layers. \\
+Compression short / liner short & Phase-06 & It belongs to the function-upgrade tier once friction control and lower-body stability become more consequential. & High-friction sessions have fewer conservative clothing-based solutions. \\
+Breathable training pant & Phase-00 & A basic training pant is part of the initial shorts / pants clothing posture for non-extreme conditions. & Lower-body clothing choices remain too narrow when shorts are the wrong general-use option. \\
+Warm-up track pant & Phase-06 & It is an expanded transition garment rather than a minimum day-one requirement. & Start-stop cool-air sessions stay less adaptable and more awkward to manage. \\
+Seam-minimized boxer brief & Phase-00 & It is a first-wave friction-control item because underwear is part of the skin-to-task interface. & Chafe risk remains higher even if tops and shorts are improved. \\
+Training tights / leggings & Phase-06 & They fit the first expanded apparel tier where lower-body interface refinement becomes useful. & Cool-session lower-body friction and coverage options remain less versatile. \\
+Baseball cap & Phase-00 & The 7.15 scope includes a basic cap / hat as part of the first stable daily uniform. & Sweat and light-sun management remain less controlled during routine outdoor work. \\
+Visor & Phase-06 & It is a condition-specific hot-weather option inside the expanded apparel tier, not a minimum launch need. & Hot-weather headwear choices remain less adaptable when full-cap heat retention is unhelpful. \\
+Sweat headband & Phase-06 & It fits the expanded sweat-management toolkit once training density and heat exposure increase. & Eye-level sweat management remains more dependent on shirts or towels. \\
+Sweat wristband & Phase-06 & It is a small convenience-upgrade item that becomes reasonable once higher-frequency use exposes repeated sweat nuisance. & Small sweat-control tasks remain more awkward during hot sessions. \\
+Basic daily training sock & Phase-00 & The category includes basic socks as part of the first stable clothing interface, separate from specialized 7.11 sock doctrine. & Generic household socks remain more likely to create moisture and comfort problems. \\
+No-show training sock & Phase-00 & A lighter low-cut sock gives a basic warm-weather footwear interface inside the same early uniform system. & Hotter sessions have fewer low-bulk sock options and shoe comfort becomes less adaptable. \\
+Change-of-clothes go-bag set & Phase-06 & It fits the expanded continuity and rotation depth posture once laundry, travel, and denser days create more clothing turnover pressure. & Damp-clothing reuse and post-session continuity problems remain more likely during longer offsite windows. \\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+\clearpage
+
+\section*{Compliance Checklist}
+\phantomsection
+\addcontentsline{toc}{section}{Compliance Checklist}
+
+\begin{itemize}
+\item Only one deliverable is provided for Target Category 7.15.
+\item The locked title format and required output structure are used.
+\item The chart uses the exact required columns.
+\item Twenty distinct items are included, and each item contains three Budget rows, three Standard rows, and three Elite rows.
+\item Rows are grouped by item and ordered from foundational training-uniform interfaces toward expanded rotation and function-upgrade apparel.
+\item Every note includes both the intended effect / use and the reason that specific item was chosen.
+\item Notes remain concise, plain-language, and unique to each individual entry.
+\item Stage-6.B timing is treated as authoritative, and conflicting phase language from other 7.15 source material is reconciled rather than adopted.
+\item Cross-category duplication is avoided by keeping extreme weather layering in 7.14, specialized foot-care doctrine in 7.11, protective gear in 7.19, and hygiene in 7.20.
+\item The required post-chart timing table is included and matches the chart timing.
+\end{itemize}
+
+\end{document}

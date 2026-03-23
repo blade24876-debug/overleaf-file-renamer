@@ -1,0 +1,629 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 8.C — Standards / Gear / Resources / Overviews Crosswalk}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 8.C — Standards / Gear / Resources / Overviews Crosswalk}
+
+\subsection*{8.C.1 Category Group / Stage 7 Overview Mapping — Required, First}
+\phantomsection
+\addcontentsline{toc}{subsection}{8.C.1 Category Group / Stage 7 Overview Mapping — Required, First}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,3.20]
+    Q[l,wd=1.55in]
+    X[l,4.25]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Category Group Name — locked 14} &
+\Hdr{Mapped Stage 7 Overview \textbf{ID}(s)} &
+\Hdr{Notes} \\
+Strength Equipment &
+7.01 &
+— \\
+Conditioning \& Endurance Tools &
+7.08; 7.17 &
+7.17 is aquatics-specific but no dedicated “Aquatics” group exists in the locked 15; best-fit mapped here. Log as an \textbf{ISS-08} issue if a dedicated aquatics group is required. \\
+Load-Bearing \& Rucking Gear &
+7.07 &
+— \\
+Footwear \& Footcare &
+7.11 &
+— \\
+Recovery \& Mobility Implements &
+7.12 &
+— \\
+Health Monitoring \& Biometrics &
+7.09 &
+— \\
+Logistics, Maintenance, \& Storage &
+7.10; 7.18; 7.20 &
+7.18 is testing/timing/course-setup and 7.20 is hygiene; no dedicated group exists for either; best-fit mapped to sustainment/logistics. Log as an \textbf{ISS-08} issue if dedicated testing or hygiene grouping is required. \\
+Cold, Warm, and General Apparel &
+7.14; 7.15; 7.19 &
+7.19 includes protective/visibility equipment; apparel-adjacent best-fit mapping. Log as an \textbf{ISS-08} issue if protective/visibility items must be separated from apparel. \\
+Journaling, Planning, and Mental Conditioning &
+7.16 &
+— \\
+Foundational Supplements &
+7.03 &
+— \\
+Recovery \& Sleep Aids &
+7.06 &
+— \\
+Cognitive \& Energy Enhancers &
+7.05 &
+— \\
+Additional Supplements &
+7.04 &
+— \\
+Hormone Support \& Adaptogens — education only; physician-led if ever used; never required &
+7.02 &
+— \\
+\end{longtblr}
+
+\endgroup
+
+\begin{landscape}
+
+\subsection*{8.C.2 Standards / Resources Crosswalk Table — Required}
+\phantomsection
+\addcontentsline{toc}{subsection}{8.C.2 Standards / Resources Crosswalk Table — Required}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=.65in]
+    X[l,3.15]
+    Q[l,wd=1.55in]
+    Q[l,wd=.5in]
+    Q[l,wd=.6in]
+    X[l,2.70]
+    X[l,3.35]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Standard \textbf{ID}} &
+\Hdr{Key Equipment} &
+\Hdr{Category Group} &
+\Hdr{Tier} &
+\Hdr{Phase} &
+\Hdr{Overview(s)} &
+\Hdr{Notes / Risk} \\
+\textbf{ST-BW-WKAVG} &
+7.18 — scale + logging timestamps \newline 7.09 — biometric tool consistency \newline 7.16 — log system &
+Health Monitoring \& Biometrics &
+T1 (E) &
+Phase 00 (E) &
+7.09 — Health Monitoring, Diagnostics, and Biometrics; 7.18 — Testing, Timing, Measurement, and Course-Setup Tools; 7.16 — Operational Self-Management Systems &
+If scale identity/time-of-day conditions drift, trend comparability degrades; missing logs → \textbf{MISSING}/\textbf{UNKNOWN} and trend loses decision value. \\
+\textbf{ST-BF-PCT} &
+7.09 — method/device recorded; 7.16 — logging; 7.18 — tool identity discipline &
+Health Monitoring \& Biometrics &
+T1 (End) &
+Phase 06 (End) &
+7.09 — Health Monitoring, Diagnostics, and Biometrics; 7.16 — Operational Self-Management Systems; 7.18 — Testing, Timing, Measurement, and Course-Setup Tools &
+Stage 6 sets 7.09 to T0 until Phase 06 (End); any upstream demand earlier is a timing conflict. Log as \textbf{ISS-08-006} if used earlier than Phase 06. \\
+\textbf{ST-CIRC-NECK} &
+7.18 — tape; 7.09 — biometric routine; 7.16 — log system &
+Health Monitoring \& Biometrics &
+T1 (E) &
+Phase 00 (E) &
+7.09; 7.18; 7.16 &
+Landmark drift risk; missing data reduces trend credibility. \\
+\textbf{ST-CIRC-CHEST} &
+7.18 — tape; 7.09; 7.16 &
+Health Monitoring \& Biometrics &
+T1 (E) &
+Phase 00 (E) &
+7.09; 7.18; 7.16 &
+Same-site rule is required for comparability; otherwise trend becomes non-comparable. \\
+\textbf{ST-CIRC-BICEP} &
+7.18 — tape; 7.16 log system &
+Health Monitoring \& Biometrics &
+T1 (E) &
+Phase 00 (E) &
+7.09; 7.18; 7.16 &
+Supporting metric only; avoid interpreting as performance standard. \\
+\textbf{ST-CIRC-FOREARM} &
+7.18 — tape; 7.16 log system &
+Health Monitoring \& Biometrics &
+T1 (E) &
+Phase 00 (E) &
+7.09; 7.18; 7.16 &
+Same as above; high risk of landmark drift without stable routine. \\
+\textbf{ST-CIRC-WAIST} &
+7.18 — tape; 7.16 log system &
+Health Monitoring \& Biometrics &
+T1 (E) &
+Phase 00 (E) &
+7.09; 7.18; 7.16 &
+High leverage for directional evidence; still requires strict landmark consistency. \\
+\textbf{ST-CIRC-THIGH} &
+7.18 — tape; 7.16 log system &
+Health Monitoring \& Biometrics &
+T1 (E) &
+Phase 00 (E) &
+7.09; 7.18; 7.16 &
+Supporting metric only; do not let drift become “false regression.” \\
+\textbf{ST-CIRC-CALF} &
+7.18 — tape; 7.16 log system &
+Health Monitoring \& Biometrics &
+T1 (E) &
+Phase 00 (E) &
+7.09; 7.18; 7.16 &
+Supporting metric; sensitive to measurement posture changes. \\
+\textbf{ST-PU-2MIN} &
+7.18 — timer + evidence ref posture; 7.16 — test log + evidence refs &
+Logistics, Maintenance, \& Storage &
+T1 (E) &
+Phase 01 (End) &
+7.18; 7.16 &
+\textbf{CAL} tests require artifact evidence for \textbf{VALID} gate use (Stage 2 posture). Missing evidence ref → validity risk. Requires Stage 8 review if artifact capture posture is not operationalized. \\
+\textbf{ST-SITUP-2MIN} &
+7.18 — timer + evidence ref posture; 7.16 — test log &
+Logistics, Maintenance, \& Storage &
+T1 (E) &
+Phase 01 (End) &
+7.18; 7.16 &
+Same artifact dependence as push-ups; missing evidence refs reduces gate admissibility. \\
+\textbf{ST-PULLUP-MAX} &
+7.01 — safe anchored pull-up solution; 7.18 — evidence ref posture; 7.16 — logs &
+Strength Equipment &
+T2 (End) &
+Phase 06 (End) &
+7.01 — Strength and Resistance Training Equipment; 7.18; 7.16 &
+Stage 7.01 places safe pull-up solution at Tier 2; if pull-ups are gate-relevant before Phase 06 (End), equipment/timing conflict exists. Requires Stage 8 review. \\
+\textbf{ST-PLANK-FOREARM} &
+7.18 — timer + evidence ref posture; 7.12 — mat as stable surface; 7.16 logs &
+Recovery \& Mobility Implements &
+T1 (E) &
+Phase 00 (E) &
+7.12 — Recovery, Mobility, and Tissue-Care Implements; 7.18; 7.16 &
+Evidence capture posture may be required for \textbf{CAL} gate use; missing evidence ref is a validity risk. \\
+\textbf{ST-RUN-15MI} &
+7.08 — conditioning tools/route feasibility; 7.18 — Route \textbf{ID} + timing; 7.11 — footwear interface &
+Conditioning \& Endurance Tools &
+T1 (End) &
+Phase 01 (End) &
+7.08 — Conditioning, Endurance, and Aerobic Training Tools; 7.18; 7.11 — Footwear Systems and Foot Care &
+If winter conditions prevent safe route execution and no indoor fallback exists, test must reslot; do not force. \\
+\textbf{ST-RUN-2MI} &
+7.08; 7.18 — Route \textbf{ID} or \textbf{TM} \textbf{ID} + settings; 7.11 footwear &
+Conditioning \& Endurance Tools &
+T1 (End) &
+Phase 01 (End) &
+7.08; 7.18; 7.11 &
+Validity requires Route/Machine \textbf{ID} and settings when treadmill used; missing fields → inadmissible. \\
+\textbf{ST-RUN-3MI} &
+7.08; 7.18; 7.11 &
+Conditioning \& Endurance Tools &
+T1 (End) &
+Phase 05 (End) &
+7.08; 7.18; 7.11 &
+Longer distance increases environment hazard sensitivity; reslot discipline dominates. \\
+\textbf{ST-RUN-5MI} &
+7.08; 7.18 — route measurement method + timing; 7.11; 7.14 environment apparel &
+Conditioning \& Endurance Tools &
+T2 (End) &
+Phase 06 (End) &
+7.08; 7.18; 7.11; 7.14 — Environmental Apparel &
+Stage 6 elevates 7.08 to T2 by Phase 06 (End); if 5-mi becomes gate-critical earlier, timing conflict. Requires Stage 8 review. \\
+\textbf{ST-RUCK-3MI-25LB} &
+7.07 — ruck system + load module; 7.11 — sock system + footwear; 7.18 — Route \textbf{ID} + load verification; 7.19 visibility when needed &
+Load-Bearing \& Rucking Gear &
+T1 (End) &
+Phase 03 (End) &
+7.07 — Load-Bearing, Rucking, and Carry Systems; 7.11; 7.18; 7.19 — Protective and Assistive Equipment &
+Dry load recorded; carried water logged separately. If load shifts or footwear not stabilized, evidence becomes unsafe/inadmissible. \\
+\textbf{ST-RUCK-6MI-35LB} &
+7.07; 7.11; 7.18; 7.14 (cold/wet continuity); 7.19 (visibility) &
+Load-Bearing \& Rucking Gear &
+T2 (End) &
+Phase 06 (End) &
+7.07; 7.11; 7.18; 7.14; 7.19 &
+Stage 6 elevates 7.07 and 7.11 to T2 by Phase 06 (End). If 6-mi gate demanded earlier, timing conflict. Requires Stage 8 review. \\
+\textbf{ST-RUCK-9MI-45LB} &
+7.07; 7.11; 7.18; 7.14; 7.19 &
+Load-Bearing \& Rucking Gear &
+T2 (End) &
+Phase 08 (End) &
+7.07; 7.11; 7.18; 7.14; 7.19 &
+High environment dependency: ice/visibility hazards can force reslot; do not force outdoor exposure. \\
+\textbf{ST-RUCK-12MI-55LB} &
+7.07; 7.11; 7.18; 7.14; 7.19; 7.13 hydration logistics &
+Load-Bearing \& Rucking Gear &
+T3 (End) &
+Phase 12 (End) &
+7.07; 7.11; 7.18; 7.14; 7.19; 7.13 — Nutrition Preparation and Hydration Systems &
+Stage 6 elevates 7.07 and 7.11 to T3 by Phase 12 (End). If 12-mi is demanded before that, mismatch. Requires Stage 8 review. \\
+\textbf{ST-SWIM-500YD} &
+7.17 — pool kit; 7.18 — Pool \textbf{ID} + length unit; 7.20 hygiene workflow support; 7.10 staging &
+Conditioning \& Endurance Tools &
+T1 (End) &
+Phase 04 (End) &
+7.17 — Aquatic Training and Water Safety Equipment; 7.18; 7.20 — Personal Hygiene, Health, and Sanitation Items; 7.10 &
+Missing Pool \textbf{ID}/conditions → inadmissible. Pool access feasibility is a gating dependency once swim becomes gate-relevant. \\
+\textbf{ST-SWIM-500M} &
+7.17; 7.18 (Pool \textbf{ID} + unit); 7.20; 7.10 &
+Conditioning \& Endurance Tools &
+T1 (End) &
+Phase 04 (End) &
+7.17; 7.18; 7.20; 7.10 &
+Unit drift risk (yd vs m). Pool length unit must be logged. \\
+\textbf{ST-WATER-CONF-EXP} &
+7.17; 7.18 Pool \textbf{ID}; 7.16 logs &
+Conditioning \& Endurance Tools &
+T1 (End) &
+Phase 04 (End) &
+7.17; 7.18; 7.16 &
+Compliance marker only; still requires pool identity and conditions notes when logged as evidence. \\
+\textbf{ST-UW-ADMISS} &
+7.17 — controlled pool environment; 7.18 Pool \textbf{ID} + conditions; governance resources (lifeguard + dedicated safety spotter) &
+Conditioning \& Endurance Tools &
+T2 (End) &
+Phase 10 (Mid) &
+7.17; 7.18 &
+Governance dependency is not equipment-only. If lifeguard/spotter cannot be guaranteed, underwater is “not scheduled; inadmissible.” Timing risk is high. Requires Stage 8 review when scheduled. \\
+\textbf{ST-UW-25M} &
+7.17; 7.18; governance resources (lifeguard + dedicated spotter) &
+Conditioning \& Endurance Tools &
+T2 (End) &
+Phase 10 (Mid) &
+7.17; 7.18 &
+Same as above; high consequence; any attempt without governance is a safety violation. Requires Stage 8 review if scheduled without explicit governance guarantee. \\
+\textbf{ST-STR-HINGE-3-5RM} &
+7.01 — strength implement availability; 7.18 — load measurement + logging; 7.16 — logs &
+Strength Equipment &
+T1 (E) &
+Phase 02 (Mid) &
+7.01; 7.18; 7.16 &
+Phase 02 allows T1 strength capability by entry; if phase cards require barbell/rack specifically, but barbell/rack is Tier 2/3 in 7.01, mismatch risk. Requires Stage 8 review if barbell/rack mandated earlier. \\
+\textbf{ST-STR-SQUAT-3-5RM} &
+7.01; 7.18; 7.16 &
+Strength Equipment &
+T1 (E) &
+Phase 02 (Mid) &
+7.01; 7.18; 7.16 &
+Same implement identity risk; substitution must be logged; do not treat different implement classes as identical evidence without disclosure. \\
+\textbf{ST-STR-UPPER-PUSH-3-5RM} &
+7.01; 7.18; 7.16 &
+Strength Equipment &
+T1 (E) &
+Phase 02 (Mid) &
+7.01; 7.18; 7.16 &
+Shoulder tolerance interacts with durability controls; equipment stability matters for comparability. \\
+\textbf{ST-STR-UPPER-PULL-3-5RM} &
+7.01; 7.18; 7.16 &
+Strength Equipment &
+T1 (E) &
+Phase 02 (Mid) &
+7.01; 7.18; 7.16 &
+Pull pattern options may be constrained by home setup; substitutions must remain safe and documented. \\
+\textbf{ST-STR-CARRY-CAP} &
+7.01 — carry implement capability; 7.11 foot interface; 7.18 measurement/log; 7.19 hand protection &
+Strength Equipment &
+T1 (End) &
+Phase 03 (End) &
+7.01; 7.11; 7.18; 7.19 &
+If carries are performed, hand protection and foot protection are operational controls; gait-altering pain disqualifies escalation. \\
+\textbf{ST-AER-ROW-TT} &
+7.08 — machine access; 7.18 Machine \textbf{ID} + settings; 7.16 logs &
+Conditioning \& Endurance Tools &
+T1 (End) &
+Phase 01 (End) &
+7.08; 7.18; 7.16 &
+\textbf{AER} evidence is not interchangeable with \textbf{RUN} tolerance evidence; machine \textbf{ID}/settings logging required for comparability. \\
+\textbf{ST-AER-BIKE-TT} &
+7.08; 7.18; 7.16 &
+Conditioning \& Endurance Tools &
+T1 (End) &
+Phase 01 (End) &
+7.08; 7.18; 7.16 &
+Low-impact substitution tool; do not treat as \textbf{RUN} equivalence. \\
+\textbf{ST-AER-ELLIP-TT} &
+7.08; 7.18; 7.16 &
+Conditioning \& Endurance Tools &
+T1 (End) &
+Phase 01 (End) &
+7.08; 7.18; 7.16 &
+Same; machine identity drift makes trends non-comparable. \\
+\textbf{ST-PAIN-0-10} &
+7.16 — logging system; 7.12 — recovery tools support; 7.11 foot interface &
+Journaling, Planning, and Mental Conditioning &
+T1 (E) &
+Phase 00 (E) &
+7.16; 7.12; 7.11 &
+If pain logs are missing, risk-control decisions are blind. Persistent/worsening pain requires evaluation posture. \\
+\textbf{ST-GAIT-PAIN-FLAG} &
+7.16; 7.11; 7.07 (when ruck exists) &
+Footwear \& Footcare &
+T1 (E) &
+Phase 00 (E) &
+7.11; 7.16; 7.07 &
+Gate-disqualifier signal: if “Yes,” \textbf{RUN}/\textbf{RUCK} escalation is blocked; requires honest logging. \\
+\textbf{ST-FOOT-HOTSPOT-FLAG} &
+7.11 — sock system + footcare; 7.16 logs; 7.20 hygiene consumables; 7.07 ruck interface &
+Footwear \& Footcare &
+T1 (E) &
+Phase 00 (E) &
+7.11; 7.16; 7.20; 7.07 &
+If hotspot trends are not logged/acted on, blisters will drive gait drift and invalidate evidence. \\
+\textbf{ST-SLEEP-HRS} &
+7.16 — daily log fields; optional 7.09 wearable (not required until Phase 06); 7.06 aids optional &
+Journaling, Planning, and Mental Conditioning &
+T1 (E) &
+Phase 00 (E) &
+7.16; 7.09; 7.06 &
+If Stage 5 phase intent assumes biometrics earlier than Stage 6 provides (7.09 T0 until Phase 06), timing mismatch risk. Log as \textbf{ISS-08-006} if early biometrics are required. \\
+\textbf{ST-SLEEP-QUAL-0-10} &
+7.16; optional 7.09 wearable &
+Journaling, Planning, and Mental Conditioning &
+T1 (E) &
+Phase 00 (E) &
+7.16; 7.09 &
+Subjective but standardized; missing logs reduce recovery management and gate confidence. \\
+\textbf{ST-SORENESS-0-10} &
+7.16; 7.12 support tools &
+Recovery \& Mobility Implements &
+T1 (E) &
+Phase 00 (E) &
+7.16; 7.12 &
+Downshift signal; overuse risk if ignored. \\
+\textbf{ST-FATIGUE-0-10} &
+7.16; optional 7.09 &
+Journaling, Planning, and Mental Conditioning &
+T1 (E) &
+Phase 00 (E) &
+7.16; 7.09 &
+Missing logs create blind spots for reslot discipline and protected-window readiness. \\
+\textbf{ST-RPE-0-10} &
+7.16 — session log; 7.18 timer to anchor Cardio duration &
+Journaling, Planning, and Mental Conditioning &
+T1 (E) &
+Phase 00 (E) &
+7.16; 7.18 &
+If RPE is not recorded same-day, dose control becomes retrospective and unreliable. \\
+\textbf{ST-STEPS} &
+7.09 — monitoring posture; 7.16 — daily log; 7.18 optional measurement discipline cross-ref &
+Health Monitoring \& Biometrics &
+T0 (E) &
+Phase 00 (E) &
+7.09; 7.16 &
+Stage 0 requires 10,000 steps/day; missing step logs create compliance ambiguity. Tracking method must be stable and logged. \\
+\textbf{ST-VALID-SESSION} &
+7.16 — system-of-record; 7.10 staging supports; 7.18 tools to capture time fields &
+Journaling, Planning, and Mental Conditioning &
+T1 (E) &
+Phase 00 (E) &
+7.16; 7.10; 7.18 &
+Missing required fields makes session inadmissible; high execution burden is an overload risk. \\
+\textbf{ST-CARDIO-MIN-MET} &
+7.18 — timer with lap; 7.08 — feasibility tool/route; 7.16 — logs &
+Conditioning \& Endurance Tools &
+T0 (E) &
+Phase 00 (E) &
+7.18; 7.08; 7.16 &
+Cardio minimum is required from Phase 00; can be met with Tier 0 route feasibility, but unsafe weather may force indoor substitution earlier than Tier 1 timing. Risk: winter feasibility can cause compliance friction. Log as \textbf{ISS-08-008} if the Phase 00 execution environment cannot support safe continuity. \\
+\textbf{ST-WK-ADMISS-PCT} &
+7.16 — weekly audit/rollup; 7.10 staging supports; 7.18 timestamps &
+Journaling, Planning, and Mental Conditioning &
+T1 (E) &
+Phase 00 (End) &
+7.16; 7.10; 7.18 &
+Computed compliance is required for gate eligibility; if logs are incomplete, default \textbf{HOLD} and reslot posture applies. \\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+\subsection*{8.C.3 Late/Absent Resource Flags — Required}
+\phantomsection
+\addcontentsline{toc}{subsection}{8.C.3 Late/Absent Resource Flags — Required}
+
+\begin{itemize}
+\item \textbf{ST-PULLUP-MAX} — safe anchored pull-up solution is Tier 2 in 7.01 with Phase 06 (End) tie-in; pull-up standard may become gate-relevant earlier — Phase 03 (End) impacted — \textbf{ISS-08-001}
+\item \textbf{ST-UW-25M} — governance resources (certified lifeguard + dedicated safety spotter + controlled pool) may be unavailable even when 7.17 is Tier 2; underwater becomes unschedulable — Phase 10 (Mid) impacted — \textbf{ISS-08-002}
+\item \textbf{ST-UW-ADMISS} — admissibility flag risks being treated as assumed “yes” without documented governance prerequisites and Pool \textbf{ID}/conditions; evidence becomes inadmissible — Phase 10 (Mid) impacted — \textbf{ISS-08-003}
+\item \textbf{ST-RUCK-12MI-55LB} — compounded dependency stack (7.07 + 7.11 + 7.18 + 7.14 + 7.19 + 7.13) makes late-phase gate fragile; any missing element forces reslot — Phase 13 (End) impacted — \textbf{ISS-08-004}
+\item \textbf{ST-SWIM-500M} — Pool \textbf{ID} + pool length-unit logging is mandatory; pool access instability or unit drift makes evidence inadmissible — Phase 04 (End) impacted — \textbf{ISS-08-005}
+\item \textbf{ST-BF-PCT} — Stage 6 holds 7.09 at T0 until Phase 06 (End); any earlier phase “biometrics required” posture conflicts with timing and would be non-deployable — Phase 02 (Mid) impacted — \textbf{ISS-08-006}
+\end{itemize}
+
+\end{document}

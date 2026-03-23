@@ -1,0 +1,542 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 1.A — Project Charter}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 1.A — Project Charter}
+
+\subsection*{1.A.1 — Program Identity}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.A.1 — Program Identity}
+
+Program Name: SOF Physical Development Transformation Program
+
+Program Version: v1.0 baseline
+
+Pipeline Definition: 182 weeks; Phase 00–Phase 13
+
+Intended Use:
+
+\begin{itemize}
+\item This program is a civilian-to-selection readiness physical development system executed under coach-led governance.
+\item This program is executed with audit-ready documentation and decision-grade evidence requirements.
+\item This program provides no guarantee of selection outcomes, employment outcomes, or any specific operational assignment outcomes.
+\item This program is not affiliated with, endorsed by, or representative of any U.S. Government entity, unit, or selection pipeline.
+\end{itemize}
+
+\subsection*{1.A.2 Mission Statement Operational}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.A.2 Mission Statement Operational}
+
+This program exists to transform an obese, untrained civilian start-state into a selection-ready capability envelope over an 182-week pipeline executed in Phases 00–13. The program’s standards posture is to meet or exceed the hardest physical baseline expectations observed across U.S. Special Operations Forces, with preparation intent oriented toward an eventual attempt at selection for United States Army Special Operations Detachment - Delta as high-level context only. Execution is governed by safety boundaries, validity discipline, and auditability requirements, and \textbf{MUST} NOT be driven by motivation spikes, convenience-driven shortcuts, or single-day performance outputs.
+
+\subsection*{1.A.3 Candidate Start-State Binding Inputs}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.A.3 Candidate Start-State Binding Inputs}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    X[l,1.25]
+    X[l,3.75]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Field} & \Hdr{Value} \\
+Age and Sex & Male, age 35 \\
+Height & 5'9" \\
+Bodyweight & 266 lb \\
+Estimated Body Fat & Approximately 40 percent \\
+Training Status & Sedentary, obese, untrained; no fitness knowledge or experience \\
+Resource Posture: start-from-zero & Clothing, footwear, kit, and home equipment start effectively at zero; recently recovered from homelessness; minimal possessions baseline \\
+Budget and Space Constraints & Budget constrained and storage constrained; space limited to apartment reality; treated as operating constraints, not preferences \\
+Location and environment constraints & Grand Forks, North Dakota; winter cold, ice, wind, and low dayligh \\
+Facility access posture & Inside apartment and outdoor parks/trails available; gym use permitted when needed but not assumed stable or required \\
+Medical clearance required prior & Clearance is clinician-led and defines restrictions and limitations communicated to Coach Lead \\
+\end{longtblr}
+
+\endgroup
+
+\subsection*{1.A.4 End-State Targets: Selection-Ready Envelope}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.A.4 End-State Targets: Selection-Ready Envelope}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    X[c,1.00]
+    X[c,1.35]
+    X[c,0.75]
+    X[l,3.65]
+  },
+  hlines,
+  vlines,
+   cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-4} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Domain} & \Hdr{Metric} & \Hdr{Target} & \Hdr{Notes} \\
+Body composition & Bodyweight & \(\sim 180\) lb & Target center-point used for envelope framing; completion is based on averaged measurements. \\
+Body composition & Body fat & 12--17.5\% & Treated as an average based on measurements. \\
+Calisthenics & Push-ups & 100+ & 2-minute timed strict under proper military standard. \\
+Calisthenics & Sit-ups & 100+ & 2-minute timed strict under proper military standard. \\
+Calisthenics & Pull-ups & 20+ & Dead-hang, full range of motion, no kipping \\
+Calisthenics & Plank & 3:45+ & Forearm plank; termination on form failure \\
+Running & 1.5-mile run time & \(\leq\) 9:00 & Repeatability required; environment recorded at high level for comparability \\
+Running & 2-mile run time & \(\leq\) 12:30 & Repeatability required; environment recorded at high level for comparability \\
+Running & 3-mile run time & \(\leq\) 20:00 & Repeatability required; environment recorded at high level for comparability \\
+Running & 5-mile run time & \(\leq\) 35:00 & Repeatability required; durability signals must remain acceptable \\
+Rucking & 3-mile ruck time with 25 lb & \(\leq\) 45:00 & Load and route conditions recorded \\
+Rucking & 6-mile ruck time with 35 lb & \(\leq\) 1:30:00 & Load and route conditions recorded \\
+Rucking & 9-mile ruck time with 45 lb & \(\leq\) 2:15:00 & Load and route conditions recorded \\
+Rucking & 12-mile ruck time with 55 lb & \(\leq\) 3:00:00 & Load and route conditions recorded \\
+Swimming & 500-yard swim time & \(\leq\) 10:30 & No fins; allowable strokes: Combat Side Stroke, breast stroke, sidestroke; conditions recorded \\
+Swimming & 500-meter swim time & \(\leq\) 10:00 & No fins; allowable strokes: Combat Side Stroke, breast stroke, sidestroke; conditions recorded\\
+Swimming & Underwater swim & \(\geq\) 25 m & Governed exposure only; never unsupervised. \\
+\end{longtblr}
+
+\endgroup
+
+\subsection*{1.A.5 Scope Boundaries In and Out}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.A.5 Scope Boundaries: In and Out}
+
+\subsubsection*{In-Scope}
+\phantomsection
+
+\begin{itemize}
+\item Strength and resistance training as a required domain, with execution constrained by safety, validity, and resource posture; exercise prescriptions are not defined in this charter.
+\item General conditioning and cardiovascular endurance as a primary emphasis across the full continuum, expressed through a protected Cardio minimum embedded in the session architecture.
+\item Calisthenics capacity development aligned to strict execution standards and repeatability posture.
+\item Rucking readiness and load carriage capacity as a governed domain with explicit entry criteria, progression ceilings, and regression pathways defined later.
+\item Aquatic readiness under explicit governance only, including surface swimming capability development without assuming pool access at program start and without permitting unsupervised underwater or breath-hold exposure at any time.
+\item Durability and injury-risk containment systems as required governance controls, including pain and mechanics rules, stop rules, conservative substitutions, and trend-based escalation posture.
+\item Body composition transformation as a primary outcome domain, treated as a readiness driver and risk reducer.
+\item Adherence systems, auditability, logging discipline, and validity tagging as mandatory governance infrastructure.
+\item Equipment scaling and substitution capability planning at governance level only, ensuring the program remains executable under start-from-zero constraints without embedding shopping lists.
+\end{itemize}
+
+\subsubsection*{Out-of-Scope}
+\phantomsection
+
+\begin{itemize}
+\item Medical diagnosis or treatment of any condition.
+\item Individualized medical advice, clinical decision-making, or therapeutic programming.
+\item Prescription drug instruction of any kind, including dosing, tapering, sourcing, usage instructions, optimization, or interaction guidance.
+\item Hormone dosing, sourcing, cycling, or procurement, including anabolic agents, SARMs, peptides, research chemicals, and prohormones.
+\item Illegal procurement guidance of any kind for substances, equipment, services, or documentation manipulation.
+\item Unsupervised underwater or breath-hold exposure of any kind, explicitly prohibited.
+\item Ad hoc unlogged modifications to doctrine, phases, gates, evidence rules, or safety boundaries.
+\item Guarantees of selection outcomes or performance outcomes.
+\end{itemize}
+
+Charter disclaimers:
+
+\begin{itemize}
+\item Not medical advice.
+\item No guarantee of outcomes.
+\item No affiliation or representation of any U.S. Government entity.
+\end{itemize}
+
+\subsection*{1.A.6 Non-Negotiable Operating Constraints}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.A.6 Non-Negotiable Operating Constraints}
+
+\begin{enumerate}
+\item Weekly cadence: 6 sessions per week across the pipeline, executed without implied two-a-day sessions and without make-up doubling behavior.
+
+\item Mandatory session structure includes all required elements under Stage 0 constraints, including Cardio and recovery logging.
+
+\begin{itemize}
+\item Each session includes Safety self-check, Warm-up, Mobility, Main Work, Cardio, Cooldown, Recovery Notes, Post-session note.
+\item Cardio minimum is at least 30 minutes per session and \textbf{MUST} be recorded with modality and duration.
+\item Daily step baseline is 10,000 steps per day; steps are baseline activity, logged daily, and are not a session and do not satisfy session requirements.
+\end{itemize}
+
+\item Periodization direction across phases: intensity up; total volume down; specificity up, executed through controlled progression and phased governance.
+
+\item Deloads and mid-phase and end-of-phase checkpoints are mandatory as an assessment posture; protocols and calendars are defined later and must preserve validity and safety posture.
+
+\item Safety overrides schedule and performance in all contexts, including training sessions and test events; when safety is uncertain, default conservative.
+
+\item Validity discipline anchor:
+
+\begin{itemize}
+\item Gate decisions require admissible evidence.
+\item \textbf{INVALID} evidence cannot justify progression.
+\item Full doctrine is defined in Stage 1.F and governs tag meanings, admissibility conditions, and gate evidence restrictions.
+\end{itemize}
+\end{enumerate}
+
+\subsection*{1.A.7 Safety, Legal, and Medical Boundaries: Charter Level}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.A.7 Safety, Legal, and Medical Boundaries: Charter Level}
+
+\begin{itemize}
+\item OTC-only posture for program guidance.
+\item No prescription guidance, no dosing guidance, no tapering guidance, no sourcing guidance, no optimization guidance.
+\item No hormone dosing, sourcing, cycling, or procurement of any kind.
+\item Water safety governance:
+
+\begin{itemize}
+\item no unsupervised underwater or breath-hold ever,
+\item aquatic exposures are governed and supervised when permitted later; absence of qualified supervision prohibits underwater or breath-hold exposure.
+\end{itemize}
+
+\item Stop rules posture:
+
+\begin{itemize}
+\item applies to sessions and tests,
+\item escalation and clinician clearance required when indicated.
+\end{itemize}
+
+\item Boundary statement:
+
+\begin{itemize}
+\item the program does not diagnose or treat conditions,
+\item the coach does not practice medicine,
+\item medical decisions remain clinician-led and documented as restrictions and limitations that become binding constraints.
+\end{itemize}
+\end{itemize}
+
+\subsection*{1.A.8 Governance Model Roles and Responsibilities}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.A.8 Governance Model Roles and Responsibilities}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.95in]
+    X[l,3.35]
+    X[l,3.05]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, valign=m},
+}
+\Hdr{Role} & \Hdr{Responsibilities} & \Hdr{Decision Authority} \\
+Coach Lead & Owns governance doctrine enforcement; protects Stage 0 constraints; enforces session validity discipline; executes gate decision process; approves and documents substitutions within authorized levers; initiates and approves patches; enforces stop rules and escalation posture when triggers occur; ensures no prohibited domains appear in execution & Final authority for training execution decisions and gate outcomes within the safety and medical restriction envelope; authority to stop any exposure for safety or validity reasons; authority to approve or deny patch requests \\
+Trainee & Executes sessions as prescribed; completes all required session elements; logs the minimum dataset same day; reports red-flag triggers immediately; applies self-abort authority without delay; follows conservative substitution instructions; purchases required items or services from legal sources only per Coach Lead specifications; does not edit doctrine & Authority to self-abort any exposure unconditionally; authority to request changes; no authority to alter doctrine, validity rules, or gates \\
+Medical & Provides medical clearance before any training begins; provides restrictions, limitations, contraindications, and monitoring boundaries in usable terms; provides return-to-training clearance when indicated; receives escalations for red-flag triggers; updates restrictions through clinician documentation & Final authority over medical clearance and restriction boundaries; authority to place the Trainee on Medical Hold and define return constraints \\
+Equipment Lead & Ensures equipment gating compatibility so programming does not assume unowned gear; protects minimum infrastructure dependencies such as footwear interface, timing tools, hydration container, and environment safety aids as applicable; ensures procurement posture stays legal and within budget and storage constraints; maintains inventory log and acquisition events & Authority to recommend procurement timing and to block gear-dependent exposures when minimum infrastructure is unmet; may be the same individual as Coach Lead in 1:1 settings but remains a distinct owner category in documentation \\
+\end{longtblr}
+
+\endgroup
+
+\subsection*{1.A.9 Program Success Definition Evidence Posture}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.A.9 Program Success Definition: Evidence Posture}
+
+Program success is defined as governance-grade, repeatable performance outcomes supported by admissible evidence and sustained execution capability, not as isolated peak performances or informal claims.
+
+Success criteria posture:
+
+\begin{itemize}
+\item Repeatable performance under \textbf{VALID} conditions is required for readiness claims and advancement decisions.
+\item Stable training capability under constraints is required, including the ability to sustain 6 sessions per week with complete session structure and complete logs.
+\item Trend over spikes principle applies: multi-week trends and repeatability outweigh single-day best efforts.
+\item Invalid sessions and invalid tests do not justify progression and cannot be used to claim readiness.
+\end{itemize}
+
+Minimum replication requirement:
+
+\begin{itemize}
+\item Targets must be met on at least two separate \textbf{VALID} test administrations on different days across weeks.
+\item No single-day proof is sufficient for end-state readiness claims or program completion claims.
+\end{itemize}
+
+\subsection*{1.A.10 Acceptance Criteria Charter-Level Definition of Done}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.A.10 Acceptance Criteria: Charter-Level Definition of Done}
+
+Completion checklist:
+
+\begin{itemize}
+\item End-state targets are met under admissible, \textbf{VALID}, controlled conditions consistent with the program’s evidence posture.
+\item Minimum replication requirement is met: two separate \textbf{VALID} administrations on different days across weeks for the end-state targets.
+\item No unresolved gait-altering pain exists at completion and no unmanaged red-flag triggers are active.
+\item Evidence and log completeness is sufficient for internal audit review:
+
+\begin{itemize}
+\item dated records exist,
+\item minimum dataset fields are present,
+\item environment context is recorded at a high level when relevant to comparability,
+\item substitutions are documented and do not contaminate admissibility.
+\end{itemize}
+
+\item Compliance with all boundaries is maintained across the completion window, including water governance and procurement boundaries.
+\item Coach Lead sign-off and Trainee acknowledgment are recorded as closeout posture.
+\end{itemize}
+
+\subsection*{1.A.11 Conflict-Resolution Hierarchy}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.A.11 Conflict-Resolution Hierarchy}
+
+Priority order, controlling:
+
+\begin{itemize}
+\item Stage 0 overrides all downstream content.
+\item Safety boundaries override schedule and performance goals.
+\item Governance rules override programming preferences.
+\item Validity rules override intent; good effort is not admissible evidence.
+\item Non-compliant downstream artifacts are Draft — Non-Deployable until corrected and re-versioned.
+\end{itemize}
+
+\subsection*{1.A.12 Change Control and Freeze Windows Charter Level}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.A.12 Change Control and Freeze Windows Charter Level}
+
+Frozen elements in this charter:
+
+\begin{itemize}
+\item Mission and mission constraints, including the selection-ready posture and audit-ready execution requirement.
+\item Non-negotiable operating constraints, including 6 sessions per week, mandatory session structure, Cardio minimum, and steps posture as baseline activity.
+\item Safety, legal, and medical boundaries, including OTC-only posture, prohibition of prescription guidance, prohibition of hormone guidance, and water safety governance.
+\item Evidence posture, including \textbf{VALID}-only gate credit and the minimum replication requirement for end-state claims.
+\item Conflict-resolution hierarchy and the non-deployable rule for contradictions.
+\end{itemize}
+
+Permitted clarifications under change control:
+
+\begin{itemize}
+\item Wording clarity and administrative metadata that do not change meaning, requirements, or enforcement posture.
+\item Clarifications \textbf{MUST} be logged and \textbf{MUST} NOT modify constraints, evidence rules, or boundaries.
+\end{itemize}
+
+No mid-phase changes without a documented patch entry and validation check:
+
+\begin{itemize}
+\item Any substantive change to charter meaning or requirements requires an approved patch record and a validation check confirming no contradiction with Stage 0 constraints and no weakening of safety or validity posture.
+\end{itemize}
+
+Patch naming rule for this deliverable:
+
+\begin{itemize}
+\item Patch IDs \textbf{MUST} be formatted: \textbf{PATCH-1A-001}, \textbf{PATCH-1A-002}, sequential per deliverable.
+\end{itemize}
+
+Minimum patch record fields:
+
+\begin{itemize}
+\item Patch \textbf{ID}
+\item Date
+\item Change description
+\item Rationale
+\item Validation check
+\item Owner
+\end{itemize}
+
+\subsection*{1.A.13 Charter Closeout}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.A.13 Charter Closeout}
+
+\begin{itemize}
+This charter governs the construction of Stage 1.B through Stage 1.F by fixing mission, scope boundaries, non-negotiable constraints, safety posture, evidence posture, roles, decision authority, and controlled change discipline.
+\item Stage 1.B operationalizes owned risk controls;
+\item Stage 1.C converts prerequisites into validated dependencies with fail actions;
+\item Stage 1.D locks build order and internal no-skip gates;
+\item Stage 1.E provides standardized templates and locked schemas;
+\item Stage 1.F formalizes validity tagging, admissibility rules, stop-rule integration, freeze windows, and patch protocol. Initiation of Stage 2 is gated by the existence of a coherent Stage 1 governance layer that does not contradict Stage 0 constants and that is operationally sufficient to classify evidence, enforce stop posture, and prevent uncontrolled midstream drift.
+\end{itemize}
+
+\begin{itemize}
+\item Coach Lead Signature: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  Date: \_\_\_\_\_\_\_\_\_\_\_\_
+\item Trainee Signature: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  Date: \_\_\_\_\_\_\_\_\_\_\_\_
+\end{itemize}
+
+\end{document}

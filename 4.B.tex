@@ -1,0 +1,812 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{landscape}
+
+\section*{Stage 4.B — Phase 00 Timeline and Microcycle Structure}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 4.B — Phase 00 Timeline and Microcycle Structure}
+
+\subsection*{4.B.1 Segment Summary Table}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.B.1 Segment Summary Table}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.85in]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.75in]
+    Q[l,wd=1.05in]
+    X[l,2.85]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Segment} &
+\Hdr{Weeks} &
+\Hdr{Primary Focus} &
+\Hdr{Work:Deload Pattern} &
+\Hdr{Key Adaptation Goals} \\
+
+Segment 1 &
+Weeks 1–4 &
+Habit, standardization, tolerance creation &
+3:1 &
+Establish 6-session execution discipline under full session-element order; stabilize footwear interface and safe surface policy; build continuous low-impact Cardio tolerance without breathless intensity; establish logging discipline with no backfill; prepare lock fields for Week 4 Deload+Test baseline battery under stable conditions. \\
+
+Segment 2 &
+Weeks 5–8 &
+Aerobic minutes build, low-impact consistency &
+3:1 &
+Increase repeatable Cardio exposure by stability (not speed); reduce day-to-day variance in RPE and talk-test cues; maintain foot integrity under higher step throughput; preserve lock fields for chair height and incline height; execute Week 8 Mid Check battery without escalating risk posture. \\
+
+Segment 3 &
+Weeks 9–12 &
+Consolidation, controlled density, repeatability &
+3:1 &
+Prove repeatability of low-risk patterning and Cardio under stable conditions; minimize \textbf{MODIFIED} / \textbf{INVALID} triggers; maintain stable gait under longer step-based Cardio where feasible; execute Week 12 Confirm battery under identical lock fields to Week 4 for comparability confirmation. \\
+
+Segment 4 &
+Weeks 13–16 &
+Consolidation, stability proof, Phase 01 entry posture &
+3:1 &
+Preserve low-variance execution, stable recovery trends, and stable durability posture; enforce no-novelty posture approaching Week 16; execute Week 16 Exit Gate battery under \textbf{VALID} conditions where possible; if compromised, apply \textbf{HOLD} and reslot/extension posture without stacking. \\
+
+\end{longtblr}
+
+\endgroup
+
+\subsection*{4.B.2 Segment Microcycles}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.B.2 Segment Microcycles}
+
+Global microcycle rules that apply to every segment:
+
+\begin{itemize}
+\item Six sessions per week are executed as the fixed cadence. Fatigue is managed by downshift and substitution, not by reducing frequency.
+\item Every session follows the required element order: Safety self-check first → Warm-up → Mobility → Main work → Cardio → Cooldown → Recovery notes and required post-session notes.
+\item Cardio occurs every session and is executed as a continuous block meeting the minimum standard; if continuous duration cannot be maintained safely, downgrade intensity and/or switch to a lower-risk modality to preserve continuity.
+\item Step count integration is embedded inside the Cardio block: step-based Cardio is the default where feasible, and the 10,000 steps/day intent is pursued and logged as baseline activity; do not treat steps as a substitute for Cardio minutes unless explicitly logged as Cardio inside a session.
+\item Cardio-primary vs non-cardio-primary posture:
+\begin{itemize}
+\item Cardio-primary: Cardio is the dominant stressor and remains talk-test governed.
+\item Non-cardio-primary: technique and patterning are dominant; Cardio is completed as a low-cost add-on to meet the minimum standard.
+\end{itemize}
+\item Phase 00 remains submax and low-risk: no breathless intensity chasing, no impact running escalation, no rucking, no swim time trials, no underwater, no maximal strength.
+\item No novelty posture in lead-in to Deload+Test weeks: do not change footwear system, route class/surface class, tool identity, chair height and arms policy, incline height, or scoring standard unless explicitly treated as re-baselining with validity consequences.
+\end{itemize}
+
+\end{landscape}
+
+\begin{landscape}
+
+\subsubsection*{Segment 1 — Weeks 1–4}
+\phantomsection
+
+\begin{samepage}
+Typical Work-Week Microcycle Table for Weeks 1–3\par\vspace{0.25em}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.60in]
+    Q[l,wd=1.55in]
+    Q[l,wd=1.55in]
+    X[l,2.05]
+    X[l,2.85]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Day} &
+\Hdr{Primary Focus} &
+\Hdr{Secondary Focus} &
+\Hdr{Example Session Theme} &
+\Hdr{Notes — Intensity and Duration Caps} \\
+
+Day 1 &
+Execution discipline and stable gait &
+\textbf{DURABILITY} baseline capture &
+Cardio-primary: step-based walking where feasible; stable surface class; Cardio completed as continuous block; technique-first main work patterning &
+Cardio: continuous, minimum standard met; RPE 2–4; talk test full sentences. Steps posture pursued through Cardio intent and daily activity; log steps count. No terrain novelty; stop and substitute if gait changes or hotspots appear. \\
+
+Day 2 &
+Mobility continuity &
+Core bracing baseline &
+Non-cardio-primary: mobility emphasis; bracing/trunk control; Cardio completed as low-cost add-on &
+Cardio: continuous, minimum standard met; RPE 2–3; talk test full sentences. Technique gate: stop before form degradation. Any pain-driven compensation triggers immediate regression and \textbf{MODIFIED} tagging. \\
+
+Day 3 &
+Aerobic tolerance initiation &
+Foot interface governance &
+Cardio-primary: step-based walking emphasis; conservative environment selection; Cardio completed as continuous block &
+Cardio: continuous, minimum standard met; RPE 3–4; talk test full sentences to short sentences. Foot inspection before/after; any hotspot trend triggers next-session downshift. Indoor substitute permitted if surface is unsafe. \\
+
+Day 4 &
+Patterning rehearsal for lock fields &
+Mobility reinforcement &
+Non-cardio-primary: chair and incline setup rehearsal as patterning only; Cardio completed as low-cost add-on &
+Cardio: continuous, minimum standard met; RPE 2–4; talk test full sentences. Record candidate lock fields (chair height, arms policy, incline height) in notes without treating the day as a test. \\
+
+Day 5 &
+Recovery-throughput execution &
+\textbf{RECOVERY} marker stability &
+Cardio-primary: lowest-risk modality; Cardio completed as continuous block; cooldown and recovery notes emphasized &
+Cardio: continuous, minimum standard met; RPE 2–3; talk test full sentences. Preserve low variance; do not “push harder” because it feels easy. Log sleep/soreness/fatigue/pain and steps. \\
+
+Day 6 &
+Consolidation and pre-window stabilization &
+Documentation quality check &
+Non-cardio-primary: technique-first patterning; Cardio completed as low-cost add-on &
+Cardio: continuous, minimum standard met; RPE 2–4; talk test full sentences. Treat as stabilization for Week 4: no footwear/route/tool changes; confirm lock-field feasibility. \\
+
+\end{longtblr}
+
+\endgroup
+\end{samepage}
+
+Day 7 — Non-Session Recovery Movement Logging\par\vspace{0.25em}
+
+\begin{itemize}
+\item Low-intensity recovery intent: maintain movement without creating new fatigue cost or soreness spikes.
+\item Mobility and light movement categories: gentle mobility, easy walking where safe, and downregulation breathing as tolerated.
+\item Required logging and review actions:
+\begin{itemize}
+\item Record sleep hours, sleep quality, soreness 0–10, fatigue 0–10, pain 0–10 with location when present, and foot hotspot status.
+\item Review the prior six sessions for completeness of required elements and documentation.
+\item Confirm Cardio was recorded as a continuous block each session and that steps were logged daily.
+\end{itemize}
+\item Step-based activity guidance:
+\begin{itemize}
+\item Steps posture is maintained as baseline activity; if environment or foot integrity is compromised, use the lowest-risk movement available and document constraints.
+\end{itemize}
+\end{itemize}
+
+Deload+Test Week Modifiers — Week 4\par\vspace{0.25em}
+
+Deload+Test week posture at the scheduling level:
+
+\begin{itemize}
+\item Reduced volume density and reduced intensity exposure relative to work weeks, while preserving the six-session rhythm, preserving complete session-element order, and preserving Cardio as a continuous block meeting the minimum standard.
+\item Testing is staged to protect validity and reduce risk; no day-by-day test schedule is created in this deliverable.
+\item If any scheduled item cannot meet \textbf{VALID} conditions due to illness, pain drift, missing lock fields, environmental uncertainty, or tool change, treat it as \textbf{INVALID} for gate use and reslot to the next Deload+Test window.
+\end{itemize}
+
+Week 4 Deload+Test Baseline Battery:
+
+\begin{itemize}
+\item \textbf{SMB}
+\item \textbf{MOB} Bundle: \textbf{MOB-MOV-SCREEN}; \textbf{MOB-ANKDF-K2W}; \textbf{MOB-SHFLEX-WALL}; \textbf{MOB-STS-QUAL}
+\item \textbf{ME-L-STS-30}
+\item \textbf{ME-UP-PU-INC}
+\item \textbf{CAL-PLANK}
+\item \textbf{AER-WALK-30}
+\end{itemize}
+
+Comparability locks required at governance level:
+
+\begin{itemize}
+\item Footwear and sock system locked.
+\item Route class and surface class or indoor substitute policy locked for walk-based monitoring.
+\item Chair height and arms policy locked for the sit-to-stand instrument.
+\item Incline push-up height locked for incline push instrument.
+\item Walk monitor route conditions locked: surface class and environment notes recorded consistently.
+\item Tool standard consistency: timer method and measurement method are stable; any change is documented and treated as a comparability break.
+\item Mode logging posture: any required mode fields are recorded explicitly when applicable.
+\end{itemize}
+
+Validity and logging reminder:
+
+\begin{itemize}
+\item Validity and logging standards are governed by Stage 1.F and Stage 2.E. Missing lock fields or missing required documentation make evidence inadmissible for gate decisions.
+\end{itemize}
+
+\subsubsection*{Segment 2 — Weeks 5–8}
+\phantomsection
+
+\begin{samepage}
+Typical Work-Week Microcycle Table for Weeks 5–7\par\vspace{0.25em}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.60in]
+    Q[l,wd=1.55in]
+    Q[l,wd=1.55in]
+    X[l,2.05]
+    X[l,2.85]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Day} &
+\Hdr{Primary Focus} &
+\Hdr{Secondary Focus} &
+\Hdr{Example Session Theme} &
+\Hdr{Notes — Intensity and Duration Caps} \\
+
+Day 1 &
+Cardio consistency build &
+\textbf{DURABILITY} stability monitoring &
+Cardio-primary: step-based walking where feasible; Cardio continuous block; stable surface class &
+Cardio: continuous, minimum standard met; RPE 3–4; talk test full sentences to short sentences. Avoid adding speed targets; increase only by stability. Document foot and gait stability. \\
+
+Day 2 &
+Mobility and joint-control continuity &
+Patterning stability &
+Non-cardio-primary: mobility emphasis; chair and incline patterning at low strain; Cardio add-on &
+Cardio: continuous, minimum standard met; RPE 2–3; talk test full sentences. No novelty; lock fields remain stable for Week 8. \\
+
+Day 3 &
+Aerobic repeatability &
+\textbf{RECOVERY} stability &
+Cardio-primary: controlled, repeatable Cardio exposure; minimize intensity variance &
+Cardio: continuous, minimum standard met; RPE 3–4; talk test stable. If sleep streak trigger appears, downshift intensity and/or substitute modality without reducing frequency. \\
+
+Day 4 &
+Trunk endurance continuity &
+Mobility reinforcement &
+Non-cardio-primary: trunk control emphasis; Cardio add-on &
+Cardio: continuous, minimum standard met; RPE 2–4; talk test full sentences. Terminate patterning on mechanics change or pain >5/10. \\
+
+Day 5 &
+Recovery-throughput day &
+Foot interface check &
+Cardio-primary: lowest-risk steady modality; Cardio continuous block &
+Cardio: continuous, minimum standard met; RPE 2–3; talk test full sentences. This day exists to prevent fatigue stacking and protect Week 8 validity. \\
+
+Day 6 &
+Pre-window stabilization &
+Tool and environment stability &
+Non-cardio-primary: minimal strain; Cardio add-on &
+Cardio: continuous, minimum standard met; RPE 2–4; talk test full sentences. Confirm lock fields remain unchanged; if they must change, treat Week 8 comparability as compromised and document. \\
+
+\end{longtblr}
+
+\endgroup
+\end{samepage}
+
+Day 7 — Non-Session Recovery Movement Logging\par\vspace{0.25em}
+
+\begin{itemize}
+\item Low-intensity recovery intent: maintain movement and mobility without adding fatigue cost.
+\item Mobility and light movement categories: gentle mobility, easy walking where safe, and downregulation.
+\item Required logging and review actions:
+\begin{itemize}
+\item Confirm steps are logged daily and support the 10,000 steps/day intent.
+\item Review whether any sessions required \textbf{MODIFIED} or \textbf{INVALID} tagging and document root cause (pain, environment, time, equipment, logging).
+\item Confirm lock fields remain stable for Week 8 Mid Check (footwear interface, route policy, chair height and arms policy, incline height, timer method).
+\end{itemize}
+\item Step-based activity guidance:
+\begin{itemize}
+\item Maintain baseline steps where feasible; if environment hazards exist, select the safest indoor movement available and document constraints.
+\end{itemize}
+\end{itemize}
+
+Deload+Test Week Modifiers — Week 8\par\vspace{0.25em}
+
+Deload+Test week posture at the scheduling level:
+
+\begin{itemize}
+\item Reduced volume density and reduced intensity exposure relative to work weeks, while preserving six sessions, preserving session-element order, and preserving Cardio as a continuous block meeting the minimum standard.
+\item Testing is staged to protect validity and avoid stacking high-cost exposures; no day-by-day schedule is created here.
+\item If validity cannot be preserved, treat impacted items as \textbf{INVALID} for gate use and reslot.
+\end{itemize}
+
+Week 8 Deload+Test Mid Check Battery:
+
+\begin{itemize}
+\item \textbf{SMB}
+\item \textbf{MOB} Bundle
+\item \textbf{ME-L-STS-30}
+\item \textbf{ME-UP-PU-INC}
+\item \textbf{CAL-PLANK}
+\item \textbf{AER-WALK-015} mode logged
+\end{itemize}
+
+Comparability locks required at governance level:
+
+\begin{itemize}
+\item Preserve Week 4 lock fields:
+\begin{itemize}
+\item footwear and sock system locked,
+\item route class and surface class or indoor substitute policy locked,
+\item chair height and arms policy locked,
+\item incline height locked,
+\item tool standard consistency preserved.
+\end{itemize}
+\item \textbf{AER-WALK-015} mode logging is mandatory and remains unresolved pending Stage 8 review because no reconciled Stage 2 \textbf{ID} is assigned here.
+\end{itemize}
+
+Validity and logging reminder:
+
+\begin{itemize}
+\item Phase 00 does not accept “close enough” conditions for gate-grade evidence. Any missing lock field or missing required documentation makes the item inadmissible for gate decisions.
+\end{itemize}
+
+\newpage
+
+\subsubsection*{Segment 3 — Weeks 9–12}
+\phantomsection
+
+\begin{samepage}
+Typical Work-Week Microcycle Table for Weeks 9–11\par\vspace{0.25em}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.60in]
+    Q[l,wd=1.55in]
+    Q[l,wd=1.55in]
+    X[l,2.05]
+    X[l,2.85]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Day} &
+\Hdr{Primary Focus} &
+\Hdr{Secondary Focus} &
+\Hdr{Example Session Theme} &
+\Hdr{Notes — Intensity and Duration Caps} \\
+
+Day 1 &
+Aerobic repeatability under low variance &
+\textbf{DURABILITY} drift prevention &
+Cardio-primary: step-based walking where feasible; Cardio continuous block; stable surface class &
+Cardio: continuous, minimum standard met; RPE 3–4; talk test stable. No novelty in footwear or route class; reslot if hazards appear. \\
+
+Day 2 &
+Mobility continuity &
+Patterning quality &
+Non-cardio-primary: mobility emphasis; conservative patterning; Cardio add-on &
+Cardio: continuous, minimum standard met; RPE 2–3; talk test full sentences. Preserve joint-history constraints; no end-range forcing. \\
+
+Day 3 &
+Tolerance consolidation &
+Foot integrity governance &
+Cardio-primary: steady Cardio; gait monitoring; Cardio continuous block &
+Cardio: continuous, minimum standard met; RPE 3–4; talk test stable. Any hotspot trend triggers immediate downshift next session. \\
+
+Day 4 &
+Core and posture control &
+Mobility reinforcement &
+Non-cardio-primary: trunk control emphasis; Cardio add-on &
+Cardio: continuous, minimum standard met; RPE 2–4; talk test full sentences. Terminate any exposure that provokes mechanics change or unusual breathlessness. \\
+
+Day 5 &
+Recovery-throughput day &
+\textbf{RECOVERY} marker stability &
+Cardio-primary: lowest-risk steady modality; Cardio continuous block &
+Cardio: continuous, minimum standard met; RPE 2–3; talk test full sentences. Preserve sleep and soreness stability; do not introduce intensity spikes. \\
+
+Day 6 &
+Pre-window stabilization for confirm week &
+Lock-field verification &
+Non-cardio-primary: minimal strain; Cardio add-on &
+Cardio: continuous, minimum standard met; RPE 2–4; talk test full sentences. Confirm identical lock fields to Week 4 are feasible for Week 12 Confirm. \\
+
+\end{longtblr}
+
+\endgroup
+\end{samepage}
+
+Day 7 — Non-Session Recovery Movement Logging\par\vspace{0.25em}
+
+\begin{itemize}
+\item Low-intensity recovery intent: preserve readiness and prevent fatigue carryover into Week 12.
+\item Mobility and light movement categories: gentle mobility, easy walking where safe, and downregulation.
+\item Required logging and review actions:
+\begin{itemize}
+\item Verify lock fields remain identical to Week 4 for Week 12 Confirm (footwear, route policy, chair and incline heights, timer method).
+\item Review trend stability in sleep, soreness, fatigue, pain location, and foot hotspots; plan conservative downshift if drift is present.
+\item Confirm steps are logged daily and reflect the 10,000 steps/day intent as baseline activity.
+\end{itemize}
+\end{itemize}
+
+Deload+Test Week Modifiers — Week 12\par\vspace{0.25em}
+
+Deload+Test week posture at the scheduling level:
+
+\begin{itemize}
+\item Reduced density and reduced intensity compared to work weeks while preserving six sessions, preserving session-element order, and preserving Cardio as a continuous block meeting the minimum standard.
+\item Testing is staged to protect validity; no day-by-day schedule is created here.
+\item Confirm week exists to prove comparability under identical conditions; it does not authorize escalation.
+\end{itemize}
+
+Week 12 Deload+Test Confirm Battery:
+
+\begin{itemize}
+\item Repeat the Week 4 battery under identical lock fields, including the same locked aerobic monitor selection:
+\begin{itemize}
+\item \textbf{SMB}
+\item \textbf{MOB} Bundle: \textbf{MOB-MOV-SCREEN}; \textbf{MOB-ANKDF-K2W}; \textbf{MOB-SHFLEX-WALL}; \textbf{MOB-STS-QUAL}
+\item \textbf{ME-L-STS-30}
+\item \textbf{ME-UP-PU-INC}
+\item \textbf{CAL-PLANK}
+\item \textbf{AER-WALK-30} (Requires Stage 8 review - no reconciled Stage 2 \textbf{ID} assigned)
+\end{itemize}
+\end{itemize}
+
+Comparability locks required at governance level:
+
+\begin{itemize}
+\item All Week 4 lock fields must remain identical:
+\begin{itemize}
+\item footwear and sock system locked,
+\item route class and surface class or indoor substitute policy locked,
+\item chair height and arms policy locked,
+\item incline push-up height locked,
+\item walk monitor route conditions locked,
+\item tool standard consistency maintained.
+\end{itemize}
+\item If any lock field must change:
+\begin{itemize}
+\item document the change,
+\item treat comparability as compromised for gate interpretation,
+\item reslot any gate-grade interpretation to the next valid window rather than forcing conclusions.
+\end{itemize}
+\end{itemize}
+
+Validity and logging reminder:
+
+\begin{itemize}
+\item Missing lock fields or missing required documentation make evidence inadmissible for gate use. Confirm week is not a permission to accept compromised evidence.
+\end{itemize}
+
+\newpage
+
+\subsubsection*{Segment 4 — Weeks 13–16}
+\phantomsection
+
+\begin{samepage}
+Typical Work-Week Microcycle Table for Weeks 13–15\par\vspace{0.25em}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.60in]
+    Q[l,wd=1.55in]
+    Q[l,wd=1.55in]
+    X[l,2.05]
+    X[l,2.85]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Day} &
+\Hdr{Primary Focus} &
+\Hdr{Secondary Focus} &
+\Hdr{Example Session Theme} &
+\Hdr{Notes — Intensity and Duration Caps} \\
+
+Day 1 &
+Stability under routine &
+\textbf{DURABILITY} drift prevention &
+Cardio-primary: step-based walking where feasible; Cardio continuous block; stable surface class &
+Cardio: continuous, minimum standard met; RPE 3–4; talk test stable. No novelty; treat this as execution proof, not progression chasing. \\
+
+Day 2 &
+Mobility continuity &
+Recovery stabilization &
+Non-cardio-primary: mobility emphasis; minimal strain patterning; Cardio add-on &
+Cardio: continuous, minimum standard met; RPE 2–3; talk test full sentences. Protect joint-history constraints; no end-range forcing. \\
+
+Day 3 &
+Aerobic continuity with gait stability &
+Foot interface governance &
+Cardio-primary: steady Cardio; gait monitoring; Cardio continuous block &
+Cardio: continuous, minimum standard met; RPE 3–4; talk test stable. Downshift immediately if gait changes or hotspots worsen. \\
+
+Day 4 &
+Lock-field rehearsal without testing &
+Core and posture continuity &
+Non-cardio-primary: rehearsal of chair/incline setups as patterning only; Cardio add-on &
+Cardio: continuous, minimum standard met; RPE 2–4; talk test full sentences. Confirm Week 16 lock fields are feasible without changes. \\
+
+Day 5 &
+Recovery-throughput day &
+Documentation quality &
+Cardio-primary: lowest-risk steady modality; Cardio continuous block &
+Cardio: continuous, minimum standard met; RPE 2–3; talk test full sentences. Preserve low variance; emphasize recovery notes completeness. \\
+
+Day 6 &
+Pre-gate stabilization &
+No-novelty enforcement &
+Non-cardio-primary: minimal strain; Cardio add-on &
+Cardio: continuous, minimum standard met; RPE 2–3; talk test full sentences. Enforce no novelty for Week 16; document any constraint that would compromise validity and plan reslot posture. \\
+
+\end{longtblr}
+
+\endgroup
+\end{samepage}
+
+Day 7 — Non-Session Recovery Movement Logging\par\vspace{0.25em}
+
+\begin{itemize}
+\item Low-intensity recovery intent: preserve readiness for Week 16 and avoid new soreness spikes.
+\item Mobility and light movement categories: gentle mobility, easy walking where safe, and downregulation.
+\item Required logging and review actions:
+\begin{itemize}
+\item Confirm the prior work-week maintained complete session element order and complete documentation.
+\item Confirm sleep/soreness/fatigue/pain/foot logs show stability and no emerging risk flags.
+\item Confirm steps are logged daily and reflect the 10,000 steps/day intent as baseline activity.
+\item Confirm Week 16 lock fields are ready and stable (footwear, route policy, chair/incline heights, tool identity).
+\end{itemize}
+\end{itemize}
+
+Deload+Test Week Modifiers — Week 16\par\vspace{0.25em}
+
+Deload+Test week posture at the scheduling level:
+
+\begin{itemize}
+\item Reduced density and reduced intensity compared to work weeks while preserving six sessions, preserving session-element order, and preserving Cardio as a continuous block meeting the minimum standard.
+\item Testing is staged to protect validity and reduce risk; no day-by-day test schedule is created here.
+\item If any scheduled test cannot meet \textbf{VALID} conditions due to illness, pain drift, missing lock fields, environmental uncertainty, or tool change, treat it as \textbf{INVALID} for gate use and reslot per Stage 3.
+\end{itemize}
+
+Week 16 Deload+Test Exit Gate Battery:
+
+\begin{itemize}
+\item Required:
+\begin{itemize}
+\item \textbf{SMB} (Requires Stage 8 review - no reconciled Stage 2 \textbf{ID} assigned)
+\item \textbf{MOB} Bundle
+\item \textbf{ME-L-STS-30}
+\item \textbf{ME-UP-PU-INC}
+\item \textbf{CAL-PLANK}
+\item \textbf{AER-WALK-015} (Requires Stage 8 review - no reconciled Stage 2 \textbf{ID} assigned)
+\end{itemize}
+\item Optional baseline-only items if strictly viable and risk-neutral:
+\begin{itemize}
+\item \textbf{C4} — Push-Ups — 2-Minute Timed, Strict Standard (optional)
+\item \textbf{C5} — Sit-Ups — 2-Minute Timed, Standard (optional)
+\end{itemize}
+\end{itemize}
+
+Comparability locks required at governance level:
+
+\begin{itemize}
+\item Footwear and sock system locked; any change is documented and treated as a comparability break.
+\item Route class and surface class or indoor substitute policy locked; unsafe conditions trigger indoor substitution only when comparability can be preserved and logged; otherwise reslot.
+\item Chair height and arms policy locked for the sit-to-stand instrument.
+\item Incline push-up height locked.
+\item Tool standard consistency: timer method and measurement method are stable; late or reconstructed entries are inadmissible for gate decisions unless objectively verifiable and marked as verified late entry.
+\item Mode logging for \textbf{AER-WALK-015} is mandatory and must match prior mode posture for comparability.
+\end{itemize}
+
+Validity and logging reminder:
+
+\begin{itemize}
+\item Validity tagging and admissibility are governed by Stage 1.F and Stage 2.E. Missing lock fields or missing required documentation makes evidence inadmissible for gate decisions.
+\end{itemize}
+
+\end{landscape}
+
+\end{document}

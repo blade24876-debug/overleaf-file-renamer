@@ -1,0 +1,413 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{7.01 — Strength and Resistance Training Equipment}
+\phantomsection
+\addcontentsline{toc}{section}{7.01 — Strength and Resistance Training Equipment}
+
+\subsection*{7.01.1 Purpose \& Scope}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.01.1 Purpose \& Scope}
+
+7.01 defines the strength and resistance capability stack as a governed category manual. It clarifies what is deployable at each Tier (T0–T3), how to set up and anchor equipment safely, how to maintain it, and how to substitute without creating unsafe exposures or invalid evidence.
+
+This overview is not programming. It does not prescribe training sessions, sets, reps, or progressions.
+
+\subsection*{7.01.2 Governance and Safety Boundaries}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.01.2 Governance and Safety Boundaries}
+
+\begin{itemize}
+\item Phase alignment: Phase 00 does not require strength equipment beyond Tier 0, with optional bands only if already available. No rack, no barbell, and no heavy loading is implied for Phase 00.
+\item Safety-first: Any setup that cannot be verified stable and load-rated is not authorized; do not improvise.
+\item Stop posture: If pain alters mechanics, unusual breathlessness, dizziness or lightheadedness, or instability occurs, terminate the exposure and apply conservative substitution and documentation per governance.
+\item Water governance: not applicable to 7.01 but remains absolute program-wide.
+\item No retailer links, illegal procurement guidance, or medical advice.
+\end{itemize}
+
+\subsection*{7.01.3 Tier Doctrine Applied to Strength Equipment}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.01.3 Tier Doctrine Applied to Strength Equipment}
+
+\begin{itemize}
+\item Tier 0 — None / Household Only: bodyweight-only strength patterning. No household loading examples are permitted in Tier 0.
+\item Tier 1 — Essentials: minimum deployable resistance capability for phases that require 7.01 at Tier 1, built around dumbbells + kettlebells + bands + a safe surface/bench posture.
+\item Tier 2 — Expanded / Performance: expanded load range, additional implement types, and safer/stronger setups. Barbell/rack ecosystem appears here by default, but it may become functionally Tier 1 when a phase explicitly depends on it.
+\item Tier 3 — Advanced / Overbuilt: redundancy and higher stability ecosystems (full rack + barbell + plates + platform + advanced attachments), still governed by safety and validity posture.
+\end{itemize}
+
+Price may be expressed as ordinal bands or approximate USD pricing, depending on the governed table format in use.
+
+\subsection*{7.01.4 Selection Criteria \& Fit Checks}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.01.4 Selection Criteria \& Fit Checks}
+
+\begin{itemize}
+\item Safety and stability first: any item that cannot be verified stable and load-rated is not authorized.
+\item Implement identity stability: if an implement change would alter the measurement construct (different load method, different bar type, different bench geometry), treat as a system variable and stabilize before protected windows.
+\item Storage posture: avoid floor clutter and unstable stacking; maintain clear walkways; reduce trip hazards.
+\item Fit checks:
+  \begin{itemize}
+  \item bench: no wobble, stable feet, secure adjustability, adequate width to prevent instability.
+  \item dumbbells/adjustables: secure locking, no rattling during use, stable handles.
+  \item kettlebells: handle integrity, no sharp edges, stable base.
+  \item pull-up solution: verified mounting method, verified load rating, and periodic fastener checks.
+  \end{itemize}
+\item Space feasibility: do not select Tier 2 or Tier 3 items that cannot be placed safely; if space is constrained, maintain Tier 1 and use substitutions rather than unsafe installations.
+\end{itemize}
+
+\subsection*{7.01.5 Setup, Safety, and Anchoring}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.01.5 Setup, Safety, and Anchoring}
+
+\begin{itemize}
+\item Anchoring rules:
+  \begin{itemize}
+  \item Doorway-mounted pull-up bars are prohibited.
+  \item Anchored band setups are permitted only if purpose-built, stable, and low-tension; if stability is uncertain, anchored band work is not authorized.
+  \item Wall/ceiling/rack-mounted pull-up solutions require verified installation and periodic inspection.
+  \end{itemize}
+\item Floor safety:
+  \begin{itemize}
+  \item use a mat or floor protection where slipping or surface damage risk exists.
+  \item keep equipment stored so the training area remains hazard-free.
+  \end{itemize}
+\item Load handling posture:
+  \begin{itemize}
+  \item do not attempt unstable “max” setups.
+  \item do not change implement class inside protected windows; if a change occurs, treat the test week as validity-sensitive and reslot gate-grade attempts when needed.
+  \end{itemize}
+\item Environment stability:
+  \begin{itemize}
+  \item when strength evidence is used for gate decisions (e.g., strength proxy contexts), document implement type and exact load method so comparability is preserved per Stage 2.E posture.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.01.6 Maintenance, Replacement, and Storage}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.01.6 Maintenance, Replacement, and Storage}
+
+\begin{itemize}
+\item Bands: inspect for fraying, cracks, and loss of elasticity; replace on any damage.
+\item Adjustable dumbbells: check locking mechanism integrity; clean handles; verify plates are seated.
+\item Kettlebells: inspect handles for damage; clean; ensure base remains stable.
+\item Benches: check bolts and adjustment pins; ensure no wobble; clean surfaces.
+\item Sandbags: inspect seams and fill closures; replace liners as needed; keep load labeling stable.
+\item Racks/bars/plates (Tier 2/3): bolt checks, corrosion prevention, collar inspection, safe plate storage.
+\item Storage discipline:
+  \begin{itemize}
+  \item store heavy items low and stable,
+  \item keep walkways clear,
+  \item prevent children/pets access where relevant.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.01.7 Substitution Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.01.7 Substitution Rules}
+
+\begin{itemize}
+\item Preserve intent, reduce risk, document the substitution. If a substitution changes the measurement construct (implement type or load method), treat gate-grade comparability conservatively and reslot if required.
+\item If Tier 1 strength capability is not available when required:
+  \begin{itemize}
+  \item substitute to Tier 0 bodyweight-only patterning temporarily,
+  \item preserve Cardio and overall session validity posture,
+  \item do not claim gate-grade strength evidence without the required capability.
+  \end{itemize}
+\item If pull-up capability is not safe/available:
+  \begin{itemize}
+  \item do not use doorway bars.
+  \item substitute with anchor-free band pulls and scapular control patterns until a safe anchored solution exists.
+  \item if pull-up testing is gate-required in a phase before Stage 6 indicates a pull-up solution, flag Requires Stage 8 review.
+  \end{itemize}
+\item If barbell/rack ecosystem is not available when a phase demands higher stability:
+  \begin{itemize}
+  \item use Tier 2 non-barbell implements (heavier dumbbells, kettlebells, or sandbag) only if the phase card permits the construct to remain comparable.
+  \item if the phase card requires barbell/rack specifically, treat as Draft — Non-Deployable and flag Requires Stage 8 review.
+  \end{itemize}
+\end{itemize}
+
+Validity/logging linkage (conceptual, not a restatement):
+
+\begin{itemize}
+\item When strength outcomes affect gates, log implement identity and load method identity, and document any substitutions as \textbf{MODIFIED} / \textbf{INVALID} impacts per governance posture.
+\end{itemize}
+
+\subsection*{7.01.8 Phase Integration Map}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.01.8 Phase Integration Map}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=1.05in]
+    Q[c,wd=1.55in]
+    X[c,2.75]
+    X[c,3.65]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Phase} &
+\Hdr{Required Tier (from Stage 6)} &
+\Hdr{What Changes / Becomes Mandatory} &
+\Hdr{Notes} \\
+Phase 00 &
+T0 (End) &
+Bodyweight-only posture; optional existing bands only if already owned &
+Phase 00 explicitly does not require strength equipment beyond Tier 0. No barbell/rack or heavy loading implied. \\
+Phase 01 &
+T1 (End) &
+Tier 1 essentials become minimum deployable by end gate: dumbbells + kettlebell(s) + band set + safe bench/surface posture &
+Stage 6 timing indicates end-gate requirement. Recommended stabilization earlier than protected windows to avoid novelty drift; do not introduce new implements inside Deload+Test windows. \\
+Phase 02 &
+T1 (E) &
+Tier 1 must be present by phase entry for Phase 02 execution continuity &
+Stage 6 indicates Phase 02 is the first phase where Tier 1 strength capability must exist by entry. If any Phase 02 phase card mandates barbell/rack specifically as minimum, treat that capability as functionally Tier 1 for Phase 02 and reconcile Stage 6 and Stage 7 directly. \\
+Phase 03 &
+T1 (End) &
+Maintain Tier 1 strength capability; ensure stability and comparability discipline &
+If ruck capability (7.07) first becomes Tier 1 here, strength systems should not be changed in protected windows that also carry multi-domain tests. \\
+Phase 04 &
+T1 (End) &
+Maintain Tier 1 strength capability under higher work-capacity demand &
+Maintain implement stability; do not introduce new strength interfaces inside Deload+Test windows where run, ruck, and swim tests are staged. \\
+Phase 05 &
+T1 (End) &
+Maintain Tier 1 strength capability; strength remains supporting &
+Extended stamina phases amplify fatigue; keep strength implements stable and do not add novelty near long run windows. \\
+Phase 06 &
+T2 (End) &
+Tier 2 expanded strength capability becomes minimum deployable by end gate &
+This is the first phase where expanded capability is required by Stage 6. Tier 2 supports higher consequence and repeatability. \\
+Phase 07 &
+T2 (End) &
+Maintain Tier 2 strength capability; reduce drift risk in hybrid density &
+Emphasize setup stability and documentation. \\
+Phase 08 &
+T2 (End) &
+Maintain Tier 2 strength capability while durability/load tolerance demands rise &
+Avoid adding heavy ecosystem novelty near long-load milestones. \\
+Phase 09 &
+T2 (End) &
+Maintain Tier 2 strength capability while \textbf{CAL} volume increases &
+Maintain stable supports and avoid overuse-driven substitution drift. \\
+Phase 10 &
+T2 (End) &
+Maintain Tier 2 strength capability as a supporting domain &
+Any underwater governance constraints remain separate and do not imply strength tier changes. \\
+Phase 11 &
+T2 (End) &
+Maintain Tier 2 strength capability; prioritize recovery sensitivity &
+Keep strength exposure conservative and stable; no novelty near late-phase gates. \\
+Phase 12 &
+T2 (End) &
+Maintain Tier 2 minimum deployable posture; Tier 3 is optional unless phase-dependent &
+If verification reliability requires Tier 3 strength ecosystem, Stage 6 must explicitly elevate 7.01 before this page is marked deployable. \\
+Phase 13 &
+T2 (End) &
+Maintain Tier 2 minimum deployable posture; stability and repeatability dominate &
+Same posture as Phase 12; avoid late changes that increase variance. \\
+\end{longtblr}
+
+\endgroup
+
+Phase Integration Map Notes:
+
+\begin{itemize}
+\item Potential mismatch: pull-up testing (Stage 2 includes pull-ups) may require a safe anchored pull-up solution earlier than the Stage 6 tier progression for 7.01 implies. If a phase card makes pull-up testing gate-critical before Tier 2 is reached, Requires Stage 8 review.
+\end{itemize}
+
+\subsection*{7.01.9 Risks, Contraindications, and Red Flags}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.01.9 Risks, Contraindications, and Red Flags}
+
+\begin{itemize}
+\item Unsafe anchoring risk: doorway pull-up bars and improvised anchors increase failure risk and are prohibited.
+\item Novelty risk near protected windows: changing implements, bench geometry, or anchoring solutions inside Deload+Test windows increases variance and can invalidate comparability; reslot rather than forcing gate-grade attempts.
+\item Load handling risk: higher-tier ecosystems (rack/barbell/plates) increase consequence; require stable installation and inspection posture. If not feasible, use safer Tier 1/2 alternatives and treat gate feasibility as constrained.
+\item Durability risk interaction: foot issues and gait drift can reduce safe strength exposure quality; do not compensate by intensity chasing.
+\item Validity/logging drift: missing implement identity or load method notes can make strength proxy evidence inadmissible for gate use; document substitutions and tool identity per Stage 2.E posture conceptually.
+\item Stage 6 timing mismatch risk: if a phase demands barbell/rack ecosystem as mandatory before the default Tier 2/3 point, that earlier requirement must be reconciled directly in Stage 6 rather than left as an open review note.
+\end{itemize}
+
+\end{document}

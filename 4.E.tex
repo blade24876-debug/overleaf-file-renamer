@@ -1,0 +1,663 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 4.E — Testing Within Phase 00 and Scaled Use of Stage 2 Protocols}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 4.E — Testing Within Phase 00 and Scaled Use of Stage 2 Protocols}
+
+\subsection*{4.E.1 Phase 00 Test Categorization}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.E.1 Phase 00 Test Categorization}
+
+\subsubsection*{Baseline-only tests and metrics}
+\phantomsection
+
+\begin{itemize}
+\item Week-4 and Week-12 locked aerobic monitor
+  \begin{itemize}
+  \item \textbf{AER-WALK-30} — 30-Minute Walk Monitor (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+  \item Distance in 30 Minutes (Requires Stage 8 review - no reconciled Stage 2 metric \textbf{ID} assigned)
+  \item Category: baseline-only and trend-only (comparability anchor; not gate-admissible by default in Phase 00).
+  \end{itemize}
+
+\item \textbf{BODYCOMP} suite with weekly capture posture
+  \begin{itemize}
+  \item \textbf{C1} — Bodyweight Measurement — Scale
+    \begin{itemize}
+    \item \textbf{MET-2B-001} — Bodyweight — Weekly Average
+    \end{itemize}
+  \item \textbf{C2} — Body Composition — Body Fat Percent Method Recording and Trend Rule, Method-Agnostic
+    \begin{itemize}
+    \item \textbf{MET-2B-002} — Body Fat Estimate Percent — Method/Device Recorded (optional if adopted)
+    \end{itemize}
+  \item \textbf{C3} — Waist and Anthropometric Tape Measurement
+    \begin{itemize}
+    \item \textbf{MET-2B-003} — Circumference — Neck
+    \item \textbf{MET-2B-004} — Circumference — Chest
+    \item \textbf{MET-2B-005} — Circumference — Bicep
+    \item \textbf{MET-2B-006} — Circumference — Forearm
+    \item \textbf{MET-2B-007} — Circumference — Waist
+    \item \textbf{MET-2B-008} — Circumference — Thigh
+    \item \textbf{MET-2B-009} — Circumference — Calf
+    \end{itemize}
+  \item Category: trend-only (directionality and method consistency; no single-point claims).
+  \end{itemize}
+
+\item \textbf{RECOVERY} and feasibility markers used throughout Phase 00 (supporting evidence, not a Phase 00 gate battery item)
+  \begin{itemize}
+  \item \textbf{C15} — Resting and Recovery Marker Capture — Governance-Level, Non-Medical
+    \begin{itemize}
+    \item \textbf{MET-2B-038} Sleep Hours
+    \item \textbf{MET-2B-039} Sleep Quality
+    \item \textbf{MET-2B-040} Soreness
+    \item \textbf{MET-2B-041} Fatigue
+    \item \textbf{MET-2B-042} Session RPE
+    \item \textbf{MET-2B-043} Steps Count
+    \end{itemize}
+  \item Category: continuous supporting evidence; used to justify downshift/reslot decisions and to evaluate whether Week-16 evidence is safely admissible.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{Mid-phase checks}
+\phantomsection
+
+\begin{itemize}
+\item Week 4 Deload+Test Baseline Battery (baseline establishment; lock fields created and stabilized)
+  \begin{itemize}
+  \item \textbf{SMB} — Safety Baseline Screen (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+    \begin{itemize}
+    \item \textbf{SMB} Clearance Outcome (Requires Stage 8 review - no reconciled Stage 2 metric \textbf{ID} assigned)
+    \end{itemize}
+  \item \textbf{MOB-MOV-SCREEN} — Movement Quality Screen (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+    \begin{itemize}
+    \item \textbf{MOB-MOV-SCREEN} Outcome (Requires Stage 8 review - no reconciled Stage 2 metric \textbf{ID} assigned)
+    \end{itemize}
+  \item \textbf{MOB-ANKDF-K2W} — Ankle Dorsiflexion Knee-to-Wall (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+    \begin{itemize}
+    \item Left / Right / Asymmetry outcomes (Requires Stage 8 review - no reconciled Stage 2 metric IDs assigned)
+    \end{itemize}
+  \item \textbf{MOB-SHFLEX-WALL} — Shoulder Flexion Wall Test (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+    \begin{itemize}
+    \item Gap / Compensation Flag outcomes (Requires Stage 8 review - no reconciled Stage 2 metric IDs assigned)
+    \end{itemize}
+  \item \textbf{MOB-STS-QUAL} — Sit-to-Stand Quality Screen (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+    \begin{itemize}
+    \item \textbf{MOB-STS-QUAL} Outcome (Requires Stage 8 review - no reconciled Stage 2 metric \textbf{ID} assigned)
+    \end{itemize}
+  \item \textbf{ME-L-STS-30} — Sit-to-Stand 30 Seconds (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+    \begin{itemize}
+    \item Reps in 30 Seconds (Requires Stage 8 review - no reconciled Stage 2 metric \textbf{ID} assigned)
+    \end{itemize}
+  \item \textbf{ME-UP-PU-INC} — Incline Push-Ups at Fixed Height (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+    \begin{itemize}
+    \item Reps at Fixed Incline Height (Requires Stage 8 review - no reconciled Stage 2 metric \textbf{ID} assigned)
+    \end{itemize}
+  \item \textbf{C7} — Plank — Forearm
+    \begin{itemize}
+    \item \textbf{MET-2B-013} Plank — Forearm
+    \end{itemize}
+  \item \textbf{AER-WALK-30} — 30-Minute Walk Monitor (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+    \begin{itemize}
+    \item Distance in 30 Minutes (Requires Stage 8 review - no reconciled Stage 2 metric \textbf{ID} assigned)
+    \end{itemize}
+  \item Category: baseline-only in Phase 00 (creates comparability; does not satisfy Week-16 exit requirements by itself).
+  \end{itemize}
+
+\item Week 8 Deload+Test Mid Check (drift detection; readiness confirmation; not an exit gate)
+  \begin{itemize}
+  \item \textbf{SMB} — Safety Baseline Screen (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+  \item \textbf{MOB-MOV-SCREEN} — Movement Quality Screen (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+  \item \textbf{MOB-ANKDF-K2W} — Ankle Dorsiflexion Knee-to-Wall (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+  \item \textbf{MOB-SHFLEX-WALL} — Shoulder Flexion Wall Test (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+  \item \textbf{MOB-STS-QUAL} — Sit-to-Stand Quality Screen (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+  \item \textbf{ME-L-STS-30} — Sit-to-Stand 30 Seconds (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+  \item \textbf{ME-UP-PU-INC} — Incline Push-Ups at Fixed Height (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+  \item \textbf{C7} — Plank — Forearm (\textbf{MET-2B-013})
+  \item \textbf{AER-WALK-015} — 1.5-Mile Walk Time Trial, Mode Logged (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+  \item Optional baseline-only attempts (risk-neutral only; never required for Phase 00 exit)
+    \begin{itemize}
+    \item \textbf{C4} — Push-Ups — 2-Minute Timed, Strict Standard (\textbf{MET-2B-010})
+    \item \textbf{C5} — Sit-Ups — 2-Minute Timed, Standard (\textbf{MET-2B-011})
+    \end{itemize}
+  \item Category: mid-phase check; protects Week-12/Week-16 validity and supports reslot decisions.
+  \end{itemize}
+
+\item Week 12 Deload+Test Confirm (repeat of Week 4 under identical lock fields; not an exit gate)
+  \begin{itemize}
+  \item Repeat the Week-4 battery under identical lock fields, including locked aerobic monitor:
+    \begin{itemize}
+    \item \textbf{SMB}; \textbf{MOB-MOV-SCREEN}; \textbf{MOB-ANKDF-K2W}; \textbf{MOB-SHFLEX-WALL}; \textbf{MOB-STS-QUAL}; \textbf{ME-L-STS-30}; \textbf{ME-UP-PU-INC}; \textbf{C7}; \textbf{AER-WALK-30} (all non-\textbf{C7} Phase 00-specific items require Stage 8 review because no reconciled Stage 2 IDs exist here)
+    \end{itemize}
+  \item Category: confirmation only; comparability protection.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{End-phase gate tests}
+\phantomsection
+
+\begin{itemize}
+\item Week 16 Deload+Test Exit Gate Battery (Phase 00 exit decisions occur here only)\newline
+Gate-admissible only when Test Validity Tag is \textbf{VALID} per Stage 1.F. \textbf{INVALID} provides no gate credit and is treated as not yet tested for gate decisions until rerun in the next protected window per Stage 3.
+
+\item Required Week-16 gate items:
+  \begin{itemize}
+  \item \textbf{SMB} — Safety Baseline Screen (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+  \item \textbf{MOB-MOV-SCREEN} — Movement Quality Screen (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+  \item \textbf{MOB-ANKDF-K2W} — Ankle Dorsiflexion Knee-to-Wall (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+  \item \textbf{MOB-SHFLEX-WALL} — Shoulder Flexion Wall Test (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+  \item \textbf{MOB-STS-QUAL} — Sit-to-Stand Quality Screen (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+  \item \textbf{ME-L-STS-30} — Sit-to-Stand 30 Seconds (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+  \item \textbf{ME-UP-PU-INC} — Incline Push-Ups at Fixed Height (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+  \item \textbf{C7} — Plank — Forearm (\textbf{MET-2B-013})
+  \item \textbf{AER-WALK-015} — 1.5-Mile Walk Time Trial, Mode Logged (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned)
+  \item Compliance evidence for Phase 00 exit evaluation (log-derived)
+    \begin{itemize}
+    \item \textbf{MET-2B-043} Steps Count (daily)
+    \item \textbf{MET-2B-044} Session Validity Tag (per session)
+    \item \textbf{MET-2B-045} Cardio Minimum Standard Met (per session)
+    \item \textbf{MET-2B-046} Weekly Admissible Session Compliance Percent (weekly)
+    \item \textbf{REC-ADH-WK} Phase Adherence Percent (Requires Stage 8 review - no reconciled Stage 2 metric \textbf{ID} assigned)
+    \end{itemize}
+  \end{itemize}
+
+\item Required Week-16 trend context (not a single-point claim; directionality only):
+  \begin{itemize}
+  \item \textbf{MET-2B-001} plus \textbf{MET-2B-003}-\textbf{MET-2B-009}, with method stability and complete logs.
+  \end{itemize}
+
+\item Optional baseline-only at Week 16 (never required for Phase 00 exit):
+  \begin{itemize}
+  \item \textbf{C4} / \textbf{MET-2B-010} Push-Ups — 2-Minute Timed, Strict Standard
+  \item \textbf{C5} / \textbf{MET-2B-011} Sit-Ups — 2-Minute Timed, Standard
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{Validity posture explicit}
+\phantomsection
+
+\begin{itemize}
+\item Tests are tagged \textbf{VALID} or \textbf{INVALID} only (Stage 1.F). Any legacy term "Compromised" is treated as \textbf{INVALID} for gate decisions.
+\item Week 16 is the exit-gate evaluation window. Week 12 is confirmatory only and cannot substitute for a missed/invalid Week-16 gate.
+\item Underwater remains out of scope for Phase 00 gate credit:
+  \begin{itemize}
+  \item \textbf{C14} / \textbf{MET-2B-025}; \textbf{MET-2B-026} are not scheduled in Phase 00 under any circumstance.
+  \end{itemize}
+\end{itemize}
+
+\begin{landscape}
+
+\subsection*{4.E.2 Scaling Table}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.E.2 Scaling Table}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.20]
+    X[l,2.00]
+    X[l,1.35]
+    X[l,1.65]
+    X[l,2.30]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Test} &
+\Hdr{Original Stage 2 Protocol C number and name} &
+\Hdr{Phase 00 version} &
+\Hdr{When used in Phase 00} &
+\Hdr{Purpose} \\
+
+\textbf{SMB} &
+\textbf{SMB} — Safety Baseline Screen (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned) &
+Standard protocol, no scaling &
+Week 4 baseline-only; Week 8 mid-check; Week 12 confirm; Week 16 end gate &
+Safety/readiness screen that blocks unsafe testing and constrains exit decisions (no red flags; no gait-altering mechanics; durable execution posture). \\
+
+\textbf{MOB-MOV-SCREEN} &
+\textbf{MOB-MOV-SCREEN} — Movement Quality Screen (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned) &
+Standard protocol, no scaling &
+Week 4 baseline-only; Week 8 mid-check; Week 12 confirm; Week 16 end gate &
+Captures movement-quality posture (pass/minor flags/fail) and prevents compensatory drift from contaminating the Phase 00 exit claim. \\
+
+\textbf{MOB-ANKDF-K2W} &
+\textbf{MOB-ANKDF-K2W} — Ankle Dorsiflexion Knee-to-Wall (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned) &
+Standard protocol, no scaling &
+Week 4 baseline-only; Week 8 mid-check; Week 12 confirm; Week 16 end gate &
+Mobility readiness constraint that supports gait stability and protects Phase 01 entry from avoidable mechanics risk. \\
+
+\textbf{MOB-SHFLEX-WALL} &
+\textbf{MOB-SHFLEX-WALL} — Shoulder Flexion Wall Test (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned) &
+Standard protocol, no scaling &
+Week 4 baseline-only; Week 8 mid-check; Week 12 confirm; Week 16 end gate &
+Shoulder mechanics readiness constraint under conservative non-diagnostic posture; supports safe push/pull regression selection. \\
+
+\textbf{MOB-STS-QUAL} &
+\textbf{MOB-STS-QUAL} — Sit-to-Stand Quality Screen (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned) &
+Standard protocol, no scaling &
+Week 4 baseline-only; Week 8 mid-check; Week 12 confirm; Week 16 end gate &
+Quality screen that flags compensation patterns that would invalidate functional capacity interpretation. \\
+
+\textbf{ME-L-STS-30} &
+\textbf{ME-L-STS-30} — Sit-to-Stand 30 Seconds (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned) &
+Standard protocol, no scaling &
+Week 4 baseline-only; Week 8 mid-check; Week 12 confirm; Week 16 end gate &
+Regressed lower-body functional capacity outcome under lock fields (chair height; arms policy); supports Phase 01 entry readiness. \\
+
+\textbf{ME-UP-PU-INC} &
+\textbf{ME-UP-PU-INC} — Incline Push-Ups at Fixed Height (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned) &
+Standard protocol, no scaling &
+Week 4 baseline-only; Week 8 mid-check; Week 12 confirm; Week 16 end gate &
+Regressed upper push capacity under lock fields (incline height; hand placement standard); avoids forcing full-floor \textbf{CAL} in Phase 00. \\
+
+\textbf{CAL-PLANK} &
+\textbf{C7} — Plank — Forearm &
+Standard protocol, no scaling &
+Week 4 baseline-only; Week 8 mid-check; Week 12 confirm; Week 16 end gate &
+Trunk endurance gate element with strict termination criteria; low-risk verification for Phase 01 entry posture. \\
+
+\textbf{AER-WALK-30} locked aerobic monitor &
+\textbf{AER-WALK-30} — 30-Minute Walk Monitor (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned) &
+Standard protocol, no scaling &
+Week 4 baseline-only; Week 12 confirm &
+Locked comparability anchor (single selection fixed for Phase 00). Used for trend stability and drift detection, not as Phase 00 exit gate credit by default. \\
+
+\textbf{AER-WALK-015} &
+\textbf{AER-WALK-015} — 1.5-Mile Walk Time Trial, Mode Logged (Requires Stage 8 review - no reconciled Stage 2 protocol-card \textbf{ID} assigned) &
+Standard protocol, no scaling &
+Week 8 mid-check; Week 16 end gate &
+Aerobic gate instrument under low-impact posture with mode logging; gate-admissible only at Week 16 when \textbf{VALID}. \\
+
+Bodyweight &
+\textbf{C1} — Bodyweight Measurement — Scale &
+Standard protocol, no scaling &
+Weekly throughout Phase 00; reviewed Weeks 4/8/12/16 &
+\textbf{BODYCOMP} directionality evidence via weekly average; method stability is required for trend interpretability. \\
+
+Body fat estimate percent (optional if adopted) &
+\textbf{C2} — Body Composition — Body Fat Percent Method Recording and Trend Rule &
+Standard protocol, no scaling &
+Monthly (or adopted cadence) throughout Phase 00 &
+Optional trend context only; method/device recorded every time; method consistency required within windows. \\
+
+Tape measurements &
+\textbf{C3} — Waist and Anthropometric Tape Measurement &
+Standard protocol, no scaling &
+Weekly throughout Phase 00; reviewed Weeks 4/8/12/16 &
+Circumference trend evidence across required sites; site landmarks and rounding stability required. \\
+
+Optional baseline-only \textbf{CAL-PU2} &
+\textbf{C4} — Push-Ups — 2-Minute Timed, Strict Standard &
+Standard protocol, no scaling &
+Week 8 optional; Week 16 optional &
+Baseline-only context; never required for Phase 00 exit; must remain risk-neutral and fully valid if executed. \\
+
+Optional baseline-only \textbf{CAL-CU2} &
+\textbf{C5} — Sit-Ups — 2-Minute Timed, Standard &
+Standard protocol, no scaling &
+Week 8 optional; Week 16 optional &
+Baseline-only context; never required for Phase 00 exit; must remain risk-neutral and fully valid if executed. \\
+
+Underwater 25 m &
+\textbf{C14} — Underwater 25 m One Breath — Governance-Constrained &
+Not permitted; no substitute or proxy equivalency is permitted for Phase 00 gate credit. &
+Not scheduled in Phase 00 &
+Underwater is excluded in Phase 00. Document as not scheduled; inadmissible without governance; no proxy equivalency permitted for Phase 00 gate credit. \\
+
+Phase adherence audit &
+N/A (derived under Stage 2.E) — \textbf{REC-ADH-WK} Phase Adherence Percent (Requires Stage 8 review - no reconciled Stage 2 metric \textbf{ID} assigned) &
+Standard derived metric, no scaling &
+Computed across Phase 00; evaluated at Week 16 gate &
+Computed from admissible session records; supports the Phase 00 exit compliance standard and prevents advancement on incomplete evidence. \\
+
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+\clearpage
+
+\begin{landscape}
+
+\subsection*{4.E.3 Phase 00 Mini Calendar}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.E.3 Phase 00 Mini Calendar}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.55in]
+    Q[l,wd=1.50in]
+    X[l,2.40]
+    X[l,2.60]
+    X[l,2.60]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Week} &
+\Hdr{Stress type from Stage 3} &
+\Hdr{Key tests} &
+\Hdr{Scaling notes} &
+\Hdr{Load adjustments around tests} \\
+
+1 &
+Build &
+None, no formal testing &
+Scaling is restricted to protocol-defined allowed modifications only.\newline
+Underwater: not scheduled.\newline
+\textbf{INVALID} tests provide no gate credit. &
+Normal work-week posture; preserve safety; avoid novelty that would compromise Week-4 lock fields. \\
+
+2 &
+Build &
+None, no formal testing &
+Underwater: not scheduled.\newline
+Trend capture continues (\textbf{BODYCOMP} weekly; \textbf{RECOVERY}/\textbf{DURABILITY} daily/per session). &
+Downshift instead of reducing frequency when drift triggers appear. \\
+
+3 &
+Build &
+None, no formal testing &
+Underwater: not scheduled.\newline
+No gate-grade testing outside protected windows. &
+Pre-window stabilization posture; no novel route/tool/footwear changes. \\
+
+4 &
+Deload+Test &
+\textbf{SMB}; \textbf{MOB-MOV-SCREEN}; \textbf{MOB-ANKDF-K2W}; \textbf{MOB-SHFLEX-WALL}; \textbf{MOB-STS-QUAL}; \textbf{ME-L-STS-30}; \textbf{ME-UP-PU-INC}; \textbf{C7}; \textbf{AER-WALK-30} (all non-\textbf{C7} Phase 00-specific items require Stage 8 review because no reconciled Stage 2 IDs exist here) &
+Week-4 outputs are baseline-only by default.\newline
+\textbf{INVALID} equals no gate credit; treat as not yet tested for gate purposes.\newline
+Underwater: not scheduled. &
+Reduce volume density; stage the battery by intent; avoid stacking; preserve safety and comparability locks. \\
+
+5 &
+Build &
+None, no formal testing &
+Underwater: not scheduled. &
+Resume conservative build; maintain lock-field stability for Week 8. \\
+
+6 &
+Build &
+None, no formal testing &
+Underwater: not scheduled. &
+Hold or reduce when foot hotspots, pain drift, or sleep streak triggers appear. \\
+
+7 &
+Build &
+None, no formal testing &
+Underwater: not scheduled. &
+Pre-window stabilization posture; avoid fatigue contamination ahead of Week 8. \\
+
+8 &
+Deload+Test &
+\textbf{SMB}; \textbf{MOB-MOV-SCREEN}; \textbf{MOB-ANKDF-K2W}; \textbf{MOB-SHFLEX-WALL}; \textbf{MOB-STS-QUAL}; \textbf{ME-L-STS-30}; \textbf{ME-UP-PU-INC}; \textbf{C7}; \textbf{AER-WALK-015}; optional \textbf{C4} and \textbf{C5} (all non-\textbf{C4}/\textbf{C5}/\textbf{C7} items require Stage 8 review because no reconciled Stage 2 IDs exist here) &
+Week-8 is a mid-check; not exit-gate evidence by default.\newline
+Optional \textbf{C4}/\textbf{C5} are baseline-only.\newline
+\textbf{INVALID} equals no gate credit.\newline
+Underwater: not scheduled. &
+Reduce density; stage the battery by intent; reslot any compromised item rather than forcing completion. \\
+
+9 &
+Build &
+None, no formal testing &
+Underwater: not scheduled. &
+Controlled build; maintain method stability for Week 12 confirm. \\
+
+10 &
+Build &
+None, no formal testing &
+Underwater: not scheduled. &
+No novelty posture; preserve footwear/surface class stability. \\
+
+11 &
+Build &
+None, no formal testing &
+Underwater: not scheduled. &
+Pre-window stabilization posture; protect validity for confirm week. \\
+
+12 &
+Deload+Test &
+\textbf{SMB}; \textbf{MOB-MOV-SCREEN}; \textbf{MOB-ANKDF-K2W}; \textbf{MOB-SHFLEX-WALL}; \textbf{MOB-STS-QUAL}; \textbf{ME-L-STS-30}; \textbf{ME-UP-PU-INC}; \textbf{C7}; \textbf{AER-WALK-30} (all non-\textbf{C7} Phase 00-specific items require Stage 8 review because no reconciled Stage 2 IDs exist here) &
+Week-12 is confirm-only; not a substitute for Week-16 gate.\newline
+\textbf{INVALID} equals no gate credit.\newline
+Underwater: not scheduled. &
+Reduce density; enforce identical lock fields to Week 4; reslot if comparability cannot be preserved. \\
+
+13 &
+Build &
+None, no formal testing &
+Underwater: not scheduled. &
+Exit-window stabilization begins; protect no-novelty posture. \\
+
+14 &
+Build &
+None, no formal testing &
+Underwater: not scheduled. &
+Maintain low variance; prioritize sleep and foot integrity stability. \\
+
+15 &
+Build &
+None, no formal testing &
+Underwater: not scheduled. &
+Pre-gate stabilization posture; downshift immediately if pain or gait drift emerges. \\
+
+16 &
+Deload+Test &
+\textbf{SMB}; \textbf{MOB-MOV-SCREEN}; \textbf{MOB-ANKDF-K2W}; \textbf{MOB-SHFLEX-WALL}; \textbf{MOB-STS-QUAL}; \textbf{ME-L-STS-30}; \textbf{ME-UP-PU-INC}; \textbf{C7}; \textbf{AER-WALK-015}; optional \textbf{C4} and \textbf{C5}; compliance evaluation uses only reconciled Stage 2 metrics; \textbf{BODYCOMP} trend review uses \textbf{MET-2B-001} and \textbf{MET-2B-003}-009 &
+Gate-admissible Phase 00 exit evidence occurs only here and only when \textbf{VALID}.\newline
+\textbf{INVALID} equals no gate credit and is treated as not yet tested, triggering \textbf{HOLD} and reslot/extension posture.\newline
+Underwater: not scheduled. &
+Deload posture; staged battery intent; prioritize decisive items; avoid stacking; preserve safety and comparability. \\
+
+\end{longtblr}
+
+\endgroup
+
+\subsection*{Assumption Ledger}
+\phantomsection
+\addcontentsline{toc}{subsection}{Assumption Ledger}
+
+\begin{itemize}
+\item Assigned Stage 2 protocol-card IDs and Stage 2 metric IDs for Phase 00-specific constructs that previously lacked explicit identifiers, to eliminate placeholder language and keep all Phase 00 gate constructs traceable by C# and \textbf{MET-2B}-###:
+  \begin{itemize}
+  \end{itemize}
+\item Adopted the locked Phase 00 choice for the Week-4/Week-12 aerobic monitor as a single fixed item (\textbf{AER-WALK-30} (Requires Stage 8 review - no reconciled Stage 2 IDs assigned)) and did not include a parallel step-test monitor variant inside Phase 00 testing.
+\end{itemize}
+
+\end{landscape}
+
+
+\end{document}

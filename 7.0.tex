@@ -1,0 +1,400 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{tcolorbox}
+\begin{center}
+{\LARGE\bfseries Stage 7 — Systems, Equipment, and Capability Overviews}\\[0.35em]
+{\Large\bfseries SOF Physical Development Transformation Program}\\[0.25em]
+{\large 182-Week Civilian-to-Selection Readiness Pipeline}\\[0.65em]
+\TitleLine
+\end{center}
+\end{tcolorbox}
+
+\vspace{0.35em}
+
+\section*{Stage 7 — Systems, Equipment, and Capability Overviews}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 7 — Systems, Equipment, and Capability Overviews}
+
+\subsection*{Introduction}
+\phantomsection
+\addcontentsline{toc}{subsection}{Introduction}
+
+\subsubsection*{1) Purpose}
+
+Stage 7 exists to produce the standalone category overviews 7.01–7.20 that operationalize Stage 6 phase-by-phase tier timing into category-level manuals. Each overview is an execution-facing capability reference that defines what “Tier 0–Tier 3” means inside that category, how to set up and maintain the capability safely, and how to substitute without breaking validity, safety, or governance posture.
+
+Stage 7 supports auditability, safety, and crosswalk readiness by carrying stable join keys and by preventing unmet gear demands. It ensures that when a phase becomes gate-relevant for a domain (\textbf{RUN}, \textbf{RUCK}, \textbf{SWIM}, \textbf{CAL}, \textbf{STR}, \textbf{BODYCOMP}, \textbf{DURABILITY}, \textbf{RECOVERY}), the enabling capability requirements are already staged by Stage 6 and can be executed without improvisation.
+
+Stage 7 does not prescribe training. It does not create workouts, programs, protocols, thresholds, or calendars. It provides category-level operating manuals and governed buyer guidance that may include branded examples when intentionally used.
+
+\subsubsection*{2) Scope}
+
+\paragraph*{Inclusions}
+
+\begin{itemize}
+\item The full overview set 7.01–7.20.
+\item Tier 0–Tier 3 capability definition per category using the locked Tier system:
+  \begin{itemize}
+  \item Tier 0 — None / Household Only
+  \item Tier 1 — Essentials
+  \item Tier 2 — Expanded / Performance
+  \item Tier 3 — Advanced / Overbuilt
+  \end{itemize}
+\item Phase integration mapping aligned to Stage 6:
+  \begin{itemize}
+  \item no overview may imply a capability is required earlier than Stage 6 introduces it at Tier 1 or higher.
+  \item each overview carries first-required phase and timing token (E/M/End) consistent with Stage 6 timing.
+  \end{itemize}
+\item Safety boundary overlays and validity/logging dependency pointers where relevant:
+  \begin{itemize}
+  \item OTC-only posture for supplement/support categories,
+  \item no prescription guidance,
+  \item no hormone dosing, sourcing, cycling, or procurement,
+  \item water governance absolute (no unsupervised underwater or breath-hold),
+  \item test validity dependencies for categories that affect admissibility.
+  \end{itemize}
+\item Maintenance/storage and substitution rules:
+  \begin{itemize}
+  \item how to keep the capability stable across protected windows,
+  \item how to handle access failures without breaking governance.
+  \end{itemize}
+\end{itemize}
+
+\paragraph*{Exclusions}
+
+\begin{itemize}
+\item No programming, no test protocols, no calendars.
+\item No illegal procurement guidance of any kind.
+\item No underwater/breath-hold instruction; governance-only posture and supervised-only framing where applicable.
+\item No retailer links or illegal procurement guidance. Branded examples and approximate pricing may be included when intentionally used.
+\item No medical diagnosis or treatment guidance.
+\end{itemize}
+
+\subsubsection*{3) How to Use}
+
+\paragraph*{Coach}
+
+\begin{itemize}
+\item Use Stage 7 to acquire, stage, and maintain minimum deployable capabilities by phase without gear creep.
+\item Use Stage 7 to validate that Tier 1 capability exists before a phase demands it, and to prevent silent drift where a coach “assumes” capability that was never introduced.
+\item Use Stage 7 to enforce “no novelty near Deload+Test” posture:
+  \begin{itemize}
+  \item shoes, ruck interfaces, timing devices, and measurement tools are treated as system variables,
+  \item first-time introductions are stabilized before protected windows.
+  \end{itemize}
+\item Use Stage 7 substitution rules to preserve safety and validity:
+  \begin{itemize}
+  \item substitute only in ways that keep the measurement construct comparable and loggable,
+  \item reslot rather than force gate attempts when comparability cannot be preserved.
+  \end{itemize}
+\end{itemize}
+
+\paragraph*{Trainee}
+
+\begin{itemize}
+\item Use Stage 7 to confirm execution readiness:
+  \begin{itemize}
+  \item what capability must exist now,
+  \item what can remain Tier 0,
+  \item what is optional and should be deferred if space/budget constrained.
+  \end{itemize}
+\item Use Stage 7 to maintain equipment stability so logs and test evidence remain comparable across windows.
+\item Use Stage 7 to apply safe substitutions when access fails (weather, facility, schedule), documenting changes per governance.
+\end{itemize}
+
+\paragraph*{Mismatch handling}
+
+\begin{itemize}
+\item If Stage 7 requirements appear to demand capability earlier than Stage 6 timing provides, flag the mismatch as Requires Stage 8 review and do not “fix” the timing inside Stage 7.
+\item If an upstream artifact implies a different category definition, tier meaning, or safety boundary, Stage 7 follows locked authorities and records the conflict as Requires Stage 8 review.
+\end{itemize}
+
+\subsubsection*{4) Inputs and Assumptions}
+
+\paragraph*{Inputs}
+
+\begin{itemize}
+\item Stage 6 tier matrices and timing tokens (E/M/End) as the controlling timeline for when capability becomes required.
+\item Stage 0.5 and Stage 1.F safety boundaries and governance posture:
+  \begin{itemize}
+  \item OTC-only,
+  \item no prescription guidance,
+  \item no hormone dosing, sourcing, cycling, or procurement,
+  \item water governance absolute: no unsupervised underwater/breath-hold.
+  \end{itemize}
+\item Stage 2.E logging/validity requirements for categories affecting test admissibility and audit traceability:
+  \begin{itemize}
+  \item stable identifiers and tool identity posture,
+  \item environment unit identity posture where applicable,
+  \item evidence reference posture where applicable.
+  \end{itemize}
+\end{itemize}
+
+Assumption Ledger not required.
+
+\subsubsection*{5) Interfaces}
+
+\paragraph*{Upstream}
+
+\begin{itemize}
+\item Stage 6 capability timing and tier rules:
+  \begin{itemize}
+  \item Stage 7 must conform; Stage 7 is not allowed to advance a requirement earlier than Stage 6 Tier 1 timing.
+  \end{itemize}
+\item Stage 0.5 and Stage 1.F safety/legal posture:
+  \begin{itemize}
+  \item boundaries are implemented as hard constraints in every overview (especially supplements and aquatic categories).
+  \end{itemize}
+\item Stage 2.E validity/logging dependencies:
+  \begin{itemize}
+  \item categories that affect admissibility (7.18 tools; 7.11 footwear; 7.07 ruck systems; 7.17 aquatic safety; 7.09 monitoring) must carry explicit logging dependency pointers.
+  \end{itemize}
+\end{itemize}
+
+\paragraph*{Downstream}
+
+\begin{itemize}
+\item Stage 8 crosswalk and issue log:
+  \begin{itemize}
+  \item Stage 7 outputs provide the category-level nodes for standards ↔ tests ↔ phases ↔ resources crosswalks and for gap detection.
+  \end{itemize}
+\item Stage 9 packaging:
+  \begin{itemize}
+  \item Stage 7 overviews are included as standalone manuals inside the deployable package structure.
+  \end{itemize}
+\end{itemize}
+
+\paragraph*{Crosswalk hooks}
+
+Each Stage 7 overview must carry stable join keys:
+
+\begin{itemize}
+\item Category \textbf{ID} 7.01–7.20.
+\item Tier 0–3 definitions scoped to that category.
+\item Phase tie-in:
+  \begin{itemize}
+  \item first required phase for Tier 1,
+  \item timing token E/M/End aligned to Stage 6.
+  \end{itemize}
+\item Validity dependencies where applicable:
+  \begin{itemize}
+  \item Environment Unit IDs (Route \textbf{ID}, Pool \textbf{ID}, Machine \textbf{ID}) when the category affects test comparability,
+  \item Tool Standard and tool identity posture when measurement tools are involved,
+  \item Evidence Ref expectations where test artifacts are part of admissibility posture.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{6) Gate / Acceptance Criteria for Stage 7}
+
+Stage 7 is complete when:
+
+\begin{itemize}
+\item All 20 overviews (7.01–7.20) are produced.
+\item Each overview includes Tier 0–Tier 3 tables using the required schema and the locked Tier definitions.
+\item Each overview includes a Phase Integration Map aligned to Stage 6 timing (Tier 1 introduction is not earlier than Stage 6).
+\item Each overview includes substitution rules and maintenance/storage guidance sufficient to prevent validity drift and safety violations.
+\item Each overview includes safety boundary overlays appropriate to the category:
+  \begin{itemize}
+  \item OTC-only posture for supplements/support,
+  \item 7.02 education-only and never required,
+  \item no prescription guidance,
+  \item water governance respected with no unsupervised underwater/breath-hold.
+  \end{itemize}
+\item Any timing mismatch or dependency contradiction against Stage 6 is explicitly flagged Requires Stage 8 review and is not repaired inside Stage 7.
+\end{itemize}
+
+\subsubsection*{7) Common Failure Modes + Controls}
+
+\begin{itemize}
+\item Implying early requirement not supported by Stage 6 -> enforce Phase Integration Map discipline; flag Requires Stage 8 review rather than altering timing.
+\item Drifting into uncontrolled or unsafe procurement guidance -> prohibited; branded examples and approximate pricing are allowed only when intentionally governed.
+\item Drifting into programming → prohibited; keep content at capability, setup, maintenance, and substitution level only.
+\item Missing validity dependencies for test-sensitive categories → require explicit linkage to Stage 2.E dependency fields (environment unit identity, tool identity, evidence ref posture).
+\item Unsafe water guidance -> prohibited; maintain governance-only and supervised-only framing; never imply underwater/breath-hold is acceptable without governance.
+\item Treating supplements as required dependencies → prohibited; OTC-only posture; 7.02 education-only and never required.
+\end{itemize}
+
+\subsubsection*{8) Versioning Notes}
+
+\begin{itemize}
+\item Stage 7 is v1.0 aligned to Stage 6 timing and Tier definitions.
+\item Changes require change control:
+  \begin{itemize}
+  \item patch record entry for the affected overview(s),
+  \item Stage 8 revalidation posture for any timing, dependency, or crosswalk-key changes.
+  \end{itemize}
+\item Any change that alters Tier meaning, Phase Integration timing, or validity dependency posture is treated as a crosswalk-impacting change and must be reviewed for downstream consistency before deployable status is retained.
+\end{itemize}
+
+\end{document}

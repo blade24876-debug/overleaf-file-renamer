@@ -1,0 +1,1171 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{landscape}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\section*{7.06.A - Sleep mask}
+\phantomsection
+\addcontentsline{toc}{section}{7.06.A - Sleep mask}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Sleep mask & Alaska Bear Natural Silk Sleep Mask & \$10 & Light block & Phase-00 & Intended to block early light, and this silk mask was chosen because it stays simple, soft, and easy to tolerate nightly. \\
+Budget & Sleep mask & LitBear 3-D Contoured Sleep Mask & \$12 & Light block & Phase-00 & Intended to reduce eyelid light leak, and this contoured shape was chosen because it leaves more eye space for side-sleepers. \\
+Budget & Sleep mask & Mavogel Cotton Sleep Eye Mask & \$13 & Light block & Phase-00 & Intended to darken the room when windows are imperfect, and this cotton model was chosen because it feels less slick on the face. \\
+Standard & Sleep mask & MZOO 3-D Sleep Mask & \$20 & Light block & Phase-00 & Intended to improve darkness without face pressure, and this model was chosen because the molded cups hold shape better over time. \\
+Standard & Sleep mask & Nidra Deep Rest Eye Mask & \$18 & Light block & Phase-00 & Intended to keep stray light off the eyes, and this mask was chosen because the deep eye wells reduce lash and lid contact. \\
+Standard & Sleep mask & TEMPUR-Sleep Mask & \$30 & Light block & Phase-00 & Intended to improve sleep continuity, and this mask was chosen because the memory-foam feel is usually gentler on pressure points. \\
+Elite & Sleep mask & Manta Sleep Mask & \$35 & Light block & Phase-00 & Intended to create a more complete blackout seal, and this modular design was chosen because it adjusts more precisely than flat masks. \\
+Elite & Sleep mask & Manta Pro Sleep Mask & \$79 & Light block & Phase-00 & Intended to hold darkness stable during long nights, and this upgraded model was chosen because the eye cups seal more consistently. \\
+Elite & Sleep mask & Drowsy Silk Sleep Mask & \$79 & Light block & Phase-00 & Intended to make nightly use feel less irritating, and this was chosen because comfort improves adherence. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.06.B - Blackout curtains}
+\phantomsection
+\addcontentsline{toc}{section}{7.06.B - Blackout curtains}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Blackout curtains & NICETOWN Thermal Insulated Blackout Curtains & \$30 & Window barrier & Phase-00 & Intended to reduce dawn light and street glow, and these were chosen because they are low-cost and widely available. \\
+Budget & Blackout curtains & Amazon Basics Room Darkening Blackout Panels & \$28 & Window barrier & Phase-00 & Intended to make the sleep window darker, and these were chosen because they cover the job without complicated hardware. \\
+Budget & Blackout curtains & Eclipse Kendall Blackout Curtains & \$32 & Window barrier & Phase-00 & Intended to lower nighttime light intrusion, and these were chosen because the fabric is heavier than many bargain panels. \\
+Standard & Blackout curtains & Deconovo Thermal Insulated Blackout Curtains & \$40 & Window barrier & Phase-00 & Intended to improve darkness and room stability, and these were chosen because they combine decent blackout with basic thermal help. \\
+Standard & Blackout curtains & Sun Zero Oslo Theater-Grade Curtains & \$45 & Window barrier & Phase-00 & Intended to cut more aggressive exterior light, and these were chosen because the denser fabric darkens bright windows more reliably. \\
+Standard & Blackout curtains & West Elm Blackout Curtain & \$70 & Window barrier & Phase-00 & Intended to support a cleaner long-term bedroom setup, and these were chosen because the finish is sturdier than entry panels. \\
+Elite & Blackout curtains & Pottery Barn Emery Blackout Curtain & \$149 & Window barrier & Phase-00 & Intended to make the bedroom predictably dark every season, and these were chosen because the construction is more durable and uniform. \\
+Elite & Blackout curtains & West Elm European Flax Linen Blackout Curtain & \$118 & Window barrier & Phase-00 & Intended to pair darkness with a less harsh room feel, and these were chosen because the blackout lining hides behind a better-finished curtain. \\
+Elite & Blackout curtains & Restoration Hardware Belgian Textured Linen Blackout Curtain & \$189 & Window barrier & Phase-00 & Intended to lock in a higher-quality permanent sleep space, and these were chosen because the heavier build improves light control and longevity. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.06.C - Sleep earplugs}
+\phantomsection
+\addcontentsline{toc}{section}{7.06.C - Sleep earplugs}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Sleep earplugs & Mack's Ultra Soft Foam Earplugs & \$8 & Sound block & Phase-00 & Intended to lower noise-triggered awakenings, and these were chosen because the foam is soft and easy for beginners to tolerate. \\
+Budget & Sleep earplugs & Flents Quiet Please Earplugs & \$7 & Sound block & Phase-00 & Intended to mute background noise cheaply, and these were chosen because they are simple, replaceable, and easy to keep on hand. \\
+Budget & Sleep earplugs & Howard Leight Laser Lite Earplugs & \$10 & Sound block & Phase-00 & Intended to blunt sudden sound spikes, and these were chosen because the softer foam often seals well without much pressure. \\
+Standard & Sleep earplugs & Hearos Xtreme Protection Earplugs & \$12 & Sound block & Phase-00 & Intended to improve sleep in louder rooms, and these were chosen because the higher attenuation is useful when outside noise is persistent. \\
+Standard & Sleep earplugs & Alpine SleepDeep Earplugs & \$18 & Sound block & Phase-00 & Intended to reduce night noise with less protrusion, and these were chosen because the low-profile shape suits side-sleeping better. \\
+Standard & Sleep earplugs & Loop Quiet 2 & \$25 & Sound block & Phase-00 & Intended to lower bedroom noise without disposable foam, and these were chosen because the reusable silicone form is easier to manage long term. \\
+Elite & Sleep earplugs & Decibullz Custom Molded Earplugs & \$30 & Sound block & Phase-00 & Intended to improve seal consistency, and these were chosen because the moldable fit can reduce slip-outs overnight. \\
+Elite & Sleep earplugs & Anker Soundcore Sleep A20 & \$149 & Sound block & Phase-00 & Intended to mask noise more actively, and these were chosen because the sleep-focused earbud form adds audio masking without a bedside speaker. \\
+Elite & Sleep earplugs & Ozlo Sleepbuds & \$299 & Sound block & Phase-00 & Intended to create a premium noise-masking sleep setup, and these were chosen because the low-profile buds are built specifically for overnight wear. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.06.D - White noise machine}
+\phantomsection
+\addcontentsline{toc}{section}{7.06.D - White noise machine}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & White noise machine & Homedics SoundSleep & \$25 & Sound masker & Phase-00 & Intended to steady the room's sound profile, and this was chosen because it offers basic masking without a large spend. \\
+Budget & White noise machine & Magicteam Sound Machine & \$30 & Sound masker & Phase-00 & Intended to hide intermittent noise, and this was chosen because it adds several simple sounds in a very small bedside unit. \\
+Budget & White noise machine & Dreamegg D1 & \$30 & Sound masker & Phase-00 & Intended to reduce wake-ups from unpredictable sound, and this was chosen because the controls are simple enough for nightly use. \\
+Standard & White noise machine & Yogasleep Dohm Classic & \$50 & Sound masker & Phase-00 & Intended to create a smoother masking sound, and this was chosen because the real-fan style noise feels less digital to many users. \\
+Standard & White noise machine & LectroFan Classic & \$50 & Sound masker & Phase-00 & Intended to block variable outside noise, and this was chosen because the fan and white-noise options allow better room matching. \\
+Standard & White noise machine & Hatch Rest Mini & \$60 & Sound masker & Phase-00 & Intended to support both masking and bedtime routine cues, and this was chosen because it combines sound with simple light control. \\
+Elite & White noise machine & SNOOZ White Noise Machine & \$100 & Sound masker & Phase-00 & Intended to make masking feel more natural, and this was chosen because the internal fan sound is steadier than many speaker-based units. \\
+Elite & White noise machine & Hatch Restore 3 & \$170 & Sound masker & Phase-00 & Intended to support a more structured bedtime routine, and this was chosen because it combines sound, light, and routine automation in one unit. \\
+Elite & White noise machine & Loftie Clock & \$149 & Sound masker & Phase-00 & Intended to support a calmer sleep environment, and this was chosen because it blends masking audio with a less jarring bedside clock setup. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.06.E - Bedside fan}
+\phantomsection
+\addcontentsline{toc}{section}{7.06.E - Bedside fan}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Bedside fan & Honeywell TurboForce Air Circulator & \$20 & Airflow aid & Phase-00 & Intended to reduce heat buildup and stale air, and this was chosen because it moves enough air for very little cost. \\
+Budget & Bedside fan & Amazon Basics 11-in Air Circulator & \$28 & Airflow aid & Phase-00 & Intended to make hot rooms easier to sleep in, and this was chosen because it is simple and inexpensive to replace if needed. \\
+Budget & Bedside fan & Comfort Zone CZ6-C & \$25 & Airflow aid & Phase-00 & Intended to improve thermal comfort, and this was chosen because the small desk footprint works well in tighter bedrooms. \\
+Standard & Bedside fan & Vornado Flippi V6 & \$30 & Airflow aid & Phase-00 & Intended to improve cooling with less desk clutter, and this was chosen because the pivot head directs air more precisely than flat-front fans. \\
+Standard & Bedside fan & Woozoo Compact Globe Fan & \$40 & Airflow aid & Phase-00 & Intended to steady room airflow during sleep, and this was chosen because the oscillation spreads air more evenly across the bed area. \\
+Standard & Bedside fan & Dreo Table Air Circulator & \$50 & Airflow aid & Phase-00 & Intended to keep the room cooler through the night, and this was chosen because the airflow is stronger and quieter than many bargain units. \\
+Elite & Bedside fan & Vornado 660 Air Circulator & \$100 & Airflow aid & Phase-00 & Intended to cool the room more consistently, and this was chosen because the stronger circulation reaches farther than tiny bedside fans. \\
+Elite & Bedside fan & Shark FlexBreeze TableMate & \$129 & Airflow aid & Phase-00 & Intended to make temperature control more flexible, and this was chosen because it works well in both bedside and travel-like setups. \\
+Elite & Bedside fan & Dyson Cool AM06 & \$299 & Airflow aid & Phase-00 & Intended to provide strong airflow with a cleaner bedside footprint, and this was chosen because the bladeless design is easier to place and clean. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.06.F - Chamomile tea}
+\phantomsection
+\addcontentsline{toc}{section}{7.06.F - Chamomile tea}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Chamomile tea & Bigelow Cozy Chamomile & \$5 & Herbal beverage & Phase-00 & Intended to support a calmer pre-sleep ritual, and this was chosen because the tea bags are cheap and easy to keep consistent. \\
+Budget & Chamomile tea & Celestial Seasonings Chamomile & \$5 & Herbal beverage & Phase-00 & Intended to reinforce a wind-down cue, and this was chosen because the familiar grocery-store box makes repeat use straightforward. \\
+Budget & Chamomile tea & Twinings Pure Chamomile & \$6 & Herbal beverage & Phase-00 & Intended to create a simple bedtime beverage routine, and this was chosen because the flavor stays mild enough for frequent use. \\
+Standard & Chamomile tea & Traditional Medicinals Organic Chamomile & \$7 & Herbal beverage & Phase-00 & Intended to support evening downshift, and this was chosen because the single-herb posture is easier to track than blended sleepy teas. \\
+Standard & Chamomile tea & Yogi Comforting Chamomile & \$6 & Herbal beverage & Phase-00 & Intended to reduce bedtime friction, and this was chosen because the brand is easy to find when one stable tea is preferred. \\
+Standard & Chamomile tea & Harney and Sons Chamomile Herbal & \$10 & Herbal beverage & Phase-00 & Intended to make the nightly wind-down more pleasant, and this was chosen because the tea quality is better than many basic tea bags. \\
+Elite & Chamomile tea & Teapigs Chamomile Flowers & \$13 & Herbal beverage & Phase-00 & Intended to turn the tea into a stronger bedtime cue, and this was chosen because the whole-flower format tastes cleaner and less dusty. \\
+Elite & Chamomile tea & FGO Organic Chamomile Tea & \$14 & Herbal beverage & Phase-00 & Intended to keep the routine simple but higher quality, and this was chosen because the bag count supports long stable use. \\
+Elite & Chamomile tea & Rishi Chamomile Medley & \$16 & Herbal beverage & Phase-00 & Intended to make the evening routine more repeatable through better flavor, and this was chosen because better-tasting tea is easier to keep using. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.06.G - Magnesium glycinate}
+\phantomsection
+\addcontentsline{toc}{section}{7.06.G - Magnesium glycinate}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Magnesium glycinate & Nutricost Magnesium Glycinate & \$16 & Mineral chelate & Phase-00 & Intended to support a calmer evening recovery posture, and this was chosen because the formula stays simple and inexpensive to track. \\
+Budget & Magnesium glycinate & \textbf{NOW} Magnesium Bisglycinate & \$18 & Mineral chelate & Phase-00 & Intended to support sleep-related relaxation, and this was chosen because the brand is mainstream and the ingredient identity is clear. \\
+Budget & Magnesium glycinate & Nature Made High Absorption Magnesium Glycinate & \$20 & Mineral chelate & Phase-00 & Intended to provide a basic single-aid trial, and this was chosen because the bottle is widely available for consistent replacement. \\
+Standard & Magnesium glycinate & Doctor's Best High Absorption Magnesium Glycinate & \$18 & Mineral chelate & Phase-00 & Intended to support evening downshift without blend complexity, and this was chosen because the product stays narrowly focused on one mineral form. \\
+Standard & Magnesium glycinate & KAL Magnesium Glycinate & \$22 & Mineral chelate & Phase-00 & Intended to support recovery hygiene rather than sedation, and this was chosen because the mid-tier format gives a cleaner step up from bargain bottles. \\
+Standard & Magnesium glycinate & Solaray Magnesium Glycinate & \$20 & Mineral chelate & Phase-00 & Intended to support a stable nighttime routine, and this was chosen because it keeps the intervention single-variable and easy to discontinue. \\
+Elite & Magnesium glycinate & Thorne Magnesium Bisglycinate & \$28 & Mineral chelate & Phase-00 & Intended to support a more controlled later evening routine, and this was chosen because the brand fits a stricter QC posture. \\
+Elite & Magnesium glycinate & Pure Encapsulations Magnesium Glycinate & \$32 & Mineral chelate & Phase-00 & Intended to support sleep quality opportunity with fewer formula extras, and this was chosen because the excipient profile is cleaner. \\
+Elite & Magnesium glycinate & Metagenics Magnesium Glycinate & \$30 & Mineral chelate & Phase-00 & Intended to keep a premium single-aid trial tidy and interpretable, and this was chosen because the product presentation is more clinician-oriented. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.06.H - Melatonin}
+\phantomsection
+\addcontentsline{toc}{section}{7.06.H - Melatonin}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Melatonin & Natrol Melatonin & \$8 & Chronobiotic & Phase-00 & Intended to support a schedule-shift correction attempt, and this was chosen because the product is simple and easy to identify in logs. \\
+Budget & Melatonin & Nature Made Melatonin & \$10 & Chronobiotic & Phase-00 & Intended to support bedtime timing consistency, and this was chosen because the mainstream bottle is easy to replace without brand drift. \\
+Budget & Melatonin & Spring Valley Melatonin & \$6 & Chronobiotic & Phase-00 & Intended to provide a very low-friction single-aid option, and this was chosen because the cost stays minimal during early routine testing. \\
+Standard & Melatonin & \textbf{NOW} Melatonin & \$9 & Chronobiotic & Phase-00 & Intended to support circadian routine alignment, and this was chosen because the label is straightforward and easy to compare lot to lot. \\
+Standard & Melatonin & Life Extension Melatonin & \$12 & Chronobiotic & Phase-00 & Intended to provide a cleaner mid-tier option, and this was chosen because the product identity is clearer than many blended sleep formulas. \\
+Standard & Melatonin & Solgar Melatonin & \$11 & Chronobiotic & Phase-00 & Intended to support a tighter bedtime routine, and this was chosen because the amber-bottle pharmacy style encourages a more deliberate one-aid posture. \\
+Elite & Melatonin & Thorne Melaton-3 & \$18 & Chronobiotic & Phase-00 & Intended to support a more controlled single-variable trial, and this was chosen because the QC posture is stronger than discount-store options. \\
+Elite & Melatonin & Pure Encapsulations Melatonin & \$20 & Chronobiotic & Phase-00 & Intended to keep the trial cleaner and easier to interpret, and this was chosen because the formula avoids unnecessary extras. \\
+Elite & Melatonin & Designs for Health Melatonin-SR & \$24 & Chronobiotic & Phase-00 & Intended to support a more formal later routine experiment, and this was chosen because the release profile is clearly differentiated and easier to log. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.06.I - Blackout window film}
+\phantomsection
+\addcontentsline{toc}{section}{7.06.I - Blackout window film}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Blackout window film & Gila Blackout Static Cling Film & \$18 & Light block & Phase-02 & Intended to darken stubborn windows more completely, and this was chosen because it installs without permanent adhesive. \\
+Budget & Blackout window film & rabbitgoo Blackout Window Film & \$20 & Light block & Phase-02 & Intended to shut down light leaks that curtains miss, and this was chosen because the static-cling format is simple for renters. \\
+Budget & Blackout window film & Coavas Blackout Window Film & \$15 & Light block & Phase-02 & Intended to improve daytime sleep conditions, and this was chosen because it adds darkness without new curtain hardware. \\
+Standard & Blackout window film & HIDBEA Blackout Window Film & \$26 & Light block & Phase-02 & Intended to improve room darkness in bright seasons, and this was chosen because the thicker film usually handles light bleed better. \\
+Standard & Blackout window film & BDF Blackout Window Film & \$25 & Light block & Phase-02 & Intended to strengthen the sleep environment when curtains are not enough, and this was chosen because the film is more rigid and easier to trim cleanly. \\
+Standard & Blackout window film & Artscape Blackout Film & \$30 & Light block & Phase-02 & Intended to stabilize darkness in rooms with difficult window geometry, and this was chosen because the finish tends to look tidier after install. \\
+Elite & Blackout window film & Gila Platinum Blackout Film & \$35 & Light block & Phase-02 & Intended to lock in a more permanent blackout effect, and this was chosen because the heavier film usually wrinkles less during application. \\
+Elite & Blackout window film & rabbitgoo Premium Blackout Film & \$30 & Light block & Phase-02 & Intended to strengthen light control beyond basic cling sheets, and this was chosen because the thicker premium version tends to seal more evenly. \\
+Elite & Blackout window film & BDF Premium Blackout Film & \$40 & Light block & Phase-02 & Intended to create a higher-reliability sleep room, and this was chosen because the upgraded film holds a cleaner full-window blackout finish. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.06.J - Sunrise alarm clock}
+\phantomsection
+\addcontentsline{toc}{section}{7.06.J - Sunrise alarm clock}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Sunrise alarm clock & JALL Wake Up Light & \$40 & Wake cue & Phase-02 & Intended to create a gentler fixed wake cue, and this was chosen because it adds light-based waking without premium cost. \\
+Budget & Sunrise alarm clock & REACHER Wake Up Light Alarm Clock & \$35 & Wake cue & Phase-02 & Intended to reduce abrupt wake stress, and this was chosen because the controls are simple enough for daily consistency. \\
+Budget & Sunrise alarm clock & Dekala Sunrise Alarm Clock & \$45 & Wake cue & Phase-02 & Intended to strengthen morning routine timing, and this was chosen because the light ramp is more useful than an ordinary buzzer-only clock. \\
+Standard & Sunrise alarm clock & Philips SmartSleep HF3500 & \$50 & Wake cue & Phase-02 & Intended to make wake time more stable across darker months, and this was chosen because Philips has long-standing wake-light credibility. \\
+Standard & Sunrise alarm clock & Philips SmartSleep HF3520 & \$110 & Wake cue & Phase-02 & Intended to support a more deliberate wake routine, and this was chosen because the light quality and ramp options are better than generic copies. \\
+Standard & Sunrise alarm clock & Lumie Bodyclock Spark 100 & \$119 & Wake cue & Phase-02 & Intended to reduce harsh wake transitions, and this was chosen because the brand specializes in wake-light systems rather than basic clocks. \\
+Elite & Sunrise alarm clock & Lumie Bodyclock Shine 300 & \$179 & Wake cue & Phase-02 & Intended to support a more structured evening-to-morning cycle, and this was chosen because it adds broader routine lighting control. \\
+Elite & Sunrise alarm clock & Philips Somneo HF3670 & \$220 & Wake cue & Phase-02 & Intended to build a higher-quality wake-and-wind-down station, and this was chosen because the light system is more refined and customizable. \\
+Elite & Sunrise alarm clock & Hatch Restore 3 & \$170 & Wake cue & Phase-02 & Intended to tie bedtime and wake cues together in one device, and this was chosen because routine automation improves adherence when schedules drift. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.06.K - Blue-light-blocking glasses}
+\phantomsection
+\addcontentsline{toc}{section}{7.06.K - Blue-light-blocking glasses}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Blue-light-blocking glasses & Livho Blue Light Blocking Glasses & \$20 & Screen filter & Phase-02 & Intended to reduce late-evening screen glare, and these were chosen because they are cheap enough to test without much commitment. \\
+Budget & Blue-light-blocking glasses & Gaoye Blue Light Glasses & \$18 & Screen filter & Phase-02 & Intended to make screen-heavy evenings less stimulating, and these were chosen because the frames are lightweight and easy to keep at a desk. \\
+Budget & Blue-light-blocking glasses & ANRRI Blue Light Blocking Glasses & \$17 & Screen filter & Phase-02 & Intended to support a cleaner pre-bed screen cutoff routine, and these were chosen because the low-cost form makes replacement easy. \\
+Standard & Blue-light-blocking glasses & Gunnar Intercept & \$60 & Screen filter & Phase-02 & Intended to reduce bright-screen strain late in the day, and these were chosen because the gaming-oriented wrap gives fuller coverage. \\
+Standard & Blue-light-blocking glasses & Swanwick Sleep+ & \$79 & Screen filter & Phase-02 & Intended to support a more serious evening light-control routine, and these were chosen because the tint is stronger than ordinary blue-light frames. \\
+Standard & Blue-light-blocking glasses & Felix Gray Nash & \$95 & Screen filter & Phase-02 & Intended to support a more polished screen-reduction habit, and these were chosen because the optics and frame quality are better than budget pairs. \\
+Elite & Blue-light-blocking glasses & Gunnar Berkeley & \$80 & Screen filter & Phase-02 & Intended to make longer evening device use less disruptive, and these were chosen because the fit and lens finish are more durable than cheap pairs. \\
+Elite & Blue-light-blocking glasses & Swanwick Sleep Night-Swannies & \$99 & Screen filter & Phase-02 & Intended to push the environment-first approach harder before OTC aids expand, and these were chosen because the stronger amber lenses better enforce evening light control. \\
+Elite & Blue-light-blocking glasses & Felix Gray Turing & \$95 & Screen filter & Phase-02 & Intended to support a higher-compliance nighttime screen routine, and these were chosen because the frame quality makes daily use feel less disposable. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.06.L - Humidifier}
+\phantomsection
+\addcontentsline{toc}{section}{7.06.L - Humidifier}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Humidifier & Honeywell MistMate Cool Mist & \$35 & Air moisture & Phase-02 & Intended to reduce overly dry room air, and this was chosen because the small unit fits tight bedrooms without much setup. \\
+Budget & Humidifier & Levoit Classic 160 & \$40 & Air moisture & Phase-02 & Intended to improve overnight air comfort, and this was chosen because the simple top-fill style reduces refill friction. \\
+Budget & Humidifier & Vicks Filter-Free Cool Mist & \$45 & Air moisture & Phase-02 & Intended to support easier overnight room comfort, and this was chosen because the brand is familiar and the design is straightforward. \\
+Standard & Humidifier & Levoit Classic 300-S & \$80 & Air moisture & Phase-02 & Intended to stabilize bedroom humidity more reliably, and this was chosen because the larger tank cuts down on overnight emptying. \\
+Standard & Humidifier & Everlasting Comfort Cool Mist Humidifier & \$60 & Air moisture & Phase-02 & Intended to keep the room from feeling dry through the night, and this was chosen because the capacity is stronger than tiny bedside units. \\
+Standard & Humidifier & Canopy Bedside Humidifier & \$150 & Air moisture & Phase-02 & Intended to create a cleaner premium sleep environment, and this was chosen because the design is easier to live with on a nightstand. \\
+Elite & Humidifier & Venta LW25 Airwasher & \$399 & Air moisture & Phase-02 & Intended to deliver steadier room moisture with less fuss, and this was chosen because the system is built for longer-term continuous use. \\
+Elite & Humidifier & Carepod Cube X50 & \$399 & Air moisture & Phase-02 & Intended to improve air comfort with easier sanitation, and this was chosen because the stainless-heavy design cleans up better than plastic tanks. \\
+Elite & Humidifier & Dyson Purifier Humidify+Cool & \$899 & Air moisture & Phase-02 & Intended to combine humidity and airflow in one sleep-space device, and this was chosen because it reduces bedside equipment sprawl. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.06.M - Weighted blanket}
+\phantomsection
+\addcontentsline{toc}{section}{7.06.M - Weighted blanket}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Weighted blanket & YnM Weighted Blanket & \$50 & Pressure aid & Phase-02 & Intended to add a steadier settling cue at bedtime, and this was chosen because it is a low-cost entry into weighted bedding. \\
+Budget & Weighted blanket & Quility Weighted Blanket & \$60 & Pressure aid & Phase-02 & Intended to make bedtime feel calmer and more anchored, and this was chosen because the removable cover helps routine upkeep. \\
+Budget & Weighted blanket & Luna Weighted Blanket & \$65 & Pressure aid & Phase-02 & Intended to provide gentle full-body pressure, and this was chosen because the weight distribution is better than many bargain blankets. \\
+Standard & Weighted blanket & Gravity Blanket & \$189 & Pressure aid & Phase-02 & Intended to support a more deliberate evening downshift, and this was chosen because the blanket is better finished and more durable. \\
+Standard & Weighted blanket & Bearaby Tree Napper & \$199 & Pressure aid & Phase-02 & Intended to add calming pressure with better airflow, and this was chosen because the knit construction sleeps cooler than dense quilted blankets. \\
+Standard & Weighted blanket & Brooklyn Bedding Weighted Blanket & \$129 & Pressure aid & Phase-02 & Intended to improve settling without going fully premium, and this was chosen because the build is sturdier than many low-cost options. \\
+Elite & Weighted blanket & Baloo Weighted Blanket & \$199 & Pressure aid & Phase-02 & Intended to add calming weight without excessive heat, and this was chosen because the cotton-heavy build breathes better than many competitors. \\
+Elite & Weighted blanket & Casper Weighted Blanket & \$189 & Pressure aid & Phase-02 & Intended to provide a more polished weighted-bedding option, and this was chosen because the finish and stitching hold up better over time. \\
+Elite & Weighted blanket & Saatva Weighted Blanket & \$345 & Pressure aid & Phase-02 & Intended to make the support feel more premium and durable, and this was chosen because the construction is more substantial than mass-market blankets. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.06.N - Glycine}
+\phantomsection
+\addcontentsline{toc}{section}{7.06.N - Glycine}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Glycine & Nutricost Glycine & \$18 & Amino acid & Phase-02 & Intended to support a calmer pre-sleep routine, and this was chosen because the powder stays single-ingredient and easy to track. \\
+Budget & Glycine & BulkSupplements Glycine & \$20 & Amino acid & Phase-02 & Intended to support simple one-variable testing, and this was chosen because the bulk powder avoids blend complexity. \\
+Budget & Glycine & \textbf{NOW} Glycine & \$16 & Amino acid & Phase-02 & Intended to provide a basic amino-acid sleep adjunct, and this was chosen because the label is direct and mainstream. \\
+Standard & Glycine & Thorne Glycine & \$24 & Amino acid & Phase-02 & Intended to support a more controlled later evening routine, and this was chosen because the brand fits a tighter QC posture. \\
+Standard & Glycine & Source Naturals Glycine & \$18 & Amino acid & Phase-02 & Intended to keep the adjunct narrow and interpretable, and this was chosen because the product stays focused on a single amino acid. \\
+Standard & Glycine & Solaray Glycine & \$16 & Amino acid & Phase-02 & Intended to support a steady bedtime adjunct trial, and this was chosen because the bottle is easy to compare against other single-ingredient options. \\
+Elite & Glycine & Pure Encapsulations Glycine & \$30 & Amino acid & Phase-02 & Intended to support a cleaner one-aid experiment, and this was chosen because the excipient profile is lower-clutter. \\
+Elite & Glycine & Designs for Health Glycine Powder & \$28 & Amino acid & Phase-02 & Intended to support a more formal later-stage routine, and this was chosen because the practitioner-style product keeps the variable well defined. \\
+Elite & Glycine & Metagenics Glycine & \$29 & Amino acid & Phase-02 & Intended to support an audit-friendly single-compound trial, and this was chosen because the clinical presentation encourages stricter change control. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.06.O - L-theanine}
+\phantomsection
+\addcontentsline{toc}{section}{7.06.O - L-theanine}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & L-theanine & Nutricost L-Theanine & \$14 & Amino acid & Phase-02 & Intended to support a calmer evening mental downshift, and this was chosen because the bottle stays inexpensive and single-ingredient. \\
+Budget & L-theanine & \textbf{NOW} L-Theanine & \$18 & Amino acid & Phase-02 & Intended to soften bedtime mental overactivation, and this was chosen because the brand is mainstream and easy to keep consistent. \\
+Budget & L-theanine & Swanson L-Theanine & \$13 & Amino acid & Phase-02 & Intended to provide a low-cost single-aid option, and this was chosen because the simple capsule format is easy to log and stop. \\
+Standard & L-theanine & Jarrow Formulas Theanine & \$20 & Amino acid & Phase-02 & Intended to support a smoother pre-sleep mental state, and this was chosen because the brand reputation is stronger than many discount options. \\
+Standard & L-theanine & Doctor's Best Suntheanine & \$22 & Amino acid & Phase-02 & Intended to support a more defined one-variable trial, and this was chosen because the branded raw material improves ingredient consistency. \\
+Standard & L-theanine & Life Extension Theanine XR & \$19 & Amino acid & Phase-02 & Intended to support a steadier-feeling evening adjunct, and this was chosen because the extended-release format is meaningfully distinct and easy to log. \\
+Elite & L-theanine & Thorne Theanine & \$30 & Amino acid & Phase-02 & Intended to support a more controlled stress-downshift routine, and this was chosen because the QC posture is stronger and easier to defend. \\
+Elite & L-theanine & Pure Encapsulations L-Theanine & \$34 & Amino acid & Phase-02 & Intended to keep the trial cleaner and more interpretable, and this was chosen because the formula avoids unnecessary extras. \\
+Elite & L-theanine & Integrative Therapeutics Theanine XR & \$28 & Amino acid & Phase-02 & Intended to support a later-phase routine where stability matters more, and this was chosen because the product is positioned for conservative change control. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.06.P - Lemon balm extract}
+\phantomsection
+\addcontentsline{toc}{section}{7.06.P - Lemon balm extract}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Lemon balm extract & Swanson Lemon Balm & \$11 & Herbal extract & Phase-02 & Intended to support evening calm, and this was chosen because the bottle is simple and inexpensive for a one-herb trial. \\
+Budget & Lemon balm extract & \textbf{NOW} Lemon Balm & \$14 & Herbal extract & Phase-02 & Intended to support bedtime downshift without blend noise, and this was chosen because the ingredient identity is straightforward. \\
+Budget & Lemon balm extract & Nature's Way Lemon Balm & \$13 & Herbal extract & Phase-02 & Intended to add a modest herbal calming option, and this was chosen because the brand is widely available and easy to replace consistently. \\
+Standard & Lemon balm extract & Gaia Herbs Lemon Balm & \$20 & Herbal extract & Phase-02 & Intended to support a cleaner herbal trial, and this was chosen because the herbal-specialist brand is easier to defend than generic blends. \\
+Standard & Lemon balm extract & Herb Pharm Lemon Balm & \$18 & Herbal extract & Phase-02 & Intended to support evening stress downshift, and this was chosen because the liquid format offers a clearly different single-variable form. \\
+Standard & Lemon balm extract & Solaray Lemon Balm & \$15 & Herbal extract & Phase-02 & Intended to keep the intervention narrow and stoppable, and this was chosen because it remains a simple one-herb capsule. \\
+Elite & Lemon balm extract & Pure Encapsulations Lemon Balm & \$30 & Herbal extract & Phase-02 & Intended to support a cleaner later-stage herbal trial, and this was chosen because the formula profile is lower-clutter than many herbal brands. \\
+Elite & Lemon balm extract & Integrative Therapeutics Lemon Balm & \$26 & Herbal extract & Phase-02 & Intended to support a more clinician-aware one-herb trial, and this was chosen because the product presentation fits stricter governance. \\
+Elite & Lemon balm extract & Oregon's Wild Harvest Lemon Balm & \$22 & Herbal extract & Phase-02 & Intended to support a more natural-leaning single-herb option, and this was chosen because the formula stays narrow and easy to attribute. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.06.Q - Portable white noise machine}
+\phantomsection
+\addcontentsline{toc}{section}{7.06.Q - Portable white noise machine}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Portable white noise machine & Yogasleep Rohm & \$30 & Travel sound masker & Phase-07 & Intended to preserve sleep masking away from home, and this was chosen because the tiny form is easy to carry in a small bag. \\
+Budget & Portable white noise machine & Dreamegg D-11 & \$30 & Travel sound masker & Phase-07 & Intended to support sleep continuity during travel or disrupted housing, and this was chosen because the rechargeable format cuts battery friction. \\
+Budget & Portable white noise machine & Magicteam Pocket Sound Machine & \$25 & Travel sound masker & Phase-07 & Intended to keep nighttime noise less disruptive in unfamiliar rooms, and this was chosen because the price stays low for a backup unit. \\
+Standard & Portable white noise machine & LectroFan Micro-2 & \$40 & Travel sound masker & Phase-07 & Intended to keep masking quality stable outside the home setup, and this was chosen because it offers stronger sound variety than tiny budget units. \\
+Standard & Portable white noise machine & Yogasleep Hushh Portable & \$35 & Travel sound masker & Phase-07 & Intended to maintain a familiar sleep sound during trips, and this was chosen because the controls are simple and lockable in a bag. \\
+Standard & Portable white noise machine & SNOOZ Go & \$60 & Travel sound masker & Phase-07 & Intended to extend the same masking logic into higher-friction travel periods, and this was chosen because the build is sturdier than entry travel units. \\
+Elite & Portable white noise machine & Adaptive Sound Technologies Sound+Sleep Mini & \$80 & Travel sound masker & Phase-07 & Intended to create a better travel sleep environment, and this was chosen because the sound quality is richer than most palm-size devices. \\
+Elite & Portable white noise machine & Dreamegg D-3 Pro & \$50 & Travel sound masker & Phase-07 & Intended to provide a stronger travel backup, and this was chosen because the runtime and portability balance better than many compact machines. \\
+Elite & Portable white noise machine & Travelrest Portable White Noise Machine & \$70 & Travel sound masker & Phase-07 & Intended to preserve sleep continuity in inconsistent lodging, and this was chosen because the larger battery and sturdier shell suit repeated travel. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.06.R - Portable blackout curtain}
+\phantomsection
+\addcontentsline{toc}{section}{7.06.R - Portable blackout curtain}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Portable blackout curtain & Tommee Tippee Gro Anywhere Blind & \$40 & Travel light block & Phase-07 & Intended to darken unfamiliar rooms during travel, and this was chosen because the suction-cup format installs quickly without tools. \\
+Budget & Portable blackout curtain & Sleepout Portable Blackout Curtain & \$50 & Travel light block & Phase-07 & Intended to preserve darkness away from the home bedroom, and this was chosen because the curtain packs flatter than rigid travel shades. \\
+Budget & Portable blackout curtain & Amazon Basics Portable Blackout Curtain & \$35 & Travel light block & Phase-07 & Intended to create a simple temporary blackout barrier, and this was chosen because it covers the need without a premium travel system. \\
+Standard & Portable blackout curtain & Sleepout Portable Blackout Curtain 2.0 & \$70 & Travel light block & Phase-07 & Intended to make hotel or rental sleep conditions more consistent, and this was chosen because the upgraded size and seal work better on odd windows. \\
+Standard & Portable blackout curtain & Gro Company Anywhere Blind & \$45 & Travel light block & Phase-07 & Intended to control light in changing lodging, and this was chosen because the adjustable dimensions are more flexible than fixed travel panels. \\
+Standard & Portable blackout curtain & SlumberPod Window Cover & \$60 & Travel light block & Phase-07 & Intended to reduce bright-room disruption during overnight travel, and this was chosen because the portable fabric system is easier to pack than rods or panels. \\
+Elite & Portable blackout curtain & Sleepout Blackout Curtain Max & \$90 & Travel light block & Phase-07 & Intended to create a more complete temporary blackout setup, and this was chosen because the larger coverage helps in brighter rooms. \\
+Elite & Portable blackout curtain & Sleepout Portable Blackout Shade Pro & \$95 & Travel light block & Phase-07 & Intended to extend home-style darkness into high-friction travel windows, and this was chosen because the upgraded attachment system is more reliable. \\
+Elite & Portable blackout curtain & Tommee Tippee Gro Anywhere Blind XL & \$55 & Travel light block & Phase-07 & Intended to cover larger travel windows more effectively, and this was chosen because the expanded size reduces side light leak better than compact blinds. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.06.S - Valerian root}
+\phantomsection
+\addcontentsline{toc}{section}{7.06.S - Valerian root}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Valerian root & Swanson Valerian Root & \$10 & Herbal extract & Phase-07 & Intended to support later-phase sleep-downshift trials, and this was chosen because it stays a cheap single-herb option. \\
+Budget & Valerian root & Nature's Way Valerian & \$12 & Herbal extract & Phase-07 & Intended to provide a more specialty sleep herb after simpler tools are already stable, and this was chosen because the brand is easy to replace consistently. \\
+Budget & Valerian root & \textbf{NOW} Valerian Root & \$11 & Herbal extract & Phase-07 & Intended to support a later specialty herb trial, and this was chosen because the one-herb label is easy to track and discontinue. \\
+Standard & Valerian root & Gaia Herbs Valerian Root & \$18 & Herbal extract & Phase-07 & Intended to provide a more deliberate herbal sleep trial, and this was chosen because the herbal-specialist brand is stronger than many discount options. \\
+Standard & Valerian root & Solaray Valerian & \$14 & Herbal extract & Phase-07 & Intended to test a specialty herb without jumping into blends, and this was chosen because the formula remains narrowly focused. \\
+Standard & Valerian root & Herb Pharm Valerian & \$19 & Herbal extract & Phase-07 & Intended to support a more tailored one-herb trial, and this was chosen because the liquid form is meaningfully distinct from capsules. \\
+Elite & Valerian root & Pure Encapsulations Valerian & \$28 & Herbal extract & Phase-07 & Intended to support a higher-governance later-phase herbal trial, and this was chosen because the formula profile is cleaner and easier to interpret. \\
+Elite & Valerian root & Integrative Therapeutics Valerian & \$24 & Herbal extract & Phase-07 & Intended to support a more formal specialty-herb trial, and this was chosen because the product presentation fits conservative change control. \\
+Elite & Valerian root & Oregon's Wild Harvest Valerian & \$20 & Herbal extract & Phase-07 & Intended to support a late-stage single-herb option with fewer extras, and this was chosen because the formula remains simple and stoppable. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.06.T - Passionflower extract}
+\phantomsection
+\addcontentsline{toc}{section}{7.06.T - Passionflower extract}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Passionflower extract & Swanson Passionflower & \$10 & Herbal extract & Phase-07 & Intended to support a later-phase calming herb trial, and this was chosen because the bottle is cheap enough for a narrow single-variable test. \\
+Budget & Passionflower extract & Nature's Way Passionflower & \$13 & Herbal extract & Phase-07 & Intended to provide a specialty herb option after simpler aids are already stable, and this was chosen because the brand is mainstream and easy to source. \\
+Budget & Passionflower extract & \textbf{NOW} Passionflower & \$12 & Herbal extract & Phase-07 & Intended to support a late-stage one-herb trial, and this was chosen because the label is easy to understand and easy to log. \\
+Standard & Passionflower extract & Gaia Herbs Passionflower & \$18 & Herbal extract & Phase-07 & Intended to support a more deliberate herbal stress-downshift test, and this was chosen because the herbal-specialist brand is easier to defend. \\
+Standard & Passionflower extract & Herb Pharm Passionflower & \$17 & Herbal extract & Phase-07 & Intended to support a later specialty calm-support trial, and this was chosen because the liquid format keeps the variable distinct from capsule herbs. \\
+Standard & Passionflower extract & Solaray Passion Flower & \$15 & Herbal extract & Phase-07 & Intended to add one more single-herb option in travel or stress-heavy phases, and this was chosen because it stays simple and non-blended. \\
+Elite & Passionflower extract & Pure Encapsulations Passion Flower & \$30 & Herbal extract & Phase-07 & Intended to support a cleaner higher-governance herbal trial, and this was chosen because the formula avoids unnecessary extras. \\
+Elite & Passionflower extract & Integrative Therapeutics Passionflower & \$26 & Herbal extract & Phase-07 & Intended to support a more clinician-aware one-herb trial, and this was chosen because the product presentation fits stricter stop-and-log discipline. \\
+Elite & Passionflower extract & Oregon's Wild Harvest Passionflower & \$21 & Herbal extract & Phase-07 & Intended to support a later-phase herbal option with a simpler ingredient story, and this was chosen because the formula stays narrow and auditable. \\
+\end{longtblr}
+
+\newpage
+
+\section*{When These Items Are Needed}
+\phantomsection
+\addcontentsline{toc}{section}{When These Items Are Needed}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=1.95in]
+    Q[c,wd=1.10in]
+    X[l,1.80]
+    X[l,1.80]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-2} = {halign=c, valign=m},
+  column{3-4} = {halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Item} &
+\Hdr{First required phase} &
+\Hdr{Why it becomes necessary} &
+\Hdr{What happens if missing} \\
+Sleep mask & Phase-00 & Darkness control is one of the earliest environment-first tools and fits the Tier-1 posture immediately. & Light leakage is harder to control in an otherwise acceptable room, which raises sleep variance. \\
+Blackout curtains & Phase-00 & Room-darkening hardware belongs in the first sleep-hygiene layer before adjunct complexity rises. & Early dawn, streetlight, or summer daylight can keep the sleep window too bright to stabilize. \\
+Sleep earplugs & Phase-00 & Basic noise control is a first-line environment fix when bedroom sound is inconsistent. & Nighttime noise remains more likely to fragment sleep and contaminate recovery. \\
+White noise machine & Phase-00 & A stable masking source fits the earliest environment-control tier and reduces variable nighttime noise. & Sound disruption stays dependent on the room being quiet by luck rather than by control. \\
+Bedside fan & Phase-00 & Thermal comfort is part of the initial room-control layer and is often a faster fix than adding more adjuncts. & Overheating and stale air remain more likely to disturb sleep continuity. \\
+Chamomile tea & Phase-00 & It is a low-complexity routine-based adjunct that fits the earliest stable-aid posture. & The evening routine loses one low-risk wind-down cue, but the category remains optional. \\
+Magnesium glycinate & Phase-00 & It fits the single stable OTC recovery-aid posture allowed from the first tier window. & One simple optional support is absent, and environment/routine work must carry more of the load. \\
+Melatonin & Phase-00 & It fits the same earliest single-aid posture when schedule timing rather than room control is the measurable issue. & A simple schedule-support option is unavailable, but no gate or requirement is lost. \\
+Blackout window film & Phase-02 & It is an expanded sleep-hygiene upgrade once basic curtains and masks are no longer enough. & Bright-window control stays less complete in hard-to-darken rooms. \\
+Sunrise alarm clock & Phase-02 & It belongs in the expanded sleep-hygiene layer once routine stability matters more than bare feasibility. & Wake-time consistency remains more dependent on abrupt alarms alone. \\
+Blue-light-blocking glasses & Phase-02 & They fit the second-wave environment-control tier when evening screen use is the measurable friction point. & One light-control intervention is missing, leaving screen behavior harder to manage. \\
+Humidifier & Phase-02 & It is an expanded room-environment support rather than an immediate minimum tool. & Dry-air discomfort remains less controlled during sleep. \\
+Weighted blanket & Phase-02 & It is an expanded comfort aid rather than a first-line essential and belongs after simpler room fixes. & One calming pressure option is unavailable, but the system remains fully deployable. \\
+Glycine & Phase-02 & It fits the expanded single-variable adjunct tier once the earliest low-complexity options are already stable. & A later-stage amino-acid support option is absent, with no effect on gates. \\
+L-theanine & Phase-02 & It belongs in the expanded optional adjunct layer rather than the first-line environment tier. & One mental downshift option is missing, but the program remains unchanged. \\
+Lemon balm extract & Phase-02 & It is a later single-herb support that belongs after simpler environment and routine measures are locked. & Another optional calming herb is unavailable, but nothing mandatory is lost. \\
+Portable white noise machine & Phase-07 & It fits the Tier-3 travel and redundancy posture used to preserve sleep continuity under higher-friction phases. & Travel or lodging changes are more likely to break the established sleep environment. \\
+Portable blackout curtain & Phase-07 & It also fits the Tier-3 travel/redundancy layer where unfamiliar rooms become a bigger reliability threat. & Darkness control away from home becomes less reliable during travel-heavy or stress-heavy periods. \\
+Valerian root & Phase-07 & It is a later specialty herb best reserved for the overbuilt specialty-support tier rather than early phases. & One niche later-phase herbal option is absent, which usually keeps the system simpler. \\
+Passionflower extract & Phase-07 & It belongs with the later specialty-herb layer once earlier tools are already stable and logged. & A later specialty calming option is missing, but the environment-first system still stands. \\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+\clearpage
+
+\section*{Compliance Checklist}
+\phantomsection
+\addcontentsline{toc}{section}{Compliance Checklist}
+
+\begin{itemize}
+\item Only one deliverable is provided for Target Category 7.06.
+\item The title and required output structure follow the locked schema.
+\item The chart uses the exact required columns.
+\item Twenty distinct items are included, and each item contains exactly three Budget rows, three Standard rows, and three Elite rows.
+\item Rows are grouped by item and ordered from foundational environment controls toward travel/redundancy and later specialty aids.
+\item Notes now state both the intended purpose or use of each entry and the reason that specific product was chosen.
+\item Stage-6 timing is treated as authoritative, and item phases are mapped conservatively from the locked T1/T2/T3 category windows.
+\item The environment-first, routine-first, OTC-last-line posture is preserved throughout the chart.
+\item No dosing, cycling, prescription, diagnostic, treatment, or training-programming content is included.
+\item The required post-chart timing table and the compliance checklist are both included.
+\end{itemize}
+
+\end{document}

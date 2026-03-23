@@ -1,0 +1,480 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{7.15 — General Training and Daily Wear Apparel}
+\phantomsection
+\addcontentsline{toc}{section}{7.15 — General Training and Daily Wear Apparel}
+
+\subsection*{7.15.1 Purpose \& Scope}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.15.1 Purpose \& Scope}
+
+This overview covers both:
+
+\begin{itemize}
+\item Training apparel for routine sessions (comfort, mobility, moisture, friction control).
+\item Daily-life apparel support for start-from-zero adherence (baseline clothing posture that reduces friction and supports consistent execution).
+\end{itemize}
+
+This overview crosswalks Stage 6 timing to the apparel conditions required for safe routine execution and admissible evidence.
+
+This category does not cover, except by cross-reference:
+
+\begin{itemize}
+\item Stage 7.14 environmental / extreme-weather systems,
+\item Stage 7.11 footwear / footcare,
+\item Stage 7.19 protective / visibility gear,
+\item Stage 7.20 hygiene / consumables,
+\end{itemize}
+
+This overview does not provide programming, test protocols, calendars, medical guidance, or consumable anti-chafe prescriptions.
+
+\subsection*{7.15.2 Governance And Safety Boundaries}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.15.2 Governance And Safety Boundaries}
+
+\begin{itemize}
+\item Stage 0 boundary alignment: stop rules, safety override doctrine, conflict-resolution hierarchy, and evidence-admissibility controls apply to all 7.15 selections and substitutions.
+\item Clothing affects compliance and injury risk through chafe, moisture retention, and overheating posture.
+\item Start-from-zero posture: minimum viable clothing exists early without excessive spend; scale rotation depth as volume increases.
+\item Validity posture:
+  \begin{itemize}
+  \item stable apparel reduces confounding; avoid novelty near protected windows.
+  \item document major apparel system changes near gate windows at a high level (e.g., “new fabric system introduced”) if unavoidable.
+  \end{itemize}
+\item Evidence inadmissibility: evidence produced while apparel instability, unsafe chafe escalation, or unmanaged wet-clothing friction materially affects execution is inadmissible until corrected and re-verified.
+\item Anti-chafe posture is governance-only here:
+  \begin{itemize}
+  \item adjust fit/fabric first,
+  \item consumables live in Stage 7.20 (cross-reference only).
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.15.3 Tier Doctrine}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.15.3 Tier Doctrine}
+
+\begin{itemize}
+\item Price band convention: \$ = minimal household-cost item; \$\$ = modest purpose-built item; \$\$\$ = expanded-capability or redundancy item.
+\item N/A rule: use N/A only when a field is genuinely not applicable and omission does not obscure safety, maintenance, or phase-timing logic.
+\item Substitution posture: substitutions are acceptable only when they preserve fit, friction control, moisture management, and adherence reliability; substitutes that increase chafe, overheating, or repeated wet re-use break intent.
+\item Tier 0: constraint state; household-only clothing posture. Minimal and not reliable for repeated training. Used only as a temporary bridge.
+\item Tier 1: minimum viable kit with enough rotation depth to support frequent training and basic daily life without constant laundry crises; includes go-bag clothing kit.
+\item Tier 2: expanded rotation that reduces laundry pressure and provides fast-dry spares as sweat volume increases.
+\item Tier 3: staged kits (home/vehicle/travel) and redundancy to minimize variance and prevent missed sessions in high-consequence phases.
+\end{itemize}
+
+\subsection*{7.15.4 Selection Criteria \& Fit Checks}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.15.4 Selection Criteria \& Fit Checks}
+
+Fit and safety checklist (operational):
+
+Fit rules:
+
+\begin{itemize}
+\item Full range of motion without binding: squat/hinge/arm swing should not be restricted.
+\item Seam pressure points: identify common rub points (inner thigh, underarm, waistband) and remove/replace items that create repeatable hotspots.
+\end{itemize}
+
+Fabric rules:
+
+\begin{itemize}
+\item Moisture and drying posture: fast-dry fabrics reduce chafe and improve comfort in high-volume phases.
+\item Cotton caution: cotton retains moisture and increases chafe risk during long, sweaty sessions; not prohibited, but treated as higher friction risk.
+\end{itemize}
+
+Chafe-control posture (non-medical):
+
+\begin{itemize}
+\item Adjust fit and fabric first (short length, liner fit, seam placement).
+\item If chafe persists, cross-reference Stage 7.20 for consumable anti-chafe options; do not list consumables here.
+\end{itemize}
+
+Laundry feasibility:
+
+\begin{itemize}
+\item Rotation counts must be tied to realistic wash schedule and drying time. If laundry frequency cannot support six sessions per week, increase rotation depth rather than skipping sessions.
+\end{itemize}
+
+Rotation Targets by Tier Mini-Block (training and daily wear)
+
+\begin{itemize}
+\item Tier 1 targets:
+  \begin{itemize}
+  \item Training: 3–5 shirts; 2–4 bottoms; 7–10 underwear; 7–10 socks.
+  \item Daily wear: 3–5 outfits.
+  \end{itemize}
+\item Tier 2 targets:
+  \begin{itemize}
+  \item Training: 6–8 shirts; 3–5 bottoms; 10–14 underwear; 10–14 socks; 2–3 fast-dry spares.
+  \item Daily wear: 6–8 outfits.
+  \end{itemize}
+\item Tier 3 targets:
+  \begin{itemize}
+  \item Training: 10+ shirts; 5+ bottoms; 14+ underwear; 14+ socks; staged duplicates.
+  \item Daily wear: 8+ outfits plus staged kits.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.15.5 Setup, Safety, and Anchoring}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.15.5 Setup, Safety, and Anchoring}
+
+Setup doctrine (no programming):
+
+\begin{itemize}
+\item Pre-session checks:
+  \begin{itemize}
+  \item remove snag hazards, abrasive zippers, and pocket items that rub.
+  \item verify drawstrings and waistbands are secure without restricting breathing.
+  \end{itemize}
+\item Chafe prevention workflow posture:
+  \begin{itemize}
+  \item select known “no-hotspot” kit for longer sessions,
+  \item change out of wet clothes promptly after sessions to reduce skin irritation.
+  \end{itemize}
+\item Cross-reference Stage 7.19 for visibility / traffic gear; do not rely on Stage 7.15 for visibility.
+\end{itemize}
+
+\subsection*{7.15.6 Maintenance, Replacement, and Storage}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.15.6 Maintenance, Replacement, and Storage}
+
+\begin{itemize}
+\item Laundry cadence posture:
+  \begin{itemize}
+  \item maintain enough rotation to avoid repeated damp re-use.
+  \item staged clean kit posture reduces missed sessions.
+  \end{itemize}
+\item Replacement cues:
+  \begin{itemize}
+  \item seam failure, persistent odor that cannot be removed, loss of elasticity, repeated chafe hotspots.
+  \end{itemize}
+\item Storage workflow:
+  \begin{itemize}
+  \item staged clean training kit and daily kit.
+  \item wet / dirty separation posture via cross-reference Stage 7.10 / Stage 7.20.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.15.7 Substitution Rules — Minimal-Path Alternatives}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.15.7 Substitution Rules — Minimal-Path Alternatives}
+
+\begin{itemize}
+\item If clothing is limited:
+  \begin{itemize}
+  \item prioritize clean/dry base layers and socks before any longer exposure.
+  \item adjust modality to reduce friction when feasible (e.g., indoor low-impact work rather than long wet outdoor exposure).
+  \end{itemize}
+\item Do not use clothing that increases chafe or overheating on longer sessions; substitute to a safer kit rather than pushing through.
+\item Document major apparel changes near tests (high level) to preserve comparability: “new fabric system” or “new fit system” as a controlled variable.
+\end{itemize}
+
+\subsection*{7.15.8 Phase Integration Map — Required}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.15.8 Phase Integration Map — Required}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.05in]
+    Q[l,wd=1.55in]
+    X[l,2.75]
+    X[l,3.65]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Phase} &
+\Hdr{Required Tier (from Stage 6)} &
+\Hdr{What Changes / Becomes Mandatory} &
+\Hdr{Notes} \\
+Phase 00 &
+Tier 1 &
+Tier 1 minimum viable training and daily-wear rotation becomes mandatory; go-bag kit established by Phase 00 (End) &
+Phase 00 (End): minimum rotation prevents immediate compliance collapse. Phase 00 (End): go-bag kit supports continuity; cross-reference Stage 7.10 staging. \\
+Phase 01 &
+Tier 1 &
+Maintain Tier 1; stabilize kit choices for protected windows &
+Phase 01 (End): avoid novelty near Deload+Test windows; manage sweat/chafe. \\
+Phase 02 &
+Tier 1 &
+Maintain Tier 1; friction control becomes more consequential as workload rises &
+Phase 02 (End): ensure enough rotation to avoid re-wearing damp kit. \\
+Phase 03 &
+Tier 1 &
+Maintain Tier 1; ruck exposure begins to change friction points &
+Phase 03 (End): ruck straps increase rub points; adjust fit/fabric first; cross-reference Stage 7.11 and Stage 7.20 for consumables. \\
+Phase 04 &
+Tier 1 &
+Maintain Tier 1; wet exposure increases gear turnover &
+Phase 04 (End): fast drying becomes more valuable; consider Tier 2 if laundry pressure is failing. \\
+Phase 05 &
+Tier 1 &
+Maintain Tier 1; longer durations increase sweat load &
+Phase 05 (End): avoid cotton-heavy kit for longer sweaty sessions if chafe/irritation occurs. \\
+Phase 06 &
+Tier 1 &
+Tier 2 is not required by Stage 6 for 7.15; maintain Tier 1 minimum; optionally expand rotation if laundry pressure fails &
+Phase 06 (End): Stage 6 keeps Stage 7.15 at Tier 1; if high volume makes Tier 1 insufficient in practice, treat as execution risk and consider Stage 8 review only if it becomes a requirement. \\
+Phase 07 &
+Tier 1 &
+Maintain Tier 1; consider expanded rotation to reduce variance &
+Phase 07 (End): hybrid density increases sweat/friction; operationally, Tier 2 may reduce misses but remains optional unless Stage 6 changes. \\
+Phase 08 &
+Tier 1 &
+Maintain Tier 1; load tolerance phases increase wet/dirty turnover &
+Phase 08 (End): prioritize staging and drying via Stage 7.10; hygiene via Stage 7.20. \\
+Phase 09 &
+Tier 1 &
+Maintain Tier 1; high \textbf{CAL} volume increases sweat and friction &
+Phase 09 (End): expanded rotation is high ROI but not required unless Stage 6 changes. \\
+Phase 10 &
+Tier 1 &
+Maintain Tier 1; multi-domain gates increase consequence of skin breakdown &
+Phase 10 (End): select stable “no-hotspot” kit for decision windows; no novelty. \\
+Phase 11 &
+Tier 1 &
+Maintain Tier 1; recovery sensitivity increases consequence of irritation &
+Phase 11 (End): avoid preventable skin breakdown; keep kit clean-to-ready. \\
+Phase 12 &
+Tier 1 &
+Maintain Tier 1; Stage 6 does not elevate 7.15 above Tier 1 &
+Phase 12 (End): if staged kits (Tier 3) are adopted for reliability, they remain optional unless Stage 6 changes; avoid introducing novel fabrics in protected windows. \\
+Phase 13 &
+Tier 1 &
+Maintain Tier 1; consolidation requires low variance &
+Phase 13 (End): maintain stable kit; no novelty near final protected windows. \\
+\end{longtblr}
+
+\endgroup
+
+7.15.8 Phase Integration Map Notes:
+
+\begin{itemize}
+\item Stage 6 baseline keeps Stage 7.15 at Tier 1 across all phases. If any phase artifact requires Tier 2+ apparel rotation as mandatory, requires Stage 8 review.
+\end{itemize}
+
+\subsection*{7.15.9 Risks, Contraindications, and Red Flags}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.15.9 Risks, Contraindications, and Red Flags}
+
+Non-medical risks:
+
+\begin{itemize}
+\item Chafing leading to altered mechanics (gait changes, reduced ROM, avoidance behaviors).
+\item Overheating from poor fabric choice and lack of venting; increases heat stress risk.
+\item Skin irritation from detergents or products (cross-reference Stage 7.20); repeated irritation requires process changes and evaluation if severe or persistent.
+\end{itemize}
+
+Red flags (stop and seek evaluation posture):
+
+\begin{itemize}
+\item Severe skin breakdown, spreading redness or heat, drainage, or fever/systemic illness signs → stop exposure and seek evaluation posture.
+\item Persistent rash or swelling that worsens with training → stop the provoking exposure and seek evaluation posture.
+\end{itemize}
+
+Requires Stage 8 review triggers:
+
+\begin{itemize}
+\item Any mismatch where a phase requires 7.15 higher than Tier 1 earlier than Stage 6.
+\item Any attempt to include anti-chafe consumables in tier tables (must be Stage 7.20 cross-reference).
+\item Any attempt to include gloves in tier tables (must cross-reference Stage 7.19 / Stage 7.01).
+\end{itemize}
+
+\subsection*{7.15.10 Compliance Checklist — Pass/Fail}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.15.10 Compliance Checklist — Pass/Fail}
+
+\begin{itemize}
+\item \textbf{PASS}/\textbf{FAIL}: Tier 0–Tier 3 tables use the required schema, generic item types only, and include numeric count ranges for training and daily wear.
+\item \textbf{PASS}/\textbf{FAIL}: Tier 1 rotation exists by Phase 00 (End) per Stage 6 and includes go-bag clothing kit (cross-referenced to Stage 7.10 staging).
+\item \textbf{PASS}/\textbf{FAIL}: Anti-chafe consumables are not listed in tier tables; cross-reference to Stage 7.20 only.
+\item \textbf{PASS}/\textbf{FAIL}: Laundry tools are not listed; cross-references to Stage 7.10 / Stage 7.20 are used.
+\item \textbf{PASS}/\textbf{FAIL}: Gloves are not listed; cross-references to Stage 7.19 / Stage 7.01 are used.
+\item \textbf{PASS}/\textbf{FAIL}: Phase Integration Map is included and aligned to Stage 6 timing; any mismatch is flagged for Stage 8 review.
+\end{itemize}
+
+\end{document}

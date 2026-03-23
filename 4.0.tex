@@ -1,0 +1,343 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{tcolorbox}
+\begin{center}
+{\LARGE\bfseries Stage 4 — Phase 00 Specification}\\[0.35em]
+{\Large\bfseries SOF Physical Development Transformation Program}\\[0.25em]
+{\large 182-Week Civilian-to-Selection Readiness Pipeline}\\[0.65em]
+\TitleLine
+\end{center}
+\end{tcolorbox}
+
+\vspace{0.35em}
+
+\section*{Stage 4 — Phase 00 Specification}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 4 — Phase 00 Specification}
+
+\subsection*{Introduction}
+\phantomsection
+\addcontentsline{toc}{subsection}{Introduction}
+
+\subsubsection*{1) Purpose}
+
+\begin{itemize}
+\item Stage 4 exists to specify Phase 00 execution doctrine that is safe, repeatable, and audit-ready under an obese, deconditioned start-state with elevated musculoskeletal and cardiometabolic risk.
+\item Stage 4 establishes the minimum deployable operating system for Phase 00 under start-from-zero constraints, ensuring Phase 00 can be executed with stable documentation, stable controls, and enforceable safety posture.
+\item Stage 4 is the implementation bridge between upstream governance and downstream phase design, equipment timing, and category manuals, without redefining or weakening any upstream doctrine.
+\item Stage 4 defines Phase 00 only and constrains how Phase 00 produces admissible evidence, how it handles deviations, and how it establishes safe entry posture for Phase 01.
+\item Stage 4 contains and governs these Phase 00 deliverables as a closed set:
+  \begin{itemize}
+  \item 4.A — Phase 00 Overview — Phase Row Template
+  \item 4.B — Phase 00 Timeline and Microcycle Structure
+  \item 4.C — Movement Menu, Regressions, and Progressions
+  \item 4.D — Intensity, Volume, and Progression Rules
+  \item 4.E — Testing Within Phase 00 — Scaled Use of Stage 2 Protocols
+  \item 4.F — Safety, Red Flag Criteria, and Stop Rules for Phase 00
+  \item 4.G — Exit Standards for Phase 00 — Safe Entry to Phase 01
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{2) Scope}
+
+\paragraph*{2.1 Inclusions}
+
+\begin{itemize}
+\item Phase 00 execution boundaries and intent, including conservative ramp and baseline creation under low-impact bias and high-risk novice posture.
+\item Phase 00 session structure components at the element level, aligned to Stage 1.F validity discipline, admissibility posture, and documentation minimums.
+\item Movement menu and scaling boundaries suitable for an obese beginner posture, including regressions, progressions, and non-negotiable regression triggers.
+\item Phase 00 testing posture executed only inside the Phase 00 protected Deload+Test windows defined upstream and locked in Stage 3 and Stage 4.A.
+\item Scaled use posture for measurement: where a Phase 00 test construct is already defined in Stage 2, Stage 2 protocol and logging conventions govern admissibility; where a Phase 00 construct is not yet defined in Stage 2, it must be treated as a Phase 00-local construct and flagged for reconciliation rather than treated as Stage 2-backed.
+\item Safety overlays, stop triggers, and escalation posture as applied specifically in Phase 00, implemented as scheduling and execution controls without medical diagnosis or treatment guidance.
+\item Phase 00 exit standards and gate decision posture aligned to Stage 1.F gate outcomes and Stage 3 reslot discipline.
+\end{itemize}
+
+\paragraph*{2.2 Exclusions}
+
+\begin{itemize}
+\item Any new tests, thresholds, domains, or identifiers.
+\item Any rewriting of Stage 2 protocol cards, Stage 2 metrics inventory, or Stage 2 logging conventions.
+\item Any rewriting of Stage 3 test calendar placement, Deload+Test doctrine, stacking doctrine, spacing doctrine, or reslot doctrine.
+\item Any Phase 01–Phase 13 programming, phase purposes, or macro design content.
+\item Any equipment category expansion, retailer guidance, or acquisition guidance.
+\item Any clinical diagnosis, treatment advice, or prescription guidance.
+\end{itemize}
+
+\subsubsection*{3) How to Use}
+
+\paragraph*{Coach Admin Use}
+
+\begin{itemize}
+\item Use Stage 4 as the Phase 00 operating manual that constrains execution and prevents drift into unsafe exposure escalation or undocumented substitutions.
+\item Enforce Stage 0 constraints and Stage 1.F validity doctrine as non-negotiable controls in every session and every test window.
+\item Align Phase 00 testing to Stage 3 protected Deload+Test windows and to Stage 2 protocolized constructs where they exist, without rewriting Stage 2 procedures or standards.
+\item Enforce admissibility posture: gate decisions rely on admissible evidence only; incomplete logs, missing lock fields, and compromised conditions are treated as inadmissible for gate use.
+\item Apply substitution and reslot posture when environment, access, or safety conditions change; preserve safety and validity rather than preserving schedule.
+\item Treat any Phase 00 test construct that lacks Stage 2 protocol and metric identifiers as a Phase 00-local construct and flag it as Requires Stage 8 review; do not treat such constructs as crosswalk join keys or as Stage 2-backed gate evidence until reconciled upstream.
+\item Use Phase 00 documentation to produce gate-grade evidence for Phase 00 exit decisions by enforcing same-day logging, stable identifiers where defined, and explicit deviation recording.
+\end{itemize}
+
+\paragraph*{Trainee Use Under Coach Supervision}
+
+\begin{itemize}
+\item Phase 00 is reactivation and baseline creation under conservative risk posture; it is not a performance phase and is not a phase for “testing your limits.”
+\item Log daily and per session to the minimum dataset required for admissibility posture, including required session elements, recovery markers, and foot and pain flags.
+\item Follow non-negotiable safety posture: red-flag symptoms and mechanics-altering pain trigger \textbf{STOP} \textbf{NOW} and escalation posture as directed by governance.
+\item Maintain no novelty near Deload+Test windows: do not change footwear systems, route classes, tool methods, or measurement standards inside decision windows unless explicitly documented as a comparability break.
+\item Accept reslot discipline: if conditions are unsafe or validity is compromised, the correct action is to reslot, not to force an attempt.
+\end{itemize}
+
+\subsubsection*{4) Inputs and Assumptions}
+
+\paragraph*{Inputs}
+
+\begin{itemize}
+\item Start state and constraints from Stage 0, including start-from-zero posture, operating constraints, safety boundaries, and end-state envelope framing.
+\item Governance and validity doctrine from Stage 1.F, including validity tags, admissibility posture, stop rules, gate outcomes, and change control posture.
+\item Stage 2 domain taxonomy, metric inventory, protocol cards, tier thresholds, and Stage 2 logging conventions, as the authoritative measurement layer wherever Phase 00 uses Stage 2-defined constructs.
+\item Stage 3 protected Deload+Test windows and adjustment doctrine, as the authoritative scheduling layer for when Phase 00 may attempt gate-grade test evidence.
+\item Phase 00 duration and window placement as defined upstream, including the locked Phase 00 Deload+Test windows in Stage 3 and the Phase 00 batteries and exit posture in Stage 4.A.
+\item Variable access posture consistent with start-from-zero constraints, including environment volatility and indoor substitution posture when outdoor conditions are unsafe.
+\end{itemize}
+
+\paragraph*{Assumption Ledger: not required for Stage 4 Intro.}
+
+\subsubsection*{5) Interfaces}
+
+\paragraph*{Upstream Dependencies}
+
+\begin{itemize}
+\item Stage 0 identity, constraints, end-state envelope posture, and safety posture, including environmental safety dominance.
+\item Stage 1.F governance: session validity, test validity, admissibility, stop posture, gate outcomes, freeze windows, and change control.
+\item Stage 2 measurement architecture: domain taxonomy, metric inventory, protocol cards, thresholds, and logging conventions.
+\item Stage 3 scheduling architecture: Deload+Test doctrine, protected windows, stacking and spacing doctrine, reslot posture, and adjustment rules.
+\end{itemize}
+
+\paragraph*{Downstream Consumers}
+
+\begin{itemize}
+\item Stage 5 Phase 01–13 macro design alignment, which consumes Phase 00 exit posture as the safe entry boundary for Phase 01.
+\item Stage 6 equipment and resource timing, ensuring Phase 00 does not assume capabilities not yet introduced and that Phase 00 prerequisites are feasible.
+\item Stage 7 category overviews, which operationalize tools and systems used during Phase 00 without expanding categories.
+\item Stage 9 packaging and binder-based audit traceability, which requires Phase 00 records to remain decision-grade and crosswalk-ready.
+\end{itemize}
+
+\paragraph*{Crosswalk Hooks}
+
+\begin{itemize}
+\item Phase identifiers Phase 00–Phase 13.
+\item Phase Week and Session numbering conventions.
+\item Validity tags and gate outcomes defined upstream.
+\item Protocol Card IDs \textbf{C1}-\textbf{C18} and Metric IDs \textbf{MET-2B}-### as stable join keys for any protocolized Phase 00 constructs.
+\item Environment unit identifiers and tooling consistency posture where Stage 2.E defines them.
+\item Requires Stage 8 review: any Phase 00 construct referenced in Stage 4 that is not already defined in Stage 2 with a stable Protocol Card \textbf{ID} and Metric \textbf{ID} must be reconciled upstream before it can be treated as crosswalk join-key evidence.
+\end{itemize}
+
+\subsubsection*{6) Gate and Acceptance Criteria}
+
+\begin{itemize}
+\item Pass if Stage 4 Intro accurately frames Phase 00 and the deliverable set 4.A–4.G as a closed set without redefining upstream doctrine.
+\item Pass if safety governance and stop posture are explicitly anchored and do not conflict with Stage 0 and Stage 1.F authorities.
+\item Pass if validity and logging posture references Stage 1.F and Stage 2 logging conventions without alteration and preserves admissibility posture for gate decisions.
+\item Pass if testing posture is explicitly constrained to Stage 3 protected windows and does not imply work-week gate-grade testing.
+\item Pass if any mismatch between Phase 00 test constructs and Stage 2 identifiers is explicitly flagged as Requires Stage 8 review and not silently corrected or implied as already resolved.
+\item Fail if Phase 00 is framed as a performance phase, or if the Intro implies unsafe early exposure escalation, or if it implies underwater or breath-hold exposure.
+\item Fail if Stage 4 claims Stage 2 coverage for Phase 00 constructs that are not actually defined in Stage 2, without flagging Requires Stage 8 review.
+\end{itemize}
+
+\subsubsection*{7) Common Failure Modes and Controls}
+
+\begin{itemize}
+\item Aggressive ramp beyond start-state tolerance → conservative progression boundaries, low-impact bias, and mandatory validity tagging and reslot posture.
+\item Silent substitutions → mandatory \textbf{MODIFIED} tagging, reason-code posture, and explicit deviation notes; undocumented drift is inadmissible for gate use.
+\item Novelty changes near Deload+Test windows → no-novelty posture, lock-field discipline, and reslot rather than forced testing.
+\item Treating Phase 00 as a performance phase → explicit Phase 00 mission posture and exit standards framed as safe entry to Phase 01, not early peak outputs.
+\item Missing logs or reconstructed logs → inadmissibility posture; missing-data rules; do not claim gate credit on incomplete evidence.
+\item Unsafe environment exposure → substitution to safe indoor equivalents only when comparability is preserved and logged; otherwise reslot per Stage 3.
+\item Ignoring pain that alters mechanics → \textbf{STOP} \textbf{NOW} posture for the provoking exposure; conservative downshift; document and reslot testing as required.
+\item Phase 00 gate items not traceable to Stage 2 identifiers → flag Requires Stage 8 review; treat as Draft - Non-Deployable crosswalk evidence until reconciled; do not claim Stage 2-backed admissibility.
+\item Equipment feasibility drift under start-from-zero posture → treat missing capabilities as constraints; apply \textbf{HOLD} posture and reslot test windows rather than improvising unlogged substitutions.
+\item Evidence used outside protected windows → enforce that gate-grade evidence is produced only in Deload+Test windows; work-week attempts are trend-only and not gate-grade by default.
+\end{itemize}
+
+\subsubsection*{8) Versioning Notes}
+
+\begin{itemize}
+\item Stage 4 is part of Program v1.0 and is frozen except for cosmetic corrections that do not change meaning, enforcement posture, or interfaces.
+\item Any substantive change requires controlled patch discipline consistent with governance, including change-log entry, validation check, and distribution control.
+\item No mid-phase doctrinal edits without change control and crosswalk impact review.
+\item Requires Stage 8 review remains the authoritative flag for unresolved mismatches between Phase 00 constructs and Stage 2 identifiers, and for any crosswalk integrity issues that must be corrected upstream before downstream artifacts can remain deployable.
+\end{itemize}
+
+\end{document}

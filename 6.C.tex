@@ -1,0 +1,982 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{landscape}
+
+\section*{Stage 6.C — Phase-Specific Acquisition Lists Delta-Based}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 6.C — Phase-Specific Acquisition Lists Delta-Based}
+
+\subsection*{6.C.1 Priority Scale}
+\phantomsection
+\addcontentsline{toc}{subsection}{6.C.1 Priority Scale}
+
+\begin{itemize}
+\item High = required by phase entry or mid-phase window to execute safely and validly; cannot proceed without it.
+\item Med = required by end-phase gate window to execute safely and validly; can be phased within the phase but must be present by end gate.
+\item Low = optional or convenience upgrade; not required for validity or safety; defer if budget/space constrained.
+\end{itemize}
+
+\subsection*{6.C.2 Phase Delta Tables}
+\phantomsection
+\addcontentsline{toc}{subsection}{6.C.2 Phase Delta Tables}
+
+\subsubsection*{Phase 00 — Bodily Reactivation and Baseline Creation}
+\phantomsection
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.95]
+    X[l,0.90]
+    X[l,2.40]
+    X[l,0.85]
+    X[l,2.15]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Item or Category Change} &
+\Hdr{From Tier → To Tier} &
+\Hdr{Why Introduced Here \\ (Training/Test Need)} &
+\Hdr{Priority \\ (High/Med/Low)} &
+\Hdr{Space / Safety / Budget Notes} \\
+
+7.11 Footwear Systems and Foot Care (supportive shoes; sock system; blister prevention supplies) &
+T0 → T1 &
+Phase 00 locomotion tolerance and durability stability require a controlled footwear interface; prevents hotspot-to-blister drift that would invalidate execution and gate readiness. &
+High &
+Space: Minimal. Safety: Controls gait drift and skin breakdown; required for safe step-based Cardio continuity. Budget: Prioritize as first acquisition; do not “make do” with unstable footwear. \\
+
+7.18 Testing, Timing, Measurement, and Course-Setup Tools (timer method; scale; tape; basic measurement posture) &
+T0 → T1 &
+Phase 00 requires auditable logs and repeatable measurement capture; validity depends on stable timing and basic measurement capability. &
+High &
+Space: Minimal. Safety: Prevents invalid evidence due to missing tools; supports conservative decisions. Budget: Tier 1 only; no upgrades. \\
+
+7.12 Recovery, Mobility, and Tissue-Care Implements (safe surface/mat; basic mobility aid) &
+T0 → T1 &
+Phase 00 movement quality and durability require daily low-risk mobility/recovery capability without escalation. &
+High &
+Space: Minimal. Safety: Reduces predictable stiffness drift and compensations; supports stop-posture compliance. Budget: Tier 1 only; generic item types only. \\
+
+7.13 Nutrition Preparation and Hydration Systems (hydration container; basic carry) &
+T0 → T1 &
+Hydration feasibility supports safe Cardio continuity and reduces heat-related safety risk; supports adherence and recovery stability. &
+High &
+Space: Minimal. Safety: Supports conservative Cardio execution; reduces avoidable fatigue drift. Budget: Tier 1 only; no elaboration. \\
+
+7.10 Logistics, Maintenance, Storage, and Sustainment Equipment (drying/storage posture for footwear and basics) &
+T0 → T1 &
+Prevents repeated execution failure from wet footwear, poor storage, and friction that drives missed sessions and foot breakdown. &
+Med &
+Space: Low-to-moderate. Safety: Protects feet/skin integrity and reduces illness risk. Budget: Tier 1 only; prioritize drying and storage essentials before convenience upgrades. \\
+
+7.20 Personal Hygiene, Health, and Sanitation Items (hygiene/drying/laundry posture) &
+T0 → T1 &
+Supports skin integrity and illness-risk reduction under fixed 6-sessions/week cadence; prevents avoidable breakdown that would force \textbf{HOLD} posture. &
+Med &
+Space: Minimal. Safety: Prevents skin/foot degradation and illness-driven drift. Budget: Essentials only; no expansion. \\
+
+7.16 Operational Self-Management Systems (single system-of-record; planning/journaling) &
+T0 → T1 &
+Phase 00 requires stable logging and adherence discipline; without it, evidence is inadmissible and gates default \textbf{HOLD}. &
+High &
+Space: Minimal. Safety: Prevents silent drift and backfilled logs. Budget: Minimal; avoid complexity creep. \\
+
+7.14 Environmental Apparel — Cold Hot Wet Inclement Weather (basic weather-appropriate layers) &
+T0 → T1 &
+Grand Forks climate volatility threatens continuity and safety; basic apparel prevents unsafe exposure and repeated reslots. &
+Med &
+Space: Moderate. Safety: Enables safe outdoor exposure when appropriate; otherwise supports indoor substitution posture. Budget: Essentials only; defer expansion. \\
+
+7.15 General Training and Daily Wear Apparel (basic training clothing posture) &
+T0 → T1 &
+Prevents friction-related noncompliance; supports safe movement and comfort under frequent sessions. &
+Low &
+Space: Moderate. Safety: Reduces chafing/skin irritation risk. Budget: Minimal; use existing household options when feasible. \\
+
+\end{longtblr}
+
+\endgroup
+
+\vspace{0.65em}
+\newpage
+
+\subsubsection*{Phase 01 — Base Conditioning and Hypertrophy}
+\phantomsection
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.95]
+    X[l,0.90]
+    X[l,2.40]
+    X[l,0.85]
+    X[l,2.15]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Item or Category Change} &
+\Hdr{From Tier → To Tier} &
+\Hdr{Why Introduced Here \\ (Training/Test Need)} &
+\Hdr{Priority \\ (High/Med/Low)} &
+\Hdr{Space / Safety / Budget Notes} \\
+
+7.01 Strength and Resistance Training Equipment (minimum safe resistance capability) &
+T0 → T1 &
+Phase 01 introduces structured resistance exposure as a minimum deployable capability; without it, phase intent cannot be executed safely or consistently. &
+Med &
+Space: Low-to-moderate. Safety: Enables controlled \textbf{STR} exposure; prevents improvised unsafe substitutes. Budget: Tier 1 only; defer upgrades. \\
+
+7.08 Conditioning, Endurance, and Aerobic Training Tools (indoor substitute capability) &
+T0 → T1 &
+Phase 01 requires year-round Cardio continuity and safe indoor substitution when outdoor conditions invalidate execution; preserves validity and adherence. &
+Med &
+Space: Moderate. Safety: Reduces ice/heat/air-quality exposure risk. Budget: Minimal tool posture; defer expansion. \\
+
+\end{longtblr}
+
+\endgroup
+
+Phase 01 is locked to the 24-week variant; duration and window doctrine are reconciled here and are not left as an open Stage 8 issue.
+
+\vspace{0.65em}
+
+\subsubsection*{Phase 02 — Maximal Strength Development}
+\phantomsection
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.95]
+    X[l,0.90]
+    X[l,2.40]
+    X[l,0.85]
+    X[l,2.15]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Item or Category Change} &
+\Hdr{From Tier → To Tier} &
+\Hdr{Why Introduced Here \\ (Training/Test Need)} &
+\Hdr{Priority \\ (High/Med/Low)} &
+\Hdr{Space / Safety / Budget Notes} \\
+
+7.01 Strength and Resistance Training Equipment (barbell/rack-level capability allowed as minimum deployable) &
+T1 → T1 (Operational delta: capability class shift) &
+Phase 02 may require barbell/rack-level capability as the minimum safe means to execute \textbf{STR} proxy intent; absence forces unsafe improvisation or invalid comparability. &
+High &
+Space: Moderate-to-high. Safety: Enables controlled load handling; prevents unstable substitutes. Budget: If required by phase card, it becomes functional Tier 1; stage acquisitions ahead of protected windows. \\
+
+\end{longtblr}
+
+\endgroup
+
+\vspace{0.65em}
+
+\subsubsection*{Phase 03 — Converting Strength to Power and Endurance for SOF Selection}
+\phantomsection
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.95]
+    X[l,0.90]
+    X[l,2.40]
+    X[l,0.85]
+    X[l,2.15]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Item or Category Change} &
+\Hdr{From Tier → To Tier} &
+\Hdr{Why Introduced Here \\ (Training/Test Need)} &
+\Hdr{Priority \\ (High/Med/Low)} &
+\Hdr{Space / Safety / Budget Notes} \\
+
+7.07 Load-Bearing, Rucking, and Carry Systems (first minimum deployable ruck capability) &
+T0 → T1 (End) &
+Locked first-introduction point: Phase 03 is the first phase where minimum deployable ruck/carry capability must exist by end gate to prepare for later load tolerance demands. &
+Med &
+Space: Moderate. Safety: Requires stable fit/configuration and load verification posture; avoid first-time interface changes inside protected windows. Budget: Essentials only; defer upgrades. \\
+
+7.18 Testing, Timing, Measurement, and Course-Setup Tools (higher complexity gate-day readiness) &
+T1 → T2 (End) &
+Phase complexity and gate days increase; Tier 2 measurement/posture reduces validity breaks from tool drift and improves reproducibility for multi-domain days. &
+Med &
+Space: Low. Safety: Reduces invalid evidence risk due to missing/unstable measurement methods. Budget: Tier 2 becomes functional minimum if phase card requires it for admissible testing. \\
+
+7.19 Protective and Assistive Equipment (first minimum deployable protective posture) &
+T0 → T1 (End) &
+First meaningful point where protective/assistive capability reduces predictable breakdown as load/interface complexity increases. &
+Med &
+Space: Low. Safety: Supports conservative risk mitigation; prevents avoidable overuse drift. Budget: Essentials only. \\
+
+\end{longtblr}
+
+\endgroup
+
+\vspace{0.65em}
+
+\subsubsection*{Phase 04 — Strength-Endurance and Work Capacity Development}
+\phantomsection
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.95]
+    X[l,0.90]
+    X[l,2.40]
+    X[l,0.85]
+    X[l,2.15]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Item or Category Change} &
+\Hdr{From Tier → To Tier} &
+\Hdr{Why Introduced Here \\ (Training/Test Need)} &
+\Hdr{Priority \\ (High/Med/Low)} &
+\Hdr{Space / Safety / Budget Notes} \\
+
+7.17 Aquatic Training and Water Safety Equipment (first minimum deployable aquatic capability) &
+T0 → T1 (End) &
+Locked first-introduction point: surface swim becomes phase-relevant and requires verified safety/logistics posture; underwater is not implied. &
+Med &
+Space: Low-to-moderate. Safety: Supports lawful, safe pool execution and valid logging; no underwater/breath-hold governance implied. Budget: Essentials only; defer upgrades. \\
+
+\end{longtblr}
+
+\endgroup
+
+\vspace{0.65em}
+
+\subsubsection*{Phase 05 — Aerobic Base and Extended Stamina Development}
+\phantomsection
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.95]
+    X[l,0.90]
+    X[l,2.40]
+    X[l,0.85]
+    X[l,2.15]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Item or Category Change} &
+\Hdr{From Tier → To Tier} &
+\Hdr{Why Introduced Here \\ (Training/Test Need)} &
+\Hdr{Priority \\ (High/Med/Low)} &
+\Hdr{Space / Safety / Budget Notes} \\
+
+7.18 Testing, Timing, Measurement, and Course-Setup Tools (extended endurance comparability support) &
+T2 → T2 (Operational delta: extend validity controls) &
+Extended duration gates amplify route/tool drift; operational emphasis shifts to tighter comparability discipline for longer events. &
+Med &
+Space: Low. Safety: Reduces invalid test risk; supports reslot decisions when conditions drift. Budget: No upgrades required beyond Tier 2 if already met. \\
+
+\end{longtblr}
+
+\endgroup
+
+\vspace{0.65em}
+
+\subsubsection*{Phase 06 — Lactate Threshold and Power-Endurance Development}
+\phantomsection
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.95]
+    X[l,0.90]
+    X[l,2.40]
+    X[l,0.85]
+    X[l,2.15]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Item or Category Change} &
+\Hdr{From Tier → To Tier} &
+\Hdr{Why Introduced Here \\ (Training/Test Need)} &
+\Hdr{Priority \\ (High/Med/Low)} &
+\Hdr{Space / Safety / Budget Notes} \\
+
+7.14 Environmental Apparel — Cold, Hot, Wet, Inclement Weather (first climate-driven expansion) &
+T1 → T2 (End) &
+First major point where climate volatility becomes a recurrent validity/safety constraint rather than an occasional inconvenience; expanded apparel reduces forced reslots and unsafe exposures. &
+Med &
+Space: Moderate. Safety: Enables safer execution in variable conditions; still defaults to indoor substitution when unsafe. Budget: Expand only as needed to prevent repeated validity failures. \\
+
+7.11 Footwear Systems and Foot Care (expanded foot interface redundancy) &
+T1 → T2 (End) &
+Increased consequence of \textbf{RUN}/\textbf{RUCK} domains requires more robust footcare and interface stability to prevent predictable breakdown. &
+Med &
+Space: Low. Safety: Reduces hotspot/blister cascade; supports gait stability. Budget: Expand only to eliminate recurrent failure modes. \\
+
+7.12 Recovery, Mobility, and Tissue-Care Implements (expanded recovery tooling) &
+T1 → T2 (End) &
+Higher consequence and density require stronger recovery capability to prevent injury drift and invalid test outcomes. &
+Med &
+Space: Low. Safety: Supports durability controls and conservative downshift posture. Budget: Expand only to prevent repeated breakdown. \\
+
+7.10 Logistics, Maintenance, Storage, and Sustainment Equipment (expanded sustainment) &
+T1 → T2 (End) &
+Increased workload magnifies friction costs; sustainment reduces recurring missed sessions and equipment failures. &
+Med &
+Space: Moderate. Safety: Prevents wet-footwear and skin-breakdown loops. Budget: Expand only to stabilize continuity. \\
+
+7.07 Load-Bearing, Rucking, and Carry Systems (expanded stability) &
+T1 → T2 (End) &
+Load tolerance becomes more consequential; expanded stability posture reduces risk of fit drift and load movement that corrupts evidence and safety. &
+Med &
+Space: Moderate. Safety: Improves load stability; prevents chafing and hotspots. Budget: Expand only for stability, not performance. \\
+
+7.18 Testing, Timing, Measurement, and Course-Setup Tools (maintain Tier 2) &
+T2 → T2 (Operational delta: gate-day complexity increases) &
+Testing complexity rises; maintain Tier 2 measurement posture to prevent tool drift. &
+High &
+Space: Low. Safety: Gate evidence invalidity triggers \textbf{HOLD}/reslot; keep tools stable. Budget: Protect this category from drift. \\
+
+\end{longtblr}
+
+\endgroup
+
+\vspace{0.65em}
+
+\subsubsection*{Phase 07 — Advanced Hybrid Overload}
+\phantomsection
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.95]
+    X[l,0.90]
+    X[l,2.40]
+    X[l,0.85]
+    X[l,2.15]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Item or Category Change} &
+\Hdr{From Tier → To Tier} &
+\Hdr{Why Introduced Here \\ (Training/Test Need)} &
+\Hdr{Priority \\ (High/Med/Low)} &
+\Hdr{Space / Safety / Budget Notes} \\
+
+7.16 Operational Self-Management Systems (expanded execution control) &
+T1 → T2 (End) &
+Hybrid density increases scheduling drift risk; expanded self-management reduces missed sessions, undocumented substitutions, and gate-week chaos. &
+Med &
+Space: Low. Safety: Prevents unsafe stacking and validity contamination. Budget: Expand only to eliminate recurring drift. \\
+
+\end{longtblr}
+
+\endgroup
+
+\vspace{0.65em}
+
+\subsubsection*{Phase 08 — Structural Durability and Load Tolerance}
+\phantomsection
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.95]
+    X[l,0.90]
+    X[l,2.40]
+    X[l,0.85]
+    X[l,2.15]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Item or Category Change} &
+\Hdr{From Tier → To Tier} &
+\Hdr{Why Introduced Here \\ (Training/Test Need)} &
+\Hdr{Priority \\ (High/Med/Low)} &
+\Hdr{Space / Safety / Budget Notes} \\
+
+7.07 Load-Bearing, Rucking, and Carry Systems (expanded load tolerance readiness) &
+T2 → T2 (Operational delta: long-load stability becomes dominant) &
+Load tolerance milestones demand stable interface and configuration repeatability to protect feet and validity. &
+High &
+Space: Moderate. Safety: Long-load failure risk is high; avoid late changes near protected windows. Budget: No upgrades unless required to prevent repeated failure. \\
+
+7.19 Protective and Assistive Equipment (expanded risk control) &
+T1 → T2 (End) &
+Higher consequence phases require stronger protective posture to prevent predictable breakdown. &
+Med &
+Space: Low. Safety: Reduces overuse drift and protects joints/skin. Budget: Expand only when needed for stability. \\
+
+\end{longtblr}
+
+\endgroup
+
+\vspace{0.65em}
+
+\subsubsection*{Phase 09 — High-Volume Calisthenics and Stamina}
+\phantomsection
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.95]
+    X[l,0.90]
+    X[l,2.40]
+    X[l,0.85]
+    X[l,2.15]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Item or Category Change} &
+\Hdr{From Tier → To Tier} &
+\Hdr{Why Introduced Here \\ (Training/Test Need)} &
+\Hdr{Priority \\ (High/Med/Low)} &
+\Hdr{Space / Safety / Budget Notes} \\
+
+7.12 Recovery, Mobility, and Tissue-Care Implements (maintain Tier 2) &
+T2 → T2 (Operational delta: volume-induced friction control) &
+High \textbf{CAL} volume requires consistent recovery tooling to avoid overuse drift and invalid evidence. &
+Med &
+Space: Low. Safety: Prevents tendon/hand/skin breakdown; supports repeatability. Budget: Maintain; do not overbuild unless failure patterns emerge. \\
+
+\end{longtblr}
+
+\endgroup
+
+\vspace{0.65em}
+
+\subsubsection*{Phase 10 — Advanced Tactical Readiness}
+\phantomsection
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.95]
+    X[l,0.90]
+    X[l,2.40]
+    X[l,0.85]
+    X[l,2.15]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Item or Category Change} &
+\Hdr{From Tier → To Tier} &
+\Hdr{Why Introduced Here \\ (Training/Test Need)} &
+\Hdr{Priority \\ (High/Med/Low)} &
+\Hdr{Space / Safety / Budget Notes} \\
+
+7.17 Aquatic Training and Water Safety Equipment (expanded aquatic logistics) &
+T1 → T2 (End) &
+Swim becomes consistently gate-relevant; expanded posture supports repeatability and safer execution under variable access. Underwater remains conditional and governance-gated. &
+Med &
+Space: Moderate. Safety: Surface-only capability readiness; underwater not implied. Budget: Expand only to preserve safe repeatability. \\
+
+\end{longtblr}
+
+\endgroup
+
+\vspace{0.65em}
+
+\subsubsection*{Phase 11 — Pre-Selection Conditioning and Recovery}
+\phantomsection
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.95]
+    X[l,0.90]
+    X[l,2.40]
+    X[l,0.85]
+    X[l,2.15]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Item or Category Change} &
+\Hdr{From Tier → To Tier} &
+\Hdr{Why Introduced Here \\ (Training/Test Need)} &
+\Hdr{Priority \\ (High/Med/Low)} &
+\Hdr{Space / Safety / Budget Notes} \\
+
+7.10 Logistics, Maintenance, Storage, and Sustainment Equipment (maintain Tier 2; prevent last-phase friction) &
+T2 → T2 (Operational delta: verification reliability) &
+Late phases punish execution friction; sustainment reduces last-minute failures that invalidate test weeks. &
+Med &
+Space: Moderate. Safety: Prevents illness/skin drift and missed sessions. Budget: Maintain; avoid late upgrades that create novelty. \\
+
+\end{longtblr}
+
+\endgroup
+
+\newpage
+\vspace{0.65em}
+
+\subsubsection*{Phase 12 — Final Pre-Selection Conditioning}
+\phantomsection
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.95]
+    X[l,0.90]
+    X[l,2.40]
+    X[l,0.85]
+    X[l,2.15]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Item or Category Change} &
+\Hdr{From Tier → To Tier} &
+\Hdr{Why Introduced Here \\ (Training/Test Need)} &
+\Hdr{Priority \\ (High/Med/Low)} &
+\Hdr{Space / Safety / Budget Notes} \\
+
+7.18 Testing, Timing, Measurement, and Course-Setup Tools (verification redundancy) &
+T2 → T3 (End) &
+Overbuild for verification reliability; redundancy reduces variance and prevents a single tool failure from invalidating final gates. &
+Med &
+Space: Low. Safety: Prevents invalid evidence due to tool failure. Budget: Overbuild only where it directly protects admissibility. \\
+
+7.11 Footwear Systems and Foot Care (redundant interface readiness) &
+T2 → T3 (End) &
+Final verification cannot tolerate foot breakdown; redundancy and sustainment reduce variability and last-minute changes. &
+Med &
+Space: Low-to-moderate. Safety: Prevents hotspot/blister cascade. Budget: Overbuild only to stabilize; no performance chasing. \\
+
+7.07 Load-Bearing, Rucking, and Carry Systems (redundant fit/config stability) &
+T2 → T3 (End) &
+Final long-load gates require stable configuration and redundancy to prevent failure due to interface issues. &
+Med &
+Space: Moderate. Safety: Prevents chafing/fit drift; protects validity. Budget: Overbuild only for reliability. \\
+
+7.12 Recovery, Mobility, and Tissue-Care Implements (redundant recovery reliability) &
+T2 → T3 (End) &
+Verification blocks require stable recovery capability; redundancy reduces late-phase breakdown. &
+Low &
+Space: Low. Safety: Supports durability and sleep stability. Budget: Overbuild only if recurring failure patterns exist. \\
+
+7.10 Logistics, Maintenance, Storage, and Sustainment Equipment (verification reliability) &
+T2 → T3 (End) &
+Sustained high-consequence windows require near-zero friction and high reliability; redundancy prevents avoidable misses. &
+Low &
+Space: Moderate. Safety: Prevents illness/skin drift. Budget: Only elevate if repeated sustainment failures appear. \\
+
+7.19 Protective and Assistive Equipment (redundant protective posture) &
+T2 → T3 (End) &
+Final readiness benefits from redundancy where protective failures would derail gates. &
+Low &
+Space: Low. Safety: Risk containment. Budget: Elevate only when the protective item prevents repeated gate disruption. \\
+
+7.16 Operational Self-Management Systems (redundant planning discipline) &
+T2 → T3 (End) &
+Verification blocks require strict reslot discipline and no-novelty posture; redundancy reduces drift. &
+Low &
+Space: Low. Safety: Prevents stacking drift. Budget: Keep minimal unless needed for compliance stability. \\
+
+7.17 Aquatic Training and Water Safety Equipment (verification reliability) &
+T2 → T3 (End) &
+If \textbf{SWIM} is gate-relevant late-phase, reliability redundancy reduces schedule collapse due to access/tool drift. Underwater remains governance-gated and not implied. &
+Low &
+Space: Moderate. Safety: Surface-only reliability posture. Budget: Overbuild only if it prevents repeated invalidity. \\
+
+\end{longtblr}
+
+\endgroup
+
+\vspace{0.65em}
+
+\subsubsection*{Phase 13 — Full-Spectrum Readiness Consolidation}
+\phantomsection
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.95]
+    X[l,0.90]
+    X[l,2.40]
+    X[l,0.85]
+    X[l,2.15]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Item or Category Change} &
+\Hdr{From Tier → To Tier} &
+\Hdr{Why Introduced Here \\ (Training/Test Need)} &
+\Hdr{Priority \\ (High/Med/Low)} &
+\Hdr{Space / Safety / Budget Notes} \\
+
+7.18 Testing, Timing, Measurement, and Course-Setup Tools (maintain verification redundancy) &
+T3 → T3 (Operational delta: maintain) &
+Consolidation assumes verification reliability posture is already achieved; avoid last-minute tool changes that create novelty. &
+Med &
+Space: Low. Safety: Prevents invalid evidence. Budget: Maintain; no new introductions. \\
+
+7.07 Load-Bearing, Rucking, and Carry Systems (maintain redundancy) &
+T3 → T3 (Operational delta: maintain) &
+Consolidation maintains stable ruck interface; no novelty near final gates. &
+Med &
+Space: Moderate. Safety: Prevents interface drift. Budget: Maintain; no new introductions. \\
+
+7.11 Footwear Systems and Foot Care (maintain redundancy) &
+T3 → T3 (Operational delta: maintain) &
+Final repeatability requires stable foot integrity; do not alter interface near verification. &
+Med &
+Space: Low-to-moderate. Safety: Prevents blister cascade. Budget: Maintain; no new introductions. \\
+
+7.10 Logistics, Maintenance, Storage, and Sustainment Equipment (maintain redundancy) &
+T3 → T3 (Operational delta: maintain) &
+Sustainment reliability preserves cadence and prevents avoidable illness/skin drift. &
+Low &
+Space: Moderate. Safety: Continuity and hygiene. Budget: Maintain; no new introductions. \\
+
+7.19 Protective and Assistive Equipment (maintain redundancy) &
+T3 → T3 (Operational delta: maintain) &
+Maintain protective posture to avoid preventable breakdown during final proof windows. &
+Low &
+Space: Low. Safety: Risk containment. Budget: Maintain; no new introductions. \\
+
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+\end{document}

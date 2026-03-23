@@ -1,0 +1,1148 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{landscape}
+
+\section*{7.05.A - Caffeine tablet}
+\phantomsection
+\addcontentsline{toc}{section}{7.05.A - Caffeine tablet}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Caffeine tablet & Nutricost Caffeine & \$14 & Stimulant tablet & Phase-01 & Raises alertness with a measured tablet format, chosen because the simple label keeps caffeine exposure easy to track. \\
+Budget & Caffeine tablet & ProLab Caffeine & \$12 & Stimulant tablet & Phase-01 & Supports wakefulness before early sessions, chosen because the plain capsule profile minimizes extra ingredients. \\
+Budget & Caffeine tablet & Allmax Caffeine & \$10 & Stimulant tablet & Phase-01 & Helps blunt morning sluggishness, chosen because the low-cost bottle makes a controlled single-variable trial affordable. \\
+Standard & Caffeine tablet & Klean Athlete Klean Caffeine & \$24 & Stimulant tablet & Phase-01 & Improves vigilance when timing is planned, chosen because the sport-focused QC posture fits stricter documentation. \\
+Standard & Caffeine tablet & Life Extension Caffeine Caps & \$16 & Stimulant tablet & Phase-01 & Supports sharper task initiation, chosen because the pharmacy-style branding suits a conservative workflow. \\
+Standard & Caffeine tablet & \textbf{NOW} Sports Energy Caps & \$18 & Stimulant tablet & Phase-01 & Provides a predictable wakefulness bump, chosen because the mainstream sports line feels easier to standardize long term. \\
+Elite & Caffeine tablet & Thorne Caffeine & \$28 & Stimulant capsule & Phase-01 & Supports controlled alertness on demanding mornings, chosen because the cleaner clinical-style presentation fits a low-variance roster. \\
+Elite & Caffeine tablet & Momentous Caffeine & \$30 & Stimulant capsule & Phase-01 & Improves readiness without relying on drink prep, chosen because the premium QC posture suits gate-sensitive users. \\
+Elite & Caffeine tablet & Designs for Health Caffeine Synergy & \$32 & Stimulant capsule & Phase-01 & Helps preserve concentration when fatigue is predictable, chosen because practitioner-style packaging encourages tighter change control. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.05.B - Caffeine gum}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.B - Caffeine gum}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Caffeine gum & Alert Energy Caffeine Gum & \$15 & Stim gum & Phase-01 & Delivers faster portable alertness, chosen because the blister-pack format is easy to carry without powder or bottles. \\
+Budget & Caffeine gum & Military Energy Gum & \$14 & Stim gum & Phase-01 & Supports quick wakefulness during travel or long starts, chosen because the military-style pack is compact and rugged. \\
+Budget & Caffeine gum & Run Gum & \$20 & Stim gum & Phase-01 & Gives a short portable focus lift, chosen because the brand is built around small, pre-portioned field use. \\
+Standard & Caffeine gum & NeuroGum Energy \& Focus & \$28 & Stim gum & Phase-01 & Helps attention when a drink is impractical, chosen because the small piece format makes intake easier to meter. \\
+Standard & Caffeine gum & Run Gum Extra Strength & \$24 & Stim gum & Phase-01 & Supports sharper pre-session alertness, chosen because the stronger gum format reduces the need for multiple pieces. \\
+Standard & Caffeine gum & Military Energy Gum Spearmint & \$16 & Stim gum & Phase-01 & Maintains vigilance in cold or windy environments, chosen because the pack stores cleanly in jacket or ruck pockets. \\
+Elite & Caffeine gum & NeuroGum Pro & \$35 & Stim gum & Phase-01 & Supports task persistence with less liquid volume, chosen because the polished dose-control format suits higher-discipline users. \\
+Elite & Caffeine gum & First Person Caffeine Gum & \$30 & Stim gum & Phase-01 & Helps preserve focus during long work blocks, chosen because the premium gum format is easy to standardize by piece count. \\
+Elite & Caffeine gum & Grinds Caffeine Pouches & \$20 & Oral stim & Phase-01 & Supports alertness without mixing or brewing, chosen because the tin format travels neatly and reduces prep friction. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.05.C - Caffeine mint or lozenge}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.C - Caffeine mint or lozenge}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Caffeine mint or lozenge & Viter Energy Mints & \$8 & Stim mint & Phase-01 & Gives a small portable alertness lift, chosen because the mint tin is easy to keep in a pocket or glove box. \\
+Budget & Caffeine mint or lozenge & Neuro Mints Energy \& Focus & \$18 & Stim mint & Phase-01 & Supports concentration without brewing or shaking, chosen because the mint format feels cleaner than sticky gels. \\
+Budget & Caffeine mint or lozenge & Grinds Coffee Pouches & \$20 & Stim pouch & Phase-01 & Helps morning alertness when drinking is inconvenient, chosen because the pouch tin stays compact in small kits. \\
+Standard & Caffeine mint or lozenge & Viter Energy Extra Strength Mints & \$10 & Stim mint & Phase-01 & Supports sharper wakefulness in a tiny format, chosen because the stronger mint lets the user carry fewer servings. \\
+Standard & Caffeine mint or lozenge & Neuro Mints Cinnamon & \$20 & Stim mint & Phase-01 & Improves focus during long desk-based planning blocks, chosen because the flavored mint format avoids bottle clutter. \\
+Standard & Caffeine mint or lozenge & Rev Gum Mint Tabs & \$16 & Stim tab & Phase-01 & Helps preserve alertness during commute or setup time, chosen because tab-style servings are easy to count and compare. \\
+Elite & Caffeine mint or lozenge & Viter Focus Mints & \$15 & Focus mint & Phase-01 & Supports a tidy on-the-go alertness routine, chosen because the premium tin format stays organized in a minimal kit. \\
+Elite & Caffeine mint or lozenge & Neuro Mints Peppermint & \$22 & Stim mint & Phase-01 & Helps mental sharpness without a full beverage, chosen because the premium mint profile feels lower-friction than canned drinks. \\
+Elite & Caffeine mint or lozenge & \textbf{GO} Cubes Coffee Bites & \$20 & Stim chew & Phase-01 & Provides a coffee-like alertness effect in chew form, chosen because the cube format packs faster than brewing gear. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.05.D - Instant coffee packet}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.D - Instant coffee packet}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Instant coffee packet & Nescafé Clasico Instant Coffee & \$9 & Instant brew & Phase-01 & Supports basic morning wakefulness, chosen because the widely available jar is easy to replace consistently. \\
+Budget & Instant coffee packet & Folgers Classic Roast Instant & \$8 & Instant brew & Phase-01 & Helps create a simple pre-session caffeine routine, chosen because the mainstream format lowers repurchase friction. \\
+Budget & Instant coffee packet & Café Bustelo Instant Espresso & \$7 & Instant brew & Phase-01 & Provides a stronger coffee-style alertness effect, chosen because the espresso-style powder is compact and potent. \\
+Standard & Instant coffee packet & Starbucks VIA Instant Pike Place & \$12 & Instant brew & Phase-01 & Supports sharper wakefulness while traveling, chosen because the single-stick format standardizes one serving at a time. \\
+Standard & Instant coffee packet & Mount Hagen Organic Instant Coffee & \$14 & Instant brew & Phase-01 & Helps early-session alertness with less prep, chosen because the cleaner ingredient profile suits a lower-clutter pantry. \\
+Standard & Instant coffee packet & Waka Instant Coffee & \$15 & Instant brew & Phase-01 & Supports portable caffeine planning, chosen because the packet-focused format is tidy for travel or field use. \\
+Elite & Instant coffee packet & Swift Cup Instant Coffee & \$18 & Instant brew & Phase-01 & Provides a more refined coffee-style alertness effect, chosen because the premium packets improve consistency away from home. \\
+Elite & Instant coffee packet & Cometeer Frozen Coffee Capsules & \$24 & Brew concentrate & Phase-01 & Supports stronger coffee convenience with less brewing error, chosen because the capsule format keeps flavor and intensity more uniform. \\
+Elite & Instant coffee packet & Black Rifle Just Black Instant & \$15 & Instant brew & Phase-01 & Helps preserve a familiar coffee ritual under travel conditions, chosen because the single-serve sleeves are easy to log and store. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.05.E - Ready-to-drink coffee}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.E - Ready-to-drink coffee}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Ready-to-drink coffee & High Brew Coffee & \$24 & RTD coffee & Phase-01 & Supports grab-and-go alertness on rushed mornings, chosen because the canned format chills fast and packs easily. \\
+Budget & Ready-to-drink coffee & Starbucks Tripleshot Energy & \$28 & RTD coffee & Phase-01 & Delivers a stronger wakefulness effect in one can, chosen because the mass-retail availability improves repeatability. \\
+Budget & Ready-to-drink coffee & Stōk Cold Brew & \$7 & RTD coffee & Phase-01 & Supports flexible caffeine use at home, chosen because the bottle makes measured pours easier than café coffee. \\
+Standard & Ready-to-drink coffee & La Colombe Draft Latte & \$30 & RTD coffee & Phase-01 & Helps alertness with a smoother milk-based texture, chosen because the can feels more palatable for users who dislike harsh canned coffee. \\
+Standard & Ready-to-drink coffee & Califia Farms Cold Brew & \$8 & RTD coffee & Phase-01 & Supports routine wakefulness with a milder profile, chosen because the bottle format works well for controlled smaller servings. \\
+Standard & Ready-to-drink coffee & Super Coffee Vanilla & \$32 & RTD coffee & Phase-01 & Supports alertness with a more meal-like feel, chosen because the ready bottle can reduce missed intake on chaotic days. \\
+Elite & Ready-to-drink coffee & Chameleon Cold Brew Concentrate & \$12 & RTD coffee & Phase-01 & Provides customizable alertness without café variability, chosen because concentrate pours are easier to measure than store drinks. \\
+Elite & Ready-to-drink coffee & Wandering Bear Cold Brew & \$20 & RTD coffee & Phase-01 & Supports higher-volume home use with fewer purchases, chosen because the box format simplifies repeat morning preparation. \\
+Elite & Ready-to-drink coffee & Rise Nitro Cold Brew & \$36 & RTD coffee & Phase-01 & Helps sharper wakefulness with a cleaner canned coffee feel, chosen because the nitrogen-style format tastes smoother than many shelf options. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.05.F - Matcha powder}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.F - Matcha powder}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Matcha powder & Jade Leaf Culinary Matcha & \$20 & Tea powder & Phase-01 & Supports steadier tea-based alertness, chosen because the larger budget pouch is practical for repeated daily use. \\
+Budget & Matcha powder & Navitas Organics Matcha Powder & \$18 & Tea powder & Phase-01 & Provides a gentler wakefulness option, chosen because the simple pantry-style bag fits users moving away from heavy coffee reliance. \\
+Budget & Matcha powder & FGO Organic Matcha & \$16 & Tea powder & Phase-01 & Helps preserve alertness with a tea format, chosen because the affordable bag lowers the cost of a consistent trial. \\
+Standard & Matcha powder & Encha Ceremonial Organic Matcha & \$28 & Tea powder & Phase-01 & Supports a smoother focus effect than harsher coffee, chosen because the higher-grade powder mixes cleaner and tastes less bitter. \\
+Standard & Matcha powder & Naoki Matcha Superior Ceremonial & \$26 & Tea powder & Phase-01 & Helps controlled wakefulness with a tea ritual, chosen because the more refined flavor may improve repeat compliance. \\
+Standard & Matcha powder & MatchaBar Ceremonial Grade & \$30 & Tea powder & Phase-01 & Supports calmer alertness across long mornings, chosen because the brand is built around easy daily preparation. \\
+Elite & Matcha powder & Ippodo Tea Sayaka Matcha & \$38 & Tea powder & Phase-01 & Provides a premium tea-based alertness option, chosen because the high-quality powder suits users prioritizing taste and routine consistency. \\
+Elite & Matcha powder & Golde Pure Matcha & \$32 & Tea powder & Phase-01 & Supports wakefulness with a polished pantry format, chosen because the brand presentation may improve adherence for routine-focused users. \\
+Elite & Matcha powder & Pique Sun Goddess Matcha & \$39 & Tea crystal & Phase-01 & Helps portable tea-based focus, chosen because the sachet style reduces measuring friction compared with loose powder tins. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.05.G - Green tea extract capsule}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.G - Green tea extract capsule}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Green tea extract capsule & \textbf{NOW} Green Tea Extract & \$15 & Tea extract & Phase-01 & Supports a lighter stimulant feel than direct caffeine tablets, chosen because the mainstream bottle is easy to compare and replace. \\
+Budget & Green tea extract capsule & Nutricost Green Tea Extract & \$18 & Tea extract & Phase-01 & Provides tea-based alertness support, chosen because the low-cost capsule keeps the format simple and portable. \\
+Budget & Green tea extract capsule & Nature's Bounty Green Tea & \$12 & Tea extract & Phase-01 & Helps maintain a smaller wakefulness bump, chosen because the mass-retail bottle lowers replacement friction. \\
+Standard & Green tea extract capsule & Jarrow Green Tea & \$20 & Tea extract & Phase-01 & Supports mild vigilance without a full beverage, chosen because the established supplement line fits a conservative trial posture. \\
+Standard & Green tea extract capsule & Life Extension Mega Green Tea Extract & \$24 & Tea extract & Phase-01 & Helps alertness with a cleaner capsule workflow, chosen because the pharmacy-style branding supports tighter QC confidence. \\
+Standard & Green tea extract capsule & Solaray Green Tea & \$18 & Tea extract & Phase-01 & Supports tea-based mental energy, chosen because the simple single-herb capsule avoids complicated blends. \\
+Elite & Green tea extract capsule & Thorne Green Tea Phytosome & \$32 & Tea extract & Phase-01 & Helps preserve wakefulness with a premium formula style, chosen because the clinical branding suits stricter low-variance users. \\
+Elite & Green tea extract capsule & Pure Encapsulations Green Tea & \$34 & Tea extract & Phase-01 & Supports a cleaner tea-extract trial, chosen because the minimalist excipient style reduces nonessential formula clutter. \\
+Elite & Green tea extract capsule & Integrative Therapeutics Green Tea & \$28 & Tea extract & Phase-01 & Helps mild cognitive sharpness, chosen because the practitioner-style bottle fits a more controlled documentation posture. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.05.H - Caffeinated electrolyte mix}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.H - Caffeinated electrolyte mix}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Caffeinated electrolyte mix & Liquid I.V. Energy Multiplier & \$25 & Stim hydration mix & Phase-01 & Supports alertness and fluid intake together, chosen because the stick packs simplify travel and reduce scoop errors. \\
+Budget & Caffeinated electrolyte mix & GU Roctane Energy Drink Mix & \$30 & Stim hydration mix & Phase-01 & Helps preserve focus during long hot sessions, chosen because the endurance-oriented mix ties caffeine to hydration context. \\
+Budget & Caffeinated electrolyte mix & Tailwind Endurance Fuel Caffeinated & \$32 & Stim hydration mix & Phase-01 & Supports steady long-session alertness, chosen because the all-in-one bottle format lowers multi-product complexity. \\
+Standard & Caffeinated electrolyte mix & Nuun Energy & \$8 & Stim tab mix & Phase-01 & Supports small portable alertness with water, chosen because the tube format stores cleanly in a gym or ruck pocket. \\
+Standard & Caffeinated electrolyte mix & Hydrant Energy Rapid Hydration & \$28 & Stim hydration mix & Phase-01 & Helps wakefulness while reinforcing drinking, chosen because the packet format is tidy for desk or field use. \\
+Standard & Caffeinated electrolyte mix & Zipfizz Energy Hydration & \$22 & Stim hydration mix & Phase-01 & Provides a more noticeable energy effect in drink form, chosen because the tube servings travel better than big tubs. \\
+Elite & Caffeinated electrolyte mix & Precision Fuel \& Hydration Caffeine Drink Mix & \$35 & Stim hydration mix & Phase-01 & Supports controlled endurance alertness, chosen because the clearly structured endurance branding suits tighter workflow control. \\
+Elite & Caffeinated electrolyte mix & Neversecond C30+ Drink Mix & \$38 & Stim hydration mix & Phase-01 & Helps sustained focus in longer efforts, chosen because the minimalist endurance design supports cleaner single-use logging. \\
+Elite & Caffeinated electrolyte mix & SIS Beta Fuel + Nootropics & \$40 & Stim hydration mix & Phase-01 & Supports combined alertness and bottle fueling, chosen because the single-product layout reduces pocket clutter during long work. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.05.I - Caffeinated gel}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.I - Caffeinated gel}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Caffeinated gel & GU Energy Gel with Caffeine & \$15 & Stim gel & Phase-02 & Supports quick portable alertness during longer endurance work, chosen because the small packets are easy to carry and count. \\
+Budget & Caffeinated gel & Clif Shot Energy Gel Double Espresso & \$16 & Stim gel & Phase-02 & Provides coffee-like fuel-plus-alertness support, chosen because the flavor identity is easy for users already comfortable with coffee. \\
+Budget & Caffeinated gel & Honey Stinger Energy Gel Caffeinated & \$18 & Stim gel & Phase-02 & Helps portable focus with a softer flavor profile, chosen because the honey-based texture feels less synthetic than many gels. \\
+Standard & Caffeinated gel & Science in Sport \textbf{GO} Gel + Caffeine & \$18 & Stim gel & Phase-02 & Supports quick on-the-move alertness, chosen because the thinner isotonic texture can be easier to take without heavy chugging. \\
+Standard & Caffeinated gel & Precision Fuel \& Hydration PF 30 Caffeine Gel & \$22 & Stim gel & Phase-02 & Helps planned mid-session wakefulness, chosen because the clearer carb-and-caffeine identity improves standardization. \\
+Standard & Caffeinated gel & Spring Energy Speednut & \$30 & Stim gel & Phase-02 & Supports alertness with a more food-like texture, chosen because the thicker real-food style may sit better for some users. \\
+Elite & Caffeinated gel & Maurten Gel 100 CAF 100 & \$35 & Stim gel & Phase-02 & Helps portable alertness in a high-end endurance format, chosen because the hydrogel style is often chosen for cleaner stomach feel. \\
+Elite & Caffeinated gel & Neversecond C30+ Gel & \$30 & Stim gel & Phase-02 & Supports tidy endurance alertness, chosen because the minimalist formula posture reduces attribution noise. \\
+Elite & Caffeinated gel & SIS Beta Fuel + Caffeine Gel & \$20 & Stim gel & Phase-02 & Delivers a larger portable energy hit, chosen because the higher-output gel reduces how many packets must be carried. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.05.J - Caffeinated chew}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.J - Caffeinated chew}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Caffeinated chew & Clif Bloks Caffeinated & \$8 & Stim chew & Phase-02 & Supports staged alertness across a longer session, chosen because the block format makes intake easy to spread out. \\
+Budget & Caffeinated chew & GU Energy Chews Caffeinated & \$9 & Stim chew & Phase-02 & Helps maintain focus without swallowing a full gel, chosen because the small pieces are easy to meter. \\
+Budget & Caffeinated chew & Honey Stinger Energy Chews Caffeinated & \$10 & Stim chew & Phase-02 & Supports portable wakefulness in chew form, chosen because the softer texture is easier for users who dislike firm blocks. \\
+Standard & Caffeinated chew & Skratch Labs Energy Chews + Caffeine & \$10 & Stim chew & Phase-02 & Helps long-session attention with a fruit-forward chew, chosen because the taste profile may improve adherence. \\
+Standard & Caffeinated chew & Bonk Breaker Energy Chews Caffeinated & \$12 & Stim chew & Phase-02 & Supports alertness with a softer chew texture, chosen because the sleeve format packs neatly into small kit pockets. \\
+Standard & Caffeinated chew & PROBAR Bolt Chews Strawberry with Caffeine & \$9 & Stim chew & Phase-02 & Helps maintain mental engagement in longer work, chosen because the compact sleeve is tidy and easy to log. \\
+Elite & Caffeinated chew & Science in Sport Beta Fuel Chew Bar + Caffeine & \$20 & Stim chew & Phase-02 & Supports a denser chewable alertness format, chosen because the larger bar reduces wrapper count during long outings. \\
+Elite & Caffeinated chew & Precision Fuel \& Hydration PF 30 Caffeine Chew & \$22 & Stim chew & Phase-02 & Helps standardize portable alertness, chosen because the portioned chew bar format keeps servings easier to compare. \\
+Elite & Caffeinated chew & Maurten Solid C 160 & \$14 & Stim solid & Phase-02 & Supports portable energy with a less sticky mouthfeel, chosen because the solid format feels cleaner than gel packets for some users. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.05.K - L-theanine}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.K - L-theanine}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & L-theanine & Nutricost L-Theanine & \$16 & Focus amino & Phase-02 & Supports smoother focus and less edgy stimulation, chosen because the low-cost single-ingredient capsule keeps the variable clean. \\
+Budget & L-theanine & \textbf{NOW} L-Theanine & \$20 & Focus amino & Phase-02 & Helps soften jitter-prone alertness, chosen because the mainstream brand is easy to source consistently. \\
+Budget & L-theanine & Doctor's Best L-Theanine & \$18 & Focus amino & Phase-02 & Supports calmer concentration, chosen because the simple capsule format avoids flavoring and drink prep. \\
+Standard & L-theanine & Jarrow Theanine & \$24 & Focus amino & Phase-02 & Helps preserve focus without a harder stimulant feel, chosen because the established supplement line fits conservative tracking. \\
+Standard & L-theanine & Life Extension Theanine XR Stress Relief & \$22 & Focus amino & Phase-02 & Supports steadier concentration over a longer block, chosen because the extended-release style suits users chasing less up-down volatility. \\
+Standard & L-theanine & Sports Research L-Theanine & \$19 & Focus amino & Phase-02 & Helps maintain a smoother mental state, chosen because the compact bottle is easy to keep as a small single-purpose item. \\
+Elite & L-theanine & Pure Encapsulations Suntheanine & \$32 & Focus amino & Phase-02 & Supports calm alertness with low formula clutter, chosen because the minimalist excipient posture suits stricter QC users. \\
+Elite & L-theanine & Thorne Theanine & \$30 & Focus amino & Phase-02 & Helps reduce stimulation roughness while preserving attention, chosen because the clinical branding supports a more formal workflow. \\
+Elite & L-theanine & Integrative Therapeutics Theanine XR & \$28 & Focus amino & Phase-02 & Supports smoother concentration across work blocks, chosen because the practitioner-style bottle encourages more disciplined use. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.05.L - Caffeine plus L-theanine capsule}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.L - Caffeine plus L-theanine capsule}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Caffeine plus L-theanine capsule & Double Wood Caffeine + L-Theanine & \$20 & Combo capsule & Phase-02 & Supports alertness with a softer edge, chosen because the combo removes the need to manage two separate bottles. \\
+Budget & Caffeine plus L-theanine capsule & Natural Stacks Smart Caffeine & \$24 & Combo capsule & Phase-02 & Helps focus with less jitter than caffeine alone, chosen because the formula is built specifically around a two-part simplicity model. \\
+Budget & Caffeine plus L-theanine capsule & Nootropics Depot Caffeine + L-Theanine & \$22 & Combo capsule & Phase-02 & Supports cleaner focus in one capsule, chosen because the nootropic-focused brand makes the combo identity easy to understand. \\
+Standard & Caffeine plus L-theanine capsule & Zhou Energy + Focus & \$24 & Combo capsule & Phase-02 & Helps alertness during long desk or planning blocks, chosen because the polished retail format improves repeat-use convenience. \\
+Standard & Caffeine plus L-theanine capsule & BrainMD Smart Caffeine & \$28 & Combo capsule & Phase-02 & Supports smoother wakefulness, chosen because the combo framing keeps the tool narrow instead of becoming a broad stimulant stack. \\
+Standard & Caffeine plus L-theanine capsule & Onnit Alpha BRAIN Instant Focus & \$30 & Combo capsule & Phase-02 & Helps mental sharpness in a travel-friendly pack, chosen because the ready sachets lower bottle sprawl in small kits. \\
+Elite & Caffeine plus L-theanine capsule & Nootropics Depot Caffeine + L-Theanine Tablets & \$28 & Combo tablet & Phase-02 & Supports a very tidy single-item alertness setup, chosen because the brand’s raw-ingredient posture fits stricter attribution control. \\
+Elite & Caffeine plus L-theanine capsule & Natural Stacks Smart Caffeine Plus & \$32 & Combo capsule & Phase-02 & Helps controlled focus across planned work windows, chosen because the premium combo format reduces loose DIY pairing. \\
+Elite & Caffeine plus L-theanine capsule & Brain Ritual Caffeine + L-Theanine & \$34 & Combo capsule & Phase-02 & Supports a smoother alertness curve, chosen because the premium minimalist positioning suits a smaller high-control roster. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.05.M - L-tyrosine}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.M - L-tyrosine}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & L-tyrosine & Nutricost L-Tyrosine & \$16 & Focus amino & Phase-02 & Supports cognitive steadiness under fatigue, chosen because the low-cost capsule allows a narrow single-variable trial. \\
+Budget & L-tyrosine & \textbf{NOW} L-Tyrosine & \$14 & Focus amino & Phase-02 & Helps task persistence when drained, chosen because the mainstream bottle is easy to replace without brand drift. \\
+Budget & L-tyrosine & Jarrow L-Tyrosine & \$18 & Focus amino & Phase-02 & Supports alert task engagement, chosen because the established supplement line feels easier to keep standardized. \\
+Standard & L-tyrosine & Doctor's Best L-Tyrosine & \$17 & Focus amino & Phase-02 & Helps preserve concentration during long blocks, chosen because the simple capsule profile avoids blend complexity. \\
+Standard & L-tyrosine & Life Extension Tyrosine Caps & \$20 & Focus amino & Phase-02 & Supports mental drive under accumulated workload, chosen because the pharmacy-style presentation fits a tighter system. \\
+Standard & L-tyrosine & Solaray L-Tyrosine & \$15 & Focus amino & Phase-02 & Helps maintain task initiation without a drink, chosen because the straightforward single-ingredient bottle stays easy to classify. \\
+Elite & L-tyrosine & Pure Encapsulations L-Tyrosine & \$28 & Focus amino & Phase-02 & Supports cleaner cognitive support trials, chosen because the low-clutter formulation reduces extra-ingredient confusion. \\
+Elite & L-tyrosine & Designs for Health L-Tyrosine & \$30 & Focus amino & Phase-02 & Helps mental persistence in a practitioner-style format, chosen because the premium branding suits higher-discipline tracking. \\
+Elite & L-tyrosine & Thorne Tyrosine & \$26 & Focus amino & Phase-02 & Supports focused work under stress, chosen because the clinical presentation fits a more conservative optional-support roster. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.05.N - Citicoline}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.N - Citicoline}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Citicoline & Nutricost Citicoline & \$24 & Choline donor & Phase-02 & Supports cleaner focus and mental clarity, chosen because the capsule keeps the compound isolated without stimulant overlap. \\
+Budget & Citicoline & Double Wood Citicoline & \$22 & Choline donor & Phase-02 & Helps attention on longer cognitive tasks, chosen because the minimalist label makes the active easy to track. \\
+Budget & Citicoline & Jarrow Citicoline & \$28 & Choline donor & Phase-02 & Supports sharper task engagement, chosen because the established brand improves confidence in repeated same-product use. \\
+Standard & Citicoline & Doctor's Best Citicoline & \$26 & Choline donor & Phase-02 & Helps preserve mental sharpness without direct stimulation, chosen because the single-ingredient format stays easy to attribute. \\
+Standard & Citicoline & Life Extension Cognizin Citicoline & \$30 & Choline donor & Phase-02 & Supports attention and working focus, chosen because the branded raw-material identity may improve consistency confidence. \\
+Standard & Citicoline & Jarrow Cognizin & \$32 & Choline donor & Phase-02 & Helps focused output on demanding work blocks, chosen because the Cognizin labeling keeps product identity clearer. \\
+Elite & Citicoline & Pure Encapsulations Citicoline & \$38 & Choline donor & Phase-02 & Supports cleaner cognition support trials, chosen because the minimalist formulation fits a lower-noise workflow. \\
+Elite & Citicoline & Designs for Health Cognizin & \$40 & Choline donor & Phase-02 & Helps attention under heavy planning loads, chosen because practitioner-style branding suits conservative later-phase testing. \\
+Elite & Citicoline & Thorne Memoractiv & \$48 & Cognitive support & Phase-02 & Supports mental clarity in a premium format, chosen because the clinical brand positioning fits a tightly curated optional stack. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.05.O - Cocoa flavanol powder or sachet}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.O - Cocoa flavanol powder or sachet}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Cocoa flavanol powder or sachet & Navitas Organics Cacao Powder & \$14 & Cocoa powder & Phase-02 & Supports a gentler cocoa-based mental lift, chosen because the pantry-style bag works for simple home use. \\
+Budget & Cocoa flavanol powder or sachet & Hershey's Special Dark Cocoa & \$6 & Cocoa powder & Phase-02 & Helps create a low-friction cocoa drink routine, chosen because the cheap tin is easy to test without a large spend. \\
+Budget & Cocoa flavanol powder or sachet & Viva Naturals Organic Cacao Powder & \$15 & Cocoa powder & Phase-02 & Supports a mild cognitive-support beverage, chosen because the large bag makes consistent repeat use affordable. \\
+Standard & Cocoa flavanol powder or sachet & CocoaVia Cardio Health Powder & \$32 & Flavanol powder & Phase-02 & Supports mental freshness with a more defined cocoa-flavanol format, chosen because the brand is built around measured sachet-style use. \\
+Standard & Cocoa flavanol powder or sachet & FlavaNaturals Cocoa Powder & \$28 & Flavanol powder & Phase-02 & Helps smoother cognitive support than harsher stimulant formats, chosen because the cocoa-specialist branding keeps the product identity clear. \\
+Standard & Cocoa flavanol powder or sachet & CocoaVia Daily Cocoa Extract & \$35 & Flavanol sachet & Phase-02 & Supports a more standardized cocoa routine, chosen because the packet style reduces measuring variance. \\
+Elite & Cocoa flavanol powder or sachet & CocoaVia Memory+ & \$40 & Flavanol sachet & Phase-02 & Helps preserve cognitive sharpness in a premium format, chosen because the memory-focused packet line feels more purpose-built. \\
+Elite & Cocoa flavanol powder or sachet & FlavaNaturals Performance Cocoa & \$38 & Flavanol powder & Phase-02 & Supports a higher-end cocoa-based focus routine, chosen because the specialist brand reduces category ambiguity. \\
+Elite & Cocoa flavanol powder or sachet & Pique Pure Cacao & \$36 & Cocoa crystal & Phase-02 & Helps portable cocoa-based alertness, chosen because the crystal sachets travel more cleanly than loose powders. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.05.P - Phosphatidylserine}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.P - Phosphatidylserine}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Phosphatidylserine & Double Wood Phosphatidylserine & \$24 & Phospholipid & Phase-03 & Supports cognitive steadiness during stress-heavy blocks, chosen because the plain capsule format stays easy to track. \\
+Budget & Phosphatidylserine & Nutricost Phosphatidylserine & \$22 & Phospholipid & Phase-03 & Helps mental composure when workload stacks up, chosen because the low-cost bottle makes later-stage testing cheaper. \\
+Budget & Phosphatidylserine & Swanson Phosphatidylserine & \$20 & Phospholipid & Phase-03 & Supports calmer task execution, chosen because the straightforward supplement format avoids a broader nootropic blend. \\
+Standard & Phosphatidylserine & Jarrow PS 100 & \$28 & Phospholipid & Phase-03 & Helps preserve mental clarity in longer work periods, chosen because the widely known product identity aids consistency. \\
+Standard & Phosphatidylserine & Life Extension PS Caps & \$32 & Phospholipid & Phase-03 & Supports cognitive steadiness without overt stimulation, chosen because the pharmacy-style branding fits later-phase QC posture. \\
+Standard & Phosphatidylserine & Doctor's Best PS & \$26 & Phospholipid & Phase-03 & Helps attention under accumulated fatigue, chosen because the clean single-compound format keeps attribution manageable. \\
+Elite & Phosphatidylserine & Thorne Phosphatidyl Serine & \$42 & Phospholipid & Phase-03 & Supports premium later-phase cognitive support trials, chosen because the clinical branding suits a restricted high-control roster. \\
+Elite & Phosphatidylserine & Pure Encapsulations PS 100 & \$44 & Phospholipid & Phase-03 & Helps steadier cognition with less formula clutter, chosen because the minimalist excipient posture reduces noise. \\
+Elite & Phosphatidylserine & Designs for Health PS 150 & \$46 & Phospholipid & Phase-03 & Supports composure and focus in a practitioner-style format, chosen because the premium positioning encourages more deliberate use. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.05.Q - Bacopa monnieri}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.Q - Bacopa monnieri}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Bacopa monnieri & Himalaya Bacopa & \$16 & Herbal nootropic & Phase-03 & Supports memory-oriented cognitive steadiness, chosen because the simple herb-only product keeps the trial narrow. \\
+Budget & Bacopa monnieri & \textbf{NOW} Bacopa Extract & \$18 & Herbal nootropic & Phase-03 & Helps longer-horizon mental consistency, chosen because the mainstream single-herb capsule is easy to classify. \\
+Budget & Bacopa monnieri & Double Wood Bacopa Monnieri & \$20 & Herbal nootropic & Phase-03 & Supports non-stimulant cognitive support testing, chosen because the minimalist bottle fits one-variable later trials. \\
+Standard & Bacopa monnieri & Life Extension Bacopa Monnieri & \$24 & Herbal nootropic & Phase-03 & Helps attention and memory support over time, chosen because the pharmacy-style branding suits conservative later use. \\
+Standard & Bacopa monnieri & Gaia Herbs Bacopa & \$28 & Herbal nootropic & Phase-03 & Supports steadier mental performance with an herbal-specialist identity, chosen because the brand presentation feels cleaner than generic nootropics. \\
+Standard & Bacopa monnieri & Banyan Botanicals Bacopa & \$22 & Herbal nootropic & Phase-03 & Helps non-stimulant focus support, chosen because the Ayurvedic-specialist positioning makes the herb identity more explicit. \\
+Elite & Bacopa monnieri & Pure Encapsulations Bacopa & \$36 & Herbal nootropic & Phase-03 & Supports a cleaner high-end bacopa trial, chosen because the low-clutter formulation reduces extra-ingredient confusion. \\
+Elite & Bacopa monnieri & Integrative Therapeutics Bacopa & \$34 & Herbal nootropic & Phase-03 & Helps later-stage cognitive steadiness testing, chosen because the practitioner-style bottle fits stricter documentation posture. \\
+Elite & Bacopa monnieri & Nootropics Depot Bacopa & \$30 & Herbal nootropic & Phase-03 & Supports a more specialized bacopa option, chosen because the nootropic-focused brand suits a later, more deliberate experiment. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.05.R - Acetyl-L-carnitine}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.R - Acetyl-L-carnitine}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Acetyl-L-carnitine & \textbf{NOW} Acetyl-L-Carnitine & \$18 & Focus amino & Phase-02 & Supports mental freshness when workload accumulates, chosen because the straightforward capsule profile keeps the variable clean. \\
+Budget & Acetyl-L-carnitine & Nutricost Acetyl-L-Carnitine & \$20 & Focus amino & Phase-02 & Helps preserve cognitive energy without drink prep, chosen because the low-cost bottle makes conservative testing affordable. \\
+Budget & Acetyl-L-carnitine & Jarrow Acetyl L-Carnitine & \$22 & Focus amino & Phase-02 & Supports alert task engagement, chosen because the known supplement line makes repeat purchases easier. \\
+Standard & Acetyl-L-carnitine & Doctor's Best Acetyl-L-Carnitine & \$24 & Focus amino & Phase-02 & Helps mental sharpness under long workdays, chosen because the single-compound bottle avoids broader blend behavior. \\
+Standard & Acetyl-L-carnitine & Life Extension Acetyl-L-Carnitine Arginate & \$28 & Focus amino & Phase-02 & Supports cognitive freshness with a more specialized form, chosen because the pharmacy-style branding fits a conservative trial. \\
+Standard & Acetyl-L-carnitine & Solaray Acetyl L-Carnitine & \$20 & Focus amino & Phase-02 & Helps sustain mental output without a stimulant drink, chosen because the simple capsule remains easy to log and stop. \\
+Elite & Acetyl-L-carnitine & Pure Encapsulations Acetyl-L-Carnitine & \$34 & Focus amino & Phase-02 & Supports cleaner later-phase focus testing, chosen because the minimalist formulation reduces nonessential ingredient noise. \\
+Elite & Acetyl-L-carnitine & Designs for Health ALC & \$36 & Focus amino & Phase-02 & Helps preserve mental energy in a practitioner-style format, chosen because the premium positioning suits stricter controls. \\
+Elite & Acetyl-L-carnitine & Thorne Acetyl-L-Carnitine & \$32 & Focus amino & Phase-02 & Supports a premium one-variable later trial, chosen because the clinical branding fits a restricted optional-support roster. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.05.S - Taurine}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.S - Taurine}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Taurine & Nutricost Taurine & \$14 & Amino support & Phase-02 & Supports steadier mental and neuromuscular calm under stimulation, chosen because the low-cost powder or capsule keeps the test narrow. \\
+Budget & Taurine & \textbf{NOW} Taurine & \$12 & Amino support & Phase-02 & Helps smooth out rougher energy states, chosen because the mainstream bottle is simple to source and standardize. \\
+Budget & Taurine & BulkSupplements Taurine & \$15 & Amino support & Phase-02 & Supports simple later-day smoothing support, chosen because the raw powder keeps the formula close to one ingredient. \\
+Standard & Taurine & Life Extension Taurine & \$16 & Amino support & Phase-02 & Helps calmer concentration under heavy workload, chosen because the pharmacy-style brand fits a conservative workflow. \\
+Standard & Taurine & Jarrow Taurine & \$18 & Amino support & Phase-02 & Supports more even mental state during long cognitive blocks, chosen because the established line is easy to keep consistent. \\
+Standard & Taurine & Solaray Taurine & \$15 & Amino support & Phase-02 & Helps reduce a more jagged stimulant feel, chosen because the plain capsule avoids extra blend variables. \\
+Elite & Taurine & Thorne Taurine & \$24 & Amino support & Phase-02 & Supports cleaner later-phase smoothing trials, chosen because the clinical-style presentation suits tighter documentation. \\
+Elite & Taurine & Pure Encapsulations Taurine & \$26 & Amino support & Phase-02 & Helps support steadier focus with minimal formulation noise, chosen because the excipient profile stays low-clutter. \\
+Elite & Taurine & Designs for Health Taurine & \$28 & Amino support & Phase-02 & Supports composure and concentration in a premium format, chosen because the practitioner-style bottle encourages disciplined use. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.05.T - Lion's mane mushroom}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.T - Lion's mane mushroom}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Lion's mane mushroom & Om Mushrooms Lion's Mane & \$20 & Mushroom extract & Phase-03 & Supports non-stimulant cognitive support exploration, chosen because the powder format can be folded into an existing drink routine. \\
+Budget & Lion's mane mushroom & Host Defense Lion's Mane & \$24 & Mushroom extract & Phase-03 & Helps support mental clarity without direct stimulation, chosen because the mushroom-specialist branding makes the product identity straightforward. \\
+Budget & Lion's mane mushroom & Double Wood Lion's Mane & \$18 & Mushroom extract & Phase-03 & Supports a later non-stimulant focus trial, chosen because the plain capsule keeps the product easy to classify and stop. \\
+Standard & Lion's mane mushroom & Real Mushrooms Lion's Mane & \$30 & Mushroom extract & Phase-03 & Helps cleaner non-stimulant cognitive support testing, chosen because the specialist brand emphasizes a more specific mushroom identity. \\
+Standard & Lion's mane mushroom & FreshCap Lion's Mane & \$32 & Mushroom extract & Phase-03 & Supports later-phase mental clarity trials, chosen because the mushroom-only presentation avoids broad wellness blend drift. \\
+Standard & Lion's mane mushroom & Four Sigmatic Lion's Mane Coffee Mix & \$18 & Mushroom beverage & Phase-03 & Supports a gentler coffee-like cognitive routine, chosen because the sachet format reduces pantry sprawl and prep friction. \\
+Elite & Lion's mane mushroom & Pure Encapsulations Lion's Mane & \$42 & Mushroom extract & Phase-03 & Supports a cleaner premium mushroom trial, chosen because the minimalist formulation fits stricter low-noise users. \\
+Elite & Lion's mane mushroom & Mud\textbackslash{}Wtr Original & \$40 & Mushroom beverage & Phase-03 & Supports a lower-coffee ritual with mushroom emphasis, chosen because the beverage format suits users replacing part of a stimulant routine. \\
+Elite & Lion's mane mushroom & Pique Nandaka & \$39 & Mushroom sachet & Phase-03 & Helps portable non-stimulant cognitive support, chosen because the sachet style standardizes servings better than loose powders. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{When These Items Are Needed}
+\phantomsection
+\addcontentsline{toc}{subsection}{When These Items Are Needed}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=2.20in]
+    Q[c,wd=1.25in]
+    Q[l,wd=3.10in]
+    Q[l,wd=3.10in]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, valign=m},
+  column{1-2} = {halign=c},
+  column{3-4} = {halign=l},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Item} &
+\Hdr{First required phase} &
+\Hdr{Why it becomes necessary} &
+\Hdr{What happens if missing} \\
+Caffeine tablet & Phase-01 & It is the simplest measured stimulant-equivalent format once basic sleep, fueling, and hydration controls exist. & Optional alertness support stays unavailable and the default remains routine correction, not escalation. \\
+Caffeine gum & Phase-01 & It becomes useful when portability and rapid field use matter more than brewing or bottle prep. & One fast portable alertness format is lost, but nothing gate-critical is affected. \\
+Caffeine mint or lozenge & Phase-01 & It is a small, tidy carry format for short alertness use cases where drinks are impractical. & Pocketable stimulant control becomes narrower, but the category remains fully optional. \\
+Instant coffee packet & Phase-01 & It is an easy first-line measured beverage format when the user wants a familiar caffeine ritual rather than pills. & Coffee-based standardization becomes less convenient away from home. \\
+Ready-to-drink coffee & Phase-01 & It becomes useful when grab-and-go adherence is the problem, not access to caffeine itself. & Travel and rushed-morning alertness becomes harder to standardize cleanly. \\
+Matcha powder & Phase-01 & It fits an early tea-based alternative for users who want a gentler beverage routine than stronger coffee. & The lower-friction tea pathway is absent, and coffee or tablets remain the main options. \\
+Green tea extract capsule & Phase-01 & It is an early capsule alternative for users who want tea-derived alertness without beverage prep. & Tea-based capsule options are deferred, but no required function is lost. \\
+Caffeinated electrolyte mix & Phase-01 & It becomes useful when alertness and fluid intake need to be addressed together under longer or hotter sessions. & Combined hydration-plus-alertness convenience narrows, but water-first posture remains valid. \\
+Caffeinated gel & Phase-02 & It fits the first portability-focused endurance stimulant format once longer-session logistics become more relevant. & Portable mid-session alertness remains more dependent on drinks or chews. \\
+Caffeinated chew & Phase-02 & It provides a chewable alternative when gels are not tolerated and drinks are inconvenient. & One portable stimulant format is absent, but the category remains optional. \\
+L-theanine & Phase-02 & It fits the first non-stimulant smoothing support once simple caffeine control is already stable enough to interpret. & Jitter-smoothing options narrow and caffeine-only formats may remain rougher for some users. \\
+Caffeine plus L-theanine capsule & Phase-02 & It becomes useful when two-bottle management creates unnecessary friction and a cleaner combo is easier to standardize. & Users must manage separate components or stay with stimulant-only formats. \\
+L-tyrosine & Phase-02 & It is a single-ingredient non-stimulant focus support best considered after the simplest stimulant formats are already stable. & One optional stress-fatigue focus tool is unavailable with no effect on gates or deployability. \\
+Citicoline & Phase-02 & It belongs in the later single-ingredient cognition-support tier rather than the earliest alertness layer. & The optional choline-donor path is deferred and the program remains unchanged. \\
+Cocoa flavanol powder or sachet & Phase-02 & It fits a gentler cognitive-support beverage option once basic caffeine routines are already understood. & A lower-stimulation beverage path is absent, but no mandatory capability is affected. \\
+Phosphatidylserine & Phase-03 & It is a narrower, more deliberate later-phase cognitive support item that adds more monitoring burden than basic caffeine tools. & Later-stage cognitive steadiness experimentation is reduced without any readiness consequence. \\
+Bacopa monnieri & Phase-03 & It is slower and more specialized, so it fits the optional later-tier cognition category rather than the early portability layer. & The optional herb-based memory-support pathway is deferred and nothing required is lost. \\
+Acetyl-L-carnitine & Phase-02 & It is a single-ingredient later support best considered only after simpler caffeine and hydration behavior is stable. & One optional mental-energy adjunct is unavailable, but fundamentals remain primary. \\
+Taurine & Phase-02 & It fits the later smoothing-support tier once direct stimulant exposure and response patterns are already clearer. & One optional smoothing variable is absent, but category stability may actually improve. \\
+Lion's mane mushroom & Phase-03 & It is a later non-stimulant cognitive-support experiment that adds more attribution uncertainty than early measured caffeine tools. & The optional mushroom pathway is absent and the default remains simpler, more debuggable options. \\
+\end{longtblr}
+
+\end{landscape}
+\clearpage
+
+\end{document}

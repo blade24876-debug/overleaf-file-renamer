@@ -1,0 +1,1173 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\clearpage
+\begin{landscape}
+
+\section*{7.13.A — Daily Water Bottle}
+\phantomsection
+\addcontentsline{toc}{section}{7.13.A — Daily Water Bottle}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Daily Water Bottle & Nalgene Wide Mouth 32-oz & \$17 & Water Vessel & Phase 00 (End) & Wide mouth makes fast refills easy at basic training volume. \\
+Budget & Daily Water Bottle & CamelBak Chute Mag 32-oz & \$18 & Water Vessel & Phase 00 (End) & Magnetic cap helps quick sip access without loose lids. \\
+Budget & Daily Water Bottle & Contigo Cortland Chill 24-oz & \$20 & Water Vessel & Phase 00 (End) & One-hand spout suits simple daily carry during frequent movement. \\
+Standard & Daily Water Bottle & Hydro Flask Standard Mouth 24-oz & \$35 & Water Vessel & Phase 00 (End) & Vacuum insulation keeps water cooler through longer outdoor blocks. \\
+Standard & Daily Water Bottle & YETI Yonder 34-oz & \$25 & Water Vessel & Phase 00 (End) & Light durable bottle keeps carry weight lower than metal options. \\
+Standard & Daily Water Bottle & Owala FreeSip 32-oz & \$33 & Water Vessel & Phase 00 (End) & Mixed sip-or-swallow lid makes regular intake easier to sustain. \\
+Elite & Daily Water Bottle & YETI Rambler 26-oz & \$40 & Water Vessel & Phase 00 (End) & Heavy-duty bottle tolerates repeated drops and rough transport. \\
+Elite & Daily Water Bottle & Klean Kanteen TKWide 32-oz & \$40 & Water Vessel & Phase 00 (End) & Premium cap system supports leak resistance and easy cleaning. \\
+Elite & Daily Water Bottle & Stanley AeroLight Transit 24-oz & \$35 & Water Vessel & Phase 00 (End) & Lighter insulated build favors all-day carry without bulk fatigue. \\
+\end{longtblr}
+
+\clearpage
+\subsection*{7.13.B — Shaker Bottle}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.B — Shaker Bottle}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Shaker Bottle & BlenderBottle Classic V-2 & \$12 & Mixing Bottle & Phase 00 (End) & Wire whisk gives simple smooth mixing for powders and fluids. \\
+Budget & Shaker Bottle & Helimix Vortex Shaker 28-oz & \$24 & Mixing Bottle & Phase 00 (End) & Molded vortex design mixes without needing a separate whisk ball. \\
+Budget & Shaker Bottle & PROMiXX Pursuit Shaker & \$18 & Mixing Bottle & Phase 00 (End) & Screw-top compartments help keep mix-ins separated until needed. \\
+Standard & Shaker Bottle & BlenderBottle ProSeries & \$16 & Mixing Bottle & Phase 00 (End) & Better grip and seal improve everyday reliability over basic models. \\
+Standard & Shaker Bottle & Ice Shaker 26-oz & \$35 & Mixing Bottle & Phase 00 (End) & Stainless body keeps mixed drinks cooler during longer carry windows. \\
+Standard & Shaker Bottle & Smartshake Revive & \$18 & Mixing Bottle & Phase 00 (End) & Snap storage pods support prep continuity when away from home. \\
+Elite & Shaker Bottle & PROMiXX iX-R Battery Shaker & \$49 & Mixing Bottle & Phase 00 (End) & Powered mixing reduces clumping when thicker shakes are used. \\
+Elite & Shaker Bottle & Ice Shaker 36-oz & \$40 & Mixing Bottle & Phase 00 (End) & Larger insulated size supports bigger blended drinks with less spill risk. \\
+Elite & Shaker Bottle & BrüMate MultiShaker & \$40 & Mixing Bottle & Phase 00 (End) & Premium lid and insulation make transport cleaner and quieter. \\
+\end{longtblr}
+
+\clearpage
+\subsection*{7.13.C — Meal Prep Container Set}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.C — Meal Prep Container Set}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Meal Prep Container Set & Freshware 1-Compartment Set & \$20 & Storage Set & Phase 00 (End) & Cheap stackable set simplifies batch cooking into repeatable portions. \\
+Budget & Meal Prep Container Set & Bentgo Prep 3-Compartment Set & \$30 & Storage Set & Phase 00 (End) & Divided layout separates food types without extra containers. \\
+Budget & Meal Prep Container Set & Rubbermaid TakeAlongs Meal Prep Set & \$18 & Storage Set & Phase 00 (End) & Familiar low-cost containers make replacements easy after wear. \\
+Standard & Meal Prep Container Set & Rubbermaid Brilliance Meal Prep Set & \$40 & Storage Set & Phase 00 (End) & Clear leak-resistant design keeps fridge organization cleaner. \\
+Standard & Meal Prep Container Set & OXO Smart Seal Container Set & \$50 & Storage Set & Phase 00 (End) & Strong seals help reduce accidental leaks in transport. \\
+Standard & Meal Prep Container Set & Prep Naturals Glass Meal Prep Set & \$45 & Storage Set & Phase 00 (End) & Glass containers reduce staining and long-term odor retention. \\
+Elite & Meal Prep Container Set & Snapware Total Solution Glass Set & \$60 & Storage Set & Phase 00 (End) & Premium glass-and-lock design supports better long-term reheat use. \\
+Elite & Meal Prep Container Set & Caraway Food Storage Set & \$245 & Storage Set & Phase 00 (End) & Higher-end layout improves organization with a polished kitchen system feel. \\
+Elite & Meal Prep Container Set & Pyrex Ultimate Glass Meal Containers & \$70 & Storage Set & Phase 00 (End) & Durable premium glass set supports frequent cooking and transport cycles. \\
+\end{longtblr}
+
+\clearpage
+\subsection*{7.13.D — Food Scale}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.D — Food Scale}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Food Scale & Etekcity Digital Food Scale & \$15 & Measurement Tool & Phase 06 (End) & Simple flat scale supports repeatable quantity control during prep. \\
+Budget & Food Scale & Nicewell Kitchen Scale & \$18 & Measurement Tool & Phase 06 (End) & Large backlit display is easy to read during batch prep. \\
+Budget & Food Scale & Greater Goods Digital Kitchen Scale & \$20 & Measurement Tool & Phase 06 (End) & Clean interface reduces button confusion during quick weighing. \\
+Standard & Food Scale & Escali Primo & \$27 & Measurement Tool & Phase 06 (End) & Reliable mid-tier scale is widely trusted for repeated kitchen use. \\
+Standard & Food Scale & OXO Good Grips 11-lb Scale & \$55 & Measurement Tool & Phase 06 (End) & Pull-out display helps when bowls cover the base screen. \\
+Standard & Food Scale & Zwilling Enfinigy Digital Scale & \$50 & Measurement Tool & Phase 06 (End) & Sleek compact surface fits cleaner counter-based prep workflows. \\
+Elite & Food Scale & Acaia Pearl S & \$220 & Measurement Tool & Phase 06 (End) & Premium responsiveness suits very consistent weighed-prep habits. \\
+Elite & Food Scale & Escali Alimento & \$50 & Measurement Tool & Phase 06 (End) & Larger platform handles heavier prep bowls more comfortably. \\
+Elite & Food Scale & Breville Precision Scale & \$100 & Measurement Tool & Phase 06 (End) & Premium precision and display improve accuracy feel during regular use. \\
+\end{longtblr}
+
+\clearpage
+\subsection*{7.13.E — Measuring Cup and Spoon Set}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.E — Measuring Cup and Spoon Set}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Measuring Cup and Spoon Set & OXO Good Grips 7-Piece Set & \$12 & Prep Measure & Phase 00 (End) & Snap-together set keeps basic measuring tools from drifting apart. \\
+Budget & Measuring Cup and Spoon Set & Pyrex 3-Piece Measuring Cup Set & \$18 & Prep Measure & Phase 00 (End) & Clear markings help quick liquid measuring without guesswork. \\
+Budget & Measuring Cup and Spoon Set & KitchenAid Measuring Cup and Spoon Set & \$15 & Prep Measure & Phase 00 (End) & Color-coded pieces help faster grab-and-return workflow. \\
+Standard & Measuring Cup and Spoon Set & All-Clad Stainless Set & \$30 & Prep Measure & Phase 00 (End) & Stainless build resists staining and bending better than plastic. \\
+Standard & Measuring Cup and Spoon Set & Cuisipro Stainless Measuring Set & \$28 & Prep Measure & Phase 00 (End) & Premium metal finish suits heavier repeated prep use. \\
+Standard & Measuring Cup and Spoon Set & OXO Stainless Set & \$30 & Prep Measure & Phase 00 (End) & Better handles and markings improve day-to-day measurement clarity. \\
+Elite & Measuring Cup and Spoon Set & Le Creuset Stainless Set & \$60 & Prep Measure & Phase 00 (End) & High-end finish adds durable premium feel for long-term use. \\
+Elite & Measuring Cup and Spoon Set & Williams Sonoma Open Kitchen Set & \$50 & Prep Measure & Phase 00 (End) & Refined construction suits a cleaner permanent prep station. \\
+Elite & Measuring Cup and Spoon Set & Sur La Table Stainless Set & \$40 & Prep Measure & Phase 00 (End) & Polished premium set stays easy to read and easy to clean. \\
+\end{longtblr}
+
+\clearpage
+\subsection*{7.13.F — Bottle Brush Cleaning Kit}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.F — Bottle Brush Cleaning Kit}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Bottle Brush Cleaning Kit & Holikme Bottle Brush Set & \$10 & Cleaning Kit & Phase 00 (End) & Multi-brush set helps clean narrow bottles and lids fully. \\
+Budget & Bottle Brush Cleaning Kit & OXO Good Grips Water Bottle Cleaning Set & \$12 & Cleaning Kit & Phase 00 (End) & Small detail brushes reach threads and cap recesses well. \\
+Budget & Bottle Brush Cleaning Kit & Scotch-Brite Bottle Brush Kit & \$9 & Cleaning Kit & Phase 00 (End) & Cheap brush bundle supports basic hydration-hygiene compliance. \\
+Standard & Bottle Brush Cleaning Kit & Munchkin Bottle and Straw Brush Set & \$14 & Cleaning Kit & Phase 00 (End) & Straw-focused tools help clean hard-to-flush sipping parts. \\
+Standard & Bottle Brush Cleaning Kit & Full Circle Bottle Cleaning Crew & \$18 & Cleaning Kit & Phase 00 (End) & Better handle design makes daily washing less annoying. \\
+Standard & Bottle Brush Cleaning Kit & Hydro Flask Bottle Brush & \$15 & Cleaning Kit & Phase 00 (End) & Brand-matched brush shape reaches taller insulated bottles easily. \\
+Elite & Bottle Brush Cleaning Kit & OXO Deep Clean Brush Set & \$16 & Cleaning Kit & Phase 00 (End) & Premium detailing tools support a cleaner cap-and-gasket workflow. \\
+Elite & Bottle Brush Cleaning Kit & CamelBak Cleaning Kit & \$20 & Cleaning Kit & Phase 00 (End) & Reservoir-specific brushes help preserve bladder hygiene more reliably. \\
+Elite & Bottle Brush Cleaning Kit & Bottle Bright Cleaning Kit Bundle & \$25 & Cleaning Kit & Phase 00 (End) & Premium bundle supports more complete recurring deep-clean cycles. \\
+\end{longtblr}
+
+\clearpage
+\subsection*{7.13.G — Large Water Jug}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.G — Large Water Jug}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Large Water Jug & Coleman Chiller 1-Gallon Jug & \$18 & Bulk Vessel & Phase 03 (End) & Cheap larger jug reduces refill dependence on longer outdoor days. \\
+Budget & Large Water Jug & Igloo 1/2-Gallon Sport Jug & \$15 & Bulk Vessel & Phase 03 (End) & Basic squeeze-spout jug supports simple field hydration staging. \\
+Budget & Large Water Jug & RTIC Half Gallon Jug & \$35 & Bulk Vessel & Phase 03 (End) & Lower-cost insulated large jug keeps water cooler through extended sessions. \\
+Standard & Large Water Jug & Stanley Adventure Fast Flow 64-oz & \$45 & Bulk Vessel & Phase 03 (End) & Strong lid and handle make heavier carry more manageable. \\
+Standard & Large Water Jug & Hydro Flask 64-oz Growler & \$65 & Bulk Vessel & Phase 03 (End) & Insulated large format helps preserve cold-water compliance in heat. \\
+Standard & Large Water Jug & YETI Rambler Half Gallon Jug & \$100 & Bulk Vessel & Phase 03 (End) & Very durable jug suits repeated rough transport and outdoor use. \\
+Elite & Large Water Jug & Stanley IceFlow Flip Straw Jug 96-oz & \$55 & Bulk Vessel & Phase 03 (End) & Larger straw-access format encourages higher steady intake. \\
+Elite & Large Water Jug & BrüMate Era Jug 64-oz & \$60 & Bulk Vessel & Phase 03 (End) & Premium lid design helps reduce splash and leak frustration. \\
+Elite & Large Water Jug & Klean Kanteen Insulated TKPro 100-oz & \$130 & Bulk Vessel & Phase 03 (End) & Overbuilt insulated capacity suits very long staged hydration windows. \\
+\end{longtblr}
+
+\clearpage
+\subsection*{7.13.H — Hydration Bladder / Reservoir}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.H — Hydration Bladder / Reservoir}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Hydration Bladder / Reservoir & Teton Sports 2-L Hydration Bladder & \$18 & Reservoir & Phase 06 (End) & Cheap reservoir adds hands-free hydration inside packs or rucks. \\
+Budget & Hydration Bladder / Reservoir & Source Widepac 2-L & \$35 & Reservoir & Phase 06 (End) & Wide opening helps reduce refill and cleaning friction. \\
+Budget & Hydration Bladder / Reservoir & CamelBak Crux 2-L Reservoir & \$40 & Reservoir & Phase 06 (End) & Familiar bite-valve design works well for repeated moving use. \\
+Standard & Hydration Bladder / Reservoir & Osprey Hydraulics 2-L LT & \$42 & Reservoir & Phase 06 (End) & Slim shape rides cleanly in many daypacks and training bags. \\
+Standard & Hydration Bladder / Reservoir & Gregory 3D Hydro Reservoir 3-L & \$45 & Reservoir & Phase 06 (End) & Molded handle and hanger simplify fill-and-load workflow. \\
+Standard & Hydration Bladder / Reservoir & Platypus Big Zip EVO 2-L & \$45 & Reservoir & Phase 06 (End) & Zip-top style speeds cleaning and drying compared with narrow-fill bladders. \\
+Elite & Hydration Bladder / Reservoir & CamelBak Fusion 3-L & \$55 & Reservoir & Phase 06 (End) & Premium updated closure and hose routing support cleaner field use. \\
+Elite & Hydration Bladder / Reservoir & Hydrapak Shape-Shift 3-L & \$49 & Reservoir & Phase 06 (End) & Internal baffle improves shape control and reduces slosh. \\
+Elite & Hydration Bladder / Reservoir & Source WLPS 3-L Low Profile & \$50 & Reservoir & Phase 06 (End) & Low-profile premium shape sits flatter against the pack backpanel. \\
+\end{longtblr}
+
+\clearpage
+\subsection*{7.13.I — Soft Cooler Lunch Bag}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.I — Soft Cooler Lunch Bag}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Soft Cooler Lunch Bag & Arctic Zone Titan Deep Freeze Lunch Bag & \$25 & Soft Cooler & Phase 03 (End) & Basic insulated bag supports safer meal transport in warmer conditions. \\
+Budget & Soft Cooler Lunch Bag & Coleman Chiller Soft Cooler 16-Can & \$25 & Soft Cooler & Phase 03 (End) & Cheap soft cooler adds more room than a basic office lunch bag. \\
+Budget & Soft Cooler Lunch Bag & Carhartt Deluxe Lunch Cooler Bag & \$30 & Soft Cooler & Phase 03 (End) & Rugged fabric suits jobsite-style or field-style carry better. \\
+Standard & Soft Cooler Lunch Bag & Hydro Flask 8-L Carry Out Soft Cooler & \$80 & Soft Cooler & Phase 03 (End) & Better insulation helps hold colder contents through longer days. \\
+Standard & Soft Cooler Lunch Bag & RTIC Soft Pack 12 & \$100 & Soft Cooler & Phase 03 (End) & Mid-tier leak-resistant cooler handles repeated transport cleanly. \\
+Standard & Soft Cooler Lunch Bag & YETI Daytrip Lunch Bag & \$80 & Soft Cooler & Phase 03 (End) & Premium fold-and-go format packs neatly while staying more structured. \\
+Elite & Soft Cooler Lunch Bag & YETI Hopper Flip 8 & \$200 & Soft Cooler & Phase 03 (End) & Premium zipper and insulation give very strong short-field cold-chain support. \\
+Elite & Soft Cooler Lunch Bag & Patagonia Black Hole Cooler 12-L & \$149 & Soft Cooler & Phase 03 (End) & High-end carry design balances durability and packability well. \\
+Elite & Soft Cooler Lunch Bag & Engel HD30 Soft-Sided Cooler & \$230 & Soft Cooler & Phase 03 (End) & Overbuilt soft cooler provides more serious transport reliability. \\
+\end{longtblr}
+
+\clearpage
+\subsection*{7.13.J — Reusable Ice Pack Set}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.J — Reusable Ice Pack Set}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Reusable Ice Pack Set & Fit and Fresh Cool Coolers 4-Pack & \$12 & Cold Pack & Phase 03 (End) & Slim packs fit lunch bags without taking over the whole volume. \\
+Budget & Reusable Ice Pack Set & Healthy Packers Ice Packs & \$10 & Cold Pack & Phase 03 (End) & Cheap modular packs make rotation easier across several containers. \\
+Budget & Reusable Ice Pack Set & Rubbermaid Blue Ice Pack & \$8 & Cold Pack & Phase 03 (End) & Simple sturdy ice pack works for basic day-use cooling support. \\
+Standard & Reusable Ice Pack Set & YETI Thin Ice Small & \$18 & Cold Pack & Phase 03 (End) & Better shape and durability support repeated cooler use. \\
+Standard & Reusable Ice Pack Set & Hydro Flask Large Ice Pack & \$20 & Cold Pack & Phase 03 (End) & Larger profile helps protect longer food-carry windows. \\
+Standard & Reusable Ice Pack Set & Cooler Shock Reusable Ice Packs & \$20 & Cold Pack & Phase 03 (End) & Mid-tier packs hold useful cooling time with easy refreeze cycling. \\
+Elite & Reusable Ice Pack Set & YETI Thin Ice Medium & \$24 & Cold Pack & Phase 03 (End) & Premium rigid pack is shaped well for higher-end coolers. \\
+Elite & Reusable Ice Pack Set & Pelican Ice Pack & \$30 & Cold Pack & Phase 03 (End) & Tough premium construction tolerates rough transport better. \\
+Elite & Reusable Ice Pack Set & Engel Cooler Dry Ice Pack Set & \$35 & Cold Pack & Phase 03 (End) & High-end pack set supports more reliable repeated cold-chain use. \\
+\end{longtblr}
+
+\clearpage
+\subsection*{7.13.K — Insulated Food Jar}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.K — Insulated Food Jar}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Insulated Food Jar & Thermos Stainless King 16-oz Food Jar & \$25 & Food Vessel & Phase 03 (End) & Simple insulated jar keeps hot or cold meals portable. \\
+Budget & Insulated Food Jar & Stanley Classic Legendary Food Jar & \$30 & Food Vessel & Phase 03 (End) & Rugged jar suits rough carry with less spill anxiety. \\
+Budget & Insulated Food Jar & Hydro Flask 12-oz Food Jar & \$35 & Food Vessel & Phase 03 (End) & Compact food jar works for smaller controlled carry portions. \\
+Standard & Insulated Food Jar & Zojirushi Stainless Food Jar & \$40 & Food Vessel & Phase 03 (End) & Excellent heat retention supports cleaner longer transport windows. \\
+Standard & Insulated Food Jar & Klean Kanteen Insulated Food Canister & \$35 & Food Vessel & Phase 03 (End) & Wide-mouth premium canister makes eating and cleaning easier. \\
+Standard & Insulated Food Jar & YETI Rambler Bowl with Lid & \$40 & Food Vessel & Phase 03 (End) & Durable wide format suits thicker meals and easier utensil access. \\
+Elite & Insulated Food Jar & Hydro Flask 20-oz Food Jar & \$45 & Food Vessel & Phase 03 (End) & Larger premium jar suits longer days with one contained meal. \\
+Elite & Insulated Food Jar & Stanley Adventure To-Go Food Jar & \$38 & Food Vessel & Phase 03 (End) & Premium transport shape rides neatly inside larger bags. \\
+Elite & Insulated Food Jar & Thermos Icon Food Jar & \$35 & Food Vessel & Phase 03 (End) & High-end redesign offers stronger lid feel and polished daily use. \\
+\end{longtblr}
+
+\clearpage
+\subsection*{7.13.L — Portion-Control Container Set}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.L — Portion-Control Container Set}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Portion-Control Container Set & Portion Fix Container Set & \$15 & Portion Kit & Phase 03 (End) & Color-coded sizing helps standardize intake visually without scales every time. \\
+Budget & Portion-Control Container Set & Freshmage Portion Control Containers & \$14 & Portion Kit & Phase 03 (End) & Cheap color-coded cups support simple repeat prep workflows. \\
+Budget & Portion-Control Container Set & PrepNaturals Portion Control Set & \$18 & Portion Kit & Phase 03 (End) & Stackable containers make measured carry more organized. \\
+Standard & Portion-Control Container Set & Sistema To Go Portion Pods & \$12 & Portion Kit & Phase 03 (End) & Small pods help control dense add-ons and sauces cleanly. \\
+Standard & Portion-Control Container Set & OXO Prep and Go Set & \$25 & Portion Kit & Phase 03 (End) & Better seals support cleaner measured transport for smaller components. \\
+Standard & Portion-Control Container Set & Bentgo Portion Control Kit & \$20 & Portion Kit & Phase 03 (End) & Mid-tier set gives more polished visual-portion structure. \\
+Elite & Portion-Control Container Set & Joseph Joseph Nest Lock Set & \$45 & Portion Kit & Phase 03 (End) & Premium nesting layout keeps several sizes organized in tight kitchens. \\
+Elite & Portion-Control Container Set & Zwilling Fresh and Save Set & \$80 & Portion Kit & Phase 03 (End) & Premium vacuum-style storage supports cleaner measured food longevity. \\
+Elite & Portion-Control Container Set & OXO Smart Seal Glass Mini Set & \$35 & Portion Kit & Phase 03 (End) & Glass mini-containers suit denser measured foods with less staining. \\
+\end{longtblr}
+
+\clearpage
+\subsection*{7.13.M — Countertop Blender}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.M — Countertop Blender}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Countertop Blender & Ninja Fit Personal Blender & \$60 & Prep Appliance & Phase 03 (End) & Small blender makes liquid nutrition prep faster in limited kitchens. \\
+Budget & Countertop Blender & Magic Bullet Blender & \$50 & Prep Appliance & Phase 03 (End) & Very simple personal blender lowers friction for quick single servings. \\
+Budget & Countertop Blender & NutriBullet Pro 900 & \$90 & Prep Appliance & Phase 03 (End) & Stronger motor handles thicker blends more reliably than bargain units. \\
+Standard & Countertop Blender & Ninja Professional Plus & \$120 & Prep Appliance & Phase 03 (End) & Larger pitcher supports batch blending instead of one bottle at a time. \\
+Standard & Countertop Blender & Oster Pro 1200 & \$100 & Prep Appliance & Phase 03 (End) & Mainstream blender offers a practical mid-tier kitchen workhorse. \\
+Standard & Countertop Blender & KitchenAid K150 & \$130 & Prep Appliance & Phase 03 (End) & Better finish and controls suit users wanting a more polished appliance. \\
+Elite & Countertop Blender & Vitamix Explorian E310 & \$350 & Prep Appliance & Phase 03 (End) & Premium motor and blade quality support very consistent heavy-use blending. \\
+Elite & Countertop Blender & Blendtec Classic 575 & \$350 & Prep Appliance & Phase 03 (End) & High-powered premium blender handles dense ingredients with little strain. \\
+Elite & Countertop Blender & Breville Fresh and Furious & \$300 & Prep Appliance & Phase 03 (End) & Premium quieter blending suits higher-frequency prep without as much noise fatigue. \\
+\end{longtblr}
+
+\clearpage
+\subsection*{7.13.N — Electric Kettle}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.N — Electric Kettle}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Electric Kettle & Hamilton Beach 1.7-L Kettle & \$30 & Prep Appliance & Phase 03 (End) & Cheap fast-boil kettle simplifies hot-fluid prep with little effort. \\
+Budget & Electric Kettle & Amazon Basics Electric Kettle & \$25 & Prep Appliance & Phase 03 (End) & Low-cost kettle gives a basic hot-water tool for simple kitchen prep. \\
+Budget & Electric Kettle & Chefman Electric Glass Kettle & \$35 & Prep Appliance & Phase 03 (End) & Clear body makes fill level easy to judge quickly. \\
+Standard & Electric Kettle & Cuisinart PerfecTemp Cordless Kettle & \$80 & Prep Appliance & Phase 03 (End) & Temperature presets add more control for different prep uses. \\
+Standard & Electric Kettle & OXO Adjustable Temperature Kettle & \$105 & Prep Appliance & Phase 03 (End) & Better controls suit users wanting more precise repeat hot-water prep. \\
+Standard & Electric Kettle & Cosori Electric Gooseneck Kettle & \$70 & Prep Appliance & Phase 03 (End) & Mid-tier controlled pour suits measured liquids and cleaner small-batch use. \\
+Elite & Electric Kettle & Fellow Stagg EKG & \$165 & Prep Appliance & Phase 03 (End) & Premium temperature stability supports more precise repeat preparation. \\
+Elite & Electric Kettle & Breville Soft Top Luxe & \$130 & Prep Appliance & Phase 03 (End) & Premium build quality gives a more durable daily-use kitchen tool. \\
+Elite & Electric Kettle & Zwilling Enfinigy Cool Touch Kettle & \$140 & Prep Appliance & Phase 03 (End) & High-end design and safety features suit frequent countertop use. \\
+\end{longtblr}
+
+\clearpage
+\subsection*{7.13.O — Bottle Drying Rack}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.O — Bottle Drying Rack}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Bottle Drying Rack & OXO Tot Space Saving Drying Rack & \$25 & Drying Stand & Phase 03 (End) & Upright drying helps bottles and lids air out more fully. \\
+Budget & Bottle Drying Rack & Boon Lawn Countertop Drying Rack & \$20 & Drying Stand & Phase 03 (End) & Open grass-style surface makes mixed small parts easy to spread out. \\
+Budget & Bottle Drying Rack & Munchkin High Capacity Drying Rack & \$18 & Drying Stand & Phase 03 (End) & Rotating arms help separate more pieces in a small footprint. \\
+Standard & Bottle Drying Rack & OXO Bottle Drying Rack & \$35 & Drying Stand & Phase 03 (End) & Better structure supports cleaner organized hydration-piece drying. \\
+Standard & Bottle Drying Rack & Yamazaki Home Bottle Drying Rack & \$40 & Drying Stand & Phase 03 (End) & Cleaner metal layout suits users wanting a tidier kitchen station. \\
+Standard & Bottle Drying Rack & Prince Lionheart Drying Station & \$25 & Drying Stand & Phase 03 (End) & Multi-height posts support mixed bottle and cap shapes well. \\
+Elite & Bottle Drying Rack & Simplehuman Compact Dish Rack & \$80 & Drying Stand & Phase 03 (End) & Premium tray and drainage improve regular bottle-hygiene workflow. \\
+Elite & Bottle Drying Rack & OXO Aluminum Fold Flat Dish Rack & \$45 & Drying Stand & Phase 03 (End) & Higher-end fold-flat design combines cleaner drainage with easier storage. \\
+Elite & Bottle Drying Rack & Yamazaki Tower Drying Rack & \$55 & Drying Stand & Phase 03 (End) & Premium compact style keeps bottle drying visible but less cluttered. \\
+\end{longtblr}
+
+\clearpage
+\subsection*{7.13.P — Powder Funnel / Packet Carrier}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.P — Powder Funnel / Packet Carrier}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Powder Funnel / Packet Carrier & BlenderBottle GoStak Starter 4-Pack & \$13 & Carry Organizer & Phase 03 (End) & Stackable pods keep powders dry and pre-portioned for travel. \\
+Budget & Powder Funnel / Packet Carrier & Hydrapak Stow 1-L + dry pouch combo & \$20 & Carry Organizer & Phase 03 (End) & Soft carry plus pouch combo supports compact fluid-and-powder transport. \\
+Budget & Powder Funnel / Packet Carrier & Humangear GoToob+ small set & \$20 & Carry Organizer & Phase 03 (End) & Leak-resistant small tubes work for dense semi-liquid add-ins. \\
+Standard & Powder Funnel / Packet Carrier & HydraPak Flux 1-L + stash pouch setup & \$30 & Carry Organizer & Phase 03 (End) & Flexible bottle format collapses down after use to save space. \\
+Standard & Powder Funnel / Packet Carrier & Smartshake Storage Stack & \$15 & Carry Organizer & Phase 03 (End) & Screw-together modules keep measured additions organized in one tower. \\
+Standard & Powder Funnel / Packet Carrier & GSI Outdoors Fairshare Mug Set & \$25 & Carry Organizer & Phase 03 (End) & Nested screw-top cups support neat field carry for small prep items. \\
+Elite & Powder Funnel / Packet Carrier & BlenderBottle ProStak & \$18 & Carry Organizer & Phase 03 (End) & Premium bottle-plus-storage combo simplifies one-bag transport. \\
+Elite & Powder Funnel / Packet Carrier & Cadence Capsules Travel Containers & \$84 & Carry Organizer & Phase 03 (End) & Magnetic premium pods keep small carried items highly organized. \\
+Elite & Powder Funnel / Packet Carrier & YETI Yonder 20-oz + dry caddy setup & \$40 & Carry Organizer & Phase 03 (End) & Premium compact carry setup suits repeated travel continuity use. \\
+\end{longtblr}
+
+\clearpage
+\subsection*{7.13.Q — Label and Date System}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.Q — Label and Date System}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Label and Date System & Avery Removable Labels & \$8 & Workflow Aid & Phase 03 (End) & Simple labels make prep-date tracking quicker and more visible. \\
+Budget & Label and Date System & Sharpie Fine Point Marker Set & \$6 & Workflow Aid & Phase 03 (End) & Direct container marking helps reduce forgotten prep dates. \\
+Budget & Label and Date System & Misen Labeling Tape & \$10 & Workflow Aid & Phase 03 (End) & Writable tape helps temporary fridge organization without residue issues. \\
+Standard & Label and Date System & Brother P-touch PT-M95 & \$25 & Workflow Aid & Phase 03 (End) & Printed labels improve consistency when prep volume increases. \\
+Standard & Label and Date System & DYMO LetraTag 100H & \$30 & Workflow Aid & Phase 03 (End) & Small handheld printer suits a more organized kitchen workflow. \\
+Standard & Label and Date System & Avery Waterproof Labels & \$12 & Workflow Aid & Phase 03 (End) & Water-resistant labels hold up better in cooler and fridge use. \\
+Elite & Label and Date System & Brother P-touch Cube Plus & \$80 & Workflow Aid & Phase 03 (End) & Phone-connected printing makes inventory naming cleaner and faster. \\
+Elite & Label and Date System & DYMO LabelManager 280 & \$70 & Workflow Aid & Phase 03 (End) & Rechargeable premium labeler supports repeated use with less friction. \\
+Elite & Label and Date System & Epson LabelWorks LW-PX300 & \$95 & Workflow Aid & Phase 03 (End) & High-end print clarity improves readability on smaller containers. \\
+\end{longtblr}
+
+\clearpage
+\subsection*{7.13.R — Travel Utensil Meal Kit}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.R — Travel Utensil Meal Kit}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Travel Utensil Meal Kit & UCO 6-Piece Camping Mess Kit & \$15 & Meal Kit & Phase 03 (End) & Cheap nested kit covers basic on-the-go eating needs in one case. \\
+Budget & Travel Utensil Meal Kit & Light My Fire LunchKit & \$20 & Meal Kit & Phase 03 (End) & Stackable portable set supports cleaner field meal handling. \\
+Budget & Travel Utensil Meal Kit & Sea to Summit Frontier UL Cutlery Set & \$15 & Meal Kit & Phase 03 (End) & Lightweight utensil kit adds minimal carry weight in travel setups. \\
+Standard & Travel Utensil Meal Kit & Hydro Flask Flatware Set + case & \$20 & Meal Kit & Phase 03 (End) & Cleaner case-based setup keeps utensils from floating loose in bags. \\
+Standard & Travel Utensil Meal Kit & Snow Peak Titanium Cutlery Set & \$32 & Meal Kit & Phase 03 (End) & Premium lightweight utensils suit repeated travel carry. \\
+Standard & Travel Utensil Meal Kit & GSI Outdoors Fairshare Camp Set & \$25 & Meal Kit & Phase 03 (End) & Mid-tier bowl and utensil combination supports simpler field eating. \\
+Elite & Travel Utensil Meal Kit & Full Windsor Magware Set & \$95 & Meal Kit & Phase 03 (End) & Magnetic premium kit keeps pieces neatly bundled and pack friendly. \\
+Elite & Travel Utensil Meal Kit & W\&P Porter Utensil Set & \$25 & Meal Kit & Phase 03 (End) & Refined compact case makes daily travel carry feel more polished. \\
+Elite & Travel Utensil Meal Kit & Snow Peak Personal Cook Set & \$60 & Meal Kit & Phase 03 (End) & Premium compact food-handling set supports cleaner sustained travel continuity. \\
+\end{longtblr}
+
+\clearpage
+\subsection*{7.13.S — Hard Cooler / Expedition Cooler}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.S — Hard Cooler / Expedition Cooler}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Hard Cooler / Expedition Cooler & Coleman Xtreme 50-qt Cooler & \$60 & Hard Cooler & Phase 12 (End) & Large rigid cooler supports overbuilt cold-chain reliability in high-volume weeks. \\
+Budget & Hard Cooler / Expedition Cooler & Igloo BMX 52-qt Cooler & \$100 & Hard Cooler & Phase 12 (End) & Tough budget cooler handles heavier field transport better than soft bags. \\
+Budget & Hard Cooler / Expedition Cooler & RTIC 45 Cooler & \$170 & Hard Cooler & Phase 12 (End) & Better insulation gives more dependable longer-duration cold retention. \\
+Standard & Hard Cooler / Expedition Cooler & YETI Tundra 45 & \$325 & Hard Cooler & Phase 12 (End) & Premium thick-wall cooler protects food transport under harder use. \\
+Standard & Hard Cooler / Expedition Cooler & Pelican 45QW Elite Cooler & \$320 & Hard Cooler & Phase 12 (End) & Robust latch and wheel options suit frequent movement of loaded cold gear. \\
+Standard & Hard Cooler / Expedition Cooler & Orca 40 Cooler & \$299 & Hard Cooler & Phase 12 (End) & Mid-tier premium cooler supports strong multi-day cold-chain continuity. \\
+Elite & Hard Cooler / Expedition Cooler & YETI Tundra Haul & \$450 & Hard Cooler & Phase 12 (End) & Wheeled premium cooler reduces transport friction for dense carry loads. \\
+Elite & Hard Cooler / Expedition Cooler & Pelican 70QT Elite Cooler & \$430 & Hard Cooler & Phase 12 (End) & Larger premium model supports broader field or travel sustainment use. \\
+Elite & Hard Cooler / Expedition Cooler & Dometic Patrol 55 & \$350 & Hard Cooler & Phase 12 (End) & High-end expedition-style cooler suits a more overbuilt sustainment posture. \\
+\end{longtblr}
+
+\clearpage
+\subsection*{7.13.T — Redundant Hydration and Container Kit}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.T — Redundant Hydration and Container Kit}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Redundant Hydration and Container Kit & Nalgene 2-Bottle + Freshware 5-Pack Bundle & \$45 & Redundancy Kit & Phase 12 (End) & Cheap duplicate kit protects continuity when one primary item fails. \\
+Budget & Redundant Hydration and Container Kit & CamelBak Podium 2-Pack + storage set & \$35 & Redundancy Kit & Phase 12 (End) & Simple spare bottle bundle helps avoid missed hydration due to cleaning delays. \\
+Budget & Redundant Hydration and Container Kit & BlenderBottle 2-Pack + GoStak Bundle & \$30 & Redundancy Kit & Phase 12 (End) & Low-cost duplicate mixing system supports travel and backup continuity. \\
+Standard & Redundant Hydration and Container Kit & Hydro Flask Bottle Pair + Food Jar Set & \$120 & Redundancy Kit & Phase 12 (End) & Mid-tier duplicate carry system reduces single-point failure risk. \\
+Standard & Redundant Hydration and Container Kit & YETI Bottle Pair + Thin Ice Bundle & \$110 & Redundancy Kit & Phase 12 (End) & Stronger integrated backup system supports more reliable transport continuity. \\
+Standard & Redundant Hydration and Container Kit & OXO Prep and Go Full Travel Set & \$90 & Redundancy Kit & Phase 12 (End) & Matched transport pieces keep backup prep workflow cleaner and faster. \\
+Elite & Redundant Hydration and Container Kit & YETI Rambler Field Set & \$220 & Redundancy Kit & Phase 12 (End) & Premium duplicate carry system is built for repeated hard-use reliability. \\
+Elite & Redundant Hydration and Container Kit & Hydro Flask Travel Prep Bundle & \$180 & Redundancy Kit & Phase 12 (End) & High-end matched bundle supports polished backup food-and-fluid continuity. \\
+Elite & Redundant Hydration and Container Kit & Stanley Adventure Full Sustainment Set & \$200 & Redundancy Kit & Phase 12 (End) & Overbuilt set provides robust spare capacity for decisive windows and travel. \\
+\end{longtblr}
+
+\clearpage
+\subsection*{7.13.U — When These Items Are Needed}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.U — When These Items Are Needed}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.55in]
+    Q[l,wd=1.10in]
+    X[l,2.35]
+    X[l,2.35]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-2} = {halign=c, valign=m},
+  column{3-4} = {halign=l, valign=m},
+  cell{1-Z}{1-4} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Item} &
+\Hdr{First Required Phase} &
+\Hdr{Why it becomes necessary} &
+\Hdr{What happens if missing} \\
+Daily Water Bottle & Phase 00 (End) & Stage 6 makes Stage 7.13 Tier 1 active by Phase 00 (End) entry and explicitly names hydration-container access as an early hard dependency. & Daily hydration becomes less portable and less consistent from the start. \\
+Shaker Bottle & Phase 00 (End) & It is a direct fit for the Tier-1 simple-prep-capability class inside the category definition. & Any liquid prep workflow becomes less contained and less repeatable. \\
+Meal Prep Container Set & Phase 00 (End) & Containers are the most basic form of simple prep capability under the same Tier-1 posture. & Repeated intake execution stays more chaotic and more dependent on ad hoc storage. \\
+Food Scale & Phase 06 (End) & A basic prep-measurement tool is a conservative fit for expanded prep capability while staying inside tools-only scope. & Quantity control remains less consistent during early execution. \\
+Measuring Cup and Spoon Set & Phase 00 (End) & It is another low-friction Tier-1 prep tool that does not cross into diet programming. & Basic repeatability in simple food prep is weaker. \\
+Bottle Brush Cleaning Kit & Phase 00 (End) & The category includes hydration hygiene, and cleaning support directly protects safe repeated container use. & Bottles and shaker parts are more likely to retain odor or contamination. \\
+Large Water Jug & Phase 03 (End) & It fits the Tier 2 carry-capacity upgrade once Stage 7.13 rises from Tier 1 to Tier 2 by Phase 03 (End). & Longer or denser sessions depend more on repeated refills or weaker staging. \\
+Hydration Bladder / Reservoir & Phase 06 (End) & Hands-free fluid carry is a clear Tier 2 improved-carry-capacity item that begins at Phase 06 (End). & Pack-based hydration continuity is less efficient once outdoor duration rises. \\
+Soft Cooler Lunch Bag & Phase 03 (End) & Cold-chain transport support fits the Tier-2 travel-continuity class. & Prepared food transport becomes less reliable in warmer or longer field windows. \\
+Reusable Ice Pack Set & Phase 03 (End) & Ice packs are the simplest cold-chain continuity tool inside the same expanded-transport posture. & Insulated transport loses effectiveness and food-safety margins narrow. \\
+Insulated Food Jar & Phase 03 (End) & It is a Tier-2 transport tool for carrying prepared hot or cold meals more safely. & Portable meal continuity is weaker outside the home environment. \\
+Portion-Control Container Set & Phase 03 (End) & It belongs to expanded prep tooling rather than the minimum baseline. & Smaller measured carry options remain less organized. \\
+Countertop Blender & Phase 03 (End) & It is an expanded prep tool, not a Phase-00 minimum deployability requirement. & Higher-throughput liquid prep remains slower and more cumbersome. \\
+Electric Kettle & Phase 03 (End) & It is another expanded prep-throughput tool that fits the Tier-2 class. & Hot-fluid prep remains more improvisational and slower. \\
+Bottle Drying Rack & Phase 03 (End) & Tier-2 expansion includes better hygiene continuity once container count rises. & Drying becomes less organized and mold/odor risk rises. \\
+Powder Funnel / Packet Carrier & Phase 03 (End) & Travel continuity is an explicit Tier-2 descriptor, and portable organizers fit that role directly. & Small carry items remain more spill-prone and easier to forget. \\
+Label and Date System & Phase 03 (End) & Workflow supports for staging and dating align with expanded prep organization. & Rotation discipline is weaker and older prep is easier to overlook. \\
+Travel Utensil Meal Kit & Phase 03 (End) & It is a practical travel-continuity tool once eating away from the main prep space becomes normal. & Prepared meals are harder to use cleanly outside the home setup. \\
+Hard Cooler / Expedition Cooler & Phase 12 (End) & It fits the overbuilt sustainment posture rather than the first two capability tiers. & Long-duration cold-chain redundancy remains less robust near decisive windows. \\
+Redundant Hydration and Container Kit & Phase 12 (End) & Stage 6 Tier 3 for Stage 7.13 is explicitly a redundant-container / sustainment posture, and Stage 8 links Stage 7.13 to long-ruck hydration logistics by the decisive late window. & A failed or unclean primary container system creates more late-phase execution friction. \\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+\clearpage
+
+\subsection*{Compliance Checklist}
+\phantomsection
+\addcontentsline{toc}{subsection}{Compliance Checklist}
+
+\begin{itemize}
+\item Only one deliverable is provided for Target Category 7.13.
+\item The title and chart columns follow the locked schema.
+\item Twenty distinct items are included, each with three Budget rows, three Standard rows, and three Elite rows.
+\item Items are grouped in foundational-to-specialized order.
+\item First-phase timing follows the Stage-6 capability classes: Phase-00 Tier-1 basics, Phase-03 Tier-2 expansion, and Phase-12 Tier-3 redundancy.
+\item Notes are concise, plain-language, item-specific, and limited to intended effect or use.
+\item The chart stays within tools, systems, prep, transport, hydration, hygiene, and workflow support; it does not prescribe macros, meal plans, or supplement dosing.
+\item Reconciliation is stated where the attached 7.13 overview and the locked Stage-6 timing posture differ.
+\item No live price research, retailer links, affiliate links, or promo codes are included.
+\item The required post-chart timing table is included and phase-aligned.
+\end{itemize}
+
+\end{document}

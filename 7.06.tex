@@ -1,0 +1,489 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{7.06 — Recovery, Sleep, and Stress-Support Aids — OTC}
+\phantomsection
+\addcontentsline{toc}{section}{7.06 — Recovery, Sleep, and Stress-Support Aids — OTC}
+
+\subsection*{7.06.1 Purpose \& Scope}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.06.1 Purpose \& Scope}
+
+7.06 defines an OTC-only, education-forward governance posture for recovery, sleep, and stress-support aids that may reduce friction in sustaining a six-sessions-per-week program. It exists to keep recovery supports subordinate to sleep opportunity and sleep hygiene, training dose control, nutrition adequacy, and clinician evaluation. It also exists to prevent validity contamination in protected windows by treating any new recovery aid as a controlled variable subject to one-change-at-a-time and no-novelty near Deload+Test windows.
+
+This overview does not prescribe medical treatment, does not provide prescription guidance, and does not create dosing protocols. Dosing ranges are informational only, conservative, and appear only in Notes.
+
+\subsection*{7.06.2 Governance and Safety Boundaries}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.06.2 Governance and Safety Boundaries}
+
+\begin{itemize}
+\item OTC-only posture for all ingestibles and topicals named here.
+\item Safety hierarchy is mandatory and overrides OTC aids:
+  \begin{itemize}
+  \item sleep opportunity and sleep hygiene,
+  \item training dose control (downshift posture),
+  \item nutrition adequacy and hydration,
+  \item clinician evaluation for persistent or concerning symptoms,
+    override any OTC recovery aid considerations.
+  \end{itemize}
+\item Change-control posture is mandatory:
+  \begin{itemize}
+  \item one change at a time (introduce or change only one item/variable),
+  \item do not introduce changes near Deload+Test weeks or gate windows,
+  \item log start/stop and adverse effects as controlled variables.
+  \end{itemize}
+\item Next-day impairment posture is controlling:
+  \begin{itemize}
+  \item any aid that increases next-day grogginess, dizziness, or performance degradation is treated as a safety risk and a validity contamination risk.
+  \end{itemize}
+\item Prohibited and explicitly excluded (governance reasons):
+  \begin{itemize}
+  \item sedating antihistamines as a sleep strategy: dependency risk, next-day impairment, validity contamination.
+  \item alcohol as a sleep aid: sleep architecture disruption, next-day impairment, high risk of dependency and validity contamination.
+  \item kratom: dependency risk, legal/ethical risk, interaction uncertainty, and not aligned with conservative OTC-only posture.
+  \item research-chemical sleep products: unknown safety, illegal/gray-market risk, interaction uncertainty, and non-auditable exposure.
+  \end{itemize}
+\item Overlap handling:
+  \begin{itemize}
+  \item Topicals for soreness and heat/cold modalities may be included only as 1–2 items total here; primary recovery/tissue-care system lives in 7.12.
+  \item Hydration and evening fluid posture systems live in 7.13; 7.06 references 7.13 only when hydration timing affects sleep.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.06.3 Tier Doctrine — Applied to Recovery, Sleep, and Stress-Support Aids}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.06.3 Tier Doctrine — Applied to Recovery, Sleep, and Stress-Support Aids}
+
+\begin{itemize}
+\item Tier 0: household-only recovery and sleep hygiene posture with improvised sleep-environment tools; no purchases required; this tier exists to prevent “aid dependence” and to confirm behavior-first controls are functioning.
+\item Tier 1: dedicated sleep-environment tools plus minimal OTC ingestibles that are conservative, simple, and lower-risk, with strong next-day impairment cautions.
+\item Tier 2: expanded options only when they improve consistency or reduce risk without increasing interaction complexity or creating reliance.
+\item Tier 3: overbuilt posture focused on redundancy and stability controls (documentation, environment reliability), not escalation in sedating potency.
+\end{itemize}
+
+Tier language here describes optional support capability posture. It does not override the safety hierarchy and does not create gate credit.
+
+\subsection*{7.06.4 Selection Criteria \& Fit Checks}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.06.4 Selection Criteria \& Fit Checks}
+
+\begin{itemize}
+\item Safety hierarchy enforcement:
+  \begin{itemize}
+  \item If sleep opportunity is inadequate, correct that first; do not add ingestibles to compensate.
+  \item If training dose is excessive, downshift first; do not sedate to tolerate overload.
+  \item If nutrition/hydration is unstable, correct it (7.13 governs systems) before adding aids.
+  \end{itemize}
+\item Selection criteria (generic; non-prescriptive):
+  \begin{itemize}
+  \item single-ingredient preference to reduce interaction complexity,
+  \item transparent labeling and third-party testing/COA preference where available,
+  \item low next-day impairment risk prioritized over “stronger effect.”
+  \end{itemize}
+\item Fit checks (operational):
+  \begin{itemize}
+  \item improved sleep continuity without next-day grogginess,
+  \item no anxiety/agitation increase,
+  \item no GI distress that worsens sleep,
+  \item stable response across multiple non-protected weeks before any decision window.
+  \end{itemize}
+\item “Not fit” triggers:
+  \begin{itemize}
+  \item next-day impairment (grogginess, dizziness),
+  \item worsened sleep (fragmentation, vivid nightmares that impair recovery),
+  \item anxiety/panic increase,
+  \item persistent GI distress.
+  \end{itemize}
+\end{itemize}
+
+Clinician-referral triggers (non-diagnostic):
+
+\begin{itemize}
+\item persistent insomnia >2–3 weeks despite sleep hygiene controls,
+\item suspected sleep apnea (loud snoring, witnessed apneas, severe daytime sleepiness),
+\item recurrent panic episodes, severe anxiety spikes, or depressive symptoms,
+\item palpitations, chest pressure, syncope/near-syncope, disproportionate shortness of breath,
+\item unexplained lab abnormalities discovered through clinician testing.
+\end{itemize}
+
+\subsection*{7.06.5 Setup, Safety, and Anchoring — Operational Use Boundaries}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.06.5 Setup, Safety, and Anchoring — Operational Use Boundaries}
+
+\begin{itemize}
+\item Setup posture:
+  \begin{itemize}
+  \item stabilize environment tools first (light/noise/temp) before adding ingestibles.
+  \item introduce ingestibles only after tolerability is established and only one variable at a time.
+  \end{itemize}
+\item No novelty near Deload+Test windows:
+  \begin{itemize}
+  \item do not introduce a new sleep aid inside protected windows; if a change occurs, treat gate-week evidence as validity-sensitive and reslot if comparability is compromised.
+  \end{itemize}
+\item Next-day impairment rule:
+  \begin{itemize}
+  \item if an aid causes next-day impairment, discontinue immediately; do not “push through” impaired sessions.
+  \end{itemize}
+\item Explicit exclusions enforcement:
+  \begin{itemize}
+  \item sedating antihistamines are not an approved sleep strategy; they create dependency/impairment risk.
+  \item alcohol is not a sleep aid; it degrades sleep quality and increases risk.
+  \item kratom is prohibited (dependency and legal/ethical risk).
+  \item research-chemical sleep products are prohibited (unknown safety and legality).
+  \end{itemize}
+\item Overlap boundaries:
+  \begin{itemize}
+  \item 7.12 owns the primary recovery/tissue-care system and modalities; 7.06 includes only minimal topicals as listed.
+  \item 7.13 owns hydration systems; avoid late-evening hydration extremes that disrupt sleep; do not use supplements as a workaround for poor hydration planning.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.06.6 Maintenance, Replacement, and Storage}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.06.6 Maintenance, Replacement, and Storage}
+
+\begin{itemize}
+\item Store ingestibles in a cool, dry location; avoid humidity and heat exposure.
+\item Track expiration dates; discard expired products.
+\item Maintain stable product identity during decision windows; replace like-for-like rather than switching formulations near protected windows.
+\item For environment tools (blackout/ear protection/white noise):
+  \begin{itemize}
+  \item inspect for degradation,
+  \item keep backups only in Tier 3 where variance reduction is critical,
+  \item avoid introducing new devices inside protected windows.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.06.7 Substitution Rules — Behavior-First Recovery System}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.06.7 Substitution Rules — Behavior-First Recovery System}
+
+\begin{itemize}
+\item Behavior-first substitution is the default:
+  \begin{itemize}
+  \item increase sleep opportunity,
+  \item downshift training dose (reduce intensity/density),
+  \item stabilize hydration and evening nutrition timing (7.13 systems),
+  \item apply reslot discipline for gates rather than sedating through instability.
+  \end{itemize}
+\item If an OTC aid is not tolerated:
+  \begin{itemize}
+  \item stop it,
+  \item log start/stop and adverse effects,
+  \item revert to the last stable baseline without immediately substituting another ingestible.
+  \end{itemize}
+\item Validity/logging linkage (Stage 2.E posture, high-level):
+  \begin{itemize}
+  \item any change in sleep aid variables is logged as a controlled variable,
+  \item if a change occurs near a decision window, treat evidence as higher variance; apply validity tags/reason codes where deviations affect admissibility,
+  \item do not claim gate credit based on weeks where sleep-aid novelty coincides with performance changes.
+  \end{itemize}
+\item If sleep instability persists:
+  \begin{itemize}
+  \item clinician referral posture applies; do not escalate OTC stacks.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.06.8 Phase Integration Map — Required}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.06.8 Phase Integration Map — Required}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=1.05in]
+    Q[c,wd=1.80in]
+    X[c,2.75]
+    X[c,3.95]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Phase} &
+\Hdr{Required Tier (from Stage 6)} &
+\Hdr{What Changes / Becomes Mandatory} &
+\Hdr{Notes} \\
+Phase 00 &
+T0 &
+None &
+Optional-only. Sleep hygiene and environment controls are recommended but not required by Stage 6. Maintain no-novelty posture near protected windows. \\
+Phase 01 &
+T0 &
+None &
+Optional-only. Do not use sleep aids to compensate for schedule instability; downshift training dose instead. \\
+Phase 02 &
+T0 &
+None &
+Optional-only. \textbf{STR} emphasis increases sleep need; governance response is sleep opportunity, not sedative escalation. \\
+Phase 03 &
+T0 &
+None &
+Optional-only. Ruck introduction increases fatigue; maintain stability and avoid introducing new sleep aids near protected windows. \\
+Phase 04 &
+T0 &
+None &
+Optional-only. Aquatic relevance does not change sleep-aid governance; maintain controlled variables. \\
+Phase 05 &
+T0 &
+None &
+Optional-only. Longer endurance increases recovery sensitivity; avoid novelty in decision windows. \\
+Phase 06 &
+T0 &
+None &
+Optional-only. Stage 6 baseline does not require 7.06; however, higher consequence phases increase the value of stable sleep environment controls. Maintain documentation discipline. \\
+Phase 07 &
+T0 &
+None &
+Optional-only. Hybrid density increases drift risk; treat any sleep aid change as validity-sensitive. \\
+Phase 08 &
+T0 &
+None &
+Optional-only. Load tolerance phases demand stable recovery; omit is acceptable; do not stack sleep aids. \\
+Phase 09 &
+T0 &
+None &
+Optional-only. High-volume phases require stable sleep; focus on environment controls before ingestibles. \\
+Phase 10 &
+T0 &
+None &
+Optional-only. Late-phase consequence increases variance sensitivity; no novelty near gates. \\
+Phase 11 &
+T0 &
+None &
+Optional-only. Recovery phase requires low variance; reslot gates if sleep collapses rather than masking with aids. \\
+Phase 12 &
+T0 &
+None &
+Optional-only. Verification reliability makes stable variables critical; Tier 3 redundancy is optional only and must be stabilized well before protected windows. \\
+Phase 13 &
+T0 &
+None &
+Optional-only. Consolidation demands repeatability; do not introduce new aids near final gates. \\
+\end{longtblr}
+
+\endgroup
+
+7.06.8 Notes:
+
+\begin{itemize}
+\item Stage 6.B Matrix B2 represents 7.06 as T0 across all phases in this project. If any downstream artifact treats 7.06 as required or assigns a Tier 1 requirement, flag Requires Stage 8 review here and in 7.06.9 rather than changing timing in Stage 7.
+\end{itemize}
+
+\subsection*{7.06.9 Risks, Contraindications, and Red Flags}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.06.9 Risks, Contraindications, and Red Flags}
+
+\begin{itemize}
+\item Next-day impairment risk:
+  \begin{itemize}
+  \item grogginess, dizziness, slowed reaction time, and impaired coordination can increase injury risk and contaminate evidence; stop the aid and revert to baseline if present.
+  \end{itemize}
+\item Dependency risk:
+  \begin{itemize}
+  \item reliance on sedating strategies increases fragility; prohibited strategies (sedating antihistamines, alcohol, kratom, research chemicals) are excluded because they create dependency risk and validity contamination.
+  \end{itemize}
+\item Interaction uncertainty risk:
+  \begin{itemize}
+  \item multi-ingredient blends increase risk; prefer single-ingredient options and omit when interactions are uncertain.
+  \end{itemize}
+\item Sleep collapse masking risk:
+  \begin{itemize}
+  \item using aids to mask sleep debt encourages unsafe training dose; governance response is downshift and reslot, not sedation.
+  \end{itemize}
+\item Clinician referral triggers (non-diagnostic):
+  \begin{itemize}
+  \item persistent insomnia >2–3 weeks,
+  \item suspected sleep apnea signs,
+  \item severe anxiety/panic escalation,
+  \item palpitations with dizziness, chest pressure/pain, syncope/near-syncope,
+  \item severe allergic reactions.
+  \end{itemize}
+\item Requires Stage 8 review triggers:
+  \begin{itemize}
+  \item any upstream or downstream artifact implying sedating antihistamines, alcohol, kratom, or research chemicals are acceptable,
+  \item any attempt to make 7.06 required or to treat it as a gate dependency contrary to Stage 6 timing.
+  \end{itemize}
+\end{itemize}
+
+\end{document}

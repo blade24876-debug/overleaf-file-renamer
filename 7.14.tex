@@ -1,0 +1,463 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{7.14 — Environmental Apparel, Cold / Hot / Wet / Inclement Weather}
+\phantomsection
+\addcontentsline{toc}{section}{7.14 — Environmental Apparel, Cold / Hot / Wet / Inclement Weather}
+
+\subsection*{7.14.1 Purpose \& Scope}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.14.1 Purpose \& Scope}
+
+This category covers:
+
+\begin{itemize}
+\item Cold-weather layering systems (base, mid, shell) that support safe outdoor execution in cold and wind.
+\item Wet-weather and wind management systems (rain/wind shells, seam posture, hood/cuff sealing) that prevent wet-to-cold failure.
+\item Hot-weather heat-management apparel and sun protection posture (breathable fabrics, sun coverage posture).
+\item Hands/feet/head interface items that materially change exposure safety (gloves/mitts, neck gaiter, hat), without duplicating footwear systems.
+\item Packable weather contingencies that preserve training continuity (storm kit posture), with staging cross-reference to Stage 7.10 and carry integration cross-reference to Stage 7.07.
+\end{itemize}
+
+This overview crosswalks Stage 6 timing to the environmental-apparel conditions required for safe outdoor execution and admissible evidence.
+
+This category does not cover, except by cross-reference:
+
+\begin{itemize}
+\item Footwear and foot care: Stage 7.11
+\item General daily apparel: Stage 7.15
+\item Protective / visibility equipment: Stage 7.19
+\item Logistics / staging systems: Stage 7.10
+\item Hydration containers and prep systems: Stage 7.13
+\end{itemize}
+
+This overview does not provide programming, test protocols, calendars, medical guidance, or protective-visibility prescriptions that belong in 7.19.
+
+\subsection*{7.14.2 Governance And Safety Boundaries}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.14.2 Governance And Safety Boundaries}
+
+\begin{itemize}
+\item Stage 0 boundary alignment: stop rules, safety override doctrine, conflict-resolution hierarchy, and evidence-admissibility controls apply to all 7.14 selections and substitutions.
+\item Environmental apparel is a safety control and a validity control: unsafe exposure can terminate sessions/tests and contaminate evidence.
+\item Stop posture (non-medical and operational): substitute indoor modality or reschedule to the next valid window under hard-stop environment conditions. Do not push through.
+\item Hard-stop environment conditions (examples):
+  \begin{itemize}
+  \item lightning or storm risk,
+  \item ice glaze or otherwise unsafe footing,
+  \item whiteout or near-zero visibility,
+  \item official air-quality warning,
+  \item extreme windchill concern,
+  \item heat index concern.
+  \end{itemize}
+\item No novelty near gates:
+  \begin{itemize}
+  \item do not introduce new cold/wet/heat systems inside Deload+Test windows,
+  \item log apparel system changes that materially affect comfort, pace, tolerance, or safety.
+  \end{itemize}
+\item Visibility and traffic safety: cross-reference Stage 7.19 only; do not duplicate Stage 7.19 content.
+\end{itemize}
+
+\subsection*{7.14.3 Tier Doctrine}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.14.3 Tier Doctrine}
+
+\begin{itemize}
+\item Price band convention: \$ = minimal household-cost item; \$\$ = modest purpose-built item; \$\$\$ = expanded-capability or redundancy item.
+\item N/A rule: use N/A only when a field is genuinely not applicable and omission does not obscure safety, maintenance, or phase-timing logic.
+\item Substitution posture: substitutions are acceptable only when they preserve exposure safety, visibility of stop conditions, and comparability of outdoor execution; substitutes that increase exposure risk or invalidate weather comparability break intent.
+\item Tier 0: household-only and opportunistic coverage; not sufficient for sustained outdoor execution in winter conditions; treated as a temporary constraint state.
+\item Tier 1: minimum viable cold/wet/heat control enabling safe outdoor execution when required by Stage 6 timing, plus the ability to substitute indoors without creating unsafe exposure.
+\item Tier 2: expanded modularity and packable contingencies that reduce canceled sessions and reduce wet-to-cold failure; includes traction aids and storm kit.
+\item Tier 3: advanced / overbuilt redundancy and specialized severe-weather protection; travel / vehicle-staging posture to reduce variance near high-consequence phases.
+\end{itemize}
+
+\subsection*{7.14.4 Selection Criteria \& Fit Checks}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.14.4 Selection Criteria \& Fit Checks}
+
+Fit and safety checklist (operational):
+
+\begin{itemize}
+\item Layering compatibility:
+  \begin{itemize}
+  \item base/mid/shell must fit without compressing insulation or restricting breathing.
+  \end{itemize}
+\item Moisture management:
+  \begin{itemize}
+  \item fast drying, venting options, and sweat handling are prioritized to prevent wet-to-cold failure.
+  \end{itemize}
+\item Wind and wet performance posture:
+  \begin{itemize}
+  \item hood coverage, cuff sealing, hem sealing posture; seam quality posture; water repellency care posture.
+  \end{itemize}
+\item Dexterity and grip:
+  \begin{itemize}
+  \item glove systems must allow safe handling of gear (buckles, zippers) without exposing hands to frost risk.
+  \end{itemize}
+\item Thermal safety posture:
+  \begin{itemize}
+  \item avoid overheating under exertion; ability to vent is required.
+  \end{itemize}
+\item Trial-first rule:
+  \begin{itemize}
+  \item validate on short exposures before long sessions or any protected window; do not first-use a new system in Deload+Test weeks.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.14.5 Setup, Safety, and Anchoring}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.14.5 Setup, Safety, and Anchoring}
+
+Setup doctrine (no programming):
+
+\begin{itemize}
+\item Pre-exposure checks:
+  \begin{itemize}
+  \item classify the session as cold/wet/heat risk class; if hard-stop conditions exist, substitute indoors.
+  \item visibility posture is governed by Stage 7.19 (cross-reference only).
+  \end{itemize}
+\item Layering setup:
+  \begin{itemize}
+  \item manage sweat: vent early; avoid saturating base layer.
+  \item wet-to-cold transition rule: do not remain wet in wind/cold; change layers or substitute indoors.
+  \end{itemize}
+\item Hard-stop environment examples (non-negotiable):
+  \begin{itemize}
+  \item lightning/storm risk, ice glaze, whiteout/near-zero visibility, official air-quality warning, extreme windchill concern, heat index concern.
+  \item posture: stop, substitute indoor modality, or reschedule to next valid window.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.14.6 Maintenance, Replacement, and Storage}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.14.6 Maintenance, Replacement, and Storage}
+
+\begin{itemize}
+\item Drying posture:
+  \begin{itemize}
+  \item dry fully; avoid sealed storage while damp.
+  \end{itemize}
+\item Replacement cues:
+  \begin{itemize}
+  \item loss of water repellency that cannot be restored by care posture,
+  \item seam failure or zipper failure,
+  \item degraded insulation loft,
+  \item glove wear causing cold exposure risk.
+  \end{itemize}
+\item Maintenance posture:
+  \begin{itemize}
+  \item wash per fabric requirements,
+  \item re-treatment posture for water repellency as needed,
+  \item seam repair tape as a field-reliability measure.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.14.7 Substitution Rules — Maintain Continuity Under Weather Constraints}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.14.7 Substitution Rules — Maintain Continuity Under Weather Constraints}
+
+\begin{itemize}
+\item If conditions are unsafe:
+  \begin{itemize}
+  \item substitute indoor modality and document the environment deviation; do not force outdoor exposure.
+  \end{itemize}
+\item If apparel system is inadequate:
+  \begin{itemize}
+  \item downgrade exposure (duration/intensity) and substitute indoors if needed; do not “prove toughness.”
+  \end{itemize}
+\item Logging linkage (Stage 2.E posture, high-level):
+  \begin{itemize}
+  \item record environment notes when unsafe conditions drive substitution or re-slotting,
+  \item record reason-code posture for the deviation,
+  \item treat planned test attempts as compromised and reslot if conditions or apparel inadequacy would change performance tolerance.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.14.8 Phase Integration Map}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.14.8 Phase Integration Map}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.05in]
+    Q[l,wd=1.55in]
+    X[l,2.75]
+    X[l,3.65]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Phase} &
+\Hdr{Required Tier (from Stage 6)} &
+\Hdr{What Changes / Becomes Mandatory} &
+\Hdr{Notes} \\
+Phase 00 &
+Tier 1 &
+Cold: minimum layering core required; Wet: minimum shell posture required; Heat: minimum sun/heat posture required &
+Phase 00 (End) requirement supports winter continuity. Do not introduce new apparel systems in protected windows. \\
+Phase 01 &
+Tier 1 &
+Cold: maintain; Wet: maintain; Heat: maintain &
+Phase 01 (End) emphasizes continuity; if winter execution is unstable, substitute indoors per Stage 7.08 rather than forcing. \\
+Phase 02 &
+Tier 1 &
+Cold: maintain; Wet: maintain; Heat: maintain &
+Phase 02 (End) maintain stable systems; avoid novelty near protected windows. \\
+Phase 03 &
+Tier 1 &
+Cold: maintain; Wet: maintain; Heat: maintain &
+Phase 03 (End) ruck capability begins to appear; avoid compounding novelty (new ruck interface + new cold system in same window). \\
+Phase 04 &
+Tier 1 &
+Cold: maintain; Wet: maintain; Heat: maintain &
+Phase 04 (End) aquatic capability begins; wet-gear handling is logistics-driven (Stage 7.10 / Stage 7.20), not "more apparel." \\
+Phase 05 &
+Tier 1 &
+Cold: maintain; Wet: maintain; Heat: maintain &
+Phase 05 (End) longer endurance increases consequence of exposure mismanagement; reslot rather than force. \\
+Phase 06 &
+Tier 2 &
+Cold: expanded modularity required; Wet: packable storm kit required; Heat: improved heat management posture required &
+Phase 06 (End) is first Tier 2 point. Traction aids and storm kit become operationally necessary for continuity in ice/wet conditions. \\
+Phase 07 &
+Tier 2 &
+Cold: maintain expanded system; Wet: maintain storm kit; Heat: maintain heat posture &
+Phase 07 (End) hybrid density increases consequence of cancellations; Tier 2 reduces reslots. \\
+Phase 08 &
+Tier 2 &
+Cold: maintain; Wet: maintain; Heat: maintain &
+Phase 08 (End) load tolerance increases fall risk under ice; traction aids remain critical. \\
+Phase 09 &
+Tier 2 &
+Cold: maintain; Wet: maintain; Heat: maintain &
+Phase 09 (End) high volume increases sweat risk; venting and drying posture become critical. \\
+Phase 10 &
+Tier 2 &
+Cold: maintain; Wet: maintain; Heat: maintain &
+Phase 10 (End) multi-domain gate weeks demand low variance; no novelty near protected windows. \\
+Phase 11 &
+Tier 2 &
+Cold: maintain; Wet: maintain; Heat: maintain &
+Phase 11 (End) recovery sensitivity increases consequence of exposure errors. \\
+Phase 12 &
+Tier 2 &
+Cold: maintain; Wet: maintain; Heat: maintain &
+Phase 12 (End) Stage 6 does not elevate 7.14 to Tier 3; overbuild remains optional and must not be implied as required. \\
+Phase 13 &
+Tier 2 &
+Cold: maintain; Wet: maintain; Heat: maintain &
+Phase 13 (End) consolidation demands repeatability; reslot if environment conditions compromise validity. \\
+\end{longtblr}
+
+\endgroup
+
+7.14.8 Notes:
+
+\begin{itemize}
+\item Traction aids and packable storm kit are Tier 2-plus items; if any downstream artifact demands them earlier than Phase 06 (End), requires Stage 8 review.
+\item If any phase card implies outdoor execution under hard-stop conditions is acceptable, requires Stage 8 review.
+\end{itemize}
+
+\subsection*{7.14.9 Risks, Contraindications, and Red Flags}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.14.9 Risks, Contraindications, and Red Flags}
+
+\begin{itemize}
+\item Heat illness risk: overheating, dehydration, and sun exposure can cause unsafe sessions and invalid evidence; substitute indoors under heat index concern.
+\item Cold injury risk: wet-to-cold failure, windchill exposure, and insufficient hand/head protection elevate risk; substitute indoors under extreme windchill concern.
+\item Wet exposure risk: sustained wetness increases hypothermia risk and skin irritation; storm kit and drying posture reduce risk.
+\item Slips/falls on ice: traction aids reduce risk but do not eliminate it; ice glaze remains a hard stop when unsafe.
+\item Air quality risk: official air-quality warnings are hard-stop conditions; substitute indoors.
+\item Visibility and traffic hazard posture: cross-reference Stage 7.19; do not attempt roadside exposure under near-zero visibility.
+\item Validity contamination: tests attempted under unsafe or non-comparable conditions are inadmissible; reslot to a valid window.
+\item Requires Stage 8 review triggers:
+  \begin{itemize}
+  \item any mismatch where a phase demands Tier 1/Tier 2 environmental apparel earlier than Stage 6 timing,
+  \item any attempt to include anti-chafe consumables in Stage 7.14 tier tables (must cross-reference Stage 7.11 / Stage 7.15 / Stage 7.20),
+  \item any attempt to treat hard-stop environment conditions as "train anyway" situations.
+  \end{itemize}
+\end{itemize}
+
+\end{document}

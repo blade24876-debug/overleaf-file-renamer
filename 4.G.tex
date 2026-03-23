@@ -1,0 +1,428 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 4.G — Exit Standards for Phase 00 — Safe Entry to Phase 01}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 4.G — Exit Standards for Phase 00 — Safe Entry to Phase 01}
+
+\subsection*{4.G.1 Standards Posture}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.G.1 Standards Posture}
+
+\begin{itemize}
+\item Exit standards are objective performance and governance thresholds that establish minimum safe, repeatable readiness for Phase 01 entry.
+\item Exit standards are not medical standards and do not replace clinical clearance pathways.
+\item Gate decisions require admissible evidence per Stage 1.F and Stage 2:
+  \begin{itemize}
+  \item sessions must be tagged \textbf{VALID}, \textbf{MODIFIED}, or \textbf{INVALID} with reason codes,
+  \item tests must be tagged \textbf{VALID} or \textbf{INVALID} with reason codes.
+  \end{itemize}
+\item Week 16 is the exit-gate evaluation window. If Week 16 evidence is invalid or missing, the default posture is \textbf{HOLD} with reslot per Stage 3.
+\item Invalid test evidence provides no gate credit and is treated as “not yet tested” for gate decisions.
+\item Safety overrides schedule and performance. Red-flag symptoms abort testing and invoke escalation posture.
+\item Mobility and movement quality screens are supporting evidence in 4.G and must inform durability and risk stability decisions, but are not listed as separate required exit rows.
+\item Phase 00 exit is evaluated using:
+  \begin{itemize}
+  \item Week 16 Deload+Test results for the exit-gate battery items, and
+  \item phase-wide compliance evidence (session validity, Cardio completion, steps compliance, \textbf{RECOVERY} and \textbf{DURABILITY} stability logs, \textbf{BODYCOMP} trend evidence).
+  \end{itemize}
+\item Week 12 cannot satisfy exit items if Week 16 is invalid or missed; reslot per Stage 3 and default \textbf{HOLD} posture.
+\end{itemize}
+
+\clearpage
+\begin{landscape}
+
+\subsection*{4.G.2 Required Exit Standards Table}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.G.2 Required Exit Standards Table}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.85in]
+    X[l,1.35]
+    X[l,3.45]
+    X[l,2.15]
+    X[l,2.15]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Domain} &
+\Hdr{Metric/Test} &
+\Hdr{Minimum Exit Standard for Phase 01} &
+\Hdr{Rationale} &
+\Hdr{If Not Met Action} \\
+
+\textbf{RECOVERY} &
+\textbf{REC-ADH-WK} compliance requirement (Requires Stage 8 review - no reconciled Stage 2 \textbf{ID} assigned) &
+\textbf{REC-ADH-WK} ≥ 85\% (≥82/96 sessions) under Phase 00 counting rules (denominator fixed at 96); numerator counts admissible sessions (\textbf{VALID} + admissible \textbf{MODIFIED} within cap); \textbf{INVALID} sessions do not count; any session with incomplete required elements or incomplete required logging is \textbf{INVALID} for progression decisions. \textbf{INVALID} session hard limit: ≤10 \textbf{INVALID} sessions across Phase 00. \textbf{MODIFIED} cap: ≤1 \textbf{MODIFIED} session per week outside medical issues; medical-issue-driven \textbf{MODIFIED} sessions beyond the cap trigger review and default \textbf{HOLD} unless stability is restored. Decision-window disqualifier for \textbf{ADVANCE} at Week 16: the two most recent complete training weeks preceding gate week must contain 0 \textbf{INVALID} sessions and must meet the admissible-session threshold per Stage 1.F gate doctrine. &
+Phase 01 is unsafe and non-auditable if Phase 00 did not establish stable execution discipline. This standard proves the six-session rhythm is real, that required session elements are completed, and that logs are decision-grade. The invalid hard limit prevents “passing” on phase-wide percentage while tolerating excessive evidence contamination. The decision-window disqualifier prevents advancing off a late-phase compliance collapse. &
+\textbf{HOLD}. Identify failure mode (missing elements, missing logs, time or environment drift, footwear interface instability, illness). Extend Phase 00 by 4 weeks under patch control and re-prove compliance in the extension block. Retest only the compliance standard at the next Deload+Test gate week (Week 20). \\
+
+\textbf{RECOVERY} &
+\textbf{MET-2B-043} Steps Count (\textbf{C15}) — 10,000 steps per day compliance requirement &
+≥10,000 steps per day across Phase 00 with an auditable daily log, including the non-session day. Any day below 10,000 must be logged with same-day notes that identify the observable constraint; missing days recorded as \textbf{MISSING}/\textbf{UNKNOWN} are treated as unproven and therefore non-compliant for gate purposes. Decision-window posture for \textbf{ADVANCE}: the two most recent complete weeks must show step compliance without drift that would contaminate gait stability or recovery. &
+Steps are a baseline activity floor that supports low-impact aerobic tolerance and tissue conditioning without requiring higher-risk exposures. This standard confirms feasibility and prevents Phase 01 escalation when baseline activity is not stabilized. Missing logs are treated as absence of proof, not proof of completion. &
+\textbf{HOLD}. Extend Phase 00 by 4 weeks under patch control and re-prove the steps standard with complete daily logging. If environment hazards prevent safe step exposure, preserve Cardio via safe substitutes and document; do not claim steps compliance without logs. \\
+
+\textbf{RUN} &
+Aerobic tolerance posture &
+Continuous low-impact Cardio tolerance evidence is demonstrated via logs: Cardio completed as continuous duration each training session under Phase 00 posture, with stable gait, no red-flag symptom posture, and no recurring mechanics-altering pain events. Confirmatory gate evidence permitted only where already defined upstream: \textbf{AER-WALK-015} at Week 16 (Requires Stage 8 review - no reconciled Stage 2 \textbf{ID} assigned) under \textbf{VALID} conditions, mode logged, stable gait, no symptom flags, and no post-test gait drift. Do not claim aerobic readiness from \textbf{INVALID} sessions or tests; invalid evidence provides no gate credit. &
+Phase 01 requires repeatable aerobic throughput without symptom escalation and without gait breakdown. This row anchors aerobic readiness to continuous low-impact tolerance and admissible evidence. The confirmatory timed walk, when executed \textbf{VALID}, provides a structured check that the tolerance is not merely “felt okay.” &
+\textbf{HOLD}. If confirmatory instrument is missed/invalid or threshold not met, reslot to the next Deload+Test window per Stage 3. If tolerance is the limiting factor (gait drift, unusual breathlessness, pain trend), extend Phase 00 by 4 weeks and retest only the aerobic gate item(s) at Week 20. \\
+
+\textbf{CAL} &
+\textbf{C7} / \textbf{MET-2B-013} Plank — Forearm &
+Week 16 \textbf{VALID} test required. Minimum exit standard: ≥60 seconds strict, terminated on form failure (no sag/pike compensation, no unsafe strain behavior). Missing required test context/log fields defaults the test to \textbf{INVALID} for gate use. &
+Trunk endurance is a low-risk, high-yield stability requirement that supports higher training density and safer mechanics in Phase 01. A strict plank threshold provides an objective minimum without introducing higher-risk strength tests. &
+\textbf{HOLD}. Extend Phase 00 by 4 weeks under patch control and retest plank at Week 20. Do not stack unnecessary tests; maintain conservative posture and preserve validity. \\
+
+\textbf{CAL} &
+\textbf{ME-UP-PU-INC} — regressed push capacity (Requires Stage 8 review - no reconciled Stage 2 \textbf{ID} assigned) &
+Week 16 \textbf{VALID} test required. Minimum exit standard: ≥15 reps at fixed incline height with incline height lock applied and documented; hand placement standard held stable; no shoulder pain-driven compensation; no breathless intensity chasing. If lock fields are missing or incline height drifts, treat the test as \textbf{INVALID} for gate use and reslot. &
+This is a regressed upper-body capacity proxy that confirms controlled pushing tolerance without forcing full-floor calisthenics early. It also functions as an audit control: comparability requires stable incline height and stable execution rules. &
+\textbf{HOLD}. Extend Phase 00 by 4 weeks under patch control and retest \textbf{ME-UP-PU-INC} at Week 20 under locked incline height. If shoulder irritation persists, maintain conservative regressions and do not attempt gate-grade retests until stable. \\
+
+\textbf{DURABILITY} &
+\textbf{ME-L-STS-30} — regressed lower-body function (Requires Stage 8 review - no reconciled Stage 2 \textbf{ID} assigned) &
+Week 16 \textbf{VALID} test required. Minimum exit standard: ≥12 reps in 30 seconds with chair height locked and documented and arms policy locked and documented; no pain-driven compensation or mechanics collapse. Missing lock fields or missing timer or measurement context defaults the test to \textbf{INVALID} for gate use. &
+Sit-to-stand under locked conditions is a conservative functional gate that supports safe entry to Phase 01 without requiring impact tests. It confirms basic lower-body pattern stability and tolerance under controlled, auditable conditions. &
+\textbf{HOLD}. Extend Phase 00 by 4 weeks under patch control. Correct lock-field feasibility (chair height, arms policy) and retest at Week 20. If pain alters mechanics, apply downshift and reslot posture until stable. \\
+
+\textbf{DURABILITY} &
+Durability stability criteria — compliance and stability &
+All three must be true as of Week 16 and supported by logs, not memory: (1) no unresolved gait-altering pain; (2) foot hotspot protocol compliance (hotspots are recorded same-day, treated immediately, and the next exposure is downshifted to protect tissue); (3) no active blister at time of gate testing. Decision-window posture for \textbf{ADVANCE}: gait-altering pain flag must be No in the decision window, and no active foot breakdown is present. Mobility and movement screens are supporting evidence: pain-driven compensation flags increase risk and constrain gate posture. &
+Phase 01 progression becomes unsafe if gait is altered, feet are breaking down, or pain is unresolved. This standard proves tissue tolerance is stable enough to sustain Phase 01 workload without predictable injury escalation. It also protects evidence validity: gait drift contaminates aerobic and functional measures. &
+\textbf{HOLD}. If blister or gait-altering pain is present, do not attempt gate-grade tests. Extend Phase 00 by 4 weeks and retest only affected items at Week 20 once stability is restored. If stability cannot be maintained, repeat the final segment under stricter downshift posture before retesting. \\
+
+\textbf{BODYCOMP} &
+Directional downward trend evidence &
+Directional downward trend across bodyweight and all tracked circumference sites using consistent method and cadence per Stage 2 and Stage 2.E posture: \textbf{C1} / \textbf{MET-2B-001} (bodyweight weekly average) plus \textbf{C3} / \textbf{MET-2B-003} (neck), \textbf{MET-2B-004} (chest), \textbf{MET-2B-005} (bicep), \textbf{MET-2B-006} (forearm), \textbf{MET-2B-007} (waist), \textbf{MET-2B-008} (thigh), \textbf{MET-2B-009} (calf). BF\% is optional and only interpretable if method/device is consistent and recorded: \textbf{C2} / \textbf{MET-2B-002}. No aggressive numeric loss demands. Missing site values are recorded as \textbf{MISSING}; if missingness prevents trend interpretation, gate posture defaults \textbf{HOLD}. &
+Body composition directionality reduces injury risk and improves feasibility of Phase 01 work. The standard is trend directionality and method consistency across the full set of tracked sites, not a single “good” measurement. Missing data is treated as incomplete evidence, not assumed success. &
+\textbf{HOLD}. Extend Phase 00 by 4 weeks and continue consistent weekly capture under the same method. If method drift occurred (scale/tape/site definitions changed), treat comparability as compromised; re-establish baseline and then re-evaluate directionality. \\
+\end{longtblr}
+
+\endgroup
+
+\subsubsection*{Optional items posture (non-required; baseline-only):}
+\phantomsection
+
+\begin{itemize}
+\item \textbf{C4} / \textbf{MET-2B-010} Push-Ups — 2-Minute Timed, Strict Standard (\textbf{CAL-PU2} optional baseline-only), not required for Phase 00 exit.
+\item \textbf{C5} / \textbf{MET-2B-011} Sit-Ups — 2-Minute Timed, Standard (\textbf{CAL-CU2} optional baseline-only), not required for Phase 00 exit.
+\end{itemize}
+
+\end{landscape}
+\clearpage
+
+\subsection*{4.G.3 If Not Met Actions}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.G.3 If Not Met Actions}
+
+\subsubsection*{Default disposition}
+\phantomsection
+
+\begin{itemize}
+\item If any required exit standard is not met, disposition is \textbf{HOLD}. Do not advance to Phase 01.
+\end{itemize}
+
+\subsubsection*{Allowed remedies}
+\phantomsection
+
+\begin{enumerate}
+\item Extend Phase 00 by 4 weeks under patch discipline
+\begin{itemize}
+\item Extension is a controlled continuation of Phase 00 posture; it does not introduce new tests or new thresholds.
+\item Extension creates a new Deload+Test gate week at Week 20.
+\item Preserve 4-week cadence for any further required retest windows: Week 24, Week 28, and so on as needed.
+\item Patch IDs used in this deliverable must be: \textbf{PATCH-4G-001}, \textbf{PATCH-4G-002}, \textbf{PATCH-4G-003}, …\newline
+      Patch record minimum: what changed (Phase 00 extended), why (which exit standard failed), where applied (new gate week number), validation check (evidence plan), owner, impact scope (calendar shift and affected downstream start).
+\end{itemize}
+
+\item Repeat the final 4-week segment as a documented repeat
+\begin{itemize}
+\item Repeat is used when the failure mode is stability-related (sleep drift, hotspots/blister risk, pain drift, logging incompleteness, environment disruption).
+\item Repeat does not change the exit standards; it rebuilds stability to allow \textbf{VALID} gate evidence.
+\item Repeat preserves six-session rhythm; downshift dose and complexity rather than reducing frequency.
+\end{itemize}
+\end{enumerate}
+
+\subsubsection*{Retesting discipline}
+\phantomsection
+
+\begin{itemize}
+\item Retest only the failed standards.
+\item Retesting occurs in the next Deload+Test week per Stage 3 doctrine (Week 20 after extension; Week 24 if another cycle is needed).
+\item Do not stack unnecessary tests; preserve conservative Phase 00 posture and validity protection.
+\item \textbf{INVALID} tests provide no gate credit; they are treated as not yet tested and must be reslotted rather than “counted anyway.”
+\item If Week 16 evidence is invalid or missing, Week 12 does not substitute; the program remains \textbf{HOLD} until a valid gate window is executed.
+\end{itemize}
+
+\subsubsection*{Documentation requirements}
+\phantomsection
+
+\begin{itemize}
+\item Record, for each failed standard:
+  \begin{itemize}
+  \item the exact row that failed,
+  \item the Week 16 evidence validity status (\textbf{VALID} / \textbf{INVALID}) and the reason code posture,
+  \item the gate impact posture (\textbf{HOLD}) and the reslot target week,
+  \item the specific correction actions applied (downshift, substitution, lock-field correction, logging correction).
+  \end{itemize}
+\item For Phase 00 extension:
+  \begin{itemize}
+  \item create the patch entry \textbf{PATCH}-4G-\#\#\#,
+  \item update the Phase 00 calendar to include the new Deload+Test week at Week 20 (and Week 24, etc. as needed),
+  \item record downstream impact (Phase 01 start shifts) without changing upstream authorities.
+  \end{itemize}
+\item Evidence chain control:
+  \begin{itemize}
+  \item missing or reconstructed logs are inadmissible for gate decisions unless objectively verifiable and marked as verified late entry consistent with the logging doctrine.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{4.G.4 Phase 00 Minimal Required Kit}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.G.4 Phase 00 Minimal Required Kit}
+
+Minimal items tied to function, with failure actions and validity impact.
+
+\begin{itemize}
+\item Supportive walking shoes and footwear interface stability
+  \begin{itemize}
+  \item Enables: safe low-impact locomotion and stable gait; reduced hotspot risk; comparability of walk-based exposures and any gait-dependent gate instruments; consistent surface interaction for audit.
+  \item Failure action: do not escalate step-based exposure; preserve Cardio via lower-impact substitutes; document foot hotspots and gait drift; reslot any gait-dependent gate attempts until footwear stability is restored; gate posture defaults \textbf{HOLD} if gait/foot integrity cannot be stabilized.
+  \end{itemize}
+
+\item Safe walking surface access or indoor low-impact substitute
+  \begin{itemize}
+  \item Enables: execution continuity under environmental hazard posture; preserves safety when Grand Forks conditions are unsafe; supports validity by preventing forced testing under hazard conditions.
+  \item Failure action: substitute indoors only when comparability can be preserved and logged; if no safe modality exists, terminate exposure for the day under safety posture; document the constraint and reslot impacted gate tests; do not claim gate evidence from compromised environments.
+  \end{itemize}
+
+\item Timer or stopwatch
+  \begin{itemize}
+  \item Enables: auditable Cardio duration logging; any time-based gate instruments already defined upstream; consistency of timing method across windows.
+  \item Failure action: time-based evidence becomes inadmissible for gate decisions; replace timing method before the next Deload+Test week; reslot any impacted time-based test.
+  \end{itemize}
+
+\item Bathroom scale
+  \begin{itemize}
+  \item Enables: bodyweight trend evidence (\textbf{C1} / \textbf{MET-2B-001}) under consistent conditions; supports \textbf{BODYCOMP} directionality requirement.
+  \item Failure action: record \textbf{MISSING} rather than inferring; \textbf{BODYCOMP} directionality cannot be proven; gate posture defaults \textbf{HOLD} if the trend evidence cannot be interpreted.
+  \end{itemize}
+
+\item Measuring tape
+  \begin{itemize}
+  \item Enables: circumference trend evidence (\textbf{C3} / \textbf{MET-2B-003}–\textbf{MET-2B-009}) under stable landmarks and rounding; supports full-site \textbf{BODYCOMP} directionality requirement.
+  \item Failure action: record \textbf{MISSING} rather than inferring; if missingness prevents trend interpretation, gate posture defaults \textbf{HOLD} until weekly capture is restored and trend window is re-established.
+  \end{itemize}
+
+\item Exercise mat
+  \begin{itemize}
+  \item Enables: safe, stable surface for plank and mobility work; reduces slip/irritation risk; supports \textbf{VALID} test posture for plank.
+  \item Failure action: substitute to a safe surface; if safety cannot be ensured, defer plank gate attempt and reslot to the next Deload+Test week; do not force execution on unsafe surfaces.
+  \end{itemize}
+
+\item Sturdy chair, bench, or step
+  \begin{itemize}
+  \item Enables: lock-field feasibility for sit-to-stand instruments; stable support surfaces for regressed pattern work; reduces fall risk.
+  \item Failure action: \textbf{ME-L-STS-30} cannot be executed under locked conditions; treat as \textbf{INVALID} for gate use and reslot; do not improvise unmeasured chair height if it compromises comparability.
+  \end{itemize}
+
+\item Optional light resistance bands
+  \begin{itemize}
+  \item Enables: low-tension, low-risk pull and scapular control options when anchor-free or purpose-built stable anchoring can be verified.
+  \item Failure action: bands are optional; omit band work and use non-band alternatives; do not attempt anchored setups that cannot be verified as stable.
+  \end{itemize}
+
+\item Single primary logging system
+  \begin{itemize}
+  \item Enables: admissible evidence chain for compliance, steps, Cardio completion, durability stability, and \textbf{BODYCOMP} trend evidence; supports audit traceability.
+  \item Failure action: missing logs are treated as unproven execution; sessions may be tagged \textbf{INVALID} for progression decision use when documentation is missing; gate posture defaults \textbf{HOLD} until logging discipline is restored and re-proven in the extension block.
+  \end{itemize}
+\end{itemize}
+
+\end{document}

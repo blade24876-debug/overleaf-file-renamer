@@ -1,0 +1,661 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\subsection*{Phase 08 Card Header}
+\phantomsection
+\addcontentsline{toc}{subsection}{Phase 08 Card Header}
+
+\begin{itemize}
+\item Phase \textbf{ID}: Phase 08
+\item Phase Name: Structural Durability and Load Tolerance
+\item Duration weeks: 12
+\item Version: v1.0
+\item Stage Alignment: Stage 5
+\item Governing Status: Deployable
+\end{itemize}
+
+\subsection*{1. Phase Mission}
+\phantomsection
+
+
+Build load-bearing and interface durability (feet, skin, gait mechanics, pack interface) so long-duration ruck milestones can be executed safely and produce admissible evidence without compromising \textbf{RUN} and \textbf{CAL} validity.
+
+\subsection*{2. Phase Purpose}
+\phantomsection
+
+
+\begin{itemize}
+\item Establish resilient tissue tolerance and equipment-interface stability under high time-on-feet, with strict controls to prevent blisters, gait drift, and overuse cascades.
+\item Set up Phase 09 by proving the trainee can maintain durability and recovery stability while handling high exposure density without invalidating evidence.
+\item Reinforce anti-stacking discipline: Phase 08 treats the long ruck milestone as the dominant high-cost proof event and stages other tests around it.
+\end{itemize}
+
+\subsection*{3. Entry Criteria}
+\phantomsection
+
+
+\begin{itemize}
+\item Prior phase exit posture is satisfied with admissible evidence; default posture is \textbf{HOLD} if evidence is incomplete or invalid.
+\item Decision-window compliance posture is met under Stage 1.F (no reliance on inadmissible or incomplete logs).
+\item Foot/skin interface is stable enough to attempt load-tolerance work:
+  \begin{itemize}
+  \item no active blister,
+  \item no unresolved gait-altering pain,
+  \item hotspot protocol executed and trending stable.
+  \end{itemize}
+\item Required Phase 08 category capabilities are in place before attempting long ruck milestones:
+  \begin{itemize}
+  \item 7.07 and 7.11 readiness for long ruck exposure,
+  \item 7.19 protective/assistive readiness for interface resilience,
+  \item 7.18 timing/measurement readiness for admissible test evidence.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{4. Operating Constraints}
+\phantomsection
+
+
+\begin{itemize}
+\item 6 sessions per week.
+\item Required session elements per Stage 1.F in correct order:
+  \begin{itemize}
+  \item Safety self-check first
+  \item Warm-up
+  \item Mobility
+  \item Main work
+  \item Cardio
+  \item Cooldown
+  \item Recovery notes and any required post-session notes per Stage 1.F
+  \end{itemize}
+\item Cardio minimum standard: minimum 30 minutes continuous per session.
+\item 10,000 steps per day global requirement.
+\item Validity doctrine: admissible Valid evidence only for gates; \textbf{INVALID} provides no gate credit and triggers reslot posture.
+\item Water governance remains absolute: no unsupervised underwater or breath-hold exposure ever; underwater is not a Phase 08 gate requirement.
+\end{itemize}
+
+\subsection*{5. Primary Adaptations and Physiological Focus}
+\phantomsection
+
+
+\begin{itemize}
+\item Load-tolerance and interface hardening: feet, skin, shoulders/traps, and gait mechanics under sustained carriage.
+\item Durability stability: reduce hotspots/blisters and prevent gait drift under long exposure.
+\item Recovery resilience: maintain sleep stability and soreness/fatigue control while exposure cost rises.
+\item Validity stability: preserve comparable routes/tools and protect test windows from novelty and fatigue contamination.
+\end{itemize}
+
+\subsection*{6. Primary Modalities}
+\phantomsection
+
+
+\begin{itemize}
+\item Emphasized domains: \textbf{RUCK}, \textbf{DURABILITY}, \textbf{RECOVERY}, \textbf{RUN}, \textbf{CAL}, \textbf{BODYCOMP}.
+\item Supporting domains: \textbf{SWIM} (surface-only unit-locked test), \textbf{STR} (maintenance only; no new risk escalation), \textbf{AER} (only as low-impact substitution when needed; not interchangeable with \textbf{RUN} evidence).
+\item Prohibited or de-emphasized:
+  \begin{itemize}
+  \item no new underwater gate objectives (governance-gated and not required here),
+  \item no impact escalation by “testing harder” outside protected windows,
+  \item no ruck load escalation outside the phase’s controlled posture and evidence windows.
+  \end{itemize}
+\end{itemize}
+
+\clearpage
+\begin{landscape}
+
+\subsection*{7. Weekly Structure}
+\phantomsection
+
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.70in]
+    X[l,1.60]
+    X[l,1.15]
+    X[l,2.80]
+    X[l,2.70]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Session \#} &
+\Hdr{Primary Focus} &
+\Hdr{Main Work Domains} &
+\Hdr{Cardio Modality/Intent} &
+\Hdr{Notes/Risk Controls} \\
+
+1 &
+Durability interface hardening &
+\textbf{RUCK}; \textbf{DURABILITY} &
+Modality: step-based or treadmill walk; Minutes: 30–60; RPE plus Talk Test: RPE 3–5, full-to-short sentences; Continuity: continuous planned &
+Feet/skin check pre/post; no novelty in footwear; hotspots trigger downshift next session and documentation; avoid high-risk terrain. \\
+
+2 &
+\textbf{CAL} repeatability + trunk control &
+\textbf{CAL}; \textbf{DURABILITY} &
+Modality: low-impact steady; Minutes: 30–45; RPE plus Talk Test: RPE 2–4, full sentences; Continuity: continuous planned &
+\textbf{CAL} is technique-governed; protect joints; avoid fatigue spillover into ruck days. \\
+
+3 &
+\textbf{RUN} durability check posture &
+\textbf{RUN}; \textbf{DURABILITY} &
+Modality: step-based or treadmill; Minutes: 30–50; RPE plus Talk Test: RPE 3–5, full-to-short sentences; Continuity: continuous planned &
+No maximal \textbf{RUN} near long ruck; route/tool stability enforced; pain/mechanics drift triggers regression and reslot of any planned test. \\
+
+4 &
+Recovery-biased throughput &
+\textbf{RECOVERY}; \textbf{DURABILITY} &
+Modality: lowest-risk continuous; Minutes: 30–45; RPE plus Talk Test: RPE 2–3, full sentences; Continuity: continuous planned &
+Minimum Viable Session candidate day; preserve compliance without adding fatigue cost. \\
+
+5 &
+Load-tolerance reinforcement &
+\textbf{RUCK}; \textbf{DURABILITY} &
+Modality: step-based; Minutes: 30–60; RPE plus Talk Test: RPE 3–5, full-to-short sentences; Continuity: continuous planned &
+Treat as controlled exposure day; do not “make up” missed work by increasing intensity; protect feet and gait. \\
+
+6 &
+Swim and mobility integration &
+\textbf{SWIM}; \textbf{RECOVERY} &
+Modality: low-impact steady; Minutes: 30–45; RPE plus Talk Test: RPE 2–4, full sentences; Continuity: continuous planned &
+Surface-only; pool verification required when testing; no underwater; reslot swim test if pool conditions compromise validity. \\
+
+\end{longtblr}
+
+\endgroup
+
+\subsection*{8. Progression Rules}
+\phantomsection
+
+
+\begin{itemize}
+\item One progression lever at a time:
+  \begin{itemize}
+  \item do not increase ruck load/tolerance, \textbf{RUN} stress, and \textbf{CAL} density in the same week.
+  \end{itemize}
+\item Long ruck is the dominant proof exposure:
+  \begin{itemize}
+  \item protect it by reducing competing high-cost demands in the lead-in and inside the same protected window.
+  \end{itemize}
+\item Regression triggers (immediate):
+  \begin{itemize}
+  \item pain alters mechanics, hotspot escalation, blister formation, unusual breathlessness, dizziness/lightheadedness, swelling/instability → downshift modality/intensity and document; reslot affected tests.
+  \end{itemize}
+\item Substitution posture:
+  \begin{itemize}
+  \item preserve intent and reduce risk; use \textbf{AER} modality substitution only to preserve continuous Cardio safely; do not claim \textbf{RUN} tier attainment from \textbf{AER} evidence.
+  \end{itemize}
+\item No stacking make-ups:
+  \begin{itemize}
+  \item missed or invalid tests are reslotted per Stage 3.E, not compressed.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{9. Deload and Test Placement}
+\phantomsection
+
+
+\begin{itemize}
+\item Phase 08 taper-aware protected windows (week-in-phase):
+  \begin{itemize}
+  \item Week 1 baseline (low-risk touchpoint),
+  \item Week 5 Deload+Test (mid-phase decision window),
+  \item Week 10 Deload+Test (second decision window; long ruck milestone by intent),
+  \item Week 11 Transition (taper/stabilization; no new maximal tests),
+  \item Week 12 Deload+Test (end-phase exit gate window).
+  \end{itemize}
+\item If Stage 3 integrated calendars specify a different placement, Stage 3 controls final placement.
+\end{itemize}
+
+\end{landscape}
+
+\clearpage
+\begin{landscape}
+
+\subsection*{10. Test Battery}
+\phantomsection
+
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.55]
+    X[l,2.80]
+    Q[l,wd=0.90in]
+    X[l,3.05]
+    Q[l,wd=1.25in]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Test Timing} &
+\Hdr{Test \textbf{ID}/Name} &
+\Hdr{Domain} &
+\Hdr{Validity Conditions} &
+\Hdr{Pass Threshold Stage 2 Tier} \\
+
+Week 5 Deload+Test (mid-phase) &
+\textbf{C12} / \textbf{MET-2B-019} 6-Mile Ruck Time Trial — 35 lb dry &
+\textbf{RUCK} &
+Dry load only (water logged separately); measured route or treadmill identity logged; footwear and route class stable; no stop-rule violations; complete Stage 2.E fields &
+\textbf{INTERMEDIATE} \\
+
+Week 5 Deload+Test (mid-phase) &
+\textbf{C10} / \textbf{MET-2B-016} 3-Mile Run Time Trial &
+\textbf{RUN} &
+Measured route or treadmill identity/settings logged; warm-up logged; no stop-rule violations; no novelty near window; complete Stage 2.E fields &
+\textbf{INTERMEDIATE} \\
+
+Week 5 Deload+Test (mid-phase) &
+\textbf{C4} / \textbf{MET-2B-010} Push-Ups — 2-Minute Timed, Strict Standard &
+\textbf{CAL} &
+\textbf{CAL} artifact evidence required for \textbf{VALID} gate use; strict standard; timing verifiable; complete Stage 2.E fields &
+\textbf{INTERMEDIATE} \\
+
+Week 5 Deload+Test (mid-phase) &
+\textbf{C5} / \textbf{MET-2B-011} Sit-Ups — 2-Minute Timed, Standard &
+\textbf{CAL} &
+\textbf{CAL} artifact evidence required for \textbf{VALID} gate use; strict timing; complete Stage 2.E fields &
+\textbf{INTERMEDIATE} \\
+
+Week 5 Deload+Test (mid-phase) &
+\textbf{C6} / \textbf{MET-2B-012} Pull-Ups — Strict Dead-Hang &
+\textbf{CAL} &
+\textbf{CAL} artifact evidence required for \textbf{VALID} gate use; strict ROM; complete Stage 2.E fields &
+\textbf{INTERMEDIATE} \\
+
+Week 5 Deload+Test (mid-phase) &
+\textbf{C7} / \textbf{MET-2B-013} Plank — Forearm &
+\textbf{CAL} &
+\textbf{CAL} artifact evidence required for \textbf{VALID} gate use; strict termination; complete Stage 2.E fields &
+\textbf{INTERMEDIATE} \\
+
+Week 10 Deload+Test (milestone) &
+\textbf{C12} / \textbf{MET-2B-021} 12-Mile Ruck Time Trial — 55 lb dry &
+\textbf{RUCK} &
+Dry load only (water logged separately); route/tool/footwear lock enforced; stop posture and blister governance enforced; complete Stage 2.E fields; treat as dominant stand-alone major event by intent &
+\textbf{INTERMEDIATE} \\
+
+Week 12 Deload+Test (end-phase) &
+\textbf{C13} / \textbf{MET-2B-022} Swim 500 yd Time — No Fins &
+\textbf{SWIM} &
+Pool unit verified; no fins; allowable strokes; warm-up logged; no standing on bottom or hanging on wall/line; complete Stage 2.E fields &
+\textbf{INTERMEDIATE} \\
+
+Week 12 Deload+Test (end-phase) &
+\textbf{C12} / \textbf{MET-2B-019} 6-Mile Ruck Time Trial — 35 lb dry &
+\textbf{RUCK} &
+Same validity posture as Week 5; staged so it does not compromise swim validity; reslot if spacing cannot be protected &
+\textbf{INTERMEDIATE} \\
+
+Week 12 Deload+Test (end-phase) &
+\textbf{C10} / \textbf{MET-2B-016} 3-Mile Run Time Trial &
+\textbf{RUN} &
+Only if spacing and durability stability permit; otherwise omit and reslot to next protected window; validity posture per Stage 2 and Stage 2.E &
+\textbf{INTERMEDIATE} \\
+
+Week 12 Deload+Test (end-phase) &
+\textbf{C16} / \textbf{MET-2B-036} Gait-Altering Pain Flag (plus \textbf{MET-2B-037} foot flag) &
+\textbf{DURABILITY} &
+Must remain No for advancement posture; complete logs; any Yes constrains gate outcome &
+No / Not Active \\
+
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+\clearpage
+
+\subsection*{11. Exit Standards}
+\phantomsection
+
+
+\begin{itemize}
+\item Phase 08 exit posture is \textbf{INTERMEDIATE} at the end gate and is evaluated only using admissible evidence:
+  \begin{itemize}
+  \item \textbf{VALID} tests in the Week 12 Deload+Test window for the listed gate items, and
+  \item decision-window compliance posture per Stage 1.F.
+  \end{itemize}
+\item Minimum exit conditions (objective gate posture):
+  \begin{itemize}
+  \item \textbf{RUCK}: \textbf{C12} / \textbf{MET-2B-021} executed as a \textbf{VALID} milestone within Phase 08 (Week 10 is the intended window). If the milestone is \textbf{INVALID} or not executed, default posture is \textbf{HOLD} and reslot to the next available protected window (or extend phase under change control if needed).
+  \item \textbf{DURABILITY}: \textbf{MET-2B-036} gait-altering pain flag remains No for advancement posture; foot hotspot/blister posture stable and documented.
+  \item \textbf{SWIM}: \textbf{C13} / \textbf{MET-2B-022} or \textbf{MET-2B-023} executed as \textbf{VALID} in the end gate window where phase contract requires it; if pool validity is compromised, reslot.
+  \item \textbf{CAL}: battery items remain \textbf{VALID} where executed and do not degrade durability posture; invalid \textbf{CAL} evidence is excluded from gate claims.
+  \end{itemize}
+\item Explicit admissibility: any \textbf{INVALID} test provides no gate credit and cannot support \textbf{ADVANCE}; reslot per Stage 3.E.
+\end{itemize}
+
+\subsection*{12. Risk Controls and Stop Rules}
+\phantomsection
+
+
+\begin{itemize}
+\item Authority references: Stage 0.5 boundaries and Stage 1.F stop/validity doctrine control; Stage 3.E controls reslot and phase extension posture.
+\item Phase 08 high-risk exposure controls:
+  \begin{itemize}
+  \item Long ruck is the dominant high-cost exposure; it must be treated as stand-alone by intent and protected from adjacent maximal \textbf{RUN}.
+  \item Foot/skin governance is decisive: hotspots trending to blisters trigger downshift; active blister blocks long ruck gate attempts until resolved.
+  \item Environment hazard controls (ice, heat, wind, low visibility) trigger substitution or reslot; compromised attempts are \textbf{INVALID} for gate use.
+  \item No breathless intensity chasing; unusual/disproportionate breathlessness triggers immediate downshift or \textbf{STOP} \textbf{NOW} posture per Stage 1.F.
+  \end{itemize}
+\end{itemize}
+
+\clearpage
+\begin{landscape}
+
+\subsection*{13. Required Capabilities and Dependencies}
+\phantomsection
+
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.85in]
+    X[l,2.95]
+    Q[l,wd=1.35in]
+    Q[l,wd=1.20in]
+    X[l,3.05]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Dependency \textbf{ID}} &
+\Hdr{Required Capability Category and Tier} &
+\Hdr{Due-By week-in-phase} &
+\Hdr{Owner} &
+\Hdr{Fail Action} \\
+
+\textbf{DEP-1C-006} &
+7.18 Testing Timing Measurement and Course-Setup Tools — Tier 3 (lock-in kit; no novelty near test windows) &
+Week 1 &
+Coach Lead &
+\textbf{HOLD} gate-grade tests until tool identity and environment unit logging are stable; reslot any compromised test; treat missing fields as \textbf{INVALID} for gate use. \\
+
+\textbf{DEP-1C-013} &
+7.07 Load-Bearing Rucking and Carry Systems — Tier 2 (verified dry-load capability; stable ballast; strap reliability) &
+Week 4 &
+Equipment Lead &
+Do not attempt \textbf{MET-2B-021}; reslot long ruck milestone; execute only supporting low-risk exposure until ruck system is verified and stable. \\
+
+\textbf{DEP-1C-007} \& \textbf{DEP-1C-008} &
+7.11 Footwear Systems and Foot Care — Tier 3 (rotation pairs; drying tools; blister protocol enforced) &
+Week 4 &
+Equipment Lead &
+\textbf{HOLD} long ruck milestone; downshift to lower-friction modalities; treat any hotspot escalation as a durability constraint; reslot gait-dependent tests. \\
+
+\textbf{DEP-1C-022} &
+7.19 Protective and Assistive Equipment — Tier 3 (enhanced blister/chafe interface protection capability) &
+Week 5 &
+Equipment Lead &
+Reduce interface risk: downshift exposure; prohibit “prove it” long ruck attempts; reslot \textbf{MET-2B-021} until protective capability is established. \\
+
+\textbf{DEP-1C-019} &
+7.14 Environmental Apparel, Cold, Hot, Wet, Inclement Weather — Tier 3 (seasonal extremes readiness) &
+Week 5 &
+Trainee &
+If environment hazards cannot be controlled safely, substitute indoors where comparable; otherwise reslot tests; do not attempt outdoor gate tests under hazard conditions. \\
+
+\textbf{DEP-1C-011} &
+7.17 Aquatic Training and Water Safety Equipment — Tier 2 (pool validity and safety prerequisites for surface swim only) &
+Week 10 &
+Coach Lead &
+If pool validity cannot be verified, do not attempt swim test; reslot \textbf{SWIM} gate item to next protected window; no underwater substitution. \\
+
+\end{longtblr}
+
+\endgroup
+
+\subsection*{14. Validity Requirements}
+\phantomsection
+
+
+\begin{itemize}
+\item Evidence admissibility is governed by Stage 1.F and Stage 2 validity rules; only \textbf{VALID} test evidence supports gate outcomes.
+\item Missing required Stage 2.E fields (environment/tool identity, warm-up logging when required, measurement context) defaults a test to \textbf{INVALID} for gate use.
+\item \textbf{INVALID} tests provide no gate credit and require reslot to the next protected window per Stage 3.E; do not compress by stacking make-up events.
+\item \textbf{CAL} events require compliant artifact evidence for \textbf{VALID} gate use; missing/non-compliant artifacts yield \textbf{INVALID} for gate use even if reps/time were achieved.
+\end{itemize}
+
+\end{landscape}
+
+\subsection*{15. Change Control Notes}
+\phantomsection
+
+
+\begin{itemize}
+\item Allowed without patch:
+  \begin{itemize}
+  \item within-window sequencing adjustments that preserve test constructs and preserve spacing intent,
+  \item reslotting a missed/invalid test to the next protected Deload+Test window within the phase, per Stage 3.E.
+  \end{itemize}
+\item Requires patch (Stage 1.F change control):
+  \begin{itemize}
+  \item adding a new test week,
+  \item extending phase duration,
+  \item changing gate test set or substituting instruments,
+  \item changing work-to-deload pattern.
+  \end{itemize}
+\item Freeze posture near protected windows:
+  \begin{itemize}
+  \item no novelty in footwear, route class, ruck configuration, pool unit assumptions, or timing tools inside protected windows; violations render evidence non-admissible.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{16. Compliance Checklist}
+\phantomsection
+
+
+\begin{itemize}
+\item Tests listed are Stage 2-defined (C\# and \textbf{MET-2B}-\#\#\#) and limited to major gate-critical items.
+\item Deload/Test weeks are identified and aligned to the taper-aware Phase 08 placement posture, with Stage 3 controlling final placement.
+\item Dependencies are declared using 7.xx category IDs, due-by week-in-phase, owners, and operational fail actions; 7.02 is not required.
+\item Weekly structure table is complete and Cardio cell structure includes Modality; Minutes; RPE plus Talk Test cue; Continuity continuous planned.
+\item Operating constraints state: 6 sessions/week, required elements order, Cardio minimum standard in body text, and 10,000 steps/day in body text.
+\item Validity posture is explicit: \textbf{VALID} evidence only for gates; \textbf{INVALID} yields no gate credit and triggers reslot per Stage 3.E.
+\item Governing Status is justified as Deployable: no placeholders appear in Mid-Phase Gate, End-Phase Gate, Test Battery, Exit Standards, or Dependencies affecting gating.
+\end{itemize}
+
+\end{document}

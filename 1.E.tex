@@ -1,0 +1,1335 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+
+
+\section*{Stage 1.E — Standardized Templates}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 1.E — Standardized Templates}
+
+\subsection*{1.E.1 Overview Template}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.E.1 Overview Template}
+
+\begin{verbatim}
+Overview \textbf{ID}: [\textbf{REQUIRED}: 7.01–7.20]
+Overview Name: [\textbf{REQUIRED}]
+Version: [\textbf{REQUIRED}: vX.Y (baseline v1.0 unless patched)]
+Governing Status: [\textbf{REQUIRED}: Draft — Non-Deployable | Deployable]
+Scope Boundary Statement: [\textbf{REQUIRED}: What this covers / What this does not cover]
+
+Owner (primary executor): [\textbf{OPTIONAL}: Coach Lead | Trainee | Medical | Equipment Lead]
+Patch References: [\textbf{OPTIONAL}: \textbf{PATCH}-1E-### if schema changes apply, plus any
+artifact-specific patch IDs if used elsewhere]
+\end{verbatim}
+
+\subsubsection*{1.E.1.2 Overview Required Sections}
+\phantomsection
+
+Rule: The following headings are template-locked. Do not rename. Populate all required fields to meet minimum completion standards. Do not embed programming prescriptions, test protocols, calendars, or shopping lists.
+
+1) Purpose \& Scope
+
+\begin{itemize}
+\item Purpose: [\textbf{REQUIRED}: One paragraph describing the capability domain covered and why it exists in this program.]
+\item Scope boundaries: [\textbf{REQUIRED}: In-scope and out-of-scope bullets; must include procurement scope and sourcing boundaries if procurement is discussed.]
+\item Crosswalk intent: [\textbf{REQUIRED}: One sentence stating how this overview ties into phases and evidence posture.]
+\item Prohibited-content boundary: [\textbf{REQUIRED}: One bullet explicitly stating what this overview does NOT provide (no workouts, no test protocols, no calendars, no medical advice).]
+\end{itemize}
+
+2) Governance And Safety Boundaries
+
+\begin{itemize}
+\item Boundary alignment: [\textbf{REQUIRED}: State relevant Stage 0 boundaries applicable to this overview.]
+\item Prohibitions (if applicable): [\textbf{REQUIRED}: Any \textbf{MUST} NOT items relevant to this domain, including OTC-only posture, no prescription guidance, no hormone guidance, no illegal procurement guidance.]
+\item Water governance (if applicable): [\textbf{REQUIRED}: Surface-only default unless explicitly authorized later; no unsupervised underwater/breath-hold ever; certified supervision required for any underwater/breath-hold exposure.]
+\item Escalation posture: [\textbf{REQUIRED}: Red-flag triggers and “stop/escalate when indicated” posture; no medical advice.]
+\item Evidence posture: [\textbf{REQUIRED}: Statement that unsafe or boundary-violating behavior produces inadmissible evidence and cannot support readiness claims.]
+\end{itemize}
+
+3) Tier Doctrine
+
+\begin{itemize}
+\item Tier definitions: [\textbf{REQUIRED}: Tier 0–Tier 3 described (see Field Definitions).]
+\item Price band convention: [\textbf{REQUIRED}: Use \$ / \$\$ / \$\$\$ only; definition included below.]
+\item N/A rule: [\textbf{REQUIRED}: Declare when N/A may be used (only where explicitly permitted; see Field Definitions).]
+\item Substitution posture: [\textbf{REQUIRED}: Substitutions preserve intent and reduce risk; explicitly state what breaks intent.]
+\item Minimal/Standard/Optimal mapping (optional): [\textbf{OPTIONAL}: If included, must map to Tier 0–Tier 3 without renumbering tiers.]
+\end{itemize}
+
+4) Tiered Kit (Tables)
+
+Rule: Tables are required for Tier 0–Tier 3. Use category/spec language or explicit brand references as needed. No illegal sourcing workarounds.
+
+Tier 0 — Baseline (Start-from-Zero / Household-Only / None)
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.10]
+    X[l,1.25]
+    X[l,1.35]
+    Q[l,wd=1.05in]
+    Q[l,wd=0.95in]
+    X[l,1.25]
+    Q[l,wd=0.95in]
+    X[l,1.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Item} & \Hdr{Purpose} & \Hdr{Key Specs} & \Hdr{Typical Footprint} & \Hdr{Approx. Price Band} & \Hdr{Maintenance} & \Hdr{Phase Tie-In} & \Hdr{Notes} \\
+{[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\$ / \$\$ / \$\$\$]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} \\
+\end{longtblr}
+\endgroup
+
+Tier 1 Essentials
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.10]
+    X[l,1.25]
+    X[l,1.35]
+    Q[l,wd=1.05in]
+    Q[l,wd=0.95in]
+    X[l,1.25]
+    Q[l,wd=0.95in]
+    X[l,1.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Item} & \Hdr{Purpose} & \Hdr{Key Specs} & \Hdr{Typical Footprint} & \Hdr{Approx. Price Band} & \Hdr{Maintenance} & \Hdr{Phase Tie-In} & \Hdr{Notes} \\
+{[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\$ / \$\$ / \$\$\$]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} \\
+\end{longtblr}
+\endgroup
+
+Tier 2 Upgrades
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.10]
+    X[l,1.25]
+    X[l,1.35]
+    Q[l,wd=1.05in]
+    Q[l,wd=0.95in]
+    X[l,1.25]
+    Q[l,wd=0.95in]
+    X[l,1.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Item} & \Hdr{Purpose} & \Hdr{Key Specs} & \Hdr{Typical Footprint} & \Hdr{Approx. Price Band} & \Hdr{Maintenance} & \Hdr{Phase Tie-In} & \Hdr{Notes} \\
+{[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\$ / \$\$ / \$\$\$]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} \\
+\end{longtblr}
+\endgroup
+
+Tier 3 Advanced
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.10]
+    X[l,1.25]
+    X[l,1.35]
+    Q[l,wd=1.05in]
+    Q[l,wd=0.95in]
+    X[l,1.25]
+    Q[l,wd=0.95in]
+    X[l,1.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Item} & \Hdr{Purpose} & \Hdr{Key Specs} & \Hdr{Typical Footprint} & \Hdr{Approx. Price Band} & \Hdr{Maintenance} & \Hdr{Phase Tie-In} & \Hdr{Notes} \\
+{[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\$ / \$\$ / \$\$\$]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} \\
+\end{longtblr}
+\endgroup
+
+5) Selection Criteria \& Fit Checks
+
+\begin{itemize}
+\item Selection criteria: [\textbf{REQUIRED}: What functional requirements matter (capacity, fit, durability, safety, measurability, compatibility). No illegal sourcing guidance.]
+\item Fit checks: [\textbf{REQUIRED}: Pass/fail checks a coach or trainee can perform (sizing, stability, comfort, compatibility, measurability).]
+\item Common mismatch risks: [\textbf{REQUIRED}: How wrong selection causes safety/validity issues (e.g., foot breakdown, inaccurate timing, unsafe anchoring, inconsistent measurements).]
+\item Documentation tie-in: [\textbf{REQUIRED}: What must be recorded to prove fit checks were completed and to support auditability.]
+\end{itemize}
+
+6) Setup, Safety, And Anchoring
+
+\begin{itemize}
+\item Setup requirements: [\textbf{REQUIRED}: How to set up safely (space, anchoring, stability, inspection).]
+\item Safety controls: [\textbf{REQUIRED}: What \textbf{MUST} be checked before use; include “do not use if” conditions.]
+\item Abort posture: [\textbf{REQUIRED}: Stop/abort triggers relevant to this equipment/system.]
+\item Environment constraints: [\textbf{REQUIRED}: Any conditions that require substitution (ice, low visibility, poor air quality, facility rules).]
+\end{itemize}
+
+7) Maintenance, Replacement, And Storage
+
+\begin{itemize}
+\item Maintenance routine: [\textbf{REQUIRED}: Cleaning, inspection, drying, and storage posture.]
+\item Replacement triggers: [\textbf{REQUIRED}: Observable wear/failure criteria; specify “replace when” cues.]
+\item Storage constraints: [\textbf{REQUIRED}: Apartment/limited space considerations; include drying/hygiene constraints when relevant.]
+\item Sustainment risk: [\textbf{REQUIRED}: What predictable failures occur if maintenance/storage is not executed.]
+\end{itemize}
+
+8) Substitution Rules (What Is Acceptable; What Breaks Intent)
+
+\begin{itemize}
+\item Acceptable substitutions: [\textbf{REQUIRED}: Lower-risk equivalents; what preserves intent.]
+\item Unacceptable substitutions: [\textbf{REQUIRED}: What breaks intent, increases risk, violates boundaries, or invalidates evidence.]
+\item Documentation requirement: [\textbf{REQUIRED}: What must be logged when substitutions occur (what changed, why, risk posture, whether evidence admissibility is preserved or degraded).]
+\item Phase gating: [\textbf{REQUIRED}: If substitutions vary by phase, state the phase gate logic without prescribing workouts.]
+\end{itemize}
+
+9) Phase Integration Map (Phase 00–13)
+
+\begin{itemize}
+\item Mapping rule: [\textbf{REQUIRED}: Each phase must be referenced at least once; use the table below or equivalent consistent format.]
+\item Status definitions: [\textbf{REQUIRED}: Use Introduced / Optional / Required / Not Used only; define them in Tier Doctrine or Field Definitions.]
+\end{itemize}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.0in]
+    Q[l,wd=2.0in]
+    X[l,3.10]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Phase} & \Hdr{Status} & \Hdr{Notes} \\
+Phase 00 & {[Introduced / Optional / Required / Not Used]} & {[\textbf{REQUIRED}]} \\
+Phase 01 & {[Introduced / Optional / Required / Not Used]} & {[\textbf{REQUIRED}]} \\
+Phase 02 & {[Introduced / Optional / Required / Not Used]} & {[\textbf{REQUIRED}]} \\
+Phase 03 & {[Introduced / Optional / Required / Not Used]} & {[\textbf{REQUIRED}]} \\
+Phase 04 & {[Introduced / Optional / Required / Not Used]} & {[\textbf{REQUIRED}]} \\
+Phase 05 & {[Introduced / Optional / Required / Not Used]} & {[\textbf{REQUIRED}]} \\
+Phase 06 & {[Introduced / Optional / Required / Not Used]} & {[\textbf{REQUIRED}]} \\
+Phase 07 & {[Introduced / Optional / Required / Not Used]} & {[\textbf{REQUIRED}]} \\
+Phase 08 & {[Introduced / Optional / Required / Not Used]} & {[\textbf{REQUIRED}]} \\
+Phase 09 & {[Introduced / Optional / Required / Not Used]} & {[\textbf{REQUIRED}]} \\
+Phase 10 & {[Introduced / Optional / Required / Not Used]} & {[\textbf{REQUIRED}]} \\
+Phase 11 & {[Introduced / Optional / Required / Not Used]} & {[\textbf{REQUIRED}]} \\
+Phase 12 & {[Introduced / Optional / Required / Not Used]} & {[\textbf{REQUIRED}]} \\
+Phase 13 & {[Introduced / Optional / Required / Not Used]} & {[\textbf{REQUIRED}]} \\
+\end{longtblr}
+\endgroup
+
+10) Risks, Contraindications, And Red Flags
+
+\begin{itemize}
+\item Risks: [\textbf{REQUIRED}: List practical risks in program terms; may reference \textbf{RISK-1B}-\#\#\#.]
+\item Contraindications: [\textbf{REQUIRED}: Operational contraindications (do not diagnose); specify “prohibit exposure” posture when relevant.]
+\item Red flags: [\textbf{REQUIRED}: Observable triggers requiring stop/escalation.]
+\item Gate posture: [\textbf{REQUIRED}: Default posture when risk flags appear (Hold/Regress/Medical Hold as applicable).]
+\item Evidence posture: [\textbf{REQUIRED}: Statement that evidence produced under red-flag continuation is inadmissible.]
+\end{itemize}
+
+11) Compliance Checklist (Pass/Fail Bullets)
+
+\begin{itemize}
+\item {[\textbf{REQUIRED}: Pass/fail checklist; must match 1.E.1.4 requirements at minimum.]}
+\item {[\textbf{REQUIRED}: Must include an explicit fail item for any missing required heading or missing Tier table.]}
+\end{itemize}
+
+\subsubsection*{1.E.1.3 Field Definitions}
+\phantomsection
+
+A) Header Fields (Overview Header Block)
+
+Overview \textbf{ID} (Required)
+
+\begin{itemize}
+\item Allowed values: 7.01 through 7.20 only.
+\item Completion rule: must match an allowed value exactly (including leading zero). Must remain stable for crosswalks.
+\item Status impact if missing/invalid: Governing Status \textbf{MUST} be Draft — Non-Deployable.
+\end{itemize}
+
+Overview Name (Required)
+
+\begin{itemize}
+\item Allowed values: free text.
+\item Completion rule: must describe the capability domain unambiguously; must remain stable for crosswalk use.
+\item Status impact if missing: Draft — Non-Deployable.
+\end{itemize}
+
+Version (Required)
+
+\begin{itemize}
+\item Allowed values: vX.Y where X and Y are integers. Baseline is v1.0 unless patched.
+\item Completion rule: version must match the binder’s version state; any change in meaning requires a patch posture and version increment.
+\item Status impact if missing/invalid: Draft — Non-Deployable.
+\end{itemize}
+
+Governing Status (Required; locked strings)
+
+\begin{itemize}
+\item Allowed values only: Draft — Non-Deployable \,|\, Deployable.
+\item Definition (must be used verbatim in meaning): Deployable means the artifact’s required fields are complete and its applicable gate checklist has been passed and recorded. Do not append additional label text.
+\item Completion rule: set to Draft — Non-Deployable by default; set to Deployable only after the overview passes its compliance checklist and any applicable gate pass record is present.
+\item Status impact if missing/invalid: Draft — Non-Deployable.
+\end{itemize}
+
+Scope Boundary Statement (Required)
+
+\begin{itemize}
+\item Must include, at minimum:
+  \begin{itemize}
+  \item what the overview covers,
+  \item what it does not cover,
+  \item explicit prohibition posture for prohibited content categories relevant to the domain (e.g., no medical advice; no prescription or hormone guidance; no illegal procurement guidance; procurement scope and sourcing boundaries; no test protocols).
+  \end{itemize}
+\item Completion rule: must be written so a reviewer can determine scope without reading the full document.
+\item Status impact if missing: Draft — Non-Deployable.
+\end{itemize}
+
+Owner (primary executor) (Optional)
+
+\begin{itemize}
+\item Allowed values: Coach Lead \,|\, Trainee \,|\, Medical \,|\, Equipment Lead.
+\item Completion rule: if populated, must match exactly one allowed value.
+\item Status impact if missing: none.
+\end{itemize}
+
+Patch References (Optional)
+
+\begin{itemize}
+\item Allowed values: \textbf{PATCH}-1E-\#\#\# only for Stage 1.E schema changes; other patch references allowed only if they exist elsewhere and are clearly scoped.
+\item Completion rule: include only when (a) the template schema changed and (b) the instantiated overview conforms to the patched schema.
+\item Status impact if incorrect or misleading: Draft — Non-Deployable until corrected.
+\end{itemize}
+
+B) Governing Status Semantics (Applicable to All Instantiated Overviews)
+
+Draft — Non-Deployable means at least one of the following is true:
+
+\begin{itemize}
+\item any required header field is missing/invalid,
+\item any required section heading is missing/renamed,
+\item any required table is missing or column headers are altered,
+\item any required field is left empty beyond allowed placeholders,
+\item prohibited content appears,
+\item the compliance checklist is not passed.
+\end{itemize}
+
+Deployable means all of the following are true:
+
+\begin{itemize}
+\item all required header fields present and valid,
+\item all required sections present and complete to minimum standards,
+\item all required tier tables present with exact column headers,
+\item the compliance checklist passes and the pass record exists.
+\end{itemize}
+
+C) Tier Doctrine (Tier 0–Tier 3) (Binding Rules)
+
+Tier numbering is canonical. Tier labels must remain: Tier 0, Tier 1, Tier 2, Tier 3.
+
+Tier 0 (Required table section)
+
+\begin{itemize}
+\item Meaning: start-from-zero / household-only / none-assumed baseline.
+\item Completion rule: Tier 0 \textbf{MUST} be represented as a table and \textbf{MUST} include at least one row.
+\item Allowed Tier 0 “none” handling: Tier 0 may include a row where Item explicitly states “None / household-only baseline,” but the row must still include Purpose, Key Specs, Typical Footprint, Maintenance/Consumables, Phase Tie-In, and Notes.
+\item Approx. Price Band in Tier 0: N/A may be used only when the tier truly contains no acquisition items; otherwise use \$ / \$\$ / \$\$\$.
+\end{itemize}
+
+Tier 1 (Essentials)
+
+\begin{itemize}
+\item Meaning: minimum capability categories required to execute safely and maintain validity.
+\item Completion rule: entries must be category/spec based; no brand names, no retailer references, no links.
+\end{itemize}
+
+Tier 2 (Upgrades)
+
+\begin{itemize}
+\item Meaning: improves sustainability, safety margin, or efficiency without changing boundaries.
+\item Completion rule: may indicate mandatory procurement when governance or phase execution requires it; must remain compatible with start-from-zero posture.
+\end{itemize}
+
+Tier 3 (Advanced)
+
+\begin{itemize}
+\item Meaning: advanced capabilities; may increase robustness but must not introduce prohibited practices.
+\item Completion rule: must not be treated as required for minimal execution unless explicitly marked Required in Phase Integration Map with justification.
+\end{itemize}
+
+Minimal / Standard / Optimal mapping (Optional)
+
+\begin{itemize}
+\item If included, it must be an explanatory mapping only and must not replace Tier 0–Tier 3.
+\end{itemize}
+
+D) Price Band Convention (Binding)
+
+Approx. Price Band (Required column)
+
+\begin{itemize}
+\item Allowed values: \$ \,|\, \$\$ \,|\, \$\$\$ only (plus N/A only in Tier 0 where truly none).
+\item Semantics: ordinal category only, internal to the program; not a quote.
+\item Numeric ranges: optional. If used, they must be declared once inside the overview (Tier Doctrine) and treated as frozen unless changed via \textbf{PATCH}-1E-\#\#\#.
+\end{itemize}
+
+E) Tiered Kit Table Column Definitions (Exact Columns; Completion Rules)
+
+Item
+
+\begin{itemize}
+\item Meaning: generic capability descriptor (category-level).
+\item Allowed: descriptive text, including brand references when intentionally used.
+\item Complete when: a reader can identify the capability class without a specific product.
+\end{itemize}
+
+Purpose
+
+\begin{itemize}
+\item Meaning: why the item exists (safety, validity, feasibility, maintenance, measurement, capability enablement).
+\item Complete when: purpose ties to program constraints, validity, safety, or feasibility.
+\end{itemize}
+
+Key Specs
+
+\begin{itemize}
+\item Meaning: the minimum functional specification(s) needed to meet purpose.
+\item Allowed: measurable specs and interface requirements; prohibited: brand-specific model numbers.
+\item Complete when: a coach/trainee can verify compliance via fit checks.
+\end{itemize}
+
+Typical Footprint
+
+\begin{itemize}
+\item Meaning: storage/space burden for constrained living environment.
+\item Allowed: at least one of the following must appear: Pocket | Handheld | Small | Medium | Large | Floor-space | Fixed.
+\item Optional: add approximate dimensions in U.S. customary and/or metric.
+\item Complete when: storage feasibility is obvious.
+\end{itemize}
+
+Approx. Price Band
+
+\begin{itemize}
+\item Allowed: \$ / \$\$ / \$\$\$ only (Tier 0: N/A only if truly none).
+\item Complete when: exactly one allowed symbol is used.
+\end{itemize}
+
+Maintenance/Consumables
+
+\begin{itemize}
+\item Meaning: sustainment needs (cleaning, inspection cadence, consumables categories, replacement intervals).
+\item Allowed: category-level; prohibited: medical claims.
+\item Complete when: a reader can anticipate ongoing burden.
+\end{itemize}
+
+Phase Tie-In
+
+\begin{itemize}
+\item Meaning: tie the item to phase relevance without calendars.
+\item Required format: must reference phases using Phase 00 through Phase 13.
+\item Allowed statuses for Phase Tie-In: Introduced | Optional | Required | Not Used.
+\item Complete when: the earliest “Introduced” and any “Required” phases are explicit.
+\end{itemize}
+
+Notes
+
+\begin{itemize}
+\item Meaning: constraints, gating, compatibility, substitution notes, known risks, audit notes.
+\item Complete when: any special constraints that would affect safe use or admissibility are captured.
+\end{itemize}
+
+F) Phase Integration Map Rules (Binding)
+
+\begin{itemize}
+\item Must include Phase 00 through Phase 13 explicitly.
+\item Allowed Status values: Introduced | Optional | Required | Not Used only.
+\item Notes field must explain the status choice when non-obvious (e.g., why a tier is Required later).
+\item Must not include week numbers, dates, deload placement, or test calendar logic.
+\end{itemize}
+
+G) Required Section Completion Standards (Minimum)
+
+For each of the 11 required headings:
+
+\begin{itemize}
+\item Headings must exist exactly as written.
+\item Each heading must contain content beyond placeholders sufficient to meet minimum definitions below.
+\item Empty headings fail compliance and force Draft — Non-Deployable.
+\end{itemize}
+
+1) Purpose \& Scope
+
+\begin{itemize}
+\item Minimum: purpose paragraph; in-scope/out-of-scope bullets; crosswalk intent; prohibited-content boundary.
+\item Prohibited: programming, protocols, calendars, medical guidance, procurement links.
+\end{itemize}
+
+2) Governance And Safety Boundaries
+
+\begin{itemize}
+\item Minimum: applicable boundaries; domain-specific \textbf{MUST} NOT items; escalation posture; evidence inadmissibility statement.
+\item Prohibited: diagnosis/treatment, prescription/hormone instructions, underwater/breath-hold permissions without certified supervision.
+\end{itemize}
+
+3) Tier Doctrine
+
+\begin{itemize}
+\item Minimum: Tier 0–Tier 3 definitions; price band convention; N/A rule; substitution posture.
+\item Prohibited: renumbering tiers; converting tiers into shopping lists.
+\end{itemize}
+
+4) Tiered Kit (Tables)
+
+\begin{itemize}
+\item Minimum: Tier 0–Tier 3 tables present; at least one row in each; exact column headers used.
+\item Prohibited: illegal sourcing workarounds and unphased required-purchase language without governance justification.
+\end{itemize}
+
+5) Selection Criteria \& Fit Checks
+
+\begin{itemize}
+\item Minimum: selection criteria; pass/fail fit checks; mismatch risks; documentation tie-in.
+\item Prohibited: subjective-only criteria without a pass/fail check.
+\end{itemize}
+
+6) Setup, Safety, And Anchoring
+
+\begin{itemize}
+\item Minimum: setup requirements; pre-use checks; abort posture; environment constraints.
+\item Prohibited: unsafe improvisation or bypassing facility rules.
+\end{itemize}
+
+7) Maintenance, Replacement, And Storage
+
+\begin{itemize}
+\item Minimum: maintenance routine; replacement triggers; storage constraints; sustainment risk.
+\item Prohibited: unsafe chemical handling guidance; medical claims.
+\end{itemize}
+
+8) Substitution Rules (What Is Acceptable; What Breaks Intent)
+
+\begin{itemize}
+\item Minimum: acceptable substitutions; unacceptable substitutions; documentation requirement; phase gating notes if applicable.
+\item Prohibited: risk-increasing substitutions; make-up volume or intensity behavior; undocumented substitutions.
+\end{itemize}
+
+9) Phase Integration Map (Phase 00–13)
+
+\begin{itemize}
+\item Minimum: all phases listed; statuses selected from allowed set; notes included.
+\item Prohibited: calendars or dates.
+\end{itemize}
+
+10) Risks, Contraindications, And Red Flags
+
+\begin{itemize}
+\item Minimum: risks; contraindications (operational); red flags; gate posture; evidence posture.
+\item Prohibited: medical diagnosis/treatment, medication adjustment advice.
+\end{itemize}
+
+11) Compliance Checklist (Pass/Fail Bullets)
+
+\begin{itemize}
+\item Minimum: explicit pass conditions and explicit fail conditions; must include missing-heading and missing-table fails.
+\item Prohibited: non-auditable “best effort” language.
+\end{itemize}
+
+H) Conservative Defaults and Placeholder Rules (Binding)
+
+\begin{itemize}
+\item Placeholders are permitted only while an overview remains Draft — Non-Deployable.
+\item Deployable requires all required fields to be populated with non-placeholder content meeting completion criteria.
+\item Allowed placeholder tokens (Draft only): [\textbf{REQUIRED}], [\textbf{OPTIONAL}], [\textbf{TBD}], N/A (only where explicitly allowed).
+\item If any required field remains placeholder at the time of attempted deployable labeling, status \textbf{MUST} remain Draft — Non-Deployable.
+\end{itemize}
+
+\subsubsection*{1.E.1.4 Overview Template Compliance Checklist}
+\phantomsection
+
+\textbf{PASS} only if every item below is true:
+
+\begin{itemize}
+\item Overview \textbf{ID} is correctly formatted 7.01–7.20 (leading zero required) and Overview Name is present.
+\item Version is present and formatted vX.Y.
+\item Governing Status is set to an allowed value (Draft — Non-Deployable or Deployable) and is consistent with checklist outcome.
+\item Scope Boundary Statement is present and includes both in-scope and out-of-scope constraints, including procurement scope and sourcing boundaries when procurement is discussed.
+\item All 11 required headings are present exactly as written (no renaming) and contain non-empty content meeting minimum standards.
+\item Tier 0, Tier 1, Tier 2, Tier 3 tables exist and use exact column headers:
+  Item | Purpose | Key Specs | Typical Footprint | Approx. Price Band | Maintenance/Consumables | Phase Tie-In | Notes
+\item Tier 0 is a table section (not narrative only) and contains at least one row.
+\item Approx. Price Band uses only \$ / \$\$ / \$\$\$ in Tier 1–Tier 3, and uses only \$ / \$\$ / \$\$\$ or N/A (Tier 0 only) in Tier 0.
+\item Phase Integration Map exists and references Phase 00 through Phase 13 using only allowed statuses (Introduced / Optional / Required / Not Used).
+\item Substitution Rules section explicitly states acceptable substitutions, unacceptable substitutions, and documentation requirements.
+\item Governance And Safety Boundaries section includes all applicable Stage 0 boundary alignment; if water-relevant, includes certified supervision requirement and prohibition on unsupervised underwater/breath-hold exposure.
+\item Risks, Contraindications, And Red Flags section includes observable red flags and default gate posture statements (Hold/Regress/Medical Hold as applicable).
+\item No prohibited content appears (no workouts, no test protocols, no calendars, no prescription/hormone guidance, no illegal procurement guidance).
+\end{itemize}
+
+\textbf{FAIL} if any item above is not satisfied:
+
+\begin{itemize}
+\item If any required item fails → Governing Status \textbf{MUST} be Draft — Non-Deployable.
+\end{itemize}
+
+\newpage
+\subsection*{1.E.2 Phase Row Template}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.E.2 Phase Row Template}
+
+\subsubsection*{1.E.2.1 Phase Header Block}
+\phantomsection
+
+\begin{verbatim}
+Phase \textbf{ID}: [\textbf{REQUIRED}: 00–13]
+Phase Name: [\textbf{REQUIRED}]
+Duration (weeks): [\textbf{REQUIRED}]
+Version: [\textbf{REQUIRED}: vX.Y (baseline v1.0 unless patched)]
+Governing Status: [\textbf{REQUIRED}: Draft — Non-Deployable | Deployable]
+
+Owner (primary executor): [\textbf{OPTIONAL}: Coach Lead | Trainee | Medical | Equipment Lead]
+Patch References: [\textbf{OPTIONAL}: \textbf{PATCH}-1E-### if schema changes apply, plus any artifact-specific patch IDs if used elsewhere]
+\end{verbatim}
+
+\subsubsection*{1.E.2.2 Phase Required Sections}
+\phantomsection
+
+Rule: The following headings are template-locked. Do not rename. Populate all required fields to meet minimum completion standards. Do not embed training prescriptions (sets/reps/intervals), test protocol cards, or calendars.
+
+1) Phase Mission
+
+\begin{itemize}
+\item {[\textbf{REQUIRED}: One paragraph defining what the phase must accomplish in operational terms.]}
+\item {[\textbf{REQUIRED}: One sentence stating what “success looks like” for this phase in admissible evidence terms.]}
+\end{itemize}
+
+2) Phase Purpose (Why This Phase Exists)
+
+\begin{itemize}
+\item {[\textbf{REQUIRED}: Why this phase exists in the continuum; what problem it solves; what it does not attempt.]}
+\item {[\textbf{REQUIRED}: Phase boundary statement: what is out-of-scope for this phase (prevents drift).]}
+\end{itemize}
+
+3) Entry Criteria (Gates To Start)
+
+\begin{itemize}
+\item {[\textbf{REQUIRED}: Objective entry criteria; must reference dependencies by \textbf{ID} when applicable (\textbf{DEP-1C}-\#\#\# / \textbf{ASM-1C}-\#\#\#).]}
+\item {[\textbf{REQUIRED}: Required evidence posture: what must be demonstrated using admissible logs/tests (IDs only).]}
+\item {[\textbf{REQUIRED}: Fail posture: what happens if entry criteria are not met (Substitute / Delay escalation / \textbf{HOLD} / \textbf{REGRESS} / \textbf{MEDICAL} \textbf{HOLD} as applicable).]}
+\item {[\textbf{REQUIRED}: If medical clearance or restrictions are relevant, state “clinician-led clearance when indicated” posture without medical advice.]}
+\end{itemize}
+
+4) Operating Constraints
+
+This section must restate, verbatim in meaning (not necessarily word-for-word), the operating constraints that govern execution:
+
+\begin{itemize}
+\item Cadence: 6 sessions/week.
+\item Session elements: Safety self-check, Warm-up, Mobility, Main work, Cardio, Cooldown, Recovery, Post-session notes.
+\item Cardio minimum standard (in body text): Cardio must include a minimum 30 minutes continuous per training session; if Cardio is satisfied within main work and meets the minimum, no supplemental Cardio is required.
+\item Steps baseline: 10,000 steps/day baseline (daily; not a session).
+\item Safety override: safety overrides schedule and performance.
+\item Validity posture: evidence must be admissible; gate decisions rely on \textbf{VALID} evidence only (definitions exist elsewhere; reference posture only here).
+\item No stacking: no two-a-days; no make-up doubling behavior.
+\item Documentation discipline: same-day logging required; missing required fields make evidence inadmissible for gate use.
+\end{itemize}
+
+5) Primary Adaptations And Physiological Focus
+
+\begin{itemize}
+\item {[\textbf{REQUIRED}: Bullet list of adaptation targets; no programming detail.]}
+\item {[\textbf{REQUIRED}: Identify at least one “protected constraint” for the phase (e.g., tissue tolerance first, impact-managed, load-managed) without prescriptions.]}
+\end{itemize}
+
+6) Primary Modalities (Strength/Conditioning/Ruck/Swim/Etc.)
+
+\begin{itemize}
+\item {[\textbf{REQUIRED}: List allowed modality domains; note higher-risk exposures that require governed introduction (impact running, loaded rucking, aquatic/underwater governance).]}
+\item {[\textbf{REQUIRED}: Prohibited modalities or prohibited conditions for this phase (e.g., underwater/breath-hold unsupervised always prohibited).]}
+\end{itemize}
+
+7) Weekly Structure (Sessions 1–6; Intent Per Day; High-Risk Exposures Noted)
+
+\begin{itemize}
+\item {[\textbf{REQUIRED}: Use the Weekly Structure table in 1.E.2.3; keep intent-level only; no prescriptions.]}
+\item {[\textbf{REQUIRED}: Each session must name Cardio modality intent; do not embed minimum duration in the table header.]}
+\end{itemize}
+
+8) Progression Rules (Volume/Intensity Caps; Regression Triggers)
+
+\begin{itemize}
+\item Caps: [\textbf{REQUIRED}: Define caps qualitatively (e.g., “no sudden increases,” “stepwise progression,” “impact-managed”). No numeric ramps here.]
+\item Regression triggers: [\textbf{REQUIRED}: Trigger/signal language; mechanics-altering pain; repeated invalidity; environment hazards.]
+\item One-lever rule: [\textbf{REQUIRED}: State that only one progression lever is adjusted at a time unless safety requires regression.]
+\end{itemize}
+
+9) Deload And Test Placement (Mid-Phase And End-Phase)
+
+\begin{itemize}
+\item {[\textbf{REQUIRED}: State that mid-phase and end-phase checkpoints exist; specify “mid” and “end” placement conceptually without calendar specifics.]}
+\item {[\textbf{REQUIRED}: Reslot posture when safety/validity compromised (tests under compromised conditions are inadmissible).]}
+\end{itemize}
+
+10) Test Battery (IDs/Labels Only; Protocols Live Elsewhere)
+
+\begin{itemize}
+\item Mid-Phase Tests: [\textbf{REQUIRED}: IDs/names only; no protocol text.]
+\item End-Phase Tests: [\textbf{REQUIRED}: IDs/names only; no protocol text.]
+\item {[\textbf{REQUIRED}: Use the Test Battery table in 1.E.2.3.]}
+\end{itemize}
+
+11) Exit Standards (Objective; Pass/Fail)
+
+\begin{itemize}
+\item {[\textbf{REQUIRED}: Objective, auditable exit standards aligned to the phase’s purpose; pass/fail.]}
+\item {[\textbf{REQUIRED}: Explicit “cannot pass if” disqualifiers (e.g., unresolved gait-altering pain; evidence inadmissible due to missing logs).]}
+\end{itemize}
+
+12) Risk Controls And Stop Rules (Phase-Specific Overlays; Must Reference Stage 0.5)
+
+\begin{itemize}
+\item {[\textbf{REQUIRED}: List risk controls; reference \textbf{RISK-1B}-\#\#\# where applicable.]}
+\item {[\textbf{REQUIRED}: Stop/abort posture references Stage 0.5 categories; no medical advice.]}
+\item {[\textbf{REQUIRED}: Water governance statement if any aquatic exposure is present: certified supervision required for any underwater/breath-hold exposure; unsupervised exposure prohibited.]}
+\end{itemize}
+
+13) Required Capabilities And Dependencies (Equipment/Environment/Logging Prerequisites)
+
+\begin{itemize}
+\item {[\textbf{REQUIRED}: Reference \textbf{DEP-1C}-\#\#\# / \textbf{ASM-1C}-\#\#\# in the Dependencies table; include fail actions.]}
+\item {[\textbf{REQUIRED}: Declare minimum infrastructure dependencies when applicable (footwear interface, timing method, hydration access, safe route/indoor substitute).]}
+\end{itemize}
+
+14) Validity Requirements (What Makes Evidence Acceptable)
+
+\begin{itemize}
+\item {[\textbf{REQUIRED}: Define admissibility requirements at high level: complete logs, environment fields when applicable, no boundary violations.]}
+\item {[\textbf{REQUIRED}: State that missing required documentation makes evidence inadmissible for gates.]}
+\item {[\textbf{REQUIRED}: State that Modified/Invalid handling is governed elsewhere; this section may not redefine tags.]}
+\end{itemize}
+
+15) Change Control Notes (Freeze Windows; Patch Discipline)
+
+\begin{itemize}
+\item {[\textbf{REQUIRED}: State that execution-affecting changes require logged change control and patching; freeze window discipline applies.]}
+\item {[\textbf{REQUIRED}: Reference that schema changes require \textbf{PATCH}-1E-\#\#\#; artifact-level changes use the program’s patch conventions elsewhere.]}
+\item {[\textbf{REQUIRED}: State that any upstream constraint change triggers downstream revalidation posture.]}
+\end{itemize}
+
+16) Compliance Checklist (Pass/Fail)
+
+\begin{itemize}
+\item {[\textbf{REQUIRED}: Pass/fail items that enforce template completeness, constraints, dependency references, and evidence posture.]}
+\item {[\textbf{REQUIRED}: Must include a fail item for any missing required section, missing required table, or altered column header.]}
+\end{itemize}
+
+\newpage
+\subsubsection*{1.E.2.3 Required Tables}
+\phantomsection
+
+1) Weekly Structure Table
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.70in]
+    X[l,1.15]
+    X[l,1.15]
+    X[l,1.30]
+    X[l,1.60]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Session \#} & \Hdr{Primary Focus} & \Hdr{Main Work Domains} & \Hdr{Cardio Modality/Intent} & \Hdr{Notes/Risk Controls} \\
+1 & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} \\
+2 & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} \\
+3 & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} \\
+4 & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} \\
+5 & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} \\
+6 & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} & {[\textbf{REQUIRED}]} \\
+\end{longtblr}
+\endgroup
+
+2) Test Battery Table
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.00in]
+    X[l,1.15]
+    Q[l,wd=1.00in]
+    X[l,1.40]
+    X[l,1.35]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Test Timing} & \Hdr{Test \textbf{ID}/Name} & \Hdr{Domain} & \Hdr{Validity Conditions} & \Hdr{Pass Threshold} \\
+Mid-Phase & {[\textbf{REQUIRED}: \textbf{ID}/Name only]} & {[\textbf{REQUIRED}]} &
+\SetCell{halign=l,valign=t}{[\textbf{REQUIRED}: high-level admissibility conditions]} &
+\SetCell{halign=l,valign=t}{[\textbf{REQUIRED}: reference threshold source; no protocol text]} \\
+End-Phase & {[\textbf{REQUIRED}: \textbf{ID}/Name only]} & {[\textbf{REQUIRED}]} &
+\SetCell{halign=l,valign=t}{[\textbf{REQUIRED}: high-level admissibility conditions]} &
+\SetCell{halign=l,valign=t}{[\textbf{REQUIRED}: reference threshold source; no protocol text]} \\
+\end{longtblr}
+\endgroup
+
+3) Dependencies Table
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.15in]
+    X[l,1.35]
+    Q[l,wd=1.35in]
+    Q[l,wd=1.55in]
+    X[l,1.70]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Dependency \textbf{ID}} & \Hdr{Required Capability} & \Hdr{Due-By} & \Hdr{Owner} & \Hdr{Fail Action} \\
+{[\textbf{DEP-1C}-\#\#\# / \textbf{ASM-1C}-\#\#\#]} & {[\textbf{REQUIRED}]} & {[Phase/Week or event-based]} &
+\SetCell{halign=l,valign=t}{[Coach Lead / Trainee / \\ Medical / Equipment Lead]} &
+\SetCell{halign=l,valign=t}{[Substitute / Delay escalation / Hold / Regress / Medical Hold + brief action]} \\
+\end{longtblr}
+\endgroup
+
+\newpage
+\subsubsection*{1.E.2.4 Field Definitions}
+\phantomsection
+
+A) Header Fields (Phase Header Block)
+
+Phase \textbf{ID} (Required)
+
+\begin{itemize}
+\item Allowed values: two-digit 00–13 only. Leading zero required for Phase 00.
+\item Completion rule: must match the phase numbering used throughout the binder; must not be renumbered.
+\item Status impact if missing/invalid: Draft — Non-Deployable.
+\end{itemize}
+
+Phase Name (Required)
+
+\begin{itemize}
+\item Allowed values: free text.
+\item Completion rule: must remain stable; any meaning change requires change control.
+\item Status impact if missing: Draft — Non-Deployable.
+\end{itemize}
+
+Duration (weeks) (Required)
+
+\begin{itemize}
+\item Allowed values: positive integer.
+\item Completion rule: must be provided as a single integer; must not embed calendar dates.
+\item If unknown: must remain Draft — Non-Deployable until defined.
+\item Status impact if missing/invalid: Draft — Non-Deployable.
+\end{itemize}
+
+Version (Required)
+
+\begin{itemize}
+\item Allowed values: vX.Y where X and Y are integers; baseline v1.0 unless patched.
+\item Completion rule: must reflect the artifact’s controlled state; no silent edits.
+\item Status impact if missing/invalid: Draft — Non-Deployable.
+\end{itemize}
+
+Governing Status (Required; locked strings)
+
+\begin{itemize}
+\item Allowed values only: Draft — Non-Deployable \,|\, Deployable.
+\item Definition (must be used verbatim in meaning): Deployable means the artifact’s required fields are complete and its applicable gate checklist has been passed and recorded. Do not append additional label text.
+\item Completion rule: default to Draft — Non-Deployable; set to Deployable only after the Phase Row compliance checklist passes and any applicable gate record exists.
+\item Status impact if missing/invalid: Draft — Non-Deployable.
+\end{itemize}
+
+Owner (primary executor) (Optional)
+
+\begin{itemize}
+\item Allowed values: Coach Lead \,|\, Trainee \,|\, Medical \,|\, Equipment Lead.
+\item Completion rule: if populated, must match exactly.
+\item Status impact: none.
+\end{itemize}
+
+Patch References (Optional)
+
+\begin{itemize}
+\item Allowed values: \textbf{PATCH}-1E-\#\#\# for schema changes; other patch IDs permitted only if they exist elsewhere and are clearly scoped.
+\item Status impact if misleading: Draft — Non-Deployable until corrected.
+\end{itemize}
+
+B) Section Completion Standards (Minimums)
+
+All 16 headings are required and must be present exactly as written. Empty sections fail.
+
+1) Phase Mission
+
+\begin{itemize}
+\item Must define what the phase accomplishes and what it protects (safety, validity, feasibility).
+\item Must include evidence posture statement (decision-grade, admissible).
+\item Prohibited: motivational language; programming prescriptions.
+\end{itemize}
+
+2) Phase Purpose (Why This Phase Exists)
+
+\begin{itemize}
+\item Must state why the phase exists in sequence and what is explicitly not attempted.
+\item Prohibited: protocols and calendars.
+\end{itemize}
+
+3) Entry Criteria (Gates To Start)
+
+\begin{itemize}
+\item Must be objective and auditable; must reference \textbf{DEP}/\textbf{ASM} IDs when dependencies apply.
+\item Must include fail posture (Substitute/Delay/Hold/Regress/Medical Hold).
+\item Prohibited: subjective readiness language.
+\end{itemize}
+
+4) Operating Constraints
+
+\begin{itemize}
+\item Must include in body text (required minimum set):
+  \begin{itemize}
+  \item 6 sessions/week,
+  \item required session elements,
+  \item Cardio minimum standard (30 minutes continuous per training session) stated in body text,
+  \item 10,000 steps/day baseline stated in body text and stated as not a session,
+  \item safety override posture,
+  \item admissibility posture,
+  \item no two-a-days, no make-up doubling,
+  \item same-day logging posture.
+  \end{itemize}
+\item Prohibited: alternate cadence rules.
+\end{itemize}
+
+5) Primary Adaptations And Physiological Focus
+
+\begin{itemize}
+\item Must remain domain-level; must identify adaptation intent without prescribing methods.
+\item Prohibited: set/rep/pace/ramp details.
+\end{itemize}
+
+6) Primary Modalities (Strength/Conditioning/Ruck/Swim/Etc.)
+
+\begin{itemize}
+\item Must list allowable modality domains and prohibited domains/conditions for the phase.
+\item Must respect water governance: underwater/breath-hold unsupervised is always prohibited.
+\item Prohibited: underwater/breath-hold instruction.
+\end{itemize}
+
+7) Weekly Structure (Sessions 1–6; Intent Per Day; High-Risk Exposures Noted)
+
+\begin{itemize}
+\item Weekly Structure table must contain exactly six rows and Session \# must be 1–6.
+\item Cardio Modality/Intent must be present for each session row.
+\item Prohibited: treating any day as optional.
+\end{itemize}
+
+8) Progression Rules (Volume/Intensity Caps; Regression Triggers)
+
+\begin{itemize}
+\item Must define caps and regression triggers as auditable rules tied to risk signals (mechanics-altering pain, repeated invalidity, etc.).
+\item Prohibited: numeric progression ramps.
+\end{itemize}
+
+9) Deload And Test Placement (Mid-Phase And End-Phase)
+
+\begin{itemize}
+\item Must include mid-phase and end-phase posture without calendar schedules.
+\item Must include validity posture: compromised tests are inadmissible.
+\item Prohibited: dates, week-by-week calendars.
+\end{itemize}
+
+10) Test Battery (IDs/Labels Only; Protocols Live Elsewhere)
+
+\begin{itemize}
+\item Must list IDs/names only; no protocol text.
+\item Domain must be specified for each test.
+\item Prohibited: step-by-step test instructions.
+\end{itemize}
+
+11) Exit Standards (Objective; Pass/Fail)
+
+\begin{itemize}
+\item Must be objective and auditable; must include disqualifiers relevant to safety/validity.
+\item Prohibited: “best effort” standards.
+\end{itemize}
+
+12) Risk Controls And Stop Rules (Phase-Specific Overlays; Must Reference Stage 0.5)
+
+\begin{itemize}
+\item Must reference \textbf{RISK-1B}-\#\#\# where applicable.
+\item Must explicitly align to Stage 0.5 stop-rule posture; must not weaken boundaries.
+\item Prohibited: medical advice.
+\end{itemize}
+
+13) Required Capabilities And Dependencies (Equipment/Environment/Logging Prerequisites)
+
+\begin{itemize}
+\item Dependencies must use \textbf{DEP-1C}-\#\#\# and \textbf{ASM-1C}-\#\#\# only.
+\item Must include fail action outcomes (Substitute/Delay/Hold/Regress/Medical Hold).
+\item Prohibited: new dependency \textbf{ID} formats.
+\end{itemize}
+
+14) Validity Requirements (What Makes Evidence Acceptable)
+
+\begin{itemize}
+\item Must state admissibility posture at governance level: complete logs, environment fields when applicable, no boundary violations.
+\item Must state that missing required documentation degrades admissibility.
+\item Must not redefine the global meaning of Valid/Modified/Invalid.
+\end{itemize}
+
+15) Change Control Notes (Freeze Windows; Patch Discipline)
+
+\begin{itemize}
+\item Must state freeze-window posture and patch discipline.
+\item Must state that schema changes require \textbf{PATCH}-1E-\#\#\# and that downstream compatibility review is required.
+\item Prohibited: silent edits.
+\end{itemize}
+
+16) Compliance Checklist (Pass/Fail)
+
+\begin{itemize}
+\item Must be explicit pass/fail.
+\item Must include fail items for missing section, missing table, altered column headers, and missing operating constraints content.
+\item Prohibited: vague checklists.
+\end{itemize}
+
+C) Required Table Column Definitions
+
+Weekly Structure Table
+
+\begin{itemize}
+\item Session \#: must be 1–6 only.
+\item Primary Focus: intent-level descriptor; no prescriptions.
+\item Main Work Domains: domain-level labels only.
+\item Cardio Modality/Intent: must include Cardio modality category and intent; must not embed minimum duration in the header.
+\item Notes/Risk Controls: include risk controls, substitutions, and references to \textbf{RISK-1B}-\#\#\# when applicable.
+\end{itemize}
+
+Test Battery Table
+
+\begin{itemize}
+\item Test Timing: must be Mid-Phase or End-Phase (unless an additional timing label is explicitly adopted and used consistently).
+\item Test \textbf{ID}/Name: IDs/names only; must reference the Stage 2 test inventory when available; no protocol text.
+\item Domain: must be a stable domain label; if a new domain label is used, it must be stabilized in Stage 2 and then used consistently.
+\item Validity Conditions: high-level admissibility conditions (measured course, unit clarity, environment fields recorded, supervision status if aquatic).
+\item Pass Threshold: objective threshold statement or reference to threshold source label; no protocol content.
+\end{itemize}
+
+Dependencies Table
+
+\begin{itemize}
+\item Dependency \textbf{ID}: \textbf{DEP-1C}-\#\#\# or \textbf{ASM-1C}-\#\#\# only.
+\item Required Capability: capability category (not products).
+\item Due-By: phase/week or event-based (no calendar dates required).
+\item Owner: must be one of Coach Lead | Trainee | Medical | Equipment Lead.
+\item Fail Action: must include Substitute, Delay escalation, Hold, Regress, or Medical Hold posture and brief action.
+\end{itemize}
+
+D) Conservative Defaults and Placeholder Rules (Binding)
+
+\begin{itemize}
+\item Placeholders are permitted only while the Phase Row remains Draft — Non-Deployable.
+\item Deployable requires removal of placeholders and completion to minimum standards.
+\item Allowed placeholders (Draft only): [\textbf{REQUIRED}], [\textbf{OPTIONAL}], [\textbf{TBD}].
+\item Any unresolved required field at the time of attempted deployable labeling forces Draft — Non-Deployable.
+\end{itemize}
+
+\newpage
+\subsubsection*{1.E.2.5 Phase Row Template Compliance Checklist}
+\phantomsection
+
+\textbf{PASS} only if every item below is true:
+
+\begin{itemize}
+\item Phase \textbf{ID} format is correct (00–13) and Phase Name is present.
+\item Duration (weeks) is present as a positive integer and Version is present as vX.Y.
+\item Governing Status is set to an allowed value (Draft — Non-Deployable or Deployable) and is consistent with checklist outcome.
+\item All 16 required headings are present exactly as written (no renaming) and meet minimum completion standards.
+\item All 3 required tables are present and use exact column headers.
+\item Entry Criteria and Exit Standards are objective and pass/fail.
+\item Test Battery lists IDs/names only; no protocol text appears anywhere in the Phase Row.
+\item Dependencies reference valid \textbf{DEP-1C}-\#\#\# or \textbf{ASM-1C}-\#\#\# IDs, include Due-By, Owner, and explicit Fail Action posture.
+\item Operating Constraints section body text includes:
+  \begin{itemize}
+  \item 6 sessions per week,
+  \item required session elements,
+  \item Cardio minimum standard stated in body text,
+  \item 10,000 steps/day baseline stated in body text and stated as not a session,
+  \item safety override posture,
+  \item admissibility posture,
+  \item no two-a-days / no make-up doubling,
+  \item same-day logging posture.
+  \end{itemize}
+\item Risk Controls section references Stage 0.5 stop-rule posture and references \textbf{RISK-1B}-\#\#\# where applicable.
+\item No prohibited content appears (no workouts, no protocols, no calendars, no brand/retailer links, no medical advice).
+\end{itemize}
+
+\textbf{FAIL} if any item above is not satisfied:
+
+\begin{itemize}
+\item If any required item fails → Governing Status \textbf{MUST} be Draft — Non-Deployable.
+\end{itemize}
+
+\subsection*{1.E.3 Conflict-Resolution Rule}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.E.3 Conflict-Resolution Rule}
+
+\begin{itemize}
+\item If any downstream artifact deviates from these templates, omits required fields, changes required headings, changes required table column headers, uses non-canonical IDs or naming, or uses a non-allowed Governing Status value, it \textbf{MUST} be labeled Draft — Non-Deployable until corrected and re-versioned.
+
+\item If a template schema change is required, it \textbf{MUST} be executed via \textbf{PATCH}-1E-\#\#\# with an explicit change-log entry. After a schema patch:
+  \begin{itemize}
+  \item all instantiated artifacts that use Stage 1.E templates \textbf{MUST} be reviewed for compatibility,
+  \item compatible artifacts \textbf{MUST} be updated to the patched schema and retain truthful versioning,
+  \item incompatible or unupdated artifacts \textbf{MUST} be labeled Draft — Non-Deployable until brought into compliance.
+  \end{itemize}
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,673 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 2.E — Data Recording and Test Logistics Conventions}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 2.E — Data Recording and Test Logistics Conventions}
+
+\subsection*{2.E.1 Core Principles for Auditability and Comparability}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.E.1 Core Principles for Auditability and Comparability}
+
+\begin{itemize}
+\item The PDF binder \textbf{MUST} be the single source of truth for decision-grade evidence used for gates. If evidence is not binder-recorded or binder-referenced, it is not admissible for gate decisions.
+\item Runtime notes MAY exist outside the binder, but any gate claim \textbf{MUST} be supported by binder-recorded rows or binder-referenced Evidence Ref pointers that are stable and retrievable.
+\item Every log row \textbf{MUST} be written with a no-inference posture: unknown values \textbf{MUST} be recorded as \textbf{UNKNOWN} or \textbf{MISSING}; they \textbf{MUST} NOT be guessed, interpolated, or reconstructed from memory for gate purposes.
+\item Completeness of required fields is an admissibility control. If a required field is missing, the record is inadmissible for gates and \textbf{MUST} be treated as \textbf{INVALID} for gate use.
+\item Identifiers (Metric \textbf{ID}, Protocol Card \textbf{ID}, Domain Tag, Environment Unit \textbf{ID}) \textbf{MUST} be treated as crosswalk keys. Key fields \textbf{MUST} remain stable; renamed or drifting keys break comparability and render downstream artifacts non-deployable.
+\item Environment and tool stability is a comparability control. The environment and tool used for a test \textbf{MUST} be identifiable and stable enough to compare across time; material changes require new Environment Unit IDs or explicit tool-change records.
+\item Deviations \textbf{MUST} be documented explicitly. If execution conditions differ from standard, the deviation \textbf{MUST} be recorded in the Notes field and, where applicable, the correct reason-code field (\textbf{SESSION-RC} or \textbf{TEST-RC}) \textbf{MUST} be populated.
+\item Every test event log row \textbf{MUST} include Evidence Ref when required by the governing protocol card or logging rule. When artifact evidence is optional, Evidence Ref remains recommended but is not mandatory.
+\item Replication status \textbf{MUST} be tracked for each Gate-Critical metric within the decision window using the required 1/3, 2/3, 3/3 notation. Tier classification requires replication per governance rules.
+\item Timestamps \textbf{MUST} be decision-grade. All rows \textbf{MUST} use ISO 8601 timestamp format; timezone offset \textbf{MUST} be included when available. Missing timestamp or unverified late reconstruction makes the record inadmissible for gate decisions.
+\item Reason-code namespaces \textbf{MUST} remain separated. \textbf{SESSION-RC} is used only for session \textbf{MODIFIED}/\textbf{INVALID} tagging; \textbf{TEST-RC} is used only for test \textbf{INVALID} tagging. The non-applicable reason-code field \textbf{MUST} be blank or N/A.
+\item Rounding and unit rules \textbf{MUST} be enforced as anti-drift controls. Rounding and unit discipline is part of comparability; unit drift invalidates comparisons.
+\end{itemize}
+
+Binding binder architecture (required sections; exact names):
+
+\begin{enumerate}
+\item Daily Logs
+\item Session Logs
+\item Test Event Logs
+\item Environment Unit Library
+\item Weekly Audit and Gate Review
+\item Patches and Change Log
+\end{enumerate}
+
+\subsubsection*{Assumption Ledger}
+\phantomsection
+
+\begin{itemize}
+\item None.
+\end{itemize}
+
+\subsubsection*{Reconciliation Notes}
+\phantomsection
+
+\begin{itemize}
+\item Conflict: Upstream logging conventions elsewhere include an intensity tier model as a required field. Adopted posture for Stage 2.E is explicitly locked by this prompt: Cardio intensity is recorded as RPE 0–10 plus Talk Test cue as the required controlled fields in Stage 2.E; any tier notation recorded elsewhere is supplemental only. Impact: Session Log schema in 2.E.4 records Cardio RPE, Talk Test cue, and Session RPE in distinct controlled fields; any tier notation, if recorded elsewhere, is treated as non-required free-text and is not a controlled field in Stage 2.E.
+\end{itemize}
+
+\newpage
+
+\begin{landscape}
+
+\subsection*{2.E.2 Required Identifiers}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.E.2 Required Identifiers}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.95in]
+    X[l,1.15]
+    X[l,1.35]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-4} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Identifier} & \Hdr{Format} & \Hdr{Where Used} & \Hdr{Notes} \\
+ISO Timestamp & YYYY-MM-DDThh:mm:ss±hh:mm & Daily Logs; Session Logs; Test Event Logs; Weekly Audit entries & If timezone offset is available, it \textbf{MUST} be recorded. If offset cannot be captured, the row \textbf{MUST} record ISO timestamp in UTC with “Z” only when a verifiable UTC source is used; otherwise ISO Timestamp is \textbf{MISSING} and the row is inadmissible for gates. \\
+Phase \textbf{ID} & Phase 00–Phase 13 & Daily Logs; Session Logs; Test Event Logs; Weekly Audit and Gate Review & Phase numbering is canonical and \textbf{MUST} NOT be renumbered. \\
+Phase Week & Wk-## (phase-relative) & Daily Logs; Session Logs; Test Event Logs; Weekly Audit and Gate Review & Phase Week is a phase-relative week index. If unknown, record \textbf{MISSING}. \\
+Session Number & 1–6 & Session Logs & Exactly 6 sessions per week; no two-a-days. \\
+Metric \textbf{ID} & \textbf{MET-2B}-### & Test Event Logs; Weekly Audit and Gate Review; Crosswalk hooks & Must match Stage 2.B. Undefined IDs are prohibited for deployable work. \\
+Protocol Card \textbf{ID} & \textbf{C1}–\textbf{C18} & Test Event Logs & Must match Stage 2.C. If a test has no protocol, it is not gate-admissible. \\
+Domain Tag & Stage 2.A canonical tags only & Test Event Logs; Weekly Audit and Gate Review & Must be one canonical tag per metric/test; no invented tags. \\
+Session Validity Tag & \textbf{VALID} / \textbf{MODIFIED} / \textbf{INVALID} & Session Logs; Weekly Audit and Gate Review & Must match Stage 1.F. Missing required fields force \textbf{INVALID} for gate use. \\
+Test Validity Tag & \textbf{VALID} / \textbf{INVALID} & Test Event Logs; Weekly Audit and Gate Review & Must match Stage 1.F. Missing required fields force \textbf{INVALID} for gate use. \\
+\textbf{SESSION-RC} & \textbf{SESSION-RC}-### & Session Logs & Populate only when Session Validity Tag is \textbf{MODIFIED} or \textbf{INVALID}. If tag is \textbf{VALID}, \textbf{SESSION-RC} must be blank/N/A. \\
+\textbf{TEST-RC} & \textbf{TEST-RC}-### & Test Event Logs & Populate only when Test Validity Tag is \textbf{INVALID}. If tag is \textbf{VALID}, \textbf{TEST-RC} must be blank/N/A. \\
+Environment Unit \textbf{ID} & \textbf{ROUTE}-2E-### / \textbf{POOL}-2E-### / \textbf{TM}-2E-### / ROW-2E-### / BIKE-2E-### / ELL-2E-### & Test Event Logs; Environment Unit Library & Environment Unit \textbf{ID} is mandatory for run/ruck/swim/machine-based tests and for any test where environment comparability matters. \\
+Evidence Ref & file name / URL / binder page ref / storage path pointer & Test Event Logs; Weekly Audit and Gate Review & Mandatory for every test event. Missing Evidence Ref makes the test inadmissible for gates. \\
+Replication Status & 1/3, 2/3, 3/3 & Test Event Logs; Weekly Audit and Gate Review & Must reflect count of \textbf{VALID} events for that metric within the current decision window. \\
+Tool Standard (Descriptor) & Free-text descriptor of timer, scale, or tape & Test Event Logs & Tool IDs are optional; when no Tool \textbf{ID} exists, descriptor is required (e.g., “Phone Timer,” “Digital Scale,” “Cloth Tape”). \\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+\begin{landscape}
+
+\subsection*{2.E.3 Daily Log Minimum Dataset}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.E.3 Daily Log Minimum Dataset}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.90in]
+    Q[l,wd=0.90in]
+    Q[l,wd=0.70in]
+    Q[l,wd=0.90in]
+    Q[l,wd=0.90in]
+    Q[l,wd=0.90in]
+    Q[l,wd=1.25in]
+    Q[l,wd=0.80in]
+    X[l,1.30]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-9} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{ISO Timestamp} &
+\Hdr{Phase \textbf{ID} / Phase Week} &
+\Hdr{Sleep Hrs} &
+\Hdr{Sleep Qual 0–10} &
+\Hdr{Soreness 0–10} &
+\Hdr{Fatigue 0–10} &
+\Hdr{Pain 0–10 plus location} &
+\Hdr{Steps count} &
+\Hdr{Notes} \\
+\end{longtblr}
+
+\endgroup
+
+Rules (binding):
+
+\begin{itemize}
+\item Steps count is required daily.
+\item Pain location is required when pain is greater than 0.
+\item Missing fields \textbf{MUST} be recorded as \textbf{MISSING} (or \textbf{UNKNOWN} where appropriate). Values \textbf{MUST} NOT be inferred or backfilled from memory for gate decisions.
+\item If ISO Timestamp is \textbf{MISSING}, the daily log row is non-auditable and \textbf{MUST} NOT be used in gate reasoning.
+\end{itemize}
+
+\subsection*{2.E.4 Session Log Minimum Dataset}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.E.4 Session Log Minimum Dataset}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=.65in]
+    Q[l,wd=0.575in]
+    Q[l,wd=0.3in]
+    Q[l,wd=.50in]
+    Q[l,wd=0.50in]
+    Q[l,wd=.45in]
+    Q[l,wd=.65in]
+    Q[l,wd=0.70in]
+    Q[l,wd=0.35in]
+    Q[l,wd=0.45in]
+    Q[l,wd=.55in]
+    Q[l,wd=0.45in]
+    Q[l,wd=0.60in]
+    Q[l,wd=0.4in]
+    Q[l,wd=0.4in]
+    X[l,1.10]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-16} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{ISO Timestamp} &
+\Hdr{Phase \textbf{ID} / Phase Week} &
+\Hdr{Session Number} &
+\Hdr{Validity Tag} &
+\Hdr{\textbf{SESSION-RC}} &
+\Hdr{Cardio Duration} &
+\Hdr{Tool Standard} &
+\Hdr{Cardio Modality} &
+\Hdr{Cardio RPE} &
+\Hdr{Talk Test Cue} &
+\Hdr{Main Work} &
+\Hdr{Session RPE} &
+\Hdr{Cardio Minimum Standard Met Y/N} &
+\Hdr{Pain Flags} &
+\Hdr{Foot Flags} &
+\Hdr{Notes} \\
+\end{longtblr}
+
+\endgroup
+
+Rules (binding):
+
+\begin{itemize}
+\item Session Validity Tag \textbf{MUST} be one of \textbf{VALID} / \textbf{MODIFIED} / \textbf{INVALID}.
+\item \textbf{SESSION-RC} is populated only when Session Validity Tag is \textbf{MODIFIED} or \textbf{INVALID}. If Session Validity Tag is \textbf{VALID}, \textbf{SESSION-RC} \textbf{MUST} be blank or N/A.
+\item Cardio Min Standard Met Y/N is a required field and \textbf{MUST} be derived from the session record (Cardio duration, continuity, and documentation completeness).
+\item Cardio requirements \textbf{MUST} be expressed in body text only and \textbf{MUST} NOT be embedded into headings or column headers.
+\item Cardio Intensity \textbf{MUST} be recorded as RPE 0–10 plus a Talk Test cue (no tier model in Stage 2.E).
+\item If any required field is \textbf{MISSING}, the session evidence is inadmissible for gate decisions and \textbf{MUST} be treated as \textbf{INVALID} for gate use.
+\end{itemize}
+
+\subsection*{2.E.5 Test Event Log Minimum Dataset}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.E.5 Test Event Log Minimum Dataset}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=.435in]
+    Q[l,wd=0.285in]
+    Q[l,wd=0.40in]
+    Q[l,wd=.50in]
+    Q[l,wd=0.50in]
+    Q[l,wd=.60in]
+    Q[l,wd=.75in]
+    Q[l,wd=0.85in]
+    Q[l,wd=0.50in]
+    Q[l,wd=0.35in]
+    Q[l,wd=0.30in]
+    Q[l,wd=.35in]
+    Q[l,wd=0.45in]
+    X[l,1.25]
+    X[l,0.80]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-15} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{ISO\\ Timestamp} &
+\Hdr{Phase \\\& Week} &
+\Hdr{Protocol \\Card \textbf{ID}} &
+\Hdr{Linked \\Metric \textbf{ID}(s)} &
+\Hdr{Domain\\ Tag} &
+\Hdr{Environment \\Unit \textbf{ID}} &
+\Hdr{Tool Standard (Timer / Scale / Tape)} &
+\Hdr{Warm-Up \\Completed Y/N} &
+\Hdr{Test \\Validity Tag} &
+\Hdr{\textbf{TEST}-\\RC} &
+\Hdr{Result} &
+\Hdr{Evidence\\ Ref} &
+\Hdr{Replication \\Status} &
+\Hdr{Conditions\\ Notes} &
+\Hdr{Stop/Abort} \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+Rules (binding):
+
+\begin{itemize}
+\item Test Validity Tag \textbf{MUST} be \textbf{VALID} or \textbf{INVALID}.
+\item \textbf{TEST-RC} is populated only when Test Validity Tag is \textbf{INVALID}. If Test Validity Tag is \textbf{VALID}, \textbf{TEST-RC} \textbf{MUST} be blank or N/A.
+\item Evidence Ref is mandatory. Missing Evidence Ref makes the test inadmissible for gate decisions and \textbf{MUST} be treated as \textbf{INVALID} for gate use.
+\item Environment Unit \textbf{ID} is mandatory for any test where environment comparability is relevant (\textbf{RUN}, \textbf{RUCK}, \textbf{SWIM}, \textbf{AER} machine-based tests). Missing Environment Unit \textbf{ID} makes the test inadmissible for gate decisions and \textbf{MUST} be treated as \textbf{INVALID} for gate use.
+\item If one protocol produces multiple metrics, Linked Metric \textbf{ID}(s) \textbf{MUST} list all \textbf{MET-2B}-### IDs separated by semicolons.
+\item Stop Abort is a required field. If Yes, record the observable reason and the immediate action taken (termination posture and escalation when indicated).
+\end{itemize}
+
+\subsection*{2.E.6 Environment Recording Standards for Route Pool and Machine}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.E.6 Environment Recording Standards for Route Pool and Machine}
+
+Required environment recording posture (binding):
+
+\begin{itemize}
+\item Every \textbf{RUN}, \textbf{RUCK}, \textbf{SWIM}, and machine-based \textbf{AER} test \textbf{MUST} reference a registered Environment Unit \textbf{ID} from the Environment Unit Library.
+\item If the environment changes materially (route distance verification method changes; pool unit/length changes; treadmill make/model changes; lane conditions materially change; surface changes materially), a new Environment Unit \textbf{ID} \textbf{MUST} be created. Prior IDs \textbf{MUST} NOT be reused to represent a different environment state.
+\item Environment Unit IDs are crosswalk keys. They \textbf{MUST} be stable, unique, and non-reused.
+\end{itemize}
+
+Naming structures (binding formatting conventions):
+
+\begin{itemize}
+\item Route \textbf{ID} structure: \textbf{ROUTE}-2E-### — distance label — surface — location note
+\item Pool \textbf{ID} structure: \textbf{POOL}-2E-### — length and units — location note
+\item Machine \textbf{ID} structures: \textbf{TM}-2E-###, ROW-2E-###, BIKE-2E-###, ELL-2E-###
+\end{itemize}
+
+Environment Unit Library registry table schema (exact columns):
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.00in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.25in]
+    Q[l,wd=.50in]
+    X[l,1.00]
+    Q[l,wd=1.60in]
+    Q[l,wd=.875in]
+    X[l,0.80]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-8} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Environment Unit \textbf{ID}} &
+\Hdr{Type (Route / Pool / Machine)} &
+\Hdr{Standard Distance or Length} &
+\Hdr{Location} &
+\Hdr{Surface or Conditions} &
+\Hdr{Grade or Incline} &
+\Hdr{Verification Method} &
+\Hdr{Notes} \\
+\end{longtblr}
+
+\endgroup
+
+Required condition fields to capture (record in Notes or Surface/Conditions as applicable):
+
+\begin{itemize}
+\item Outdoor routes: weather category; surface condition; wind note if material; temperature if known; traffic/hazard notes when relevant.
+\item Pools: length units (yards or meters); lane condition; crowding note; water temperature if known; facility rule constraints when relevant.
+\item Machines: make and model; console distance basis (displayed distance); grade/incline and setting capture expectations per test.
+\end{itemize}
+
+\end{landscape}
+
+\subsection*{2.E.7 Tool Standardization Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.E.7 Tool Standardization Rules}
+
+Timer standardization posture (binding):
+
+\begin{itemize}
+\item The timing method used for time trials \textbf{MUST} be recorded for every test event (Tool Standard field).
+\item A timer change event \textbf{MUST} be recorded when the timing device or method changes (e.g., phone timer to watch timer; different app; different watch).
+\item If timing method is not recorded, the test is \textbf{INVALID} for gate use.
+\end{itemize}
+
+Scale standardization posture (binding):
+
+\begin{itemize}
+\item Bodyweight \textbf{MUST} be rounded to the nearest 0.1 lb.
+\item Time-of-day and measurement conditions \textbf{SHOULD} be consistent within trend windows; if they change, the change \textbf{MUST} be recorded in \textbf{MEASURE} or Notes.
+\item Scale identity \textbf{MUST} be recorded (Tool \textbf{ID} if it exists, otherwise a clear description or stable label).
+\item Scale change events \textbf{MUST} be recorded. A scale change is a comparability break until stabilized and documented.
+\end{itemize}
+
+Tape standardization posture (binding):
+
+\begin{itemize}
+\item Tape sites \textbf{MUST} be rounded to the nearest 0.25 in.
+\item Landmark definitions and side selection \textbf{MUST} be stable within a trend window; any change is a comparability break and \textbf{MUST} be recorded.
+\item Tape identity \textbf{MUST} be recorded (Tool \textbf{ID} if it exists, otherwise a clear description or stable label).
+\end{itemize}
+
+Rounding and unit rules (binding anti-drift):
+
+\begin{itemize}
+\item Bodyweight: nearest 0.1 lb.
+\item Tape sites: nearest 0.25 in.
+\item Time trials: nearest 1 second.
+\item Distances: record the named test distance (e.g., “1.5 mi,” “500 yd,” “500 m,” “3 mi”) and \textbf{MUST} NOT overwrite with GPS-rounded values in the Result field.
+\end{itemize}
+
+Tool change event definition (binding):
+
+\begin{itemize}
+\item A tool change event occurs when any primary measurement tool changes in a way that could affect comparability: timer device or method, scale device, tape measure, pool length or unit, route-verification method, treadmill or machine make/model.
+\item Tool change events \textbf{MUST} be logged in Notes and, when relevant, in the Environment Unit Library (new Environment Unit \textbf{ID} when the environment/tool is part of the environment definition).
+\end{itemize}
+
+Tool drift and conservative handling (binding):
+
+\begin{itemize}
+\item When tool drift affects comparability (different treadmill, different pool unit/length, different route verification method), results MAY be recorded, but \textbf{MUST} be interpreted conservatively for gate use until stable, replicated \textbf{VALID} evidence exists under the new stable environment/tool state.
+\item If tool drift prevents validity condition requirements from being met (missing identity, missing verification method), the result is \textbf{INVALID} for gate use.
+\end{itemize}
+
+\newpage
+
+\subsection*{2.E.8 Missing Data and Deviation Handling}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.E.8 Missing Data and Deviation Handling}
+
+No inference rule (binding):
+
+\begin{itemize}
+\item Unknown values \textbf{MUST} be recorded as \textbf{UNKNOWN} or \textbf{MISSING}. No inference is permitted. Do not estimate, interpolate, or “fill in” for completeness.
+\end{itemize}
+
+Deviation documentation rule (binding):
+
+\begin{itemize}
+\item Any deviation from standard conditions \textbf{MUST} be documented with:
+\begin{itemize}
+\item the applicable reason code field (\textbf{SESSION-RC} for sessions; \textbf{TEST-RC} for tests) when the validity tag is \textbf{MODIFIED}/\textbf{INVALID} (session) or \textbf{INVALID} (test), and
+\item a free-text note describing what changed, why, and the observed impact on validity/admissibility posture.
+\end{itemize}
+\end{itemize}
+
+Missing required fields rule (binding):
+
+\begin{itemize}
+\item If a session or test was performed but required fields are missing, the evidence is inadmissible for gate decisions and \textbf{MUST} be treated as \textbf{INVALID} for gate use automatically.
+\item Missing required fields \textbf{MUST} NOT be repaired by memory for gate purposes.
+\end{itemize}
+
+Late entry rule (binding):
+
+\begin{itemize}
+\item Late entry is permitted only when the missing field can be verified with objective evidence (e.g., a timestamped photo/video, device log export, or facility record).
+\item A late entry \textbf{MUST} be marked explicitly in Notes as \textbf{VERIFIED} \textbf{LATE} \textbf{ENTRY} and \textbf{MUST} include the objective evidence pointer in Evidence Ref (tests) or Notes (sessions).
+\item If objective verification is not available, the entry remains inadmissible for gate decisions.
+\end{itemize}
+
+Retest posture after invalid test (binding):
+
+\begin{itemize}
+\item \textbf{INVALID} tests provide no gate credit and \textbf{MUST} be repeated under controlled conditions if the test is gate-required.
+\item Retesting \textbf{MUST} prioritize standardization and safety; retesting \textbf{MUST} NOT become PR chasing or justification for unsafe escalation.
+\end{itemize}
+
+Environment change rule (binding):
+
+\begin{itemize}
+\item When an environment changes materially, create a new Environment Unit \textbf{ID} rather than altering prior records.
+\item Do not rewrite history. Prior test events remain interpreted under the environment/tool state recorded at the time.
+\end{itemize}
+
+\newpage
+
+\subsection*{2.E.9 Weekly Compliance and Audit Checks}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.E.9 Weekly Compliance and Audit Checks}
+
+Weekly Audit and Gate Review checklist (binding; numeric defaults explicit):
+
+\begin{itemize}
+\item Verify admissible session compliance: at least 5 of 6 admissible sessions per week on average across the decision window.
+\item Verify \textbf{MODIFIED} cap posture: no more than 1 \textbf{MODIFIED} session per week outside medical issues; document medical issue justification when exceeded.
+\item Verify Cardio minimum standard met rate across the decision window is checked and recorded (and any failures are visible).
+\item Review session validity distribution (counts of \textbf{VALID} / \textbf{MODIFIED} / \textbf{INVALID}) and document dominant failure causes.
+\item Review test validity rate (\textbf{VALID} vs \textbf{INVALID}) for any tests executed in or affecting the decision window.
+\item Review Replication Status (1/3, 2/3, 3/3) for Gate-Critical metrics tested; do not claim tier classification without replication.
+\item Confirm Environment Unit IDs are stable and any changes are logged with new IDs where required.
+\item Confirm tool changes are logged (timer, scale, tape, or device changes) and comparability breaks are documented.
+\item Review pain and foot flags for trend escalation; document constraints and conservative actions.
+\item Enforce advancement posture constraint: gait-altering pain flag must be No for advancement posture.
+\item Review Stop/Abort events; verify documentation includes observable trigger, immediate action, escalation path when indicated, and disposition.
+\item Confirm Evidence Ref completeness for all test event rows where Evidence Ref is required by protocol or logging doctrine; missing required Evidence Ref is an automatic gate inadmissibility trigger for that test.
+\end{itemize}
+
+\subsection*{2.E.10 Conflict-Resolution Rule}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.E.10 Conflict-Resolution Rule}
+
+\begin{itemize}
+\item Any session or test lacking required logging fields is inadmissible for gate decisions and \textbf{MUST} be treated as \textbf{INVALID} for gate use.
+\item If any downstream artifact attempts to use inadmissible evidence to justify thresholds, tier classification, or gate outcomes, that artifact is Draft — Non-Deployable until corrected and re-versioned.
+\end{itemize}
+
+
+\end{document}

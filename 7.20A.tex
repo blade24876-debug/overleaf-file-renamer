@@ -1,0 +1,1128 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{\textbf{SOF}}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{landscape}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\section*{7.20.A - Bar soap / body wash}
+\phantomsection
+\addcontentsline{toc}{section}{7.20.A - Bar soap / body wash}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Bar soap / body wash & Dial Gold Bar Soap & \$5 & Cleansing bar & Phase-00 & Removes sweat and skin film quickly; chosen because the bar is cheap, durable, and easy to store. \\
+Budget & Bar soap / body wash & Ivory Original Bar Soap & \$4 & Cleansing bar & Phase-00 & Cleans basic training grime well; chosen because the formula is simple and rinses with little residue. \\
+Budget & Bar soap / body wash & Dove Men+Care Extra Fresh Bar & \$7 & Cleansing bar & Phase-00 & Washes sweat and odor after frequent sessions; chosen because it is easy to find and less harsh on dry skin. \\
+Standard & Bar soap / body wash & Dr. Bronner’s Pure-Castile Bar Soap & \$8 & Cleansing bar & Phase-00 & Handles full-body cleanup after repeated training; chosen because the bar lasts well and packs neatly for travel. \\
+Standard & Bar soap / body wash & CeraVe Hydrating Cleanser Bar & \$10 & Cleansing bar & Phase-00 & Cleans without stripping the skin barrier as aggressively; chosen because it suits frequent shower turnover. \\
+Standard & Bar soap / body wash & Cetaphil Gentle Cleansing Bar & \$9 & Cleansing bar & Phase-00 & Removes surface dirt with a milder feel; chosen because it is a safer daily-use option for easily irritated skin. \\
+Elite & Bar soap / body wash & Aesop Body Cleansing Slab & \$22 & Cleansing bar & Phase-00 & Clears sweat and odor while staying pleasant to use; chosen because premium texture can improve daily compliance. \\
+Elite & Bar soap / body wash & L’Occitane Shea Soap & \$14 & Cleansing bar & Phase-00 & Cleans repeatedly without feeling overly drying; chosen because the richer bar holds up well through heavy rotation. \\
+Elite & Bar soap / body wash & Molton Brown Coastal Cypress Bar & \$28 & Cleansing bar & Phase-00 & Refreshes heavily sweated skin cleanly; chosen because the premium bar gives strong user comfort and long service life. \\
+\end{longtblr}
+
+\section*{7.20.B - Shampoo}
+\phantomsection
+\addcontentsline{toc}{section}{7.20.B - Shampoo}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Shampoo & Suave Daily Clarifying Shampoo & \$4 & Hair cleanser & Phase-00 & Removes sweat salt and scalp buildup; chosen because it is inexpensive for frequent washes. \\
+Budget & Shampoo & Head and Shoulders Classic Clean & \$7 & Hair cleanser & Phase-00 & Cleans oily sweat-heavy hair effectively; chosen because it is common, reliable, and easy to replace. \\
+Budget & Shampoo & Dove Men+Care Thick and Strong & \$7 & Hair cleanser & Phase-00 & Washes hair after repeated high-sweat sessions; chosen because it covers basic daily use without much cost. \\
+Standard & Shampoo & Native Daily Clean Shampoo & \$12 & Hair cleanser & Phase-00 & Clears sweat and product residue with a lighter feel; chosen because it is easy to use every day without feeling heavy. \\
+Standard & Shampoo & CeraVe Gentle Hydrating Shampoo & \$14 & Hair cleanser & Phase-00 & Cleans scalp and hair while reducing harsh dryness; chosen because frequent showering makes gentler formulas more practical. \\
+Standard & Shampoo & Paul Mitchell Tea Tree Special Shampoo & \$18 & Hair cleanser & Phase-00 & Leaves a fresher scalp feel after hot sessions; chosen because the stronger clean sensation can improve routine adherence. \\
+Elite & Shampoo & Kérastase Bain Densité & \$42 & Hair cleanser & Phase-00 & Cleans repeated sweat buildup with a refined finish; chosen because premium texture can make daily hygiene more consistent. \\
+Elite & Shampoo & Oribe Signature Shampoo & \$49 & Hair cleanser & Phase-00 & Removes training-day oil and odor cleanly; chosen because high-end formula and finish support heavy-use comfort. \\
+Elite & Shampoo & Aesop Classic Shampoo & \$39 & Hair cleanser & Phase-00 & Washes hair thoroughly without an overly stripped feel; chosen because premium performance and user feel are both strong. \\
+\end{longtblr}
+
+\section*{7.20.C - Hand soap}
+\phantomsection
+\addcontentsline{toc}{section}{7.20.C - Hand soap}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Hand soap & Softsoap Liquid Hand Soap & \$3 & Hand cleanser & Phase-00 & Removes basic dirt and grime before eating or handling kit; chosen because a pump bottle is cheap and low friction. \\
+Budget & Hand soap & Dial Complete Liquid Hand Soap & \$4 & Hand cleanser & Phase-00 & Cleans hands after public-surface contact; chosen because it is widely available and simple to keep stocked. \\
+Budget & Hand soap & Method Foaming Hand Wash & \$5 & Hand cleanser & Phase-00 & Cuts visible grime quickly; chosen because the foaming format makes regular use more likely. \\
+Standard & Hand soap & Mrs. Meyer’s Clean Day Hand Soap & \$6 & Hand cleanser & Phase-00 & Supports quick post-session hand cleanup; chosen because the pump format and feel suit repeated daily use. \\
+Standard & Hand soap & Seventh Generation Hand Wash & \$5 & Hand cleanser & Phase-00 & Cleans up sweat and public-contact dirt cleanly; chosen because it works well as a steady daily sink-side option. \\
+Standard & Hand soap & Dr. Bronner’s Pure-Castile Liquid Soap & \$10 & Hand cleanser & Phase-00 & Handles hand washing and light gear rinsing in one product; chosen because the formula is versatile. \\
+Elite & Hand soap & Aesop Resurrection Hand Wash & \$41 & Hand cleanser & Phase-00 & Cleans hands often without feeling as punishing; chosen because premium texture can increase compliance. \\
+Elite & Hand soap & Le Labo Hinoki Hand Soap & \$30 & Hand cleanser & Phase-00 & Clears post-session grime with a refined feel; chosen because frequent sink use benefits from better user comfort. \\
+Elite & Hand soap & Molton Brown Orange and Bergamot Hand Wash & \$32 & Hand cleanser & Phase-00 & Washes hands thoroughly after public or gym contact; chosen because the premium pump formula suits high-frequency use. \\
+\end{longtblr}
+
+\section*{7.20.D - Deodorant / antiperspirant}
+\phantomsection
+\addcontentsline{toc}{section}{7.20.D - Deodorant / antiperspirant}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Deodorant / antiperspirant & Old Spice High Endurance & \$6 & Odor control & Phase-00 & Limits odor between showers; chosen because it is cheap and easy to replace often. \\
+Budget & Deodorant / antiperspirant & Degree Men UltraClear & \$7 & Odor control & Phase-00 & Manages sweat-related odor through long days; chosen because it is a common dependable stick. \\
+Budget & Deodorant / antiperspirant & Dove Men+Care Clean Comfort & \$8 & Odor control & Phase-00 & Keeps body odor lower during repeated sessions; chosen because it is comfortable for daily wear. \\
+Standard & Deodorant / antiperspirant & Mitchum Triple Odor Defense & \$7 & Odor control & Phase-00 & Holds odor control longer during heavy sweat turnover; chosen because it performs well at modest cost. \\
+Standard & Deodorant / antiperspirant & Native Deodorant & \$13 & Odor control & Phase-00 & Reduces odor with a lighter feel; chosen because some users tolerate it better for daily application. \\
+Standard & Deodorant / antiperspirant & Certain Dri Everyday Strength & \$7 & Odor control & Phase-00 & Helps with stronger sweat-management needs; chosen because it provides a more robust control option. \\
+Elite & Deodorant / antiperspirant & Kiehl’s Body Fuel Antiperspirant & \$24 & Odor control & Phase-00 & Controls odor and sweat with a refined application feel; chosen because premium daily use can improve consistency. \\
+Elite & Deodorant / antiperspirant & Malin+Goetz Eucalyptus Deodorant & \$24 & Odor control & Phase-00 & Keeps odor lower without a heavy residue feel; chosen because it suits frequent reapplication comfort. \\
+Elite & Deodorant / antiperspirant & Aesop Herbal Deodorant & \$35 & Odor control & Phase-00 & Provides a lighter odor-control layer for repeated daily use; chosen because user comfort and finish are strong. \\
+\end{longtblr}
+
+\section*{7.20.E - Toothbrush}
+\phantomsection
+\addcontentsline{toc}{section}{7.20.E - Toothbrush}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Toothbrush & Oral-B Indicator Soft & \$4 & Oral-care tool & Phase-00 & Supports consistent plaque removal; chosen because replacement cost is very low. \\
+Budget & Toothbrush & Colgate Extra Clean Soft & \$3 & Oral-care tool & Phase-00 & Handles basic daily brushing well; chosen because it is widely available and easy to replace on schedule. \\
+Budget & Toothbrush & GUM Technique Deep Clean & \$4 & Oral-care tool & Phase-00 & Cleans teeth and gumline more deliberately; chosen because the soft bristle layout is beginner-friendly. \\
+Standard & Toothbrush & Oral-B Pro-Health CrossAction & \$6 & Oral-care tool & Phase-00 & Improves basic brushing coverage; chosen because angled bristles make daily use more effective. \\
+Standard & Toothbrush & Colgate 360 Advanced & \$6 & Oral-care tool & Phase-00 & Cleans teeth and mouth surfaces in one tool; chosen because it reduces routine friction slightly. \\
+Standard & Toothbrush & Curaprox CS 5460 & \$10 & Oral-care tool & Phase-00 & Very soft dense bristles clean gently; chosen because frequent brushing is easier to tolerate. \\
+Elite & Toothbrush & Philips Sonicare ProtectiveClean 4100 & \$50 & Oral-care tool & Phase-00 & Increases brushing consistency with powered movement; chosen because it can improve routine compliance. \\
+Elite & Toothbrush & Oral-B Pro 1000 & \$50 & Oral-care tool & Phase-00 & Powered brushing gives a more repeatable clean; chosen because it is a proven premium entry electric brush. \\
+Elite & Toothbrush & SURI Sustainable Sonic Toothbrush & \$118 & Oral-care tool & Phase-00 & Adds a refined travel-capable powered brush option; chosen because strong portability supports routine stability. \\
+\end{longtblr}
+
+\section*{7.20.F - Toothpaste}
+\phantomsection
+\addcontentsline{toc}{section}{7.20.F - Toothpaste}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Toothpaste & Colgate Cavity Protection & \$3 & Oral-care paste & Phase-00 & Supports daily cavity prevention; chosen because it is cheap enough for uninterrupted replacement. \\
+Budget & Toothpaste & Crest Pro-Health Clean Mint & \$4 & Oral-care paste & Phase-00 & Cleans mouth and freshens breath reliably; chosen because it is easy to source anywhere. \\
+Budget & Toothpaste & Sensodyne Fresh Mint & \$6 & Oral-care paste & Phase-00 & Supports cleaning while helping sensitive teeth feel more manageable; chosen because sensitivity can derail brushing consistency. \\
+Standard & Toothpaste & Arm \& Hammer Advance White & \$5 & Oral-care paste & Phase-00 & Cleans well with a stronger fresh feel; chosen because some users prefer the cleaner aftertaste. \\
+Standard & Toothpaste & Hello Naturally Whitening Fluoride & \$6 & Oral-care paste & Phase-00 & Maintains basic oral hygiene with a simpler ingredient profile; chosen because daily use feel is good. \\
+Standard & Toothpaste & Parodontax Complete Protection & \$7 & Oral-care paste & Phase-00 & Supports thorough brushing for gumline care; chosen because repeated routine use benefits from stronger gum focus. \\
+Elite & Toothpaste & Marvis Classic Strong Mint & \$12 & Oral-care paste & Phase-00 & Delivers a strong clean-mouth feel; chosen because premium user experience can improve twice-daily consistency. \\
+Elite & Toothpaste & Curaprox Enzycal 1450 & \$14 & Oral-care paste & Phase-00 & Cleans gently with fluoride support; chosen because frequent use comfort is a priority. \\
+Elite & Toothpaste & Aesop Toothpaste & \$18 & Oral-care paste & Phase-00 & Gives a refined fresh-clean finish; chosen because high-compliance routines sometimes benefit from a better sensory experience. \\
+\end{longtblr}
+
+\section*{7.20.G - Dental floss / interdental cleaner}
+\phantomsection
+\addcontentsline{toc}{section}{7.20.G - Dental floss / interdental cleaner}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Dental floss / interdental cleaner & Oral-B Glide Pro-Health Floss & \$4 & Interdental tool & Phase-00 & Cleans between teeth where brushing misses; chosen because it slides easily for routine use. \\
+Budget & Dental floss / interdental cleaner & Plackers Micro Mint Floss Picks & \$3 & Interdental tool & Phase-00 & Makes interdental cleaning faster; chosen because pick format reduces excuse-driven skipping. \\
+Budget & Dental floss / interdental cleaner & GUM Soft-Picks Original & \$5 & Interdental tool & Phase-00 & Cleans smaller gaps gently; chosen because it is easy to use when string floss is avoided. \\
+Standard & Dental floss / interdental cleaner & Cocofloss & \$9 & Interdental tool & Phase-00 & Cleans more aggressively between teeth; chosen because textured floss gives stronger debris removal. \\
+Standard & Dental floss / interdental cleaner & TePe Interdental Brushes & \$8 & Interdental tool & Phase-00 & Improves targeted gap cleaning; chosen because brush-style interdental care can be easier to repeat. \\
+Standard & Dental floss / interdental cleaner & Oral-B Super Floss & \$5 & Interdental tool & Phase-00 & Handles harder-to-reach spaces well; chosen because the pre-cut design simplifies use. \\
+Elite & Dental floss / interdental cleaner & Waterpik Cordless Advanced & \$80 & Interdental tool & Phase-00 & Adds a powered interdental cleaning option; chosen because it can improve adherence for users who hate floss. \\
+Elite & Dental floss / interdental cleaner & Burst Water Flosser Pro & \$70 & Interdental tool & Phase-00 & Provides cleaner repeated water-floss use; chosen because it turns a skipped habit into a fast routine. \\
+Elite & Dental floss / interdental cleaner & Philips Sonicare Power Flosser 3000 & \$80 & Interdental tool & Phase-00 & Improves between-tooth cleaning with a premium powered workflow; chosen because consistency matters more than novelty. \\
+\end{longtblr}
+
+\section*{7.20.H - Nail clipper / file}
+\phantomsection
+\addcontentsline{toc}{section}{7.20.H - Nail clipper / file}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Nail clipper & Revlon Toenail Clipper & \$7 & Grooming tool & Phase-00 & Keeps nails short enough to reduce snagging and pressure; chosen because it is cheap and functional. \\
+Budget & Nail clipper & Trim Nail Clipper Set & \$8 & Grooming tool & Phase-00 & Supports routine finger and toenail maintenance; chosen because a set covers both roles simply. \\
+Budget & Nail clipper & Harperton Nail Clipper Set & \$10 & Grooming tool & Phase-00 & Provides basic grooming control; chosen because the paired sizes are practical for repeat upkeep. \\
+Standard & Nail clipper & Tweezerman Stainless Toenail Clipper & \$15 & Grooming tool & Phase-00 & Produces cleaner cuts than many cheap clippers; chosen because smoother trimming reduces routine irritation. \\
+Standard & Nail clipper & Seki Edge Stainless Clipper & \$18 & Grooming tool & Phase-00 & Gives sharper more controlled cuts; chosen because better tools make upkeep faster and neater. \\
+Standard & Nail clipper & Zwilling TWINOX Nail Clipper & \$20 & Grooming tool & Phase-00 & Handles repeated grooming with good durability; chosen because long service life matters in daily-use tools. \\
+Elite & Nail clipper & Green Bell Takumi No Waza & \$25 & Grooming tool & Phase-00 & Cuts very cleanly with low crushing; chosen because premium edge quality improves user comfort. \\
+Elite & Nail clipper & Klhip Ultimate Clipper & \$80 & Grooming tool & Phase-00 & Offers strong leverage for thicker nails; chosen because high-end mechanics make maintenance easier. \\
+Elite & Nail clipper & Niegeloh Solingen Toenail Nipper & \$45 & Grooming tool & Phase-00 & Gives more precision than simple lever clippers; chosen because premium control matters for repeated grooming. \\
+\end{longtblr}
+
+\section*{7.20.I - Quick-dry bath towel}
+\phantomsection
+\addcontentsline{toc}{section}{7.20.I - Quick-dry bath towel}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Quick-dry bath towel & Amazon Basics Quick-Dry Bath Towel & \$18 & Drying towel & Phase-00 & Dries the body after showers and washes; chosen because it is inexpensive and dries faster than dense cotton. \\
+Budget & Quick-dry bath towel & Utopia Towels Quick Dry Bath Towel & \$20 & Drying towel & Phase-00 & Supports regular post-session shower turnover; chosen because it is cheap enough to rotate several towels. \\
+Budget & Quick-dry bath towel & Mainstays Performance Bath Towel & \$10 & Drying towel & Phase-00 & Covers basic dry-off needs; chosen because low price helps maintain a clean-towel rotation. \\
+Standard & Quick-dry bath towel & Onsen Bath Towel & \$50 & Drying towel & Phase-00 & Dries quickly after use and packs smaller; chosen because faster dry times reduce damp-towel carryover. \\
+Standard & Quick-dry bath towel & Brooklinen Hammam Towel & \$39 & Drying towel & Phase-00 & Handles repeated shower use with less bulk; chosen because it air-dries faster than many plush towels. \\
+Standard & Quick-dry bath towel & Sand Cloud Turkish Towel & \$42 & Drying towel & Phase-00 & Supports quick dry-off with lower drying lag; chosen because thin weave suits high-frequency wash cycles. \\
+Elite & Quick-dry bath towel & Matouk Milagro Towel & \$59 & Drying towel & Phase-00 & Dries the body comfortably while staying lighter than oversized plush sets; chosen because premium feel can improve routine compliance. \\
+Elite & Quick-dry bath towel & Boll \& Branch Waffle Bath Towel & \$58 & Drying towel & Phase-00 & Waffle construction dries faster after use; chosen because it suits repeated daily turnover. \\
+Elite & Quick-dry bath towel & Parachute Waffle Bath Towel & \$49 & Drying towel & Phase-00 & Balances absorbency with faster air-dry behavior; chosen because high-frequency training benefits from quicker reset time. \\
+\end{longtblr}
+
+\section*{7.20.J - Laundry detergent}
+\phantomsection
+\addcontentsline{toc}{section}{7.20.J - Laundry detergent}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Laundry detergent & Tide Simply Clean and Fresh & \$12 & Laundry soap & Phase-00 & Cleans sweat-soaked clothing reliably; chosen because it is widely available and low cost. \\
+Budget & Laundry detergent & Arm and Hammer Clean Burst & \$10 & Laundry soap & Phase-00 & Removes basic odor and grime from training clothes; chosen because it offers solid value per load. \\
+Budget & Laundry detergent & Gain Original Liquid Detergent & \$12 & Laundry soap & Phase-00 & Handles ordinary sweat-laundry turnover well; chosen because it is easy to source in large bottles. \\
+Standard & Laundry detergent & Tide Hygienic Clean Heavy Duty & \$17 & Laundry soap & Phase-00 & Better sweat and grime removal supports higher-frequency apparel reuse; chosen because training loads get dirtier than casual clothes. \\
+Standard & Laundry detergent & Persil ProClean Original & \$16 & Laundry soap & Phase-00 & Cleans dense workout loads thoroughly; chosen because stronger wash performance reduces repeat odor retention. \\
+Standard & Laundry detergent & Seventh Generation Free and Clear & \$15 & Laundry soap & Phase-00 & Washes clothing without heavy fragrance load; chosen because repeated wear can make milder detergent more practical. \\
+Elite & Laundry detergent & HEX Performance Laundry Detergent & \$20 & Laundry soap & Phase-00 & Targets technical fabric odor and residue well; chosen because performance apparel often needs a sport-specific wash. \\
+Elite & Laundry detergent & Nathan Sport Wash & \$18 & Laundry soap & Phase-00 & Cleans synthetic training garments without heavy buildup; chosen because it suits repeated tech-fabric use. \\
+Elite & Laundry detergent & Win Sports Detergent & \$22 & Laundry soap & Phase-00 & Designed for sweat-heavy technical fabrics; chosen because premium sports detergent better preserves performance apparel feel. \\
+\end{longtblr}
+
+\section*{7.20.K - Laundry sanitizer / odor remover}
+\phantomsection
+\addcontentsline{toc}{section}{7.20.K - Laundry sanitizer / odor remover}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Laundry sanitizer / odor remover & Lysol Laundry Sanitizer & \$14 & Wash additive & Phase-00 & Reduces odor and sanitizing burden in heavily sweated clothing; chosen because it adds a simple second line beyond detergent alone. \\
+Budget & Laundry sanitizer / odor remover & OxiClean Odor Blasters & \$12 & Wash additive & Phase-00 & Helps lift stubborn training-clothes odor; chosen because odor buildup becomes a compliance problem fast. \\
+Budget & Laundry sanitizer / odor remover & Downy Rinse and Refresh & \$14 & Wash additive & Phase-00 & Cuts trapped odor from repeat-wear fabrics; chosen because it is easy to integrate into normal laundry flow. \\
+Standard & Laundry sanitizer / odor remover & HEX Deodorizing Spray & \$15 & Odor control & Phase-00 & Targets lingering fabric odor between full washes; chosen because it extends apparel usability safely. \\
+Standard & Laundry sanitizer / odor remover & Defunkify Laundry Booster & \$18 & Wash additive & Phase-00 & Works well on stubborn athletic-fabric odor; chosen because frequent sweat saturation demands stronger odor control. \\
+Standard & Laundry sanitizer / odor remover & Rockin' Green Active Wear Detergent Booster & \$20 & Wash additive & Phase-00 & Helps strip trapped sweat smell from synthetic gear; chosen because it is made for performance fabrics. \\
+Elite & Laundry sanitizer / odor remover & Tide Antibacterial Fabric Spray & \$16 & Odor control & Phase-00 & Adds a premium quick-fix odor reset between wash cycles; chosen because it helps stabilize clothing rotation. \\
+Elite & Laundry sanitizer / odor remover & HEX Performance Fabric Protector Spray & \$18 & Odor control & Phase-00 & Helps reduce odor retention in technical fabrics; chosen because premium apparel benefits from targeted care. \\
+Elite & Laundry sanitizer / odor remover & Vapor Fresh Laundry Detergent Sport Formula & \$20 & Wash additive & Phase-00 & Handles deep sweat smell with a sport-specific formula; chosen because persistent odor can otherwise drive premature garment abandonment. \\
+\end{longtblr}
+
+\section*{7.20.L - Laundry bag / hamper}
+\phantomsection
+\addcontentsline{toc}{section}{7.20.L - Laundry bag / hamper}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Mesh laundry bag / hamper & Honey-Can-Do Mesh Laundry Bag & \$8 & Laundry carrier & Phase-00 & Keeps dirty training clothes contained; chosen because a simple bag reduces pile-up and room contamination. \\
+Budget & Mesh laundry bag / hamper & Whitmor Mesh Laundry Bag & \$7 & Laundry carrier & Phase-00 & Supports basic separation of used clothing from clean kit; chosen because it is cheap and easy to hang. \\
+Budget & Mesh laundry bag / hamper & Mainstays Mesh Pop-Up Hamper & \$10 & Laundry carrier & Phase-00 & Gives a defined dirty-clothes target; chosen because it reduces floor clutter and wet-fabric scatter. \\
+Standard & Mesh laundry bag / hamper & CleverMade Collapsible Laundry Caddy & \$25 & Laundry carrier & Phase-00 & Holds shape better than soft sacks; chosen because structured carry helps with repeated laundry movement. \\
+Standard & Mesh laundry bag / hamper & Brabantia Foldable Laundry Basket & \$28 & Laundry carrier & Phase-00 & Better structure supports cleaner sorting and transport; chosen because higher-frequency loads need more stable handling. \\
+Standard & Mesh laundry bag / hamper & Household Essentials Pop-Up Hamper & \$18 & Laundry carrier & Phase-00 & Durable mid-tier hamper handles repeated wet-clothes use; chosen because a sturdier frame reduces collapse frustration. \\
+Elite & Mesh laundry bag / hamper & Steele Canvas Laundry Bag & \$70 & Laundry carrier & Phase-00 & Heavy-duty bag handles dense repeated loads; chosen because premium durability suits long-term daily use. \\
+Elite & Mesh laundry bag / hamper & Yamazaki Home Laundry Basket & \$55 & Laundry carrier & Phase-00 & Premium basket keeps dirty laundry more organized in smaller spaces; chosen because form factor matters in constrained rooms. \\
+Elite & Mesh laundry bag / hamper & Brabantia Laundry Bin & \$80 & Laundry carrier & Phase-00 & Overbuilt hamper supports cleaner odor and clothes separation; chosen because premium build reduces long-run friction. \\
+\end{longtblr}
+
+\section*{7.20.M - Moisture-control body powder}
+\phantomsection
+\addcontentsline{toc}{section}{7.20.M - Moisture-control body powder}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Moisture-control body powder & Gold Bond Medicated Powder & \$7 & Dryness aid & Phase-00 & Helps keep damp skin folds drier after sweat; chosen because moisture control is a direct skin-breakdown reducer. \\
+Budget & Moisture-control body powder & Anti Monkey Butt Body Powder & \$8 & Dryness aid & Phase-00 & Reduces damp friction in high-rub zones; chosen because it is built for sweat-heavy body contact areas. \\
+Budget & Moisture-control body powder & Johnson’s Cornstarch Powder & \$6 & Dryness aid & Phase-00 & Supports basic dryness in heat-prone areas; chosen because it is cheap and easy to use. \\
+Standard & Moisture-control body powder & Zeasorb Super Absorbent Powder & \$10 & Dryness aid & Phase-00 & Absorbs more sweat in persistent damp zones; chosen because stronger dryness control helps repeated daily training. \\
+Standard & Moisture-control body powder & Gold Bond Friction Defense Powder Spray & \$8 & Dryness aid & Phase-00 & Adds dryness with easier targeted application; chosen because spray format can reduce mess and speed use. \\
+Standard & Moisture-control body powder & Fresh Body Original Powder & \$12 & Dryness aid & Phase-00 & Keeps moisture and odor lower in friction zones; chosen because daily-use feel is softer than harsher medicated powders. \\
+Elite & Moisture-control body powder & Megababe Body Dust & \$20 & Dryness aid & Phase-00 & Controls sweat-prone skin contact areas with a smoother feel; chosen because premium texture improves regular use. \\
+Elite & Moisture-control body powder & Monkey Butt Lady Anti-Friction Powder & \$12 & Dryness aid & Phase-00 & Helps keep repeated movement zones drier; chosen because fine texture spreads more comfortably. \\
+Elite & Moisture-control body powder & Burt’s Bees Dusting Powder & \$10 & Dryness aid & Phase-00 & Adds a lighter-feel dryness layer; chosen because premium daily comfort can improve consistency. \\
+\end{longtblr}
+
+\section*{7.20.N - Body wipes}
+\phantomsection
+\addcontentsline{toc}{section}{7.20.N - Body wipes}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Body wipes & DUDE Wipes Shower Wipes & \$10 & Field wipe & Phase-04 & Clears sweat and salt when a full shower is delayed; chosen because large wipes improve post-pool cleanup fast. \\
+Budget & Body wipes & Goodwipes Body Wipes & \$9 & Field wipe & Phase-04 & Supports quick hygiene reset after wet or sweaty sessions; chosen because packable sheets simplify transitions. \\
+Budget & Body wipes & Combat Wipes ACTIVE & \$14 & Field wipe & Phase-04 & Removes grime during field or travel windows; chosen because the wipes are built for sweat-heavy conditions. \\
+Standard & Body wipes & Hustle Clean Body Wipes & \$12 & Field wipe & Phase-04 & Helps with post-session cleanup when access is limited; chosen because gym-use design suits repeated training carry. \\
+Standard & Body wipes & HyperGo Full Body Wipes & \$13 & Field wipe & Phase-04 & Wipes down larger skin areas effectively; chosen because bigger sheet size reduces cleanup time. \\
+Standard & Body wipes & Sea to Summit Wilderness Wipes XL & \$7 & Field wipe & Phase-04 & Provides a compact minimal wet-clean option; chosen because packability matters once pool and travel use start. \\
+Elite & Body wipes & Yuni Shower Sheets & \$18 & Field wipe & Phase-04 & Supports fast no-shower cleanup with a better user feel; chosen because premium comfort can improve actual use. \\
+Elite & Body wipes & Surviveware Biodegradable Wipes & \$15 & Field wipe & Phase-04 & Handles heavier grime and sweat cleanup; chosen because durable cloth strength suits field carry better. \\
+Elite & Body wipes & Ursa Major Essential Face and Body Wipes & \$24 & Field wipe & Phase-04 & Gives a premium post-session clean-down option; chosen because high-quality wipe texture improves full-body use. \\
+\end{longtblr}
+
+\section*{7.20.O - Hand sanitizer}
+\phantomsection
+\addcontentsline{toc}{section}{7.20.O - Hand sanitizer}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Hand sanitizer & Purell Advanced Hand Sanitizer & \$3 & Sanitizing gel & Phase-06 & Cuts hand contamination risk when soap access is delayed; chosen because it is cheap and universally available. \\
+Budget & Hand sanitizer & Germ-X Original & \$3 & Sanitizing gel & Phase-06 & Provides fast field-side hand cleanup; chosen because small bottles are easy to stage in several bags. \\
+Budget & Hand sanitizer & Touchland Power Mist & \$10 & Sanitizing spray & Phase-06 & Sanitizes quickly with lower sticky feel; chosen because spray format can improve repeat use compliance. \\
+Standard & Hand sanitizer & EO Hand Sanitizer Spray & \$6 & Sanitizing spray & Phase-06 & Offers quick hand sanitation in travel and field windows; chosen because spray use is simple and clean. \\
+Standard & Hand sanitizer & Dr. Bronner’s Organic Hand Sanitizer & \$5 & Sanitizing spray & Phase-06 & Adds a simple portable sanitation step; chosen because the small bottle fits well in compact kits. \\
+Standard & Hand sanitizer & Honest Hand Sanitizer Spray & \$4 & Sanitizing spray & Phase-06 & Supports fast hand sanitation without pump bottles; chosen because the travel-ready size suits repeated carry. \\
+Elite & Hand sanitizer & Aesop Resurrection Rinse-Free Hand Mist & \$33 & Sanitizing spray & Phase-06 & Sanitizes on the move with a better-use experience; chosen because premium feel can make consistent use more likely. \\
+Elite & Hand sanitizer & Byredo Rinse-Free Hand Cleanser & \$35 & Sanitizing gel & Phase-06 & Adds a premium portable hand-clean step; chosen because repeated field hygiene benefits from lower-friction use. \\
+Elite & Hand sanitizer & Noshinku Refillable Pocket Sanitizer & \$10 & Sanitizing spray & Phase-06 & Creates a more durable carry-forward sanitizer system; chosen because refillability reduces resupply friction. \\
+\end{longtblr}
+
+\section*{7.20.P - Disinfecting wipes}
+\phantomsection
+\addcontentsline{toc}{section}{7.20.P - Disinfecting wipes}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Disinfecting wipes & Lysol Disinfecting Wipes & \$6 & Surface wipe & Phase-06 & Cleans common-contact surfaces and hard cases; chosen because they are easy to find and simple to use. \\
+Budget & Disinfecting wipes & Clorox Disinfecting Wipes & \$6 & Surface wipe & Phase-06 & Supports quick wipe-down of high-touch items; chosen because strong availability makes restocking easy. \\
+Budget & Disinfecting wipes & Seventh Generation Disinfecting Wipes & \$5 & Surface wipe & Phase-06 & Gives basic sanitizing surface control; chosen because the wipe format works well in small kits. \\
+Standard & Disinfecting wipes & Purell Healthcare Surface Wipes & \$8 & Surface wipe & Phase-06 & Handles shared-touch cleanup more deliberately; chosen because mid-tier wipe quality supports repeated use. \\
+Standard & Hand/body wipes & Wet Ones Antibacterial Hand and Face Wipes & \$5 & Hand/body wipe & Phase-06 & Adds a multi-role sanitation wipe for hands and light-contact cleanup; chosen because versatility reduces kit sprawl. \\
+Standard & Disinfecting wipes & CaviWipes Travel Pack & \$12 & Surface wipe & Phase-06 & Creates a more formal sanitation wipe option; chosen because sealed packs travel better than large tubs. \\
+Elite & Disinfecting wipes & Clorox Healthcare Germicidal Wipes & \$10 & Surface wipe & Phase-06 & Premium higher-grade wipe supports stronger sanitation posture on shared gear surfaces. \\
+Elite & Hand-sanitizing wipes & PDI Sani-Hands Sanitizing Wipes & \$9 & Hand-sanitizing wipe & Phase-06 & Provides premium portable sanitation with good sealed-pack durability; chosen because travel continuity matters. \\
+Elite & Disinfecting wipes & Purell Professional Surface Disinfecting Wipes & \$10 & Surface wipe & Phase-06 & Gives a cleaner dedicated wipe-down option for repeated-use contact points; chosen because premium packaging travels better. \\
+\end{longtblr}
+
+\section*{7.20.Q - Refillable travel bottle set}
+\phantomsection
+\addcontentsline{toc}{section}{7.20.Q - Refillable travel bottle set}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Refillable travel bottle set & humangear GoToob+ Set & \$22 & Travel container & Phase-06 & Carries soap or shampoo in smaller volumes; chosen because squeeze bottles reduce travel bulk. \\
+Budget & Refillable travel bottle set & LiquiSnugs Silicone Travel Bottles & \$15 & Travel container & Phase-06 & Supports compact hygiene carry for field or pool days; chosen because flexible bottles pack easily. \\
+Budget & Refillable travel bottle set & Mrsdry Travel Bottles Set & \$10 & Travel container & Phase-06 & Simplifies transporting core liquids without full-size containers; chosen because low price supports early field continuity. \\
+Standard & Modular travel-container system & Cadence Capsules Set & \$84 & Modular travel container & Phase-06 & Improves organized carry of small hygiene supplies; chosen because modular capsules reduce leakage and chaos. \\
+Standard & Refillable travel bottle set & Matador FlatPak Toiletry Bottles & \$36 & Travel container & Phase-06 & Packs flatter than standard bottles; chosen because low-bulk carry matters in tighter kits. \\
+Standard & Refillable travel bottle set & Muji PET Travel Bottle Set & \$18 & Travel container & Phase-06 & Offers a clean compact refill system; chosen because clear bottles make contents easy to identify. \\
+Elite & Refillable travel bottle set & Gravel Explorer Mini Bottles & \$35 & Travel container & Phase-06 & Supports premium compact liquid carry; chosen because leak-resistant design protects bags and paperwork. \\
+Elite & Refillable travel bottle set & HumanGear GoToob+ Large Premium Set & \$28 & Travel container & Phase-06 & Provides a higher-end durable squeeze system; chosen because repeated refill use wears out cheap bottles quickly. \\
+Elite & Modular travel-container system & Cadence Travel System & \$168 & Modular travel container & Phase-06 & Creates a very organized hygiene carry ecosystem; chosen because premium modularity reduces forgotten items. \\
+\end{longtblr}
+
+\section*{7.20.R - Toiletry organizer / hygiene pouch}
+\phantomsection
+\addcontentsline{toc}{section}{7.20.R - Toiletry organizer / hygiene pouch}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Toiletry organizer / hygiene pouch & BAGSMART Toiletry Bag & \$20 & Hygiene organizer & Phase-04 & Keeps pool and hygiene items together in one grab-and-go unit; chosen because structure reduces forgotten essentials. \\
+Budget & Toiletry organizer / hygiene pouch & Amazon Basics Hanging Toiletry Kit & \$18 & Hygiene organizer & Phase-04 & Supports simple organization of wet-transition essentials; chosen because the hanging layout improves access. \\
+Budget & Toiletry organizer / hygiene pouch & Mossio Hanging Toiletry Bag & \$18 & Hygiene organizer & Phase-04 & Groups small hygiene items cleanly for pool or travel days; chosen because multiple pockets reduce loose-item drift. \\
+Standard & Toiletry organizer / hygiene pouch & Sea to Summit Hanging Toiletry Bag & \$40 & Hygiene organizer & Phase-04 & Handles repeated travel or pool carry more neatly; chosen because light weight and hanging format work well in small spaces. \\
+Standard & Toiletry organizer / hygiene pouch & Bellroy Toiletry Kit & \$59 & Hygiene organizer & Phase-04 & Creates a tidier higher-quality hygiene carry system; chosen because premium organization lowers transition friction. \\
+Standard & Toiletry organizer / hygiene pouch & Peak Design Wash Pouch Small & \$50 & Hygiene organizer & Phase-04 & Keeps hygiene tools upright and easy to reach; chosen because structure and materials handle repeated use well. \\
+Elite & Toiletry organizer / hygiene pouch & Peak Design Wash Pouch & \$60 & Hygiene organizer & Phase-04 & Provides a very refined one-pouch hygiene system; chosen because premium internal organization prevents kit chaos. \\
+Elite & Toiletry organizer / hygiene pouch & Tumi Split Travel Kit & \$150 & Hygiene organizer & Phase-04 & Offers a durable premium hygiene organizer for repeated long-term travel use; chosen because build quality is strong. \\
+Elite & Toiletry organizer / hygiene pouch & Briggs and Riley Hanging Toiletry Kit & \$79 & Hygiene organizer & Phase-04 & Supports a polished field-to-home hygiene workflow; chosen because premium construction suits high-frequency transport. \\
+\end{longtblr}
+
+\section*{7.20.S - Packable microfiber field towel}
+\phantomsection
+\addcontentsline{toc}{section}{7.20.S - Packable microfiber field towel}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Packable microfiber field towel & Rainleaf Microfiber Towel & \$15 & Field towel & Phase-04 & Dries hands, face, and wet gear contact points fast; chosen because it packs smaller than bath towels. \\
+Budget & Packable microfiber field towel & PackTowl Personal & \$25 & Field towel & Phase-04 & Supports fast field drying after pool or wet weather; chosen because it dries quickly between uses. \\
+Budget & Packable microfiber field towel & Dock \& Bay Quick Dry Towel & \$18 & Field towel & Phase-04 & Handles compact post-session dry-off duties; chosen because it is easy to keep in a swim bag. \\
+Standard & Packable microfiber field towel & Sea to Summit DryLite Towel & \$22 & Field towel & Phase-04 & Gives a better balance of absorbency and pack size; chosen because repeat carry comfort matters. \\
+Standard & Packable microfiber field towel & Matador Ultralight Travel Towel & \$30 & Field towel & Phase-04 & Adds a lighter travel-focused drying tool; chosen because bag space gets tighter once pool kit grows. \\
+Standard & Packable microfiber field towel & Nomadix Mini Towel & \$25 & Field towel & Phase-04 & Supports quick controlled dry-off of smaller areas; chosen because compact size suits field hygiene kits. \\
+Elite & Packable microfiber field towel & PackTowl Luxe & \$45 & Field towel & Phase-04 & Provides a more comfortable but still quick-drying field towel; chosen because premium feel helps frequent use. \\
+Elite & Packable microfiber field towel & Nomadix Original Towel & \$40 & Field towel & Phase-04 & Handles repeated wet use and dries quickly; chosen because premium durability suits long-horizon carry. \\
+Elite & Packable microfiber field towel & Slowtide Quick Dry Towel & \$35 & Field towel & Phase-04 & Offers a higher-end fast-dry towel option; chosen because it balances comfort and portability well. \\
+\end{longtblr}
+
+\section*{7.20.T - Sanitation disposal bags}
+\phantomsection
+\addcontentsline{toc}{section}{7.20.T - Sanitation disposal bags}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, valign=m},
+  column{1-6} = {halign=c},
+  column{7} = {halign=l},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx. USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Sanitation disposal bags & WAG BAG Toilet in a Bag Refill & \$4 & Disposal bag & Phase-12 & Contains contaminated waste when normal facilities fail; chosen because emergency sanitation gaps should not derail late-phase execution. \\
+Budget & Sanitation disposal bags & Cleanwaste \textbf{GO} Anywhere Waste Kit & \$5 & Disposal bag & Phase-12 & Adds a simple backup sanitation option for longer field windows; chosen because sealed disposal reduces contamination carryover. \\
+Budget & Sanitation disposal bags & TravelJohn Disposable Urinal Bag & \$12 & Disposal bag & Phase-12 & Gives a compact emergency waste option; chosen because it reduces unsanitary improvised solutions in constrained environments. \\
+Standard & Sanitation disposal bags & RESTOP 2 Waste Bag & \$7 & Disposal bag & Phase-12 & Supports cleaner pack-out sanitation control; chosen because repeated field use needs a more reliable seal. \\
+Standard & Sanitation disposal bags & Cleanwaste WAG BAG Portable Toilet Kit & \$35 & Disposal bag & Phase-12 & Creates a fuller sanitation contingency posture; chosen because longer event windows magnify waste-handling problems. \\
+Standard & Sanitation disposal bags & Coghlan’s Waste Bags & \$8 & Disposal bag & Phase-12 & Offers simple sturdy disposal control for dirty consumables; chosen because sealed containment keeps the hygiene kit safer. \\
+Elite & Sanitation disposal bags & RESTOP 1 Commuter Pack & \$25 & Disposal bag & Phase-12 & Gives a premium sealed emergency sanitation option; chosen because reliability matters when no safe disposal alternative exists. \\
+Elite & Sanitation disposal bags & Cleanwaste \textbf{GO} Anywhere Complete System & \$130 & Disposal bag & Phase-12 & Provides an overbuilt field sanitation contingency; chosen because late-phase reliability sometimes justifies a stronger backup. \\
+Elite & Sanitation disposal bags & Reliance Hassock replacement bag system & \$20 & Disposal bag & Phase-12 & Supports a more structured waste-containment posture; chosen because premium backup sanitation lowers breakdown risk in extended field contexts. \\
+\end{longtblr}
+
+\section*{7.20 - When These Items Are Needed}
+\phantomsection
+\addcontentsline{toc}{section}{7.20 - When These Items Are Needed}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=2.20in]
+    Q[c,wd=1.25in]
+    Q[l,wd=3.10in]
+    Q[l,wd=3.10in]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, valign=m},
+  column{1-2} = {halign=c},
+  column{3-4} = {halign=l},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Item} &
+\Hdr{First Phase Required} &
+\Hdr{Why It Becomes Necessary} &
+\Hdr{What Happens If Missing} \\
+Bar soap / body wash & Phase-00 & Basic skin cleaning is part of the first locked hygiene posture and reduces sweat-film carryover. & Skin stays dirtier after sessions and odor / irritation risk rises. \\
+Shampoo & Phase-00 & Repeated sweating makes scalp and hair hygiene part of a realistic daily-cleaning baseline. & Scalp comfort and cleanliness deteriorate faster under frequent training. \\
+Hand soap & Phase-00 & Basic hand hygiene is an immediate illness-control measure in a high-frequency training routine. & Hand-to-mouth contamination risk stays higher and daily hygiene becomes inconsistent. \\
+Deodorant / antiperspirant & Phase-00 & Daily odor control supports repeated social and training continuity under frequent sweating. & Odor buildup becomes more likely and routine adherence can drop for avoidable reasons. \\
+Toothbrush & Phase-00 & A stable oral-care baseline belongs in the first minimum hygiene kit. & Oral hygiene becomes inconsistent and easier to neglect. \\
+Toothpaste & Phase-00 & Basic oral-care consumables are part of the same minimum personal-health posture. & Daily brushing becomes incomplete or less likely to happen consistently. \\
+Dental floss / interdental cleaner & Phase-00 & Oral-care completeness improves once the routine is built from the start rather than added later. & Interdental cleaning remains absent and oral-care quality is weaker. \\
+Nail clipper & Phase-00 & Basic grooming control prevents small avoidable self-management problems from accumulating. & Nails are more likely to become snag, pressure, or cleanliness issues. \\
+Quick-dry bath towel & Phase-00 & Daily post-shower dry-off needs a stable towel rotation that can keep up with frequent sessions. & Damp-towel reuse and slow turnover increase odor and hygiene friction. \\
+Laundry detergent & Phase-00 & Frequent training clothing must be washable on a repeat schedule to keep execution realistic. & Dirty clothing accumulates faster and clean kit continuity breaks down. \\
+Laundry sanitizer / odor remover & Phase-00 & Sweat-heavy clothing often needs stronger odor control than detergent alone provides. & Persistent odor and residue buildup make apparel reuse less tolerable. \\
+Mesh laundry bag / hamper & Phase-00 & Dirty-kit containment is part of a realistic hygiene and laundry posture from the start. & Used clothing spreads across living space and becomes harder to manage. \\
+Moisture-control body powder & Phase-00 & Moisture management directly supports skin integrity where sweat and friction overlap. & Damp friction zones stay more vulnerable to rash and skin breakdown. \\
+Body wipes & Phase-04 & Once pool and wet-kit transitions begin, fast no-shower cleanup becomes operationally useful. & Post-swim and travel hygiene becomes slower and less reliable. \\
+Hand sanitizer & Phase-06 & Expanded field and travel continuity make portable hand hygiene more important once away-from-home exposures rise. & Hand sanitation depends too heavily on sink access and becomes less resilient. \\
+Disinfecting wipes & Phase-06 & Shared-surface cleanup becomes more useful once gear, bags, and transport complexity increase. & High-touch items stay dirtier and sanitation control weakens. \\
+Refillable travel bottle set & Phase-06 & Expanded travel continuity benefits from carrying compact liquid hygiene supplies instead of full-size containers. & Portable hygiene becomes bulkier, messier, and easier to skip. \\
+Toiletry organizer / hygiene pouch & Phase-04 & Pool and wet-transition use makes a single organized hygiene pouch more useful than scattered items. & Small hygiene items are easier to forget, lose, or contaminate. \\
+Packable microfiber field towel & Phase-04 & Pool-entry and wet-weather transitions need a compact dedicated towel that lives in the field kit. & Small-area dry-off remains clumsy and bag saturation risk increases. \\
+Sanitation disposal bags & Phase-12 & Overbuilt field sanitation contingency is most justified near long, high-consequence execution windows. & Waste control and contamination management stay more fragile if normal facilities fail. \\
+\end{longtblr}
+
+\section*{7.20 - Compliance Checklist}
+\phantomsection
+\addcontentsline{toc}{section}{7.20 - Compliance Checklist}
+
+\begin{itemize}
+\item Only one deliverable is provided for Target Category 7.20.
+\item The title, group headers, and output structure follow the locked schema.
+\item The chart uses the exact required columns.
+\item Twenty distinct items are included, and each item contains three Budget rows, three Standard rows, and three Elite rows.
+\item Rows are grouped by item and progress from foundational home hygiene tools toward travel, field, and redundancy sanitation tools.
+\item Notes include both the intended effect or use and the reason the specific item was chosen, with unique wording for every entry.
+\item Stage-6 timing requires reconciliation, because several detailed item families are absent from the locked stage-level Tier tables.
+\item No programming, workouts, sets, reps, new tests, new thresholds, retailer links, affiliate links, promo codes, or live price research are included.
+\item No medical diagnosis, treatment advice, prescription guidance, or hormone guidance is included.
+\item The required post-chart timing table is included, but it does not fully match the stage-level Tier tables and doctrine language.
+\end{itemize}
+
+\end{landscape}
+\endgroup
+
+\end{document}

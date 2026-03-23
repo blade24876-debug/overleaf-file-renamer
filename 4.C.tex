@@ -1,0 +1,769 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 4.C — Movement Menu, Regressions, and Progressions}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 4.C — Movement Menu, Regressions, and Progressions}
+
+\subsection*{4.C.1 Governing Rules — Phase 00 Only}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.C.1 Governing Rules — Phase 00 Only}
+
+\begin{itemize}
+\item Phase 00 movement selection is conservative by design. The objective is repeatable, low-risk execution that preserves safety, comparability, and auditability under a high-risk novice start-state.
+\item Technique is the gate: low fatigue, stop before form degradation, and no “train to failure” posture. If form drifts, the exposure is regressed or terminated.
+\item One option per pattern per session: select exactly one of the following per pattern—regressed, standard, or upper-end Phase 00-safe. Do not mix multiple difficulty variants of the same pattern in the same session.
+\item Preserve intent while reducing risk: regress range of motion, leverage, speed, and complexity before reducing session frequency. Phase 00 preserves the six-session cadence unless a safety stop posture requires deviation under governance.
+\item Prohibited exposures remain prohibited in Phase 00: impact running progression, rucking, maximal strength testing, plyometrics, breathless conditioning, and underwater or breath-hold exposures.
+\item Joint-history constraints are enforced as default conservative posture unless clinician restrictions are explicitly provided:
+  \begin{itemize}
+  \item right shoulder repair: avoid aggressive overhead and end-range shoulder loading; prioritize scapular control and pain-free range.
+  \item right hip labrum repair: avoid twisting/pivoting under load; avoid aggressive end-range hip flexion that provokes compensation.
+  \item right ankle Broström procedure: avoid unstable surfaces early; prioritize stable stance and controlled dorsiflexion; avoid abrupt lateral demands.
+  \end{itemize}
+\item Equipment posture is locked to Phase 00 minimal kit: stable chair/bench, mat, optional light resistance band. No dumbbells/kettlebells and no machine-required movements as standard options.
+\item Band implementation posture:
+  \begin{itemize}
+  \item default to anchor-free band setups whenever possible,
+  \item anchored band setups are authorized only if purpose-built, stable, and low-tension,
+  \item if anchor stability cannot be verified, anchored band work is not authorized and anchor-free alternatives must be used.
+  \end{itemize}
+\item Lock-field discipline for comparability and audit:
+  \begin{itemize}
+  \item footwear and surface class are treated as controlled inputs for locomotion exposures,
+  \item chair height and arms policy are treated as controlled inputs for sit-to-stand exposures,
+  \item incline height and hand placement are treated as controlled inputs for incline push exposures,
+  \item plank termination standard is treated as a controlled rule (what ends the hold),
+  \item band tension level and setup method are recorded whenever band work is used.
+  \end{itemize}
+\item Documentation posture aligned to Stage 1.F:
+  \begin{itemize}
+  \item when a planned option is changed due to a trigger, the session \textbf{MUST} be tagged \textbf{MODIFIED} with a \textbf{SESSION-RC} and an observable-trigger note,
+  \item if required session elements or required documentation are missing, the session \textbf{MUST} be tagged \textbf{INVALID} for progression decision use.
+  \end{itemize}
+\item Reason-code posture (do not invent codes; use Stage 1.F schema):
+  \begin{itemize}
+  \item Sessions: use the applicable \textbf{SESSION-RC}-\#\#\# (\textbf{ENV}, PAIN, \textbf{ILL}, \textbf{EQUIP}, \textbf{TIME}, \textbf{TRAVEL}, \textbf{SAFETY}, \textbf{WEATHER}, \textbf{ADMIN}, \textbf{WATER} where applicable).
+  \item Tests: use the applicable \textbf{TEST-RC}-\#\#\# when a test attempt becomes \textbf{INVALID}.
+  \end{itemize}
+\item No novelty near protected windows: do not introduce new footwear interface, new surface class, new chair height, new incline height, or new band setup in the lead-in to protected test windows unless explicitly treated as re-baselining and documented as a comparability break.
+\item This menu supports Phase 00 execution and Phase 00 test compatibility. It \textbf{MUST} NOT drift into higher-risk variants “because it feels easy,” and it \textbf{MUST} NOT be used to justify pulling higher-risk domains forward.
+\end{itemize}
+
+\subsection*{4.C.2 Key Patterns — Required Headings in This Exact Order}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.C.2 Key Patterns — Required Headings in This Exact Order}
+
+\subsubsection*{Gait and locomotion}
+\phantomsection
+
+Definition: Low-impact locomotion exposures that build aerobic tolerance and stable gait mechanics under controlled footwear and surface conditions, without introducing impact running or load carriage.
+
+Phase 00 coaching notes:
+
+\begin{itemize}
+\item Primary mechanic priority is stable gait: no limp, no protective trunk lean, no new toe-out compensation, and no visible stride asymmetry introduced to avoid discomfort.
+\item Surface class is a safety control. Outdoor locomotion is executed only on safe footing; ice, poor visibility, lightning risk, unsafe heat, or poor air quality triggers indoor substitution or postponement.
+\item Footwear interface is a controlled input: shoes, socks, and lacing approach are stabilized and treated as lock-field-like controls; document any change as a comparability break.
+\item Hip-history caution: avoid sharp turns and pivoting; use straight-line or gentle arc routes; avoid uneven terrain that forces rotational compensation.
+\item Ankle-history caution: avoid unstable surfaces and off-camber terrain; prioritize a stable foot tripod; avoid “testing” ankle stability on rough ground.
+\item Breathlessness is not the target. Maintain talk-test governance; if talk-test failure cannot be restored by immediate downshift, terminate and document.
+\item Non-impact substitutes (elliptical or bike) are permitted when step-based locomotion is not viable due to foot breakdown risk, pain posture, or unsafe surface class. Substitutions preserve intent but do not create walk-test comparability evidence.
+\item If a scheduled walk-based test is approaching and locomotion has been substituted away from walking for safety, the walk test is reslotted to the next protected window rather than forced under compromised gait or foot posture.
+\end{itemize}
+
+Advance when:
+
+\begin{itemize}
+\item Gait remains stable and symptom-free across repeated exposures, and foot hotspots do not trend toward blistering.
+\item No dizziness/lightheadedness and no unusual/disproportionate breathlessness occurs at the planned effort.
+\item The footwear and surface class can be held stable and logged consistently without repeated hazard-driven changes.
+\end{itemize}
+
+Regress today when:
+
+\begin{itemize}
+\item Pain $>$ 5/10, OR
+\item Pain alters mechanics (limp, compensation, loss of stable joint position), OR
+\item Dizziness/lightheadedness, OR
+\item Unusual/disproportionate breathlessness relative to planned effort, OR
+\item Instability/swelling at a joint, OR
+\item Any Stage 1.F red-flag symptom posture applies (\textbf{STOP} \textbf{NOW} and escalate per Stage 1.F).
+\end{itemize}
+
+24–48 hour downgrade posture:
+
+\begin{itemize}
+\item If pain persists or escalates over 24–48 hours, or if hotspots worsen, downshift the next exposures, substitute to the lowest orthopedic cost modality, and remove progression attempts until stable.
+\end{itemize}
+
+\subsubsection*{Squat and sit-to-stand}
+\phantomsection
+
+Definition: Controlled squat-pattern exposures executed primarily as sit-to-stand variants to build lower-body tolerance and movement quality under conservative hip and ankle posture.
+
+Phase 00 coaching notes:
+
+\begin{itemize}
+\item Priority is alignment and symmetry: knees track with feet, no collapsing inward, no shifting to a single side, and no trunk collapse.
+\item Chair height is treated as a controlled input; do not change chair height casually if the pattern is used for consistent monitoring and comparability.
+\item Arms policy is treated as a controlled input; if hands are used for assistance, it is recorded and held stable within the current monitoring window.
+\item Hip-history caution: avoid deep end-range flexion if it provokes compensation (posterior pelvic tilt, twisting, shifting). Choose the smallest range that preserves clean mechanics.
+\item Ankle-history caution: stable stance and stable surface are mandatory; do not force dorsiflexion ranges that provoke pain or compensation.
+\item Speed is controlled. No bouncing off the chair, no ballistic descent, and no momentum-driven “rock and stand.”
+\item Common faults: asymmetric loading, toe-out drift to avoid ankle discomfort, and breath-holding through effort.
+\item If the pattern triggers pain or compensation, the correct action is regression (higher chair, more assistance, reduced range), not “try harder.”
+\end{itemize}
+
+Advance when:
+
+\begin{itemize}
+\item Repeated exposures show clean mechanics at the current chair height and arms policy with no pain-driven compensation.
+\item Next-day response is stable: no swelling, no gait change, and no escalating soreness that impairs stairs or sit-to-stand.
+\end{itemize}
+
+Regress today when:
+
+\begin{itemize}
+\item Pain $>$ 5/10, OR
+\item Pain alters mechanics (limp, compensation, loss of stable joint position), OR
+\item Dizziness/lightheadedness, OR
+\item Unusual/disproportionate breathlessness relative to planned effort, OR
+\item Instability/swelling at a joint, OR
+\item Any Stage 1.F red-flag symptom posture applies (\textbf{STOP} \textbf{NOW} and escalate per Stage 1.F).
+\end{itemize}
+
+24–48 hour downgrade posture:
+
+\begin{itemize}
+\item If soreness impairs stairs or sit-to-stand without compensation, or if sleep is disrupted by soreness, downshift the next exposures (higher chair, more assistance) and remove progression attempts until stable.
+\end{itemize}
+
+\subsubsection*{Hinge and hip extension}
+\phantomsection
+
+Definition: Low-load posterior chain and hip-extension patterning executed without external loading to support trunk control and hip stability without provoking hip or back symptoms.
+
+Phase 00 coaching notes:
+
+\begin{itemize}
+\item Primary priority is neutral spine and controlled hip motion; avoid rounding-to-stand, end-range strain, or twisting.
+\item Hip-history caution: keep hips square, avoid pivoting and rotation, and avoid aggressive end-range hip flexion that triggers compensation.
+\item Ankle-history caution: maintain stable stance and stable surface; avoid wobble demands early.
+\item Speed is controlled; avoid ballistic “snap” intent and avoid rebound patterns.
+\item Common faults: bending through the back instead of the hips, knee collapse, and shifting weight to one side to avoid discomfort.
+\item If the hinge pattern provokes back discomfort or hip pinching sensations, reduce range first; if symptoms persist, substitute to simpler hip extension patterning.
+\item Do not add complexity and volume in the same week; hinge depth/complexity increases only after repeatable clean patterning.
+\end{itemize}
+
+Advance when:
+
+\begin{itemize}
+\item Controlled range can be repeated without pain-driven compensation and without next-day mechanics changes.
+\item The pelvis and trunk remain stable during the pattern, and breathing stays controlled.
+\end{itemize}
+
+Regress today when:
+
+\begin{itemize}
+\item Pain $>$ 5/10, OR
+\item Pain alters mechanics (limp, compensation, loss of stable joint position), OR
+\item Dizziness/lightheadedness, OR
+\item Unusual/disproportionate breathlessness relative to planned effort, OR
+\item Instability/swelling at a joint, OR
+\item Any Stage 1.F red-flag symptom posture applies (\textbf{STOP} \textbf{NOW} and escalate per Stage 1.F).
+\end{itemize}
+
+24–48 hour downgrade posture:
+
+\begin{itemize}
+\item If pain persists or escalates, reduce range and complexity and remove progression attempts until stable; if gait is altered, downshift locomotion and substitute as needed.
+\end{itemize}
+
+\subsubsection*{Push — horizontal and vertical regressions}
+\phantomsection
+
+Definition: Push pattern exposures used to build shoulder-safe pressing tolerance primarily through horizontal regressions, with vertical-pattern work limited to unloaded mechanics and scapular control.
+
+Phase 00 coaching notes:
+
+\begin{itemize}
+\item Shoulder-history caution dominates: avoid aggressive overhead loading and end-range stress absent explicit clearance; all work remains pain-free and controlled.
+\item Horizontal push is prioritized because it reduces load and supports controlled scapular mechanics.
+\item Incline height and hand placement are treated as controlled inputs when incline push exposures are used as comparable work.
+\item Vertical-pattern work in Phase 00 is mechanics-only: controlled overhead reach mechanics and scapular motion without loading; it is not progressed into loaded pressing.
+\item Common faults: rib flare with shoulder elevation, shrugging and neck dominance, elbow flare that provokes shoulder irritation, and collapsing at the bottom.
+\item Tempo is controlled; avoid bouncing and avoid “drop and push” behavior.
+\item If push work triggers pain or compensation, regress leverage first (higher incline or wall-supported) and reduce range as needed.
+\end{itemize}
+
+Advance when:
+
+\begin{itemize}
+\item Horizontal push exposures can be repeated with stable trunk, controlled shoulders, and no pain-driven compensation.
+\item Lock fields (incline height, hand placement) can be held stable and logged without drift.
+\end{itemize}
+
+Regress today when:
+
+\begin{itemize}
+\item Pain $>$ 5/10, OR
+\item Pain alters mechanics (limp, compensation, loss of stable joint position), OR
+\item Dizziness/lightheadedness, OR
+\item Unusual/disproportionate breathlessness relative to planned effort, OR
+\item Instability/swelling at a joint, OR
+\item Any Stage 1.F red-flag symptom posture applies (\textbf{STOP} \textbf{NOW} and escalate per Stage 1.F).
+\end{itemize}
+
+24–48 hour downgrade posture:
+
+\begin{itemize}
+\item If shoulder discomfort persists over 24–48 hours, increase support (higher incline or wall-supported), reduce range, and remove progression attempts until stable.
+\end{itemize}
+
+\subsubsection*{Pull — horizontal and vertical options with bands if allowed}
+\phantomsection
+
+Definition: Pull pattern exposures used to develop scapular control and pulling tolerance primarily through horizontal options; vertical options are limited and require strict band authorization posture.
+
+Phase 00 coaching notes:
+
+\begin{itemize}
+\item Pull is a shoulder-stability control: priority is scapular retraction/depression without shrugging and without pain.
+\item Without stable equipment, vertical pulling is not progressed as a “pull-up pathway” in Phase 00. Use scapular control and horizontal pulls as the safe baseline.
+\item Band posture is restrictive:
+  \begin{itemize}
+  \item anchor-free setups are preferred,
+  \item anchored band work is authorized only if the anchor is purpose-built, stable, and low-tension; if not verifiable, anchored work is not authorized.
+  \end{itemize}
+\item Shoulder-history caution: avoid aggressive end-range traction; avoid overhead band pulling if it provokes rib flare or shoulder irritation.
+\item Common faults: shrugging, rib flare, uncontrolled recoil, and breath-holding during effort.
+\item If band tension causes form loss, reduce tension first; if tension cannot be reduced safely, substitute to non-band scapular control options.
+\item Pull work remains submax and controlled; it is not used to create breathless conditioning.
+\end{itemize}
+
+Advance when:
+
+\begin{itemize}
+\item Scapular control is stable and pain-free across repeated exposures.
+\item If bands are used, band tension level and setup method can be held stable and logged consistently.
+\end{itemize}
+
+Regress today when:
+
+\begin{itemize}
+\item Pain $>$ 5/10, OR
+\item Pain alters mechanics (limp, compensation, loss of stable joint position), OR
+\item Dizziness/lightheadedness, OR
+\item Unusual/disproportionate breathlessness relative to planned effort, OR
+\item Instability/swelling at a joint, OR
+\item Any Stage 1.F red-flag symptom posture applies (\textbf{STOP} \textbf{NOW} and escalate per Stage 1.F).
+\end{itemize}
+
+24–48 hour downgrade posture:
+
+\begin{itemize}
+\item If shoulder irritation persists over 24–48 hours, reduce range, reduce tension, and prioritize scapular control; remove progression attempts until stable.
+\end{itemize}
+
+\subsubsection*{Core — anti-extension, anti-rotation, bracing}
+\phantomsection
+
+Definition: Trunk control exposures focused on bracing stability and anti-extension control to support gait stability, sit-to-stand mechanics, and plank performance without spinal strain.
+
+Phase 00 coaching notes:
+
+\begin{itemize}
+\item The priority is stable alignment under low fatigue; avoid high-strain abdominal work and avoid breath-holding.
+\item Plank termination standard is explicit: the hold ends when form fails (sag, pike, shoulder collapse, compensatory shift) or when pain-driven compensation appears.
+\item Breathing remains controlled; avoid strain behaviors that increase dizziness risk.
+\item Hip-history caution: avoid aggressive hip-flexion-dominant trunk work that provokes hip irritation.
+\item Common faults: rib flare, shoulder shrug, lumbar sag, piking, and time-chasing beyond form quality.
+\item If back discomfort appears, regress leverage and range; if symptoms persist, substitute to simpler bracing patterning.
+\end{itemize}
+
+Advance when:
+
+\begin{itemize}
+\item Bracing can be repeated with stable breathing and no pain-driven compensation.
+\item Holds terminate consistently on form failure and can be documented without ambiguity.
+\end{itemize}
+
+Regress today when:
+
+\begin{itemize}
+\item Pain $>$ 5/10, OR
+\item Pain alters mechanics (limp, compensation, loss of stable joint position), OR
+\item Dizziness/lightheadedness, OR
+\item Unusual/disproportionate breathlessness relative to planned effort, OR
+\item Instability/swelling at a joint, OR
+\item Any Stage 1.F red-flag symptom posture applies (\textbf{STOP} \textbf{NOW} and escalate per Stage 1.F).
+\end{itemize}
+
+24–48 hour downgrade posture:
+
+\begin{itemize}
+\item If back or hip discomfort persists, shorten levers, reduce range, and remove progression attempts until stable.
+\end{itemize}
+
+\subsubsection*{Mobility — ankle, hip, thoracic spine, shoulder}
+\phantomsection
+
+Definition: Controlled mobility exposures used to preserve joint ranges required for gait, sit-to-stand, incline push, and shoulder mechanics under pain-free, non-ballistic posture.
+
+Phase 00 coaching notes:
+
+\begin{itemize}
+\item Mobility is a safety control, not an intensity contest. Avoid aggressive end-range stress and avoid ballistic bouncing.
+\item Ankle-history caution: dorsiflexion work is controlled and stable; avoid unstable surfaces; stop if pain or instability appears.
+\item Hip-history caution: avoid twisting/pivoting demands; avoid forcing deep hip flexion that provokes compensation.
+\item Shoulder-history caution: shoulder mobility remains controlled; avoid end-range forcing and avoid aggressive overhead stress; prioritize rib control.
+\item Thoracic mobility supports shoulder mechanics and posture; keep it low risk and controlled.
+\item Common faults: forcing range with compensation (rib flare, lumbar extension, pelvic twist) and pushing into sharp discomfort.
+\item If compensation appears, regress range and support; do not “push through” to reach an arbitrary position.
+\end{itemize}
+
+Advance when:
+
+\begin{itemize}
+\item Mobility exposures are repeatable with stable alignment and no pain-driven compensation.
+\item Range improvements appear as cleaner mechanics, not as forced end-range positions.
+\end{itemize}
+
+Regress today when:
+
+\begin{itemize}
+\item Pain $>$ 5/10, OR
+\item Pain alters mechanics (limp, compensation, loss of stable joint position), OR
+\item Dizziness/lightheadedness, OR
+\item Unusual/disproportionate breathlessness relative to planned effort, OR
+\item Instability/swelling at a joint, OR
+\item Any Stage 1.F red-flag symptom posture applies (\textbf{STOP} \textbf{NOW} and escalate per Stage 1.F).
+\end{itemize}
+
+24–48 hour downgrade posture:
+
+\begin{itemize}
+\item If pain persists or escalates, reduce range and intensity and remove progression attempts until stable.
+\end{itemize}
+
+\subsubsection*{Breathing drills — optional}
+\phantomsection
+
+Definition: Low-risk breathing and downregulation exposures used to support recovery, bracing control, and controlled exertion posture without breath-hold or dizziness induction.
+
+Phase 00 coaching notes:
+
+\begin{itemize}
+\item Breathing drills are optional and must remain low effort; they are not “breath training” stressors.
+\item Avoid breath holds. Water and breath-hold governance remain absolute; breathing drills do not alter that boundary.
+\item Priority is controlled nasal breathing and downregulation posture that supports session completion and recovery note quality.
+\item Common faults: over-breathing, breath holds, and drills that induce dizziness.
+\item If dizziness occurs, terminate the drill immediately and document; use a simpler pattern next exposure or omit until stable.
+\item Breathing drills must not be used to justify higher Cardio intensity; they are a recovery and control tool.
+\end{itemize}
+
+Advance when:
+
+\begin{itemize}
+\item Drills can be performed without dizziness and support stable breathing during movement exposures.
+\end{itemize}
+
+Regress today when:
+
+\begin{itemize}
+\item Pain $>$ 5/10, OR
+\item Pain alters mechanics (limp, compensation, loss of stable joint position), OR
+\item Dizziness/lightheadedness, OR
+\item Unusual/disproportionate breathlessness relative to planned effort, OR
+\item Instability/swelling at a joint, OR
+\item Any Stage 1.F red-flag symptom posture applies (\textbf{STOP} \textbf{NOW} and escalate per Stage 1.F).
+\end{itemize}
+
+24–48 hour downgrade posture:
+
+\begin{itemize}
+\item If lightheadedness persists, remove breathing drills and return to simple, normal breathing during low-intensity movement until stable.
+\end{itemize}
+
+\clearpage
+\begin{landscape}
+
+\subsection*{4.C.3 Movement Menu Table — Required}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.C.3 Movement Menu Table — Required}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.60in]
+    X[l,2.50]
+    X[l,2.10]
+    X[l,2.35]
+    X[l,3.25]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Pattern} &
+\Hdr{Regressed Option — Very Deconditioned} &
+\Hdr{Standard Option — Phase 00} &
+\Hdr{Upper-End Option — Still Phase 00-Safe} &
+\Hdr{Notes and Contraindications} \\
+
+Gait and locomotion &
+Indoor flat walking loops with frequent technique checks; elliptical or bike substitute when step-based work is not viable &
+Continuous step-based walking on a safe surface class under stable footwear interface &
+Longer continuous walking exposure only if gait and foot integrity remain stable and recovery trends do not drift &
+Immediate same-day regression triggers: Pain $>$ 5/10; pain alters mechanics; dizziness or lightheadedness; unusual/disproportionate breathlessness; instability or swelling; Stage 1.F red flags. 24–48 hour downgrade: if pain/hotspots worsen, downshift next exposures and remove progression attempts. Surface and footwear are controlled inputs; avoid novelty near protected windows. Substitutions preserve intent but may render walk-test attempts inadmissible until reslotted. \\
+
+Squat and sit-to-stand &
+High chair sit-to-stand with arm assistance; controlled tempo; partial range as needed &
+Standard chair sit-to-stand with stable chair height and stable arms policy &
+Lower chair height only if mechanics remain stable, pain-free, and compensation-free &
+Chair height and arms policy must be stable; hip/ankle history cautions apply. Same-day triggers and 24–48 hour downgrade posture apply. Avoid twisting/pivoting and unstable surfaces. \\
+
+Hinge and hip extension &
+Short-range hinge patterning to a support target; reduced range; controlled tempo &
+Controlled hip extension patterning on mat with stable pelvis and neutral spine &
+Slightly increased range only if no back/hip irritation and no compensation &
+No ballistic end-range stress. Stop if back discomfort or hip irritation appears. Same-day triggers and 24–48 hour downgrade posture apply. \\
+
+Push — horizontal and vertical regressions &
+Wall-supported push patterning; reduced range; scapular control emphasis &
+Incline push regression with stable incline height and stable hand placement &
+Lower incline only if shoulder and trunk mechanics remain stable and pain-free &
+Shoulder history caution dominates; vertical is mechanics-only (unloaded reach/scapular control). Same-day triggers and 24–48 hour downgrade posture apply. Document incline height and hand placement. \\
+
+Pull — horizontal and vertical options with bands if allowed &
+Scapular retraction/depression control drills without resistance &
+Anchor-free band horizontal pull (band looped around feet) with low tension and controlled tempo &
+Anchored band pull option only if anchor stability is verified, low-tension, and pain-free; otherwise not authorized &
+Anchored band work is not authorized without verified stable anchor. Shoulder history caution applies. Same-day triggers and 24–48 hour downgrade posture apply. Log band tension and setup method. \\
+
+Core — anti-extension, anti-rotation, bracing &
+Short-lever bracing patterning with controlled breathing &
+Forearm plank with explicit termination standard and controlled breathing &
+Longer hold exposure only if form remains stable; no breath-holding; terminate at first form drift &
+Plank termination standard is required for comparability. Same-day triggers and 24–48 hour downgrade posture apply. Back/hip symptoms force immediate regression. \\
+
+Mobility — ankle, hip, thoracic spine, shoulder &
+Gentle, short-range mobility with stable supports; no end-range forcing &
+Controlled mobility sequence emphasizing stable ankle/hip/shoulder mechanics &
+Slight range increase only if compensation-free, pain-free, and stable next-day response &
+No ballistic motion; avoid unstable surfaces. Shoulder: avoid aggressive overhead end-range stress. Same-day triggers and 24–48 hour downgrade posture apply. \\
+
+Breathing drills — optional &
+Simple downregulation breathing in a comfortable position; no breath holds &
+Controlled breathing supporting bracing and recovery; stop if dizziness occurs &
+None (do not progress into stress drills in Phase 00) &
+No breath holds; terminate immediately if dizziness occurs. Same-day triggers and 24–48 hour downgrade posture apply. \\
+
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+\clearpage
+
+\subsection*{4.C.4 Standard Progression Ladder — Single Standard}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.C.4 Standard Progression Ladder — Single Standard}
+
+\begin{enumerate}
+\item Preconditions before any progression attempt
+
+\begin{itemize}
+\item No Stage 1.F red-flag symptom posture.
+\item No pain $>$ 5/10 and no mechanics-altering pain.
+\item No instability/swelling at any relevant joint.
+\item Foot interface is stable (no hotspot trending toward blister; no gait drift).
+\item Recovery trends are stable enough to prevent fatigue-driven form collapse (no active sleep streak trigger posture; no unusual RPE drift at fixed intent).
+\item Lock fields are stable and reproducible where applicable (footwear and surface class; chair height and arms policy; incline height and hand placement; plank termination standard; band tension and setup method if used).
+\end{itemize}
+
+\item One rung at a time
+
+\begin{itemize}
+\item Change only one controllable variable per progression step:
+  \begin{itemize}
+  \item leverage (increase support or reduce support),
+  \item range of motion (within compensation-free limits),
+  \item complexity (only after stability is proven),
+  \item exposure context (indoor to outdoor only if surface class is safe and stable).
+  \end{itemize}
+\item Do not change multiple variables in the same progression step.
+\end{itemize}
+
+\item Minimum stability requirement
+
+\begin{itemize}
+\item Repeatable clean execution across multiple exposures without trigger activation and without next-day deterioration is required before advancing.
+\end{itemize}
+
+\item Documentation requirement when a rung changes
+
+\begin{itemize}
+\item Record the rung change in post-session notes.
+\item Record which lock field changed (if applicable) and why.
+\item If a planned progression is abandoned due to a trigger, tag the session \textbf{MODIFIED} and record the applicable \textbf{SESSION-RC} with observable-trigger notes.
+\end{itemize}
+
+\item Do not progress if
+
+\begin{itemize}
+\item Any immediate same-day regression trigger occurs.
+\item The progression would introduce unstable surfaces, ballistic end-range stress, aggressive overhead loading, twisting/pivoting demands, or breathless effort.
+\item The progression would introduce novelty in the lead-in to protected test windows without explicit re-baselining posture and documentation.
+\end{itemize}
+\end{enumerate}
+
+\subsection*{4.C.5 Immediate Regression Ladder — Single Standard}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.C.5 Immediate Regression Ladder — Single Standard}
+
+Immediate same-day regression triggers (mandatory)
+
+A movement exposure must be regressed or substituted today if any of the following occur:
+
+\begin{itemize}
+\item Pain $>$ 5/10, OR
+\item Pain alters mechanics (limp, compensation, loss of stable joint position), OR
+\item Dizziness/lightheadedness, OR
+\item Unusual/disproportionate breathlessness relative to the planned effort, OR
+\item Instability/swelling at a joint, OR
+\item Any Stage 1.F red-flag symptom posture applies (\textbf{STOP} \textbf{NOW} and escalate per Stage 1.F).
+\end{itemize}
+
+Same-session step-down order (default sequence)
+
+\begin{enumerate}
+\item \textbf{STOP} the provoking exposure immediately when required by symptoms or mechanics change.
+\item Simplify the task (reduce complexity).
+\item Reduce range of motion.
+\item Increase support (wall/incline/chair).
+\item Reduce speed (controlled tempo).
+\item Substitute the pattern with the lowest-risk option that preserves intent (e.g., locomotion -> indoor substitute; push -> higher incline or wall-supported).
+\item If safe substitution cannot preserve intent without increasing risk, terminate that pattern for the day and proceed to safe closeout (cooldown and documentation).
+\end{enumerate}
+
+Next 24–48 hour downgrade posture
+
+\begin{itemize}
+\item If pain persists or escalates over 24–48 hours, or if swelling/hotspots worsen, downshift the next exposures and remove progression attempts until stable.
+\item If repeated triggers occur across multiple sessions, convert the week’s posture to conservative execution with no progression attempts and document the drift; do not compress or “make up” missed exposures.
+\end{itemize}
+
+Documentation and validity-tag impact (Stage 1.F aligned)
+
+\begin{itemize}
+\item Trigger-driven changes require session tag \textbf{MODIFIED} with an applicable \textbf{SESSION-RC}-\#\#\# and a short observable-trigger note.
+\item If required session elements or required documentation are missing, the session is \textbf{INVALID} for progression decision use.
+\end{itemize}
+
+\subsection*{4.C.6 Progression and Regression Criteria — Phase 00 Menu Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{4.C.6 Progression and Regression Criteria — Phase 00 Menu Rules}
+
+\begin{itemize}
+\item Select regressed vs standard vs upper-end options based on today’s readiness and the last 24–48 hour response; do not select upper-end options on “feels good today” alone.
+\item Advance when mechanics are stable, symptom-free, conservative effort posture is maintained, and repeatability is proven without trigger activation or next-day deterioration.
+\item Regress when any immediate same-day trigger occurs or when 24–48 hour trends show deterioration (pain persistence, swelling, hotspot worsening, gait drift, sleep streak trigger posture).
+\item Lock fields must remain stable for any pattern tied to Phase 00 monitoring/test compatibility:
+  \begin{itemize}
+  \item locomotion: footwear and surface class stability,
+  \item sit-to-stand: chair height and arms policy stability,
+  \item incline push: incline height and hand placement stability,
+  \item plank: termination standard stability,
+  \item band work: band tension and setup method documentation.
+  \end{itemize}
+\item Substitution preserves intent and reduces risk; substitution must not increase risk. If substitution changes the construct meaning for walk-based comparability, reslot walk-based test attempts to the next protected window.
+\item Any trigger-driven change is tagged \textbf{MODIFIED} with \textbf{SESSION-RC}-\#\#\# and observable-trigger notes; missing required elements or logs yield \textbf{INVALID} for progression decision use.
+\item Protected test windows act as confirmation points for whether progressions remain appropriate; do not introduce novelty in the lead-in. If re-baselining occurs, treat it as a comparability break and document it.
+\item Pain and mechanics are gating constraints: mechanics-altering pain forces immediate regression today and conservative downshift for subsequent exposures.
+\item Minimal kit constraints are enforced: no DB/\textbf{KB}, no machine-required movements as standard, and no anchored bands without verified stability.
+\item Water governance remains absolute; no underwater or breath-hold content is introduced or implied in Phase 00.
+\end{itemize}
+
+\end{document}

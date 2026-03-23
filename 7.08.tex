@@ -1,0 +1,533 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{7.08 — Conditioning, Endurance, and Aerobic Conditioning Tools}
+\phantomsection
+\addcontentsline{toc}{section}{7.08 — Conditioning, Endurance, and Aerobic Conditioning Tools}
+
+Overview \textbf{ID}: 7.08\\
+Overview Name: Conditioning, Endurance, and Aerobic Conditioning Tools\\
+Version: v1.0\\
+Governing Status: Draft — Non-Deployable\\
+Boundary: This overview governs conditioning-tool capability posture and environmental-control requirements; it does not prescribe workouts, progression, or test protocols.
+
+\subsection*{7.08.1 Purpose, Scope, and Boundary}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.1 Purpose, Scope, and Boundary}
+
+7.08 covers the tools and access conditions that keep scheduled Cardio sessions executable while keeping conditioning sessions safe, controlled, and repeatable across weather and access conditions. It includes low-impact substitution options (stationary bike, elliptical trainer, rowing ergometer, treadmill, and controlled walking routes) and environment-control doctrine tied to modality selection and conditions.
+
+Operational terminology: use Cardio for session-execution references and conditioning for category-level capability references.
+
+In scope:
+\begin{itemize}
+\item conditioning, endurance, and aerobic conditioning tools;
+\item indoor and outdoor access conditions for Cardio execution;
+\item low-impact substitution options;
+\item tool and environment-control doctrine for safe, repeatable conditioning execution.
+\end{itemize}
+
+Crosswalk intent: This overview ties 7.08 capability timing to phase execution by defining the conditioning-tool posture required to preserve Cardio compliance, environmental safety, and evidence comparability.
+
+Prohibited-content boundary: This overview does not provide workouts, programming prescriptions, test protocols, calendars, brand/retailer links, or medical advice.
+
+This overview defines capability posture and environmental-control requirements, not workouts, progression, or session prescription.
+
+This overview excludes the following items except by cross-reference:
+
+\begin{itemize}
+\item See 7.01 Strength and Resistance Training Equipment.
+\item See 7.07 Load-Bearing, Rucking, and Carry Systems.
+\item See 7.13 Nutrition Preparation and Hydration Systems.
+\item See 7.17 Aquatic Training and Water Safety Equipment.
+\item See 7.18 Testing, Timing, Measurement, and Course-Setup Tools.
+\end{itemize}
+
+This overview does not prescribe workouts, progression, test protocols, or scheduling logic.
+
+\subsection*{7.08.2 Governance, Safety, and Validity Boundaries}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.2 Governance, Safety, and Validity Boundaries}
+
+\begin{itemize}
+\item Cardio execution is a compliance requirement. This overview does not prescribe workouts, progression, or session programming.
+\item Early-phase safety posture: low-impact modalities are the default safer posture for a deconditioned beginner; impact-running progression remains phase-gated and must not be accelerated because a tool is available.
+\item Environment-control rules are mandatory and determine go/no-go posture: ice or unsafe traction, lightning or severe-storm risk, unsafe environmental heat exposure, official air-quality advisories or warnings, and unsafe low-visibility conditions trigger indoor substitution, relocation, or rescheduling rather than unsafe continuation.
+\item Validity requirements: modality changes must preserve session intent and be logged in the session record; uncontrolled substitutions and undocumented changes invalidate comparability; follow Stage 2.E logging requirements explicitly (environment identity, modality identity, and tool and settings identity).
+\item Safety requirements override schedule pressure: when conditions are unsafe, the required action is indoor substitution or reschedule; never accept unsafe exposure to preserve schedule compliance.
+\item Unsafe, uncontrolled, or undocumented conditioning execution produces inadmissible evidence and cannot support gate claims.
+\end{itemize}
+
+\subsection*{7.08.3 Tier Doctrine — Applied to Conditioning, Endurance, and Aerobic Conditioning Tools}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.3 Tier Doctrine — Applied to Conditioning, Endurance, and Aerobic Conditioning Tools}
+
+Tier doctrine defines capability depth and reliability posture, not workout prescription.
+
+Price band convention: Use \$ / \$\$ / \$\$\$ only.
+
+N/A rule: N/A may be used only for Tier 0 entries where no acquisition item is required.
+
+Substitution posture: Substitutions must preserve conditioning intent and reduce risk; substitutions that remove controllability, measurability, or environmental safety break intent.
+
+\begin{itemize}
+\item Tier 0: household or public-space only (safe walking routes and indoor walking loops). No machine access is assumed. Stairs are permitted only when they do not provoke pain, instability, or unsafe fatigue; fall-risk control is decisive.
+\item Tier 1: minimum reliable capability to satisfy Cardio compliance under variable weather and access conditions. This includes an indoor fallback modality that is controllable and documentable (home-owned equipment or reliable facility access).
+\item Tier 2: expanded multi-modality capability that improves joint-sparing variation and repeatability (additional modalities and tighter control of stability settings).
+\item Tier 3: redundant reserve capability and environmental and modality variance control (backup modalities, tighter environmental control, and lower probability of protected test-window compromise).
+\end{itemize}
+
+\subsection*{7.08.4 Selection Criteria \& Fit Checks}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.4 Selection Criteria \& Fit Checks}
+
+Safety criteria for heavier trainees:
+
+\begin{itemize}
+\item Load rating: select equipment rated for the user’s bodyweight plus dynamic movement margin.
+\item Stability: no wobble under mounting/dismounting; stable handrail posture where applicable.
+\item Step-over height and fall risk: prefer low step-over and stable rails; if mounting is unsafe, omit the tool.
+\item Emergency stop capability for treadmills: must exist and be accessible.
+\end{itemize}
+
+Space/noise/power criteria:
+
+\begin{itemize}
+\item Footprint and clearance: ensure safe space to mount/dismount; avoid tight hallway hazards.
+\item Noise and vibration: apartment constraints require vibration control; avoid tools that will lose access due to noise complaints.
+\item Power requirements: stable outlet access; avoid unsafe extension cord setups.
+\end{itemize}
+
+Modality fit (non-medical framing):
+
+\begin{itemize}
+\item Joint tolerance: if a tool provokes recurring knee/hip/back irritation, it is not an acceptable minimum capability; substitute to a lower-risk modality.
+\item Impact tolerance: do not use “forced running” as a solution when low-impact tools exist.
+\end{itemize}
+
+Repeatability criteria:
+
+\begin{itemize}
+\item Stable settings: speed/grade/resistance can be held constant across windows.
+\item Stable access: facility access must be reliable if it is the Tier 1 fallback.
+\end{itemize}
+
+Explicit statement:
+
+\begin{itemize}
+\item Treadmill ownership is not implied as required unless Stage 6’s Tier timing and the trainee’s environment feasibility require it for continuity. Route + low-impact indoor fallback can satisfy Tier 1 when access is stable.
+\end{itemize}
+
+\subsection*{7.08.5 Setup, Safety, and Anchoring}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.5 Setup, Safety, and Anchoring}
+
+Placement and stability:
+
+\begin{itemize}
+\item Level floor posture; anti-slip matting where needed; adequate clearance for mounting/dismounting.
+\item Handrail use for fall risk control when appropriate; do not “practice without rails” as a confidence drill.
+\end{itemize}
+
+Fall risk controls:
+
+\begin{itemize}
+\item Safe footwear interface (7.11) is mandatory; do not use worn or unstable shoes on treadmills/steppers.
+\item Step tool posture: avoid high step heights; avoid unstable platforms; reslot if dizziness or instability appears.
+\end{itemize}
+
+Environmental safety:
+
+\begin{itemize}
+\item Outdoor execution is governed by traction, visibility, heat, and air quality. When unsafe, substitute indoors.
+\item Do not treat harsh weather as a toughness test; safety controls override schedule.
+\end{itemize}
+
+Small-space alternatives:
+
+\begin{itemize}
+\item Indoor walking loops, compact bikes, and foldable units may be used when stable and safe.
+\item If setup cannot be stable, omit rather than improvise.
+\end{itemize}
+
+\subsection*{7.08.6 Maintenance, Replacement, and Storage}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.6 Maintenance, Replacement, and Storage}
+
+Maintenance cadence:
+
+\begin{itemize}
+\item Clean contact surfaces regularly.
+\item Treadmill: belt lubrication (if applicable), belt alignment checks, and safety stop function checks.
+\item Bike/elliptical/rower: bolt checks, drive mechanism checks, and seat/rail stability checks.
+\end{itemize}
+
+Replacement cues:
+
+\begin{itemize}
+\item Wobble or instability increases fall risk → treat as a safety failure; replace or remove.
+\item Belt slip, abnormal noise, or frayed cords → remove from use until resolved.
+\item Unreliable access (facility closures) → treat as a continuity failure; escalate to Tier 1 home fallback if Stage 6 timing requires.
+\end{itemize}
+
+Storage:
+
+\begin{itemize}
+\item Park foldable equipment safely to avoid trip hazards.
+\item Control humidity to reduce corrosion.
+\item Keep the training area clear for safe mounting/dismounting.
+\end{itemize}
+
+\subsection*{7.08.7 Substitution Rules — Maintain Intent Without Breaking Safety/Validity}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.7 Substitution Rules — Maintain Intent Without Breaking Safety/Validity}
+
+Acceptable substitutions:
+
+\begin{itemize}
+\item Outdoor walking/running exposure → indoor low-impact modality when weather/traction/visibility/air quality is unsafe.
+\item Running exposure → incline walking or bike/elliptical when impact risk is elevated or when durability flags appear.
+\item Facility access loss → home fallback modality (Tier 1 requirement exists specifically to prevent forced cancellations).
+\end{itemize}
+
+Prohibited substitutions:
+
+\begin{itemize}
+\item Switching to a modality that increases injury risk when low-impact bias is required (e.g., forcing impact running early because machines are unavailable).
+\item Using stairs/step work when fall risk is elevated or when it provokes mechanics changes.
+\end{itemize}
+
+Stage 2.E logging/validity field posture required when substitutions occur (governance-level):
+
+\begin{itemize}
+\item Environment identity: Route \textbf{ID} concept (outdoors) or Machine \textbf{ID} concept (indoors).
+\item Settings identity: speed/grade/resistance recorded when applicable.
+\item Duration plus RPE and talk-test cue recorded.
+\item Continuity statement recorded for Cardio block.
+\item If the substitution materially changes comparability during a decision window, treat the affected evidence as validity-sensitive and apply reslot discipline rather than claiming gate credit on a changed construct.
+\end{itemize}
+
+\subsection*{7.08.8 Phase Integration Map — Required}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.8 Phase Integration Map — Required}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.05in]
+    Q[l,wd=1.60in]
+    X[l,3.10]
+    X[l,3.85]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Phase} &
+\Hdr{Required Tier from Stage 6} &
+\Hdr{What Changes / Becomes Mandatory} &
+\Hdr{Notes} \\
+Phase 00 &
+T0 &
+Route plan and household feasibility only; no machine access implied &
+Phase 00 is minimal. Indoor walking loop posture acts as fallback; no Tier 1 machine requirement. \\
+Phase 01 &
+T1 &
+Reliable indoor fallback becomes mandatory by Phase 01 (End) &
+Phase 01 (End): Tier 1 means at least one controllable low-impact indoor modality or stable facility access that can reliably support Cardio continuity in unsafe weather. \\
+Phase 02 &
+T1 &
+Maintain Tier 1 continuity; do not rely on outdoor-only access &
+Phase 02 (End): Tier 1 remains the minimum deployable posture; tool identity stability matters more as gate consequences rise. \\
+Phase 03 &
+T1 &
+Maintain Tier 1; support more consistent conditioning under increasing consequence &
+Phase 03 (End): preserve indoor fallback to avoid unsafe outdoor substitutions; log tool/settings when substitutes are used near protected windows. \\
+Phase 04 &
+T1 &
+Maintain Tier 1; support load-bearing phase integration without unsafe conditioning drift &
+Phase 04 (End): do not use conditioning tool limitations to justify unsafe load-bearing substitutions; keep modalities low-impact when needed. \\
+Phase 05 &
+T1 &
+Maintain Tier 1; endurance consequence increases &
+Phase 05 (End): avoid novelty near longer endurance gate windows; tool/stability posture becomes a validity control. \\
+Phase 06 &
+T2 &
+Tier 2 expanded modality and repeatability becomes mandatory by Phase 06 (End) &
+Phase 06 (End): add a second joint-sparing modality or upgrade stability to reduce overuse drift and prevent compromised protected windows. \\
+Phase 07 &
+T2 &
+Maintain Tier 2; hybrid density increases variance cost &
+Phase 07 (End): redundancy and stability prevent missed sessions and validity contamination through forced substitutions. \\
+Phase 08 &
+T2 &
+Maintain Tier 2; load tolerance phases amplify continuity demands &
+Phase 08 (End): keep indoor substitution robust to prevent unsafe traction exposures and to protect durability. \\
+Phase 09 &
+T2 &
+Maintain Tier 2; high-volume \textbf{CAL} phases increase overuse sensitivity &
+Phase 09 (End): joint-sparing variance reduces repetitive stress and supports stable evidence collection. \\
+Phase 10 &
+T2 &
+Maintain Tier 2; multi-domain gate weeks increase consequence &
+Phase 10 (End): tool failure or access loss is more costly; Tier 2 provides continuity controls without implying intensity escalation. \\
+Phase 11 &
+T2 &
+Maintain Tier 2; recovery sensitivity increases &
+Phase 11 (End): preserve low-impact substitution to protect recovery and validity. \\
+Phase 12 &
+T2 &
+Maintain Tier 2; verification blocks demand low variance &
+Phase 12 (End): treat tool identity and settings as frozen variables inside protected windows; avoid last-minute changes. \\
+Phase 13 &
+T2 &
+Maintain Tier 2; consolidation requires repeatability &
+Phase 13 (End): continuity is the priority; tool changes trigger variance and may require reslot if they compromise comparability. \\
+\end{longtblr}
+
+\endgroup
+
+7.08.8 Phase Integration Map Notes:
+
+\begin{itemize}
+\item If any phase card implies 7.08 Tier 1 is required earlier than Phase 01 (End), flag Requires Stage 8 review.
+\item If any phase card implies treadmill ownership is mandatory despite Tier 1 being satisfiable via other low-impact indoor modalities, flag Requires Stage 8 review.
+\end{itemize}
+
+\subsection*{7.08.9 Risks, Contraindications, and Red Flags}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.9 Risks, Contraindications, and Red Flags}
+
+Non-medical risk list:
+
+\begin{itemize}
+\item Overuse and impact drift:
+  \begin{itemize}
+  \item forcing impact running early increases injury risk; low-impact substitution is the control.
+  \end{itemize}
+\item Falls and instability:
+  \begin{itemize}
+  \item treadmills/steppers can present fall risk; enforce load rating, stability, and handrail posture.
+  \end{itemize}
+\item Heat illness risk:
+  \begin{itemize}
+  \item high heat increases safety risk; substitute indoors; hydration system posture lives in 7.13.
+  \end{itemize}
+\item Ice/traction and visibility hazards:
+  \begin{itemize}
+  \item unsafe traction and low visibility are no-go conditions for outdoor execution; reslot or substitute indoors.
+  \end{itemize}
+\item Dehydration risk (cross-reference 7.13):
+  \begin{itemize}
+  \item do not use conditioning tools to “push through” dehydration; downshift and correct system feasibility.
+  \end{itemize}
+\item Red-flag symptoms (high-level reminder):
+  \begin{itemize}
+  \item chest pain/pressure, syncope/near-syncope, disproportionate dyspnea, new neurologic symptoms → \textbf{STOP} \textbf{NOW} and seek evaluation.
+  \end{itemize}
+\item Validity drift risk:
+  \begin{itemize}
+  \item unlogged tool changes (new machine, new settings, new route class) near protected windows can contaminate evidence; log changes and reslot if comparability is compromised.
+  \end{itemize}
+\end{itemize}
+
+Requires Stage 8 review triggers:
+
+\begin{itemize}
+\item Any stage artifact that forces impact running due to missing conditioning tools.
+\item Any phase requirement that demands Tier 1 conditioning capability earlier than Phase 01 (End) per Stage 6.
+\end{itemize}
+
+\subsection*{7.08.10 Compliance Checklist — Pass/Fail}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.08.10 Compliance Checklist — Pass/Fail}
+
+\begin{itemize}
+\item \textbf{PASS}/\textbf{FAIL}: Tier 0–Tier 3 tables use required schema, generic item types only, and price bands limited to \$/\$\$/\$\$\$.
+\item \textbf{PASS}/\textbf{FAIL}: Tier 1 conditioning capability exists before the first phase that requires it per Stage 6 (Phase 01 (End)).
+\item \textbf{PASS}/\textbf{FAIL}: At least one low-impact modality is available or a safe route plan exists, with indoor fallback once Tier 1 applies.
+\item \textbf{PASS}/\textbf{FAIL}: Environmental substitution rules exist and are used (heat/ice/air quality/visibility triggers substitution or reslot).
+\item \textbf{PASS}/\textbf{FAIL}: Tool settings and environment identity can be logged for repeatability (Route \textbf{ID} / Machine \textbf{ID} concept; speed/grade/resistance; duration; RPE + talk test cue).
+\item \textbf{PASS}/\textbf{FAIL}: Maintenance and placement safety controls are implemented (load rating, stability, handrails, lubrication/cleaning, safe storage).
+\end{itemize}
+
+\end{document}

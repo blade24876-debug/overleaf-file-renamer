@@ -1,0 +1,477 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{7.12 — Recovery, Mobility, and Tissue-Care Implements}
+\phantomsection
+\addcontentsline{toc}{section}{7.12 — Recovery, Mobility, and Tissue-Care Implements}
+
+Overview \textbf{ID}: 7.12\\
+Overview Name: Recovery, Mobility, and Tissue-Care Implements\\
+Version: v1.0\\
+Governing Status: Draft — Non-Deployable\\
+Scope Boundary Statement: Covers non-medical recovery tools, mobility-support implements, tissue-care implements, and comfort-support tools used to reduce execution friction; does not provide programming, diagnosis, treatment, or rehabilitation prescriptions.
+
+\subsection*{7.12.1 Purpose \& Scope}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.12.1 Purpose \& Scope}
+
+This category covers:
+
+\begin{itemize}
+\item Mobility-support tools used to maintain or restore practical range of motion needed for safe movement mechanics across phases.
+\item Tissue-care implements for self-massage and gentle release used to reduce soreness friction and support adherence.
+\item Recovery comfort tools that reduce daily execution friction and help preserve consistency (especially in higher volume or higher consequence phases).
+\end{itemize}
+
+This overview crosswalks Stage 6 timing to the recovery and mobility support conditions required for safe execution and stable evidence posture.
+
+This category does not cover:
+
+\begin{itemize}
+\item Sleep aids and ingestible sleep / stress aids: Stage 7.06.
+\item Medical treatment, rehabilitation prescriptions, diagnosis, or “fixing injuries.”
+\item Hygiene / sanitation supplies as a category: Stage 7.20 (cross-reference only).
+\item Protective equipment: Stage 7.19 (cross-reference only when relevant).
+\end{itemize}
+
+This overview does not provide programming, test protocols, calendars, medical diagnosis, treatment, or rehabilitation prescriptions.
+
+\subsection*{7.12.2 Governance And Safety Boundaries}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.12.2 Governance And Safety Boundaries}
+
+\begin{itemize}
+\item Stage 0 boundary alignment: stop rules, safety override doctrine, conflict-resolution hierarchy, and evidence-admissibility controls apply to all 7.12 selections and substitutions.
+\item Support-layer rule: these tools support consistency and comfort; they do not override stop rules or justify ignoring pain signals.
+\item Non-medical posture: no diagnosis, no cure claims, and no rehab prescriptions.
+\item Safe-use boundaries:
+  \begin{itemize}
+  \item avoid aggressive tissue work on acute pain/swelling,
+  \item avoid targeting joints directly,
+  \item discontinue and regress if symptoms worsen,
+  \item stop immediately if sharp pain, numbness, or tingling occurs.
+  \end{itemize}
+\item Pressure/intensity safety rule (operational, mandatory):
+  \begin{itemize}
+  \item pressure must stay <=5/10 discomfort,
+  \item stop on sharp pain or numbness/tingling.
+  \end{itemize}
+\item Change-control posture:
+  \begin{itemize}
+  \item introduce tools conservatively,
+  \item do not add multiple novel recovery tools at once near gate windows to reduce confounding and to preserve comparability of recovery state.
+  \end{itemize}
+\item Tools are not substitutes for medical care:
+  \begin{itemize}
+  \item persistent or worsening pain, especially gait-altering pain, triggers evaluation posture per governance.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.12.3 Tier Doctrine}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.12.3 Tier Doctrine}
+
+\begin{itemize}
+\item Price band convention: \$ = minimal household-cost item; \$\$ = modest purpose-built item; \$\$\$ = expanded-capability or redundancy item.
+\item N/A rule: use N/A only when a field is genuinely not applicable and omission does not obscure safety, maintenance, or phase-timing logic.
+\item Substitution posture: substitutions are acceptable only when they preserve low-risk comfort support, stability, and conservative pressure boundaries; substitutes that increase slip risk, pressure, or symptom aggravation break intent.
+\item Tier 0: household-only posture using floor space + towel/pillow substitutes and a household ball for light tissue work; minimal capability; no purchases required.
+\item Tier 1: minimum viable kit supporting daily session structure and deload compliance (mat, basic roller/ball, strap, gel pack).
+\item Tier 2: expanded kit improving coverage and reducing friction (slant board/wedge, additional density options, optional additional small tools).
+\item Tier 3: overbuilt posture emphasizing redundancy and selective specialized tools (massage gun is Tier 3 only; conservative-use boundaries), plus expanded heat/cold options.
+\end{itemize}
+
+\subsection*{7.12.4 Selection Criteria \& Fit Checks}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.12.4 Selection Criteria \& Fit Checks}
+
+Fit and safety checklist (operational):
+
+\begin{itemize}
+\item Cleanability and durability: tools must tolerate sweat and frequent use without degrading quickly.
+\item Density/firmness matching tolerance:
+  \begin{itemize}
+  \item start conservative; obese beginner posture may require softer entry to avoid bruising and aversion.
+  \end{itemize}
+\item Stability and slip resistance:
+  \begin{itemize}
+  \item wedges/boards must be stable, non-slip, and anti-tip; if stability cannot be guaranteed, they are not authorized.
+  \end{itemize}
+\item Noise constraints:
+  \begin{itemize}
+  \item Motorized devices (massage gun) must consider apartment/noise limits; do not create compliance friction.
+  \end{itemize}
+\item Fit checks (operational):
+  \begin{itemize}
+  \item tool use does not provoke numbness/tingling,
+  \item tool use does not provoke sharp pain,
+  \item tool use does not increase next-day pain beyond baseline trend.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.12.5 Setup, Safety, and Anchoring}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.12.5 Setup, Safety, and Anchoring}
+
+Setup doctrine (no programming):
+
+\begin{itemize}
+\item Safe-use boundaries (mandatory):
+  \begin{itemize}
+  \item pressure <= 5/10 discomfort,
+  \item avoid targeting joints directly,
+  \item stop on sharp pain or numbness/tingling,
+  \item avoid acute swollen areas.
+  \end{itemize}
+\item Environment controls:
+  \begin{itemize}
+  \item non-slip flooring and clear space; remove trip hazards.
+  \item stable mat placement; wedge/board placed on stable surface.
+  \end{itemize}
+\item Hygiene posture:
+  \begin{itemize}
+  \item wipe-down after use; prevent shared-surface contamination.
+  \end{itemize}
+\item Change-control:
+  \begin{itemize}
+  \item do not introduce multiple new tools simultaneously near decision windows; stabilize earlier to reduce confounding.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.12.6 Maintenance, Replacement, and Storage}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.12.6 Maintenance, Replacement, and Storage}
+
+\begin{itemize}
+\item Replacement cues:
+  \begin{itemize}
+  \item foam cracking, loss of rebound, sticky/degraded surfaces, or slip-risk from worn coatings.
+  \end{itemize}
+\item Cleaning cadence:
+  \begin{itemize}
+  \item wipe-down after use; deeper clean weekly.
+  \item store dry to prevent mold odor and material breakdown.
+  \end{itemize}
+\item Storage:
+  \begin{itemize}
+  \item dry, out of direct sunlight; avoid compressing foam tools permanently.
+  \item keep floor space clear to reduce trip hazards.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.12.7 Substitution Rules — Household Alternatives}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.12.7 Substitution Rules — Household Alternatives}
+
+\begin{itemize}
+\item If no foam roller: towel roll or firm pillow substitute; keep pressure <=5/10.
+\item If no mobility strap: towel or belt substitute with safe handling; avoid aggressive pulling.
+\item If no gel pack: controlled warm shower or towel-based compress; comfort-only.
+\item Documentation posture:
+  \begin{itemize}
+  \item Tools are optional supports; missing tools do not invalidate a session by themselves.
+  \item if a tool absence causes movement regression or increases pain, regress exposure and prioritize safety; persistent limitations trigger evaluation posture rather than tool escalation.
+  \end{itemize}
+\end{itemize}
+
+\begin{landscape}
+
+\subsection*{7.12.8 Phase Integration Map — Required}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.12.8 Phase Integration Map — Required}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.05in]
+    Q[l,wd=1.55in]
+    X[l,2.75]
+    X[l,3.65]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Phase} &
+\Hdr{Required Tier (from Stage 6)} &
+\Hdr{What Changes / Becomes Mandatory} &
+\Hdr{Notes} \\
+Phase 00 &
+Tier 1 &
+Tier 1 minimum recovery / mobility kit required by Phase 00 (End): mat + basic roller/ball + strap + gel pack &
+Phase 00 (End) is the first required point per Stage 6. Tools support adherence and mobility maintenance; they do not override stop posture. \\
+Phase 01 &
+Tier 1 &
+Maintain Tier 1; increase consistency and cleaning discipline as volume rises &
+Phase 01 (End): avoid introducing new tools inside Deload+Test windows; stabilize earlier. \\
+Phase 02 &
+Tier 1 &
+Maintain Tier 1; strength exposure increases makes mobility consistency more consequential &
+Phase 02 (End): prioritize shoulder/hip/ankle mobility maintenance without aggressive tissue work. \\
+Phase 03 &
+Tier 1 &
+Maintain Tier 1; ruck capability becomes Tier 1 and increases foot/ankle/hip mobility relevance &
+Phase 03 (End): higher consequence for ankle/calf mobility; avoid adding new tools in protected windows. \\
+Phase 04 &
+Tier 1 &
+Maintain Tier 1; load-bearing increases friction and soreness; gel pack comfort use remains conservative &
+Phase 04 (End / Mid): keep tools stable; do not escalate pressure to “fix” soreness. \\
+Phase 05 &
+Tier 1 &
+Maintain Tier 1; endurance volume increases soreness friction; stability matters &
+Phase 05 (End): use tools to reduce adherence friction, not to increase training dose. \\
+Phase 06 &
+Tier 2 &
+Tier 2 becomes mandatory by Phase 06 (End): wedge/slant board option and expanded density/coverage &
+Phase 06 (End) is first Tier 2 point per Stage 6. Emphasis is stability and repeatability under higher consequence phases. \\
+Phase 07 &
+Tier 2 &
+Maintain Tier 2; hybrid density increases recovery importance &
+Phase 07 (End): keep tool set stable; prevent overuse through conservative use boundaries. \\
+Phase 08 &
+Tier 2 &
+Maintain Tier 2; load tolerance increases mobility and tissue-care operational importance &
+Phase 08 (End): ankle/hip mobility and foot tissue-care boundaries become more operationally critical; still no aggressive pressure. \\
+Phase 09 &
+Tier 2 &
+Maintain Tier 2; high \textbf{CAL} volume increases shoulder/elbow tissue-care relevance &
+Phase 09 (End): use conservative tools to reduce friction; do not “roll through” pain. \\
+Phase 10 &
+Tier 2 &
+Maintain Tier 2; multi-domain gates increase consequence of recovery collapse &
+Phase 10 (End): stable tools and stable routines reduce variance; no novelty near protected windows. \\
+Phase 11 &
+Tier 2 &
+Maintain Tier 2; recovery sensitivity increases consequence &
+Phase 11 (End): prioritize consistency; reslot rather than forcing high-consequence weeks under unstable recovery. \\
+Phase 12 &
+Tier 3 &
+Tier 3 becomes mandatory by Phase 12 (End): redundancy posture; massage gun optional Tier 3 only &
+Phase 12 (End): Stage 6 indicates Tier 3 for reliability. Massage gun remains Tier 3 only with conservative-use boundaries; do not treat as required. \\
+Phase 13 &
+Tier 3 &
+Maintain Tier 3; consolidation requires low variance and reliable recovery supports &
+Phase 13 (End): redundancy exists to prevent compromised windows due to missing tools; do not introduce novelty near final gates. Massage gun remains optional and conservative-use boundaries still apply. \\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+7.12.8 Notes:
+
+\begin{itemize}
+\item If any upstream artifact requires wedge/slant board earlier than Phase 06 (End) without Stage 6 alignment, Requires Stage 8 review.
+\item If any upstream artifact implies Massage Gun is required, Requires Stage 8 review.
+\end{itemize}
+
+\subsection*{7.12.9 Risks, Contraindications, and Red Flags}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.12.9 Risks, Contraindications, and Red Flags}
+
+\begin{itemize}
+\item Overpressure risk:
+  \begin{itemize}
+  \item bruising and symptom aggravation occurs when pressure exceeds tolerance; enforce <= 5/10 discomfort rule.
+  \end{itemize}
+\item Masking risk:
+  \begin{itemize}
+  \item aggressive rolling/massage can mask pain signals and encourage unsafe exposure; tools must not override stop posture.
+  \end{itemize}
+\item Red flags (stop tool use and follow escalation posture):
+  \begin{itemize}
+  \item swelling, sharp pain, numbness/tingling, worsening symptoms.
+  \item persistent gait-altering pain → regress exposure and seek evaluation posture.
+  \end{itemize}
+\item Tool hygiene risks:
+  \begin{itemize}
+  \item dirty tools and damp storage increase irritation risk; clean routinely and store dry.
+  \end{itemize}
+\item Requires Stage 8 review triggers:
+  \begin{itemize}
+  \item any mismatch where a phase demands Tier 1 recovery tools earlier than Stage 6,
+  \item any attempt to move Massage Gun into Tier 1–2 or to frame it as required,
+  \item any attempt to introduce aggressive "injury-fix" claims inside Stage 7.12.
+  \end{itemize}
+\end{itemize}
+
+\end{document}

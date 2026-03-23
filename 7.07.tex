@@ -1,0 +1,500 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{7.07 — Load-Bearing, Rucking, and Carry Systems}
+\phantomsection
+\addcontentsline{toc}{section}{7.07 — Load-Bearing, Rucking, and Carry Systems}
+
+\subsection*{7.07.1 Purpose \& Scope}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.07.1 Purpose \& Scope}
+
+7.07 defines the load-bearing system stack required to carry external load safely, repeatably, and audibly across phases. It covers ruck pack systems, load modules/media, and carry implements, plus fit/adjustment and safety doctrine needed to prevent predictable injury, foot breakdown, and invalid evidence.
+
+This category does not cover, except by cross-reference:
+
+\begin{itemize}
+\item footwear and foot care: 7.11
+\item apparel systems: 7.14 and 7.15
+\item nutrition/hydration containers and prep systems: 7.13
+\item protective/visibility gear: 7.19
+\item testing/timing/measurement tooling and load verification method posture: 7.18
+\end{itemize}
+
+\subsection*{7.07.2 Governance and Safety Boundaries}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.07.2 Governance and Safety Boundaries}
+
+\begin{itemize}
+\item Start-from-zero posture: early phases remain minimal. Load carriage is phase-gated and does not become required until Stage 6 indicates Tier 1 readiness.
+\item No novelty near gates: ruck interface variables (pack model/class, frame type, belt fit approach, load module type, and retention method) are treated as controlled variables. Do not introduce first-time changes inside Deload+Test windows.
+\item Stop posture always honored:
+  \begin{itemize}
+  \item stop if pain alters mechanics (limp, compensation, unstable joint position),
+  \item stop for red-flag symptoms per governing posture,
+  \item stop and reslot if environment/visibility makes safe execution uncertain.
+  \end{itemize}
+\item Traffic and visibility rules are mandatory:
+  \begin{itemize}
+  \item daylight bias where possible,
+  \item reflective/visibility posture per 7.19,
+  \item no roadside rucking when safe separation cannot be maintained.
+  \end{itemize}
+\item Heat/ice/surface safety is mandatory:
+  \begin{itemize}
+  \item substitute indoors or reslot when unsafe footing, lightning/storm risk, unsafe heat, or poor air quality exists.
+  \end{itemize}
+\item High orthopedic cost acknowledgement:
+  \begin{itemize}
+  \item load carriage is a high-cost exposure and must be introduced only when Tier 1 capability exists and foot interface is stable (7.11).
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.07.3 Tier Doctrine Applied to Ruck and Carry Systems}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.07.3 Tier Doctrine Applied to Ruck and Carry Systems}
+
+\begin{itemize}
+\item Tier 0: no load carriage capability. No substitutions. Education only. Household backpacks are not treated as capability.
+\item Tier 1: minimum viable ruck capability for safe progression and basic exposure: fit-adjustable pack with supportive hip belt, secure load module, and anti-shift retention.
+\item Tier 2: expanded comfort/stability/modularity that reduces friction and injury risk: better load transfer, more stable retention, modular load cells for staged changes, and optional carry implements.
+\item Tier 3: advanced/overbuilt redundancy and specialized systems: backup pack/frame options, expanded modularity, and carry tool ecosystem to reduce variance and failure probability in high-consequence phases.
+\end{itemize}
+
+\subsection*{7.07.4 Selection Criteria \& Fit Checks}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.07.4 Selection Criteria \& Fit Checks}
+
+Fit and safety checklist (operational):
+
+\begin{itemize}
+\item Torso length adjustment: pack rides high; shoulder straps support without digging; no excessive shoulder-only load.
+\item Hip belt positioning: belt rides on hips; load transfer to hips is achievable; belt does not slip during walking.
+\item Strap stability: sternum strap stabilizes without restricting breathing; shoulder straps do not loosen under movement.
+\item Load stability: load sits high/close; minimal sway; no audible shifting; retention and compression keep load fixed.
+\item Load rating and integrity:
+  \begin{itemize}
+  \item stitching intact; webbing not frayed; buckles not cracked; attachment points stable.
+  \item any structural doubt is a stop condition for load carriage escalation.
+  \end{itemize}
+\item Chafe/heat management check:
+  \begin{itemize}
+  \item identify contact points (shoulders, hips, low back) and verify no hotspot escalation.
+  \item cross-reference 7.11 for foot hotspots and blister prevention posture.
+  \end{itemize}
+\item Cross-references:
+  \begin{itemize}
+  \item hydration routing and containers are 7.13.
+  \item reflective/visibility attachment points are 7.19.
+  \item rain/cold management is 7.14; general apparel is 7.15.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.07.5 Setup, Safety, and Anchoring}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.07.5 Setup, Safety, and Anchoring}
+
+Setup doctrine (no programming):
+
+\begin{itemize}
+\item Packing doctrine:
+  \begin{itemize}
+  \item load high and close to the back to reduce sway and lumbar torque.
+  \item use compression straps to eliminate movement; avoid low-hanging loads.
+  \item label dry load and keep placement consistent for comparability.
+  \end{itemize}
+\item Route safety:
+  \begin{itemize}
+  \item prefer routes with low traffic, wide shoulders/paths, and predictable surfaces.
+  \item daylight bias where possible; if low light is unavoidable, visibility posture (7.19) is mandatory.
+  \item avoid headphones in traffic environments where situational awareness is required.
+  \end{itemize}
+\item Surface/traction checks:
+  \begin{itemize}
+  \item do not ruck on ice glaze or unsafe traction surfaces.
+  \item reslot to indoor substitutes when outdoor conditions are unsafe.
+  \end{itemize}
+\item Environmental limits:
+  \begin{itemize}
+  \item heat: conservative exposure; hydration system posture (7.13); stop for heat illness signs.
+  \item cold/wet: apparel posture (7.14) and drying/sustainment posture (7.10/7.20) prevent skin breakdown.
+  \end{itemize}
+\item Home safety:
+  \begin{itemize}
+  \item stairs and slick floors are high fall risk with load; avoid if not controlled.
+  \item eliminate trip hazards; confirm doorway widths and turning clearance before loaded indoor carries.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.07.6 Maintenance, Replacement, and Storage}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.07.6 Maintenance, Replacement, and Storage}
+
+\begin{itemize}
+\item Inspection cadence:
+  \begin{itemize}
+  \item pre-use quick check: buckles, straps, stitching, load module closures.
+  \item periodic deeper check: frame integrity, hip belt stitching, compression strap anchors.
+  \end{itemize}
+\item Cleaning/drying:
+  \begin{itemize}
+  \item sweat management and mildew prevention: dry fully after use.
+  \item storage dry and ventilated; avoid compressing frames in a way that deforms structure.
+  \end{itemize}
+\item Consumables/spares:
+  \begin{itemize}
+  \item strap keepers, spare buckle(s), tape, sandbag liners, seam repair tape (generic).
+  \end{itemize}
+\item Storage footprint:
+  \begin{itemize}
+  \item store packs and load modules to avoid trip hazards.
+  \item avoid storing heavy loads on soft flooring that can deform surfaces; use stable surfaces.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.07.7 Substitution Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.07.7 Substitution Rules}
+
+Tier 0 substitution rule (non-negotiable):
+
+\begin{itemize}
+\item Tier 0 means no load carriage capability. No ruck substitutions are permitted. Do not use household backpacks or improvised loads.
+\end{itemize}
+
+Tier 1 and higher substitution posture:
+
+\begin{itemize}
+\item Substitutions must preserve load stability, fit integrity, and load verification posture.
+\item Permitted substitution examples (category-level):
+  \begin{itemize}
+  \item pack model substitution only after stabilization period outside protected windows,
+  \item load module substitution only if it is non-leaking, non-shifting, and can be labeled and logged.
+  \end{itemize}
+\item Prohibited substitutions:
+  \begin{itemize}
+  \item unstable loads that shift,
+  \item improvised loads likely to leak/break,
+  \item excessive loads without fit and retention integrity,
+  \item carrying water as “dry load” (water is logged separately).
+  \end{itemize}
+\end{itemize}
+
+Validity/logging linkage (Stage 2.E posture, high level; required fields conceptually):
+
+\begin{itemize}
+\item When any substitution occurs, log:
+  \begin{itemize}
+  \item environment identity (Route \textbf{ID} / environment unit posture concept),
+  \item tool/load verification method (cross-reference 7.18),
+  \item dry load recorded; carried water logged separately,
+  \item any deviation reason and the applicable validity posture (if the change affects comparability, treat as validity-sensitive and reslot rather than claim gate credit).
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.07.8 Phase Integration Map}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.07.8 Phase Integration Map}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.05in]
+    Q[l,wd=1.60in]
+    X[l,3.05]
+    X[l,3.95]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Phase} &
+\Hdr{Required Tier (from Stage 6)} &
+\Hdr{What Changes / Becomes Mandatory} &
+\Hdr{Notes} \\
+Phase 00 &
+Tier 0 &
+No ruck capability; no substitutions permitted &
+Phase 00 is minimal. No load carriage requirement. \\
+Phase 01 &
+Tier 0 &
+No ruck capability; education-only posture &
+Maintain Tier 0. Do not treat “hiking with a backpack” as authorized ruck progression. \\
+Phase 02 &
+Tier 0 &
+No ruck capability; maintain prohibition on substitutions &
+Ruck interface remains out of scope for minimum deployable readiness. \\
+Phase 03 &
+Tier 1 &
+First minimum deployable ruck capability becomes required by Phase 03 (End) &
+Milestone: first structured ruck exposure becomes feasible only after Tier 1 capability exists. Notes: Phase 03 (End) is the first required point; stabilize the interface in earlier work weeks; no novelty in protected windows. \\
+Phase 04 &
+Tier 1 &
+Tier 1 ruck capability must be stable by Phase 04 (E) for phase execution &
+Notes: Phase 04 (E) indicates ruck capability must be available at phase entry; treat fit and load module selection as locked variables for the phase to protect comparability. \\
+Phase 05 &
+Tier 1 &
+Maintain Tier 1; prepare for higher consequence by stabilizing foot and sustainment posture &
+Notes: Phase 05 (End) remains Tier 1; do not escalate interface changes near longer endurance gates. \\
+Phase 06 &
+Tier 2 &
+Tier 2 expanded stability becomes required by Phase 06 (End) &
+Notes: Phase 06 (End) requires improved stability and comfort posture; prioritize repeatability, not load escalation. \\
+Phase 07 &
+Tier 2 &
+Maintain Tier 2 stability under hybrid density &
+Notes: Phase 07 (End) keep interface stable across protected windows; reslot rather than compress if variance occurs. \\
+Phase 08 &
+Tier 2 &
+Maintain Tier 2; load tolerance consequence increases &
+Notes: Phase 08 (End) treat long-load milestones as dominant events by intent; avoid interface changes near protected windows. \\
+Phase 09 &
+Tier 2 &
+Maintain Tier 2; manage friction and hotspots under volume &
+Notes: Phase 09 (End) \textbf{CAL} volume and ruck exposure must not collide through avoidable foot breakdown; cross-reference 7.11. \\
+Phase 10 &
+Tier 2 &
+Maintain Tier 2; multi-domain gate weeks increase variance sensitivity &
+Notes: Phase 10 (End) high consequence; enforce no novelty posture; visibility and environment controls become decisive. \\
+Phase 11 &
+Tier 2 &
+Maintain Tier 2; recovery sensitivity increases &
+Notes: Phase 11 (End) maintain stable interface; reslot if risk flags appear; do not force. \\
+Phase 12 &
+Tier 3 &
+Tier 3 redundancy becomes required by Phase 12 (End) per Stage 6 &
+Notes: Phase 12 (End) redundancy is introduced as reliability posture for high-consequence windows; stabilize any new pack/frame well before verification blocks. \\
+Phase 13 &
+Tier 3 &
+Maintain Tier 3 stability posture through consolidation &
+Notes: Phase 13 (End) no novelty near final protected windows; repeatability is the objective. \\
+\end{longtblr}
+
+\endgroup
+
+7.07.8 Notes:
+
+\begin{itemize}
+\item If any upstream phase artifact implies ruck capability is required before Phase 03 (End), Requires Stage 8 review.
+\item If any upstream phase artifact implies underwater/breath-hold is a substitute for load carriage readiness, Requires Stage 8 review.
+\end{itemize}
+
+\subsection*{7.07.9 Risks, Contraindications, and Red Flags}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.07.9 Risks, Contraindications, and Red Flags}
+
+Non-medical risk list (Phase-gated posture):
+
+\begin{itemize}
+\item Foot hotspots/blisters (cross-reference 7.11):
+  \begin{itemize}
+  \item hotspot trending toward blister requires downshift next exposure and stabilization before escalation.
+  \item active blister increases fall risk and invalidates gait comparability; substitute lower-risk Cardio and reslot ruck exposures.
+  \end{itemize}
+\item Knee/hip/back flare-ups:
+  \begin{itemize}
+  \item gait-altering pain triggers stop posture for load carriage; substitute lower-risk modality; document.
+  \end{itemize}
+\item Heat illness risk:
+  \begin{itemize}
+  \item increased risk under load; enforce conservative route selection and hydration posture (7.13); stop for heat illness signs.
+  \end{itemize}
+\item Traffic/visibility hazards:
+  \begin{itemize}
+  \item low light and traffic elevate consequence; visibility posture (7.19) is controlling; reslot if safe separation cannot be maintained.
+  \end{itemize}
+\item Load shift and fall risk:
+  \begin{itemize}
+  \item shifting loads increase trip/fall risk; any shift indicates the system is not deployable at that load level; stop and correct.
+  \end{itemize}
+\item Red-flag symptom posture reminder:
+  \begin{itemize}
+  \item chest pain/pressure, syncope/near-syncope, disproportionate dyspnea, new neurologic symptoms: \textbf{STOP} \textbf{NOW} and seek evaluation.
+  \item gait-altering pain: stop ruck exposure; substitute lower-risk Cardio; document per Stage 2.E posture conceptually.
+  \end{itemize}
+\item Timing mismatch risk:
+  \begin{itemize}
+  \item If Stage 6 timing and any phase artifact conflict on when Tier 1 is required, flag Requires Stage 8 review rather than changing timing here.
+  \end{itemize}
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,454 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{7.17 — Aquatic Training and Water Safety Equipment}
+\phantomsection
+\addcontentsline{toc}{section}{7.17 — Aquatic Training and Water Safety Equipment}
+
+\subsection*{7.17.1 Purpose \& Scope}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.17.1 Purpose \& Scope}
+
+7.17 covers the minimum deployable equipment and safety posture for surface swimming in controlled pool environments, with governance-gated late-phase open-water safety contingencies. It includes kit components that enable consistent pool entry, safe execution, clean/dry workflow, and audit-ready logging of pool identity and conditions.
+
+\subsection*{7.17.2 Governance and Safety Boundaries}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.17.2 Governance and Safety Boundaries}
+
+\begin{itemize}
+\item Underwater/breath-hold is supervised-only and prohibited otherwise:
+  \begin{itemize}
+  \item Any underwater/breath-hold exposure requires all of the following, with no exceptions:
+    \begin{itemize}
+    \item certified lifeguard present on deck,
+    \item dedicated safety spotter in direct visual contact,
+    \item controlled pool environment (no open water),
+    \item explicit abort discipline (stop at any distress signal),
+    \item if any requirement is missing: underwater is not scheduled, not attempted, and is inadmissible.
+    \end{itemize}
+  \end{itemize}
+\item Abort discipline posture (surface swim):
+  \begin{itemize}
+  \item abort and exit water for distress, disorientation, panic, dizziness, cramps, nausea, or unusual breathlessness.
+  \end{itemize}
+\item Pool rule compliance posture:
+  \begin{itemize}
+  \item follow pool rules; no unsafe behaviors; no “prove it” actions.
+  \end{itemize}
+\item Open-water is higher risk:
+  \begin{itemize}
+  \item avoid unless governed; treat as governance-gated; do not treat open-water exposure as required.
+  \end{itemize}
+\item No technique tools posture:
+  \begin{itemize}
+  \item exclude fins, paddles, snorkel from this overview to prevent drift into technique/progression tooling.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.17.3 Tier Doctrine — Applied to Aquatic Equipment}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.17.3 Tier Doctrine — Applied to Aquatic Equipment}
+
+\begin{itemize}
+\item Tier 0: no dedicated kit; pool access not assumed; non-aquatic substitutions cross-reference 7.08.
+\item Tier 1: minimum viable surface swim capability and safety readiness when aquatics becomes required per Stage 6.
+\item Tier 2: expanded reliability and comfort tools that improve repeatability and reduce friction, still surface-only.
+\item Tier 3: overbuilt redundancy and open-water safety items, governance-gated and “avoid unless governed.”
+\end{itemize}
+
+\subsection*{7.17.4 Selection Criteria \& Fit Checks}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.17.4 Selection Criteria \& Fit Checks}
+
+\begin{itemize}
+\item Goggles:
+  \begin{itemize}
+  \item seal integrity without painful pressure; stable strap; no recurring leaks.
+  \end{itemize}
+\item Cap:
+  \begin{itemize}
+  \item secure fit; does not cause headache; visible color improves lane awareness.
+  \end{itemize}
+\item Ear protection (if used):
+  \begin{itemize}
+  \item comfortable; does not block situational awareness; discontinue if irritation occurs.
+  \end{itemize}
+\item Clean/dry workflow:
+  \begin{itemize}
+  \item towel and bag posture supports consistent post-session drying to prevent mildew.
+  \end{itemize}
+\item Risk screening posture:
+  \begin{itemize}
+  \item do not enter pool when ill, dizzy, unusually breathless, or unable to self-regulate; abort posture is mandatory.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.17.5 Setup, Safety, and Anchoring}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.17.5 Setup, Safety, and Anchoring}
+
+\begin{itemize}
+\item Pool identification posture:
+  \begin{itemize}
+  \item Pool \textbf{ID} and pool length/unit are logged for any test event or comparable swim exposure.
+  \end{itemize}
+\item Lane conduct posture:
+  \begin{itemize}
+  \item follow pool rules; avoid unsafe behaviors; do not hang on lane lines or perform prohibited rest behaviors when standard requires surface-only discipline.
+  \end{itemize}
+\item Abort posture:
+  \begin{itemize}
+  \item stop immediately for distress, disorientation, panic, cramps, dizziness, nausea, or unusual breathlessness.
+  \end{itemize}
+\item Underwater governance posture:
+  \begin{itemize}
+  \item underwater/breath-hold remains prohibited unless all supervision specifications are met.
+  \item no progression instruction is provided; this is governance only.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.17.6 Maintenance, Replacement, and Storage}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.17.6 Maintenance, Replacement, and Storage}
+
+\begin{itemize}
+\item Rinse and dry routine:
+  \begin{itemize}
+  \item rinse goggles/cap; dry fully; prevent mildew in bags.
+  \end{itemize}
+\item Anti-fog posture:
+  \begin{itemize}
+  \item use stable method; avoid switching chemicals near protected windows if sensitivity exists.
+  \end{itemize}
+\item Replacement cues:
+  \begin{itemize}
+  \item goggle strap cracks; persistent leaks; cap tears; persistent mildew odor in bag.
+  \end{itemize}
+\item Storage:
+  \begin{itemize}
+  \item ventilated drying; do not store damp gear sealed.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.17.7 Substitution Rules — Maintain Intent Without Breaking Safety/Validity}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.17.7 Substitution Rules — Maintain Intent Without Breaking Safety/Validity}
+
+\begin{itemize}
+\item If pool access is unavailable or conditions compromise safety/validity:
+  \begin{itemize}
+  \item substitute with 7.08 conditioning modality; do not claim swim equivalence for gate evidence.
+  \item document substitution and reason posture.
+  \end{itemize}
+\item Stage 2.E logging/validity posture required:
+  \begin{itemize}
+  \item Pool \textbf{ID} and conditions notes must be recorded for any swim test/event attempt.
+  \item missing Pool \textbf{ID}/conditions notes make the event inadmissible for gate purposes.
+  \item if substituted: document modality and why; treat swim evidence as not collected.
+  \end{itemize}
+\end{itemize}
+
+\begin{landscape}
+
+\subsection*{7.17.8 Phase Integration Map — Required}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.17.8 Phase Integration Map — Required}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.05in]
+    Q[l,wd=1.55in]
+    X[l,3.05]
+    X[l,3.85]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Phase} &
+\Hdr{Required Tier (from Stage 6)} &
+\Hdr{What Changes / Becomes Mandatory} &
+\Hdr{Notes} \\
+Phase 00 &
+T0 &
+None &
+No pool access assumed. Substitute with 7.08 when needed; no swim equivalence claims. \\
+Phase 01 &
+T0 &
+None &
+Maintain substitution posture; no aquatic requirement implied. \\
+Phase 02 &
+T0 &
+None &
+Maintain substitution posture; no aquatic requirement implied. \\
+Phase 03 &
+T0 &
+None &
+Maintain substitution posture; do not introduce aquatics as “make up” for missed run/ruck work. \\
+Phase 04 &
+T1 (End) &
+Tier 1 surface swim kit required by Phase 04 (End): goggles + cap + clean/dry workflow &
+Pool access becomes operationally necessary for swim evidence. Underwater remains prohibited unless supervision specifications are met (not implied here). \\
+Phase 05 &
+T1 (End) &
+Maintain Tier 1; improve repeatability by stabilizing kit and pool routines &
+Phase 05 (End): no novelty near protected windows; log pool identity and conditions when evidence matters. \\
+Phase 06 &
+T2 (End) &
+Tier 2 repeatability supports become required by Phase 06 (End): backup goggles + stable anti-fog posture &
+Higher consequence phases increase the cost of equipment failure; redundancy reduces compromised windows. \\
+Phase 07 &
+T2 (End) &
+Maintain Tier 2; enforce stability and documentation &
+Phase 07 (End): avoid last-minute gear changes near protected windows. \\
+Phase 08 &
+T2 (End) &
+Maintain Tier 2; continued surface-only posture &
+Phase 08 (End): do not treat aquatics as a recovery shortcut; it remains a scheduled domain with governance posture. \\
+Phase 09 &
+T2 (End) &
+Maintain Tier 2; repeatability posture remains controlling &
+Phase 09 (End): pool access disruptions trigger substitution to 7.08; do not claim swim equivalence. \\
+Phase 10 &
+T2 (End) &
+Maintain Tier 2; underwater remains governance-gated and conditional only &
+Phase 10 (End): if underwater is ever present, it is supervised-only with lifeguard + spotter; prohibited otherwise. \\
+Phase 11 &
+T2 (End) &
+Maintain Tier 2; preserve low variance near high-consequence windows &
+Phase 11 (End): any illness signs abort swim session; reslot rather than forcing. \\
+Phase 12 &
+T3 (End) &
+Tier 3 redundancy required by Phase 12 (End): full redundant kit; optional open-water safety items are governance-gated &
+Open-water items are Tier 3 only and “avoid unless governed.” Underwater remains supervised-only; not implied as required. \\
+Phase 13 &
+T3 (End) &
+Maintain Tier 3; consolidation emphasizes repeatability and strict governance &
+Phase 13 (End): no novelty near final protected windows; pool identity and conditions logging remains required for admissibility. \\
+\end{longtblr}
+
+\endgroup
+
+7.17.8 Phase Integration Map Notes:
+
+\begin{itemize}
+\item If any phase artifact requires 7.17 Tier 1 earlier than Phase 04 (End), requires Stage 8 review.
+\item If any artifact implies underwater/breath-hold practice without lifeguard + spotter supervision, requires Stage 8 review.
+\end{itemize}
+
+\end{landscape}
+
+\subsection*{7.17.9 Risks, Contraindications, and Red Flags}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.17.9 Risks, Contraindications, and Red Flags}
+
+\begin{itemize}
+\item Drowning risk and panic risk:
+  \begin{itemize}
+  \item distress, disorientation, panic, dizziness, cramps, nausea → abort immediately and exit water.
+  \end{itemize}
+\item Slip hazards:
+  \begin{itemize}
+  \item wet deck surfaces increase fall risk; move conservatively; staged footwear posture cross-references 7.11/7.19 where appropriate.
+  \end{itemize}
+\item Illness exposure risk:
+  \begin{itemize}
+  \item do not swim when ill or febrile; reslot and substitute.
+  \end{itemize}
+\item Underwater governance breach posture:
+  \begin{itemize}
+  \item any unsupervised underwater/breath-hold attempt is prohibited and treated as a safety violation; \textbf{STOP} \textbf{NOW} posture.
+  \end{itemize}
+\item Validity/logging posture (Stage 2.E linkage):
+  \begin{itemize}
+  \item Pool \textbf{ID} and conditions notes are required for swim test/event admissibility; missing fields render evidence inadmissible.
+  \end{itemize}
+\item Requires Stage 8 review triggers:
+  \begin{itemize}
+  \item any timing mismatch where aquatics is required earlier than Stage 6 indicates,
+  \item any content that introduces breath-hold progression or underwater training instruction,
+  \item any content that promotes open-water exposure as routine rather than governance-gated.
+  \end{itemize}
+\end{itemize}
+
+\end{document}

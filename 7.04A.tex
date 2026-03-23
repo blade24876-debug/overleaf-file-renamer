@@ -1,0 +1,1173 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\clearpage
+\begin{landscape}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\section*{7.04.A - Carbohydrate Drink Mix}
+\phantomsection
+\addcontentsline{toc}{section}{7.04.A - Carbohydrate Drink Mix}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Carbohydrate drink mix & Gatorade Endurance Formula & \$22 & fuel fluid & Phase-05 & Higher sodium sports-drink format was chosen because it helps replace sweat losses while making carbohydrate easier to drink. \\
+Budget & Carbohydrate drink mix & Tailwind Endurance Fuel & \$30 & fuel fluid & Phase-05 & All-in-one powder was chosen because it keeps fueling simple when continuous aerobic work makes chewing inconvenient. \\
+Budget & Carbohydrate drink mix & GU Roctane Drink Mix & \$28 & fuel fluid & Phase-05 & More concentrated bottle fueling was chosen because it can carry meaningful carbohydrate in limited fluid volume. \\
+Standard & Carbohydrate drink mix & Skratch High-Carb Drink Mix & \$40 & fuel fluid & Phase-05 & High-carbohydrate formula was chosen because it raises hourly fuel delivery without forcing repeated gels. \\
+Standard & Carbohydrate drink mix & SIS Beta Fuel Drink Mix & \$45 & fuel fluid & Phase-05 & Dual-source blend was chosen because it supports harder endurance work with a denser carbohydrate profile. \\
+Standard & Carbohydrate drink mix & Precision Fuel \& Hydration Carb Drink Mix & \$38 & fuel fluid & Phase-05 & Modular mix was chosen because it makes carbohydrate standardization easier across long sessions and test rehearsals. \\
+Elite & Carbohydrate drink mix & Maurten Drink Mix 160 & \$42 & fuel fluid & Phase-05 & Hydrogel drink was chosen because it gives a cleaner high-carb option when typical mixes feel too heavy. \\
+Elite & Carbohydrate drink mix & Maurten Drink Mix 320 & \$55 & fuel fluid & Phase-05 & Very dense hydrogel option was chosen because it pushes fuel intake higher when bottle space is limited. \\
+Elite & Carbohydrate drink mix & Neversecond C30 Sports Drink & \$50 & fuel fluid & Phase-05 & Clearly labeled single-purpose fuel was chosen because it supports repeatable carb planning with less formula clutter. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.04.B - Carbohydrate Gel}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.B - Carbohydrate Gel}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Carbohydrate gel & GU Energy Gel & \$18 & gel fuel & Phase-05 & Familiar gel format was chosen because it gives fast portable carbohydrate when bottle access is inconsistent. \\
+Budget & Carbohydrate gel & Honey Stinger Energy Gel & \$20 & gel fuel & Phase-05 & Lighter honey-based texture was chosen because some athletes tolerate it better than thicker maltodextrin gels. \\
+Budget & Carbohydrate gel & Huma Chia Energy Gel & \$22 & gel fuel & Phase-05 & Softer fruit-forward gel was chosen because it can feel less cloying late in long sessions. \\
+Standard & Carbohydrate gel & SIS Beta Fuel Gel & \$32 & gel fuel & Phase-05 & Higher-carb packet was chosen because it reduces how often fueling has to interrupt movement. \\
+Standard & Carbohydrate gel & Precision Fuel \& Hydration PF-30 Gel & \$30 & gel fuel & Phase-05 & Simple 30-g carbohydrate unit was chosen because it makes intake tracking cleaner from bottle to packet. \\
+Standard & Carbohydrate gel & TORQ Gel & \$28 & gel fuel & Phase-05 & Thinner consistency was chosen because it often goes down easier without a large swallow of water. \\
+Elite & Carbohydrate gel & Maurten Gel-100 & \$40 & gel fuel & Phase-05 & Hydrogel packet was chosen because it delivers dense carbohydrate with a smoother mouthfeel than many standard gels. \\
+Elite & Carbohydrate gel & Maurten Gel-160 & \$45 & gel fuel & Phase-05 & Larger hydrogel serving was chosen because it raises carbohydrate per packet and cuts carrying volume. \\
+Elite & Carbohydrate gel & Neversecond C30 Gel & \$38 & gel fuel & Phase-05 & Transparent single-function formula was chosen because it makes session-to-session attribution easier when troubleshooting. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.04.C - Portable Chewable Carbohydrate Fuel}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.C - Portable Chewable Carbohydrate Fuel}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Portable chewable carbohydrate fuel & CLIF BLOKS & \$25 & chew fuel & Phase-05 & Bite-sized blocks were chosen because they let fueling be spread out in smaller, easier portions. \\
+Budget & Portable chewable carbohydrate fuel & GU Energy Chews & \$22 & chew fuel & Phase-05 & Soft chew texture was chosen because it offers quick carbohydrate without the stickiness of thicker bars. \\
+Budget & Portable chewable carbohydrate fuel & Jelly Belly Sport Beans & \$18 & chew fuel & Phase-05 & Small candy-style pieces were chosen because they are easy to portion during stop-start endurance work. \\
+Standard & Portable chewable carbohydrate fuel & Honey Stinger Energy Chews & \$24 & chew fuel & Phase-05 & Fruit-chew format was chosen because it gives portable carbohydrate with less chewing resistance than bars. \\
+Standard & Portable chewable carbohydrate fuel & Skratch Energy Chews & \$28 & chew fuel & Phase-05 & Cleaner chew format was chosen because it supports smaller fueling bites without heavy aftertaste buildup. \\
+Standard & Portable chewable carbohydrate fuel & Bonk Breaker Energy Chews & \$26 & chew fuel & Phase-05 & Soft gummy format was chosen because it can be easier to keep down during longer steady efforts. \\
+Elite & Portable chewable carbohydrate fuel & ProBar Bolt Energy Chews & \$30 & chew fuel & Phase-05 & Dense chew profile was chosen because it gives a more substantial portable carbohydrate option than light gummies. \\
+Elite & Portable chewable carbohydrate fuel & Maurten Solid-160 & \$38 & chew fuel & Phase-05 & Compact solid bite option was chosen because it gives portable carbohydrate with a cleaner ingredient profile. \\
+Elite & Portable chewable carbohydrate fuel & Neversecond C30 Fuel Bar & \$36 & chew fuel & Phase-05 & Small measured fuel unit was chosen because it supports tighter carbohydrate planning than generic snack bars. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.04.D - Carbohydrate Bar}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.D - Carbohydrate Bar}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Carbohydrate bar & CLIF Bar & \$20 & solid fuel & Phase-05 & Large familiar bar was chosen because it gives a cheap solid carbohydrate option for longer outdoor sessions. \\
+Budget & Carbohydrate bar & Honey Stinger Waffle & \$24 & solid fuel & Phase-05 & Lighter layered texture was chosen because it is often easier to eat while moving than dense bars. \\
+Budget & Carbohydrate bar & Nature's Bakery Fig Bar & \$12 & solid fuel & Phase-05 & Simple bakery-style bar was chosen because it provides low-cost portable carbohydrate for easier sessions. \\
+Standard & Carbohydrate bar & Bobo's Oat Bar & \$28 & solid fuel & Phase-05 & Soft oat texture was chosen because it works well when a firmer performance bar feels too dry. \\
+Standard & Carbohydrate bar & Bonk Breaker Energy Bar & \$32 & solid fuel & Phase-05 & Sport-specific bar was chosen because it targets portable session fuel rather than general snacking. \\
+Standard & Carbohydrate bar & ProBar Meal Bar & \$30 & solid fuel & Phase-05 & More substantial bar was chosen because it suits long-duration work where a thin gel is not satisfying enough. \\
+Elite & Carbohydrate bar & Maurten Solid-225 & \$42 & solid fuel & Phase-05 & Dense compact solid was chosen because it gives measured carbohydrate in a smaller carry footprint. \\
+Elite & Carbohydrate bar & Neversecond C30 Fuel Bar & \$36 & solid fuel & Phase-05 & Controlled 30-g fuel unit was chosen because it makes long-session carbohydrate tracking cleaner and repeatable. \\
+Elite & Carbohydrate bar & Precision Fuel \& Hydration Carb Bar & \$35 & solid fuel & Phase-05 & Purpose-built endurance bar was chosen because it supports fueling structure better than improvised convenience snacks. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.04.E - Electrolyte Stick Pack}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.E - Electrolyte Stick Pack}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Electrolyte stick pack & Liquid I.V. Hydration Multiplier & \$25 & electrolyte mix & Phase-05 & Ready-mix packet was chosen because it makes sodium and fluid intake easier when plain water falls short. \\
+Budget & Electrolyte stick pack & DripDrop ORS & \$30 & electrolyte mix & Phase-05 & Oral-rehydration style packet was chosen because it prioritizes fluid retention during hotter or longer work. \\
+Budget & Electrolyte stick pack & Pedialyte Sport Powder Packs & \$18 & electrolyte mix & Phase-05 & Practical hydration packet was chosen because it gives a familiar sodium-heavy option without complicated prep. \\
+Standard & Electrolyte stick pack & LMNT & \$45 & electrolyte mix & Phase-05 & Higher-sodium packet was chosen because it fits heavier sweaters who underperform when salt intake is too low. \\
+Standard & Electrolyte stick pack & Skratch Hydration Sport Drink Mix & \$24 & electrolyte mix & Phase-05 & Lighter electrolyte profile was chosen because it suits moderate sweat replacement without an overly salty finish. \\
+Standard & Electrolyte stick pack & Precision Fuel \& Hydration Electrolyte Drink Mix & \$38 & electrolyte mix & Phase-05 & Modular sodium approach was chosen because it lets sweat-loss support be matched more deliberately across conditions. \\
+Elite & Electrolyte stick pack & Maurten Drink Mix 160 & \$42 & electrolyte mix & Phase-05 & Premium bottle fuel was chosen because it combines carbohydrate support with cleaner bottle-based intake under load. \\
+Elite & Electrolyte stick pack & Neversecond Hydration Mix & \$40 & electrolyte mix & Phase-05 & Transparent formula was chosen because it helps isolate hydration variables without extra ingredient noise. \\
+Elite & Electrolyte stick pack & Precision Fuel \& Hydration High-Sodium Tabs & \$36 & electrolyte mix & Phase-05 & Higher-sodium travel format was chosen because it improves consistency when field conditions limit full-mix prep. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.04.F - Sodium Capsule}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.F - Sodium Capsule}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Sodium capsule & SaltStick Caps & \$25 & salt capsule & Phase-05 & Capsule format was chosen because it raises sodium without forcing another sweet drink. \\
+Budget & Sodium capsule & GU Roctane Electrolyte Caps & \$10 & salt capsule & Phase-05 & Small portable cap was chosen because it is easy to carry when heat or duration outpaces drink sodium. \\
+Budget & Sodium capsule & Trace Minerals 40,000 Volts Capsules & \$18 & salt capsule & Phase-05 & Mineral-focused capsule was chosen because it supports sweat replacement without adding more bottle volume. \\
+Standard & Sodium capsule & Precision Fuel \& Hydration Sodium Capsules & \$30 & salt capsule & Phase-05 & Measured sodium unit was chosen because it simplifies salt planning in long sessions and hot weather. \\
+Standard & Sodium capsule & Hammer Endurolytes Extreme & \$28 & salt capsule & Phase-05 & Higher-sodium capsule was chosen because it suits heavier salt loss when basic electrolyte drinks are not enough. \\
+Standard & Sodium capsule & Base Electrolyte Salt Capsules & \$24 & salt capsule & Phase-05 & Salt-focused capsule was chosen because it supports sweat-loss correction without extra carbohydrate when fuel is already handled elsewhere. \\
+Elite & Sodium capsule & Precision Fuel \& Hydration High-Sodium Capsules & \$35 & salt capsule & Phase-05 & Higher-output capsule was chosen because it gives a cleaner salt-only tool for repeatable hot-session use. \\
+Elite & Sodium capsule & Momentous Electrolytes & \$38 & salt capsule & Phase-05 & Premium capsule was chosen because it emphasizes consistency and cleaner packaging for controlled field use. \\
+Elite & Sodium capsule & Designs for Health Electrolyte Synergy Caps & \$34 & salt capsule & Phase-05 & Clinically styled capsule was chosen because it offers a more controlled-feeling electrolyte option with less flavor fatigue. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.04.G - Ginger Capsule}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.G - Ginger Capsule}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Ginger capsule & \textbf{NOW} Ginger Root & \$12 & GI adjunct & Phase-05 & Plain ginger capsule was chosen because it can make longer-session fueling sit more comfortably. \\
+Budget & Ginger capsule & Nature's Way Ginger Root & \$14 & GI adjunct & Phase-05 & Simple herbal capsule was chosen because it gives a low-cost stomach-settling option around session fueling. \\
+Budget & Ginger capsule & Spring Valley Ginger Root & \$10 & GI adjunct & Phase-05 & Basic ginger option was chosen because it supports nausea control without adding another flavored product. \\
+Standard & Ginger capsule & Gaia Herbs Ginger Supreme & \$20 & GI adjunct & Phase-05 & Stronger standardized ginger was chosen because it is better suited to repeat GI discomfort during fuel-heavy work. \\
+Standard & Ginger capsule & Solaray Ginger Root & \$16 & GI adjunct & Phase-05 & Straightforward capsule was chosen because it offers a middle-ground stomach aid with minimal formula complexity. \\
+Standard & Ginger capsule & Pure Encapsulations Ginger Extract & \$24 & GI adjunct & Phase-05 & Cleaner extract was chosen because it supports GI tolerance when ingredient simplicity matters. \\
+Elite & Ginger capsule & Integrative Therapeutics Ginger & \$28 & GI adjunct & Phase-05 & Professional-line extract was chosen because it emphasizes consistency for repeated stomach-support use. \\
+Elite & Ginger capsule & Thorne Ginger & \$26 & GI adjunct & Phase-05 & Higher-end capsule was chosen because it gives a tighter single-ingredient option for controlled GI troubleshooting. \\
+Elite & Ginger capsule & Designs for Health Ginger SP & \$30 & GI adjunct & Phase-05 & Premium extract was chosen because it suits athletes who need a more deliberate stomach-support tool around fueling blocks. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.04.H - Digestive Enzyme Capsule}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.H - Digestive Enzyme Capsule}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Digestive enzyme capsule & \textbf{NOW} Super Enzymes & \$20 & GI support & Phase-05 & Broad enzyme blend was chosen because it helps heavier mixed meals clear before training windows. \\
+Budget & Digestive enzyme capsule & Doctor's Best Digestive Enzymes & \$18 & GI support & Phase-05 & Budget multi-enzyme formula was chosen because it supports general meal tolerance when fuel volume rises. \\
+Budget & Digestive enzyme capsule & Source Naturals Essential Enzymes & \$16 & GI support & Phase-05 & Accessible blend was chosen because it gives a low-cost way to reduce meal-related stomach heaviness. \\
+Standard & Digestive enzyme capsule & Enzymedica Digest Gold & \$38 & GI support & Phase-05 & Stronger enzyme profile was chosen because it is better suited to persistent meal-tolerance friction. \\
+Standard & Digestive enzyme capsule & Thorne Bio-Gest & \$34 & GI support & Phase-05 & Cleaner capsule was chosen because it supports digestion with less formula clutter than many mass-market blends. \\
+Standard & Digestive enzyme capsule & Pure Encapsulations Digestive Enzymes Ultra & \$40 & GI support & Phase-05 & Refined blend was chosen because it suits athletes who need a more controlled digestion aid. \\
+Elite & Digestive enzyme capsule & Designs for Health Digestzymes & \$45 & GI support & Phase-05 & Professional-line blend was chosen because it is built for repeat, structured digestive support around larger intake. \\
+Elite & Digestive enzyme capsule & Integrative Therapeutics Similase & \$42 & GI support & Phase-05 & Premium enzyme system was chosen because it is aimed at broad meal tolerance rather than one narrow trigger. \\
+Elite & Digestive enzyme capsule & Enzymedica Digest Spectrum & \$50 & GI support & Phase-05 & Expanded-spectrum blend was chosen because it helps when multiple food types create repeated tolerance issues. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.04.I - Lactase Enzyme Tablet}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.I - Lactase Enzyme Tablet}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Lactase enzyme tablet & Lactaid Fast Act & \$18 & dairy enzyme & Phase-05 & Fast-use tablet was chosen because it supports dairy-based fueling without predictable stomach backlash. \\
+Budget & Lactase enzyme tablet & CVS Health Fast Acting Lactase & \$15 & dairy enzyme & Phase-05 & Store-brand lactase was chosen because it offers a cheap way to keep dairy protein and fuel options usable. \\
+Budget & Lactase enzyme tablet & Kirkland Signature Fast Acting Lactase & \$17 & dairy enzyme & Phase-05 & Bulk lactase format was chosen because it suits repeated use when dairy remains a regular fueling tool. \\
+Standard & Lactase enzyme tablet & Nature's Bounty Dairy Digest & \$16 & dairy enzyme & Phase-05 & Mid-tier dairy enzyme was chosen because it keeps lactose management simple without overcomplicating the stack. \\
+Standard & Lactase enzyme tablet & Enzymedica Lacto & \$28 & dairy enzyme & Phase-05 & More deliberate lactase product was chosen because it supports better dairy tolerance when standard tablets fail. \\
+Standard & Lactase enzyme tablet & \textbf{NOW} Dairy Digest Complete & \$20 & dairy enzyme & Phase-05 & Broader dairy-digest blend was chosen because it helps when milk-based products repeatedly feel heavy. \\
+Elite & Lactase enzyme tablet & Seeking Health Lactase & \$30 & dairy enzyme & Phase-05 & Premium single-purpose tablet was chosen because it keeps dairy tolerance support narrowly focused and predictable. \\
+Elite & Lactase enzyme tablet & Pure Encapsulations Dairy Enzyme & \$32 & dairy enzyme & Phase-05 & Cleaner premium tablet was chosen because it suits athletes who want minimal extra formula variables. \\
+Elite & Lactase enzyme tablet & Klaire Labs Vital-Zymes Complete & \$35 & dairy enzyme & Phase-05 & Higher-end digestive support was chosen because it helps when dairy use is part of a broader meal-tolerance issue. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.04.J - Highly Branched Cyclic Dextrin Powder}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.J - Highly Branched Cyclic Dextrin Powder}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Highly branched cyclic dextrin powder & Nutricost Cluster Dextrin & \$32 & cluster-dextrin fuel & Phase-06 & Cluster dextrin powder was chosen because it gives dense bottle fuel with less chew fatigue in longer sessions. \\
+Budget & Highly branched cyclic dextrin powder & BulkSupplements Cluster Dextrin & \$28 & cluster-dextrin fuel & Phase-06 & Bulk powder was chosen because it allows inexpensive testing of higher-carb bottle fueling before premium formulas. \\
+Budget & Highly branched cyclic dextrin powder & PureBulk Cluster Dextrin & \$35 & cluster-dextrin fuel & Phase-06 & Simple raw powder was chosen because it gives a controlled carbohydrate variable without extra active ingredients. \\
+Standard & Highly branched cyclic dextrin powder & Kaged Cluster Dextrin & \$45 & cluster-dextrin fuel & Phase-06 & Standardized sports formulation was chosen because it targets higher-carb fueling with more deliberate mix quality. \\
+Standard & Highly branched cyclic dextrin powder & EFX Sports Karbolyn & \$50 & cluster-dextrin fuel & Phase-06 & Fast-mixing endurance powder was chosen because it raises bottle carbohydrate while staying relatively drinkable. \\
+Standard & Highly branched cyclic dextrin powder & Rule 1 R1 GlycoFuse & \$40 & cluster-dextrin fuel & Phase-06 & Performance carb powder was chosen because it supports repeatable high-carb fueling without constant gel use. \\
+Elite & Highly branched cyclic dextrin powder & Momentous Fuel & \$55 & cluster-dextrin fuel & Phase-06 & Premium endurance fuel was chosen because it emphasizes cleaner, higher-end bottle carbohydrate delivery. \\
+Elite & Highly branched cyclic dextrin powder & Neversecond C90 High-Carb Mix & \$60 & cluster-dextrin fuel & Phase-06 & Very high-carb mix was chosen because it supports dense fueling when extended efforts demand more than standard bottles. \\
+Elite & Highly branched cyclic dextrin powder & Precision Fuel \& Hydration Carb Only Mix & \$52 & cluster-dextrin fuel & Phase-06 & Premium modular mix was chosen because it helps isolate carbohydrate strategy from electrolyte strategy more clearly. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.04.K - Dextrose Powder}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.K - Dextrose Powder}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Dextrose powder & \textbf{NOW} Sports Dextrose & \$15 & simple carb powder & Phase-06 & Straight dextrose powder was chosen because it offers a cheap, fast carbohydrate source for bottle experiments. \\
+Budget & Dextrose powder & Nutricost Dextrose & \$16 & simple carb powder & Phase-06 & Commodity glucose powder was chosen because it keeps carbohydrate testing simple and inexpensive. \\
+Budget & Dextrose powder & BulkSupplements Dextrose & \$14 & simple carb powder & Phase-06 & Bare-bones powder was chosen because it isolates fast carbohydrate delivery without flavor or blend complexity. \\
+Standard & Dextrose powder & PureBulk Dextrose & \$18 & simple carb powder & Phase-06 & Cleaner bulk format was chosen because it supports standardized bottle fueling with fewer extra additives. \\
+Standard & Dextrose powder & Muscle Feast Dextrose & \$20 & simple carb powder & Phase-06 & Sports-oriented glucose powder was chosen because it keeps rapid carbohydrate delivery easy to measure. \\
+Standard & Dextrose powder & Transparent Labs Carb Powder & \$28 & simple carb powder & Phase-06 & More polished carbohydrate formula was chosen because it improves mixability without becoming a stimulant product. \\
+Elite & Dextrose powder & Momentous Fuel & \$55 & simple carb powder & Phase-06 & Premium rapid-carb option was chosen because it offers higher-end mixing and packaging for controlled use. \\
+Elite & Dextrose powder & Thorne Catalyte & \$40 & simple carb powder & Phase-06 & Professional-line carb-electrolyte support was chosen because it pairs quick fuel with hydration support in one bottle. \\
+Elite & Dextrose powder & Neversecond C30 Sports Drink & \$50 & simple carb powder & Phase-06 & Premium fast-carb drink was chosen because it gives labeled repeatable carbohydrate units for cleaner session comparison. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.04.L - Beetroot Nitrate Shot}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.L - Beetroot Nitrate Shot}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Beetroot nitrate shot & Beet It Sport Shot & \$40 & nitrate concentrate & Phase-06 & Ready-shot nitrate format was chosen because it makes pre-session nitrate use more standardized than powders. \\
+Budget & Beetroot nitrate shot & HumanN SuperBeets Sport Shot & \$45 & nitrate concentrate & Phase-06 & Portable shot was chosen because it simplifies nitrate support when prep time is limited. \\
+Budget & Beetroot nitrate shot & KOS Organic Beet Shot & \$30 & nitrate concentrate & Phase-06 & Simpler beet shot was chosen because it gives an easy entry point for testing nitrate tolerance. \\
+Standard & Beetroot nitrate shot & Beet It Nitrate 400 & \$50 & nitrate concentrate & Phase-06 & Stronger nitrate shot was chosen because it offers a more deliberate performance-focused beet format. \\
+Standard & Beetroot nitrate shot & HumanN BeetElite Shot & \$48 & nitrate concentrate & Phase-06 & Concentrated shot was chosen because it is easier to standardize than improvised beet juice servings. \\
+Standard & Beetroot nitrate shot & Love Beets Beet Juice Shot & \$24 & nitrate concentrate & Phase-06 & Food-style shot was chosen because it provides a simpler liquid nitrate option without a heavy supplement feel. \\
+Elite & Beetroot nitrate shot & Beet It Elite Shot Pack & \$60 & nitrate concentrate & Phase-06 & Premium race-style shot pack was chosen because it supports more repeatable nitrate timing in harder phases. \\
+Elite & Beetroot nitrate shot & HumanN BeetElite Pro Shot & \$55 & nitrate concentrate & Phase-06 & More performance-forward shot was chosen because it is designed for deliberate repeatability rather than casual use. \\
+Elite & Beetroot nitrate shot & Momentous Nitrate Recovery Shot & \$65 & nitrate concentrate & Phase-06 & Premium shot was chosen because it offers a cleaner high-end nitrate option for controlled late-cycle testing. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.04.M - Beetroot Nitrate Powder}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.M - Beetroot Nitrate Powder}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Beetroot nitrate powder & BulkSupplements Beet Root Powder & \$18 & nitrate powder & Phase-06 & Raw beet powder was chosen because it gives an inexpensive way to test beet-based support before buying shots. \\
+Budget & Beetroot nitrate powder & Nutricost Beet Root Powder & \$20 & nitrate powder & Phase-06 & Simple powder was chosen because it lets nitrate use be trialed in smaller, cheaper steps. \\
+Budget & Beetroot nitrate powder & KOS Beet Root Powder & \$22 & nitrate powder & Phase-06 & Basic beet powder was chosen because it offers an easy mix-in option when liquid shots are inconvenient. \\
+Standard & Beetroot nitrate powder & HumanN SuperBeets Sport Powder & \$35 & nitrate powder & Phase-06 & Sport-oriented powder was chosen because it aims at more standardized nitrate use than grocery beet powder. \\
+Standard & Beetroot nitrate powder & BeetElite Beet Root Powder & \$38 & nitrate powder & Phase-06 & Performance-focused powder was chosen because it gives a more deliberate beetroot option for measured use. \\
+Standard & Beetroot nitrate powder & Zhou Nutrition Beet Root & \$24 & nitrate powder & Phase-06 & Straightforward powder was chosen because it offers a mid-tier entry point for nitrate-based support. \\
+Elite & Beetroot nitrate powder & Momentous Nitrate Powder & \$55 & nitrate powder & Phase-06 & Premium powder was chosen because it gives a cleaner controlled nitrate option with less formula clutter. \\
+Elite & Beetroot nitrate powder & Designs for Health Beet Root Plus & \$48 & nitrate powder & Phase-06 & Higher-end powder was chosen because it suits athletes who want a more clinical-feeling nitrate product. \\
+Elite & Beetroot nitrate powder & Thorne Beetroot Powder & \$42 & nitrate powder & Phase-06 & Premium single-purpose powder was chosen because it supports cleaner nitrate testing without stimulant overlap. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.04.N - Beta-Alanine Capsule}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.N - Beta-Alanine Capsule}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Beta-alanine capsule & Nutricost Beta-Alanine & \$18 & buffering aid & Phase-06 & Entry-level beta-alanine was chosen because it offers a simple route into buffering support without blend complexity. \\
+Budget & Beta-alanine capsule & BulkSupplements Beta-Alanine & \$16 & buffering aid & Phase-06 & Bare-bones beta-alanine was chosen because it isolates one ergogenic variable for cleaner testing. \\
+Budget & Beta-alanine capsule & \textbf{NOW} Sports Beta-Alanine & \$22 & buffering aid & Phase-06 & Sports-line capsule was chosen because it supports structured buffering trials with a familiar brand. \\
+Standard & Beta-alanine capsule & Kaged BetaPower & \$30 & buffering aid & Phase-06 & CarnoSyn-based formula was chosen because it is built around a more standardized beta-alanine raw material. \\
+Standard & Beta-alanine capsule & Thorne Beta-Alanine-SR & \$35 & buffering aid & Phase-06 & Sustained-release version was chosen because it may feel easier to tolerate than basic fast-release options. \\
+Standard & Beta-alanine capsule & Jarrow Beta-Alanine & \$25 & buffering aid & Phase-06 & Mid-tier capsule was chosen because it offers straightforward buffering support without stimulant crossover. \\
+Elite & Beta-alanine capsule & Momentous Beta-Alanine & \$40 & buffering aid & Phase-06 & Premium single-agent capsule was chosen because it fits tighter change-control and cleaner-label preferences. \\
+Elite & Beta-alanine capsule & Designs for Health Beta-Alanine & \$38 & buffering aid & Phase-06 & Higher-end capsule was chosen because it suits controlled ergogenic testing with less ingredient clutter. \\
+Elite & Beta-alanine capsule & Klean Athlete Beta-Alanine & \$36 & buffering aid & Phase-06 & Sport-certified format was chosen because it supports cleaner compliance in a tightly governed supplement layer. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.04.O - Citrulline Malate Powder}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.O - Citrulline Malate Powder}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Citrulline malate powder & Nutricost Citrulline Malate & \$24 & NO-support powder & Phase-06 & Straight citrulline-malate powder was chosen because it gives a simple vasodilation-focused trial without stimulant baggage. \\
+Budget & Citrulline malate powder & BulkSupplements Citrulline Malate & \$22 & NO-support powder & Phase-06 & Raw powder was chosen because it isolates a single ergogenic variable for cleaner response tracking. \\
+Budget & Citrulline malate powder & \textbf{NOW} Sports Citrulline Malate & \$28 & NO-support powder & Phase-06 & Sports-line powder was chosen because it supports measured pump and work-capacity trials without proprietary blends. \\
+Standard & Citrulline malate powder & Kaged Citrulline & \$35 & NO-support powder & Phase-06 & Premium standardized powder was chosen because it offers cleaner mixing and more deliberate ingredient control. \\
+Standard & Citrulline malate powder & Transparent Labs Citrulline Malate & \$40 & NO-support powder & Phase-06 & Higher-purity positioning was chosen because it fits a stricter single-variable testing posture. \\
+Standard & Citrulline malate powder & Jarrow Arginine-Citrulline Sustain & \$30 & NO-support powder & Phase-06 & Blended support was chosen because it targets circulation support with a more established supplement company. \\
+Elite & Citrulline malate powder & Thorne Citramate & \$45 & NO-support powder & Phase-06 & Premium citrulline-malate product was chosen because it supports cleaner late-phase controllability. \\
+Elite & Citrulline malate powder & Momentous Citrulline Malate & \$48 & NO-support powder & Phase-06 & High-end single-purpose powder was chosen because it reduces formula noise in an already crowded stack. \\
+Elite & Citrulline malate powder & Designs for Health Nitric Oxide Support & \$50 & NO-support powder & Phase-06 & Clinical-style formula was chosen because it gives a more deliberate circulation-support option for structured testing. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.04.P - Betaine Anhydrous Powder}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.P - Betaine Anhydrous Powder}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Betaine anhydrous powder & Nutricost Betaine Anhydrous & \$18 & osmolyte powder & Phase-06 & Simple betaine powder was chosen because it offers a low-cost trial for work-output support. \\
+Budget & Betaine anhydrous powder & BulkSupplements Betaine Anhydrous & \$16 & osmolyte powder & Phase-06 & Raw betaine was chosen because it keeps the ergogenic trial narrow and easy to audit. \\
+Budget & Betaine anhydrous powder & \textbf{NOW} Sports Betaine HCl & \$20 & osmolyte powder & Phase-06 & Basic betaine option was chosen because it gives a readily available entry point into this support class. \\
+Standard & Betaine anhydrous powder & Kaged BetaPower & \$30 & osmolyte powder & Phase-06 & Better standardized raw material was chosen because it supports tighter consistency across repeated sessions. \\
+Standard & Betaine anhydrous powder & Transparent Labs Betaine HMB & \$35 & osmolyte powder & Phase-06 & Performance-oriented blend was chosen because it combines two narrow-use aids in one controlled product. \\
+Standard & Betaine anhydrous powder & Muscle Feast Betaine Anhydrous & \$24 & osmolyte powder & Phase-06 & Straight powder was chosen because it supports single-agent testing with minimal distraction. \\
+Elite & Betaine anhydrous powder & Klean Athlete BetaPower & \$38 & osmolyte powder & Phase-06 & Sport-certified betaine was chosen because it better fits a tightly governed athlete-facing stack. \\
+Elite & Betaine anhydrous powder & Momentous Strength Stack Betaine & \$42 & osmolyte powder & Phase-06 & Premium format was chosen because it emphasizes cleaner ingredient presentation and consistency. \\
+Elite & Betaine anhydrous powder & Designs for Health Betaine Support & \$40 & osmolyte powder & Phase-06 & Higher-end formula was chosen because it suits controlled repeatability better than low-cost bulk powders. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.04.Q - Sodium Bicarbonate Capsule}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.Q - Sodium Bicarbonate Capsule}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Sodium bicarbonate capsule & Nutricost Sodium Bicarbonate & \$20 & buffer capsule & Phase-06 & Simple bicarbonate cap was chosen because it lets buffering be trialed with less taste burden than powder. \\
+Budget & Sodium bicarbonate capsule & BulkSupplements Sodium Bicarbonate Capsules & \$18 & buffer capsule & Phase-06 & Basic capsule format was chosen because it isolates buffering support without a multi-ingredient pre-workout. \\
+Budget & Sodium bicarbonate capsule & Horbäach Sodium Bicarbonate & \$15 & buffer capsule & Phase-06 & Low-cost capsule was chosen because it provides an affordable entry point for controlled tolerance testing. \\
+Standard & Sodium bicarbonate capsule & Precision Fuel \& Hydration Bicarb System & \$45 & buffer capsule & Phase-06 & Performance-specific system was chosen because it is built around making bicarbonate use more repeatable. \\
+Standard & Sodium bicarbonate capsule & Maurten Bicarb System & \$70 & buffer capsule & Phase-06 & Structured buffering product was chosen because it aims to make a difficult ergogenic aid easier to tolerate. \\
+Standard & Sodium bicarbonate capsule & Kaged Bicarb Support & \$35 & buffer capsule & Phase-06 & Sports-focused buffering aid was chosen because it fits controlled harder-session testing better than raw kitchen soda. \\
+Elite & Sodium bicarbonate capsule & Maurten Bicarb System & \$70 & buffer capsule & Phase-06 & Premium buffering system was chosen because it is designed specifically for high-intensity repeatability use cases. \\
+Elite & Sodium bicarbonate capsule & Precision Fuel \& Hydration Bicarb System & \$45 & buffer capsule & Phase-06 & High-end sports format was chosen because it treats bicarbonate as a serious trial, not an improvised hack. \\
+Elite & Sodium bicarbonate capsule & Momentous Bicarb Support & \$48 & buffer capsule & Phase-06 & Cleaner premium capsule was chosen because it better suits tight change-control in late-cycle testing blocks. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.04.R - Glycerol Hydration Powder}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.R - Glycerol Hydration Powder}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Glycerol hydration powder & Nutricost Glycerol Monostearate & \$20 & hydration adjunct & Phase-06 & Commodity glycerol support was chosen because it offers a cheap way to test fluid-retention strategies. \\
+Budget & Glycerol hydration powder & BulkSupplements Glycerol Monostearate & \$18 & hydration adjunct & Phase-06 & Raw glycerol powder was chosen because it isolates hydration support without extra stimulants or pump blends. \\
+Budget & Glycerol hydration powder & Primaforce Glycerol Powder & \$22 & hydration adjunct & Phase-06 & Basic powder was chosen because it gives a more portable hydration adjunct than liquid glycerin workarounds. \\
+Standard & Glycerol hydration powder & Kaged Hydra-Charge Glycerol Blend & \$30 & hydration adjunct & Phase-06 & Sports-formulated glycerol support was chosen because it better fits structured hydration trials than bulk raw powder. \\
+Standard & Glycerol hydration powder & Inspired Nutraceuticals Glycolog & \$35 & hydration adjunct & Phase-06 & More refined glycerol product was chosen because it targets fluid support without relying on stimulant pre-workout formulas. \\
+Standard & Glycerol hydration powder & Transparent Labs Hydrate & \$35 & hydration adjunct & Phase-06 & Clean-label hydration product was chosen because it adds support without dragging in stimulant-heavy pre-workout features. \\
+Elite & Glycerol hydration powder & Momentous Hydration Support & \$40 & hydration adjunct & Phase-06 & Premium hydration adjunct was chosen because it supports cleaner fluid-retention testing in harder phases. \\
+Elite & Glycerol hydration powder & Designs for Health Hydration Matrix & \$42 & hydration adjunct & Phase-06 & Higher-end formula was chosen because it offers a more controlled hydration-support profile for structured use. \\
+Elite & Glycerol hydration powder & Transparent Labs Hydrate & \$35 & hydration adjunct & Phase-06 & Clean-label hydration product was chosen because it adds support without dragging in stimulant-heavy pre-workout features. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.04.S - Joint Support Capsule}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.S - Joint Support Capsule}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Joint support capsule & Doctor's Best Glucosamine Chondroitin MSM & \$20 & continuity adjunct & Phase-06 & Joint-support blend was chosen because it is aimed at preserving training continuity when heavier loading irritates tolerance. \\
+Budget & Joint support capsule & \textbf{NOW} Joint Support & \$22 & continuity adjunct & Phase-06 & Broad support blend was chosen because it gives a simple continuity-focused option without turning into treatment language. \\
+Budget & Joint support capsule & Kirkland Signature Glucosamine & \$18 & continuity adjunct & Phase-06 & Bulk glucosamine option was chosen because it keeps continuity support inexpensive when used over time. \\
+Standard & Joint support capsule & Osteo Bi-Flex Triple Strength & \$30 & continuity adjunct & Phase-06 & Mainstream joint formula was chosen because it is widely recognized for long-term comfort-support use. \\
+Standard & Joint support capsule & Jarrow Glucosamine + Chondroitin + MSM & \$28 & continuity adjunct & Phase-06 & Mid-tier combo was chosen because it supports a more complete joint-continuity profile than single-agent products. \\
+Standard & Joint support capsule & Life Extension ArthroMax & \$35 & continuity adjunct & Phase-06 & More deliberate formula was chosen because it fits structured continuity support better than grocery-store blends. \\
+Elite & Joint support capsule & Thorne Joint Support Nutrients & \$42 & continuity adjunct & Phase-06 & Premium joint-support formula was chosen because it suits a cleaner-label conservative support posture. \\
+Elite & Joint support capsule & Pure Encapsulations Joint Support Complex & \$48 & continuity adjunct & Phase-06 & Higher-end capsule was chosen because it supports continuity with tighter ingredient presentation. \\
+Elite & Joint support capsule & Designs for Health Arthroben & \$55 & continuity adjunct & Phase-06 & Professional-line product was chosen because it is positioned for long-horizon joint comfort support under repeated load. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{7.04.T - HMB Capsule}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.T - HMB Capsule}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & HMB capsule & Nutricost HMB & \$24 & continuity adjunct & Phase-06 & Entry-level HMB was chosen because it offers a simple way to test muscle-preservation support during harder blocks. \\
+Budget & HMB capsule & BulkSupplements HMB & \$22 & continuity adjunct & Phase-06 & Raw HMB option was chosen because it isolates a single performance-adjacent variable with minimal extra ingredients. \\
+Budget & HMB capsule & Optimum Nutrition HMB 1000 & \$28 & continuity adjunct & Phase-06 & Familiar sports-brand HMB was chosen because it makes a conservative trial easier to standardize. \\
+Standard & HMB capsule & Klean Athlete HMB & \$35 & continuity adjunct & Phase-06 & Sport-certified HMB was chosen because it fits a cleaner athlete-facing support posture. \\
+Standard & HMB capsule & Metabolic Nutrition HMB & \$30 & continuity adjunct & Phase-06 & Straight HMB capsule was chosen because it stays narrow and avoids proprietary performance blends. \\
+Standard & HMB capsule & BodyHealth PerfectAmino Build & \$40 & continuity adjunct & Phase-06 & More recovery-oriented continuity option was chosen because it aims at preserving training throughput during heavier phases. \\
+Elite & HMB capsule & Momentous HMB & \$42 & continuity adjunct & Phase-06 & Premium HMB was chosen because it offers cleaner presentation for tightly controlled optional use. \\
+Elite & HMB capsule & Designs for Health HMB Support & \$45 & continuity adjunct & Phase-06 & Higher-end capsule was chosen because it suits conservative long-horizon continuity support better than flashy blends. \\
+Elite & HMB capsule & Thorne HMB & \$40 & continuity adjunct & Phase-06 & Premium single-agent HMB was chosen because it supports a cleaner, easier-to-audit optional support layer. \\
+\end{longtblr}
+
+\clearpage
+
+\subsection*{When These Items Are Needed}
+\phantomsection
+\addcontentsline{toc}{subsection}{When These Items Are Needed}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=2.20in]
+    Q[l,wd=1.25in]
+    X[l,2.55]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-2} = {halign=c, valign=m},
+  column{3-4} = {halign=l, valign=m},
+  cell{1}{3} = {halign=c, valign=m},
+  cell{1}{4} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Item} &
+\Hdr{First required phase} &
+\Hdr{Why it becomes necessary} &
+\Hdr{What happens if missing} \\
+Carbohydrate drink mix & Phase-05 & Longer aerobic sessions make bottle-based carbohydrate logistics more practical than relying on plain water alone. & No gate failure by itself; longer-session fueling becomes harder to standardize and more dependent on ad-hoc food choices. \\
+Carbohydrate gel & Phase-05 & Portable fast carbohydrate becomes useful when drinking or chewing is impractical during extended work. & No gate failure by itself; portable fueling becomes less convenient and session energy support is harder to carry. \\
+Portable chewable carbohydrate fuel & Phase-05 & Bite-sized carbohydrate becomes useful when a gel texture is poorly tolerated or a bar feels too heavy. & No gate failure by itself; mid-session fueling options narrow and compliance may drop during longer efforts. \\
+Carbohydrate bar & Phase-05 & Longer sessions and travel windows benefit from a more substantial portable solid carbohydrate option. & No gate failure by itself; solid-fuel options become less reliable and long-duration intake may feel less satisfying. \\
+Electrolyte stick pack & Phase-05 & Heat, sweat loss, and longer session duration make fluid-retention support more relevant. & No gate failure by itself; hydration support becomes less controllable and plain water may underperform in hotter conditions. \\
+Sodium capsule & Phase-05 & Higher sweat loss can outpace basic drink sodium, especially in longer or hotter sessions. & No gate failure by itself; salt replacement becomes less precise and cramping or heavy fatigue risk may be harder to manage. \\
+Ginger capsule & Phase-05 & Increased fuel volume can create nausea or stomach unease that interrupts continuity. & No gate failure by itself; fueling tolerance may remain fragile and session intake may be avoided unnecessarily. \\
+Digestive enzyme capsule & Phase-05 & Larger meals and denser fueling can create digestive drag around training windows. & No gate failure by itself; meal-tolerance problems may keep recurring and force unnecessary food restriction. \\
+Lactase enzyme tablet & Phase-05 & Dairy-based fueling becomes harder to use consistently if lactose tolerance is poor. & No gate failure by itself; dairy protein and carbohydrate options may become functionally unavailable. \\
+Highly branched cyclic dextrin powder & Phase-06 & Denser bottle fueling becomes more useful when workload and duration increase beyond simple sports-drink needs. & No gate failure by itself; high-carb bottle strategies stay limited and more frequent gels or bars may be needed. \\
+Dextrose powder & Phase-06 & Simple fast carbohydrate can be useful for controlled bottle-mix experiments in harder phases. & No gate failure by itself; cheap rapid-carb options become narrower and fueling experimentation costs more. \\
+Beetroot nitrate shot & Phase-06 & Performance-adjacent ergogenic trials become more relevant once base systems are stable and measurable. & No gate failure by itself; nitrate support is absent and any potential endurance benefit must come from training only. \\
+Beetroot nitrate powder & Phase-06 & Powdered nitrate becomes useful when repeated trials are needed without buying single-use shots each time. & No gate failure by itself; nitrate use becomes less economical and repeated testing is less convenient. \\
+Beta-alanine capsule & Phase-06 & Buffering-focused support becomes more plausible once higher-intensity work is stable and trackable. & No gate failure by itself; buffering support is absent and harder-session work relies only on base fitness. \\
+Citrulline malate powder & Phase-06 & Work-capacity support becomes a narrower optional trial once outcomes are measurable. & No gate failure by itself; circulation-support experiments are unavailable and performance support remains narrower. \\
+Betaine anhydrous powder & Phase-06 & Optional performance-adjacent support becomes more relevant once training is stable enough to evaluate small effects. & No gate failure by itself; another narrow ergogenic option is simply absent. \\
+Sodium bicarbonate capsule & Phase-06 & Buffering trials become more relevant in harder phases when repeatable high-intensity work is established. & No gate failure by itself; bicarbonate-based support is unavailable and intense-session experimentation is reduced. \\
+Glycerol hydration powder & Phase-06 & More advanced hydration support becomes relevant once workload and heat-management demands increase. & No gate failure by itself; fluid-retention strategies remain simpler and less flexible. \\
+Joint support capsule & Phase-06 & Repeated loading can create continuity friction where a conservative support tool is sometimes used alongside load-management fixes. & No gate failure by itself; continuity support is absent and all joint comfort management must come from programming and recovery changes. \\
+HMB capsule & Phase-06 & Optional muscle-preservation support becomes more plausible once harder phases create measurable recovery cost. & No gate failure by itself; recovery-support experimentation is narrower and training continuity relies entirely on fundamentals. \\
+\end{longtblr}
+
+\endgroup
+\end{landscape}
+\clearpage
+
+\subsection*{Compliance Checklist}
+\phantomsection
+\addcontentsline{toc}{subsection}{Compliance Checklist}
+
+\begin{itemize}
+\item Exact deliverable title used for the single requested category.
+\item Output contains one deliverable only and stops after this checklist.
+\item Category timing was reconciled to Stage-6 authority, which keeps 7.04 optional and non-gating across the full pipeline.
+\item Twenty distinct Item categories are included.
+\item Each Item contains exactly 3 Budget rows, 3 Standard rows, and 3 Elite rows.
+\item Every shopping table uses the locked column set: Tier, Item, Brand, Approx. USD Pricing, Type, First Phase Required, Notes.
+\item Notes state intended use/effect and item-specific rationale for why that entry was chosen.
+\item No training programming, dosing instructions, cycling, prescription, hormone, procurement guidance, retailer links, or live price research were included.
+\item The required “When These Items Are Needed” table is included and phase labels match the chart.
+\item Brands/models remain OTC, mainstream, and performance-adjacent rather than prescription, hormonal, or gray-market.
+\end{itemize}
+
+\end{document}

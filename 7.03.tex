@@ -1,0 +1,490 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{7.03 — Foundational Health Supplements — OTC}
+\phantomsection
+\addcontentsline{toc}{section}{7.03 — Foundational Health Supplements — OTC}
+
+\subsection*{7.03.1 Purpose \& Scope}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.03.1 Purpose \& Scope}
+
+7.03 defines optional OTC foundational supplements as a conservative, food-first adjunct category. It exists to standardize how optional supplementation is evaluated, documented, and stabilized so it does not contaminate protected test windows or become a substitute for recovery, nutrition adequacy, or training dose control.
+
+\subsection*{7.03.2 Governance and Safety Boundaries}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.03.2 Governance and Safety Boundaries}
+
+\begin{itemize}
+\item OTC-only posture: every item referenced must be OTC and legally available.
+\item No prescription guidance and no dosing/cycling/sourcing/procurement instruction for prescription agents.
+\item One-change-at-a-time posture:
+  \begin{itemize}
+  \item introduce only one new item (or one meaningful dose change) at a time,
+  \item observe tolerability and stability before any additional changes.
+  \end{itemize}
+\item No novelty near Deload+Test windows:
+  \begin{itemize}
+  \item do not introduce or change supplements inside protected deload/test windows,
+  \item do not use supplements as a “rescue lever” for gate performance or for poor sleep/compliance windows.
+  \end{itemize}
+\item Adverse effect posture:
+  \begin{itemize}
+  \item stop the new supplement,
+  \item document the change and the observed effect,
+  \item seek clinician evaluation when indicated by symptom triggers or lab abnormalities (non-diagnostic posture).
+  \end{itemize}
+\item Supplements never override safety:
+  \begin{itemize}
+  \item if pain drift, unusual breathlessness, dizziness, or red-flag symptoms appear, apply stop posture and reslot discipline; do not “patch” with supplements.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.03.3 Tier Doctrine Applied to Foundational Supplements}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.03.3 Tier Doctrine Applied to Foundational Supplements}
+
+\begin{itemize}
+\item Tier 0: food-first baseline posture; no product required. This tier exists to prevent premature purchasing and to keep foundational needs anchored to diet and execution discipline.
+\item Tier 1: optional foundational supports that are commonly considered under conservative posture (single-ingredient preference, stable dosing, documented).
+\item Tier 2: optional expansions that may improve coverage or address common gaps, including joint-support adjuncts (mixed evidence posture; no strong claims).
+\item Tier 3: minimal additions only; emphasizes diminishing returns, interaction complexity, and stronger documentation/verification posture rather than “more products.”
+\end{itemize}
+
+All tiers remain optional unless Stage 6 explicitly makes 7.03 a Tier 1 requirement for a phase. If Stage 6 does not require it, 7.03 remains optional and should not be treated as a gate dependency.
+
+\subsection*{7.03.4 Selection Criteria \& Fit Checks}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.03.4 Selection Criteria \& Fit Checks}
+
+\begin{itemize}
+\item Food-first posture: supplements are optional; baseline diet consistency is the primary control.
+\item Single-ingredient preference: reduces interaction uncertainty and improves adverse-event attribution.
+\item Third-party testing posture (generic): prefer NSF Certified for Sport, Informed Choice, or COA/third-party tested products when available; do not interpret this as a brand recommendation.
+\item Fit checks (operational):
+  \begin{itemize}
+  \item no sleep disruption,
+  \item no anxiety/agitation increase,
+  \item no significant GI distress,
+  \item no new dizziness/lightheadedness,
+  \item no new rash or allergic-type reaction,
+  \item no need to “stack” or keep changing dose to perceive effect.
+  \end{itemize}
+\item Medication interaction posture (non-diagnostic):
+  \begin{itemize}
+  \item if the trainee uses prescription medications, treat supplement use as “clinician discussion first,” especially for vitamin D, magnesium, and omega-3 with anticoagulant/blood pressure/thyroid/psychiatric meds.
+  \end{itemize}
+\item Validity fit check:
+  \begin{itemize}
+  \item a supplement change that occurs near protected windows increases variance; if it occurs, treat test-week evidence as validity-sensitive and reslot rather than claim gate credit.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.03.5 Setup, Safety, and Anchoring}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.03.5 Setup, Safety, and Anchoring}
+
+\begin{itemize}
+\item One change at a time:
+  \begin{itemize}
+  \item add one item OR change one dose; do not add multiple items simultaneously.
+  \end{itemize}
+\item Stabilization posture:
+  \begin{itemize}
+  \item introduce changes in stable work weeks, not in Deload+Test weeks.
+  \item maintain stable routine across a protected window to reduce variance.
+  \end{itemize}
+\item Adverse effect posture:
+  \begin{itemize}
+  \item stop the new item immediately,
+  \item document the onset timing and symptoms,
+  \item seek clinician evaluation when symptom triggers or lab abnormalities are suspected.
+  \end{itemize}
+\item Anchoring to governance:
+  \begin{itemize}
+  \item supplements do not override downshift, reslot, or stop posture.
+  \item do not use supplements to justify higher intensity, higher volume, or “pushing through” risk flags.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.03.6 Maintenance, Replacement, and Storage}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.03.6 Maintenance, Replacement, and Storage}
+
+\begin{itemize}
+\item Storage:
+  \begin{itemize}
+  \item cool/dry storage; avoid heat/humidity.
+  \item keep lids sealed; prevent moisture contamination.
+  \end{itemize}
+\item Replacement:
+  \begin{itemize}
+  \item respect expiration dates.
+  \item discard if odor/appearance changes suggest degradation.
+  \end{itemize}
+\item Documentation:
+  \begin{itemize}
+  \item keep a stable log field set: item type, dose, timing, start date, stop date, adverse effects.
+  \item keep label photo and lot/batch notes when available.
+  \end{itemize}
+\item Stability near gates:
+  \begin{itemize}
+  \item if a product must be replaced due to running out, prefer like-for-like replacement; avoid switching multiple variables.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.03.7 Substitution Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.03.7 Substitution Rules}
+
+\begin{itemize}
+\item Food-first substitution is always acceptable:
+  \begin{itemize}
+  \item replace optional supplements with whole-food strategies rather than stacking more supplements.
+  \end{itemize}
+\item If a supplement change is unavoidable near a protected window:
+  \begin{itemize}
+  \item document the change explicitly as a system variable,
+  \item treat any gate attempt as higher-variance and reslot if comparability is compromised.
+  \end{itemize}
+\item If a supplement causes adverse effects:
+  \begin{itemize}
+  \item stop it,
+  \item document,
+  \item seek clinician evaluation when indicated,
+  \item do not “replace with another supplement” immediately; return to stable baseline first.
+  \end{itemize}
+\item Validity/logging linkage (conceptual, Stage 2.E posture):
+  \begin{itemize}
+  \item supplement changes are logged as controlled variables that can contaminate comparability; do not treat unlogged changes as acceptable.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.03.8 Phase Integration Map}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.03.8 Phase Integration Map}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[c,wd=1.05in]
+    Q[c,wd=1.55in]
+    X[c,2.75]
+    X[c,3.65]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Phase} &
+\Hdr{Required Tier (from Stage 6)} &
+\Hdr{What Changes / Becomes Mandatory} &
+\Hdr{Notes} \\
+Phase 00 &
+T0 &
+None &
+Stage 6 baseline indicates 7.03 is not required. Optional use, if any, must respect one-change-at-a-time and no novelty near Week 4/8/12/16 windows. \\
+Phase 01 &
+T0 &
+None &
+Not required. If optional use begins, stabilize outside protected windows and maintain consistency across gate weeks. \\
+Phase 02 &
+T0 &
+None &
+Not required. Do not use supplements to mask recovery debt during \textbf{STR} emphasis. \\
+Phase 03 &
+T0 &
+None &
+Not required. If ruck capability introduces new fatigue signals, respond with downshift and recovery discipline, not supplement stacking. \\
+Phase 04 &
+T0 &
+None &
+Not required. Aquatic relevance does not change supplement posture. \\
+Phase 05 &
+T0 &
+None &
+Not required. Longer endurance windows increase the importance of stable routine; avoid introductions near long-run gates. \\
+Phase 06 &
+T0 &
+None &
+Not required. Higher consequence makes novelty risk higher; treat changes as validity-sensitive. \\
+Phase 07 &
+T0 &
+None &
+Not required. Hybrid density increases drift risk; supplements remain optional context only. \\
+Phase 08 &
+T0 &
+None &
+Not required. Durability constraints dominate; omit remains acceptable. \\
+Phase 09 &
+T0 &
+None &
+Not required. High-volume \textbf{CAL} phases should not introduce supplement novelty in protected windows. \\
+Phase 10 &
+T0 &
+None &
+Not required. Maintain stable variables; do not add new items near multi-domain gate weeks. \\
+Phase 11 &
+T0 &
+None &
+Not required. Late phases reward low variance; omit is preferred if stability cannot be guaranteed. \\
+Phase 12 &
+T0 &
+None &
+Not required. Verification blocks require low variance; avoid any new introductions. \\
+Phase 13 &
+T0 &
+None &
+Not required. Consolidation demands repeatability; stable routine only, no novelty. \\
+\end{longtblr}
+
+\endgroup
+
+Phase Integration Map Notes:
+
+\begin{itemize}
+\item Stage 6.B Matrix B2 in this project represents 7.03 as T0 across phases. If any downstream phase artifact treats 7.03 as required, flag Requires Stage 8 review and treat the artifact as non-deployable until reconciled.
+\end{itemize}
+
+\subsection*{7.03.9 Risks, Contraindications, and Red Flags}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.03.9 Risks, Contraindications, and Red Flags}
+
+\begin{itemize}
+\item Validity contamination risk:
+  \begin{itemize}
+  \item introducing or changing supplements near protected windows increases variance and undermines comparability.
+  \item if a change occurs, treat gate attempts as validity-sensitive and reslot if comparability is compromised.
+  \end{itemize}
+\item Interaction risk (non-diagnostic):
+  \begin{itemize}
+  \item anticoagulants/antiplatelets: omega-3 and other agents may increase bleeding risk.
+  \item thyroid medications: minerals (including magnesium) can interfere with absorption timing; clinician guidance required.
+  \item antibiotics and other medications: mineral supplements may interfere with absorption; clinician guidance required.
+  \end{itemize}
+\item Vitamin D-specific clinician referral triggers (non-diagnostic):
+  \begin{itemize}
+  \item history of kidney stones, kidney disease, hypercalcemia, sarcoidosis or other granulomatous disease contexts, or unexplained symptoms (persistent nausea, confusion, weakness).
+  \item lab abnormalities that should prompt clinician review: abnormal 25(OH)D, calcium, parathyroid hormone, or abnormal renal function markers.
+  \end{itemize}
+\item Magnesium/fiber GI risk:
+  \begin{itemize}
+  \item GI distress can degrade training feasibility and hydration status; stop and return to baseline rather than switching rapidly.
+  \end{itemize}
+\item Omega-3 tolerance risk:
+  \begin{itemize}
+  \item reflux/GI intolerance and rancidity issues; stop if rancid or if adverse effects occur.
+  \end{itemize}
+\item Joint-support adjunct mixed-evidence risk:
+  \begin{itemize}
+  \item do not treat joint-support adjuncts as treatment; do not use them to justify unsafe load escalation; stop on adverse effects and seek evaluation when indicated.
+  \end{itemize}
+\item Red-flag symptoms (stop posture):
+  \begin{itemize}
+  \item chest pain/pressure, syncope/near-syncope, severe shortness of breath, new neurologic symptoms, severe allergic reaction signs.
+  \item \textbf{STOP} \textbf{NOW} and escalation posture apply; do not attempt to self-manage by discontinuing and continuing training.
+  \end{itemize}
+\end{itemize}
+
+Requires Stage 8 review triggers:
+
+\begin{itemize}
+\item Any attempt to convert 7.03 into a required gate dependency.
+\item Any downstream content that introduces dosing schedules, cycling protocols, sourcing/procurement guidance, or prescription framing.
+\end{itemize}
+
+\subsection*{7.03.10 Compliance Checklist}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.03.10 Compliance Checklist}
+
+\begin{itemize}
+\item \textbf{PASS}/\textbf{FAIL}: OTC-only posture maintained; no prescription guidance, cycling, sourcing, or procurement content appears.
+\item \textbf{PASS}/\textbf{FAIL}: Tier 0 is food-first and includes only safe food-first substitutes with no products.
+\item \textbf{PASS}/\textbf{FAIL}: Tier 1–2 dosing ranges (where present) are conservative, informational only, and limited to Notes; no stacks or cycles.
+\item \textbf{PASS}/\textbf{FAIL}: Vitamin D posture included with dosing range and clinician/lab referral triggers stated non-diagnostically.
+\item \textbf{PASS}/\textbf{FAIL}: Tier 2 includes joint-support adjuncts with mixed-evidence posture and without treatment claims.
+\item \textbf{PASS}/\textbf{FAIL}: Quality-control language includes generic verification standards (NSF Certified for Sport, Informed Choice, COA/third-party tested) without brands.
+\item \textbf{PASS}/\textbf{FAIL}: One-change-at-a-time and no novelty near Deload+Test windows posture is explicit and enforced.
+\item \textbf{PASS}/\textbf{FAIL}: Phase Integration Map aligns to Stage 6 timing; any mismatch is flagged Requires Stage 8 review rather than repaired.
+\end{itemize}
+
+\end{document}

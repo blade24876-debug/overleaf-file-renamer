@@ -1,0 +1,367 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{5.E — Alignment With Test Calendar and Deload Map}
+\phantomsection
+\addcontentsline{toc}{section}{5.E — Alignment With Test Calendar and Deload Map}
+
+\subsection*{5.E.1 Alignment Cross-Check}
+\phantomsection
+\addcontentsline{toc}{subsection}{5.E.1 Alignment Cross-Check}
+
+\clearpage
+\begin{landscape}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.85in]
+    X[l,2.20]
+    Q[l,wd=1.25in]
+    Q[l,wd=1.35in]
+    X[l,2.45]
+    Q[l,wd=1.10in]
+    X[l,2.85]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-7} = {fg=black},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Phase} &
+\Hdr{Declared Work:Deload\\ Pattern Stage 3} &
+\Hdr{Mid-Phase\\ Test Window} &
+\Hdr{End-Phase\\ Test Window} &
+\Hdr{Phase Card Mid and End\\ Tests Referenced IDs} &
+\Hdr{Phase Card Test Battery\\ Matches Stage 3\\ Y or N} &
+\Hdr{Notes / Conflicts} \\
+
+Phase 00 &
+16 weeks; baseline Week 1 is Deload+Test; then 3:1 rhythm with Deload+Test Weeks 4/8/12/16 &
+Weeks 4, 8, 12 &
+Week 16 &
+Stage 4 phase card references mid and end batteries including \textbf{SMB}; \textbf{MOB} bundle items; \textbf{ME-L-STS-30}; \textbf{ME-UP-PU-INC}; \textbf{CAL-PLANK}; \textbf{AER-WALK-30}; \textbf{AER-WALK-015}; \textbf{REC-ADH-WK}; \textbf{BODYCOMP} trend evidence (\textbf{C1} / \textbf{MET-2B-001}; \textbf{C3} \textbf{MET-2B-003}–009) and compliance metrics (\textbf{MET-2B-043}/044/045/046). &
+N &
+Requires Stage 8 review. Stage 3 Phase 00 calendar uses \textbf{RUN} check-ins \textbf{C8} (\textbf{MET-2B-014}) in protected windows, while Stage 4 Phase 00 explicitly excludes run time trials and instead uses walk-based instruments and mobility/function items. Stage 3 also includes Week 1 (baseline) as Deload+Test; Stage 4 Phase 00 does not treat Week 1 as a protected test window. Stage 4 also includes battery constructs not defined as Stage 2 instruments (mobility and Phase 00-specific walk instruments), which breaks Stage 2-only gate integrity. \\
+
+Phase 01 &
+22 weeks default; 24-week variant; 3:1 with protected Deload+Test Weeks 4/8/12/16/20 and end gate at Week 22 (default) or Week 24 (variant) &
+Weeks 4, 8, 12, 16, 20 &
+Week 22 (default) / Week 24 (variant) &
+Phase 5.B Phase 01 card exists; alignment review is required against the produced card. &
+N &
+Requires Stage 8 review. Stage 3 defines Phase 01 as 22 weeks default with a 24-week variant, while Stage 5 duration rules in this project fix Phase 01 at 24 weeks. Window placement must follow Stage 3 as source of truth; duration doctrine conflict must be resolved in Stage 8. \\
+
+Phase 02 &
+12 weeks; 3:1; baseline Week 1 is Deload+Test; protected Deload+Test Weeks 4/8/12 &
+Weeks 4, 8 &
+Week 12 &
+Phase 5.B Phase 02 card exists; alignment review is required against the produced card. &
+N &
+Alignment pending: Stage 3 windows are defined; Phase 5.B card must reference only Stage 2 instruments and place gate-grade testing only in these protected weeks. \\
+
+Phase 03 &
+12 weeks; 3:1; baseline Week 1 is Deload+Test; protected Deload+Test Weeks 4/8/12 &
+Weeks 4, 8 &
+Week 12 &
+Phase 5.B Phase 03 card exists; alignment review is required against the produced card. &
+N &
+Alignment pending: Phase 5.B must map mid-phase and end-phase gates into Weeks 4/8/12 only and preserve Stage 2 instrument integrity. \\
+
+Phase 04 &
+12 weeks; 3:1; baseline Week 1 is Deload+Test; protected Deload+Test Weeks 4/8/12 &
+Weeks 4, 8 &
+Week 12 &
+Phase 5.B Phase 04 card exists; alignment review is required against the produced card. &
+N &
+Alignment pending: Phase 5.B must stage \textbf{RUN}/\textbf{RUCK} gate constructs inside protected windows without implying build-week gate attempts. \\
+
+Phase 05 &
+12 weeks; 3:1; baseline Week 1 is Deload+Test; protected Deload+Test Weeks 4/8/12 &
+Weeks 4, 8 &
+Week 12 &
+Phase 5.B Phase 05 card exists; alignment review is required against the produced card. &
+N &
+Alignment pending: Phase 5.B must anchor the first high-cost extended \textbf{RUN} gate inside Week 12 protected window and preserve spacing intent across domains. \\
+
+Phase 06 &
+12 weeks; 4:1; baseline Week 1 is Deload+Test; protected Deload+Test Week 5 and Week 10; Transition Week 11; end gate Week 12 Deload+Test &
+Weeks 5, 10 &
+Week 12 &
+Phase 5.B Phase 06 card exists; alignment review is required against the produced card. &
+N &
+Alignment pending: Phase 5.B must reflect the 4:1 + Transition posture and must not revert to 3:1 placements. \\
+
+Phase 07 &
+12 weeks; 4:1; baseline Week 1 is Deload+Test; protected Deload+Test Week 5 and Week 10; Transition Week 11; end gate Week 12 Deload+Test &
+Weeks 5, 10 &
+Week 12 &
+Phase 5.B Phase 07 card exists; alignment review is required against the produced card. &
+N &
+Alignment pending: Phase 5.B must preserve 4:1 spacing intent and avoid stacking high-cost domains inside a single protected week. \\
+
+Phase 08 &
+12 weeks; 4:1; baseline Week 1 is Deload+Test; protected Deload+Test Week 5 and Week 10; Transition Week 11; end gate Week 12 Deload+Test &
+Weeks 5, 10 &
+Week 12 &
+Phase 5.B Phase 08 card exists; alignment review is required against the produced card. &
+N &
+Alignment pending: Phase 5.B must treat long-load milestones as dominant events by intent and reslot rather than compress if spacing cannot be protected. \\
+
+Phase 09 &
+12 weeks; 4:1; baseline Week 1 is Deload+Test; protected Deload+Test Week 5 and Week 10; Transition Week 11; end gate Week 12 Deload+Test &
+Weeks 5, 10 &
+Week 12 &
+Phase 5.B Phase 09 card exists; alignment review is required against the produced card. &
+N &
+Alignment pending: Phase 5.B must preserve taper-aware Transition Week 11 posture and keep \textbf{CAL} battery central without displacing \textbf{RUN}/\textbf{RUCK} safety constraints. \\
+
+Phase 10 &
+12 weeks; 4:1; baseline Week 1 is Deload+Test; protected Deload+Test Week 5 and Week 10; Transition Week 11; end gate Week 12 Deload+Test &
+Weeks 5, 10 &
+Week 12 &
+Phase 5.B Phase 10 card exists; alignment review is required against the produced card. &
+N &
+Alignment pending: Underwater (\textbf{C14} \textbf{MET-2B-025}/026) remains conditional under governance; Phase 5.B must state “not scheduled; inadmissible without governance” when prerequisites cannot be guaranteed. \\
+
+Phase 11 &
+12 weeks; 4:1; baseline Week 1 is Deload+Test; protected Deload+Test Week 5 and Week 10; Transition Week 11; end gate Week 12 Deload+Test &
+Weeks 5, 10 &
+Week 12 &
+Phase 5.B Phase 11 card exists; alignment review is required against the produced card. &
+N &
+Alignment pending: Phase 5.B must preserve recovery sensitivity and avoid “make-up stacking” behavior near end gate. \\
+
+Phase 12 &
+12 weeks; mixed pattern with verification block: baseline Week 1 Deload+Test; Week 5 Deload+Test; Weeks 9–10 Deload+Test verification block; Transition Week 11; final gate Week 12 Deload+Test &
+Week 5 and Weeks 9–10 (verification block) &
+Week 12 &
+Phase 5.B Phase 12 card exists; alignment review is required against the produced card. &
+N &
+Alignment pending: Phase 5.B must explicitly represent the two-week verification block and keep tests staged across both weeks without stacking all domains. \\
+
+Phase 13 &
+12 weeks; mixed pattern with targeted retest block: baseline Week 1 Deload+Test; Week 5 Deload+Test; Weeks 9–10 Deload+Test targeted retest block; Transition Week 11; final verification Week 12 Deload+Test &
+Week 5 and Weeks 9–10 (targeted retest block) &
+Week 12 &
+Phase 5.B Phase 13 card exists; alignment review is required against the produced card. &
+N &
+Alignment pending: Phase 5.B must treat Week 12 as a decisive, minimal-density final verification window and default \textbf{HOLD} (Replication) rather than forcing compromised evidence. \\
+
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+\clearpage
+
+\subsection*{5.E.2 High-Risk Test Spacing Check}
+\phantomsection
+\addcontentsline{toc}{subsection}{5.E.2 High-Risk Test Spacing Check}
+
+\begin{itemize}
+\item Stage 3 anchors major \textbf{RUN}, \textbf{RUCK}, and \textbf{SWIM} tests to Deload+Test windows (or explicitly defined two-week verification blocks in Phase 12–13). Build/Intensify/Transition weeks do not schedule gate-grade tests.
+\item Stage 3 shifts from 3:1 patterns (Phases 02–05) to 4:1 patterns (Phases 06–11), adding a Transition week before end gates to reduce fatigue contamination and protect validity.
+\item Phase 12–13 use two-week protected verification blocks (Weeks 9–10) to close replication gaps without stacking multiple maximal domains into a single week.
+\item Water governance constraints are encoded in Stage 3: underwater remains conditional and is never scheduled without governance prerequisites; if governance is unavailable, it is not scheduled and is not gate-admissible.
+\item Phase 00/Phase 01 remain conservative in Stage 3 window design; however, Phase 00 currently shows a material mismatch between Stage 3 and Stage 4 test constructs, flagged as Requires Stage 8 review.
+\item Any variant handling that changes duration (Phase 01 default 22 weeks vs 24-week variant) must be treated as a controlled selection and reconciled against the 182-week identity; mismatches remain Requires Stage 8 review until resolved.
+\end{itemize}
+
+\subsection*{5.E.3 Gate Integrity Check}
+\phantomsection
+\addcontentsline{toc}{subsection}{5.E.3 Gate Integrity Check}
+
+\begin{itemize}
+\item Stage 3 provides at least one mid-phase protected Deload+Test window and an end-of-phase Deload+Test exit gate window for every phase Phase 00 through Phase 13.
+\item Gate decisions rely on admissible evidence only: \textbf{VALID} tests and admissible sessions per Stage 1.F; \textbf{INVALID} tests provide no gate credit and trigger reslot posture rather than advancement.
+\item Stage 3 enforces window discipline: missed or invalid gates reslot to the next protected window; no stacking make-ups to compress timelines.
+\item Tier and threshold posture remains Stage 2-defined (\textbf{ENTRY} / \textbf{INTERMEDIATE} / \textbf{SELECTION-READY}); Phase cards must map exit intent to Stage 2 tier posture without inventing new thresholds.
+\item Dependency readiness posture must remain consistent with Stage 5.D; unmet dependencies default \textbf{HOLD}, with \textbf{REGRESS}/\textbf{MEDICAL} \textbf{HOLD} reserved for explicit triggers.
+\item Detected violations are explicitly tagged “Requires Stage 8 review,” including:
+  \begin{itemize}
+  \item Phase 00 Stage 3 vs Stage 4 test construct mismatch,
+  \item Phase 01 duration doctrine conflict (Stage 3 default 22 weeks vs project-level fixed 24-week rule).
+  \end{itemize}
+\end{itemize}
+
+\end{document}

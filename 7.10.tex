@@ -1,0 +1,485 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{7.10 — Logistics, Maintenance, Storage, and Sustainment Equipment}
+\phantomsection
+\addcontentsline{toc}{section}{7.10 — Logistics, Maintenance, Storage, and Sustainment Equipment}
+
+Overview \textbf{ID}: 7.10\\
+Overview Name: Logistics, Maintenance, Storage, and Sustainment Equipment\\
+Version: v1.0\\
+Governing Status: Draft — Non-Deployable\\
+Scope Boundary Statement: Covers storage systems, organization controls, drying workflows, maintenance tooling, and sustainment posture required to keep equipment usable and safe; does not provide programming, protocols, calendars, medical guidance, or brand / retailer links.
+
+\subsection*{7.10.1 Purpose \& Scope}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.10.1 Purpose \& Scope}
+
+7.10 covers storage systems, organization posture, and maintenance tooling that keep training equipment usable and safe, including drying and sustainment workflows and staging checklists that prevent missed sessions and unsafe improvisation.
+
+This overview crosswalks Stage 6 category timing to the logistics and sustainment conditions required for safe execution and admissible evidence.
+
+It does not cover, except by cross-reference:
+
+\begin{itemize}
+\item training tools: Stage 7.01, Stage 7.07, Stage 7.08
+\item measurement / timing tools: Stage 7.18
+\item hygiene / health consumables: Stage 7.20
+\item apparel itself: Stage 7.14, Stage 7.15
+\end{itemize}
+
+This overview does not provide programming, test protocols, calendars, medical guidance, or brand / retailer links.
+
+\subsection*{7.10.2 Governance And Safety Boundaries}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.10.2 Governance And Safety Boundaries}
+
+\begin{itemize}
+\item Stage 0 boundary alignment: stop rules, safety override doctrine, conflict-resolution hierarchy, and evidence-admissibility controls apply to all 7.10 selections and substitutions.
+\item Sustainment enables adherence: logistics prevents missed sessions and unsafe improvisation.
+\item Safety priorities:
+  \begin{itemize}
+  \item eliminate trip and tip hazards,
+  \item prevent equipment failure via inspection and timely repair/replacement,
+  \item keep gear dry to reduce mold and skin irritation risk.
+  \end{itemize}
+\item Start-from-zero constraints:
+  \begin{itemize}
+  \item implement low-cost organization early and scale only as inventory grows.
+  \end{itemize}
+\item Validity posture:
+  \begin{itemize}
+  \item consistent setup and tool readiness supports comparable execution and test-day readiness.
+  \end{itemize}
+\item Escalation posture: hold use, substitute, and correct immediately when shelving is unstable, drying control fails, mold is present, sharp damage is observed, or clutter creates a trip path.
+\item Evidence inadmissibility: evidence produced under unsafe, unstable, wet, damaged, or improvised sustainment conditions is inadmissible for readiness claims until corrected and re-verified.
+\item Legal/ethical sourcing only; no illegal procurement guidance.
+\item No medical advice; direct medical items to Stage 7.20 by cross-reference only.
+\end{itemize}
+
+\subsection*{7.10.3 Tier Doctrine}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.10.3 Tier Doctrine}
+
+\begin{itemize}
+\item Price band convention: \$ = minimal household-cost item; \$\$ = modest purpose-built item; \$\$\$ = expanded-capability or redundancy item.
+\item N/A rule: use N/A only where a price band genuinely does not apply and omission does not obscure safety, maintenance burden, or phase tie-in logic.
+\item Substitution posture: substitutions are acceptable only when they preserve storage stability, drying control, safe access, and maintenance intent; substitutions that increase clutter, moisture retention, instability, or failure risk break intent.
+\item Tier 0: household-only storage and ad hoc organization; minimal maintenance capacity; sufficient only for minimal inventory and low complexity.
+\item Tier 1: minimum viable organization + drying + basic hand tools to safely sustain routine phase demands and prevent avoidable misses.
+\item Tier 2: expanded staging and maintenance capability as inventory volume and outdoor exposure increase; includes optional go-bag/vehicle staging to prevent missed sessions.
+\item Tier 3: overbuilt redundancy and expanded maintenance capability; may include light power-tool support for safe assembly/maintenance but is not required unless phase-dependent.
+\end{itemize}
+
+\subsection*{7.10.4 Selection Criteria \& Fit Checks}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.10.4 Selection Criteria \& Fit Checks}
+
+Fit and safety checklist (operational):
+
+\begin{itemize}
+\item Space mapping:
+  \begin{itemize}
+  \item define a clean zone (dry gear, measurement tools) and a wet/dirty zone (post-session gear).
+  \end{itemize}
+\item Stability and load rating:
+  \begin{itemize}
+  \item shelving must be load-rated and tip-resistant; anchor where necessary; store heavy items low.
+  \end{itemize}
+\item Moisture management:
+  \begin{itemize}
+  \item airflow and drainage; wet gear never stored sealed while damp; cross-reference Stage 7.14 / Stage 7.20 for apparel / hygiene details.
+  \end{itemize}
+\item Portability:
+  \begin{itemize}
+  \item bins and staging kits should fit vehicle and reduce “forgotten item” misses.
+  \end{itemize}
+\item Safety fit checks:
+  \begin{itemize}
+  \item no sharp edges at foot/hand height; no overloaded shelving; no blocked egress routes.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.10.5 Setup, Safety, and Anchoring}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.10.5 Setup, Safety, and Anchoring}
+
+Setup doctrine (no programming):
+
+\begin{itemize}
+\item Anchor tall shelving where required; maintain clear walk paths; store heavy items low.
+\item Drying workflow:
+  \begin{itemize}
+  \item immediate post-session gear separation and drying; prevent wet footwear storage loops that create foot irritation risk.
+  \end{itemize}
+\item Staging workflow:
+  \begin{itemize}
+  \item pre-pack checklists for ruck/run/swim days (logistics only; no programming).
+  \item maintain a “test week readiness” staging posture: measurement tools and required accessories staged before protected windows.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.10.6 Maintenance, Replacement, and Storage}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.10.6 Maintenance, Replacement, and Storage}
+
+\begin{itemize}
+\item Inspection cadence:
+  \begin{itemize}
+  \item weekly: straps/buckles/fasteners on storage and staging systems; check trip hazards.
+  \item monthly: corrosion/mold indicators, bin integrity, shelving stability.
+  \end{itemize}
+\item Replacement cues:
+  \begin{itemize}
+  \item frayed straps, cracked bins, rusted hardware, unstable shelving = remove from use and replace.
+  \end{itemize}
+\item Documentation:
+  \begin{itemize}
+  \item maintain a simple inventory list and record maintenance actions; log replacements to support auditability and reduce “mystery changes” near gates.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.10.7 Substitution Rules — Minimal-Path Alternatives}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.10.7 Substitution Rules — Minimal-Path Alternatives}
+
+\begin{itemize}
+\item If no dedicated storage exists:
+  \begin{itemize}
+  \item use a single-bin essentials system plus clear zone/wet zone separation.
+  \end{itemize}
+\item If no drying rack/line exists:
+  \begin{itemize}
+  \item use a designated drying corner with airflow and strict wet gear separation.
+  \end{itemize}
+\item If no tool kit exists:
+  \begin{itemize}
+  \item treat basic hand tools as Tier 1 enabling capability and prioritize acquisition before assembling or escalating complex equipment.
+  \end{itemize}
+\item Stage 2.E linkage (high-level):
+  \begin{itemize}
+  \item missing inventory fields recorded as \textbf{MISSING}/\textbf{UNKNOWN}; no inference.
+  \item tool changes and replacements logged with timestamps to preserve audit traceability.
+  \item when missing logistics causes a deviation that affects admissibility (missed setup, missing required tool), treat gate evidence as compromised and reslot rather than force.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.10.8 Phase Integration Map — Required}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.10.8 Phase Integration Map — Required}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.05in]
+    Q[l,wd=1.55in]
+    X[l,2.75]
+    X[l,3.65]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Phase} &
+\Hdr{Required Tier (from Stage 6)} &
+\Hdr{What Changes / Becomes Mandatory} &
+\Hdr{Notes} \\
+Phase 00 &
+Tier 1 &
+Tier 1 minimal storage/drying and basic hand tools become mandatory by Phase 00 (End) &
+Phase 00 (End): Tier 0 household-only examples should exist immediately. Phase 00 (End): Tier 1 sustainment reduces missed sessions and wet-gear breakdown. \\
+Phase 01 &
+Tier 1 &
+Maintain Tier 1; organization must support increased inventory (Stage 7.01 and Stage 7.08 begin to appear) &
+Phase 01 (End): avoid last-minute substitutions by staging and labeling; treat tool changes as controlled variables near gates. \\
+Phase 02 &
+Tier 1 &
+Maintain Tier 1; assembly/maintenance becomes more consequential as strength capability grows &
+Phase 02 (E/M): keep tools and fasteners available; do not assemble complex gear inside protected windows. \\
+Phase 03 &
+Tier 1 &
+Maintain Tier 1; ruck systems introduced; spare parts posture becomes more important &
+Phase 03 (End): ruck interface stability depends on sustainment and spares; avoid “broken buckle before gate” events. \\
+Phase 04 &
+Tier 1 &
+Maintain Tier 1; aquatic category begins to appear; wet gear handling becomes more frequent &
+Phase 04 (End): keep wet gear separation strict; cross-reference Stage 7.14 / Stage 7.20 for apparel / hygiene. \\
+Phase 05 &
+Tier 1 &
+Maintain Tier 1; endurance windows increase consequence of missed sessions &
+Phase 05 (End): staging discipline prevents avoidable cancellations and unsafe improvisation. \\
+Phase 06 &
+Tier 2 &
+Tier 2 staging station and expanded spares become mandatory by Phase 06 (End) &
+Phase 06 (End): expanded inventory and higher consequence windows justify Tier 2; go-bag concept reduces misses during travel/errands. \\
+Phase 07 &
+Tier 2 &
+Maintain Tier 2; hybrid density amplifies friction costs &
+Phase 07 (End): treat staging discipline as an execution control; prevent clutter and trip hazards as inventory increases. \\
+Phase 08 &
+Tier 2 &
+Maintain Tier 2; load tolerance increases wet/dirty gear volume &
+Phase 08 (End): drying and storage discipline prevents skin irritation and mold loops. \\
+Phase 09 &
+Tier 2 &
+Maintain Tier 2; high volume increases sweat and gear turnover &
+Phase 09 (End): sustainment reduces illness/skin breakdown risk; keep inventory stable. \\
+Phase 10 &
+Tier 2 &
+Maintain Tier 2; multi-domain gate weeks increase consequence &
+Phase 10 (End): staging prevents forgotten tools that would force substitutions and invalidate evidence. \\
+Phase 11 &
+Tier 2 &
+Maintain Tier 2; recovery sensitivity increases the cost of friction &
+Phase 11 (End): keep environment organized and predictable; minimize last-minute changes. \\
+Phase 12 &
+Tier 3 &
+Tier 3 redundancy becomes mandatory by Phase 12 (End) per Stage 6 &
+Phase 12 (End): redundancy reduces the chance of compromised test windows due to missing tools or broken storage/sustainment systems. \\
+Phase 13 &
+Tier 3 &
+Maintain Tier 3; consolidation requires low variance and high reliability &
+Phase 13 (End): no novelty near final protected windows; sustainment must prevent preventable execution failures. \\
+\end{longtblr}
+
+\endgroup
+
+7.10.8 Phase Integration Map Notes:
+
+\begin{itemize}
+\item If any phase artifact implies Stage 7.10 Tier 1 is required earlier than Phase 00 (End) per Stage 6, Requires Stage 8 review.
+\item Climate control devices are intentionally excluded from tier tables; if a downstream artifact requires them as category items, Requires Stage 8 review.
+\end{itemize}
+
+\subsection*{7.10.9 Risks, Contraindications, and Red Flags}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.10.9 Risks, Contraindications, and Red Flags}
+
+\begin{itemize}
+\item Trip/fall hazards:
+  \begin{itemize}
+  \item clutter, cords, unstable stacking, and blocked walkways increase injury risk; treat as immediate correction items.
+  \end{itemize}
+\item Tip hazards:
+  \begin{itemize}
+  \item unanchored tall shelving and top-heavy storage creates fall risk; anchor or replace.
+  \end{itemize}
+\item Sharp edges and overloaded shelving:
+  \begin{itemize}
+  \item cuts and collapse risk; reduce load and replace damaged components.
+  \end{itemize}
+\item Mold/mildew from wet gear storage:
+  \begin{itemize}
+  \item increases skin irritation and illness risk; drying workflow is mandatory; cross-reference Stage 7.20 for hygiene and Stage 7.14 for wet-weather apparel context.
+  \end{itemize}
+\item Equipment failure from neglected maintenance:
+  \begin{itemize}
+  \item loose bolts, frayed straps, broken buckles can cause sudden failure; stop use until repaired/replaced.
+  \end{itemize}
+\item Lost/forgotten items:
+  \begin{itemize}
+  \item drives missed sessions and unsafe improvisation; staging checklists and go-bag posture are the controls.
+  \end{itemize}
+\item Requires Stage 8 review triggers:
+  \begin{itemize}
+  \item any upstream/downstream artifact demanding climate control devices inside 7.10 tier tables,
+  \item any mismatch where a phase demands sustainment capability earlier than Stage 6 Tier timing,
+  \item any artifact that treats hygiene consumables as 7.10 tier-table items rather than 7.20.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.10.10 Compliance Checklist — Pass/Fail}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.10.10 Compliance Checklist — Pass/Fail}
+
+\begin{itemize}
+\item \textbf{PASS}/\textbf{FAIL}: Tier 0–Tier 3 tables use required schema, generic item types only, and price bands limited to \$/\$\$/\$\$\$.
+\item \textbf{PASS}/\textbf{FAIL}: Tier 0 includes the required household-only examples (single-bin system; designated drying corner; paper checklist/inventory sheet).
+\item \textbf{PASS}/\textbf{FAIL}: Climate control devices are not listed in tier tables and are only cross-referenced.
+\item \textbf{PASS}/\textbf{FAIL}: Tier 2 includes optional go-bag/vehicle staging concept and does not duplicate 7.20 hygiene consumables.
+\item \textbf{PASS}/\textbf{FAIL}: Storage is stable and hazard-controlled (heavy items low; walk paths clear; tip hazards addressed).
+\item \textbf{PASS}/\textbf{FAIL}: Drying workflow exists and is used after every session; wet gear never stored sealed while damp.
+\item \textbf{PASS}/\textbf{FAIL}: Inventory and maintenance actions can be logged with timestamped entries; missing fields recorded as \textbf{MISSING}/\textbf{UNKNOWN}.
+\item \textbf{PASS}/\textbf{FAIL}: Phase Integration Map aligns to Stage 6 timing; mismatches flagged for Stage 8 review (not repaired).
+\end{itemize}
+
+\end{document}

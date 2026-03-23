@@ -1,0 +1,2313 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{landscape}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\section*{7.01.A - Resistance Band Set}
+\phantomsection
+\addcontentsline{toc}{section}{7.01.A - Resistance Band Set}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Resistance Band Set &
+Bodylastics Max Tension Set &
+\$80 &
+Elastic Resistance &
+Phase 01 &
+Gives early full-body resistance without heavy hardware, and this set is chosen for broad tension variety. \\
+Budget &
+Resistance Band Set &
+Gymreapers Resistance Band Set &
+\$60 &
+Elastic Resistance &
+Phase 01 &
+Supports simple push, pull, and assistance work, and this set is chosen for straightforward color-coded loading. \\
+Budget &
+Resistance Band Set &
+WODFitters Pull-Up Assist Band Set &
+\$75 &
+Elastic Resistance &
+Phase 01 &
+Covers assisted pulling and general resistance work, and this set is chosen for durable loop-style construction. \\
+Standard &
+Resistance Band Set &
+Rogue Monster Band Package &
+\$130 &
+Elastic Resistance &
+Phase 01 &
+Improves resistance consistency across sessions, and this package is chosen for stable tension progression. \\
+Standard &
+Resistance Band Set &
+Serious Steel Band Set &
+\$125 &
+Elastic Resistance &
+Phase 01 &
+Handles heavier assistance and loading needs, and this set is chosen for thicker, higher-tension options. \\
+Standard &
+Resistance Band Set &
+Perform Better Superband Set &
+\$110 &
+Elastic Resistance &
+Phase 01 &
+Keeps early resistance work controllable and repeatable, and this set is chosen for coaching-friendly progression steps. \\
+Elite &
+Resistance Band Set &
+EliteFTS Pro Resistance Set &
+\$180 &
+Elastic Resistance &
+Phase 01 &
+Adds heavier resistance headroom for longer-term use, and this set is chosen for commercial-grade durability. \\
+Elite &
+Resistance Band Set &
+Westside Barbell Jump Stretch Set &
+\$165 &
+Elastic Resistance &
+Phase 01 &
+Supports stronger overload and assistance options, and this set is chosen for proven long-term band resilience. \\
+Elite &
+Resistance Band Set &
+TRX Strength Band Kit &
+\$150 &
+Elastic Resistance &
+Phase 01 &
+Keeps resistance portable while raising tension quality, and this kit is chosen for clean finish and dependable feel. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.01.B - Suspension Trainer}
+\phantomsection
+\addcontentsline{toc}{section}{7.01.B - Suspension Trainer}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Suspension Trainer &
+NOSSK Trainer &
+\$80 &
+Bodyweight Suspension &
+Phase 01 &
+Enables scalable rows and presses early, and this trainer is chosen for compact home-friendly simplicity. \\
+Budget &
+Suspension Trainer &
+Lifeline Jungle Gym XT &
+\$120 &
+Bodyweight Suspension &
+Phase 01 &
+Adds stable bodyweight pulling without a rack, and this trainer is chosen for split-handle control. \\
+Budget &
+Suspension Trainer &
+TRX \textbf{GO} &
+\$130 &
+Bodyweight Suspension &
+Phase 01 &
+Makes early bodyweight resistance easier to standardize, and this trainer is chosen for quick setup and portability. \\
+Standard &
+Suspension Trainer &
+TRX Home2 System &
+\$200 &
+Bodyweight Suspension &
+Phase 01 &
+Supports more repeatable home strength sessions, and this system is chosen for dependable strap quality. \\
+Standard &
+Suspension Trainer &
+Monkii 365 &
+\$195 &
+Bodyweight Suspension &
+Phase 01 &
+Keeps bodyweight resistance portable and varied, and this system is chosen for robust travel-ready hardware. \\
+Standard &
+Suspension Trainer &
+WOSS Military Strap Trainer &
+\$180 &
+Bodyweight Suspension &
+Phase 01 &
+Expands pulling and pressing options safely, and this trainer is chosen for sturdy hardware and simple adjustment. \\
+Elite &
+Suspension Trainer &
+TRX Pro4 &
+\$250 &
+Bodyweight Suspension &
+Phase 01 &
+Gives higher-end strap durability for constant use, and this system is chosen for commercial-grade build quality. \\
+Elite &
+Suspension Trainer &
+TRX Tactical Gym &
+\$300 &
+Bodyweight Suspension &
+Phase 01 &
+Handles repeated setup and teardown well, and this system is chosen for more rugged anchor hardware. \\
+Elite &
+Suspension Trainer &
+GORNATION Suspension Trainer &
+\$220 &
+Bodyweight Suspension &
+Phase 01 &
+Improves movement variety with a cleaner premium feel, and this trainer is chosen for stable stitching and grips. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.01.C - Push-Up Handles / Parallettes}
+\phantomsection
+\addcontentsline{toc}{section}{7.01.C - Push-Up Handles / Parallettes}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Push-Up Handles / Parallettes &
+Perfect Fitness Pushup Stands &
+\$25 &
+Bodyweight Support &
+Phase 01 &
+Makes pressing more wrist-friendly early, and these stands are chosen for simple stable hand positioning. \\
+Budget &
+Push-Up Handles / Parallettes &
+CAP Push-Up Bars &
+\$20 &
+Bodyweight Support &
+Phase 01 &
+Raises the hands off the floor for cleaner reps, and these bars are chosen for low-cost simplicity. \\
+Budget &
+Push-Up Handles / Parallettes &
+ProsourceFit Parallettes &
+\$35 &
+Bodyweight Support &
+Phase 01 &
+Adds small-range bodyweight support work, and these parallettes are chosen for a compact footprint. \\
+Standard &
+Push-Up Handles / Parallettes &
+Lebert EQualizer XS &
+\$120 &
+Bodyweight Support &
+Phase 01 &
+Expands pressing and support variations, and this set is chosen for stronger frame stability. \\
+Standard &
+Push-Up Handles / Parallettes &
+BaseBlocks B-Bars &
+\$129 &
+Bodyweight Support &
+Phase 01 &
+Supports cleaner support holds and pressing angles, and this set is chosen for better grip comfort. \\
+Standard &
+Push-Up Handles / Parallettes &
+Rogue Wooden Parallettes &
+\$155 &
+Bodyweight Support &
+Phase 01 &
+Improves hand comfort during longer sessions, and this set is chosen for a sturdy low-profile base. \\
+Elite &
+Push-Up Handles / Parallettes &
+Rogue Metal Parallettes &
+\$250 &
+Bodyweight Support &
+Phase 01 &
+Handles heavier bodyweight loading well, and this set is chosen for very rigid metal construction. \\
+Elite &
+Push-Up Handles / Parallettes &
+GORNATION Premium Parallettes &
+\$220 &
+Bodyweight Support &
+Phase 01 &
+Gives cleaner support positioning under fatigue, and this set is chosen for premium grip and finish. \\
+Elite &
+Push-Up Handles / Parallettes &
+BaseBlocks Big Bar &
+\$229 &
+Bodyweight Support &
+Phase 01 &
+Increases exercise range and stability, and this set is chosen for a taller, stronger frame. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.01.D - Adjustable Dumbbell Set}
+\phantomsection
+\addcontentsline{toc}{section}{7.01.D - Adjustable Dumbbell Set}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Adjustable Dumbbell Set &
+CAP Cast Iron Adjustable Set &
+\$110 &
+Adjustable Free Weight &
+Phase 01 &
+Covers foundational pressing and rowing work, and this set is chosen for low-cost load flexibility. \\
+Budget &
+Adjustable Dumbbell Set &
+Yes4All Adjustable Dumbbells &
+\$140 &
+Adjustable Free Weight &
+Phase 01 &
+Supports general home strength work affordably, and this set is chosen for simple plate-based loading. \\
+Budget &
+Adjustable Dumbbell Set &
+BalanceFrom Adjustable Dumbbells &
+\$130 &
+Adjustable Free Weight &
+Phase 01 &
+Adds early free-weight resistance without much space, and this set is chosen for compact storage efficiency. \\
+Standard &
+Adjustable Dumbbell Set &
+Bowflex SelectTech 552 &
+\$429 &
+Adjustable Free Weight &
+Phase 01 &
+Speeds up exercise changes in tight spaces, and this set is chosen for quick dial-based adjustments. \\
+Standard &
+Adjustable Dumbbell Set &
+Core Home Fitness Adjustable Dumbbells &
+\$399 &
+Adjustable Free Weight &
+Phase 01 &
+Keeps sessions moving with less setup friction, and this set is chosen for fast, intuitive weight changes. \\
+Standard &
+Adjustable Dumbbell Set &
+PowerBlock Sport EXP &
+\$449 &
+Adjustable Free Weight &
+Phase 01 &
+Handles repeated home use well, and this set is chosen for durable stack-style weight expansion. \\
+Elite &
+Adjustable Dumbbell Set &
+NÜOBELL 80 lb Set &
+\$745 &
+Adjustable Free Weight &
+Phase 01 &
+Gives smoother heavier loading for long-term use, and this set is chosen for premium quick-change mechanics. \\
+Elite &
+Adjustable Dumbbell Set &
+REP QuickDraw 60 &
+\$599 &
+Adjustable Free Weight &
+Phase 01 &
+Balances compactness with faster progression, and this set is chosen for cleaner handle ergonomics. \\
+Elite &
+Adjustable Dumbbell Set &
+Ironmaster Quick-Lock 75 &
+\$799 &
+Adjustable Free Weight &
+Phase 01 &
+Prioritizes durability and load security, and this set is chosen for robust all-metal construction. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.01.E - Kettlebell Set}
+\phantomsection
+\addcontentsline{toc}{section}{7.01.E - Kettlebell Set}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Kettlebell Set &
+CAP Cast Iron Kettlebell Trio &
+\$130 &
+Free Weight &
+Phase 01 &
+Supports hinges, carries, and goblet work early, and this trio is chosen for economical weight variety. \\
+Budget &
+Kettlebell Set &
+Yes4All Cast Iron Kettlebell Set &
+\$150 &
+Free Weight &
+Phase 01 &
+Adds simple strength loading with little floor space, and this set is chosen for practical starter coverage. \\
+Budget &
+Kettlebell Set &
+Signature Fitness Kettlebell Pair &
+\$120 &
+Free Weight &
+Phase 01 &
+Keeps foundational lower-body and carry work accessible, and this pair is chosen for low-entry cost. \\
+Standard &
+Kettlebell Set &
+Rogue Powder Coat Kettlebells &
+\$220 &
+Free Weight &
+Phase 01 &
+Improves handle feel and finish consistency, and this set is chosen for reliable grip and casting quality. \\
+Standard &
+Kettlebell Set &
+REP Fitness Kettlebells &
+\$210 &
+Free Weight &
+Phase 01 &
+Supports steady repeated home use, and this set is chosen for balanced handles and clean powder coat. \\
+Standard &
+Kettlebell Set &
+Perform Better First Place Kettlebells &
+\$240 &
+Free Weight &
+Phase 01 &
+Gives repeatable training feel across weights, and this set is chosen for durable commercial-grade build. \\
+Elite &
+Kettlebell Set &
+Kettlebell Kings Powder Coat Set &
+\$320 &
+Free Weight &
+Phase 01 &
+Offers better consistency between bells, and this set is chosen for refined handle finish and casting control. \\
+Elite &
+Kettlebell Set &
+Eleiko Kettlebell Set &
+\$450 &
+Free Weight &
+Phase 01 &
+Keeps movement feel highly consistent, and this set is chosen for premium manufacturing precision. \\
+Elite &
+Kettlebell Set &
+Onnit Primal Kettlebell Set &
+\$390 &
+Free Weight &
+Phase 01 &
+Adds high-quality kettlebell loading with strong visual distinction, and this set is chosen for solid finish and feel. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.01.F - Flat-to-Incline Bench}
+\phantomsection
+\addcontentsline{toc}{section}{7.01.F - Flat-to-Incline Bench}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Flat-to-Incline Bench &
+Flybird Adjustable Bench &
+\$150 &
+Support Surface &
+Phase 01 &
+Gives a stable home pressing surface early, and this bench is chosen for compact folding convenience. \\
+Budget &
+Flat-to-Incline Bench &
+Keppi Bench1000 &
+\$170 &
+Support Surface &
+Phase 01 &
+Supports dumbbell and bodyweight bench work, and this bench is chosen for a simple ladder-style back adjustment. \\
+Budget &
+Flat-to-Incline Bench &
+Fitness Reality 2000 Bench &
+\$180 &
+Support Surface &
+Phase 01 &
+Adds a sturdier home support surface, and this bench is chosen for decent stability at a low price. \\
+Standard &
+Flat-to-Incline Bench &
+REP AB-3100 &
+\$330 &
+Support Surface &
+Phase 01 &
+Improves pressing consistency under fatigue, and this bench is chosen for stronger pad support and frame rigidity. \\
+Standard &
+Flat-to-Incline Bench &
+Bells of Steel FID Bench &
+\$300 &
+Support Surface &
+Phase 01 &
+Covers more angles without taking huge space, and this bench is chosen for versatile incline settings. \\
+Standard &
+Flat-to-Incline Bench &
+Body-Solid GFID31 &
+\$340 &
+Support Surface &
+Phase 01 &
+Handles repeated home use well, and this bench is chosen for proven commercial-style sturdiness. \\
+Elite &
+Flat-to-Incline Bench &
+Rogue Adjustable Bench 3.0 &
+\$595 &
+Support Surface &
+Phase 01 &
+Keeps heavy home pressing more stable, and this bench is chosen for premium frame stiffness. \\
+Elite &
+Flat-to-Incline Bench &
+REP BlackWing Bench &
+\$599 &
+Support Surface &
+Phase 01 &
+Adds wide angle flexibility with stronger support, and this bench is chosen for dense adjustments and sturdiness. \\
+Elite &
+Flat-to-Incline Bench &
+Eleiko Adjustable Bench &
+\$1,099 &
+Support Surface &
+Phase 01 &
+Prioritizes long-term smooth stability, and this bench is chosen for high-end construction quality. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.01.G - Dip Station}
+\phantomsection
+\addcontentsline{toc}{section}{7.01.G - Dip Station}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Dip Station &
+CAP Barbell Dip Stand &
+\$90 &
+Bodyweight Station &
+Phase 01 &
+Supports bodyweight pressing without a rack, and this station is chosen for a small and simple footprint. \\
+Budget &
+Dip Station &
+BalanceFrom Dip Stand &
+\$95 &
+Bodyweight Station &
+Phase 01 &
+Gives early pressing support work at low cost, and this stand is chosen for straightforward assembly. \\
+Budget &
+Dip Station &
+Fuel Pureformance Dip Station &
+\$110 &
+Bodyweight Station &
+Phase 01 &
+Adds stable dip practice without major hardware, and this station is chosen for value-oriented frame support. \\
+Standard &
+Dip Station &
+Ultimate Body Press Dip Station &
+\$170 &
+Bodyweight Station &
+Phase 01 &
+Improves pressing stability for repeated use, and this station is chosen for sturdier bar spacing. \\
+Standard &
+Dip Station &
+Lebert EQualizer XL &
+\$180 &
+Bodyweight Station &
+Phase 01 &
+Allows dips plus support variations, and this station is chosen for more exercise flexibility. \\
+Standard &
+Dip Station &
+BaseBlocks Parallel Bars &
+\$189 &
+Bodyweight Station &
+Phase 01 &
+Gives cleaner bodyweight support positions, and this station is chosen for a stronger welded frame feel. \\
+Elite &
+Dip Station &
+Rogue Matador &
+\$175 &
+Bodyweight Station &
+Phase 01 &
+Adds rigid dip capability to compatible rack setups, and this attachment is chosen for high stiffness. \\
+Elite &
+Dip Station &
+Sorinex Dip Horn &
+\$215 &
+Bodyweight Station &
+Phase 01 &
+Gives a more stable premium dip interface, and this attachment is chosen for heavy-duty steel construction. \\
+Elite &
+Dip Station &
+REP Dip Attachment &
+\$190 &
+Bodyweight Station &
+Phase 01 &
+Keeps dip mechanics consistent on a quality rack, and this attachment is chosen for secure rack integration. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.01.H - Sandbag}
+\phantomsection
+\addcontentsline{toc}{section}{7.01.H - Sandbag}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Sandbag &
+Yes4All Sandbag &
+\$40 &
+Loadable Implement &
+Phase 03 &
+Adds awkward-load resistance and carry work, and this bag is chosen for low-cost filler flexibility. \\
+Budget &
+Sandbag &
+Titan Sandbag &
+\$50 &
+Loadable Implement &
+Phase 03 &
+Supports loading that feels less fixed than plates, and this bag is chosen for simple heavy-duty shell design. \\
+Budget &
+Sandbag &
+REP Sandbag &
+\$55 &
+Loadable Implement &
+Phase 03 &
+Introduces load-shift resistance at modest cost, and this bag is chosen for practical size options. \\
+Standard &
+Sandbag &
+Rogue Strongman Sandbag &
+\$95 &
+Loadable Implement &
+Phase 03 &
+Improves durability for repeated picks and carries, and this bag is chosen for stronger stitching. \\
+Standard &
+Sandbag &
+GoRuck Sandbag 2.0 &
+\$105 &
+Loadable Implement &
+Phase 03 &
+Gives more structured loading for carries and squats, and this bag is chosen for cleaner handle placement. \\
+Standard &
+Sandbag &
+Brute Force Athlete Sandbag &
+\$120 &
+Loadable Implement &
+Phase 03 &
+Handles varied carry and shouldering drills well, and this bag is chosen for versatile grip options. \\
+Elite &
+Sandbag &
+Cerberus Heavy Duty Sandbag &
+\$135 &
+Loadable Implement &
+Phase 03 &
+Adds higher confidence under hard repeated loading, and this bag is chosen for reinforced build quality. \\
+Elite &
+Sandbag &
+Rogue Husafell Sandbag &
+\$150 &
+Loadable Implement &
+Phase 03 &
+Better matches braced carry loading, and this bag is chosen for a carry-specific husafell shape. \\
+Elite &
+Sandbag &
+GoRuck Simple Sandbag &
+\$140 &
+Loadable Implement &
+Phase 03 &
+Keeps load close and stable for repeated carries, and this bag is chosen for cleaner minimal construction. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.01.I - Olympic Barbell}
+\phantomsection
+\addcontentsline{toc}{section}{7.01.I - Olympic Barbell}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Olympic Barbell &
+CAP OB-86B &
+\$160 &
+Barbell &
+Phase 02 &
+Opens barbell-class loading affordably, and this bar is chosen for basic home strength use. \\
+Budget &
+Olympic Barbell &
+Titan Atlas Bar &
+\$200 &
+Barbell &
+Phase 02 &
+Supports introductory barbell work with better capacity, and this bar is chosen for stronger general-purpose construction. \\
+Budget &
+Olympic Barbell &
+Bells of Steel Bare Naked Bar 2.0 &
+\$220 &
+Barbell &
+Phase 02 &
+Gives a more serious entry barbell option, and this bar is chosen for versatile knurl and usable stiffness. \\
+Standard &
+Olympic Barbell &
+Rogue Ohio Bar &
+\$295 &
+Barbell &
+Phase 02 &
+Improves repeatability across major lifts, and this bar is chosen for balanced all-purpose performance. \\
+Standard &
+Olympic Barbell &
+REP Colorado Bar &
+\$320 &
+Barbell &
+Phase 02 &
+Handles mixed home lifting well, and this bar is chosen for good whip-control balance. \\
+Standard &
+Olympic Barbell &
+Fringe Sport Wonder Bar &
+\$299 &
+Barbell &
+Phase 02 &
+Supports varied submax lifting with consistency, and this bar is chosen for general-use durability. \\
+Elite &
+Olympic Barbell &
+American Barbell California Bar &
+\$475 &
+Barbell &
+Phase 02 &
+Feels smoother in the hands over repeated sessions, and this bar is chosen for refined finish quality. \\
+Elite &
+Olympic Barbell &
+Kabuki New Generation Power Bar &
+\$699 &
+Barbell &
+Phase 02 &
+Prioritizes bar rigidity and long-term build quality, and this bar is chosen for premium steel feel. \\
+Elite &
+Olympic Barbell &
+Eleiko XF Bar &
+\$829 &
+Barbell &
+Phase 02 &
+Delivers highly consistent loading behavior, and this bar is chosen for top-tier manufacturing precision. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.01.J - Weight Plates Set}
+\phantomsection
+\addcontentsline{toc}{section}{7.01.J - Weight Plates Set}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Weight Plates Set &
+CAP Cast Iron Plate Set &
+\$180 &
+Loading Plates &
+Phase 02 &
+Provides low-cost barbell loading, and this set is chosen for simple durable iron plates. \\
+Budget &
+Weight Plates Set &
+BalanceFrom Iron Plate Set &
+\$160 &
+Loading Plates &
+Phase 02 &
+Covers foundational loading without premium cost, and this set is chosen for basic starter capacity. \\
+Budget &
+Weight Plates Set &
+Yes4All Cast Iron Plate Set &
+\$170 &
+Loading Plates &
+Phase 02 &
+Adds plate-based progression affordably, and this set is chosen for practical entry-level utility. \\
+Standard &
+Weight Plates Set &
+REP Old School Iron Plates &
+\$260 &
+Loading Plates &
+Phase 02 &
+Improves loading consistency over lighter-grade iron, and this set is chosen for better finish control. \\
+Standard &
+Weight Plates Set &
+Rogue Echo Bumper Set &
+\$495 &
+Loading Plates &
+Phase 02 &
+Lowers noise and floor harshness during training, and this set is chosen for durable rubber protection. \\
+Standard &
+Weight Plates Set &
+Fringe Sport Milspec Bumpers &
+\$525 &
+Loading Plates &
+Phase 02 &
+Supports repeated loading with better floor forgiveness, and this set is chosen for practical home use. \\
+Elite &
+Weight Plates Set &
+Rogue Competition Bumper Set &
+\$1,050 &
+Loading Plates &
+Phase 02 &
+Tightens loading feel and fit quality, and this set is chosen for more precise plate tolerance. \\
+Elite &
+Weight Plates Set &
+American Barbell Urethane Pro Set &
+\$1,450 &
+Loading Plates &
+Phase 02 &
+Gives premium durability and cleaner finish retention, and this set is chosen for long-term home use. \\
+Elite &
+Weight Plates Set &
+Eleiko IWF Training Plates Set &
+\$2,199 &
+Loading Plates &
+Phase 02 &
+Delivers very high plate consistency, and this set is chosen for top-end fit and finish. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.01.K - Squat Stand / Power Rack}
+\phantomsection
+\addcontentsline{toc}{section}{7.01.K - Squat Stand / Power Rack}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Squat Stand / Power Rack &
+Fitness Reality 810XLT &
+\$299 &
+Rack Hardware &
+Phase 02 &
+Creates safer home barbell handling than improvised stands, and this rack is chosen for budget-friendly basic safeties. \\
+Budget &
+Squat Stand / Power Rack &
+CAP FM-905Q &
+\$250 &
+Rack Hardware &
+Phase 02 &
+Gives entry-level rack structure for home lifts, and this rack is chosen for low-cost upright support. \\
+Budget &
+Squat Stand / Power Rack &
+Titan T-2 &
+\$399 &
+Rack Hardware &
+Phase 02 &
+Improves safety over lighter consumer units, and this rack is chosen for better expansion potential. \\
+Standard &
+Squat Stand / Power Rack &
+Force USA MyRack &
+\$699 &
+Rack Hardware &
+Phase 02 &
+Supports more configurable home lifting setups, and this rack is chosen for broad attachment flexibility. \\
+Standard &
+Squat Stand / Power Rack &
+Bells of Steel Hydra Rack &
+\$799 &
+Rack Hardware &
+Phase 02 &
+Gives stronger rack rigidity for regular use, and this rack is chosen for modular uprights and options. \\
+Standard &
+Squat Stand / Power Rack &
+REP PR-4000 &
+\$949 &
+Rack Hardware &
+Phase 02 &
+Tightens safety and setup consistency, and this rack is chosen for stronger hardware and attachment depth. \\
+Elite &
+Squat Stand / Power Rack &
+Rogue RM-4 Monster Rack &
+\$1,595 &
+Rack Hardware &
+Phase 02 &
+Maximizes stability for repeated barbell work, and this rack is chosen for very robust steel construction. \\
+Elite &
+Squat Stand / Power Rack &
+Sorinex Basecamp Rack &
+\$1,899 &
+Rack Hardware &
+Phase 02 &
+Supports premium home strength infrastructure, and this rack is chosen for commercial-level frame quality. \\
+Elite &
+Squat Stand / Power Rack &
+Eleiko Prestera Half Rack &
+\$2,299 &
+Rack Hardware &
+Phase 02 &
+Delivers highly refined rack stability, and this rack is chosen for top-end hardware precision. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.01.L - Barbell Collars}
+\phantomsection
+\addcontentsline{toc}{section}{7.01.L - Barbell Collars}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Barbell Collars &
+CAP Spring Collars &
+\$12 &
+Loading Accessory &
+Phase 02 &
+Keeps plates from sliding during basic lifts, and these collars are chosen for simple dependable tension. \\
+Budget &
+Barbell Collars &
+Clout Fitness Barbell Clamps &
+\$18 &
+Loading Accessory &
+Phase 02 &
+Improves plate retention for low-cost home setups, and these clamps are chosen for fast snap-on use. \\
+Budget &
+Barbell Collars &
+Lock-Jaw EZ Collars &
+\$25 &
+Loading Accessory &
+Phase 02 &
+Reduces bar setup movement better than springs, and these collars are chosen for easy one-hand locking. \\
+Standard &
+Barbell Collars &
+Lock-Jaw PRO 2 &
+\$35 &
+Loading Accessory &
+Phase 02 &
+Holds plates more securely through repeated sets, and these collars are chosen for stronger clamp force. \\
+Standard &
+Barbell Collars &
+Rogue HG 2.0 Collars &
+\$45 &
+Loading Accessory &
+Phase 02 &
+Keeps plate stacks tighter under fatigue, and these collars are chosen for sturdier hinge construction. \\
+Standard &
+Barbell Collars &
+OSO Mighty Collars &
+\$40 &
+Loading Accessory &
+Phase 02 &
+Adds dependable retention without much weight, and these collars are chosen for durable aluminum-bodied clamping. \\
+Elite &
+Barbell Collars &
+OSO Elite Collars &
+\$80 &
+Loading Accessory &
+Phase 02 &
+Gives stronger premium bar retention, and these collars are chosen for heavier-duty locking hardware. \\
+Elite &
+Barbell Collars &
+Rogue USA Aluminum Collars &
+\$95 &
+Loading Accessory &
+Phase 02 &
+Improves durability over plastic collar systems, and these collars are chosen for premium machined construction. \\
+Elite &
+Barbell Collars &
+Eleiko Öppen Collars &
+\$120 &
+Loading Accessory &
+Phase 02 &
+Tightens bar setup consistency at a high level, and these collars are chosen for elite-grade build quality. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.01.M - Fractional Plates}
+\phantomsection
+\addcontentsline{toc}{section}{7.01.M - Fractional Plates}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Fractional Plates &
+CAP 1.25 lb Pair &
+\$15 &
+Microloading &
+Phase 02 &
+Allows smaller jumps than full plates, and this pair is chosen for a very low-cost loading bridge. \\
+Budget &
+Fractional Plates &
+Yes4All Change Plates Set &
+\$28 &
+Microloading &
+Phase 02 &
+Smooths progression where big jumps would be rough, and this set is chosen for practical starter increments. \\
+Budget &
+Fractional Plates &
+BalanceFrom Fractional Plate Set &
+\$25 &
+Microloading &
+Phase 02 &
+Helps prevent abrupt load spikes early, and this set is chosen for basic inexpensive step sizing. \\
+Standard &
+Fractional Plates &
+Rogue Add-On Change Plates &
+\$55 &
+Microloading &
+Phase 02 &
+Makes barbell progression more precise, and this set is chosen for cleaner calibration and plate fit. \\
+Standard &
+Fractional Plates &
+REP Fractional Plate Set &
+\$49 &
+Microloading &
+Phase 02 &
+Keeps progression smoother across submax work, and this set is chosen for practical mid-price accuracy. \\
+Standard &
+Fractional Plates &
+American Barbell Fractional Plates &
+\$65 &
+Microloading &
+Phase 02 &
+Gives better finish and fit consistency, and this set is chosen for stronger long-term plate durability. \\
+Elite &
+Fractional Plates &
+Rogue KG Change Plates &
+\$175 &
+Microloading &
+Phase 02 &
+Supports very fine loading control, and this set is chosen for tighter calibration in kilogram increments. \\
+Elite &
+Fractional Plates &
+Werksan Change Plates &
+\$210 &
+Microloading &
+Phase 02 &
+Refines weight jumps for higher-end setups, and this set is chosen for premium calibrated manufacturing. \\
+Elite &
+Fractional Plates &
+Eleiko Change Plates Set &
+\$249 &
+Microloading &
+Phase 02 &
+Maximizes microloading precision over long blocks, and this set is chosen for elite tolerance control. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.01.N - Stall Mats / Platform}
+\phantomsection
+\addcontentsline{toc}{section}{7.01.N - Stall Mats / Platform}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Stall Mats / Platform &
+Tractor Supply Stall Mat &
+\$60 &
+Flooring &
+Phase 02 &
+Protects floors from barbell and dumbbell wear, and this mat is chosen for dense affordable rubber. \\
+Budget &
+Stall Mats / Platform &
+Rubber-Cal Shark Tooth Mat &
+\$75 &
+Flooring &
+Phase 02 &
+Adds a tougher home lifting surface, and this mat is chosen for thick protective coverage. \\
+Budget &
+Stall Mats / Platform &
+SuperMats Heavy Duty Mat &
+\$80 &
+Flooring &
+Phase 02 &
+Reduces floor scuffing and noise in home use, and this mat is chosen for a straightforward dense build. \\
+Standard &
+Stall Mats / Platform &
+Titan 8x8 Olympic Platform &
+\$699 &
+Flooring &
+Phase 02 &
+Creates a defined lifting lane with better protection, and this platform is chosen for full-station utility. \\
+Standard &
+Stall Mats / Platform &
+Fringe Sport Oly Platform &
+\$799 &
+Flooring &
+Phase 02 &
+Improves lifting area consistency and organization, and this platform is chosen for complete platform design. \\
+Standard &
+Stall Mats / Platform &
+Rogue 8x8 Oly Platform &
+\$995 &
+Flooring &
+Phase 02 &
+Gives a sturdier premium base for barbell work, and this platform is chosen for stronger finish quality. \\
+Elite &
+Stall Mats / Platform &
+PLAE Strength Platform &
+\$2,250 &
+Flooring &
+Phase 02 &
+Tightens surface consistency in a premium setup, and this platform is chosen for commercial-grade finish and build. \\
+Elite &
+Stall Mats / Platform &
+Sorinex Oly Platform &
+\$2,499 &
+Flooring &
+Phase 02 &
+Delivers a more refined dedicated lifting station, and this platform is chosen for premium structural quality. \\
+Elite &
+Stall Mats / Platform &
+Eleiko Weightlifting Platform &
+\$3,499 &
+Flooring &
+Phase 02 &
+Maximizes long-term surface stability and presentation, and this platform is chosen for top-end platform precision. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.01.O - Farmer Carry Handles}
+\phantomsection
+\addcontentsline{toc}{section}{7.01.O - Farmer Carry Handles}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Farmer Carry Handles &
+Yes4All Farmer Walk Handles &
+\$100 &
+Carry Implement &
+Phase 03 &
+Introduces loaded carries without rack dependence, and these handles are chosen for low-cost simplicity. \\
+Budget &
+Farmer Carry Handles &
+Titan Farmer Walk Handles &
+\$120 &
+Carry Implement &
+Phase 03 &
+Builds carry-specific loading with straightforward hardware, and these handles are chosen for practical home durability. \\
+Budget &
+Farmer Carry Handles &
+Valor Fitness BD-84 Farmer Walk Bars &
+\$140 &
+Carry Implement &
+Phase 03 &
+Adds dedicated carry work more cleanly than mixed implements, and these bars are chosen for stable grip spacing. \\
+Standard &
+Farmer Carry Handles &
+Bells of Steel Farmer Walk Handles &
+\$200 &
+Carry Implement &
+Phase 03 &
+Improves carry repeatability over improvised solutions, and these handles are chosen for sturdier frame construction. \\
+Standard &
+Farmer Carry Handles &
+Rogue Farmer’s Walk Handles &
+\$225 &
+Carry Implement &
+Phase 03 &
+Gives a more robust carry implement for repeated use, and these handles are chosen for durable weld quality. \\
+Standard &
+Farmer Carry Handles &
+Fringe Sport Farmer Carry Handles &
+\$210 &
+Carry Implement &
+Phase 03 &
+Supports controlled heavy carries at home, and these handles are chosen for practical loading ease. \\
+Elite &
+Farmer Carry Handles &
+Stray Dog Farmer Handles &
+\$350 &
+Carry Implement &
+Phase 03 &
+Tightens handle durability under heavy carries, and these handles are chosen for stronger fabrication quality. \\
+Elite &
+Farmer Carry Handles &
+Sorinex Farmer Carry Handles &
+\$395 &
+Carry Implement &
+Phase 03 &
+Raises equipment reliability for repeated loaded carries, and these handles are chosen for premium commercial build. \\
+Elite &
+Farmer Carry Handles &
+Eleiko Farmer’s Walk Handles &
+\$499 &
+Carry Implement &
+Phase 03 &
+Maximizes carry hardware consistency, and these handles are chosen for elite-grade finish and structure. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.01.P - Weighted Vest}
+\phantomsection
+\addcontentsline{toc}{section}{7.01.P - Weighted Vest}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Weighted Vest &
+CAP Adjustable Weighted Vest &
+\$70 &
+Wearable Load &
+Phase 06 &
+Adds body-carried resistance without large hardware, and this vest is chosen for affordable load adjustability. \\
+Budget &
+Weighted Vest &
+Henkelion Weighted Vest &
+\$60 &
+Wearable Load &
+Phase 06 &
+Supports simple bodyweight loading progression, and this vest is chosen for straightforward compact wear. \\
+Budget &
+Weighted Vest &
+RUNFast Weighted Vest &
+\$85 &
+Wearable Load &
+Phase 06 &
+Gives scalable extra load for conditioning strength work, and this vest is chosen for simple pocketed loading. \\
+Standard &
+Weighted Vest &
+5.11 TacTec Trainer Weight Vest &
+\$140 &
+Wearable Load &
+Phase 06 &
+Holds load more securely through movement, and this vest is chosen for better fit structure. \\
+Standard &
+Weighted Vest &
+Hyperwear Hyper Vest FIT &
+\$199 &
+Wearable Load &
+Phase 06 &
+Feels less bulky during movement, and this vest is chosen for closer-to-body load distribution. \\
+Standard &
+Weighted Vest &
+Rogue Plate Carrier &
+\$135 &
+Wearable Load &
+Phase 06 &
+Adds plate-based body loading cleanly, and this carrier is chosen for sturdy tactical-style construction. \\
+Elite &
+Weighted Vest &
+TRX XD Kevlar Weighted Vest &
+\$230 &
+Wearable Load &
+Phase 06 &
+Handles repeated loaded bodyweight work well, and this vest is chosen for rugged premium materials. \\
+Elite &
+Weighted Vest &
+Kensui EZ-VEST Pro &
+\$220 &
+Wearable Load &
+Phase 06 &
+Keeps load close and modular, and this vest is chosen for a compact plate-based design. \\
+Elite &
+Weighted Vest &
+Hyperwear Hyper Vest Elite &
+\$249 &
+Wearable Load &
+Phase 06 &
+Reduces movement disruption under load, and this vest is chosen for premium fit and distribution. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.01.Q - Pull-Up Station}
+\phantomsection
+\addcontentsline{toc}{section}{7.01.Q - Pull-Up Station}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Pull-Up Station &
+Stud Bar Ceiling Pull-Up Bar &
+\$99 &
+Anchored Station &
+Phase 06 &
+Creates a fixed pull-up interface at home, and this station is chosen for secure joist-mounted support. \\
+Budget &
+Pull-Up Station &
+Titan Wall Mounted Pull-Up Bar &
+\$110 &
+Anchored Station &
+Phase 06 &
+Gives safer strict pulling than portable bars, and this station is chosen for rigid wall-mounted stability. \\
+Budget &
+Pull-Up Station &
+Ultimate Body Press Wall Mount Pull-Up Bar &
+\$120 &
+Anchored Station &
+Phase 06 &
+Improves strict pull-up setup consistency, and this station is chosen for simple fixed-anchor construction. \\
+Standard &
+Pull-Up Station &
+Rogue P-4 Pull-Up System &
+\$145 &
+Anchored Station &
+Phase 06 &
+Supports more repeatable strict pull-up work, and this system is chosen for stronger steel bracket design. \\
+Standard &
+Pull-Up Station &
+Bells of Steel Wall Mounted Pull-Up Bar &
+\$139 &
+Anchored Station &
+Phase 06 &
+Gives a cleaner permanent pull-up setup, and this station is chosen for practical home installation strength. \\
+Standard &
+Pull-Up Station &
+Fringe Sport Garage Series Pull-Up Bar &
+\$149 &
+Anchored Station &
+Phase 06 &
+Handles repeated pulling sessions better than temporary bars, and this station is chosen for garage-ready rigidity. \\
+Elite &
+Pull-Up Station &
+Rogue RML-3W Fold Back Rack with Pull-Up &
+\$795 &
+Anchored Station &
+Phase 06 &
+Combines pull-up stability with rack utility, and this setup is chosen for strong fold-back space management. \\
+Elite &
+Pull-Up Station &
+Sorinex Base Camp Pull-Up Rig &
+\$985 &
+Anchored Station &
+Phase 06 &
+Maximizes pull-up interface rigidity and repeatability, and this rig is chosen for premium structural support. \\
+Elite &
+Pull-Up Station &
+REP PR-4000 Pull-Up Setup &
+\$1,049 &
+Anchored Station &
+Phase 06 &
+Supports strict pulling under a stronger rack ecosystem, and this setup is chosen for highly stable integration. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.01.R - Cable Pulley System}
+\phantomsection
+\addcontentsline{toc}{section}{7.01.R - Cable Pulley System}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Cable Pulley System &
+Spud Inc Pulley System &
+\$85 &
+Cable Resistance &
+Phase 06 &
+Adds cable-style pulling without a full machine, and this system is chosen for simple proven portability. \\
+Budget &
+Cable Pulley System &
+Bells of Steel Cable Pulley Attachment &
+\$99 &
+Cable Resistance &
+Phase 06 &
+Expands exercise variety with little footprint, and this attachment is chosen for straightforward rack compatibility. \\
+Budget &
+Cable Pulley System &
+Archon Single Pulley Station &
+\$120 &
+Cable Resistance &
+Phase 06 &
+Gives home cable resistance at modest cost, and this station is chosen for compact single-pulley function. \\
+Standard &
+Cable Pulley System &
+Bells of Steel Cable Tower &
+\$1,299 &
+Cable Resistance &
+Phase 06 &
+Improves resistance path consistency over attachments, and this tower is chosen for dedicated cable capacity. \\
+Standard &
+Cable Pulley System &
+Rogue CT-1 Cable Tower &
+\$1,350 &
+Cable Resistance &
+Phase 06 &
+Supports repeatable cable work with stronger hardware, and this tower is chosen for premium single-stack sturdiness. \\
+Standard &
+Cable Pulley System &
+REP Athena Side-Mount Functional Trainer &
+\$1,599 &
+Cable Resistance &
+Phase 06 &
+Integrates cable work into a rack footprint, and this system is chosen for strong space efficiency. \\
+Elite &
+Cable Pulley System &
+Prime Fitness Single Stack &
+\$2,399 &
+Cable Resistance &
+Phase 06 &
+Delivers smoother premium cable action, and this system is chosen for high-end pulley quality. \\
+Elite &
+Cable Pulley System &
+Eleiko Prestera Cable Attachment &
+\$2,499 &
+Cable Resistance &
+Phase 06 &
+Adds refined cable resistance within a premium rack system, and this attachment is chosen for elite hardware precision. \\
+Elite &
+Cable Pulley System &
+Sorinex Apex Cable Column &
+\$2,999 &
+Cable Resistance &
+Phase 06 &
+Maximizes durability and movement quality in cable work, and this column is chosen for commercial-grade construction. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.01.S - Trap Bar}
+\phantomsection
+\addcontentsline{toc}{section}{7.01.S - Trap Bar}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Trap Bar &
+CAP Olympic Trap Bar &
+\$150 &
+Specialty Bar &
+Phase 06 &
+Gives a simpler loaded hinge option than straight-bar pulling, and this bar is chosen for affordable entry use. \\
+Budget &
+Trap Bar &
+Titan Hex Trap Bar &
+\$225 &
+Specialty Bar &
+Phase 06 &
+Supports neutral-grip pulling at low cost, and this bar is chosen for practical home durability. \\
+Budget &
+Trap Bar &
+Bells of Steel Hex Bar &
+\$249 &
+Specialty Bar &
+Phase 06 &
+Adds more stable neutral-grip loading, and this bar is chosen for a sturdier frame than lighter options. \\
+Standard &
+Trap Bar &
+Fringe Sport Longhorn Trap Bar &
+\$379 &
+Specialty Bar &
+Phase 06 &
+Improves loaded carry and pull versatility, and this bar is chosen for practical all-around use. \\
+Standard &
+Trap Bar &
+REP Open Trap Bar &
+\$399 &
+Specialty Bar &
+Phase 06 &
+Makes loading and movement setup easier, and this bar is chosen for open-frame convenience. \\
+Standard &
+Trap Bar &
+Rogue TB-2 Trap Bar &
+\$425 &
+Specialty Bar &
+Phase 06 &
+Gives a more robust neutral-grip hinge option, and this bar is chosen for stronger build quality. \\
+Elite &
+Trap Bar &
+Kabuki Trap Bar HD &
+\$799 &
+Specialty Bar &
+Phase 06 &
+Prioritizes premium rigidity and balance under heavier work, and this bar is chosen for top-end fabrication. \\
+Elite &
+Trap Bar &
+Giant Northland Open Trap Bar &
+\$499 &
+Specialty Bar &
+Phase 06 &
+Adds open-frame usability with stronger finish, and this bar is chosen for cleaner movement access. \\
+Elite &
+Trap Bar &
+Bells of Steel Open Trap Bar &
+\$449 &
+Specialty Bar &
+Phase 06 &
+Improves carry and hinge flexibility over closed designs, and this bar is chosen for open-sided practicality. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.01.T - Specialty Strength Bar}
+\phantomsection
+\addcontentsline{toc}{section}{7.01.T - Specialty Strength Bar}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Specialty Strength Bar &
+Titan Safety Squat Bar V2 &
+\$299 &
+Specialty Barbell &
+Phase 06 &
+Reduces shoulder demand in squat loading, and this bar is chosen for cost-effective cambered support. \\
+Budget &
+Specialty Strength Bar &
+Bells of Steel Safety Squat Bar &
+\$299 &
+Specialty Barbell &
+Phase 06 &
+Adds shoulder-friendlier squat exposure, and this bar is chosen for practical padding and handle position. \\
+Budget &
+Specialty Strength Bar &
+Fringe Sport Safety Squat Bar &
+\$329 &
+Specialty Barbell &
+Phase 06 &
+Supports squat loading with less upper-body strain, and this bar is chosen for affordable specialty-bar access. \\
+Standard &
+Specialty Strength Bar &
+REP Safety Squat Bar &
+\$399 &
+Specialty Barbell &
+Phase 06 &
+Improves comfort and bar stability under squats, and this bar is chosen for stronger pad and camber quality. \\
+Standard &
+Specialty Strength Bar &
+Rogue CB-4 Camber Bar &
+\$415 &
+Specialty Barbell &
+Phase 06 &
+Changes loading feel in a controlled way, and this bar is chosen for durable specialty-bar construction. \\
+Standard &
+Specialty Strength Bar &
+American Barbell T-Grip Bar &
+\$449 &
+Specialty Barbell &
+Phase 06 &
+Broadens pressing and pulling options safely, and this bar is chosen for neutral-grip versatility. \\
+Elite &
+Specialty Strength Bar &
+Marrs-Bar &
+\$739 &
+Specialty Barbell &
+Phase 06 &
+Shifts squat stress more favorably for some lifters, and this bar is chosen for its distinct yoke-style load path. \\
+Elite &
+Specialty Strength Bar &
+Kabuki Transformer Bar &
+\$799 &
+Specialty Barbell &
+Phase 06 &
+Gives multiple squat-loading profiles in one tool, and this bar is chosen for adjustable camber flexibility. \\
+Elite &
+Specialty Strength Bar &
+Eleiko Safety Squat Bar &
+\$995 &
+Specialty Barbell &
+Phase 06 &
+Delivers premium specialty-bar consistency, and this bar is chosen for elite build and finish quality. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{When These Items Are Needed}
+\phantomsection
+\addcontentsline{toc}{section}{When These Items Are Needed}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=3.80in]
+    Q[c,wd=1.25in]
+    Q[l,wd=2.40in]
+    Q[l,wd=2.40in]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-2} = {halign=c, valign=m},
+  column{3-4} = {halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Item} &
+\Hdr{First required phase} &
+\Hdr{Why it becomes necessary} &
+\Hdr{What happens if missing} \\
+Resistance Band Set &
+Phase 01 &
+It satisfies the first minimum deployable resistance requirement without needing large hardware. &
+Early resistance work becomes narrower, and home strength exposure becomes less controlled. \\
+Suspension Trainer &
+Phase 01 &
+It adds scalable bodyweight resistance when the program first needs structured pulling and pressing support. &
+Pulling and pressing options become more limited, increasing reliance on less repeatable household substitutes. \\
+Push-Up Handles / Parallettes &
+Phase 01 &
+They provide simple support-surface resistance tools for pressing and bodyweight strength work. &
+Wrist comfort and pressing variation narrow, making early bodyweight resistance less sustainable. \\
+Adjustable Dumbbell Set &
+Phase 01 &
+It gives the first compact free-weight option for repeatable home resistance work. &
+The program loses one of the simplest ways to add external load safely in a small space. \\
+Kettlebell Set &
+Phase 01 &
+It adds versatile hinge, squat, and carry resistance during the first generic 7.01 build-out. &
+Foundational loaded movement options shrink, reducing resistance variety in the home setting. \\
+Flat-to-Incline Bench &
+Phase 01 &
+It improves support-surface stability for pressing and upper-body resistance work. &
+Dumbbell and bodyweight strength work become less stable and less repeatable. \\
+Dip Station &
+Phase 01 &
+It expands safe bodyweight pressing options during the first deployable resistance phase. &
+Pressing variation drops and bodyweight upper-body loading becomes less robust. \\
+Sandbag &
+Phase 03 &
+It fits the first carry-capacity and awkward-load resistance class more cleanly than simple Phase-01 tools. &
+Carry-style resistance variety narrows and loaded bracing work becomes less direct. \\
+Olympic Barbell &
+Phase 02 &
+It supports the first barbell/rack-level capability shift tied to Phase-02 strength proxy intent. &
+Strength proxy execution becomes less comparable and may be forced into weaker substitute classes. \\
+Weight Plates Set &
+Phase 02 &
+It is required once barbell-class loading becomes part of safe load handling. &
+Barbell work cannot be scaled properly, breaking the Phase-02 load-handling class. \\
+Squat Stand / Power Rack &
+Phase 02 &
+It provides the stable hardware needed for safer barbell handling once heavier loading classes appear. &
+Barbell work becomes less safe, with higher reliance on unstable or non-equivalent setups. \\
+Barbell Collars &
+Phase 02 &
+They become necessary once plate-loaded barbell work begins and plate movement risk rises. &
+Plate shift risk increases and heavier sets become less secure. \\
+Fractional Plates &
+Phase 02 &
+They smooth progression once barbell-class loading begins and large jumps become more costly. &
+Load increases become coarser, raising the chance of abrupt progression spikes. \\
+Stall Mats / Platform &
+Phase 02 &
+They protect the floor and stabilize the lifting lane once barbell loading enters the system. &
+The lifting area becomes less protected, noisier, and less repeatable. \\
+Farmer Carry Handles &
+Phase 03 &
+They map directly to the first 7.01 carry-capacity requirement in the carry-capacity standard pathway. &
+Carry-specific loading becomes more improvised and less comparable. \\
+Weighted Vest &
+Phase 06 &
+It fits expanded resistance variety after 7.01 reaches its broader Tier-2 posture. &
+Body-carried resistance options stay thinner and progression variety is reduced. \\
+Pull-Up Station &
+Phase 06 &
+Stage 8 treats the safe anchored pull-up solution as a later, Tier-2-timed dependency for strict pull-up evidence. &
+Strict pull-up evidence becomes fragile or unschedulable, and earlier gate use risks timing conflict. \\
+Cable Pulley System &
+Phase 06 &
+It belongs to the expanded-resistance variety class used once 7.01 broadens beyond minimal capability. &
+Pulling and isolation resistance remain more limited and less refined. \\
+Trap Bar &
+Phase 06 &
+It is an expanded specialty implement that broadens hinge and carry loading once 7.01 reaches Tier 2. &
+Neutral-grip hinge options remain limited, leaving fewer specialty-loading choices. \\
+Specialty Strength Bar &
+Phase 06 &
+It belongs to the expanded implement class that becomes reasonable only after minimal and barbell-class needs are already covered. &
+Shoulder-friendly and variation-focused bar options remain absent, reducing flexibility in later strength work. \\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+\clearpage
+
+\section*{Compliance Checklist}
+\phantomsection
+\addcontentsline{toc}{section}{Compliance Checklist}
+
+\begin{itemize}
+\item Single-category output only: 7.01.
+\item Locked title format used exactly.
+\item Reconciliation Notes included for the pull-up timing conflict and broader 7.01 timing posture.
+\item Assumption Notes included and limited to capability-class timing logic.
+\item Exact chart columns used in every shopping table.
+\item Twenty distinct item categories are included.
+\item Every item contains exactly three Budget rows, three Standard rows, and three Elite rows.
+\item Budget, Standard, and Elite are the only shopping tiers used.
+\item First-phase assignments are aligned to Stage 6/Stage 8 timing logic rather than placeholder review language.
+\item Notes state intended use and why each specific entry was chosen, with no phase references inside the Notes cells.
+\item No workouts, sets, reps, test redesigns, new domains, new thresholds, links, promo codes, or live price research were included.
+\item Output stops after the Compliance Checklist.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,336 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{landscape}
+
+\section*{8.D.1 Gap / Overload / Inconsistency Log}
+\phantomsection
+\addcontentsline{toc}{section}{8.D.1 Gap / Overload / Inconsistency Log}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.95in]
+    Q[l,wd=1.65in]
+    X[l,3.55]
+    X[l,2.20]
+    Q[l,wd=0.95in]
+    X[l,3.25]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Issue \textbf{ID}} &
+\Hdr{Issue Type} &
+\Hdr{Description} &
+\Hdr{Affected Standards/Phases} &
+\Hdr{Severity} &
+\Hdr{Recommended Correction} \\
+\textbf{ISS-08-001} &
+Timing &
+Pull-up gate feasibility timing conflict risk: \textbf{ST-PULLUP-MAX} (\textbf{C6} / \textbf{MET-2B-012}) is selection-relevant, but safe anchored pull-up solution is constrained by 7.01 placement and Stage 6 timing (7.01 Tier 2 anchor posture; Phase 06 (End) in 8.C). If Phase 03 (End) or Phase 04 (End) gates require pull-up evidence, test is unschedulable or must be reslotted, creating phase-gate fragility. &
+\textbf{ST-PULLUP-MAX}; \textbf{C6}; \textbf{MET-2B-012}; Phase 03 (End) potential; Phase 06 (End); 7.01 &
+High &
+Shift pull-up gate reliance to later protected windows within Stage 3 where Tier 2 pull-up solution is available; in Stage 5 gate language, declare pull-up as “monitor-only” until 7.01 Tier 2 is present; clarify Stage 6/Stage 7 tie-in language for pull-up solution timing. \\
+\textbf{ISS-08-002} &
+Timing &
+Underwater governance availability risk: \textbf{ST-UW-25M} (\textbf{C14} / \textbf{MET-2B-026}) depends on \textbf{ST-UW-ADMISS} (\textbf{C14} / \textbf{MET-2B-025}) and governance prerequisites (certified lifeguard + dedicated safety spotter + controlled pool per 7.17). Even if 7.17 Tier readiness is achieved, governance resources may be unavailable, making the standard unschedulable in Phase 10–13 windows and forcing repeated reslots. &
+\textbf{ST-UW-25M}; \textbf{ST-UW-ADMISS}; \textbf{C14}; \textbf{MET-2B-025}; \textbf{MET-2B-026}; Phase 10 (Mid/End)–Phase 13 (End); 7.17; 7.18 &
+High &
+In Stage 3 and Stage 5 gate language, treat underwater as conditional and governance-gated with default “not scheduled; inadmissible without governance”; ensure Stage 3 windows include explicit reslot posture without compressing; clarify Stage 7.17 and Stage 5 gating language to prevent treating underwater as mandatory gate evidence when governance cannot be guaranteed. \\
+\textbf{ISS-08-003} &
+Validity &
+Underwater admissibility flag misuse risk: \textbf{ST-UW-ADMISS} (\textbf{C14} / \textbf{MET-2B-025}) can be incorrectly treated as assumed “Yes” without documented prerequisites (Pool \textbf{ID} + conditions + lifeguard/spotter). This converts a safety requirement into a paperwork check and can contaminate gate decisions with inadmissible evidence. &
+\textbf{ST-UW-ADMISS}; \textbf{C14}; \textbf{MET-2B-025}; Stage 2.E Pool \textbf{ID} fields; Phase 10–13 windows; 7.17; 7.18 &
+High &
+Clarify Stage 2.E and Stage 7.17 mapping language: \textbf{ST-UW-ADMISS} must be computed from recorded prerequisites, not asserted; require explicit documentation fields and Evidence Ref for governance confirmation; in Stage 5 gate language, state that missing prerequisites defaults to “Not authorized” and forces reslot. \\
+\textbf{ISS-08-004} &
+Timing &
+Compounded dependency stack fragility for long ruck gate: \textbf{ST-RUCK-12MI-55LB} (\textbf{C12} / \textbf{MET-2B-021}) requires multiple categories at sufficient tier and stable: 7.07 ruck system, 7.11 foot system, 7.18 route validation/timing, 7.14 environmental apparel continuity, 7.19 visibility when required, 7.13 hydration logistics. Any missing element forces reslot; late-phase consequences make this a high-risk execution bottleneck. &
+\textbf{ST-RUCK-12MI-55LB}; \textbf{C12}; \textbf{MET-2B-021}; Phase 13 (End) and Phase 12–13 windows; 7.07; 7.11; 7.18; 7.14; 7.19; 7.13 &
+High &
+In Stage 3 calendars, ensure long ruck gates have protected windows with explicit weather/visibility reslot posture; in Stage 6 timing, verify Tier 1–3 readiness arrives before the first decisive long ruck gate; in Stage 5 gate language, require pre-window readiness checks (category readiness confirmed) and treat any missing dependency as \textbf{HOLD} with reslot, not “make-do.” \\
+\textbf{ISS-08-005} &
+Validity &
+Swim unit drift and Pool \textbf{ID} logging fragility: \textbf{ST-SWIM-500M} (\textbf{C13} / \textbf{MET-2B-023}) and \textbf{ST-SWIM-500YD} (\textbf{C13} / \textbf{MET-2B-022}) require Pool \textbf{ID} and pool length-unit logging. Missing Pool \textbf{ID} or unit handling drift can silently contaminate comparability and gate interpretation, especially when pools differ in length or labeling. &
+\textbf{ST-SWIM-500M}; \textbf{ST-SWIM-500YD}; \textbf{C13}; \textbf{MET-2B-022}; \textbf{MET-2B-023}; Stage 2.E Pool \textbf{ID} + length unit; Phase 04 (End) onward; 7.17; 7.18 &
+Med &
+Clarify Stage 2.E and Stage 7.17 mapping language: Pool \textbf{ID} and pool length-unit fields are mandatory for admissible swim evidence; in Stage 3 scheduling, bias testing to stable pools where possible; treat missing Pool \textbf{ID}/unit as \textbf{INVALID} and reslot rather than infer distance. \\
+\end{longtblr}
+
+\endgroup
+\newpage
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.95in]
+    Q[l,wd=1.65in]
+    X[l,3.55]
+    X[l,2.20]
+    Q[l,wd=0.95in]
+    X[l,3.25]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Issue \textbf{ID}} &
+\Hdr{Issue Type} &
+\Hdr{Description} &
+\Hdr{Affected Standards/Phases} &
+\Hdr{Severity} &
+\Hdr{Recommended Correction} \\
+\textbf{ISS-08-006} &
+Timing &
+Biometrics timing mismatch risk: \textbf{ST-BF-PCT} (\textbf{C2} / \textbf{MET-2B-002}) and other 7.09-dependent biometrics may be demanded by phase intent earlier than Stage 6 introduces 7.09 Tier 1 (Phase 06 (End) per 7.09/Stage 6). If any Stage 5 phase card treats biometrics as gate-critical earlier, deployability conflict occurs (tools not required/assured). &
+\textbf{ST-BF-PCT}; \textbf{C2}; \textbf{MET-2B-002}; 7.09 Tier timing; Phase 02–05 potential; Stage 5 intent fields &
+Med &
+Clarify Stage 5 gate language: biometrics are monitoring/trend-only until 7.09 Tier 1 exists; if earlier biometrics are desired, shift tier timing within Stage 6 (allowed move) or remove gate reliance and keep as “monitor-only” with explicit non-blocking posture. \\
+\textbf{ISS-08-007} &
+Overload &
+Evidence capture and completeness burden overload: \textbf{ST-VALID-SESSION} (\textbf{MET-2B-044}) plus Cardio compliance (\textbf{MET-2B-045}) and weekly admissible compliance (\textbf{MET-2B-046}) create high operational logging demands. Missing fields convert evidence to inadmissible, risking frequent \textbf{HOLD} outcomes from administrative failure rather than true readiness failure. &
+\textbf{ST-VALID-SESSION}; \textbf{ST-CARDIO-MIN-MET}; \textbf{ST-WK-ADMISS-PCT}; \textbf{MET-2B-044}; \textbf{MET-2B-045}; \textbf{MET-2B-046}; Stage 2.E binder posture; Phase 00–13 gates &
+Med &
+Clarify Stage 2.E and Stage 7.16 templates to reduce friction without changing required fields: prefilled templates, checklist-driven capture, and same-day completion discipline; in Stage 3.E adjustment rules, treat administrative misses as \textbf{HOLD} with reslot rather than forcing make-ups; reinforce “no inference” posture. \\
+\textbf{ISS-08-008} &
+Validity &
+Derived Cardio compliance misclassification risk: \textbf{ST-CARDIO-MIN-MET} (\textbf{MET-2B-045}) requires modality + minutes + RPE/talk test cue + continuity statement. High risk of “inferred compliance” without continuity confirmation, leading to improper \textbf{VALID} tagging and inadmissible gate evidence. &
+\textbf{ST-CARDIO-MIN-MET}; \textbf{MET-2B-045}; \textbf{MET-2B-044}; Stage 2.E session log fields; Phase 00–13 &
+Med &
+Clarify Stage 2.E session-log schema usage: continuity statement is mandatory; if missing, default to \textbf{INVALID} for gate use; add explicit capture prompts in Stage 7.16 templates; reinforce Stage 1.F rule that below-minimum or non-continuous Cardio invalidates the session. \\
+\textbf{ISS-08-009} &
+Validity &
+Waist circumference landmark drift risk: \textbf{ST-CIRC-WAIST} (\textbf{C3} / \textbf{MET-2B-007}) can become non-comparable across long horizons if landmarking posture drifts (measurement point changes, tension posture changes). This can create false trend narratives affecting bodycomp directionality evidence. &
+\textbf{ST-CIRC-WAIST}; \textbf{C3}; \textbf{MET-2B-007}; Stage 2.E landmark/rounding posture; Phase 00–13 monitoring &
+Low &
+Clarify Stage 2.E landmark definition and measurement posture for circumference sites; in Stage 7.09/7.18 mapping language, treat any landmark method change as a re-baseline event logged explicitly; avoid using mixed-method trends for gate implications. \\
+\textbf{ISS-08-010} &
+Gap &
+Steps compliance under-logging risk: \textbf{ST-STEPS} (\textbf{MET-2B-043}) is a hard baseline requirement (10,000 steps/day) and can be under-logged. Missing logs treated as unproven exposure may create gate friction and inconsistency in enforcement. &
+\textbf{ST-STEPS}; \textbf{MET-2B-043}; Stage 2.E daily log fields; Phase 00–13 &
+Med &
+Clarify Stage 7.16 routines: steps capture method must be stable and recorded; missing steps logs are recorded as \textbf{MISSING} and treated as unproven; in Stage 3.E adjustment posture, treat repeated missing steps logs as a compliance risk signal requiring corrective adherence controls, not performance escalation. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{8.D.2 Priority Sorting}
+\phantomsection
+\addcontentsline{toc}{section}{8.D.2 Priority Sorting}
+
+\subsection*{Must Fix Pre-Deploy}
+\phantomsection
+\addcontentsline{toc}{subsection}{Must Fix Pre-Deploy}
+
+\begin{itemize}
+\item \textbf{ISS-08-001} — Pull-up standard may become gate-relevant before safe anchored pull-up capability is available; blocks admissible gate evidence and can force unsafe improvisation.
+\item \textbf{ISS-08-002} — Underwater standard can become unschedulable due to governance resource unavailability; blocks safe execution and can cause repeated gate failures/reslots.
+\item \textbf{ISS-08-003} — Underwater admissibility flag can be misused as assumed compliance; safety and admissibility breach risk.
+\item \textbf{ISS-08-004} — Long ruck gate has compounded dependency stack; missing any element blocks safe execution and risks non-deployable late-phase gates.
+\end{itemize}
+
+\subsection*{Monitor Post-Launch}
+\phantomsection
+\addcontentsline{toc}{subsection}{Monitor Post-Launch}
+
+\begin{itemize}
+\item \textbf{ISS-08-005} — Swim unit/Pool \textbf{ID} logging drift risk; manageable with strict logging and reslot posture.
+\item \textbf{ISS-08-006} — Biometrics timing mismatch risk; monitor unless biometrics are made gate-critical earlier, which would require Stage 6 timing adjustment.
+\item \textbf{ISS-08-007} — Logging burden overload; monitor and reduce friction via templates and routines without changing required fields.
+\item \textbf{ISS-08-008} — Cardio compliance misclassification risk; monitor via stricter capture prompts and default-to-invalid posture when continuity is missing.
+\item \textbf{ISS-08-009} — Waist landmark drift risk; monitor through explicit landmark discipline and re-baseline logging when method changes.
+\item \textbf{ISS-08-010} — Steps under-logging risk; monitor via stable capture method and repeated-missing-data controls.
+\end{itemize}
+
+\end{landscape}
+
+\end{document}

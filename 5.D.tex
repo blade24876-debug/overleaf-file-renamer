@@ -1,0 +1,710 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 5.D — Phase Dependencies and Gating Rules}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 5.D — Phase Dependencies and Gating Rules}
+
+\subsection*{5.D.1 Global Gating Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{5.D.1 Global Gating Rules}
+
+\begin{enumerate}
+\item Gate outcomes and default posture (Stage 1.F authority applied here)
+
+\begin{itemize}
+\item Gate outcomes are restricted to: \textbf{ADVANCE} / \textbf{HOLD} / \textbf{REGRESS} / \textbf{MEDICAL} \textbf{HOLD}.
+\item \textbf{HOLD} is the default outcome when gate evidence is incomplete, non-comparable, or not admissible.
+\item \textbf{ADVANCE} is permitted only when the gate claim is supported by admissible evidence and no disqualifiers are present. Stage 1.F defines the default decision window, session compliance threshold, \textbf{MODIFIED} cap, and the binary disqualifier rule for \textbf{INVALID} sessions in the decision window .
+\item \textbf{REGRESS} is reserved for evidence-supported intolerance or instability trends (not “missing data”).
+\item \textbf{MEDICAL} \textbf{HOLD} is reserved for stop-rule categories and clinician-imposed restrictions; it is not a convenience outcome.
+\end{itemize}
+
+\item Evidence admissibility application (Stage 1.F authority applied here)
+
+\begin{itemize}
+\item Gate decisions \textbf{MUST} use admissible evidence only. Evidence that is unsafe, incompletely logged, or executed under compromised governance is inadmissible and cannot support \textbf{ADVANCE} .
+\item Sessions: only \textbf{VALID} sessions and admissible \textbf{MODIFIED} sessions (within Stage 1.F cap rules) count toward gate compliance; \textbf{INVALID} sessions do not count and may disqualify \textbf{ADVANCE} in the decision window .
+\item Tests: every test is \textbf{VALID} or \textbf{INVALID} only; \textbf{INVALID} provides no gate credit and is treated as “not yet tested” for transition purposes until rerun under \textbf{VALID} conditions (default gate posture \textbf{HOLD} when the test is gate-required) .
+\item Dependencies are not paperwork. If a dependency failure materially affects safety, measurability, or comparability, the resulting session/test evidence \textbf{MUST} be treated as non-admissible for gates (default posture \textbf{HOLD}) per Stage 1.C failure doctrine .
+\end{itemize}
+
+\item Gate decision window and compliance minimums (Stage 1.F authority applied here)
+
+\begin{itemize}
+\item Default decision window for a phase gate is the two most recent complete training weeks preceding the gate week .
+\item \textbf{ADVANCE} eligibility requires an average of 5/6 admissible sessions per week across the decision window .
+\item \textbf{MODIFIED} cap: outside medical issues, no more than 1 \textbf{MODIFIED} session per week is admissible .
+\item Binary disqualifier: any \textbf{INVALID} session within the decision window disqualifies \textbf{ADVANCE} .
+\item Gate-required tests \textbf{MUST} be \textbf{VALID}; any gate-required test that is \textbf{INVALID} defaults to \textbf{HOLD} until a valid retest exists .
+\end{itemize}
+
+\item Gate windows and reslot discipline (Stage 3 authority applied here)
+
+\begin{itemize}
+\item Phase transitions (mid-phase decision points and end-of-phase exit gates) \textbf{MUST} occur only inside Stage 3 protected deload/test windows.
+\item Missed/invalid gate tests trigger reslot to the next available protected window; they \textbf{MUST} NOT be “made up” by stacking high-cost tests into a compressed week.
+\item If a valid test cannot be executed under comparable conditions, it is not “close enough.” It is \textbf{INVALID} for gate use, and the correct action is reslot and retest.
+\end{itemize}
+
+\item Crosswalk integrity and identifier rules (Stage 2 authority applied here)
+
+\begin{itemize}
+\item Gate evidence references \textbf{MUST} use Stage 2 protocol card IDs and metric IDs (C\# and \textbf{MET-2B}-###). The Stage 2 protocol index and metric linkage are fixed and include \textbf{C1} through \textbf{C18} .
+\item Gate-critical compliance and disqualifier metrics exist in Stage 2 and \textbf{MUST} be available for any gate decision packet:
+\begin{itemize}
+\item \textbf{MET-2B-044} Session Validity Tag
+\item \textbf{MET-2B-045} Cardio Minimum Standard Met
+\item \textbf{MET-2B-046} Weekly Admissible Session Compliance Percent
+\item Disqualifier signals: \textbf{MET-2B-036} Gait-Altering Pain Flag; \textbf{MET-2B-037} Foot Hotspot or Blister Flag
+\end{itemize}
+\item A downstream phase card is non-deployable if it references non-existent IDs, redefines admissibility, or treats inadmissible evidence as gate credit.
+\end{itemize}
+
+\item Global always-on dependency set (must be satisfied for any \textbf{ADVANCE})
+
+The following dependencies are treated as “always-on controls” across the full pipeline. If any are unmet or degraded, default gate posture becomes \textbf{HOLD} until restored, unless an explicit Stage 1.F trigger requires \textbf{REGRESS} or \textbf{MEDICAL} \textbf{HOLD}.
+
+A) Governance, stop posture, and escalation access
+
+\begin{itemize}
+\item \textbf{DEP-1C-002} Stop-rule understanding and escalation access
+\item \textbf{DEP-1C-021} Operational self-management / single system-of-record discipline
+\end{itemize}
+
+B) Evidence capture and measurement feasibility
+
+\begin{itemize}
+\item \textbf{DEP-1C-005} Logging method and daily/session compliance capability
+\item \textbf{DEP-1C-006} Timing and measurement tools sufficient for validity
+\item \textbf{DEP-1C-006} Test environment measurability and environment logging capability
+\end{itemize}
+
+C) Environment substitution posture
+
+\begin{itemize}
+\item \textbf{DEP-1C-003} Safe primary Cardio route or indoor substitute modality available
+\item \textbf{DEP-1C-004} Weather and environment substitution plan (heat/ice/air quality)
+\end{itemize}
+
+D) Foot interface, skin integrity, and sustainment
+
+\begin{itemize}
+\item \textbf{DEP-1C-007} Footwear interface established and fit verified
+\item \textbf{DEP-1C-008} Footcare supplies and hotspot control protocol available
+\item \textbf{DEP-1C-016} Storage/maintenance minimum (drying/hygiene sustainment)
+\item \textbf{DEP-1C-023} Storage/maintenance minimum (drying/hygiene sustainment)
+\end{itemize}
+
+E) Cadence feasibility and recovery constraints (as governance inputs)
+
+\begin{itemize}
+\item \textbf{DEP-1C-009} Schedule stability for 6 sessions per week (time blocks protected)
+\item \textbf{DEP-1C-010} Sleep opportunity window and recovery constraints identified with mitigation posture
+\item \textbf{ASM-1C-021} Baseline low-impact tolerance for walking/mobility without immediate \textbf{STOP} \textbf{NOW} symptoms
+\end{itemize}
+
+F) Hydration feasibility
+
+\begin{itemize}
+\item \textbf{DEP-1C-018} Hydration access and container availability
+\end{itemize}
+
+G) Facility access treated as optional; substitutes must exist
+
+\begin{itemize}
+\item \textbf{DEP-1C-003} Facility access posture explicitly optional with substitutes defined
+\item \textbf{DEP-1C-004} Facility access posture explicitly optional with substitutes defined
+\end{itemize}
+
+H) Underwater governance is conditional and hard-gated
+
+\begin{itemize}
+\item \textbf{DEP-1C-011} Water safety governance availability for any underwater/breath-hold exposure
+\item Underwater metrics exist in Stage 2 under protocol \textbf{C14} (\textbf{MET-2B-025} and \textbf{MET-2B-026}) and are gate-critical only when governance is satisfied .
+\end{itemize}
+
+\item Reconciliation Notes (identifier drift in legacy artifacts)
+
+\begin{itemize}
+\item Legacy “\textbf{DEP}-##” references exist in older template language, but the authoritative dependency \textbf{ID} format is \textbf{DEP-1C}-### (and assumptions \textbf{ASM-1C}-###) per Stage 1.C . Stage 5.D adopts \textbf{DEP-1C}/\textbf{ASM-1C} IDs as controlling for crosswalk integrity.
+\item Legacy “\textbf{MET}-###” references exist in older material; Stage 5.D adopts the authoritative Stage 2 metric format \textbf{MET-2B}-### and protocol IDs \textbf{C1}–\textbf{C18} per the Stage 2 protocol index.
+\end{itemize}
+
+\end{enumerate}
+
+\clearpage
+\begin{landscape}
+
+\subsection*{5.D.2 Phase-to-Phase Gate Matrix}
+\phantomsection
+\addcontentsline{toc}{subsection}{5.D.2 Phase-to-Phase Gate Matrix}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.5in]
+    Q[l,wd=0.5in]
+    X[l,4.40]
+    X[l,3.90]
+    Q[l,wd=1.55in]
+    X[l,2.40]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-6} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{From Phase} &
+\Hdr{To Phase} &
+\Hdr{Gate Evidence Required} &
+\Hdr{Dependency Readiness Required} &
+\Hdr{Default Outcome if Incomplete} &
+\Hdr{Notes} \\
+
+Phase 00 &
+Phase 01 &
+Phase 00 exit gate evidence per Stage 4 (Week 16 protected window). Minimum admissible evidence set \textbf{MUST} include:\newline
+\textbullet\ \textbf{DURABILITY}: \textbf{C16} (\textbf{MET-2B-035} Pain Severity; \textbf{MET-2B-036} Gait-Altering Pain Flag; \textbf{MET-2B-037} Foot Hotspot/Blister Flag)\newline
+\textbullet\ \textbf{CAL}: \textbf{C7} (\textbf{MET-2B-013} Plank — Forearm)\newline
+\textbullet\ \textbf{BODYCOMP}: \textbf{C1} (\textbf{MET-2B-001} Bodyweight) and trend posture supported by \textbf{C2}/\textbf{C3} where used (\textbf{MET-2B-002}; \textbf{MET-2B-003}–009)\newline
+\textbullet\ \textbf{COMPLIANCE} support metrics for gate packet: \textbf{MET-2B-044} / \textbf{MET-2B-045} / \textbf{MET-2B-046}\newline
+All above must be \textbf{VALID}/admissible per 5.D.1 global rules. &
+No transition-specific additions beyond the Global Always-On dependency set in 5.D.1. (Phase 00 is the validation period for establishing these controls.) &
+\textbf{HOLD} &
+If Phase 00 exit evidence is missing/invalid, Week 12 results do not substitute; reslot per Stage 3 window discipline (no stacking). \\
+
+Phase 01 &
+Phase 02 &
+Phase 01 end gate \textbf{MUST} establish “base readiness for controlled strength development” with admissible evidence from protected windows:\newline
+\textbullet\ \textbf{CAL} battery evidence (\textbf{VALID}): \textbf{C4} (\textbf{MET-2B-010}), \textbf{C5} (\textbf{MET-2B-011}), \textbf{C6} (\textbf{MET-2B-012}), \textbf{C7} (\textbf{MET-2B-013})\newline
+\textbullet\ \textbf{RUN} (\textbf{VALID}, phase-appropriate): minimum expectation is \textbf{C8} (\textbf{MET-2B-014}) and/or \textbf{C9} (\textbf{MET-2B-015}) as the governing phase card requires\newline
+\textbullet\ \textbf{DURABILITY} disqualifiers screened: \textbf{C16} (\textbf{MET-2B-036}/037) must not be in disqualifying posture\newline
+\textbullet\ Compliance metrics (\textbf{MET-2B-044}/045/046) satisfied per 5.D.1. &
+Transition-specific additions (beyond Global Always-On):\newline
+\textbullet\ Strength capability baseline becomes required for Phase 02 execution: Stage 7 7.01 Tier 1 readiness and 7.19 Tier 1 where protective or assistive needs are identified\newline
+\textbullet\ Stage 7 category readiness: 7.01 Tier 1 by Phase 02 entry; 7.19 Tier 1 where protective/assistive needs are identified. &
+\textbf{HOLD} &
+Transition is blocked if \textbf{CAL} artifact requirements are not met for gate use (\textbf{CAL} tests are invalid for gate use when required artifacts are missing/non-compliant) . \\
+
+Phase 02 &
+Phase 03 &
+Phase 02 end gate \textbf{MUST} establish that strength development is governed, measurable, and does not degrade durability:\newline
+\textbullet\ \textbf{STR} proxy evidence (\textbf{VALID}): \textbf{C17} strength proxy test metrics \textbf{MET-2B-027}–031 (hinge/squat/upper push/upper pull/carry)\newline
+\textbullet\ \textbf{CAL} maintenance: \textbf{C4}–\textbf{C7} (\textbf{MET-2B-010}–013) remain admissible and stable\newline
+\textbullet\ \textbf{RUN} maintenance: minimum phase-appropriate time trial cadence maintained via \textbf{C9}/\textbf{C10} as required by phase card (\textbf{MET-2B-015}/016)\newline
+\textbullet\ \textbf{DURABILITY} disqualifiers: \textbf{MET-2B-036}/037 not in escalation posture . &
+Transition-specific additions:\newline
+\textbullet\ Maintain \textbf{DEP-1C-006} test measurability/logging; strength proxy evidence is inadmissible if load/implement identity is not recorded (\textbf{DEP-1C-006} + \textbf{DEP-1C-017} remain controlling)\newline
+\textbullet\ Stage 7 category readiness: 7.01 Tier 1 sustained; 7.18 Tier 1 sustained; 7.12 introduced/optional for recovery tooling. &
+\textbf{HOLD} &
+If \textbf{STR} proxy testing cannot be executed under stable conditions (missing tool identity, missing load method), treat as \textbf{INVALID} for gate use and reslot; do not “estimate” strength. \\
+
+Phase 03 &
+Phase 04 &
+Phase 03 end gate \textbf{MUST} demonstrate conversion work does not compromise mechanics and preserves multi-domain comparability:\newline
+\textbullet\ \textbf{RUN} gate evidence: \textbf{C10} (\textbf{MET-2B-016}) is expected to be in the gate set; \textbf{C9} (\textbf{MET-2B-015}) may be included as phase card dictates\newline
+\textbullet\ \textbf{CAL} stability: \textbf{C4}–\textbf{C7} (\textbf{MET-2B-010}–013) maintained\newline
+\textbullet\ \textbf{STR} proxy continuity: \textbf{C17} (\textbf{MET-2B-027}}–031) maintained\newline
+\textbullet\ \textbf{DURABILITY} screen: \textbf{C16} (\textbf{MET-2B-036}/037) reviewed as gate disqualifier posture . &
+Transition-specific additions (work capacity emphasis emerging):\newline
+\textbullet\ Conditioning tool readiness (if non-run conditioning evidence is used): \textbf{C18} \textbf{AER} time trials \textbf{MET-2B-032}–034 are permissible only if tool identity/logging is stable\newline
+\textbullet\ Stage 7 readiness: 7.08 Tier 1 if \textbf{AER} tools are used; 7.18 Tier 1 maintained. &
+\textbf{HOLD} &
+If \textbf{RUN} evidence is produced under non-comparable route/tool conditions, it is \textbf{INVALID} for gate purposes (\textbf{DEP-1C-017} controls). \\
+
+Phase 04 &
+Phase 05 &
+Phase 04 end gate \textbf{MUST} support transition to extended aerobic emphasis without durability drift:\newline
+\textbullet\ \textbf{RUN} gate evidence: \textbf{C10} (\textbf{MET-2B-016}) and/or first inclusion posture for \textbf{C11} (\textbf{MET-2B-017}) as specified by phase card\newline
+\textbullet\ \textbf{CAL} battery: \textbf{C4}–\textbf{C7} (\textbf{MET-2B-010}–013) maintained\newline
+\textbullet\ \textbf{DURABILITY}: \textbf{C16} disqualifiers controlled (\textbf{MET-2B-036}/037)\newline
+\textbullet\ \textbf{BODYCOMP} trend posture maintained (\textbf{C1}/\textbf{C2}/\textbf{C3} as applicable) . &
+Transition-specific additions (aerobic base expansion prerequisites):\newline
+\textbullet\ Footwear interface and hotspot protocol must be in stable (non-escalating) posture prior to longer \textbf{RUN} gate events: \textbf{DEP-1C-007} and \textbf{DEP-1C-008} remain controlling\newline
+\textbullet\ Stage 7 readiness: 7.11 Tier 1 sustained; 7.12 Tier 1 introduced for tissue-care and mobility sustainment. &
+\textbf{HOLD} &
+Longer \textbf{RUN} gate tests are not “make-up capable” if missed; reslot to next protected window to preserve validity and injury-risk containment. \\
+
+Phase 05 &
+Phase 06 &
+Phase 05 end gate \textbf{MUST} demonstrate extended aerobic readiness and stable recovery:\newline
+\textbullet\ \textbf{RUN} gate evidence: \textbf{C11} 5-mile \textbf{TT} (\textbf{MET-2B-017}) becomes a typical decisive gate in aerobic phases\newline
+\textbullet\ \textbf{RUN} support: \textbf{C9}/\textbf{C10} (\textbf{MET-2B-015}/016) as phase card requires\newline
+\textbullet\ \textbf{DURABILITY}: \textbf{C16} (\textbf{MET-2B-036}/037) not in disqualifying posture\newline
+\textbullet\ \textbf{RECOVERY} markers (\textbf{C15}: \textbf{MET-2B-038}}–043) reviewed for validity and overload control (not as performance metrics) . &
+Transition-specific additions (higher density / higher consequence):\newline
+\textbullet\ \textbf{DEP-1C-012} sleep window and recovery constraints mitigation posture becomes a gating prerequisite for sustained higher specificity work\newline
+\textbullet\ \textbf{ASM-1C-019} nutrition access stability affects validity and safe escalation posture (constraint-based; not diet programming)\newline
+\textbullet\ Stage 7 readiness: 7.13 Tier 1 hydration/nutrition systems sustained; 7.10/7.20 sustainment systems to prevent recurrent breakdown. &
+\textbf{HOLD} &
+If recovery markers indicate unsafe instability trends and gate tests are distorted, downgrade gate attempt; reslot rather than forcing maximal tests under fatigue contamination. \\
+
+Phase 06 &
+Phase 07 &
+Phase 06 end gate \textbf{MUST} establish readiness for hybrid overload without stacking high-risk exposures:\newline
+\textbullet\ \textbf{RUN}: \textbf{C9}/\textbf{C10} (\textbf{MET-2B-015}/016) and phase-appropriate inclusion of \textbf{C11} (\textbf{MET-2B-017}) maintained\newline
+\textbullet\ \textbf{STR} proxy: \textbf{C17} (\textbf{MET-2B-027}–031) maintained\newline
+\textbullet\ \textbf{CAL}: \textbf{C4}–\textbf{C7} maintained\newline
+\textbullet\ \textbf{DURABILITY}: \textbf{C16} disqualifiers controlled . &
+Transition-specific additions (hybrid density management):\newline
+\textbullet\ \textbf{DEP-1C-014} schedule stability must be demonstrably maintained at higher training density (no “hidden rest days,” no make-up stacking)\newline
+\textbullet\ Stage 7 readiness: 7.16 operational self-management systems introduced/optional for planning, journaling, adherence control; 7.14/7.15 environmental apparel readiness becomes more critical under Grand Forks volatility. &
+\textbf{HOLD} &
+If evidence shows schedule collapse or repeated \textbf{INVALID} sessions, default \textbf{HOLD}; do not advance into higher-density hybrid phases on contaminated evidence. \\
+
+Phase 07 &
+Phase 08 &
+Phase 07 end gate \textbf{MUST} demonstrate the trainee can tolerate higher load and structural durability demands without gait breakdown:\newline
+\textbullet\ \textbf{RUCK} introduction/maintenance (when gate-relevant): \textbf{C12} ruck \textbf{TT} variants \textbf{MET-2B-018}/019 are typical prerequisites for later load-tolerance phases\newline
+\textbullet\ \textbf{RUN} and \textbf{CAL} maintained as per phase card (\textbf{C9}–\textbf{C11} and \textbf{C4}–\textbf{C7})\newline
+\textbullet\ \textbf{DURABILITY} disqualifiers remain central: \textbf{MET-2B-036}/037 . &
+Transition-specific additions (load-bearing readiness becomes non-optional):\newline
+\textbullet\ Stage 7 readiness: 7.07 Load-Bearing/Rucking/Carry systems Tier 1 by Phase 08 entry; 7.11 footwear Tier 1 sustained; 7.19 protective/assistive Tier 1 where needed.\newline
+\textbullet\ \textbf{DEP-1C-007}/008 (footwear/footcare) are treated as “hard gating prerequisites” for any ruck escalation . &
+\textbf{HOLD} &
+If ruck gear readiness is unmet, do not advance into a load-tolerance phase that assumes load carriage; reslot ruck gate tests and hold transition. \\
+
+Phase 08 &
+Phase 09 &
+Phase 08 end gate \textbf{MUST} confirm structural durability and load tolerance are stable enough to support high-volume \textbf{CAL} without compensatory mechanics drift:\newline
+\textbullet\ \textbf{RUCK} milestone (phase-appropriate): \textbf{C12} \textbf{MET-2B-019} and/or \textbf{MET-2B-020} evidence as phase card specifies\newline
+\textbullet\ \textbf{DURABILITY}: \textbf{MET-2B-036}/037 remain non-disqualifying\newline
+\textbullet\ \textbf{CAL}: \textbf{C4}–\textbf{C7} maintained\newline
+\textbullet\ \textbf{RECOVERY} markers (\textbf{C15} \textbf{MET-2B-038}–043) reviewed for sustainable high-volume exposure capacity . &
+Transition-specific additions:\newline
+\textbullet\ Stage 7 readiness: 7.12 recovery/mobility tooling Tier 1 required by Phase 09 entry due to volume load; 7.10/7.20 sustainment systems to prevent repetitive breakdown (drying/hygiene). &
+\textbf{HOLD} &
+If gait-altering pain flag is active or blister flag is active at gate time, default \textbf{HOLD}/\textbf{REGRESS} posture consistent with Stage 1.F disqualifier handling. \\
+
+Phase 09 &
+Phase 10 &
+Phase 09 end gate \textbf{MUST} establish that high-volume \textbf{CAL} and stamina are compatible with selection-prep domain integration:\newline
+\textbullet\ \textbf{CAL}: \textbf{C4}–\textbf{C7} (\textbf{MET-2B-010}–013) is expected to be decisive in this transition\newline
+\textbullet\ \textbf{RUN}: phase-appropriate distribution includes \textbf{C10}/\textbf{C11} (\textbf{MET-2B-016}/017) as specified\newline
+\textbullet\ \textbf{RUCK}: minimum ruck maintenance evidence when Phase 10 will require it (\textbf{MET-2B-019} and/or \textbf{MET-2B-020})\newline
+\textbullet\ \textbf{SWIM} surface readiness may become consistently gate-relevant in Phase 10: \textbf{C13} (\textbf{MET-2B-022}/023) when scheduled . &
+Transition-specific additions (multi-domain integration prerequisites):\newline
+\textbullet\ Stage 7 readiness: 7.17 aquatic training and water safety equipment Tier 1 by Phase 10 entry if \textbf{SWIM} is gate-relevant; 7.07 Tier 1 sustained for ruck; 7.18 Tier 1 sustained for measurement.\newline
+\textbullet\ Pool access remains optional, but substitutes must exist; facility-access posture must not be tied to \textbf{DEP-1C-018}. &
+\textbf{HOLD} &
+Underwater is not a routine requirement; it is governance-gated. Do not treat Phase 10 entry as permission to schedule underwater absent \textbf{DEP-1C-013}. \\
+
+Phase 10 &
+Phase 11 &
+Phase 10 end gate \textbf{MUST} demonstrate advanced tactical readiness proof events are repeatable and do not violate risk controls:\newline
+\textbullet\ \textbf{RUN}: \textbf{C8}–\textbf{C11} (\textbf{MET-2B-014}–017) distributed across protected windows per Stage 3 (no stacking implied)\newline
+\textbullet\ \textbf{RUCK}: \textbf{C12} variants as phase card specifies, including long ruck evidence when phase-gated (\textbf{MET-2B-020}/021)\newline
+\textbullet\ \textbf{SWIM}: \textbf{C13} (\textbf{MET-2B-022}/023) as phase-gated\newline
+\textbullet\ \textbf{STR} proxy: \textbf{C17} maintained\newline
+\textbullet\ \textbf{DURABILITY} disqualifiers remain controlling: \textbf{MET-2B-036}/037\newline
+\textbullet\ Underwater (\textbf{C14} \textbf{MET-2B-025}/026) is conditional only; if executed, it must be \textbf{VALID} under governance . &
+Transition-specific additions:\newline
+\textbullet\ Underwater governance prerequisite (conditional): \textbf{DEP-1C-013} must be validated before any underwater metric is even attempted\newline
+\textbullet\ Stage 7 readiness: 7.17 Tier 1 sustained; 7.07 Tier 1 sustained; 7.14/7.15 environmental apparel Tier 1 sustained due to late-stage exposure consequences. &
+\textbf{HOLD} (or \textbf{MEDICAL} \textbf{HOLD} if stop-rule category applies) &
+If underwater governance is unavailable: underwater is “not scheduled; inadmissible without governance.” It cannot be replaced by a proxy for gate credit. \\
+
+Phase 11 &
+Phase 12 &
+Phase 11 end gate \textbf{MUST} demonstrate that recovery-focused tapering does not erase validity or domain readiness and that replication is achievable before final consolidation:\newline
+\textbullet\ Maintain \textbf{VALID}, comparable test evidence for the most gate-critical domains required by Phase 12: typically \textbf{RUN} (\textbf{C9}–\textbf{C11}), \textbf{CAL} (\textbf{C4}–\textbf{C7}), \textbf{RUCK} (\textbf{C12} phase-gated), \textbf{SWIM} (\textbf{C13} phase-gated)\newline
+\textbullet\ \textbf{RECOVERY} and \textbf{DURABILITY} markers (\textbf{C15}/\textbf{C16}) must support safe continuation and protect validity (no “fatigue masking” of disqualifiers) . &
+Transition-specific additions:\newline
+\textbullet\ \textbf{DEP-1C-010} sleep opportunity window and recovery constraints are treated as a primary gating prerequisite for pre-selection phases\newline
+\textbullet\ \textbf{DEP-1C-018} nutrition preparation and hydration systems remain a constraint to protect test-week validity (no prescriptions; constraint handling only) . &
+\textbf{HOLD} &
+If replication-ready cadence is not feasible due to invalidity or missed windows, default \textbf{HOLD} and reslot; do not “force” a final phase timeline on incomplete evidence. \\
+
+Phase 12 &
+Phase 13 &
+Phase 12 end gate \textbf{MUST} confirm that the program can enter consolidation with stable, admissible evidence across the selection-relevant envelope domains:\newline
+\textbullet\ \textbf{RUN}: \textbf{C8}–\textbf{C11} (\textbf{MET-2B-014}–017) as phase card requires\newline
+\textbullet\ \textbf{RUCK}: \textbf{C12} long variants (\textbf{MET-2B-020}/021) where phase-gated\newline
+\textbullet\ \textbf{SWIM}: \textbf{C13} (\textbf{MET-2B-022}/023)\newline
+\textbullet\ \textbf{CAL}: \textbf{C4}–\textbf{C7} (\textbf{MET-2B-010}–013)\newline
+\textbullet\ \textbf{DURABILITY} and \textbf{RECOVERY} remain disqualifier/constraint signals: \textbf{C16} and \textbf{C15}\newline
+\textbullet\ Underwater (\textbf{C14} \textbf{MET-2B-025}/026) remains conditional only; if not governed, it stays inadmissible. &
+Transition-specific additions:\newline
+\textbullet\ If underwater will be scheduled in Phase 13: \textbf{DEP-1C-011} must be validated; Stage 7.17 Tier 1 sustained; emergency-ready posture enforced . &
+\textbf{HOLD} (or \textbf{MEDICAL} \textbf{HOLD} if triggered) &
+Phase 13 is not a “make up everything” phase. If Phase 12 gate evidence is incomplete/invalid, hold and reslot; do not advance and then attempt to fix later. \\
+
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+\clearpage
+\begin{landscape}
+
+\subsection*{5.D.3 Dependency Clustering}
+\phantomsection
+\addcontentsline{toc}{subsection}{5.D.3 Dependency Clustering}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,2.10]
+    X[l,4.20]
+    Q[l,wd=1.55in]
+    Q[l,wd=1.15in]
+    X[l,3.95]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Dependency Cluster} &
+\Hdr{What It Covers} &
+\Hdr{First Critical Phase} &
+\Hdr{Owner} &
+\Hdr{Fail Action} \\
+
+Governance and escalation readiness &
+Stop posture comprehension + escalation access and execution discipline.\newline
+Includes: \textbf{DEP-1C-002} &
+Phase 00 &
+Coach Lead &
+Delay escalation; cap exposure to lowest-risk modalities; default \textbf{HOLD} for any advancement claim until restored; \textbf{MEDICAL} \textbf{HOLD} if stop-rule category triggers. \\
+
+Medical clearance and restriction envelope &
+Clinician clearance posture and binding restriction capture.\newline
+Includes: \textbf{DEP-1C-001} (Phase 00 start gate) &
+Phase 00 &
+Medical &
+\textbf{MEDICAL} \textbf{HOLD} for phase start or progression when clearance/restrictions are missing or unclear. \\
+
+Evidence system-of-record &
+Binder access, version visibility, and “single source of truth” discipline.\newline
+Includes: \textbf{DEP-1C-021} &
+Phase 00 &
+Coach Lead &
+Freeze doctrine edits; prohibit informal changes; default \textbf{HOLD} for gate decisions until restored and auditable. \\
+
+Logging and minimum dataset execution &
+Same-day logging and completeness sufficient for validity tagging and gates.\newline
+Includes: \textbf{DEP-1C-005} &
+Phase 00 &
+Trainee &
+No advancement posture; default \textbf{HOLD}; repeat log-proof period until compliant; inadmissible tests may be executed informationally only. \\
+
+Timing and measurement tool sufficiency &
+Timer identity, step tracking method, bodyweight method, tape method as required for comparability.\newline
+Includes: \textbf{DEP-1C-006} &
+Phase 00 &
+Equipment Lead &
+Postpone time-based gate tests; treat missing tool identity as invalid for gate use; \textbf{HOLD} until restored. \\
+
+Environment feasibility and substitution doctrine &
+Safe primary route or indoor substitute + written go/no-go plan for heat/ice/air quality + indoor substitution library.\newline
+Includes: \textbf{DEP-1C-003}; \textbf{DEP-1C-004} &
+Phase 00 &
+Coach Lead &
+Default to indoor substitutes; reslot tests to next protected window when comparability cannot be preserved; \textbf{HOLD} when environment instability contaminates evidence. \\
+
+Test environment measurability &
+Measured/verifiable routes, pool length verification, load verification for ruck, consistent environment context fields.\newline
+Includes: \textbf{DEP-1C-006} &
+Phase 00 (before first \textbf{VALID} test) &
+Coach Lead &
+Treat unverified tests as \textbf{INVALID} for gate purposes; log informationally only; \textbf{HOLD} until valid retest exists. \\
+
+Footwear and footcare system &
+Footwear fit stability + hotspot/blister protocol + drying/hygiene sustainment.\newline
+Includes: \textbf{DEP-1C-007}; \textbf{DEP-1C-008}; \textbf{DEP-1C-016}; \textbf{DEP-1C-023} &
+Phase 00 (continuous) &
+Equipment Lead &
+Downshift impact/load exposures; substitute lower-friction modalities; \textbf{HOLD} progression when recurrent hotspots/gait alteration present; \textbf{MEDICAL} \textbf{HOLD} if infection/serious injury suspected via stop posture. \\
+
+Cadence feasibility and time-block protection &
+Protected time blocks for 6 sessions/week + no make-up stacking discipline.\newline
+Includes: \textbf{DEP-1C-009} &
+Phase 00 (continuous) &
+Trainee &
+Implement Minimum Viable Session posture; prohibit make-up volume/intensity; \textbf{HOLD} escalation until cadence proof restored. \\
+
+Sleep and recovery constraint governance &
+Identified sleep window + recovery constraints logged for trend interpretation; governs intensity ceilings.\newline
+Includes: \textbf{DEP-1C-010} &
+Phase 00 (continuous; becomes more critical in Phases 05+) &
+Trainee &
+Cap intensity; avoid high-cost tests under unstable recovery; \textbf{HOLD} when instability compromises validity or safety. \\
+
+Hydration feasibility &
+Reliable water access + container availability for sessions and daily activity.\newline
+Includes: \textbf{DEP-1C-018} &
+Phase 00 &
+Trainee &
+Shift to indoor/climate-controlled Cardio; terminate on dizziness/heat signs; \textbf{HOLD} if instability persists. \\
+
+Facility access treated as optional with substitutes &
+Pool/gym access can be lost; substitutes must preserve intent and safety.\newline
+Includes: \textbf{DEP-1C-003}; \textbf{DEP-1C-004} &
+Phase 00 (enables later \textbf{SWIM}/\textbf{STR} feasibility) &
+Coach Lead &
+Switch immediately to approved substitutes; postpone facility-dependent tests; \textbf{HOLD} if comparability breaks. \\
+
+Nutrition access stability constraint &
+Nutrition consistency treated as a standing constraint affecting recovery and evidence quality; no nutrition prescriptions.\newline
+Includes: \textbf{DEP-1C-018} &
+Phase 00 (higher consequence near major gates) &
+Trainee &
+Treat as constraint: cap intensity; avoid aggressive deficits near tests; \textbf{HOLD} if volatility compromises evidence quality/safety. \\
+
+Strength and resistance capability readiness &
+Category-level readiness for \textbf{STR} proxy testing and safe strength exposure.\newline
+Stage 7: 7.01 (Tier 1 by Phase 02 entry); 7.19 as needed. &
+Phase 02 &
+Equipment Lead &
+Delay \textbf{STR} proxy tests until minimum safe implements exist; substitute only within Stage 2 comparability rules; \textbf{HOLD} until ready. \\
+
+Conditioning tools readiness (non-run) &
+Non-run conditioning tools for \textbf{AER} evidence when used.\newline
+Stage 2: \textbf{C18} (\textbf{MET-2B-032}/033/034)\newline
+Stage 7: 7.08 (Tier 1 when used). &
+Phase 03 (if used) &
+Equipment Lead &
+If tool identity/settings cannot be logged, treat results as non-comparable; do not use for gate claims; \textbf{HOLD} if it is gate-required in the phase card. \\
+
+Load-bearing and ruck readiness &
+Ruck/carry system readiness and footwear interface stability sufficient for load carriage escalation.\newline
+Stage 2: \textbf{C12} (\textbf{MET-2B-018}–021)\newline
+Stage 7: 7.07 (Tier 1 by first ruck gate phase); 7.11 sustained. &
+Phase 07–08 (first decisive load tolerance phase) &
+Equipment Lead &
+Delay ruck gate tests; maintain conditioning via admissible substitutes; \textbf{HOLD} transition into load-tolerance phases until readiness validated. \\
+
+Aquatic readiness (surface) and water safety &
+Swim readiness depends on pool access, tool/environment logging, and safety posture; underwater remains separate and governed.\newline
+Stage 2: \textbf{C13} (\textbf{MET-2B-022}/023/024)\newline
+Stage 7: 7.17 Tier 1 when \textbf{SWIM} becomes gate-relevant. &
+Phase 09–10 (when \textbf{SWIM} is consistently gate-relevant) &
+Coach Lead &
+Postpone swim gate tests until pool verification and logging can be satisfied; use surface-only substitutes where admissible; \textbf{HOLD} if \textbf{SWIM} is gate-required and cannot be executed \textbf{VALID}. \\
+
+Underwater governance readiness (conditional, supervised-only) &
+Underwater/breath-hold is prohibited unless governance prerequisites are validated.\newline
+Includes: \textbf{DEP-1C-011} and Stage 2 \textbf{C14} (\textbf{MET-2B-025}/026) &
+Phase 10 (earliest eligible phase) &
+Coach Lead &
+Not scheduled; inadmissible without governance; any violation triggers \textbf{STOP} \textbf{NOW} and \textbf{MEDICAL} \textbf{HOLD} posture per governing doctrine. \\
+
+Environmental apparel readiness &
+Apparel sufficient for safe cold/heat/wet exposures without compromising validity/safety.\newline
+Stage 7: 7.14 and 7.15 Tier 1 where climate risk is material. &
+Phase 00 (Grand Forks constraint is continuous) &
+Equipment Lead &
+Substitute indoors; reslot tests when environment is unsafe; \textbf{HOLD} if repeated environment hazards corrupt validity. \\
+
+Recovery and mobility tooling readiness &
+Tools and processes supporting tissue-care, mobility, and sustainment without medical claims.\newline
+Stage 7: 7.12 Tier 1 by higher-volume phases. &
+Phase 05 (rising specificity and consequence) &
+Equipment Lead &
+Downshift exposure density; maintain cadence using low-risk modalities; \textbf{HOLD} if durability signals remain unstable. \\
+
+Logistics, storage, hygiene, sanitation readiness &
+Drying, maintenance, and hygiene to prevent predictable breakdown.\newline
+Includes: \textbf{DEP-1C-016}; \textbf{DEP-1C-023}\newline
+Stage 7: 7.10 and 7.20 Tier 1. &
+Phase 00 &
+Trainee &
+Reduce footprint; prohibit wet-environment exposures without drying; \textbf{HOLD} if repeated breakdown prevents valid execution. \\
+
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+\end{document}

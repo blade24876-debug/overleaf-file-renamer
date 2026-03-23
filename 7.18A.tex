@@ -1,0 +1,1246 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\clearpage
+\begin{landscape}
+
+\section*{7.18.A - Handheld Stopwatch}
+\phantomsection
+\addcontentsline{toc}{section}{7.18.A - Handheld Stopwatch}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Handheld stopwatch & Casio HS-80TW & \$25 & Split timer & Phase-00 & Captures exact split and total time for admissible tests, and it was chosen for its large simple display and dependable buttons. \\
+Budget & Handheld stopwatch & Marathon Adanac 3000 & \$20 & Split timer & Phase-00 & Gives clean start-stop timing for basic gate work, and it was chosen because the case is durable and easy to lanyard-carry. \\
+Budget & Handheld stopwatch & Robic SC-606W & \$30 & Split timer & Phase-00 & Supports straightforward event timing without phone dependence, and it was chosen for its clear lap-memory function at a modest cost. \\
+Standard & Handheld stopwatch & Ultrak 320 & \$35 & Split timer & Phase-00 & Improves split accuracy and repeat timing workflow, and it was chosen because coaches commonly use it for field testing. \\
+Standard & Handheld stopwatch & Seiko S141 & \$45 & Split timer & Phase-00 & Produces cleaner repeat hand timing for formal test days, and it was chosen for its established track-and-field reliability. \\
+Standard & Handheld stopwatch & Accusplit AX725 & \$40 & Split timer & Phase-00 & Keeps manual timing stable when several short intervals are recorded, and it was chosen for its easy one-handed operation. \\
+Elite & Handheld stopwatch & Seiko S149 & \$65 & Split timer & Phase-00 & Supports high-confidence split capture on important gate days, and it was chosen for its strong reputation in serious timing use. \\
+Elite & Handheld stopwatch & Ultrak 499 & \$60 & Split timer & Phase-00 & Gives robust memory-backed hand timing for more complex tests, and it was chosen because it handles repeated splits cleanly. \\
+Elite & Handheld stopwatch & Robic SC-899 Memory Timer & \$70 & Split timer & Phase-00 & Preserves more detailed time data across repeated efforts, and it was chosen for its larger memory and stable event-handling feel. \\
+\end{longtblr}
+\endgroup
+
+\subsection*{7.18.B - Wrist Timer Watch}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.B - Wrist Timer Watch}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Wrist timer watch & Casio W-800H & \$30 & Wearable timer & Phase-00 & Keeps session and test timing on-body when hands are busy, and it was chosen for its rugged simplicity and long battery life. \\
+Budget & Wrist timer watch & Timex Ironman Classic 30 & \$45 & Wearable timer & Phase-00 & Supports quick lap timing during field use, and it was chosen because the interface is familiar and easy to read while moving. \\
+Budget & Wrist timer watch & Garmin Forerunner 55 & \$200 & Wearable timer & Phase-00 & Adds repeatable timed-session control without needing a handheld device, and it was chosen for its straightforward run-focused design. \\
+Standard & Wrist timer watch & COROS Pace 3 & \$229 & Wearable timer & Phase-00 & Improves timing consistency across runs and field checks, and it was chosen for its strong battery life and clear training screens. \\
+Standard & Wrist timer watch & Polar Pacer & \$230 & Wearable timer & Phase-00 & Keeps timed efforts and splits cleaner during repeated testing, and it was chosen for its easy-button workflow and stable basic metrics. \\
+Standard & Wrist timer watch & Timex Ironman R300 & \$120 & Wearable timer & Phase-00 & Provides a simpler wrist-based timing upgrade over basic sport watches, and it was chosen for its practical timer-first usability. \\
+Elite & Wrist timer watch & Garmin Forerunner 255 & \$350 & Wearable timer & Phase-00 & Supports higher-confidence split capture across many event types, and it was chosen for its mature training and timing ecosystem. \\
+Elite & Wrist timer watch & COROS Apex 2 & \$349 & Wearable timer & Phase-00 & Gives a more durable timing platform for repeated outdoor testing, and it was chosen for its strong battery resilience and sturdy build. \\
+Elite & Wrist timer watch & Suunto Race S & \$349 & Wearable timer & Phase-00 & Preserves accurate on-wrist timing during longer and more complex sessions, and it was chosen for its bright display and stable navigation features. \\
+\end{longtblr}
+\endgroup
+
+\subsection*{7.18.C - Digital Bodyweight Scale}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.C - Digital Bodyweight Scale}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Digital bodyweight scale & Etekcity Digital Body Weight Scale & \$20 & Weighing scale & Phase-00 & Supports consistent bodyweight trend capture, and it was chosen for its low-friction setup and readable display. \\
+Budget & Digital bodyweight scale & Greater Goods Digital Body Scale & \$25 & Weighing scale & Phase-00 & Gives a reliable daily weigh-in anchor for evidence tracking, and it was chosen because it is simple and widely trusted. \\
+Budget & Digital bodyweight scale & Taylor Digital Bathroom Scale & \$30 & Weighing scale & Phase-00 & Maintains basic bodyweight verification under stable conditions, and it was chosen for its familiar mainstream durability. \\
+Standard & Digital bodyweight scale & Escali Extra Wide Platform Scale & \$35 & Weighing scale & Phase-00 & Improves reading stability and comfort at higher bodyweight, and it was chosen for its broad platform and clean display. \\
+Standard & Digital bodyweight scale & OXO Precision Digital Scale & \$50 & Weighing scale & Phase-00 & Supports more repeatable weigh-ins with less wobble and guesswork, and it was chosen for its polished user interface. \\
+Standard & Digital bodyweight scale & Withings Body Smart & \$100 & Weighing scale & Phase-00 & Keeps weight trends neatly organized over time, and it was chosen for its stronger app integration and stable logging workflow. \\
+Elite & Digital bodyweight scale & Garmin Index S2 & \$150 & Weighing scale & Phase-00 & Tightens long-horizon trend visibility for athletes already using Garmin tools, and it was chosen for ecosystem consistency. \\
+Elite & Digital bodyweight scale & Withings Body Comp & \$200 & Weighing scale & Phase-00 & Makes repeat weight tracking more robust and better archived, and it was chosen for its premium connected data handling. \\
+Elite & Digital bodyweight scale & Tanita RD-545 & \$550 & Weighing scale & Phase-00 & Supports a more overbuilt body-mass tracking station, and it was chosen for its strong reputation in composition-oriented home measurement. \\
+\end{longtblr}
+\endgroup
+
+\subsection*{7.18.D - Flexible Tape Measure}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.D - Flexible Tape Measure}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Flexible tape measure & Perfect Measuring Tape Company Body Tape & \$8 & Measuring tape & Phase-00 & Supports repeat circumference checks for audit-ready body-size trends, and it was chosen for its simple locking tape format. \\
+Budget & Flexible tape measure & Gulik Body Measuring Tape & \$7 & Measuring tape & Phase-00 & Gives a low-cost way to standardize waist and site measurements, and it was chosen for its easy retractable housing. \\
+Budget & Flexible tape measure & SAMSFX Soft Tape Measure & \$6 & Measuring tape & Phase-00 & Keeps body-measurement capture feasible from day one, and it was chosen because it is cheap and easy to replace. \\
+Standard & Flexible tape measure & MyoTape Body Tape Measure & \$10 & Measuring tape & Phase-00 & Improves one-person circumference measuring consistency, and it was chosen for its self-locking design. \\
+Standard & Flexible tape measure & Seca 201 Tape Measure & \$20 & Measuring tape & Phase-00 & Produces cleaner standardized body-site measurements, and it was chosen for its clinical measurement reputation. \\
+Standard & Flexible tape measure & Seca 203 Circumference Tape & \$25 & Measuring tape & Phase-00 & Supports more repeatable site-to-site measurement under fixed rules, and it was chosen for its sturdier construction and accurate markings. \\
+Elite & Flexible tape measure & Gulick II Anthropometric Tape & \$95 & Measuring tape & Phase-00 & Supports more disciplined circumference repeatability, and it was chosen for its tension-controlled measurement design. \\
+Elite & Flexible tape measure & Harpenden Anthropometric Tape & \$40 & Measuring tape & Phase-00 & Tightens measurement consistency for formal body-site work, and it was chosen for its professional measurement pedigree. \\
+Elite & Flexible tape measure & Lufkin W606PM Flexible Rule & \$20 & Measuring tape & Phase-00 & Gives a more durable premium-feeling manual tape option, and it was chosen for its tough markings and clean readability. \\
+\end{longtblr}
+\endgroup
+
+\subsection*{7.18.E - Waterproof Clipboard}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.E - Waterproof Clipboard}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Waterproof clipboard & Saunders SlimMate Storage Clipboard & \$18 & Write surface & Phase-00 & Stabilizes route cards and handwritten timing notes, and it was chosen because it protects paper from light weather and handling. \\
+Budget & Waterproof clipboard & Rite in the Rain Clipboard & \$20 & Write surface & Phase-00 & Preserves legible field notation in wet or snowy conditions, and it was chosen for its weather-oriented design. \\
+Budget & Protected writing board / clipboard & Officemate Clipboard & \$8 & Write surface & Phase-00 & Gives a basic firm writing surface for course notes, and it was chosen because it is cheap and functional for first-use needs. \\
+Standard & Waterproof clipboard & Saunders Cruiser Mate & \$25 & Write surface & Phase-00 & Combines writing stability and document storage during test setup, and it was chosen for its stronger all-in-one field utility. \\
+Standard & Waterproof clipboard & Saunders Redi-Rite & \$30 & Write surface & Phase-00 & Keeps sheets flatter and better protected during repeated use, and it was chosen for its sturdier field-ready shell. \\
+Standard & Waterproof clipboard & Rite in the Rain Notebook Cover Board & \$25 & Write surface & Phase-00 & Helps keep route and pool verification cards organized and readable, and it was chosen for its weatherproof paper compatibility. \\
+Elite & Protected writing board / clipboard & Filofax Clipbook A-5 Setup Board & \$35 & Write surface & Phase-00 & Creates a more refined organized writing platform, and it was chosen for users who want a cleaner structured admin workflow. \\
+Elite & Waterproof clipboard & Levenger Circa Foldover Junior Cover & \$40 & Write surface & Phase-00 & Supports a more overbuilt paper-control system on test days, and it was chosen for its modular page handling. \\
+Elite & Protected writing board / clipboard & Bellroy A-5 Work Folio & \$99 & Write surface & Phase-00 & Gives a premium protected surface for forms and route notes, and it was chosen for its durability and tidy carry organization. \\
+\end{longtblr}
+\endgroup
+
+\subsection*{7.18.F - Route / Pool Verification Card Holder}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.F - Route / Pool Verification Card Holder}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Route / pool verification card holder & Rite in the Rain All-Weather Document Holder & \$18 & Document sleeve & Phase-00 & Protects route and pool verification notes from moisture, and it was chosen for its compact weatherproof format. \\
+Budget & Route / pool verification card holder & Nite Ize RunOff Waterproof Pocket & \$25 & Document sleeve & Phase-00 & Keeps small course documents dry during setup and transport, and it was chosen for its light sealed design. \\
+Budget & Route / pool verification card holder & Sea to Summit TPU Guide Accessory Case & \$20 & Document sleeve & Phase-00 & Allows quick visual confirmation of stored cards without opening the case, and it was chosen for its clear front. \\
+Standard & Route / pool verification card holder & Watershed Largo Pouch & \$40 & Document sleeve & Phase-00 & Provides better water resistance for repeated outdoor verification use, and it was chosen for its stronger seal system. \\
+Standard & Route / pool verification card holder & YETI SideKick Dry 1-L & \$50 & Document sleeve & Phase-00 & Makes small critical cards easy to isolate from wet gear, and it was chosen for its durable closure and premium materials. \\
+Standard & Route / pool verification card holder & Pelican Ruck Utility Pouch & \$30 & Document sleeve & Phase-00 & Adds crush resistance as well as water protection, and it was chosen for its stronger shell. \\
+Elite & Route / pool verification card holder & Pelican 1040 Micro Case & \$30 & Document sleeve & Phase-00 & Protects small cards and notes from water and crush damage, and it was chosen for its hard-case reliability. \\
+Elite & Route / pool verification card holder & Nanuk Nano 320 & \$35 & Document sleeve & Phase-00 & Gives a premium compact hard case for small verification materials, and it was chosen for its durable latch and seal. \\
+Elite & Route / pool verification card holder & Matador Waterproof Travel Canister & \$45 & Document sleeve & Phase-00 & Keeps folded verification notes and markers together in one waterproof shell, and it was chosen for its travel-ready compactness. \\
+\end{longtblr}
+\endgroup
+
+\subsection*{7.18.G - Waterproof Marker / Grease Pencil}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.G - Waterproof Marker / Grease Pencil}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Waterproof marker / grease pencil & Sharpie Pro Permanent Marker & \$7 & \textbf{ID} marker & Phase-00 & Marks cones, cards, and setup materials clearly, and it was chosen for its cheap, widely available permanent ink. \\
+Budget & Waterproof marker / grease pencil & Dixon China Marker & \$6 & \textbf{ID} marker & Phase-00 & Writes on slick surfaces and laminated cards, and it was chosen because it works where normal pens often fail. \\
+Budget & Waterproof marker / grease pencil & Sakura Solid Marker & \$8 & \textbf{ID} marker & Phase-00 & Produces visible marks on damp hard surfaces, and it was chosen for its paint-stick durability. \\
+Standard & Waterproof marker / grease pencil & Milwaukee INKZALL Fine Point & \$10 & \textbf{ID} marker & Phase-00 & Gives cleaner durable labeling in rough conditions, and it was chosen for its tougher construction and stronger ink adhesion. \\
+Standard & Waterproof marker / grease pencil & Sharpie Extreme Marker & \$9 & \textbf{ID} marker & Phase-00 & Holds marks better under weather and friction, and it was chosen for its improved outdoor durability. \\
+Standard & Waterproof marker / grease pencil & Markal B Paintstik & \$12 & \textbf{ID} marker & Phase-00 & Marks rough course-setup surfaces more boldly than standard pens, and it was chosen for its industrial visibility. \\
+Elite & Waterproof pen & Rite in the Rain All-Weather Pen & \$12 & \textbf{ID} marker & Phase-00 & Supports wet-condition note capture with fewer ink failures, and it was chosen for its pressurized cartridge reliability. \\
+Elite & Waterproof marker / grease pencil & Posca Paint Marker & \$15 & \textbf{ID} marker & Phase-00 & Gives more legible high-contrast surface marks, and it was chosen for its cleaner premium line control. \\
+Elite & Waterproof marker / grease pencil & Milwaukee INKZALL Jobsite Pack & \$18 & \textbf{ID} marker & Phase-00 & Creates a more redundant marking setup for repeated course-use days, and it was chosen for its strong tip durability. \\
+\end{longtblr}
+\endgroup
+
+\subsection*{7.18.H - Visible Gym / Pace Clock Timer}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.H - Visible Gym / Pace Clock Timer}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Visible gym / pace clock timer & BOBROW Gym Timer & \$45 & Display timer & Phase-03 & Makes interval and rest timing visible across a room, and it was chosen for its affordable large LED display. \\
+Budget & Visible gym / pace clock timer & Timebirds Gym Timer & \$30 & Display timer & Phase-03 & Improves repeatability when several efforts are timed from one fixed clock, and it was chosen for its compact low-cost design. \\
+Budget & Visible gym / pace clock timer & BTBSIGN LED Gym Timer & \$90 & Display timer & Phase-03 & Gives a brighter more readable fixed timing surface, and it was chosen because it remains visible from farther away. \\
+Standard & Visible gym / pace clock timer & Rogue Echo Gym Timer & \$145 & Display timer & Phase-03 & Tightens group or repeat-session timing discipline, and it was chosen for its durable gym-grade housing and strong visibility. \\
+Standard & Visible gym / pace clock timer & Gym Next Flex Timer & \$149 & Display timer & Phase-03 & Supports structured repeatability with app-programmable formats, and it was chosen for its easy interval customization. \\
+Standard & Visible gym / pace clock timer & Time Timer PLUS 60-Minute & \$45 & Display timer & Phase-03 & Gives a visually shrinking time target rather than only digits, and it was chosen for its at-a-glance pacing clarity. \\
+Elite & Visible gym / pace clock timer & Seiko Swimming Pace Clock & \$250 & Display timer & Phase-03 & Provides a purpose-built visible timing reference for aquatic and dryland tests, and it was chosen for its established sports-timing pedigree. \\
+Elite & Visible gym / pace clock timer & Accusplit AX850 Large Display Timer & \$120 & Display timer & Phase-03 & Supports more formal repeat timing in training spaces, and it was chosen for its strong readability and sturdy body. \\
+Elite & Visible gym / pace clock timer & Dedicated tablet timer display tier equivalent & \$200 & Display timer & Phase-03 & Creates a polished high-visibility timing station, and it was chosen because software-driven display layouts are easy to customize. \\
+\end{longtblr}
+\endgroup
+
+\subsection*{7.18.I - Finger Lap Counter}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.I - Finger Lap Counter}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Finger lap counter & SportCount Lap Counter & \$25 & Lap tally & Phase-03 & Tracks repeated pool or loop counts without mental drift, and it was chosen for its simple one-thumb click design. \\
+Budget & Finger lap counter & Arena Finger Counter & \$18 & Lap tally & Phase-03 & Gives a small waterproof lap-tracking option, and it was chosen because it is easy to wear while swimming. \\
+Budget & Finger lap counter & Speedo Finger Loop Counter & \$15 & Lap tally & Phase-03 & Helps preserve count accuracy during repetitive laps, and it was chosen for its straightforward ring-style format. \\
+Standard & Finger lap counter & FINIS Lap Counter & \$22 & Lap tally & Phase-03 & Improves repeatability by reducing count loss during longer pool sessions, and it was chosen for its swim-specific build. \\
+Standard & Finger lap counter & TYR Lap Counter & \$20 & Lap tally & Phase-03 & Keeps lap totals cleaner in repetitive aquatic work, and it was chosen for its simple durable clicker body. \\
+Standard & Finger lap counter & SportCount Chrono 100 & \$35 & Lap tally & Phase-03 & Adds timing and lap count in one device, and it was chosen for users wanting fewer separate tools. \\
+Elite & Finger lap counter & SportCount Chrono 200 & \$45 & Lap tally & Phase-03 & Supports stronger count-and-time control together, and it was chosen for its more refined feature set and reliable button feel. \\
+Elite & Finger lap counter & FINIS Smart Goggle count tier equivalent & \$199 & Lap tally & Phase-03 & Creates an overbuilt count-visibility option, and it was chosen for users who want automated lap feedback. \\
+Elite & Finger lap counter & Garmin Swim 2 & \$250 & Lap tally & Phase-03 & Preserves lap totals with stronger wearable integration, and it was chosen for its dedicated swim-count tracking capability. \\
+\end{longtblr}
+\endgroup
+
+\subsection*{7.18.J - Measuring Wheel}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.J - Measuring Wheel}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Measuring wheel & Komelon Measuring Wheel & \$45 & Distance wheel & Phase-03 & Measures running or carry courses more accurately than guesswork, and it was chosen for its simple foldable low-cost design. \\
+Budget & Measuring wheel & Rolatape RT312 & \$70 & Distance wheel & Phase-03 & Supports cleaner field-course measurement, and it was chosen for its long-standing survey-style reliability. \\
+Budget & Measuring wheel & Calculated Industries Measure Master & \$60 & Distance wheel & Phase-03 & Gives a practical portable route-measurement tool, and it was chosen for its easy readout and solid value. \\
+Standard & Measuring wheel & Keson RR318N & \$95 & Distance wheel & Phase-03 & Improves measured-course confidence for admissible testing, and it was chosen for its durable frame and precise wheel. \\
+Standard & Measuring wheel & Rolatape 10-Series & \$110 & Distance wheel & Phase-03 & Gives a sturdier route-measurement solution for repeated outdoor setup, and it was chosen for its field-proven construction. \\
+Standard & Measuring wheel & Stanley MW40M & \$75 & Distance wheel & Phase-03 & Produces quick readable distance checks on varied surfaces, and it was chosen for its mainstream tool durability. \\
+Elite & Measuring wheel & Keson RR112 & \$170 & Distance wheel & Phase-03 & Supports more formal course measurement with stronger durability, and it was chosen for its professional-grade build. \\
+Elite & Measuring wheel & Rolatape 12-Series & \$180 & Distance wheel & Phase-03 & Gives a more overbuilt measurement platform for repeated long-course setup, and it was chosen for its robust survey pedigree. \\
+Elite & Measuring wheel & Bosch Professional Measuring Wheel & \$190 & Distance wheel & Phase-03 & Adds premium build quality to field distance checks, and it was chosen for its clean readout and strong brand support. \\
+\end{longtblr}
+\endgroup
+
+\subsection*{7.18.K - Laser Distance Measurer}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.K - Laser Distance Measurer}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Laser distance measurer & Bosch GLM 20 & \$50 & Range meter & Phase-03 & Gives fast short-course distance checks, and it was chosen for its simple one-button operation and trusted accuracy. \\
+Budget & Laser distance measurer & Huepar LM50A & \$40 & Range meter & Phase-03 & Speeds setup measurements on straight indoor or outdoor lines, and it was chosen for its good value and easy-to-read display. \\
+Budget & Laser distance measurer & Leica DISTO D1 & \$90 & Range meter & Phase-03 & Supports cleaner small-area course verification, and it was chosen for Leica’s strong measurement reputation. \\
+Standard & Laser distance measurer & Bosch GLM 50 C & \$120 & Range meter & Phase-03 & Improves repeated measurement speed and digital logging, and it was chosen for its Bluetooth and broader range capability. \\
+Standard & Laser distance measurer & DeWalt DW0165N & \$150 & Range meter & Phase-03 & Gives sturdier site-use performance, and it was chosen for its rugged housing and reliable contractor-grade operation. \\
+Standard & Laser distance measurer & Leica DISTO E7100i & \$200 & Range meter & Phase-03 & Tightens higher-confidence distance checks, and it was chosen for its strong accuracy and better measurement functions. \\
+Elite & Laser distance measurer & Leica DISTO X3 & \$300 & Range meter & Phase-03 & Provides a more overbuilt premium measurement platform, and it was chosen for its excellent durability and precision. \\
+Elite & Laser distance measurer & Bosch Blaze GLM400CL & \$250 & Range meter & Phase-03 & Supports premium visibility and faster field-use reading, and it was chosen for its color display and long range. \\
+Elite & Laser distance measurer & Hilti PD-E & \$289 & Range meter & Phase-03 & Gives a very robust professional distance-check option, and it was chosen for its heavy-use site reliability. \\
+\end{longtblr}
+\endgroup
+
+\subsection*{7.18.L - Course Cones}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.L - Course Cones}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Course cones & Champion Sports Saucer Cones Set & \$18 & Boundary markers & Phase-03 & Marks turns and lane boundaries clearly, and it was chosen for its cheap high-count kit. \\
+Budget & Course cones & SKLZ Pro Training Agility Cones & \$25 & Boundary markers & Phase-03 & Creates repeatable course edges without permanent markings, and it was chosen for its sturdy flexible plastic. \\
+Budget & Course cones & Franklin Sports Field Cones & \$20 & Boundary markers & Phase-03 & Gives a simple visible setup aid for short courses, and it was chosen for its easy pack-and-go value. \\
+Standard & Course cones & Nike Speed Cones & \$35 & Boundary markers & Phase-03 & Supports cleaner reusable test-course boundaries, and it was chosen for its durable premium training build. \\
+Standard & Course cones & Pro Down Disc Cone Set & \$30 & Boundary markers & Phase-03 & Helps preserve consistent spacing across repeated setups, and it was chosen for its high-visibility color and solid stackability. \\
+Standard & Course cones & GSI Sports Agility Cone Set & \$28 & Boundary markers & Phase-03 & Creates a more reliable repeated course footprint, and it was chosen for its sturdy all-weather plastic. \\
+Elite & Course cones & Rogue Rubber Agility Markers & \$60 & Boundary markers & Phase-03 & Provides a more durable long-term course-marking solution, and it was chosen for its better wind resistance and lifespan. \\
+Elite & Course cones & Perform Better Deluxe Cone Set & \$55 & Boundary markers & Phase-03 & Gives a premium higher-visibility boundary system, and it was chosen for its consistent shape and stronger field durability. \\
+Elite & Course cones & Blazer Athletic Premium Cone Set & \$50 & Boundary markers & Phase-03 & Supports more professional repeated setup quality, and it was chosen for its robust athletic-event construction. \\
+\end{longtblr}
+\endgroup
+
+\subsection*{7.18.M - Survey Flags / Marker Stakes}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.M - Survey Flags / Marker Stakes}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Survey flags / marker stakes & Presco PVC Marking Flags & \$18 & Marker stakes & Phase-03 & Marks route points and measurement references clearly, and it was chosen for its cheap high-count utility. \\
+Budget & Survey flags / marker stakes & Keson Marking Flags & \$20 & Marker stakes & Phase-03 & Gives easy visible point markers for measured courses, and it was chosen for its survey-grade consistency. \\
+Budget & Survey flags / marker stakes & Empire Orange Survey Flags & \$15 & Marker stakes & Phase-03 & Helps hold temporary route checkpoints in the field, and it was chosen for its simple durable wire stakes. \\
+Standard & Survey flags / marker stakes & Presco Texas Utility Flags & \$25 & Marker stakes & Phase-03 & Improves marker durability on repeat outdoor setups, and it was chosen for its tougher flag material. \\
+Standard & Survey flags / marker stakes & Johnson Survey Flags & \$22 & Marker stakes & Phase-03 & Supports clearer repeated point marking on grass and dirt, and it was chosen for its sturdy stems and visibility. \\
+Standard & Survey flags / marker stakes & Keson Tough Marking Flags & \$28 & Marker stakes & Phase-03 & Gives a stronger repeat-use field marker set, and it was chosen for its more durable construction. \\
+Elite & Survey flags / marker stakes & SitePro Marking Flags & \$35 & Marker stakes & Phase-03 & Creates a more overbuilt field-point system, and it was chosen for its heavier survey-style quality. \\
+Elite & Survey flags / marker stakes & Presco Pro Utility Flags & \$32 & Marker stakes & Phase-03 & Provides stronger visibility and longer service life, and it was chosen for its professional field-use design. \\
+Elite & Survey flags / marker stakes & Keson Heavy-Duty Survey Flags & \$38 & Marker stakes & Phase-03 & Supports a premium repeated course-marking workflow, and it was chosen for its stronger stems and better durability. \\
+\end{longtblr}
+\endgroup
+
+\subsection*{7.18.N - Marking Chalk / Field Paint}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.N - Marking Chalk / Field Paint}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Marking chalk / field paint & Rust-Oleum Inverted Marking Paint & \$8 & Surface marker & Phase-03 & Creates visible start, turn, or finish marks on hard surfaces, and it was chosen for its easy mainstream availability. \\
+Budget & Marking chalk / field paint & Seymour Stripe Athletic Field Marker & \$12 & Surface marker & Phase-03 & Gives a cleaner visible line for temporary setup, and it was chosen for its sports-marking focus. \\
+Budget & Marking chalk / field paint & Aervoe Marking Chalk & \$10 & Surface marker & Phase-03 & Supports quick removable surface markings, and it was chosen for its practical field-use visibility. \\
+Standard & Marking chalk / field paint & Markal Quik Stik & \$12 & Surface marker & Phase-03 & Marks rough surfaces more clearly than lighter chalk, and it was chosen for its tougher industrial-style line. \\
+Standard & Marking chalk / field paint & Seymour Quik Stripe & \$14 & Surface marker & Phase-03 & Improves line visibility for repeated course resets, and it was chosen for its stronger pigmentation and fast use. \\
+Standard & Marking chalk / field paint & Rust-Oleum Professional Marking Wand plus paint tier & \$25 & Surface marker & Phase-03 & Makes repeated marking straighter and cleaner, and it was chosen because the wand lowers setup slop. \\
+Elite & Marking chalk / field paint & Aervoe Survey Marking Paint Pro Set & \$30 & Surface marker & Phase-03 & Supports a more organized repeated marking kit, and it was chosen for stronger field-use durability. \\
+Elite & Marking chalk / field paint & Mighty Line Floor Tape plus chalk kit tier & \$35 & Surface marker & Phase-03 & Creates more consistent reusable indoor marks, and it was chosen for better repeatability than freehand paint alone. \\
+Elite & Marking chalk / field paint & Rust-Oleum Professional Striping System tier & \$45 & Surface marker & Phase-03 & Gives a more overbuilt line-making setup, and it was chosen for cleaner repeated course boundaries. \\
+\end{longtblr}
+\endgroup
+
+\subsection*{7.18.O - Start / Finish Line Tape}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.O - Start / Finish Line Tape}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Start / finish line tape & Pro Tapes Pro Gaff & \$22 & Boundary tape & Phase-03 & Creates a visible fixed start or finish reference, and it was chosen for its clean stick-and-remove behavior. \\
+Budget & Start / finish line tape & Duck Max Strength Duct Tape & \$10 & Boundary tape & Phase-03 & Gives a cheap temporary line marker when permanence is unnecessary, and it was chosen for its low-cost accessibility. \\
+Budget & Start / finish line tape & 3M Vinyl Tape 471 & \$15 & Boundary tape & Phase-03 & Produces a crisp visible line on smoother surfaces, and it was chosen for its clear edge and color visibility. \\
+Standard & Start / finish line tape & Gaffer Power Floor Tape & \$18 & Boundary tape & Phase-03 & Improves line reliability on repeated setups, and it was chosen for stronger floor-hold performance. \\
+Standard & Start / finish line tape & Shurtape P-628 Gaffers Tape & \$20 & Boundary tape & Phase-03 & Supports cleaner temporary event lines, and it was chosen for its durable cloth backing. \\
+Standard & Start / finish line tape & Pro Tapes Spike Tape & \$15 & Boundary tape & Phase-03 & Creates precise reference points for starts and splits, and it was chosen for its event-marking heritage. \\
+Elite & Start / finish line tape & 3M Safety-Walk boundary system tier & \$40 & Boundary tape & Phase-03 & Gives a more durable high-visibility line on slick surfaces, and it was chosen for better grip and longevity. \\
+Elite & Start / finish line tape & Brady ToughStripe Floor Tape & \$55 & Boundary tape & Phase-03 & Creates a more professional reusable line system, and it was chosen for its heavy-duty durability. \\
+Elite & Start / finish line tape & Seton Floor Line Tape Premium & \$45 & Boundary tape & Phase-03 & Supports a stronger long-term indoor course setup solution, and it was chosen for cleaner edge retention. \\
+\end{longtblr}
+\endgroup
+
+\subsection*{7.18.P - Phone Tripod for Evidence Capture}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.P - Phone Tripod for Evidence Capture}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Phone tripod for evidence capture & UBeesize Phone Tripod & \$25 & Evidence support & Phase-03 & Stabilizes video for admissible rep or course evidence, and it was chosen for its cheap all-in-one phone mount kit. \\
+Budget & Phone tripod for evidence capture & Amazon Basics 50-in Tripod with Smartphone Mount & \$30 & Evidence support & Phase-03 & Gives a simple stable recording angle for home and field tests, and it was chosen for its low-cost basic functionality. \\
+Budget & Phone tripod for evidence capture & Joby GripTight ONE GP Stand & \$25 & Evidence support & Phase-03 & Supports quick small-footprint recording on benches or rails, and it was chosen for its flexible placement. \\
+Standard & Phone tripod for evidence capture & Manfrotto PIXI Smart Kit & \$45 & Evidence support & Phase-03 & Improves recording stability and cleaner framing, and it was chosen for its sturdier premium mini-tripod build. \\
+Standard & Phone tripod for evidence capture & Joby GripTight Pro 2 & \$80 & Evidence support & Phase-03 & Gives more dependable angle control for repeated evidence capture, and it was chosen for its better mount quality. \\
+Standard & Phone tripod for evidence capture & Peak Design Mobile Tripod & \$80 & Evidence support & Phase-03 & Makes portable evidence capture less cumbersome, and it was chosen for its slim premium carry design. \\
+Elite & Phone tripod for evidence capture & Manfrotto Befree Live with phone clamp & \$230 & Evidence support & Phase-03 & Provides more formal stable video support for repeated tests, and it was chosen for its fluid head and strong build. \\
+Elite & Phone gimbal / stabilizer for evidence capture & DJI Osmo Mobile 6 & \$159 & Evidence support & Phase-03 & Adds smoother moving evidence capture, and it was chosen for its high-quality stabilization during dynamic filming. \\
+Elite & Phone tripod for evidence capture & Peak Design Travel Tripod with phone mount & \$380 & Evidence support & Phase-03 & Creates an overbuilt premium evidence station, and it was chosen for its excellent stability-to-packability ratio. \\
+\end{longtblr}
+\endgroup
+
+\subsection*{7.18.Q - Course Setup Headlamp}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.Q - Course Setup Headlamp}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Course setup headlamp & Black Diamond Astro 300 & \$20 & Setup light & Phase-12 & Illuminates cones, tape, and cards during low-light setup, and it was chosen for its light simple no-frills design. \\
+Budget & Course setup headlamp & Petzl Tikkina & \$25 & Setup light & Phase-12 & Supports safer dawn or dusk setup work, and it was chosen for its dependable mainstream reliability. \\
+Budget & Course setup headlamp & Princeton Tec Byte & \$30 & Setup light & Phase-12 & Adds a compact lighting option for early or late course prep, and it was chosen for its easy portability. \\
+Standard & Course setup headlamp & Black Diamond Spot 400 & \$45 & Setup light & Phase-12 & Gives brighter, more precise setup lighting, and it was chosen for its stronger output and practical controls. \\
+Standard & Course setup headlamp & Petzl Actik & \$50 & Setup light & Phase-12 & Improves visibility for more complex course setup tasks, and it was chosen for its balanced beam and fit. \\
+Standard & Course setup headlamp & Coast XPH30R & \$40 & Setup light & Phase-12 & Rechargeable design lowers battery-management friction, and it was chosen for its practical repeated-use value. \\
+Elite & Course setup headlamp & Petzl Swift RL & \$130 & Setup light & Phase-12 & Supports overbuilt low-light course setup reliability, and it was chosen for its strong premium beam and reactive lighting. \\
+Elite & Course setup headlamp & Fenix HM65R & \$95 & Setup light & Phase-12 & Provides a tougher premium lighting option for harsh weather setup, and it was chosen for its durability and rechargeability. \\
+Elite & Course setup headlamp & Black Diamond Distance 1500 & \$170 & Setup light & Phase-12 & Gives very strong wide-coverage lighting for complicated setup windows, and it was chosen for its elite-level output. \\
+\end{longtblr}
+\endgroup
+
+\subsection*{7.18.R - Hard Protective Measurement Case}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.R - Hard Protective Measurement Case}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Hard protective measurement case & Plano Waterproof StowAway & \$20 & Protective case & Phase-12 & Protects small measurement tools from rain and crush, and it was chosen for its cheap sealed-box utility. \\
+Budget & Hard protective measurement case & Pelican 1040 Micro Case & \$30 & Protective case & Phase-12 & Keeps timers, cards, and markers from getting smashed or soaked, and it was chosen for its proven hard-shell reliability. \\
+Budget & Hard protective measurement case & Nanuk Nano 330 & \$35 & Protective case & Phase-12 & Supports a more durable small-tool transport option, and it was chosen for its strong latch and weather seal. \\
+Standard & Hard protective measurement case & Pelican R40 Ruck Case & \$65 & Protective case & Phase-12 & Improves protection for denser tool kits, and it was chosen for its stronger structure and pocketable form. \\
+Standard & Hard protective measurement case & Nanuk Nano 340 & \$40 & Protective case & Phase-12 & Gives a cleaner organized hard-case option for small evidence tools, and it was chosen for its durable compact footprint. \\
+Standard & Hard protective measurement case & Seahorse SE300 & \$45 & Protective case & Phase-12 & Provides solid weather-resistant tool protection, and it was chosen for its practical value in repeated transport. \\
+Elite & Hard protective measurement case & Pelican 1150 Case & \$90 & Protective case & Phase-12 & Creates a more overbuilt home for critical timers and measuring tools, and it was chosen for its stronger capacity and protection. \\
+Elite & Hard protective measurement case & Nanuk 910 Case & \$100 & Protective case & Phase-12 & Gives premium crush and weather protection to the full measurement kit, and it was chosen for its robust shell and handle. \\
+Elite & Hard protective measurement case & SKB iSeries 0907 Case & \$110 & Protective case & Phase-12 & Supports a very durable long-term transport solution, and it was chosen for its industrial-grade protection. \\
+\end{longtblr}
+\endgroup
+
+\subsection*{7.18.S - Redundant Backup Timer Set}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.S - Redundant Backup Timer Set}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Redundant backup timer set & Casio HS-80TW Pair & \$50 & Timing backup & Phase-12 & Protects test timing continuity if one device fails, and it was chosen because two identical simple stopwatches reduce confusion. \\
+Budget & Redundant backup timer set & Marathon Adanac 3000 Pair & \$40 & Timing backup & Phase-12 & Preserves basic hand-timing redundancy, and it was chosen for its low-cost duplicate-button simplicity. \\
+Budget & Redundant backup timer set & Timex Ironman Classic 30 Pair & \$90 & Timing backup & Phase-12 & Creates a wearable two-device backup posture, and it was chosen for its familiar easy-use timing interface. \\
+Standard & Redundant backup timer set & Ultrak 320 Pair & \$70 & Timing backup & Phase-12 & Supports cleaner formal backup timing on gate days, and it was chosen because matching units simplify cross-checking. \\
+Standard & Redundant backup timer set & Seiko S141 Pair & \$90 & Timing backup & Phase-12 & Gives stronger hand-timing reliability during high-consequence testing, and it was chosen for its recognized sports-timing quality. \\
+Standard & Redundant backup timer set & Garmin Forerunner 55 plus Casio HS-80TW & \$225 & Timing backup & Phase-12 & Combines on-wrist and hand timing for better resilience, and it was chosen because the two timing paths fail differently. \\
+Elite & Redundant backup timer set & Seiko S149 Pair & \$130 & Timing backup & Phase-12 & Creates an overbuilt premium split-timing fallback, and it was chosen for its high-confidence stopwatch pedigree. \\
+Elite & Redundant backup timer set & Garmin Forerunner 255 plus Seiko S141 & \$395 & Timing backup & Phase-12 & Protects against both wrist-device and hand-device failure, and it was chosen for stronger redundancy across timing modes. \\
+Elite & Redundant backup timer set & COROS Pace 3 plus Ultrak 499 & \$289 & Timing backup & Phase-12 & Supports richer backup timing with low battery anxiety, and it was chosen because the wearable and stopwatch complement each other well. \\
+\end{longtblr}
+\endgroup
+
+\subsection*{7.18.T - Redundant Backup Measurement Kit}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.T - Redundant Backup Measurement Kit}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Redundant backup measurement kit & Etekcity Scale + Perfect Measuring Tape + Casio HS-80TW Set & \$42 & Measurement backup & Phase-12 & Protects evidence continuity by duplicating the most failure-prone basics, and it was chosen because the kit covers weight, tape, and timing cheaply. \\
+Budget & Redundant backup measurement kit & Taylor Scale + Gulik Tape + Marathon Adanac 3000 Set & \$57 & Measurement backup & Phase-12 & Preserves a second complete basic measurement path, and it was chosen for its practical mix of inexpensive mainstream tools. \\
+Budget & Redundant backup measurement kit & Greater Goods Scale + MyoTape + Sharpie Pro Setup Kit & \$38 & Measurement backup & Phase-12 & Gives a low-cost backup for body metrics and field notes, and it was chosen because the components are easy to replace individually. \\
+Standard & Redundant backup measurement kit & Escali Scale + Seca 201 Tape + Ultrak 320 Kit & \$75 & Measurement backup & Phase-12 & Builds a cleaner mid-tier duplicate measurement lane, and it was chosen because the components are simple, reliable, and easy to standardize. \\
+Standard & Redundant backup measurement kit & OXO Scale + Seca 203 Tape + Rite in the Rain Clipboard Kit & \$95 & Measurement backup & Phase-12 & Supports stronger repeatability when one primary tool chain fails, and it was chosen for combining durability with clean usability. \\
+Standard & Redundant backup measurement kit & Withings Body Smart + MyoTape + Seiko S141 Kit & \$155 & Measurement backup & Phase-12 & Creates a more polished second-line evidence kit, and it was chosen because it covers the main metrics with stronger component quality. \\
+Elite & Redundant backup measurement kit & Garmin Index S2 + Gulick II Tape + Seiko S149 Kit & \$340 & Measurement backup & Phase-12 & Supports a premium high-confidence backup lane for decisive windows, and it was chosen because each component is built for more formal measurement use. \\
+Elite & Redundant backup measurement kit & Tanita RD-545 + Seca 203 + Ultrak 499 Kit & \$620 & Measurement backup & Phase-12 & Gives a very overbuilt duplicate evidence stack, and it was chosen for stronger durability, capacity, and retrieval confidence. \\
+Elite & Redundant backup measurement kit & Withings Body Comp + Harpenden Tape + Garmin Forerunner 255 Kit & \$640 & Measurement backup & Phase-12 & Protects high-consequence measurement continuity with premium parallel tools, and it was chosen because it duplicates multiple measurement modes cleanly. \\
+\end{longtblr}
+\endgroup
+
+\subsection*{7.18 - When These Items Are Needed}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18 - When These Items Are Needed}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    X[l,1.80]
+    Q[l,wd=1.30in]
+    X[l,3.10]
+    X[l,2.80]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  cell{1-Z}{1-4} = {fg=black},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{2-Z} = {halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Item} & \Hdr{First Required Phase} & \Hdr{Why It Becomes Necessary} & \Hdr{What Happens If Missing} \\
+Handheld stopwatch & Phase-00 & Phase-00 Tier-1 explicitly requires a timer method for admissible timing from the first gate window. & Test timing becomes less credible and less repeatable. \\
+Wrist timer watch & Phase-00 & A wearable timer is a second practical Tier-1 timer-method expression when hands-free timing is needed. & On-body timing and quick split capture stay less convenient. \\
+Digital bodyweight scale & Phase-00 & Stage-6 Tier-1 explicitly includes scale access as part of first admissible measurement posture. & Weight trends rely on inconsistent outside access or memory. \\
+Flexible tape measure & Phase-00 & Stage-6 Tier-1 explicitly includes tape-based basic measurement posture. & Circumference tracking becomes harder to standardize. \\
+Waterproof clipboard & Phase-00 & Route and pool verification posture needs a stable writing surface from the first measurement phase. & Setup notes and checks become easier to lose or write poorly. \\
+Route / pool verification card holder & Phase-00 & Phase-00 Tier-1 includes route/pool verification posture, which needs protected course-reference materials. & Verification notes and course cards are more vulnerable to weather and clutter. \\
+Waterproof marker / grease pencil & Phase-00 & Basic verification and labeling posture is easier to sustain when setup materials can be marked clearly in rough conditions. & Course and document labeling become less reliable. \\
+Visible gym / pace clock timer & Phase-03 & Tier-2 begins in Phase-03 and supports improved repeatability aids for more complex timed work. & Shared visible timing stays less precise and less standardized. \\
+Finger lap counter & Phase-04 & Expanded repeatability aids become useful once repeated laps and counts matter more to admissible pool work. & Longer aquatic counting tasks become easier to miscount. \\
+Measuring wheel & Phase-03 & Tier-2 explicitly includes expanded measurement tools once course verification becomes more consequential. & Outdoor course distances stay more vulnerable to informal estimation. \\
+Laser distance measurer & Phase-03 & It is an expanded measurement tool that improves fast repeat course checks once Tier-2 is allowed. & Shorter exact distance checks stay slower or less precise. \\
+Course cones & Phase-03 & Course-setup capability expands at Tier-2 and needs reusable visible boundaries. & Start, turn, and lane points remain less clearly marked. \\
+Survey flags / marker stakes & Phase-03 & Expanded setup posture benefits from fixed visible point markers on grass or dirt. & Outdoor marker points are harder to preserve consistently. \\
+Marking chalk / field paint & Phase-03 & Better repeatability requires visible repeatable start and turn marks on suitable surfaces. & Surface references remain more temporary and less exact. \\
+Start / finish line tape & Phase-03 & Expanded course-setup capability includes clearer repeatable line definition. & Fixed line references remain more improvised. \\
+Phone tripod for evidence capture & Phase-03 & Tier-2 repeatability aids reasonably include steadier evidence capture for rep and setup verification. & Video evidence remains shakier and harder to review consistently. \\
+Course setup headlamp & Phase-12 & Tier-3 is the first overbuilt verification-reliability posture, which includes low-light setup resilience. & Early or late setup windows are more fragile in poor light. \\
+Hard protective measurement case & Phase-12 & Tier-3 emphasizes protecting critical tools from preventable transport and weather damage. & Small critical tools remain more exposed to crush and water failure. \\
+Redundant backup timer set & Phase-12 & Stage-6 Tier-3 explicitly supports redundant measurement capability near decisive verification windows. & A single timer failure can disrupt or compromise a test setup. \\
+Redundant backup measurement kit & Phase-12 & Tier-3 overbuild exists to reduce single-point evidence failure across timing and measurement. & A missing or broken primary tool leaves fewer credible fallback options. \\
+\end{longtblr}
+\endgroup
+
+\subsection*{7.18 - Compliance Checklist}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18 - Compliance Checklist}
+
+\begin{itemize}
+\item Only one deliverable is provided for Target Category 7.18.
+\item The title, optional notes, item-group sections, timing table, and checklist follow the required output structure.
+\item The chart uses the exact required columns.
+\item Twenty distinct items are included, with three Budget rows, three Standard rows, and three Elite rows for every item.
+\item Item timing is aligned to the locked Stage-6 posture: Phase-00 Tier-1 basics, Phase-03 Tier-2 expansion, and Phase-12 Tier-3 redundancy.
+\item Notes state both the intended effect or use and why the item was chosen.
+\item Notes do not contain prefixes, labels, sourcing guidance, or phase references.
+\item Items progress from foundational timing and measurement tools toward expanded course-setup tools and late-phase redundancy.
+\item No training programming, workouts, sets, reps, new tests, new thresholds, retailer links, affiliate links, or live price research are included.
+\item The “When These Items Are Needed” table requires timing reconciliation where item timing exceeds the stage activation point for aquatic use.
+\end{itemize}
+
+\end{landscape}
+\clearpage
+
+\end{document}

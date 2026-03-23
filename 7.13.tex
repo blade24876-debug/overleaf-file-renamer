@@ -1,0 +1,528 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{7.13 — Nutrition Preparation and Hydration Systems}
+\phantomsection
+\addcontentsline{toc}{section}{7.13 — Nutrition Preparation and Hydration Systems}
+
+Overview \textbf{ID}: 7.13\\
+Overview Name: Nutrition Preparation and Hydration Systems\\
+Version: v1.0\\
+Governing Status: Draft — Non-Deployable\\
+Scope Boundary Statement: Covers food-preparation tools, storage infrastructure, hydration container systems, field hydration logistics, and cleaning / drying support tools; does not provide macro prescriptions, diet programming, supplement dosing, or medical guidance.
+
+\subsection*{7.13.1 Purpose \& Scope}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.1 Purpose \& Scope}
+
+Category coverage:
+
+\begin{itemize}
+\item Food preparation tools and storage infrastructure (containers, basic staging, carry posture).
+\item Hydration container systems and field hydration logistics (bottles and reservoirs with cleaning/drying tools).
+\item Simple planning workflow supports that reduce friction and missed sessions (staging posture, repeatable cleaning-to-ready routine).
+\end{itemize}
+
+This overview crosswalks Stage 6 timing to the nutrition-preparation and hydration conditions required for safe execution and admissible evidence.
+
+Exclusions:
+
+\begin{itemize}
+\item No macro/calorie prescriptions or dieting protocols (Stage 10 owns nutrition programming).
+\item No supplement dosing guidance (cross-reference Stage 7.03–Stage 7.06 only).
+\item No training programming content.
+\end{itemize}
+
+This overview does not provide programming, test protocols, calendars, macro prescriptions, diet protocols, supplement dosing, or medical guidance.
+
+\subsection*{7.13.2 Governance And Safety Boundaries}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.2 Governance And Safety Boundaries}
+
+\begin{itemize}
+\item Stage 0 boundary alignment: stop rules, safety override doctrine, conflict-resolution hierarchy, and evidence-admissibility controls apply to all 7.13 selections and substitutions.
+\item Tools enable adherence; they do not replace nutrition strategy or medical care.
+\item Food safety is a required control:
+  \begin{itemize}
+  \item clean hands and surfaces posture,
+  \item separation of raw and ready-to-eat posture,
+  \item rapid cooling and safe storage posture,
+  \item discard-when-uncertain posture.
+  \end{itemize}
+  Minimal temperature conventions (general food-safety convention, not a medical protocol):
+  \begin{itemize}
+  \item cold foods \textbf{SHOULD} remain cold (refrigerated) and \textbf{SHOULD} be transported with cold packs when held for extended periods.
+  \item hot foods \textbf{SHOULD} be kept hot or cooled promptly; do not leave perishable foods at room temperature for long periods.
+  \end{itemize}
+\item Hydration safety is a required control:
+  \begin{itemize}
+  \item avoid intentional dehydration practices,
+  \item plan for safe access and daily cleaning,
+  \item do not ignore dehydration symptoms; downshift and correct feasibility.
+  \end{itemize}
+\item Evidence inadmissibility: evidence produced under unsafe food-handling, contaminated storage, unresolved leakage, or hydration-system failure conditions is inadmissible until corrected and re-verified.
+\item Change-control posture:
+  \begin{itemize}
+  \item one change at a time (primary bottle/reservoir, container system, workflow),
+  \item no novelty near Deload+Test weeks and gate windows,
+  \item log tool changes, start date, reason, and any issues (leaks, GI tolerance, cleaning failures).
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.13.3 Tier Doctrine}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.3 Tier Doctrine}
+
+\begin{itemize}
+\item Price band convention: \$ = minimal household-cost item; \$\$ = modest purpose-built item; \$\$\$ = expanded-capability or redundancy item.
+\item N/A rule: use N/A only when a field is genuinely not applicable and omission does not obscure safety, maintenance, or phase-timing logic.
+\item Substitution posture: substitutions are acceptable only when they preserve food safety, cleanability, leak control, and staging reliability; substitutions that increase contamination risk, spoilage risk, or workflow failure break intent.
+\item Tier 0: household-only stopgaps with explicit safety caveats; minimal safe container reuse and basic bottle posture only when cleanable and intact.
+\item Tier 1: minimum viable prep and hydration system that prevents missed sessions and reduces failure from logistics; includes cleaning tools (brush + drying rack).
+\item Tier 2: expanded system improving repeatability and reducing spoilage risk; includes food scale (Tier 2) and hydration reservoir/bladder systems (Tier 2).
+\item Tier 3: overbuilt redundancy and efficiency; convenience and sustainment bias without changing what is required.
+\end{itemize}
+
+\subsection*{7.13.4 Selection Criteria \& Fit Checks}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.4 Selection Criteria \& Fit Checks}
+
+Fit and safety checklist (operational):
+
+Containers:
+
+\begin{itemize}
+\item Leakproofing and seal integrity: lids and gaskets must seal reliably.
+\item Cleanability: wide-mouth access and smooth surfaces reduce residue retention.
+\item Durability: resists cracking; stable in bag.
+\item Dishwasher-safe posture is preferred where available; hand-wash compatibility must remain practical.
+\end{itemize}
+
+Bottles/reservoirs:
+
+\begin{itemize}
+\item Opening size supports cleaning and full drying.
+\item Odor retention risk is minimized by clean-to-ready posture and full drying.
+\item Transport compatibility: fits bags and does not leak under pressure changes.
+\item Reservoir routing compatibility with Stage 7.07 (if used) and secure bite valve posture.
+\end{itemize}
+
+Storage/carry:
+
+\begin{itemize}
+\item Insulation and spill containment reduce spoilage risk.
+\item Packability supports daily execution without friction.
+\end{itemize}
+
+Food scale:
+
+\begin{itemize}
+\item Stable surface use and wipe-down posture.
+\item Battery replacement posture to prevent missing data events.
+\end{itemize}
+
+Fit checks (clean-to-ready workflow):
+
+\begin{itemize}
+\item The full loop must be feasible daily:
+  \begin{itemize}
+  \item prepare → carry → consume → rinse → scrub → dry fully → stage for next day.
+  \end{itemize}
+\item If the loop is not feasible, simplify rather than adding complexity.
+\end{itemize}
+
+\subsection*{7.13.5 Setup, Safety, and Anchoring}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.5 Setup, Safety, and Anchoring}
+
+Setup doctrine (no programming):
+
+Food safety workflow posture (practical, non-medical):
+
+\begin{itemize}
+\item Clean hands and surfaces before prep.
+\item Separate raw and ready-to-eat items; avoid cross-contamination.
+\item Cool perishable items promptly; store cold items cold; discard-when-uncertain posture.
+\item Do not “push through” questionable food; GI distress degrades training safety and validity.
+\end{itemize}
+
+Hydration setup posture:
+
+\begin{itemize}
+\item Daily rinse after use; periodic deep clean with brush tools; dry fully.
+\item Reservoir-specific:
+  \begin{itemize}
+  \item fully drain and dry; do not store sealed while damp.
+  \item replace valves/tubes when persistent odor or residue cannot be resolved.
+  \end{itemize}
+\item Gate-window stability:
+  \begin{itemize}
+  \item do not introduce a new bottle/reservoir system inside Deload+Test windows.
+  \item if a system must change due to failure, log the change and treat decision-window comparability as higher variance; re-slot gate attempts if the change affects execution.
+  \end{itemize}
+\end{itemize}
+
+Field logistics:
+
+\begin{itemize}
+\item Pre-pack hydration and food carry the night before protected windows to reduce day-of omission risk.
+\item Verify leak checks before placing in ruck/pack.
+\end{itemize}
+
+\subsection*{7.13.6 Maintenance, Replacement, and Storage}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.6 Maintenance, Replacement, and Storage}
+
+Replacement cues:
+
+\begin{itemize}
+\item Persistent odor that persists after deep cleaning.
+\item Visible residue that cannot be removed.
+\item Cracked seals, leaking lids, warped container edges.
+\item Reservoir: persistent mold or odor, degraded valves or tubes, or leaks.
+\end{itemize}
+
+Storage posture:
+
+\begin{itemize}
+\item Dry all components fully before closing or storing them in bins.
+\item Store with airflow; avoid trapping moisture.
+\item Keep containers staged clean-to-ready to prevent missed sessions.
+\end{itemize}
+
+Consumables boundary:
+
+\begin{itemize}
+\item Soap/sanitizers and hygiene consumables are Stage 7.20; cross-reference only.
+\item 7.13 lists cleaning tools (brushes, drying rack) and non-chemical maintenance items (replacement lids/gaskets, ice packs).
+\end{itemize}
+
+\subsection*{7.13.7 Substitution Rules — Minimal Path Alternatives}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.7 Substitution Rules — Minimal Path Alternatives}
+
+\begin{itemize}
+\item If no meal-prep system:
+  \begin{itemize}
+  \item use a simpler container system with fewer parts; reduce complexity rather than skipping meals.
+  \end{itemize}
+\item If no reservoir:
+  \begin{itemize}
+  \item bottle-based hydration remains acceptable until Stage 6 requires reservoir capability by Phase 06 (End).
+  \end{itemize}
+\item If a container fails:
+  \begin{itemize}
+  \item discard and replace rather than unsafe reuse.
+  \end{itemize}
+\item Validity and logging linkage (Stage 2.E posture, high level):
+  \begin{itemize}
+  \item log changes to primary hydration system as a tool change (tool description, start date, reason).
+  \item document issues that impact execution (leakage, GI tolerance, cleaning failures).
+  \item do not infer missing intake data; record \textbf{MISSING}/\textbf{UNKNOWN} where required by the program’s missing-data doctrine.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.13.8 Phase Integration Map — Required}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.8 Phase Integration Map — Required}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.05in]
+    Q[l,wd=1.55in]
+    X[l,2.75]
+    X[l,3.65]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Phase} &
+\Hdr{Required Tier (from Stage 6)} &
+\Hdr{What Changes / Becomes Mandatory} &
+\Hdr{Notes} \\
+Phase 00 &
+Tier 1 &
+Tier 1 hydration and basic food storage system is required by Phase 00 (End) &
+Phase 00 (End): primary bottle + basic containers + brush/drying posture must exist to protect adherence and safety. No novelty in protected windows. \\
+Phase 01 &
+Tier 1 &
+Maintain Tier 1; required clean-to-ready workflow consistency becomes operationally mandatory &
+Phase 01 (End): missed hydration/food planning becomes a compliance failure driver; simplify workflow rather than skipping. \\
+Phase 02 &
+Tier 1 &
+Maintain Tier 1; required stability supports higher consequence training load &
+Phase 02 (End): do not add new container systems in protected windows; log changes. \\
+Phase 03 &
+Tier 1 &
+Maintain Tier 1; required field carry discipline increases as ruck systems begin to appear &
+Phase 03 (End): verify leak checks; cross-reference Stage 7.07 for integration when carried in ruck. \\
+Phase 04 &
+Tier 1 &
+Maintain Tier 1; required cleaning/drying discipline increases with outdoor exposure &
+Phase 04 (End): wet/dirty exposure increases spoilage and mold risk; drying posture is non-negotiable. \\
+Phase 05 &
+Tier 1 &
+Maintain Tier 1; required carry reliability increases as endurance duration increases &
+Phase 05 (End): longer sessions increase consequence of missing hydration/food logistics; do not improvise. \\
+Phase 06 &
+Tier 2 &
+Tier 2 expansion is required by Phase 06 (End): reservoir system + food scale + expanded containers &
+Phase 06 (End): reservoir/bladder becomes required; cross-reference Stage 7.07 routing / fit. Food scale supports prep repeatability only; no macros here. \\
+Phase 07 &
+Tier 2 &
+Maintain Tier 2; required standardization reduces variance in hybrid density &
+Phase 07 (End): stabilize reservoir system; log changes; no novelty near protected windows. \\
+Phase 08 &
+Tier 2 &
+Maintain Tier 2; required robust cleaning posture protects from mold/odor failures &
+Phase 08 (End): ruck/load phases punish hydration failures; clean-to-ready discipline is a safety control. \\
+Phase 09 &
+Tier 2 &
+Maintain Tier 2; required throughput consistency reduces missed sessions &
+Phase 09 (End): batch-prep capacity reduces friction; avoid food safety drift. \\
+Phase 10 &
+Tier 2 &
+Maintain Tier 2; required field logistics become high consequence &
+Phase 10 (End): protect against leakage and GI disruption; log tool changes. \\
+Phase 11 &
+Tier 2 &
+Maintain Tier 2; required low variance supports recovery-sensitive phase &
+Phase 11 (End): do not change container/reservoir systems in decision windows. \\
+Phase 12 &
+Tier 2 &
+Maintain Tier 2; optional Tier 3 redundancy may reduce compromised windows &
+Phase 12 (End): if redundancy is adopted, stabilize well before verification blocks; never introduce new systems inside protected windows. \\
+Phase 13 &
+Tier 2 &
+Maintain Tier 2; consolidation requires stable systems and clean-to-ready execution &
+Phase 13 (End): stability is the objective; avoid last-minute system changes. \\
+\end{longtblr}
+
+\endgroup
+
+7.13.8 Phase Integration Map Notes:
+
+\begin{itemize}
+\item If any upstream phase artifact demands reservoir/bladder capability earlier than Phase 06 (End), requires Stage 8 review.
+\item If any artifact attempts to turn 7.13 into macro or diet prescriptions, requires Stage 8 review (Stage 10 owns nutrition programming).
+\end{itemize}
+
+\subsection*{7.13.9 Risks, Contraindications, and Red Flags}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.13.9 Risks, Contraindications, and Red Flags}
+
+Non-medical risks:
+
+\begin{itemize}
+\item Food spoilage and GI disruption from poor handling:
+  \begin{itemize}
+  \item control: discard-when-uncertain posture; avoid long room-temperature holds for perishables; clean surfaces and separate raw/ready-to-eat.
+  \end{itemize}
+\item Mold/odor and contamination risk from poorly cleaned bottles/reservoirs:
+  \begin{itemize}
+  \item control: rinse daily, deep clean periodically, dry fully; never store sealed while damp.
+  \end{itemize}
+\item Leakage causing missed sessions or ruined gear:
+  \begin{itemize}
+  \item control: leakproofing and gasket discipline; staged spares; leak check before packing.
+  \end{itemize}
+\item Underhydration from missing containers:
+  \begin{itemize}
+  \item control: backup bottle posture; staging the night before high-consequence days.
+  \end{itemize}
+\item Red flags requiring conservative stop/escalation posture:
+  \begin{itemize}
+  \item repeated GI distress tied to food-handling failures,
+  \item visible mold or persistent odor that cannot be resolved,
+  \item repeated dehydration symptoms during sessions.
+  \end{itemize}
+\item Requires Stage 8 review triggers:
+  \begin{itemize}
+  \item any mismatch requiring Tier 1 or Tier 2 capability earlier than Stage 6 timing,
+  \item any attempt to include macro prescriptions or diet protocols inside 7.13,
+  \item any attempt to list hygiene consumables as Stage 7.13 consumables rather than cross-referencing Stage 7.20.
+  \end{itemize}
+\end{itemize}
+
+\end{document}

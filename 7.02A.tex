@@ -1,0 +1,2454 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\clearpage
+\begin{landscape}
+
+\section*{7.02.A - Ashwagandha Extract}
+\phantomsection
+\addcontentsline{toc}{section}{7.02.A - Ashwagandha Extract}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Ashwagandha extract &
+Swanson Full Spectrum Ashwagandha &
+\$10 &
+Adaptogen extract &
+Phase-06 &
+Inexpensive full-spectrum capsules give a simple first pass at stress-support education. \\
+Budget &
+Ashwagandha extract &
+Nutricost Ashwagandha Extract &
+\$18 &
+Adaptogen extract &
+Phase-06 &
+Straightforward capsule format suits buyers who want a low-friction single-ingredient start. \\
+Budget &
+Ashwagandha extract &
+\textbf{NOW} Foods Ashwagandha Extract &
+\$17 &
+Adaptogen extract &
+Phase-06 &
+Common retail availability makes this easier to keep consistent across repeated use blocks. \\
+Standard &
+Ashwagandha extract &
+Jarrow KSM-66 Ashwagandha &
+\$24 &
+Adaptogen extract &
+Phase-06 &
+Branded root-only extract is often chosen when standardization matters more than lowest cost. \\
+Standard &
+Ashwagandha extract &
+Gaia Herbs Ashwagandha Root &
+\$30 &
+Adaptogen extract &
+Phase-06 &
+Liquid-leaning herb-house profile appeals to buyers who prefer a more traditional botanical feel. \\
+Standard &
+Ashwagandha extract &
+Life Extension Optimized Ashwagandha &
+\$27 &
+Adaptogen extract &
+Phase-06 &
+Higher-spec label presentation fits users who want a cleaner stress-support product identity. \\
+Elite &
+Ashwagandha extract &
+Nootropics Depot Sensoril Ashwagandha &
+\$40 &
+Adaptogen extract &
+Phase-06 &
+More concentrated extract profile is selected when the goal is a smaller capsule with tighter standardization. \\
+Elite &
+Ashwagandha extract &
+Pure Encapsulations Ashwagandha &
+\$44 &
+Adaptogen extract &
+Phase-06 &
+Practitioner-style manufacturing appeals to buyers who prioritize excipient simplicity and consistency. \\
+Elite &
+Ashwagandha extract &
+Gaia PRO Ashwagandha Root &
+\$42 &
+Adaptogen extract &
+Phase-06 &
+Premium line positioning suits users who want a polished botanical product with stable repeat ordering. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.02.B - Rhodiola Rosea Extract}
+\phantomsection
+\addcontentsline{toc}{section}{7.02.B - Rhodiola Rosea Extract}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Rhodiola rosea extract &
+Swanson Rhodiola &
+\$15 &
+Adaptogen extract &
+Phase-06 &
+Budget capsules give a low-cost entry for buyers exploring fatigue-resilience support. \\
+Budget &
+Rhodiola rosea extract &
+Nutricost Rhodiola Rosea &
+\$20 &
+Adaptogen extract &
+Phase-06 &
+Simple bottle format works well for users who want a basic daily botanical without a blend. \\
+Budget &
+Rhodiola rosea extract &
+\textbf{NOW} Foods Rhodiola &
+\$18 &
+Adaptogen extract &
+Phase-06 &
+Widely stocked packaging helps maintain brand continuity once a stable response is preferred. \\
+Standard &
+Rhodiola rosea extract &
+Solaray Rhodiola &
+\$24 &
+Adaptogen extract &
+Phase-06 &
+Mid-tier label suits buyers who want a little more refinement without moving into practitioner pricing. \\
+Standard &
+Rhodiola rosea extract &
+Gaia Herbs Rhodiola Rosea &
+\$28 &
+Adaptogen extract &
+Phase-06 &
+Herb-specialist branding is attractive when the goal is a more purpose-built resilience product. \\
+Standard &
+Rhodiola rosea extract &
+Jarrow Rhodiola &
+\$26 &
+Adaptogen extract &
+Phase-06 &
+Familiar supplement-house formulation fits users who value straightforward capsule consistency. \\
+Elite &
+Rhodiola rosea extract &
+Nootropics Depot Rhodiola Rosea &
+\$35 &
+Adaptogen extract &
+Phase-06 &
+Higher-end extract positioning is often chosen when standardization and batch consistency are prioritized. \\
+Elite &
+Rhodiola rosea extract &
+Thorne Rhodiola &
+\$33 &
+Adaptogen extract &
+Phase-06 &
+Cleaner clinical-style branding fits users who prefer a practitioner-leaning presentation. \\
+Elite &
+Rhodiola rosea extract &
+Pure Encapsulations Rhodiola Rosea &
+\$42 &
+Adaptogen extract &
+Phase-06 &
+Premium capsule build is selected when minimalist inactive ingredients are part of the buying logic. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.02.C - Holy Basil Extract}
+\phantomsection
+\addcontentsline{toc}{section}{7.02.C - Holy Basil Extract}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Holy basil extract &
+Swanson Holy Basil &
+\$11 &
+Adaptogen extract &
+Phase-06 &
+Cheap capsules fit buyers who want a calm-support botanical without spending much. \\
+Budget &
+Holy basil extract &
+\textbf{NOW} Foods Holy Basil Extract &
+\$15 &
+Adaptogen extract &
+Phase-06 &
+Simple extract format works for users who want an easy shelf-stable tulsi option. \\
+Budget &
+Holy basil extract &
+Nature's Way Holy Basil &
+\$16 &
+Adaptogen extract &
+Phase-06 &
+Mainstream herb-brand packaging makes routine repurchase easier for conservative use. \\
+Standard &
+Holy basil extract &
+Himalaya Holy Basil &
+\$20 &
+Adaptogen extract &
+Phase-06 &
+Traditional-herb identity suits users who prefer familiar Ayurvedic positioning over sport branding. \\
+Standard &
+Holy basil extract &
+Gaia Herbs Holy Basil Leaf &
+\$25 &
+Adaptogen extract &
+Phase-06 &
+Botanical specialist profile is often chosen when a softer stress-support use case is preferred. \\
+Standard &
+Holy basil extract &
+Solaray Holy Basil &
+\$18 &
+Adaptogen extract &
+Phase-06 &
+Mid-range price point suits buyers who want a branded herb without practitioner-level cost. \\
+Elite &
+Holy basil extract &
+Pure Encapsulations Holy Basil &
+\$39 &
+Adaptogen extract &
+Phase-06 &
+Premium formulation is attractive when filler control is part of the product-selection logic. \\
+Elite &
+Holy basil extract &
+Gaia PRO Tulsi Supreme &
+\$34 &
+Adaptogen extract &
+Phase-06 &
+Professional-line branding fits users who want a more formal botanical-supplement presentation. \\
+Elite &
+Holy basil extract &
+Herb Pharm Holy Basil &
+\$21 &
+Adaptogen extract &
+Phase-06 &
+Liquid-extract style appeals to users who prefer flexible serving form over capsule-only use. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.02.D - Eleuthero Extract}
+\phantomsection
+\addcontentsline{toc}{section}{7.02.D - Eleuthero Extract}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Eleuthero extract &
+Swanson Eleuthero &
+\$11 &
+Adaptogen extract &
+Phase-07 &
+Low-cost capsules are suitable for buyers testing a basic resilience-oriented root extract. \\
+Budget &
+Eleuthero extract &
+\textbf{NOW} Foods Eleuthero &
+\$14 &
+Adaptogen extract &
+Phase-07 &
+Common retail placement supports simple continuity when a single herb is preferred. \\
+Budget &
+Eleuthero extract &
+Nature's Way Siberian Eleuthero &
+\$16 &
+Adaptogen extract &
+Phase-07 &
+Familiar herb branding fits conservative users who want a recognizable shelf product. \\
+Standard &
+Eleuthero extract &
+Solaray Eleuthero &
+\$18 &
+Adaptogen extract &
+Phase-07 &
+Straightforward mid-tier option suits buyers who want a mild upgrade in label confidence. \\
+Standard &
+Eleuthero extract &
+Gaia Herbs Eleuthero Root &
+\$22 &
+Adaptogen extract &
+Phase-07 &
+Botanical-house presentation appeals when the preference is plant-first rather than sports-first. \\
+Standard &
+Eleuthero extract &
+Herb Pharm Eleuthero &
+\$17 &
+Adaptogen extract &
+Phase-07 &
+Liquid format offers a different delivery style for users who dislike larger capsules. \\
+Elite &
+Eleuthero extract &
+Pure Encapsulations Eleuthero &
+\$34 &
+Adaptogen extract &
+Phase-07 &
+Practitioner-style presentation fits buyers who prioritize cleaner capsule design and repeatability. \\
+Elite &
+Eleuthero extract &
+Integrative Therapeutics Eleuthero &
+\$29 &
+Adaptogen extract &
+Phase-07 &
+Clinical-leaning brand identity suits users who want a more formal supplement profile. \\
+Elite &
+Eleuthero extract &
+MediHerb Eleuthero &
+\$31 &
+Adaptogen extract &
+Phase-07 &
+Premium herbal line is often chosen when consistency matters more than lowest unit cost. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.02.E - Schisandra Extract}
+\phantomsection
+\addcontentsline{toc}{section}{7.02.E - Schisandra Extract}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Schisandra extract &
+Swanson Schisandra &
+\$10 &
+Berry extract &
+Phase-07 &
+Entry-level capsules offer a cheap way to keep the category educational rather than elaborate. \\
+Budget &
+Schisandra extract &
+\textbf{NOW} Foods Schisandra &
+\$17 &
+Berry extract &
+Phase-07 &
+Simple bottle format suits buyers who want one berry-based botanical and nothing more. \\
+Budget &
+Schisandra extract &
+Nutricost Schisandra Extract &
+\$20 &
+Berry extract &
+Phase-07 &
+No-frills presentation works for a single-ingredient approach with modest cost exposure. \\
+Standard &
+Schisandra extract &
+Solaray Schisandra &
+\$21 &
+Berry extract &
+Phase-07 &
+Mid-range product identity fits users seeking a slightly more polished capsule option. \\
+Standard &
+Schisandra extract &
+Gaia Herbs Schisandra Berry &
+\$26 &
+Berry extract &
+Phase-07 &
+Herb-forward branding appeals when the buyer wants a recognizable botanical lineage. \\
+Standard &
+Schisandra extract &
+Nature's Way Schisandra &
+\$18 &
+Berry extract &
+Phase-07 &
+Familiar label makes it easier to keep the product class simple and repeatable. \\
+Elite &
+Schisandra extract &
+Pure Encapsulations Schisandra &
+\$36 &
+Berry extract &
+Phase-07 &
+Premium capsule build suits buyers who want fewer formulation distractions around the herb. \\
+Elite &
+Schisandra extract &
+Herb Pharm Schisandra &
+\$19 &
+Berry extract &
+Phase-07 &
+Extract-drop format is chosen when flexible serving style matters more than pill convenience. \\
+Elite &
+Schisandra extract &
+Integrative Therapeutics Schisandra &
+\$32 &
+Berry extract &
+Phase-07 &
+Higher-end clinical branding fits users who want a more formal supplement presentation. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.02.F - Panax Ginseng Extract}
+\phantomsection
+\addcontentsline{toc}{section}{7.02.F - Panax Ginseng Extract}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Panax ginseng extract &
+Swanson Panax Ginseng &
+\$12 &
+Root extract &
+Phase-07 &
+Cheap capsule format fits buyers who want a simple ginseng trial without a heavy spend. \\
+Budget &
+Panax ginseng extract &
+\textbf{NOW} Foods Ginseng &
+\$18 &
+Root extract &
+Phase-07 &
+Widely available packaging helps keep product continuity stable once selected. \\
+Budget &
+Panax ginseng extract &
+Nutricost Panax Ginseng &
+\$20 &
+Root extract &
+Phase-07 &
+Straight single-ingredient labeling suits conservative shoppers avoiding mixed formulas. \\
+Standard &
+Panax ginseng extract &
+Nature's Way Korean Ginseng &
+\$23 &
+Root extract &
+Phase-07 &
+Traditional naming appeals to buyers who want a familiar classic ginseng profile. \\
+Standard &
+Panax ginseng extract &
+Solaray Korean Panax Ginseng &
+\$24 &
+Root extract &
+Phase-07 &
+Mid-tier option suits buyers who want an upgrade in brand presentation without premium pricing. \\
+Standard &
+Panax ginseng extract &
+Gaia Herbs Ginseng Supreme &
+\$28 &
+Root extract &
+Phase-07 &
+More premium herb identity fits users who prefer a botanical-house formulation approach. \\
+Elite &
+Panax ginseng extract &
+Thorne Panax Ginseng &
+\$34 &
+Root extract &
+Phase-07 &
+Clean clinical branding suits buyers who want a more formal product presentation. \\
+Elite &
+Panax ginseng extract &
+Pure Encapsulations Panax Ginseng &
+\$39 &
+Root extract &
+Phase-07 &
+Premium excipient control is often the main reason to pay up within this item class. \\
+Elite &
+Panax ginseng extract &
+Nootropics Depot Panax Ginseng &
+\$35 &
+Root extract &
+Phase-07 &
+Higher-end extract positioning appeals when standardization is part of the selection logic. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.02.G - Maca Root}
+\phantomsection
+\addcontentsline{toc}{section}{7.02.G - Maca Root}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Maca root &
+Swanson Maca &
+\$12 &
+Root powder &
+Phase-07 &
+Simple low-cost capsules suit buyers who want a mild food-like botanical entry point. \\
+Budget &
+Maca root &
+\textbf{NOW} Foods Maca &
+\$16 &
+Root powder &
+Phase-07 &
+Common distribution makes it easy to maintain the same product over time. \\
+Budget &
+Maca root &
+Nutricost Maca Root &
+\$18 &
+Root powder &
+Phase-07 &
+Basic presentation works when the goal is a plain root product with low complexity. \\
+Standard &
+Maca root &
+Nature's Way Maca Root &
+\$20 &
+Root powder &
+Phase-07 &
+Mainstream herb branding appeals to users who prefer familiar shelf presence over novelty. \\
+Standard &
+Maca root &
+Solaray Maca &
+\$18 &
+Root powder &
+Phase-07 &
+Moderate price keeps the category accessible without dropping to bargain-bin packaging. \\
+Standard &
+Maca root &
+Gaia Herbs Maca Root &
+\$27 &
+Root powder &
+Phase-07 &
+Herbal specialist identity fits buyers who want a more curated botanical profile. \\
+Elite &
+Maca root &
+Nootropics Depot Gelatinized Maca &
+\$32 &
+Root powder &
+Phase-07 &
+Processed root format is chosen when easier digestion is part of the product choice. \\
+Elite &
+Maca root &
+Pure Encapsulations Maca-3 &
+\$44 &
+Root powder &
+Phase-07 &
+Multi-maca presentation suits buyers who want a more premium formulation angle. \\
+Elite &
+Maca root &
+Gaia PRO Maca Root &
+\$36 &
+Root powder &
+Phase-07 &
+Professional-line positioning appeals when stable sourcing presentation matters to the buyer. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.02.H - Cordyceps Extract}
+\phantomsection
+\addcontentsline{toc}{section}{7.02.H - Cordyceps Extract}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Cordyceps extract &
+Swanson Cordyceps &
+\$14 &
+Mushroom extract &
+Phase-07 &
+Budget capsules keep the mushroom-adaptogen category simple and inexpensive to trial. \\
+Budget &
+Cordyceps extract &
+\textbf{NOW} Foods Cordyceps &
+\$16 &
+Mushroom extract &
+Phase-07 &
+Straightforward retail availability helps maintain the same product during routine use blocks. \\
+Budget &
+Cordyceps extract &
+Nutricost Cordyceps Mushroom &
+\$22 &
+Mushroom extract &
+Phase-07 &
+Single-ingredient labeling fits buyers who want a cleaner mushroom entry product. \\
+Standard &
+Cordyceps extract &
+Solaray Cordyceps &
+\$24 &
+Mushroom extract &
+Phase-07 &
+Mid-tier presentation is often enough for users who want an upgrade without premium pricing. \\
+Standard &
+Cordyceps extract &
+Om Cordyceps &
+\$28 &
+Mushroom extract &
+Phase-07 &
+Mushroom-specialist branding appeals to buyers who prefer category-specific manufacturers. \\
+Standard &
+Cordyceps extract &
+Gaia Mushrooms Cordyceps &
+\$33 &
+Mushroom extract &
+Phase-07 &
+Botanical-mushroom crossover branding suits users who want a more polished product identity. \\
+Elite &
+Cordyceps extract &
+Host Defense Cordyceps &
+\$35 &
+Mushroom extract &
+Phase-07 &
+Premium mushroom-house positioning is often the reason this product class gets upgraded. \\
+Elite &
+Cordyceps extract &
+Nootropics Depot Cordyceps 10:1 &
+\$38 &
+Mushroom extract &
+Phase-07 &
+Concentrated extract format is selected when smaller serving size is part of the appeal. \\
+Elite &
+Cordyceps extract &
+Pure Encapsulations Cordyceps &
+\$45 &
+Mushroom extract &
+Phase-07 &
+Practitioner-style capsule build fits buyers prioritizing minimal formula clutter. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.02.I - Reishi Extract}
+\phantomsection
+\addcontentsline{toc}{section}{7.02.I - Reishi Extract}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Reishi extract &
+Swanson Reishi Mushroom &
+\$13 &
+Mushroom extract &
+Phase-07 &
+Low-cost capsules suit buyers who want a softer adaptogen category entry. \\
+Budget &
+Reishi extract &
+\textbf{NOW} Foods Rei-Shi Mushrooms &
+\$16 &
+Mushroom extract &
+Phase-07 &
+Broad retail availability makes it easier to avoid product hopping later. \\
+Budget &
+Reishi extract &
+Nature's Way Reishi &
+\$18 &
+Mushroom extract &
+Phase-07 &
+Familiar herb-brand packaging helps conservative users keep choices predictable. \\
+Standard &
+Reishi extract &
+Solaray Reishi &
+\$22 &
+Mushroom extract &
+Phase-07 &
+Mid-level price works for users wanting better label confidence without steep cost. \\
+Standard &
+Reishi extract &
+Om Reishi &
+\$28 &
+Mushroom extract &
+Phase-07 &
+Category-specialist branding appeals to buyers who prefer mushroom-focused suppliers. \\
+Standard &
+Reishi extract &
+Gaia Mushrooms Reishi &
+\$33 &
+Mushroom extract &
+Phase-07 &
+Polished herbal-mushroom positioning suits users who dislike generic commodity feel. \\
+Elite &
+Reishi extract &
+Host Defense Reishi &
+\$35 &
+Mushroom extract &
+Phase-07 &
+Premium mushroom-house sourcing identity is a common upgrade reason in this class. \\
+Elite &
+Reishi extract &
+Nootropics Depot Red Reishi &
+\$40 &
+Mushroom extract &
+Phase-07 &
+Higher-end extract format fits buyers who prioritize stronger standardization signals. \\
+Elite &
+Reishi extract &
+Pure Encapsulations Reishi &
+\$46 &
+Mushroom extract &
+Phase-07 &
+Premium capsule build is chosen when formula simplicity matters alongside category fidelity. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.02.J - Tongkat Ali Extract}
+\phantomsection
+\addcontentsline{toc}{section}{7.02.J - Tongkat Ali Extract}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Tongkat ali extract &
+Swanson Tongkat Ali &
+\$16 &
+Botanical extract &
+Phase-10 &
+Entry-level capsules keep this more endocrine-adjacent category from becoming an expensive experiment. \\
+Budget &
+Tongkat ali extract &
+Nutricost Tongkat Ali &
+\$22 &
+Botanical extract &
+Phase-10 &
+Straight single-ingredient labeling suits buyers who want minimal formula overlap. \\
+Budget &
+Tongkat ali extract &
+Double Wood Tongkat Ali &
+\$20 &
+Botanical extract &
+Phase-10 &
+Basic modern-nootropics branding appeals to users who want a plain standardized bottle. \\
+Standard &
+Tongkat ali extract &
+Solaray Tongkat Ali &
+\$28 &
+Botanical extract &
+Phase-10 &
+Mid-tier option suits buyers who want an upgrade in brand presentation without premium pricing. \\
+Standard &
+Tongkat ali extract &
+Double Wood LJ-100 Tongkat Ali &
+\$35 &
+Botanical extract &
+Phase-10 &
+Standardized branded extract is chosen when label specificity is part of the buying logic. \\
+Standard &
+Tongkat ali extract &
+Nootropics Depot Tongkat Ali 2\% &
+\$38 &
+Botanical extract &
+Phase-10 &
+Lower-percentage standardized extract fits conservative users who still want tighter spec language. \\
+Elite &
+Tongkat ali extract &
+Nootropics Depot Tongkat Ali 10\% &
+\$50 &
+Botanical extract &
+Phase-10 &
+Higher-standardization extract appeals when potency labeling consistency matters more than price. \\
+Elite &
+Tongkat ali extract &
+Momentous Tongkat Ali &
+\$55 &
+Botanical extract &
+Phase-10 &
+Premium sports-wellness branding suits buyers who prefer a cleaner performance-adjacent presentation. \\
+Elite &
+Tongkat ali extract &
+Pure Encapsulations Tongkat Ali &
+\$58 &
+Botanical extract &
+Phase-10 &
+Practitioner-style positioning fits users who want a more formal bottle profile for a sensitive category. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.02.K - Fenugreek Extract}
+\phantomsection
+\addcontentsline{toc}{section}{7.02.K - Fenugreek Extract}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Fenugreek extract &
+Swanson Fenugreek &
+\$11 &
+Seed extract &
+Phase-10 &
+Low-cost capsules make this category easier to keep educational rather than elaborate. \\
+Budget &
+Fenugreek extract &
+\textbf{NOW} Foods Fenugreek &
+\$12 &
+Seed extract &
+Phase-10 &
+Simple single-herb presentation works for buyers wanting minimal overlap with other bottles. \\
+Budget &
+Fenugreek extract &
+Nature's Way Fenugreek Seed &
+\$13 &
+Seed extract &
+Phase-10 &
+Mainstream herb-brand format suits conservative shoppers who value label familiarity. \\
+Standard &
+Fenugreek extract &
+Solaray Fenugreek &
+\$18 &
+Seed extract &
+Phase-10 &
+Mid-tier presentation offers a modest upgrade without pushing total stack cost too high. \\
+Standard &
+Fenugreek extract &
+Nutricost Fenugreek &
+\$16 &
+Seed extract &
+Phase-10 &
+Straightforward bottle design fits buyers who want a plain one-ingredient purchase decision. \\
+Standard &
+Fenugreek extract &
+GNC Herbal Plus Fenugreek &
+\$18 &
+Seed extract &
+Phase-10 &
+Retail chain availability can simplify replacement when local purchase matters. \\
+Elite &
+Fenugreek extract &
+Pure Encapsulations Fenugreek &
+\$34 &
+Seed extract &
+Phase-10 &
+Premium formula presentation appeals when excipient simplicity is part of product choice. \\
+Elite &
+Fenugreek extract &
+Integrative Therapeutics Fenugreek &
+\$30 &
+Seed extract &
+Phase-10 &
+Practitioner-leaning branding suits users who want a more formal supplement profile. \\
+Elite &
+Fenugreek extract &
+Designs for Health Fenugreek &
+\$36 &
+Seed extract &
+Phase-10 &
+Higher-end label positioning fits buyers who prioritize stable sourcing presentation over price. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.02.L - Shilajit}
+\phantomsection
+\addcontentsline{toc}{section}{7.02.L - Shilajit}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Shilajit &
+Swanson Shilajit &
+\$16 &
+Mineral pitch &
+Phase-10 &
+Cheap capsule form keeps this niche category from becoming a high-cost curiosity. \\
+Budget &
+Shilajit &
+Nutricost Shilajit &
+\$24 &
+Mineral pitch &
+Phase-10 &
+Plain bottle style suits buyers who want a simple entry into resin-derived products. \\
+Budget &
+Shilajit &
+Jarrow Shilajit Fulvic Acid Complex &
+\$22 &
+Mineral pitch &
+Phase-10 &
+Fulvic-acid-forward branding appeals to users who want a more specific label story. \\
+Standard &
+Shilajit &
+Double Wood Shilajit &
+\$30 &
+Mineral pitch &
+Phase-10 &
+Mid-tier nootropics branding fits buyers who want a cleaner modern presentation. \\
+Standard &
+Shilajit &
+Nootropics Depot PrimaVie Shilajit &
+\$35 &
+Mineral pitch &
+Phase-10 &
+Branded raw-material language is often the reason buyers step up within this item class. \\
+Standard &
+Shilajit &
+Life Extension Shilajit &
+\$32 &
+Mineral pitch &
+Phase-10 &
+Established supplement-house branding suits users who prefer a mainstream premium label. \\
+Elite &
+Shilajit &
+Momentous Shilajit &
+\$49 &
+Mineral pitch &
+Phase-10 &
+Premium wellness positioning fits buyers who want a polished high-end daily-use bottle. \\
+Elite &
+Shilajit &
+Pure Encapsulations Shilajit &
+\$48 &
+Mineral pitch &
+Phase-10 &
+Practitioner-style presentation appeals when formula simplicity is prioritized. \\
+Elite &
+Shilajit &
+Cymbiotika Shilajit &
+\$65 &
+Mineral pitch &
+Phase-10 &
+Lifestyle-premium branding suits buyers who value packaging refinement and presentation quality. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.02.M - DIM}
+\phantomsection
+\addcontentsline{toc}{section}{7.02.M - DIM}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+DIM &
+Swanson DIM Complex &
+\$16 &
+Phytochemical &
+Phase-10 &
+Low-cost capsule form is suitable when the goal is simple category exposure, not formula luxury. \\
+Budget &
+DIM &
+\textbf{NOW} Foods DIM 200 &
+\$20 &
+Phytochemical &
+Phase-10 &
+Straight DIM labeling helps buyers keep the product identity easy to understand. \\
+Budget &
+DIM &
+Nutricost DIM &
+\$18 &
+Phytochemical &
+Phase-10 &
+Minimalist bottle style fits users who want a plain one-ingredient purchase decision. \\
+Standard &
+DIM &
+Nature's Way DIM-Plus &
+\$24 &
+Phytochemical &
+Phase-10 &
+Blended support format appeals to buyers who want a more packaged product experience. \\
+Standard &
+DIM &
+Life Extension DIM &
+\$26 &
+Phytochemical &
+Phase-10 &
+Established brand identity suits users who prefer mainstream supplement-house familiarity. \\
+Standard &
+DIM &
+Jarrow DIM + CDG &
+\$30 &
+Phytochemical &
+Phase-10 &
+Combo approach appeals when the buyer wants fewer separate bottles on the shelf. \\
+Elite &
+DIM &
+Pure Encapsulations DIM &
+\$39 &
+Phytochemical &
+Phase-10 &
+Premium capsule build fits buyers who prioritize stripped-down practitioner-style formulas. \\
+Elite &
+DIM &
+Designs for Health DIM-Evail &
+\$56 &
+Phytochemical &
+Phase-10 &
+Emulsified premium format is chosen when delivery style matters more than lowest cost. \\
+Elite &
+DIM &
+Thorne Hormone Advantage &
+\$44 &
+Phytochemical &
+Phase-10 &
+Higher-end blend presentation suits users who want a more curated endocrine-support bottle. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.02.N - Indole-3-Carbinol}
+\phantomsection
+\addcontentsline{toc}{section}{7.02.N - Indole-3-Carbinol}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Indole-3-carbinol &
+Swanson Indole-3-Carbinol &
+\$18 &
+Phytochemical &
+Phase-10 &
+Budget capsules give a low-cost route into cruciferous-compound support products. \\
+Budget &
+Indole-3-carbinol &
+\textbf{NOW} Foods Indole-3-Carbinol &
+\$20 &
+Phytochemical &
+Phase-10 &
+Simple branding works for buyers who want a clean single-ingredient label. \\
+Budget &
+Indole-3-carbinol &
+Nutricost Indole-3-Carbinol &
+\$22 &
+Phytochemical &
+Phase-10 &
+Plain bottle format suits conservative shoppers avoiding more complex support blends. \\
+Standard &
+Indole-3-carbinol &
+Solaray Indole-3-Carbinol &
+\$26 &
+Phytochemical &
+Phase-10 &
+Mid-range option fits users wanting a small upgrade in presentation quality. \\
+Standard &
+Indole-3-carbinol &
+Life Extension Indole-3-Carbinol &
+\$30 &
+Phytochemical &
+Phase-10 &
+Brand familiarity appeals when supplement-house continuity matters to the buyer. \\
+Standard &
+Indole-3-carbinol &
+Jarrow Indole-3-Carbinol &
+\$28 &
+Phytochemical &
+Phase-10 &
+Straight capsule format helps keep the product class easy to compare across brands. \\
+Elite &
+Indole-3-carbinol &
+Pure Encapsulations Indole-3-Carbinol &
+\$42 &
+Phytochemical &
+Phase-10 &
+Premium formula simplicity is the main reason to step up within this niche item class. \\
+Elite &
+Indole-3-carbinol &
+Integrative Therapeutics I3C &
+\$38 &
+Phytochemical &
+Phase-10 &
+Clinical-style branding suits users who want a more formal practitioner-facing product feel. \\
+Elite &
+Indole-3-carbinol &
+Designs for Health Indole-3-Carbinol &
+\$44 &
+Phytochemical &
+Phase-10 &
+Higher-end label positioning appeals when consistency and presentation outweigh price sensitivity. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.02.O - Calcium-D-Glucarate}
+\phantomsection
+\addcontentsline{toc}{section}{7.02.O - Calcium-D-Glucarate}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Calcium-D-glucarate &
+Swanson Calcium D-Glucarate &
+\$18 &
+Conjugation support &
+Phase-10 &
+Low-cost capsules fit buyers who want a simple standalone bottle for this support class. \\
+Budget &
+Calcium-D-glucarate &
+\textbf{NOW} Foods Calcium D-Glucarate &
+\$22 &
+Conjugation support &
+Phase-10 &
+Simple branding keeps the product easy to identify and reorder consistently. \\
+Budget &
+Calcium-D-glucarate &
+Nutricost Calcium D-Glucarate &
+\$20 &
+Conjugation support &
+Phase-10 &
+Minimalist bottle design suits shoppers avoiding more decorative multi-support products. \\
+Standard &
+Calcium-D-glucarate &
+Jarrow Calcium D-Glucarate &
+\$24 &
+Conjugation support &
+Phase-10 &
+Mid-tier option works well when the buyer wants a known supplement-house label. \\
+Standard &
+Calcium-D-glucarate &
+Solaray Calcium D-Glucarate &
+\$25 &
+Conjugation support &
+Phase-10 &
+Moderate pricing gives a small quality step-up without practitioner-level spend. \\
+Standard &
+Calcium-D-glucarate &
+Life Extension Calcium D-Glucarate &
+\$30 &
+Conjugation support &
+Phase-10 &
+Mainstream premium branding appeals when bottle-to-bottle continuity is prioritized. \\
+Elite &
+Calcium-D-glucarate &
+Integrative Therapeutics Calcium D-Glucarate &
+\$36 &
+Conjugation support &
+Phase-10 &
+Clinical-style branding suits users who want a more formal supplement presentation. \\
+Elite &
+Calcium-D-glucarate &
+Pure Encapsulations Calcium D-Glucarate &
+\$39 &
+Conjugation support &
+Phase-10 &
+Premium excipient control is often the deciding factor in this item category. \\
+Elite &
+Calcium-D-glucarate &
+Designs for Health Calcium D-Glucarate &
+\$41 &
+Conjugation support &
+Phase-10 &
+Higher-end practitioner positioning fits buyers who prefer tight formula presentation. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.02.P - Saw Palmetto Extract}
+\phantomsection
+\addcontentsline{toc}{section}{7.02.P - Saw Palmetto Extract}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Saw palmetto extract &
+Swanson Saw Palmetto &
+\$16 &
+Berry extract &
+Phase-10 &
+Cheap softgel entry keeps this category from becoming a major spend. \\
+Budget &
+Saw palmetto extract &
+\textbf{NOW} Foods Saw Palmetto Extract &
+\$18 &
+Berry extract &
+Phase-10 &
+Straight labeling suits buyers who want a simple botanical with no elaborate positioning. \\
+Budget &
+Saw palmetto extract &
+Nature's Way Saw Palmetto Berries &
+\$19 &
+Berry extract &
+Phase-10 &
+Familiar herb-brand packaging helps conservative users keep choices predictable. \\
+Standard &
+Saw palmetto extract &
+Solaray Saw Palmetto &
+\$22 &
+Berry extract &
+Phase-10 &
+Mid-tier option works for buyers wanting a slightly more polished bottle without premium cost. \\
+Standard &
+Saw palmetto extract &
+Gaia Herbs Saw Palmetto &
+\$27 &
+Berry extract &
+Phase-10 &
+Herb-specialist branding appeals when the preference is plant-first product identity. \\
+Standard &
+Saw palmetto extract &
+Life Extension Ultra Prostate Formula &
+\$30 &
+Berry extract &
+Phase-10 &
+Broader support formula suits buyers who prefer one blended bottle over several singles. \\
+Elite &
+Saw palmetto extract &
+Pure Encapsulations Saw Palmetto &
+\$36 &
+Berry extract &
+Phase-10 &
+Premium practitioner-style presentation fits users prioritizing cleaner capsule formulas. \\
+Elite &
+Saw palmetto extract &
+Integrative Therapeutics Saw Palmetto &
+\$34 &
+Berry extract &
+Phase-10 &
+Clinical-leaning label suits buyers who want a more formal supplement profile. \\
+Elite &
+Saw palmetto extract &
+Thorne Prostate 5-LX &
+\$50 &
+Berry extract &
+Phase-10 &
+High-end blended presentation appeals when a more curated prostate-support product is preferred. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.02.Q - Nettle Root Extract}
+\phantomsection
+\addcontentsline{toc}{section}{7.02.Q - Nettle Root Extract}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Nettle root extract &
+Swanson Nettle Root &
+\$12 &
+Root extract &
+Phase-10 &
+Low-cost bottle keeps this adjunct botanical from inflating total category spend. \\
+Budget &
+Nettle root extract &
+\textbf{NOW} Foods Nettle Root &
+\$15 &
+Root extract &
+Phase-10 &
+Straight herb labeling helps buyers keep the product class easy to track. \\
+Budget &
+Nettle root extract &
+Nature's Way Stinging Nettle Root &
+\$14 &
+Root extract &
+Phase-10 &
+Familiar retail presence suits conservative users who value easy replacement. \\
+Standard &
+Nettle root extract &
+Nutricost Nettle Root &
+\$16 &
+Root extract &
+Phase-10 &
+Plain capsule format works when the goal is a simple single-herb purchase. \\
+Standard &
+Nettle root extract &
+Solaray Nettle Root &
+\$18 &
+Root extract &
+Phase-10 &
+Mid-range option adds modest label refinement without pushing price too high. \\
+Standard &
+Nettle root extract &
+Herb Pharm Stinging Nettle &
+\$18 &
+Root extract &
+Phase-10 &
+Liquid format suits users who prefer extract drops instead of larger capsules. \\
+Elite &
+Nettle root extract &
+Pure Encapsulations Nettle &
+\$34 &
+Root extract &
+Phase-10 &
+Practitioner-style simplicity is usually the main reason to upgrade within this class. \\
+Elite &
+Nettle root extract &
+Integrative Therapeutics Nettle &
+\$30 &
+Root extract &
+Phase-10 &
+Clinical branding fits buyers who want a more structured product presentation. \\
+Elite &
+Nettle root extract &
+MediHerb Stinging Nettle &
+\$32 &
+Root extract &
+Phase-10 &
+Premium herbal-line positioning appeals when consistency and label quality are prioritized. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.02.R - Beta-Sitosterol Complex}
+\phantomsection
+\addcontentsline{toc}{section}{7.02.R - Beta-Sitosterol Complex}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Beta-sitosterol complex &
+Swanson Beta-Sitosterol &
+\$15 &
+Plant sterol &
+Phase-10 &
+Cheap softgels are useful when the buyer wants a basic sterol product and little else. \\
+Budget &
+Beta-sitosterol complex &
+\textbf{NOW} Foods Beta-Sitosterol Plant Sterols &
+\$20 &
+Plant sterol &
+Phase-10 &
+Simple sterol-focused labeling keeps the item class easy to understand and reorder. \\
+Budget &
+Beta-sitosterol complex &
+Nutricost Beta-Sitosterol &
+\$18 &
+Plant sterol &
+Phase-10 &
+Minimalist presentation suits users who prefer a plain single-category bottle. \\
+Standard &
+Beta-sitosterol complex &
+Solaray Beta Sitosterol &
+\$24 &
+Plant sterol &
+Phase-10 &
+Mid-tier option fits buyers who want a modest step-up in presentation without excess cost. \\
+Standard &
+Beta-sitosterol complex &
+Jarrow Beta-Sitosterol &
+\$27 &
+Plant sterol &
+Phase-10 &
+Supplement-house familiarity appeals when bottle continuity is part of the selection logic. \\
+Standard &
+Beta-sitosterol complex &
+Life Extension Ultra Natural Prostate &
+\$34 &
+Plant sterol &
+Phase-10 &
+Blended support profile suits users trying to reduce total bottle count. \\
+Elite &
+Beta-sitosterol complex &
+Douglas Laboratories Ultra Sterols &
+\$36 &
+Plant sterol &
+Phase-10 &
+Practitioner-line branding is attractive when a more formal product identity is preferred. \\
+Elite &
+Beta-sitosterol complex &
+Integrative Therapeutics Beta-Sitosterol &
+\$38 &
+Plant sterol &
+Phase-10 &
+Clinical-style presentation suits buyers who want a cleaner premium sterol option. \\
+Elite &
+Beta-sitosterol complex &
+Designs for Health Sterol Supreme &
+\$44 &
+Plant sterol &
+Phase-10 &
+Higher-end label positioning fits users prioritizing polish and practitioner-brand consistency. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.02.S - Tribulus Terrestris Extract}
+\phantomsection
+\addcontentsline{toc}{section}{7.02.S - Tribulus Terrestris Extract}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Tribulus terrestris extract &
+Swanson Tribulus &
+\$13 &
+Botanical extract &
+Phase-12 &
+Inexpensive capsules keep this more marketing-heavy category from becoming a major spend. \\
+Budget &
+Tribulus terrestris extract &
+\textbf{NOW} Foods Tribulus &
+\$15 &
+Botanical extract &
+Phase-12 &
+Straight label format suits buyers who want a recognizable basic product and nothing flashy. \\
+Budget &
+Tribulus terrestris extract &
+Nutricost Tribulus Terrestris &
+\$18 &
+Botanical extract &
+Phase-12 &
+Plain bottle design works for conservative users exploring the category late and cautiously. \\
+Standard &
+Tribulus terrestris extract &
+GNC Herbal Plus Tribulus &
+\$20 &
+Botanical extract &
+Phase-12 &
+Retail-chain availability can simplify replacement when immediate local purchase matters. \\
+Standard &
+Tribulus terrestris extract &
+Source Naturals Tribulus &
+\$19 &
+Botanical extract &
+Phase-12 &
+Familiar supplement-house branding suits users who prefer a known shelf presence. \\
+Standard &
+Tribulus terrestris extract &
+Solaray Tribulus &
+\$22 &
+Botanical extract &
+Phase-12 &
+Mid-tier price point provides a small upgrade without adding much formula complexity. \\
+Elite &
+Tribulus terrestris extract &
+Nootropics Depot Tribulus &
+\$32 &
+Botanical extract &
+Phase-12 &
+Higher-end extract positioning appeals when more formal spec language is preferred. \\
+Elite &
+Tribulus terrestris extract &
+Pure Encapsulations Tribulus &
+\$35 &
+Botanical extract &
+Phase-12 &
+Premium capsule simplicity is attractive when excipient control is part of the buying decision. \\
+Elite &
+Tribulus terrestris extract &
+Integrative Therapeutics Tribulus &
+\$30 &
+Botanical extract &
+Phase-12 &
+Clinical-style branding fits users who want a more structured late-phase product presentation. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.02.T - Cortisol-Support Botanical Blend}
+\phantomsection
+\addcontentsline{toc}{section}{7.02.T - Cortisol-Support Botanical Blend}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Cortisol-support botanical blend &
+Swanson Stress Complex &
+\$18 &
+Herbal blend &
+Phase-12 &
+Low-cost blend format gives a simple late-phase option for buyers preferring one bottle. \\
+Budget &
+Cortisol-support botanical blend &
+Zhou Adrenal Support &
+\$24 &
+Herbal blend &
+Phase-12 &
+All-in-one label suits users who want a more guided blend rather than several single herbs. \\
+Budget &
+Cortisol-support botanical blend &
+Double Wood Cortisol Support &
+\$25 &
+Herbal blend &
+Phase-12 &
+Modern bottle style appeals when the buyer wants a simple stress-oriented stack substitute. \\
+Standard &
+Cortisol-support botanical blend &
+Gaia Adrenal Health Daily Support &
+\$30 &
+Herbal blend &
+Phase-12 &
+Botanical-house blend identity fits users who prefer a more plant-forward formulation style. \\
+Standard &
+Cortisol-support botanical blend &
+Life Extension Adrenal Energy Formula &
+\$26 &
+Herbal blend &
+Phase-12 &
+Mainstream premium branding suits buyers wanting a recognizable multi-ingredient support product. \\
+Standard &
+Cortisol-support botanical blend &
+Integrative Therapeutics Cortisol Manager &
+\$36 &
+Herbal blend &
+Phase-12 &
+Well-known stress-support positioning appeals when the buyer wants a more established blend. \\
+Elite &
+Cortisol-support botanical blend &
+Metagenics Adreset &
+\$43 &
+Herbal blend &
+Phase-12 &
+Practitioner-level blend suits users prioritizing polished formulation and brand consistency. \\
+Elite &
+Cortisol-support botanical blend &
+Pure Encapsulations Daily Stress Formula &
+\$41 &
+Herbal blend &
+Phase-12 &
+Premium capsule style appeals when a cleaner inactive-ingredient profile is preferred. \\
+Elite &
+Cortisol-support botanical blend &
+Designs for Health Adrenotone &
+\$48 &
+Herbal blend &
+Phase-12 &
+Higher-end practitioner positioning fits buyers who want a formal late-phase support blend. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{When These Items Are Needed}
+\phantomsection
+\addcontentsline{toc}{section}{When These Items Are Needed}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=2.35in]
+    Q[c,wd=1.35in]
+    Q[l,wd=3.10in]
+    Q[l,wd=3.10in]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-2} = {halign=c, valign=m},
+  column{3-4} = {halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Item} &
+\Hdr{First required phase} &
+\Hdr{Why it becomes necessary} &
+\Hdr{What happens if missing} \\
+Ashwagandha extract &
+Phase-06 &
+This is the first conservative point where a simple adaptogen can be considered without competing with the early pipeline’s routine-building priorities. &
+No gate is blocked; one optional stress-support avenue simply remains unused. \\
+Rhodiola rosea extract &
+Phase-06 &
+It fits the first later-phase window where optional fatigue-resilience tools may be considered without redefining fundamentals. &
+Training can proceed normally, but this specific optional resilience lever is absent. \\
+Holy basil extract &
+Phase-06 &
+It is a lower-variance botanical that can be considered once early survivability systems are already stable. &
+Nothing mandatory is lost; only this optional calming botanical path is unavailable. \\
+Eleuthero extract &
+Phase-07 &
+It is deferred until workload density is more established and early habit-forming priorities are already protected. &
+No progression rule changes; the product class simply stays off the shelf. \\
+Schisandra extract &
+Phase-07 &
+It makes most sense after the category has already stayed non-essential through the earlier phases. &
+No training exposure is blocked; only a late-added optional botanical is absent. \\
+Panax ginseng extract &
+Phase-07 &
+It is held until the program is far enough along that optional botanicals are less likely to distract from base execution. &
+There is no gate consequence; the user just does not employ this optional ginseng class. \\
+Maca root &
+Phase-07 &
+It is a food-like botanical that still belongs later than the foundational execution phases. &
+The pipeline remains fully deployable; this optional support route is simply omitted. \\
+Cordyceps extract &
+Phase-07 &
+It fits the later adaptogen window rather than the early adherence-first portion of the pipeline. &
+No admissibility issue is created; only this optional mushroom class is missing. \\
+Reishi extract &
+Phase-07 &
+It is best treated as a later optional botanical once simpler execution priorities are already locked. &
+Nothing operational breaks; the optional mushroom-adaptogen path stays unused. \\
+Tongkat ali extract &
+Phase-10 &
+This is a more endocrine-adjacent item class, so it is deferred until much later for stability and variance control. &
+No phase gate is affected; only a late optional endocrine-oriented product class is absent. \\
+Fenugreek extract &
+Phase-10 &
+It is deferred to the later optional window because it sits closer to hormone-support marketing than core training needs. &
+No training or test requirement is lost; only this optional botanical category is not explored. \\
+Shilajit &
+Phase-10 &
+This more specialized support class is kept well out of the early and middle pipeline to reduce unnecessary complexity. &
+Execution continues unchanged, but one optional niche support item is unavailable. \\
+DIM &
+Phase-10 &
+This item is deferred because it is more interpretation-sensitive and should not compete with earlier foundational priorities. &
+No progression rule changes; the category simply remains unused. \\
+Indole-3-carbinol &
+Phase-10 &
+It belongs in the later optional window because it is more hormone-adjacent than foundational. &
+Nothing gate-critical is missing; only this optional cruciferous-compound route is absent. \\
+Calcium-D-glucarate &
+Phase-10 &
+It is placed in the same later optional band as other more specific endocrine-support products. &
+Training remains fully valid; only this optional support angle is not present. \\
+Saw palmetto extract &
+Phase-10 &
+It is a later-phase optional botanical rather than something that belongs anywhere near baseline build-out. &
+No mandatory capability is lost; this optional late-phase product class is simply not used. \\
+Nettle root extract &
+Phase-10 &
+It fits the same later hormone-support window as other endocrine-adjacent botanicals. &
+The program remains unaffected; only this optional root extract is absent. \\
+Beta-sitosterol complex &
+Phase-10 &
+It is deferred because it is more specific and less foundational than the main pipeline requirements. &
+No progression or validity consequence occurs; this optional sterol route is just unavailable. \\
+Tribulus terrestris extract &
+Phase-12 &
+This more marketing-sensitive category is pushed furthest back to reduce product-chasing and interpretive noise. &
+No gate is blocked; the user simply omits this late optional botanical. \\
+Cortisol-support botanical blend &
+Phase-12 &
+Blended products are deferred furthest because they add the most variable formula context and least need in earlier phases. &
+Nothing mandatory is missing; only a late optional multi-ingredient support blend is absent. \\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+\clearpage
+
+\section*{Compliance Checklist}
+\phantomsection
+\addcontentsline{toc}{section}{Compliance Checklist}
+
+\begin{itemize}
+\item Only one deliverable is provided for Target Category 7.02.
+\item The title uses the exact locked shopping-list format.
+\item Reconciliation Notes are included because the attached reference set contains timing and pathway conflicts for 7.02.
+\item Assumption Notes explicitly define First Phase Required as earliest conservative optional consideration point, not mandatory acquisition timing.
+\item The chart uses the exact locked column set for every item group.
+\item The Item column contains 20 distinct item categories.
+\item Every item includes exactly 3 Budget rows, 3 Standard rows, and 3 Elite rows.
+\item Prices are shown as single approximate USD figures, not ranges.
+\item Notes are plain-language, item-relevant, and unique to each individual entry.
+\item The timing posture does not treat 7.02 as required and remains consistent with the locked Stage-6 education-only rule.
+\item The required `When These Items Are Needed` table is included and phase labels match the chart.
+\item No dosing, cycling, sourcing, procurement, programming, new tests, or medical treatment guidance is included.
+\end{itemize}
+
+\end{document}

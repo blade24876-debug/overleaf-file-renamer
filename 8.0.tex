@@ -1,0 +1,346 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{tcolorbox}
+\begin{center}
+Stage 8 — Crosswalk Gap Check and Consistency Audit Packet\\[0.35em]
+\textbf{SOF} Physical Development Transformation Program\\[0.25em]
+182-Week Civilian-to-Selection Readiness Pipeline\\[0.65em]
+\TitleLine
+\end{center}
+\end{tcolorbox}
+
+\vspace{0.35em}
+
+\section*{Stage 8 — Crosswalk Gap Check and Consistency Audit Packet}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 8 — Crosswalk Gap Check and Consistency Audit Packet}
+
+\subsection*{Introduction}
+\phantomsection
+\addcontentsline{toc}{subsection}{Introduction}
+
+\subsubsection*{1) Purpose}
+
+Stage 8 exists to perform system-level crosswalk QA across Stages 1–7 so the full package remains safe, auditable, and internally coherent. Stage 8 outputs are analysis, crosswalk mapping, and issue logging only. Stage 8 does not redesign the program and does not rewrite upstream artifacts.
+
+Stage 8 is the mechanism that ensures gate decisions are defensible: the system must prove that the evidence required by governance can be produced using defined tests, inside defined windows, with defined resources available at time of need.
+
+\subsubsection*{2) Scope}
+
+\paragraph*{Inclusions}
+
+\begin{itemize}
+\item Stage 8 internal deliverable structure (listed for completeness; output below):
+  \begin{itemize}
+  \item 8.A Master Standards Index
+  \item 8.B Standards to Tests to Phases Crosswalk
+  \item 8.C Standards to Gear and Resources to Overviews Crosswalk
+  \item 8.D Gap / Overload / Inconsistency Analysis Log
+  \item 8.E Pre-Deploy and Implementation Checklists
+  \end{itemize}
+\item Issue logging using stable Stage 8 Issue IDs in the format \textbf{ISS-08}-\#\#\#.
+\item Corrective principles limited to allowed moves only:
+  \begin{itemize}
+  \item adjust gate timing within Stage 3 protected windows,
+  \item adjust tier timing within Stage 6,
+  \item clarify mapping language in Stage 2, Stage 5, and Stage 7,
+  \item do not rewrite protocols, thresholds, or phase purposes.
+  \end{itemize}
+\end{itemize}
+
+\paragraph*{Exclusions}
+
+\begin{itemize}
+\item No new tests, thresholds, domains, phase purposes, or categories.
+\item No rewriting of upstream artifacts.
+\item No training programming content.
+\end{itemize}
+
+\subsubsection*{3) How to Use}
+
+\paragraph*{Coach Lead}
+
+\begin{itemize}
+\item Run Stage 8 crosswalks before packaging/deployment and after any upstream patch that touches tests, gates, timing, or equipment readiness.
+\item Treat Stage 8 outputs as a deployability decision layer:
+  \begin{itemize}
+  \item Must-fix issues (safety, inadmissible evidence, missing required resources) block deployment until resolved.
+  \item Monitor issues (minor ambiguity, low-impact clarity gaps) may be carried forward with explicit documentation and constrained use posture.
+  \end{itemize}
+\item Use issue IDs to coordinate corrections and to prevent silent drift: any correction is traceable back to an \textbf{ISS-08}-\#\#\# entry.
+\end{itemize}
+
+\paragraph*{Stage 9 packaging}
+
+\begin{itemize}
+\item Stage 8 issues flow into Stage 9 QA summary and known issues reporting.
+\item Stage 9 uses Stage 8 to declare coherence state: deployable vs draft-non-deployable, with explicit issue inventory.
+\end{itemize}
+
+\paragraph*{Execution}
+
+\begin{itemize}
+\item Stage 8 supports defensible gate decisions by verifying:
+  \begin{itemize}
+  \item evidence exists (\textbf{VALID} tests and admissible sessions),
+  \item instruments exist (Stage 2 protocols and metric IDs),
+  \item timing exists (Stage 3 protected windows),
+  \item resources exist (Stage 6 Tier 1+ at time of need and Stage 7 operational manuals).
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{4) Inputs and Assumptions}
+
+\paragraph*{Inputs}
+
+\begin{itemize}
+\item Stage 1 governance and validity doctrine, including admissibility posture and gate outcomes.
+\item Stage 2 authoritative measurement layer:
+  \begin{itemize}
+  \item domain taxonomy tags (\textbf{RUN}, \textbf{SWIM}, \textbf{CAL}, \textbf{RUCK}, \textbf{STR}, \textbf{BODYCOMP}, \textbf{DURABILITY}, \textbf{RECOVERY}),
+  \item metric inventory with \textbf{MET-2B}-\#\#\#,
+  \item protocol cards C\#,
+  \item thresholds and logging conventions.
+  \end{itemize}
+\item Stage 3 calendars and deload/test windows and adjustment/reslot rules.
+\item Stage 4 Phase 00 specification and exit standards.
+\item Stage 5 macro design for Phases 01–13 and gate posture language.
+\item Stage 6 tier timing matrices and phase-by-phase capability readiness.
+\item Stage 7 category overviews 7.01–7.20.
+\end{itemize}
+
+\paragraph*{Assumption Ledger (only if needed)}
+
+\begin{itemize}
+\item Missing artifacts are recorded as gaps and logged as issues. No inference is permitted.
+\end{itemize}
+
+\subsubsection*{5) Interfaces}
+
+\paragraph*{Upstream dependencies}
+
+\begin{itemize}
+\item Stage 8 audits Stages 1–7 for coherence, crosswalk completeness, timing alignment, and deployability readiness.
+\end{itemize}
+
+\paragraph*{Downstream consumers}
+
+\begin{itemize}
+\item Stage 9 QA summary, packaging doctrine, implementation guide, and deployment checklists.
+\end{itemize}
+
+\paragraph*{Crosswalk hooks}
+
+\begin{itemize}
+\item Stage 2 identifiers:
+  \begin{itemize}
+  \item Protocol cards C\#
+  \item Metric IDs \textbf{MET-2B}-\#\#\#
+  \end{itemize}
+\item Domain tags:
+  \begin{itemize}
+  \item \textbf{RUN}, \textbf{SWIM}, \textbf{CAL}, \textbf{RUCK}, \textbf{STR}, \textbf{BODYCOMP}, \textbf{DURABILITY}, \textbf{RECOVERY}
+  \end{itemize}
+\item Phase identifiers and gate windows (Stage 3 protected windows).
+\item Stage 7 category IDs 7.01–7.20 and Stage 6 tier timing (Tier 0–Tier 3, with Entry/Mid/End timing posture where used).
+\end{itemize}
+
+\subsubsection*{6) Gate and Acceptance Criteria for Stage 8}
+
+Stage 8 is complete and deployable as an audit packet when:
+
+\begin{itemize}
+\item Crosswalk tables (8.A–8.C) are complete and every standard/metric is traceable to:
+  \begin{itemize}
+  \item at least one Stage 2 protocol card,
+  \item at least one phase mapping that includes development and gate context,
+  \item required resource categories at Tier 1+ available at time of need.
+  \end{itemize}
+\item Gap and conflict detection (8.D) is complete and all gaps/conflicts are logged using \textbf{ISS-08}-\#\#\# IDs with clear classification and disposition posture.
+\item Corrective principles are provided at principle-level only and remain within allowed moves.
+\item A must-fix vs monitor posture is produced so deployment decisions are explicit and auditable.
+\end{itemize}
+
+\subsubsection*{7) Common Failure Modes and Controls}
+
+\begin{itemize}
+\item Silent fixes instead of issue logging → prohibited; enforce \textbf{ISS-08}-\#\#\# logging for every detected mismatch and every correction.
+\item Inventing tests or thresholds to patch gaps → prohibited; issues must be resolved by mapping, timing adjustments within allowed moves, or clarifying language.
+\item Ignoring Stage 6 timing conflicts → prohibited; timing conflicts are logged and treated as deployability risks until resolved.
+\item Missing join keys in crosswalk tables → enforce consistent use of C\#, \textbf{MET-2B}-\#\#\#, domain tags, phase IDs, and category IDs 7.01–7.20.
+\item Understating safety conflicts → classify as Safety-type issues and treat as must-fix; safety overrides schedule and performance.
+\item Confusing analysis with redesign → Stage 8 only flags and proposes corrective principles; does not rewrite upstream artifacts.
+\end{itemize}
+
+\end{document}

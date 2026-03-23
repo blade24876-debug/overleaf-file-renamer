@@ -1,0 +1,583 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 3.A — Design Principles for Testing and Deloads}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 3.A — Design Principles for Testing and Deloads}
+
+\subsection*{3.A.1 Guiding Principles Narrative and Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{3.A.1 Guiding Principles Narrative and Rules}
+
+Testing exists to produce admissible, comparable evidence for gate decisions. Deloads exist to reduce fatigue and protect tissue tolerance so that test outcomes reflect capability rather than accumulated stress, novelty, or avoidable risk. In early phases, the scheduling bias is conservative: preserve compliance, build validity infrastructure, and prevent impact/load overreach from contaminating evidence or creating preventable injury.
+
+As phases advance, testing becomes more specific and more consequential, but must remain governed by the same core controls: protected test windows, anti-stacking caps, spacing rules, environment safety posture, and reslot discipline. Scheduling must enable replication stable tier classification requires at least 2 of the last 3 \textbf{VALID} tests in the decision window without overtesting, fatigue contamination, or risk escalation.
+
+\subsubsection*{3.A.1.A Maximal and Near-Maximal Testing Frequency Ceilings by Domain}
+\phantomsection
+
+Scheduling definition locked for this deliverable:
+
+\begin{itemize}
+\item Maximal for scheduling purposes means the most demanding variant scheduled in the current phase window, e.g., the longest \textbf{RUN} time trial scheduled (\textbf{C11} / \textbf{MET-2B-017}), the longest/heaviest \textbf{RUCK} time trial scheduled (\textbf{C12} / \textbf{MET-2B-021}), the most fatiguing \textbf{SWIM} time trial scheduled (\textbf{C13} / \textbf{MET-2B-022} or \textbf{MET-2B-023}), or the highest-consequence \textbf{STR} proxy session (\textbf{C17} / \textbf{MET-2B-027} through \textbf{MET-2B-031}) executed near the top of the allowed submax posture.
+\item A major test event means a scheduled test session intended to produce gate-admissible evidence under Stage 2 validity rules. Major events include \textbf{RUN} time trials, \textbf{RUCK} time trials, \textbf{SWIM} time trials, \textbf{STR} proxy tests, \textbf{CAL} battery tests, and \textbf{AER} time trials only when \textbf{C18} is finalized and deployable.
+\item Low-cost monitoring does not count as a major test event and MAY occur in work weeks and deload/test weeks: \textbf{BODYCOMP}, \textbf{RECOVERY}, \textbf{DURABILITY}.
+\end{itemize}
+
+Global caps and spacing that apply to every domain below locked doctrine:
+
+\begin{itemize}
+\item Ideal cap: 2 major test events per week.
+\item Hard cap: 3 major test events per week.
+\item Any two major test events \textbf{MUST} NOT be scheduled within the same 72-hour window (start-to-start).
+\item Maximal \textbf{RUN} and maximal \textbf{RUCK} \textbf{MUST} NOT be scheduled within the same 96-hour window (start-to-start).
+\item Spacing rules apply between major test events, not between individual metrics inside a standardized battery.
+\item If compliance with caps/spacing cannot be maintained, the correct action is reslot to the next protected deload/test window; do not compress.
+\end{itemize}
+
+Domain-by-domain frequency ceilings Phase 00–01 vs Phases 06–13:
+
+\begin{enumerate}
+\item \textbf{CAL} gate tests (\textbf{C4} / \textbf{MET-2B-010}; \textbf{C5} / \textbf{MET-2B-011}; \textbf{C6} / \textbf{MET-2B-012}; \textbf{C7} / \textbf{MET-2B-013})
+
+\begin{itemize}
+\item Phase 00–01 ceiling:
+  \begin{itemize}
+  \item Maximal \textbf{CAL} battery (\textbf{C4}+\textbf{C5}+\textbf{C6}+\textbf{C7} executed as one standardized battery session): no more than once per 4 weeks.
+  \item Any single maximal \textbf{CAL} event executed alone e.g., only \textbf{C4} or only \textbf{C6}: no more than once per 2 weeks, and only when it does not violate weekly caps/spacing and does not degrade other gate evidence.
+  \item Typical placement: maximal \textbf{CAL} battery belongs in deload/test weeks; work weeks may include technique-limited, non-test exposures but do not generate gate-grade maximal evidence by default.
+  \end{itemize}
+\item Phases 06–13 ceiling:
+  \begin{itemize}
+  \item Maximal \textbf{CAL} battery: no more than once per 3 weeks preferred 4 weeks unless explicitly required for replication support.
+  \item Any single maximal \textbf{CAL} event executed alone: no more than once per 2 weeks, and only when it does not displace \textbf{RUN}/\textbf{RUCK}/\textbf{SWIM} gate evidence or violate spacing rules.
+  \item Typical placement: maximal \textbf{CAL} battery belongs in deload/test weeks; work-week max attempts are discouraged unless they are explicitly scheduled as a major test event and protected by spacing.
+  \end{itemize}
+\end{itemize}
+
+Battery handling rule locked:
+
+\begin{itemize}
+\item A single \textbf{CAL} battery executed as a standardized battery per Stage 2 protocols MAY be treated as one major test event for stacking/spacing purposes.
+\end{itemize}
+
+\item \textbf{RUN} time trials (\textbf{C8} / \textbf{MET-2B-014}; \textbf{C9} / \textbf{MET-2B-015}; \textbf{C10} / \textbf{MET-2B-016}; \textbf{C11} / \textbf{MET-2B-017})
+
+\begin{itemize}
+\item Phase 00–01 ceiling:
+  \begin{itemize}
+  \item Maximal \textbf{RUN} time trial the longest distance scheduled in the current window: no more than once per 8 weeks.
+  \item Non-max \textbf{RUN} time trials shorter distances than the maximal variant: no more than once per 6 weeks, and not in the same deload/test week as a maximal \textbf{RUN} time trial.
+  \item Typical placement: \textbf{RUN} time trials are test-week events; do not schedule gate-grade \textbf{RUN} time trials in work weeks in early segments unless explicitly required and protected by fatigue controls.
+  \end{itemize}
+\item Phases 06–13 ceiling:
+  \begin{itemize}
+  \item Maximal \textbf{RUN} time trial: no more than once per 4 weeks.
+  \item Non-max \textbf{RUN} time trials: no more than once per 3–4 weeks, and only when they do not violate weekly caps/spacing and do not cluster with maximal \textbf{RUCK}.
+  \item Typical placement: \textbf{RUN} time trials belong in deload/test weeks; work-week time trials are not gate-grade by default due to fatigue contamination risk.
+  \end{itemize}
+\end{itemize}
+
+\item \textbf{RUCK} time trials (\textbf{C12} / \textbf{MET-2B-018}; \textbf{MET-2B-019}; \textbf{MET-2B-020}; \textbf{MET-2B-021})
+
+\begin{itemize}
+\item Phase 00–01 ceiling:
+  \begin{itemize}
+  \item Default posture: do not schedule maximal \textbf{RUCK} time trials in Phase 00–01 unless a phase-specific dependency gate has already established footwear/footcare stability and load tolerance readiness.
+  \item If a short ruck time trial is authorized \textbf{MET-2B-018} or \textbf{MET-2B-019} under \textbf{C12}: no more than once per 8 weeks.
+  \item Long ruck time trials \textbf{MET-2B-020} or \textbf{MET-2B-021} are not scheduled as maximal tests in Phase 00–01.
+  \item Typical placement: ruck time trials belong in deload/test weeks only when authorized; otherwise ruck exposure remains non-test and is controlled as training exposure in later phases.
+  \end{itemize}
+\item Phases 06–13 ceiling:
+  \begin{itemize}
+  \item Short ruck time trial 3 mi / 6 mi variants: no more than once per 6 weeks.
+  \item Long ruck time trial 9 mi / 12 mi variants: no more than once per 8 weeks.
+  \item Maximal \textbf{RUCK} the longest/heaviest scheduled variant \textbf{MUST} respect the 96-hour separation from maximal \textbf{RUN} and \textbf{MUST} be protected by reduced non-test density in the same week.
+  \item Typical placement: ruck time trials belong in deload/test weeks; long ruck is a high-consequence gate-grade event and is not scheduled as a routine work-week test.
+  \end{itemize}
+\end{itemize}
+
+\item \textbf{SWIM} time trials (\textbf{C13} / \textbf{MET-2B-022}; \textbf{MET-2B-023})
+
+\begin{itemize}
+\item Phase 00–01 ceiling:
+  \begin{itemize}
+  \item Maximal \textbf{SWIM} time trial the chosen unit variant in the current window: no more than once per 8 weeks, and only when pool access, pool verification, and governance prerequisites are stable and loggable.
+  \item Do not schedule both 500 yd and 500 m time trials in the same deload/test week in early segments.
+  \item Typical placement: \textbf{SWIM} time trials belong in deload/test weeks; in early segments, swim work may exist as skill/tolerance development, but gate-grade time trials are conservative and infrequent.
+  \end{itemize}
+\item Phases 06–13 ceiling:
+  \begin{itemize}
+  \item \textbf{SWIM} time trial one unit variant per test window: no more than once per 4 weeks.
+  \item If both unit metrics must be supported across a phase block, rotate them across separate protected deload/test windows; do not stack both in the same week unless it remains within weekly cap and spacing rules and does not compromise validity.
+  \item Typical placement: \textbf{SWIM} time trials belong in deload/test weeks; do not schedule \textbf{SWIM} time trials adjacent to maximal \textbf{RUN}/\textbf{RUCK} without spacing.
+  \end{itemize}
+\end{itemize}
+
+\item \textbf{STR} submax proxy testing (\textbf{C17}, only if finalized and deployable, / \textbf{MET-2B-027} through \textbf{MET-2B-031}; no \textbf{1-RM})
+
+\begin{itemize}
+\item Phase 00–01 ceiling:
+  \begin{itemize}
+  \item \textbf{STR} proxy test session single session executing one or more \textbf{STR} proxy metrics under the submax, RPE-capped posture: no more than once per 8 weeks.
+  \item Typical placement: \textbf{STR} proxy testing belongs in deload/test weeks; in early segments the emphasis is safe patterning, not frequent proxy testing.
+  \end{itemize}
+\item Phases 06–13 ceiling:
+  \begin{itemize}
+  \item \textbf{STR} proxy test session: no more than once per 4 weeks.
+  \item Lower-body \textbf{STR} proxy emphasis hinge/squat proxies should not be scheduled in a way that predictably contaminates maximal \textbf{RUN}/\textbf{RUCK} tests; spacing rules and reduced non-test density in the week are mandatory controls.
+  \item Typical placement: \textbf{STR} proxy testing belongs in deload/test weeks; when included, it must be treated as a major test event and counted against caps.
+  \end{itemize}
+\end{itemize}
+
+\item \textbf{AER} non-run conditioning time trials (\textbf{C18}, only if finalized and deployable, / \textbf{MET-2B-032}; \textbf{MET-2B-033}; \textbf{MET-2B-034})
+
+\begin{itemize}
+\item Phase 00–01 ceiling:
+  \begin{itemize}
+  \item \textbf{AER} time trial rower, bike, or elliptical: no more than once per 4 weeks.
+  \item If \textbf{AER} is used as the primary cardiopulmonary verification early as a low-impact substitute for \textbf{RUN}, it still counts as a major test event and must be protected by caps/spacing.
+  \item Typical placement: \textbf{AER} time trials belong in deload/test weeks; \textbf{AER} monitoring at submax intensity may occur in work weeks but does not count as a major test event when not executed as a time trial.
+  \end{itemize}
+\item Phases 06–13 ceiling:
+  \begin{itemize}
+  \item \textbf{AER} time trial: no more than once per 4 weeks.
+  \item \textbf{AER} is not interchangeable evidence for \textbf{RUN} tolerance or \textbf{RUN} performance; scheduling \textbf{AER} tests must not be used to justify reducing \textbf{RUN} verification cadence or compressing \textbf{RUN}/\textbf{RUCK} windows.
+  \item Typical placement: \textbf{AER} time trials belong in deload/test weeks; avoid stacking with maximal \textbf{RUN}/\textbf{RUCK} inside spacing windows.
+  \end{itemize}
+\end{itemize}
+
+\end{enumerate}
+
+\subsubsection*{3.A.1.B Early Segment Bias Phase 00–01}
+\phantomsection
+
+\begin{itemize}
+\item Scheduling bias \textbf{MUST} prioritize low-risk, submax emphasis and the build-out of validity infrastructure stable logging, stable environments, stable tools over aggressive testing density.
+\item Low-cost monitoring frequency \textbf{SHOULD} be higher in early segments because it protects safety and informs substitutions without increasing orthopedic risk:
+  \begin{itemize}
+  \item \textbf{BODYCOMP} e.g., \textbf{MET-2B-001}; \textbf{MET-2B-002} trends,
+  \item \textbf{RECOVERY} e.g., sleep and RPE markers via Stage 2 constructs,
+  \item \textbf{DURABILITY} flags e.g., \textbf{MET-2B-036} gait-altering pain flag; \textbf{MET-2B-037} foot hotspot flag.
+  \end{itemize}
+\item Conservative posture is mandatory due to obesity and low training age:
+  \begin{itemize}
+  \item Tests that increase impact exposure \textbf{RUN} or load exposure \textbf{RUCK} are scheduled sparingly and only in protected windows.
+  \item No “prove it” tests are scheduled in work weeks to compensate for impatience or administrative desire; reslot discipline is mandatory.
+  \end{itemize}
+\item Impact governance for \textbf{RUN} and \textbf{RUCK} is enforced at the schedule level:
+  \begin{itemize}
+  \item \textbf{RUN} maximal tests are rare and protected; any emerging pain/hotspot trend forces postponement.
+  \item \textbf{RUCK} time trials are generally not scheduled in Phase 00–01 unless explicit prerequisites and footwear/footcare stability exist; when in doubt, ruck testing is deferred.
+  \end{itemize}
+\item Water governance posture is enforced at the schedule level:
+  \begin{itemize}
+  \item Surface-only \textbf{SWIM} tests are eligible only when pool verification is stable and conditions are valid.
+  \item Underwater is not scheduled for gates in early segments under any circumstances.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{3.A.1.C Later Segment Bias Phases 06–13}
+\phantomsection
+
+\begin{itemize}
+\item Scheduling bias \textbf{MUST} shift toward higher specificity and selection-relevant verification while remaining controlled:
+  \begin{itemize}
+  \item fewer maximal events overall,
+  \item higher consequence per maximal event,
+  \item stricter environment/tool stability and no-novelty posture near gates.
+  \end{itemize}
+\item Maximal and near-max tests \textbf{MUST} be staged to prevent stacking high-risk exposures:
+  \begin{itemize}
+  \item \textbf{RUN} and \textbf{RUCK} maximal events require explicit spacing and reduced non-test density in the same week.
+  \item \textbf{SWIM} time trials are scheduled so they do not compromise \textbf{RUN}/\textbf{RUCK} gate validity spacing enforced.
+  \end{itemize}
+\item Scheduling \textbf{MUST} enable replication and stability requirements:
+  \begin{itemize}
+  \item Gate-critical tier classification requires replication 2 of last 3 \textbf{VALID} tests in the decision window.
+  \item Stage 3 scheduling doctrine ensures that the cadence of protected windows is sufficient to obtain replication without forcing excessive testing.
+  \end{itemize}
+\item Schedule control is treated as a validity control:
+  \begin{itemize}
+  \item In later phases, invalid or compromised tests are reslotted rather than “counted anyway.”
+  \item Test windows are protected from novelty route/tool/footwear changes and from unnecessary non-test fatigue density.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{3.A.1.D Deload Philosophy and Test Week Integration}
+\phantomsection
+
+Purpose of deload weeks scheduling doctrine only:
+
+\begin{itemize}
+\item Deload weeks exist to reduce fatigue and stress density, protect tissue tolerance, and improve the validity of test outcomes.
+\item Deload weeks protect comparability by reducing the likelihood that tests reflect accumulated fatigue, soreness, or environment-driven improvisation.
+\item Deload weeks preserve continuity without collapsing cadence; the program remains 6 sessions/week unless a safety stop action requires deviation.
+\end{itemize}
+
+Soft deload vs hard deload scheduling terms only:
+
+\begin{itemize}
+\item Soft deload controlled unload:
+  \begin{itemize}
+  \item training density reduced modestly,
+  \item high-impact exposure reduced,
+  \item major tests may occur but are limited and spaced,
+  \item used when readiness drift exists but remains controlled.
+  \end{itemize}
+\item Hard deload protective unload:
+  \begin{itemize}
+  \item larger reduction in stress density and high-impact exposure,
+  \item high-cost tests deferred or reduced to monitor-grade evidence,
+  \item used when sleep instability, pain trends, illness risk, or readiness collapse threatens validity and safety.
+  \end{itemize}
+\end{itemize}
+
+Work-to-deload pattern options by training age scheduling options; not a calendar:
+
+\begin{itemize}
+\item 2:1 pattern: short work blocks with frequent deload/test windows; used when risk posture is high and tolerance is still being established.
+\item 3:1 pattern: default early-to-mid pattern; supports frequent protected windows without excessive fatigue accumulation.
+\item 4:1 pattern: later pattern when execution stability is proven and recovery systems are reliable.
+\item Mixed patterns: used in later phases where verification blocks require taper-aware behavior; may behave like compressed work:deload cycles around high-consequence test windows.
+\end{itemize}
+
+Default doctrine locked:
+
+\begin{itemize}
+\item Deload week equals test week.
+\item Mid-phase and end-of-phase assessments occur as the primary content of the deload/test week.
+\end{itemize}
+
+Exception posture must be documented; must not undermine gate validity:
+
+\begin{itemize}
+\item A deload week may be recovery-first limited testing when:
+  \begin{itemize}
+  \item environment conditions are unsafe or validity-compromising,
+  \item readiness trends are unstable sleep collapse, pain drift, illness,
+  \item governance prerequisites especially aquatic cannot be satisfied,
+  \item or required tools/environments cannot be standardized.
+  \end{itemize}
+\item When a deload week becomes recovery-first, gate-grade tests are reslotted to the next protected deload/test window; tests are not compressed into build weeks to “stay on schedule.”
+\end{itemize}
+
+\subsubsection*{3.A.1.E Risk Controls Stacking Limits and Environment Constraints}
+\phantomsection
+
+Major test event caps locked; apply globally:
+
+\begin{itemize}
+\item Ideal cap: 2 major test events per week.
+\item Hard cap: 3 major test events per week.
+\end{itemize}
+
+Major test event definition locked:
+
+\begin{itemize}
+\item A major test event is a scheduled test session intended to produce gate-admissible evidence under Stage 2 validity rules, including:
+  \begin{itemize}
+  \item \textbf{RUN} time trials (\textbf{C8}–\textbf{C11}; \textbf{MET-2B-014} through \textbf{MET-2B-017}),
+  \item \textbf{RUCK} time trials (\textbf{C12}; \textbf{MET-2B-018} through \textbf{MET-2B-021}),
+  \item \textbf{SWIM} time trials (\textbf{C13}; \textbf{MET-2B-022} and/or \textbf{MET-2B-023}),
+  \item Underwater governed test (\textbf{C14}; \textbf{MET-2B-025} and \textbf{MET-2B-026}) when authorized,
+  \item \textbf{STR} proxy test session (\textbf{C17}; \textbf{MET-2B-027} through \textbf{MET-2B-031}),
+  \item \textbf{AER} time trials (\textbf{C18}; \textbf{MET-2B-032} through \textbf{MET-2B-034}),
+  \item \textbf{CAL} battery (\textbf{C4}–\textbf{C7}; \textbf{MET-2B-010} through \textbf{MET-2B-013}) treated as one major event when executed as a standardized battery.
+  \end{itemize}
+\item Low-cost monitoring does not count as a major test event and may occur in work weeks and deload/test weeks:
+  \begin{itemize}
+  \item \textbf{BODYCOMP}, \textbf{RECOVERY}, \textbf{DURABILITY} markers and compliance constructs.
+  \end{itemize}
+\end{itemize}
+
+Spacing rules locked; apply globally; start-to-start:
+
+\begin{itemize}
+\item Any two major test events \textbf{MUST} NOT be scheduled within the same 72-hour window.
+\item Maximal \textbf{RUN} and maximal \textbf{RUCK} \textbf{MUST} NOT be scheduled within the same 96-hour window.
+\item Do not compress a schedule by violating spacing rules to meet administrative deadlines. Reslot instead.
+\end{itemize}
+
+Environment postponement and reslot posture Grand Forks, North Dakota; qualitative triggers; no numeric thresholds required:
+
+Unsafe or validity-compromising conditions include, at minimum:
+
+\begin{itemize}
+\item Unsafe footing ice, packed snow, thaw-refreeze glaze, slip risk, or inconsistent traction.
+\item Severe windchill, high wind, blowing snow/dust, poor visibility, and low-light conditions that increase traffic and fall risk.
+\item Lightning or storm risk.
+\item Unsafe heat exposure conditions where exertion creates predictable heat illness risk.
+\item Air quality concerns smoke, particulate, especially when respiratory distress risk increases.
+\item Pool closure, crowding, lane conditions, or facility constraints that compromise safety or validity interruptions that change rest posture or force non-standard behavior.
+\end{itemize}
+
+Required doctrine actions:
+
+\begin{itemize}
+\item If conditions are unsafe or validity-compromising, postpone and reslot the test to the next available deload/test window.
+\item Shift to an indoor equivalent only if Stage 2 validity and Stage 2.E logging conventions preserve comparability e.g., treadmill equivalents for \textbf{RUN}/\textbf{RUCK} with full machine identity/settings logging.
+\item If comparability cannot be preserved, treat the attempt as inadmissible for gate decisions and schedule a valid retest later; do not “convert” the result into a gate claim.
+\end{itemize}
+
+Admissibility reminder locked posture:
+
+\begin{itemize}
+\item Tests scheduled or executed under compromised conditions are inadmissible for gate decisions under Stage 2 validity posture. Compromised evidence may be recorded, but it does not support gate advancement claims.
+\end{itemize}
+
+Stop posture reminder test days:
+
+\begin{itemize}
+\item Any red-flag symptom on a test day triggers immediate termination and escalation posture per safety governance. Tests are reslotted; no “finish anyway” behavior is permitted for gate evidence.
+\end{itemize}
+
+Underwater governance scheduling posture locked; governance-constrained:
+
+\begin{itemize}
+\item Underwater testing or exposure is never scheduled early.
+\item Underwater is eligible for scheduling only in Segment 5, Phases 10–13, and only if governance requirements are satisfied per Stage 0.5 and Protocol Card \textbf{C14}.
+\item If governance is not available, underwater is not scheduled. Surface-only alternatives continue. No exceptions.
+\end{itemize}
+
+\paragraph*{Reconciliation Notes}
+
+\begin{itemize}
+\item Authoritative baseline materials contain phase-specific high-cost test caps and broader spacing language e.g., variable caps by segment and non-specific 48–72-hour spacing guidance. This deliverable adopts the explicitly locked global doctrine required by this tasking prompt: Ideal cap 2 major test events/week; Hard cap 3 major test events/week; 72-hour spacing between major test events; and 96-hour separation between maximal \textbf{RUN} and maximal \textbf{RUCK}. Where baseline materials are stricter in execution for a given phase window, the stricter posture MAY be applied in later Stage 3 artifacts when mapping doctrine into specific calendars, provided it does not violate locked requirements.
+\end{itemize}
+
+\begin{landscape}
+
+\subsection*{3.A.2 Segment Pattern Reference Table}
+\phantomsection
+\addcontentsline{toc}{subsection}{3.A.2 Segment Pattern Reference Table}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.78in]
+    X[l,1.25]
+    X[l,1.25]
+    Q[l,wd=1.60in]
+    X[l,2.75]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Segment} &
+\Hdr{Phases Included} &
+\Hdr{Training Age Level} &
+\Hdr{Default Work:Deload Pattern} &
+\Hdr{Notes/Purpose} \\
+Segment 1 &
+Phase 00 foundational &
+Novice, high-risk start-state &
+3:1 &
+Highest risk posture and lowest tissue tolerance; implemented cadence is baseline Week 1 plus Deload+Test Weeks 4/8/12/16; protected windows reduce fatigue accumulation and protect validity. Grand Forks environment volatility requires reslot-ready protected windows. Early testing is conservative and infrastructure-focused validity/logging/environment stabilization. \\
+Segment 2 &
+Phase 01 extended base &
+Novice-to-early intermediate &
+3:1 &
+Stabilizes execution under 6 sessions/week while still providing frequent protected windows for validity and recovery control. Supports gradual specificity increase without premature impact/load stacking; environment reslot posture remains active. \\
+Segment 3 &
+Phases 02–05 early to mid development &
+Developing intermediate &
+mixed 3:1 to 4:1 and document in Notes &
+Transitional band where tolerance and recovery stability are improving but still vulnerable to fatigue contamination. Mixed patterns allow additional protected windows when load/impact ramps or environment instability increases. Testing cadence supports replication without forcing stacked maximal weeks. \\
+Segment 4 &
+Phases 06–09 mid to advanced &
+Intermediate-to-advanced &
+4:1 &
+Stability is expected to be higher; fewer but more structured deload/test windows protect validity of higher-specificity tests. Spacing doctrine becomes more consequential because maximal \textbf{RUN}/\textbf{RUCK} and multi-domain batteries carry higher orthopedic and fatigue cost. Grand Forks seasonal constraints still require indoor substitution and reslot discipline. \\
+Segment 5 &
+Phases 10–13 advanced and selection preparation &
+Advanced and selection preparation &
+mixed 4:1 taper-aware in Phases 10–11; mixed verification in Phases 12–13; localized 2:1 only &
+Late phases prioritize verification quality and low variance. Mixed patterns encompass taper-aware protected windows and verification blocks; 2:1 is used only as a localized verification/extension posture around high-consequence windows when needed. Underwater is eligible only here and only under governance; environment/tool stability and reslot discipline are mandatory to avoid invalid proof windows. \\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+\end{document}

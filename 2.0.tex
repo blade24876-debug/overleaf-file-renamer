@@ -1,0 +1,925 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 2 — Measurement Standards and Test Protocol Architecture}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 2 — Measurement Standards and Test Protocol Architecture}
+
+\subsection*{Introduction}
+\phantomsection
+\addcontentsline{toc}{subsection}{Introduction}
+
+Stage 2 exists to convert the Stage 0.3 selection-ready end-state envelope into a decision-grade measurement architecture that supports safe, auditable gate decisions across the full 182-week pipeline (Phase 00 through Phase 13).
+
+Stage 2 defines and freezes the measurement language of the program so performance claims, advancement decisions, \textbf{HOLD} outcomes, \textbf{REGRESS} outcomes, and readiness tier classifications are driven by standardized evidence rather than subjective impressions, peak-day outcomes, or drifting test conditions.
+
+Stage 2 achieves this by defining, in a controlled and crosswalk-ready way:
+
+\begin{itemize}
+\item Domain taxonomy (canonical domain tags used everywhere).
+\item Metric inventory with stable IDs (\textbf{MET-2B}-\#\#\#), units, and domain tagging.
+\item Standardized test protocol card architecture (\textbf{C1} through \textbf{C18}) that will contain procedures, safety prerequisites, equipment and environment requirements, validity condition fields, and scoring methods.
+\item Tiered performance thresholds by readiness tier (\textbf{ENTRY} / \textbf{INTERMEDIATE} / \textbf{SELECTION-READY}) aligned to Stage 0.3 targets and used by downstream phase gates.
+\item Data recording and test logistics conventions that preserve validity, comparability, and auditability over a multi-year horizon.
+\end{itemize}
+
+Stage 2 defines what evidence counts for gate decisions. Stage 2 does not prescribe training prescriptions, weekly programming, or session design.
+
+Stage 2 is built to enforce the following operating intent:
+
+\begin{itemize}
+\item Prevent “counting it anyway” behavior by specifying what must be recorded for evidence to be admissible.
+\item Prevent “moving targets” by freezing identifiers, domain labels, protocol card IDs, validity condition schema fields, and tier labels.
+\item Preserve comparability by treating environment, equipment, and measurement-method drift as explicit comparability breaks unless recorded and stabilized.
+\item Preserve safety by embedding Stage 0.5 stop posture and water governance as validity prerequisites and invalidity triggers (without diagnosing or treating).
+\end{itemize}
+
+\subsection*{2. Scope}
+\phantomsection
+
+\subsubsection*{2.1 Inclusions}
+\phantomsection
+
+Stage 2 includes the measurement architecture that supports gate decisions and audit-ready comparability.
+
+1. Measurement doctrine (rules-of-evidence posture)
+
+\begin{itemize}
+\item Defines how performance evidence becomes admissible for gates (\textbf{VALID} vs \textbf{INVALID} test posture) without rewriting Stage 1.F governance doctrine.
+\item Defines the minimum validity condition field schema posture used in protocol cards and test logs (\textbf{ENV}, \textbf{EQUIP}, \textbf{WARMUP}, \textbf{SAFETY}, \textbf{MEASURE}).
+\item Defines non-admissibility handling posture: what happens when validity conditions are missing or compromised and how retest posture is handled.
+\end{itemize}
+
+2. Domain taxonomy in 2.A using canonical domain tags (frozen labels)
+
+Frozen domain tags used everywhere (no synonyms, no alternates):
+
+\begin{itemize}
+\item \textbf{STR}
+\item \textbf{AER}
+\item \textbf{CAL}
+\item \textbf{RUN}
+\item \textbf{RUCK}
+\item \textbf{SWIM}
+\item \textbf{BODYCOMP}
+\item \textbf{DURABILITY}
+\item \textbf{RECOVERY}
+\end{itemize}
+
+Domain taxonomy posture (binding):
+
+\begin{itemize}
+\item Every metric and every protocol card must carry exactly one Primary Domain Tag.
+\item Domain tags are classification keys for crosswalks, calendars, phase rows, and audit packets. They are not optional descriptive labels.
+\end{itemize}
+
+3. Metrics and test inventory in 2.B defining tracked metrics with stable IDs and fields
+
+Metric inventory posture:
+
+\begin{itemize}
+\item Metric \textbf{ID} convention: \textbf{MET-2B}-\#\#\# (three digits, sequential, no gaps unless explicitly retired and labeled as retired).
+\item Each metric must include at minimum:
+  \begin{itemize}
+  \item Metric \textbf{ID} (\textbf{MET-2B}-\#\#\#),
+  \item Metric Name (stable, crosswalkable),
+  \item Unit (unit-locked),
+  \item Primary Domain Tag (from 2.A),
+  \item Directionality (higher-better / lower-better / range target),
+  \item At least one protocol card reference (\textbf{C1}–\textbf{C18}),
+  \item Gate relevance posture (gate-required vs optional evidence),
+  \item Minimum validity condition fields required for admissibility (\textbf{ENV}/\textbf{EQUIP}/\textbf{WARMUP}/\textbf{SAFETY}/\textbf{MEASURE}).
+  \end{itemize}
+\item Metrics provide stable crosswalk keys; downstream artifacts reference metrics by \textbf{ID} without rewriting definitions.
+\end{itemize}
+
+4. Standardized test protocol cards in 2.C using \textbf{C1} through \textbf{C18} (exact IDs; no alternate numbering)
+
+Protocol card architecture posture:
+
+\begin{itemize}
+\item Protocol card IDs are frozen: \textbf{C1} through \textbf{C18} only.
+\item Each protocol card must include, at minimum:
+  \begin{itemize}
+  \item purpose and scope boundary statement (what the card governs / what it does not govern),
+  \item stepwise procedures (live in 2.C; not in this Introductory Page),
+  \item safety prerequisites aligned to Stage 0.5 and Stage 1.F stop posture,
+  \item equipment and tooling requirements (\textbf{EQUIP}),
+  \item environment and context requirements (\textbf{ENV}),
+  \item warm-up completion requirement (\textbf{WARMUP}),
+  \item measurement integrity requirements (\textbf{MEASURE}),
+  \item validity conditions and invalidity triggers mapped to \textbf{VALID}/\textbf{INVALID} outcomes,
+  \item scoring method and recording rules sufficient to support admissibility determinations.
+  \end{itemize}
+\item Protocol cards may recommend evidence artifacts (video/GPS/photos) and may require them where governance requires it. If an artifact is required by a protocol card, missing artifact makes the result inadmissible for gate use.
+\item If an artifact is optional for a protocol card, absence must not automatically invalidate the test when all required validity conditions are satisfied.
+\end{itemize}
+
+5. Validity condition field schema used across 2.C and 2.E (frozen tokens)
+
+Frozen validity condition fields (exact tokens; must not rename):
+
+\begin{itemize}
+\item \textbf{ENV} (environment and context)
+\item \textbf{EQUIP} (equipment and tooling)
+\item \textbf{WARMUP} (warm-up completion)
+\item \textbf{SAFETY} (stop-rule screen and safety prerequisites)
+\item \textbf{MEASURE} (measurement method integrity, route verification, pool verification)
+\end{itemize}
+
+Schema posture:
+
+\begin{itemize}
+\item Every test record must include entries for each token, even if the content is “not applicable” (only where the protocol card permits N/A).
+\item Missing a required token field or leaving it unrecorded is a validity failure and drives \textbf{INVALID} tagging for gate purposes when the protocol requires it.
+\end{itemize}
+
+6. Performance thresholds in 2.D using readiness tiers (frozen labels)
+
+Frozen readiness tier labels:
+
+\begin{itemize}
+\item \textbf{ENTRY}
+\item \textbf{INTERMEDIATE}
+\item \textbf{SELECTION-READY}
+\end{itemize}
+
+Tier posture (binding):
+
+\begin{itemize}
+\item Thresholds are used to classify readiness and to support gate interpretation; they do not authorize unsafe acceleration.
+\item Thresholds must be expressed with unit-locked values and explicit directionality (e.g., “≤ time,” “≥ reps,” “range within X–Y”).
+\item Thresholds must reference the protocol card context (conditions and validity requirements) so a “threshold hit” is not treated as admissible unless achieved under valid conditions.
+\end{itemize}
+
+7. Data recording and test logistics conventions in 2.E
+
+Stage 2 includes the data recording and test logistics posture necessary for audit-grade evidence:
+
+\begin{itemize}
+\item validity tagging posture and minimum validity condition fields,
+\item environment logging requirements for comparability,
+\item timing and measurement tooling expectations,
+\item warm-up completion requirement as a validity condition field,
+\item evidence artifact posture (recommended, not mandatory unless a specific protocol card later requires it),
+\item comparability rules and re-test posture when conditions change or validity fails,
+\item treadmill admissibility posture for run/ruck when required settings are logged,
+\item swim unit handling posture (yards vs meters treated as non-interchangeable for comparability unless explicitly cross-calibrated and logged).
+\end{itemize}
+
+8. Required measurement postures (governance declarations; detailed rules live in 2.C and 2.E)
+
+\begin{itemize}
+\item Run and ruck environment admissibility posture, including treadmill admissibility when required settings are logged.
+\item Body fat percentage validity posture that is method-agnostic at the program level, but trend-validity requires method consistency across measurement windows.
+\item Water governance posture that prohibits underwater or breath-hold testing without explicit governance and certified supervision prerequisites aligned to Stage 0.5.
+\item Durability and readiness screen posture that is non-diagnostic and uses observable signals (gait, pain flags, foot integrity signals) for governance decisions.
+\end{itemize}
+
+9. Planned \textbf{C1}–\textbf{C18} Protocol Card Coverage — Names Only (no procedures, no thresholds)
+
+\begin{itemize}
+\item \textbf{C1} — Bodyweight Measurement — Scale
+\item \textbf{C2} — Body Composition — Body Fat Percent Method Recording and Trend Rule, Method-Agnostic
+\item \textbf{C3} — Waist and Anthropometric Tape Measurement
+\item \textbf{C4} — Push-Ups — 2-Minute Timed, Strict Standard
+\item \textbf{C5} — Sit-Ups — 2-Minute Timed, Standard
+\item \textbf{C6} — Pull-Ups — Strict Dead-Hang, Full Range of Motion
+\item \textbf{C7} — Plank — Forearm
+\item \textbf{C8} — 1.5-Mile Run Time Trial — Route or Treadmill, Logged
+\item \textbf{C9} — 2-Mile Run Time Trial — Route or Treadmill, Logged
+\item \textbf{C10} — 3-Mile Run Time Trial — Route or Treadmill, Logged
+\item \textbf{C11} — 5-Mile Run Time Trial — Route or Treadmill, Logged
+\item \textbf{C12} — Ruck Time Trial — Measured Route or Treadmill, Logged; Load Noted
+\item \textbf{C13} — Swim 500 — No Fins; Allowable Strokes; Unit Handling
+\item \textbf{C14} — Underwater 25 m — One Breath — Governance-Constrained
+\item \textbf{C15} — Resting and Recovery Marker Capture — Governance-Level, Non-Medical
+\item \textbf{C16} — Durability and Readiness Screen — Gait and Pain Flags, Non-Diagnostic
+\item \textbf{C17} — Strength Proxy Test — Submax, Implement-Agnostic, RPE-Capped
+\item \textbf{C18} — Non-Run Conditioning Time Trials — Rower/Bike/Elliptical, Logged
+\end{itemize}
+
+\subsubsection*{2.2 Exclusions}
+\phantomsection
+
+\begin{itemize}
+\item No training prescriptions, sets, reps, intervals, weekly programming, pacing plans, or workout menus.
+\item No deload or test calendar placement logic (Stage 3 owns calendars and reslot rules).
+\item No phase playbooks or phase prescriptions (Stages 4–5 reference Stage 2 IDs and thresholds only).
+\item No equipment build-out or shopping lists beyond governance-level naming of prerequisite capability categories (equipment timing and tiers are governed downstream).
+\item No medical diagnosis, individualized medical advice, prescription guidance, or any weakening of Stage 0.5 safety, legal, and medical boundaries.
+\end{itemize}
+
+\subsection*{3. How to Use}
+\phantomsection
+
+Stage 2 is used to standardize measurement so gate decisions cannot be driven by ambiguous, non-comparable, or unsafe evidence. It prevents “counting it anyway” behavior by defining what must be recorded for evidence to be admissible and by providing stable IDs that downstream artifacts reference without rewriting procedures.
+
+Operational use rules (Coach Lead and Trainee):
+
+\subsubsection*{3.1 Evidence control posture (what Stage 2 is for)}
+\phantomsection
+
+\begin{itemize}
+\item Treat Stage 2 as the rules-of-evidence layer for performance claims.
+\item A performance outcome without recorded validity conditions is not decision-grade and must not drive advancement.
+\item Stage 2 exists to preserve comparability over 182 weeks; comparability is treated as both a safety feature and an audit feature.
+\item Evidence is only as strong as its reproducibility under recorded conditions. Stage 2 therefore treats “repeatable under comparable conditions” as the baseline posture for readiness classification.
+\end{itemize}
+
+\subsubsection*{3.2 How phases reference Stage 2}
+\phantomsection
+
+Downstream phases (Stages 4–5) reference Stage 2 by IDs only:
+
+\begin{itemize}
+\item Domain tags (for domain alignment).
+\item Metric IDs (\textbf{MET-2B}-\#\#\#).
+\item Protocol card IDs (\textbf{C1}–\textbf{C18}).
+\item Threshold tiers (\textbf{ENTRY} / \textbf{INTERMEDIATE} / \textbf{SELECTION-READY}).
+\end{itemize}
+
+Protocol procedures live in Stage 2. Downstream artifacts do not restate or reinterpret protocol procedures.
+
+Crosswalk enforcement posture:
+
+\begin{itemize}
+\item If a downstream phase references a non-existent \textbf{MET-2B}-\#\#\# \textbf{ID} or a non-existent C-card \textbf{ID}, the downstream artifact is Draft — Non-Deployable until corrected.
+\item If a downstream phase renames a domain tag or introduces synonyms, it breaks crosswalk stability and is Draft — Non-Deployable until corrected.
+\end{itemize}
+
+\subsubsection*{3.3 Readiness tiers as safety governance (not ego targets)}
+\phantomsection
+
+\begin{itemize}
+\item \textbf{ENTRY} / \textbf{INTERMEDIATE} / \textbf{SELECTION-READY} tiers classify evidence and readiness status; they do not authorize unsafe acceleration.
+\item Tier classification requires admissible evidence (\textbf{VALID} tests) and is constrained by Stage 1.F gate doctrine and Stage 0.5 safety boundaries.
+\item A tier classification is not valid if achieved under a comparability break that was not logged (method drift, route drift, unit confusion, equipment drift).
+\item Durability signals are gate constraints: if a metric is hit but durability signals indicate imminent breakdown, the classification may be recorded as informational but must not be treated as readiness for advancement.
+\end{itemize}
+
+\subsubsection*{3.4 How to run a \textbf{VALID} test day (governance-level; protocol-agnostic)}
+\phantomsection
+
+The following is governance-level posture only. Stepwise procedures live in the protocol cards.
+
+A. Standardization posture (comparability control)
+
+\begin{itemize}
+\item Use stable, repeatable conditions (same route/device when feasible).
+\item Avoid novelty in tools, route, footwear, load configuration, pool, measurement methods immediately before gate-relevant testing.
+\item If novelty occurs (forced by access changes), it must be recorded as a comparability break and the retest posture must be conservative until conditions stabilize.
+\end{itemize}
+
+B) \textbf{WARMUP} (validity condition field)
+
+\begin{itemize}
+\item Warm-up completion must be recorded as a validity condition field (\textbf{WARMUP}).
+\item Warm-up record posture must minimally include:
+  \begin{itemize}
+  \item completed Y/N,
+  \item duration (minutes),
+  \item any abnormal symptoms or stop-rule triggers observed during warm-up (if any).
+  \end{itemize}
+\item Missing warm-up record is a validity failure when the protocol requires \textbf{WARMUP} and may drive \textbf{INVALID} tagging.
+\end{itemize}
+
+C) \textbf{ENV} and \textbf{EQUIP} (context control)
+
+\begin{itemize}
+\item Record environment and context at a high level (\textbf{ENV}).
+\item Record equipment and tooling identity at a high level (\textbf{EQUIP}), including device identity when relevant.
+\item If a test is performed in materially different environment conditions, that must be visible in the log so comparability can be evaluated.
+\end{itemize}
+
+D) \textbf{MEASURE} (measurement integrity)
+
+\begin{itemize}
+\item Record measurement method integrity (\textbf{MEASURE}):
+  \begin{itemize}
+  \item route verification method for runs/rucks,
+  \item device distance basis where applicable,
+  \item pool unit verification (yards vs meters) and facility length,
+  \item load confirmation method for ruck,
+  \item scale/tape method and conditions for body composition.
+  \end{itemize}
+\item Unverified distance/unit/load is a measurement integrity failure and forces conservative interpretation; gate-required tests must be \textbf{INVALID} when \textbf{MEASURE} is not satisfied.
+\end{itemize}
+
+E) \textbf{SAFETY} (stop-rule screen)
+
+\begin{itemize}
+\item Execute stop-rule screen and safety prerequisites (\textbf{SAFETY}).
+\item If stop triggers appear, \textbf{STOP} \textbf{NOW} posture applies and test evidence is not admissible.
+\item Safety is not “graded” by performance. A strong number does not override safety governance.
+\end{itemize}
+
+F) Minimum logging expectations
+
+\begin{itemize}
+\item Record enough to allow a third-party reviewer to reproduce the admissibility determination (\textbf{VALID} vs \textbf{INVALID}) without oral context.
+\item If the record cannot support that determination, evidence is non-admissible for gates.
+\end{itemize}
+
+\subsubsection*{3.5 Substitution and comparability posture (governance declarations)}
+\phantomsection
+
+This section defines how Stage 2 handles substitutes and comparability breaks at the measurement level.
+
+\subsubsection*{3.5.1 Run and ruck treadmill admissibility posture}
+\phantomsection
+
+Treadmill versions of run and ruck testing are admissible as \textbf{VALID} when logged at governance level, and when the protocol card’s validity conditions are satisfied.
+
+Minimum treadmill logging fields (governance-level):
+
+\begin{itemize}
+\item \textbf{EQUIP}:
+  \begin{itemize}
+  \item treadmill identifiable reference (make or model, or facility identifier plus machine identifier if available),
+  \item display basis for distance and time (machine display; no external calibration claim unless documented),
+  \item safety-relevant notes (belt slippage, malfunction flags, emergency stop availability).
+  \end{itemize}
+\item \textbf{MEASURE}:
+  \begin{itemize}
+  \item distance basis (treadmill displayed distance),
+  \item start/stop time method,
+  \item any pauses (Y/N; if yes, record reason and duration).
+  \end{itemize}
+\item \textbf{ENV}:
+  \begin{itemize}
+  \item facility identifier,
+  \item indoor conditions note (if relevant; e.g., ventilation issues),
+  \item date/time.
+  \end{itemize}
+\item \textbf{RUN}/\textbf{RUCK}-specific additional fields:
+  \begin{itemize}
+  \item speed setting(s) and any changes,
+  \item incline/grade setting(s) and any changes,
+  \item for ruck: load carried and load confirmation method, pack configuration reference at a category level, and footwear used.
+  \end{itemize}
+\item \textbf{WARMUP}:
+  \begin{itemize}
+  \item warm-up completed Y/N and duration.
+  \end{itemize}
+\item \textbf{SAFETY}:
+  \begin{itemize}
+  \item stop-rule screen completed Y/N; any symptoms or triggers Y/N.
+  \end{itemize}
+\end{itemize}
+
+Comparability posture:
+
+\begin{itemize}
+\item A treadmill test and an outdoor measured-route test are not assumed interchangeable. If both are used in the same measurement window, the record must explicitly label the comparison as “cross-environment” and treat conclusions conservatively until repeated under consistent conditions.
+\end{itemize}
+
+\subsubsection*{3.5.2 Outdoor route admissibility posture (runs/rucks)}
+\phantomsection
+
+Outdoor runs/rucks are admissible when:
+
+\begin{itemize}
+\item \textbf{MEASURE} records route verification posture (measured/verified distance method),
+\item \textbf{ENV} records surface and weather categories and any hazards,
+\item \textbf{EQUIP} records footwear and relevant load configuration (ruck),
+\item \textbf{WARMUP} and \textbf{SAFETY} are recorded.
+\end{itemize}
+
+Route verification posture (governance-level):
+
+\begin{itemize}
+\item Stage 2 does not mandate a specific verification tool in this Introductory Page.
+\item Stage 2 mandates that the method used must be stated, and that unverifiable distances for gate-required tests must be treated as invalid.
+\end{itemize}
+
+\subsubsection*{3.5.3 Body fat measurement validity posture (method-agnostic; trend-validity method-consistent)}
+\phantomsection
+
+Body fat percentage tracking is method-agnostic at governance level. Trend validity requires method consistency across measurement windows.
+
+Minimum logging fields for body fat measurements (governance-level):
+
+\begin{itemize}
+\item \textbf{MEASURE}:
+  \begin{itemize}
+  \item method/device name (category-level),
+  \item measurement conditions (time-of-day, pre/post conditions as used; must remain consistent within a window),
+  \item site set used if a site-based method is used (do not invent sites here; record as “site set stable” once defined).
+  \end{itemize}
+\item \textbf{ENV}:
+  \begin{itemize}
+  \item location (home/clinic/gym),
+  \item date/time.
+  \end{itemize}
+\item \textbf{EQUIP}:
+  \begin{itemize}
+  \item instrument type and identifier category (e.g., scale class, caliper class).
+  \end{itemize}
+\item \textbf{SAFETY}:
+  \begin{itemize}
+  \item note any factors that make the measurement unreliable (non-diagnostic; e.g., “method not available today”).
+  \end{itemize}
+\item Comparability rule:
+  \begin{itemize}
+  \item if the method changes, the record must flag “method change” and treat trend comparison across the boundary conservatively until a new baseline window is established.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{3.5.4 Swim unit handling posture (yards vs meters)}
+\phantomsection
+
+Swim evidence must be unit-locked to facility.
+
+Minimum logging fields (governance-level):
+
+\begin{itemize}
+\item \textbf{MEASURE}:
+  \begin{itemize}
+  \item pool unit (yards or meters),
+  \item pool length verification posture (facility posting or known length),
+  \item distance basis (laps x length).
+  \end{itemize}
+\item \textbf{EQUIP}:
+  \begin{itemize}
+  \item no fins confirmed,
+  \item relevant equipment posture (e.g., goggles yes/no if governed by protocol card later).
+  \end{itemize}
+\item \textbf{ENV}:
+  \begin{itemize}
+  \item facility identifier,
+  \item lane conditions notes if relevant (crowding may affect validity if it forces pauses).
+  \end{itemize}
+\item \textbf{WARMUP} and \textbf{SAFETY} recorded as validity fields.
+\end{itemize}
+
+Yards and meters are not interchangeable for comparability unless they are explicitly cross-calibrated and documented. Absent that documentation, they must be treated as separate evidence streams.
+
+\subsubsection*{3.5.5 Water governance posture (underwater/breath-hold)}
+\phantomsection
+
+Underwater or breath-hold testing remains prohibited without explicit governance and certified supervision prerequisites aligned to Stage 0.5.
+
+Governance declarations:
+
+\begin{itemize}
+\item Any underwater or breath-hold test attempt without certified supervision is \textbf{INVALID} for evidence purposes and is a governance breach.
+\item Protocol architecture must embed \textbf{SAFETY} prerequisites for underwater work and must explicitly define invalidity triggers for governance breaches.
+\item Permissive language is prohibited. If prerequisites are not met, the only allowed posture is “do not test.”
+\end{itemize}
+
+\subsubsection*{3.6 Evidence artifacts posture}
+\phantomsection
+
+\begin{itemize}
+\item Evidence artifacts (video, GPS, photos) are recommended but not mandatory unless a specific protocol card explicitly requires them.
+\item Recommended artifacts, when used, are treated as corroborating evidence and do not replace required validity condition fields.
+\item Absence of recommended artifacts does not automatically invalidate a test when core validity conditions are satisfied and recorded.
+\end{itemize}
+
+\subsubsection*{3.7 Non-admissibility handling and retest posture (governance-level)}
+\phantomsection
+
+\begin{itemize}
+\item If a test cannot be verified under Stage 2 validity conditions, it must be tagged \textbf{INVALID} and must not drive progression decisions.
+\item If a gate-required test is \textbf{INVALID}, the default gate posture is \textbf{HOLD} until a \textbf{VALID} retest exists, unless safety posture requires \textbf{REGRESS} or \textbf{MEDICAL} \textbf{HOLD}.
+\item Retest posture is conservative:
+  \begin{itemize}
+  \item standardize conditions,
+  \item remove novelty,
+  \item restore validity fields,
+  \item then retest.
+  \end{itemize}
+\item “Chasing a number” is prohibited as a corrective action. The corrective action is restoring valid conditions.
+\end{itemize}
+
+\subsection*{4. Inputs and Assumptions}
+\phantomsection
+
+\subsubsection*{4.1 Inputs — Binding}
+\phantomsection
+
+Stage 2 is constrained by upstream doctrine and frozen identifiers.
+
+Binding inputs include:
+
+1. Stage 0.3 end-state targets and definition-of-done envelope
+
+\begin{itemize}
+\item Stage 2 measurement architecture serves Stage 0.3 targets and does not redefine them.
+\item Repeatability posture remains controlling: single outputs do not override evidence quality requirements.
+\end{itemize}
+
+2. Stage 0 boundaries, including:
+
+\begin{itemize}
+\item safety and stop-rule posture,
+\item OTC-only and no prescription guidance boundaries,
+\item water governance and prohibition of unsupervised underwater/breath-hold exposure,
+\item prohibition of illegal procurement guidance.
+\end{itemize}
+
+3. Stage 1 governance posture, including Stage 1.F validity and admissibility posture and locked tokens:
+
+\begin{itemize}
+\item Session Tag: \textbf{VALID} / \textbf{MODIFIED} / \textbf{INVALID}
+\item Test Tag: \textbf{VALID} / \textbf{INVALID}
+\item Gate Outcome: \textbf{ADVANCE} / \textbf{HOLD} / \textbf{REGRESS} / \textbf{MEDICAL} \textbf{HOLD}
+\end{itemize}
+
+4. Locked Stage 2 conventions (frozen identifiers and schema posture):
+
+\begin{itemize}
+\item Domain tags: \textbf{STR}, \textbf{AER}, \textbf{CAL}, \textbf{RUN}, \textbf{RUCK}, \textbf{SWIM}, \textbf{BODYCOMP}, \textbf{DURABILITY}, \textbf{RECOVERY}
+\item Metric IDs: \textbf{MET-2B}-\#\#\# (three digits, sequential)
+\item Protocol card IDs: \textbf{C1} through \textbf{C18}
+\item Validity condition fields: \textbf{ENV}, \textbf{EQUIP}, \textbf{WARMUP}, \textbf{SAFETY}, \textbf{MEASURE}
+\item Threshold tiers: \textbf{ENTRY}, \textbf{INTERMEDIATE}, \textbf{SELECTION-READY}
+\end{itemize}
+
+5. Identifier stability posture
+
+\begin{itemize}
+\item Stage 2 identifiers are crosswalk anchors. Any identifier change requires explicit change control and downstream revalidation.
+\end{itemize}
+
+\subsubsection*{4.2 Assumption Ledger — Only if Needed}
+\phantomsection
+
+\begin{itemize}
+\item A measurable route exists or an indoor device exists with stable, loggable settings sufficient to produce comparable run/ruck test evidence.
+\item A timing method exists sufficient for recorded test durations and time trials.
+\item The Coach Lead and Trainee can record \textbf{ENV}, \textbf{EQUIP}, \textbf{WARMUP}, \textbf{SAFETY}, and \textbf{MEASURE} fields consistently enough to support admissibility determinations.
+\item Facility access volatility may occur; substitution posture remains mandatory and must preserve validity condition recording requirements where possible.
+\end{itemize}
+
+\subsection*{5. Interfaces}
+\phantomsection
+
+\subsubsection*{5.1 Upstream dependencies}
+\phantomsection
+
+Stage 2 depends on and must remain consistent with:
+
+\begin{itemize}
+\item Stage 0 identity and scope posture.
+\item Stage 0.2 start-state feasibility constraints affecting measurement feasibility (tool access, facility volatility, start-from-zero constraints).
+\item Stage 0.3 end-state targets and envelope logic.
+\item Stage 0.4 operating constraints that influence what must be logged (e.g., Cardio minimum and step baseline are separate from test evidence).
+\item Stage 0.5 safety and water governance constraints.
+\item Stage 1.F validity doctrine and gate evidence posture.
+\item Stage 1.D revalidation expectations and stage gate posture.
+\end{itemize}
+
+\subsubsection*{5.2 Downstream consumers}
+\phantomsection
+
+Stage 2 serves as the measurement foundation for:
+
+\begin{itemize}
+\item Stage 3 test calendar, deload map, and reslot rules (calendar logic references Stage 2 IDs and validity posture; does not invent measurement definitions).
+\item Stages 4–5 phase specifications and phase rows (list \textbf{MET-2B}-\#\#\#, C-card IDs, and readiness thresholds by reference only).
+\item Stages 6–7 equipment capability timing (ensures test prerequisites can be satisfied under start-from-zero constraints).
+\item Stage 8 crosswalk QA (uses Stage 2 IDs and schema fields as reconciliation keys).
+\end{itemize}
+
+\subsubsection*{5.3 Crosswalk hooks}
+\phantomsection
+
+Stage 2 defines and freezes stable identifiers used across the binder and Stage 8 crosswalks:
+
+\begin{itemize}
+\item Domain tags: \textbf{STR}, \textbf{AER}, \textbf{CAL}, \textbf{RUN}, \textbf{RUCK}, \textbf{SWIM}, \textbf{BODYCOMP}, \textbf{DURABILITY}, \textbf{RECOVERY}
+\item Metric IDs: \textbf{MET-2B}-\#\#\# (three digits, sequential)
+\item Protocol card IDs: \textbf{C1} through \textbf{C18}
+\item Validity condition fields: \textbf{ENV}, \textbf{EQUIP}, \textbf{WARMUP}, \textbf{SAFETY}, \textbf{MEASURE}
+\item Threshold tiers: \textbf{ENTRY}, \textbf{INTERMEDIATE}, \textbf{SELECTION-READY}
+\end{itemize}
+
+Crosswalk posture:
+
+\begin{itemize}
+\item Domain tags classify metrics.
+\item Metrics reference protocol cards.
+\item Protocol cards define validity conditions.
+\item Threshold tiers classify performance under admissible conditions.
+\item Calendar and phase designs consume IDs without altering procedures.
+\end{itemize}
+
+\subsection*{6. Gate and Acceptance Criteria}
+\phantomsection
+
+Stage 2 is complete and deployable only when it provides decision-grade measurement definitions without contradicting Stage 0 constraints or Stage 1 governance posture.
+
+\textbf{PASS} criteria (governance-level):
+
+1. Domain taxonomy completeness
+
+\begin{itemize}
+\item 2.A exists and freezes the canonical domain taxonomy tag set with stable labels (no synonyms introduced).
+\item Each domain tag includes a definition sufficient to classify metrics consistently (defined in 2.A deliverable proper).
+\end{itemize}
+
+2. Metric inventory completeness
+
+\begin{itemize}
+\item 2.B exists and every metric includes:
+  \begin{itemize}
+  \item \textbf{MET-2B}-\#\#\# \textbf{ID},
+  \item name,
+  \item unit,
+  \item primary domain tag,
+  \item an associated protocol card reference,
+  \item directionality,
+  \item readiness-tier threshold structure pointer to 2.D.
+  \end{itemize}
+\end{itemize}
+
+3. Protocol card architecture completeness
+
+\begin{itemize}
+\item 2.C exists and each protocol card \textbf{C1}–\textbf{C18} includes:
+  \begin{itemize}
+  \item \textbf{SAFETY} prerequisites aligned to Stage 0.5,
+  \item \textbf{EQUIP} requirements,
+  \item \textbf{ENV} requirements,
+  \item \textbf{WARMUP} requirement,
+  \item \textbf{MEASURE} requirements,
+  \item scoring and recording rules sufficient for \textbf{VALID}/\textbf{INVALID} tagging.
+  \end{itemize}
+\end{itemize}
+
+4. Threshold tier structure completeness
+
+\begin{itemize}
+\item 2.D exists and every metric required for readiness classification includes thresholds for:
+  \begin{itemize}
+  \item \textbf{ENTRY},
+  \item \textbf{INTERMEDIATE},
+  \item \textbf{SELECTION-READY},
+  \end{itemize}
+  expressed with unit-locked values and directionality.
+\end{itemize}
+
+5. Data recording and comparability conventions completeness
+
+\begin{itemize}
+\item 2.E exists and defines:
+  \begin{itemize}
+  \item minimum validity condition fields (\textbf{ENV}/\textbf{EQUIP}/\textbf{WARMUP}/\textbf{SAFETY}/\textbf{MEASURE}),
+  \item environment logging minimums,
+  \item treadmill admissibility posture for run/ruck (with required logging fields),
+  \item body fat trend validity posture (method consistency across windows),
+  \item swim unit handling posture (yards vs meters),
+  \item retest posture when validity fails or comparability breaks occur.
+  \end{itemize}
+\end{itemize}
+
+6. Boundary alignment
+
+\begin{itemize}
+\item No contradictions exist with Stage 0 boundaries, especially:
+  \begin{itemize}
+  \item water governance (no unsupervised underwater/breath-hold),
+  \item stop-rule dominance and safety override posture,
+  \item prohibition of prescription/hormone guidance and medical diagnosis/treatment drift.
+  \end{itemize}
+\end{itemize}
+
+\textbf{FAIL} criteria (non-deployable triggers):
+
+\begin{itemize}
+\item Any metric lacks an \textbf{ID}, unit, or domain tag, or has no protocol card reference.
+\item Any protocol card lacks \textbf{SAFETY} prerequisites or lacks minimum validity condition schema coverage (\textbf{ENV}, \textbf{EQUIP}, \textbf{WARMUP}, \textbf{SAFETY}, \textbf{MEASURE}).
+\item Any readiness tier structure is missing for a required metric.
+\item Any language weakens Stage 0.5 safety boundaries or introduces permissive underwater/breath-hold posture without certified supervision prerequisites.
+\item Any drift in identifiers, renamed tags, parallel terminology, or inconsistent token usage fractures crosswalk stability.
+\end{itemize}
+
+\subsection*{7. Common Failure Modes and Controls}
+\phantomsection
+
+\begin{itemize}
+\item Metrics exist without protocols -> Control: no protocol reference, no decision-grade metric; every metric must reference at least one C-card and declare validity fields.
+\item Protocol cards exist without validity condition schema tokens -> Control: each protocol card must include \textbf{ENV}, \textbf{EQUIP}, \textbf{WARMUP}, \textbf{SAFETY}, and \textbf{MEASURE} fields; missing fields force invalidity posture.
+\item Inconsistent test environments treated as comparable without logging -> Control: \textbf{ENV} and \textbf{MEASURE} fields required; comparability is conditional on recorded context.
+\item Tool drift near gates (timing method, treadmill, footwear, load config) -> Control: \textbf{EQUIP} logging plus “no novelty near verification windows” posture; changes require explicit notation and conservative interpretation until stabilized.
+\item Route measurement ambiguity (estimated distances treated as measured) -> Control: \textbf{MEASURE} requires route verification method; unverifiable distance for Gate-Critical tests defaults to \textbf{INVALID}.
+\item Warm-up omitted to “save time” -> Control: \textbf{WARMUP} is a validity condition; missing warm-up record is an admissibility failure when required by the protocol.
+\item Unit confusion in swim testing (yards vs meters) -> Control: \textbf{MEASURE} requires unit and pool length verification; yards and meters treated as separate evidence streams unless explicitly cross-calibrated and logged.
+\item Load or footwear not recorded for ruck evidence -> Control: \textbf{EQUIP}/\textbf{MEASURE} must include load and load confirmation method; missing critical fields forces conservative tagging.
+\item Unauthorized underwater behavior or informal breath-hold attempts -> Control: \textbf{SAFETY} prerequisites and categorical prohibition without certified supervision; governance breach forces \textbf{INVALID} and conservative gate posture downstream.
+\item Body fat trend invalidity due to method drift -> Control: method/device recorded each time; trend windows require consistency; method change flagged as comparability break.
+\item Evidence artifacts treated as mandatory or treated as substitutes for required fields -> Control: artifacts recommended unless explicitly required by C-card; required fields remain controlling.
+\item Threshold tiers treated as status targets -> Control: tier classification requires admissible evidence and is constrained by durability signals; no unsafe acceleration.
+\item Testing performed under fatigue spike without disclosure -> Control: \textbf{SAFETY} and \textbf{RECOVERY} context captured in logs per protocol; undisclosed fatigue conditions contaminate comparability and must be treated conservatively.
+\item “Counting it anyway” posture after invalid test -> Control: invalid tests cannot justify advancement; retest under controlled conditions is mandatory when gate-required.
+\end{itemize}
+
+\subsection*{8. Versioning Notes}
+\phantomsection
+
+Frozen in Stage 2 (do not change without logged change control and downstream revalidation):
+
+\begin{itemize}
+\item Domain taxonomy tag set and labels.
+\item Metric \textbf{ID} convention (\textbf{MET-2B}-\#\#\#) and the rule that metrics carry \textbf{ID}, unit, domain tag, directionality, and protocol references.
+\item Protocol card \textbf{ID} set (\textbf{C1}–\textbf{C18}) and the protocol architecture posture.
+\item Validity condition field schema tokens (\textbf{ENV}, \textbf{EQUIP}, \textbf{WARMUP}, \textbf{SAFETY}, \textbf{MEASURE}).
+\item Readiness tier labels (\textbf{ENTRY}, \textbf{INTERMEDIATE}, \textbf{SELECTION-READY}).
+\item Unit handling posture where unit locks are required for comparability (e.g., swim yards vs meters).
+\end{itemize}
+
+Revisable only via logged change (and revalidation where impacted):
+
+\begin{itemize}
+\item Threshold values and pass bands as decision-grade evidence accumulates (must remain aligned to Stage 0.3 envelope posture).
+\item Protocol clarifications that improve enforceability without altering safety boundaries or weakening admissibility.
+\item Equipment prerequisite clarifications at category level to preserve feasibility under start-from-zero posture.
+\end{itemize}
+
+Boundary changes are not permitted within Stage 2. Any change that affects Stage 0 constraints, Stage 0 boundaries, or Stage 0 operating constants is a higher-authority change requiring explicit change control and downstream revalidation posture.
+\newpage
+\subsection*{Stage 2 Contents Map}
+\phantomsection
+\addcontentsline{toc}{subsection}{Stage 2 Contents Map}
+
+\begin{itemize}
+\item 2.A Domain Taxonomy — Freezes the canonical domain tag set used to classify every metric and test across the binder, including definitions and classification rules.
+\item 2.B Metrics and Test Inventory — Establishes \textbf{MET-2B}-\#\#\# metrics with units, domain tags, directionality, and protocol references as the stable measurement inventory.
+\item 2.C Standardized Test Protocol Cards \textbf{C1}–\textbf{C18} — Defines test procedures, safety prerequisites, equipment/environment requirements, validity condition fields, scoring methods, and recording rules to support \textbf{VALID}/\textbf{INVALID} tagging.
+\item 2.D Performance Thresholds and Alignment — Defines \textbf{ENTRY} / \textbf{INTERMEDIATE} / \textbf{SELECTION-READY} thresholds aligned to Stage 0.3 targets for gate-relevant readiness classification.
+\item 2.E Data Recording and Test Logistics Conventions — Locks validity condition field handling, environment/equipment/measurement logging minimums, treadmill admissibility posture, method-consistency posture for body composition, swim unit handling posture, comparability rules, and retest posture across 182 weeks.
+\end{itemize}
+
+\end{document}

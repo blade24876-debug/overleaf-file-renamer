@@ -1,0 +1,454 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{6.A — Category and Tier Definitions}
+\phantomsection
+\addcontentsline{toc}{section}{6.A — Category and Tier Definitions}
+
+\subsection*{6.A.1 Categories}
+\phantomsection
+\addcontentsline{toc}{subsection}{6.A.1 Categories}
+
+\begin{itemize}
+\item 7.01 Strength and Resistance Training Equipment\\
+Covers resistance-based capability needed to execute strength and muscular development safely and reproducibly. Includes space-stable resistance options and safe load-handling posture without assuming gym access.
+
+\item 7.02 Hormonal Support and Adaptogens — OTC Education Only\\
+Education-only category covering boundaries, contraindication awareness, and clinician referral triggers. It is never a required capability and is not used to justify phase advancement or evidence claims.
+
+\item 7.03 Foundational Health Supplements — OTC\\
+Optional OTC support category for baseline nutritional gaps under conservative posture. It must not become a prerequisite for training or gate decisions and must not introduce medical claims.
+
+\item 7.04 Performance and Auxiliary Supplements — OTC\\
+Optional OTC category for performance-adjacent supports under conservative governance. It must not be used to mask risk signals or to change test conditions without documentation.
+
+\item 7.05 Cognitive Performance and Energy Enhancers — OTC\\
+Optional OTC category that can influence perceived readiness and test comparability. Stability and documentation are required if used; novelty near gates is a validity risk.
+
+\item 7.06 Recovery, Sleep, and Stress-Support Aids — OTC\\
+Optional OTC category to support recovery hygiene under conservative posture. It must not replace sleep opportunity, downshift posture, or safety constraints.
+
+\item 7.07 Load-Bearing, Rucking, and Carry Systems\\
+Covers load carriage capability required for ruck and carry exposures, including fit/adjustment, load stability, and reproducible configuration. It is a high-consequence category tied to foot/skin durability and safety constraints.
+
+\item 7.08 Conditioning, Endurance, and Aerobic Training Tools\\
+Covers tools that enable year-round low-impact conditioning continuity and controllable Cardio modalities. It supports indoor substitution when weather or safety prevents outdoor exposure.
+
+\item 7.09 Health Monitoring, Diagnostics, and Biometrics\\
+Covers non-diagnostic monitoring tools used to improve logging fidelity and trend visibility. It is supportive and must not be treated as medical diagnosis or a mandatory gate requirement unless explicitly made so downstream.
+
+\item 7.10 Logistics, Maintenance, Storage, and Sustainment Equipment\\
+Covers sustainment systems that prevent predictable execution failure: storage, drying, maintenance, and organization. It reduces friction that causes missed sessions or degraded equipment safety.
+
+\item 7.11 Footwear Systems and Foot Care\\
+Covers footwear interface stability, sock systems, blister prevention, and foot maintenance capability. It is a primary constraint for safe locomotion and load carriage progression.
+
+\item 7.12 Recovery, Mobility, and Tissue-Care Implements\\
+Covers mobility and tissue-care capability used to reduce stiffness, manage hotspots, and preserve movement quality. It supports durability controls without implying medical treatment.
+
+\item 7.13 Nutrition Preparation and Hydration Systems\\
+Covers hydration access and basic preparation capability that supports safe training and consistent execution. It is constrained to non-medical posture and does not prescribe diet programming here.
+
+\item 7.14 Environmental Apparel — Cold, Hot, Wet, Inclement Weather\\
+Covers protective apparel required to train safely in temperature, wind, precipitation, and low-light constraints. It supports environment governance without creating unsafe exposure expectations.
+
+\item 7.15 General Training and Daily Wear Apparel\\
+Covers general clothing and daily wear needs that prevent friction and enable consistent training execution. It is feasibility-supporting and must remain non-branded and non-commercial here.
+
+\item 7.16 Operational Self-Management Systems — Journaling, Planning, Mental Conditioning\\
+Covers planning, journaling, and operational self-management systems that support adherence, documentation quality, and reslot discipline. It is a governance-support category, not therapy or diagnosis.
+
+\item 7.17 Aquatic Training and Water Safety Equipment\\
+Covers safety and feasibility capability for swim exposures when they become phase-relevant, including verifiable pool context and safety posture. It does not authorize underwater/breath-hold without governance prerequisites.
+
+\item 7.18 Testing, Timing, Measurement, and Course-Setup Tools\\
+Covers the tools required to produce valid, comparable evidence: timers, measurement tools, route/pool verification aids, and setup aids. It is essential for admissibility and audit traceability.
+
+\item 7.19 Protective and Assistive Equipment\\
+Covers protective and assistive capability needed to reduce predictable injury risk and to support safe execution where required. It includes generic protective supports and safety aids without medical claims.
+
+\item 7.20 Personal Hygiene, Health, and Sanitation Items\\
+Covers hygiene and sanitation capability that reduces illness risk and skin/foot breakdown. It supports sustainment and consistent execution under high-frequency training.
+\end{itemize}
+
+\subsection*{6.A.2 Tier System}
+\phantomsection
+\addcontentsline{toc}{subsection}{6.A.2 Tier System}
+
+\begin{itemize}
+\item Tier 0 — None / Household Only\\
+No dedicated capability beyond typical household environment. Any substitutes must be safe and must not increase risk. Tier 0 is acceptable only when the phase does not require that category for safety or validity.
+
+\item Tier 1 — Essentials\\
+Minimum deployable capability required for a phase. Tier 1 means the phase can be executed safely and tests can be produced validly where applicable.
+
+\item Tier 2 — Expanded / Performance\\
+Optional upgrades that increase convenience, reduce friction, or improve performance potential. Tier 2 is not required unless a phase explicitly depends on it.
+
+\item Tier 3 — Advanced / Overbuilt\\
+Optional overbuilt capability that increases redundancy, durability, or specialized performance. Tier 3 is not required unless a phase explicitly depends on it.
+\end{itemize}
+
+Governance rule (locked):
+
+\begin{itemize}
+\item Tier 1 equals minimum deployable capability for a phase.
+\item Tier 2 and Tier 3 are optional upgrades and are never required unless a phase explicitly depends on them. If a phase depends on a Tier 2 or Tier 3 capability, it becomes functionally Tier 1 for that phase.
+\end{itemize}
+
+\clearpage
+\begin{landscape}
+
+\subsection*{6.A.3 Category by Tier Reference Table}
+\phantomsection
+\addcontentsline{toc}{subsection}{6.A.3 Category by Tier Reference Table}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.85in]
+    X[l,1.90]
+    X[l,1.00]
+    X[l,1.20]
+    X[l,1.20]
+    X[l,1.20]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-6} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Category\\Stage 7 \textbf{ID}} &
+\Hdr{Description} &
+\Hdr{Tier 0\\None Household} &
+\Hdr{Tier 1\\Essentials Examples} &
+\Hdr{Tier 2\\Expanded Examples} &
+\Hdr{Tier 3\\Advanced Examples} \\
+
+7.01 &
+Resistance capability to execute strength development safely and reproducibly without assuming gym access. &
+Bodyweight and household support surfaces &
+Adjustable resistance option; stable anchor-free band set; simple pull support surface &
+Additional resistance variety; higher stability setup options &
+Redundant resistance systems; expanded implement variety; dedicated training space configuration \\
+
+7.02 &
+Hormonal support and adaptogens category, education-only governance boundary set. &
+N/A — education-only; never required; clinician-led if ever used. &
+N/A — education-only; never required; clinician-led if ever used. &
+N/A — education-only; never required; clinician-led if ever used. &
+N/A — education-only; never required; clinician-led if ever used. \\
+
+7.03 &
+Optional OTC foundational supplement posture for baseline support without medical claims. &
+None &
+Basic OTC foundational set; stable use pattern; documented context &
+Expanded OTC foundational options; improved compliance aids &
+Redundant options; extended supply posture; travel continuity posture \\
+
+7.04 &
+Optional OTC performance-adjacent supports under conservative governance and stability posture. &
+None &
+Single stable OTC performance support; documented use context &
+Expanded OTC support options; improved standardization posture &
+Redundant options; extended stability controls and documentation posture \\
+
+7.05 &
+Optional OTC cognitive/energy supports with high validity sensitivity; novelty near gates is restricted. &
+None &
+Single stable OTC stimulant-equivalent posture; logged use timing &
+Expanded options with stricter standardization posture &
+Redundant options; conservative stability controls across windows \\
+
+7.06 &
+Optional OTC recovery/sleep/stress supports that complement, never replace, sleep opportunity and downshift posture. &
+None &
+Single stable OTC recovery aid posture; documented context &
+Expanded recovery aid options; improved sleep hygiene supports &
+Redundant aids; extended sustainment posture under travel/stress \\
+
+7.07 &
+Load carriage capability for ruck/carry exposures with reproducible configuration and safe fit. &
+None &
+Adjustable pack system; load containment method; basic load verification method &
+Expanded fit options; improved load stability components &
+Redundant pack systems; specialized load stabilization options \\
+
+7.08 &
+Conditioning tools enabling safe, controllable low-impact Cardio and indoor substitution when needed. &
+Outdoor walking only when safe &
+Basic indoor low-impact tool access; stable settings/loggable modality &
+Additional modalities; improved controllability; redundancy for access loss &
+Multiple modalities; dedicated conditioning space and redundancy posture \\
+
+7.09 &
+Non-diagnostic monitoring tools supporting trend visibility and logging fidelity. &
+None &
+Basic wearable or measurement method; stable logging method &
+Additional non-diagnostic metrics capture; improved consistency &
+Redundant devices; extended data capture and backup posture \\
+
+7.10 &
+Sustainment systems reducing friction: storage, drying, maintenance, organization. &
+Household storage only &
+Basic drying/maintenance posture; storage containers; simple repair/maintenance kit &
+Expanded storage; improved drying; organizational redundancy &
+Overbuilt sustainment: dedicated drying/storage; redundant maintenance kits \\
+
+7.11 &
+Footwear and footcare system for safe locomotion progression and blister prevention. &
+None &
+Primary supportive footwear; sock system; blister prevention supplies &
+Expanded footwear options for conditions; improved footcare toolkit &
+Redundant footwear sets; advanced footcare redundancy and sustainment \\
+
+7.12 &
+Mobility and tissue-care implements supporting durability and movement quality without medical treatment claims. &
+Floor space only &
+Basic mobility tool; basic tissue-care implement; safe surface &
+Expanded mobility set; improved recovery options &
+Redundant recovery tools; dedicated mobility/recovery space posture \\
+
+7.13 &
+Hydration and basic nutrition preparation capability supporting safe training execution. &
+Household cups only &
+Hydration container; basic electrolyte/hydration posture; simple prep capability &
+Expanded prep tools; improved carry capacity; travel continuity &
+Redundant containers; overbuilt prep system; sustainment posture \\
+
+7.14 &
+Environmental apparel supporting safe cold/hot/wet execution and indoor/outdoor feasibility. &
+Household clothing only &
+Minimum weather-appropriate layers; basic rain/wind protection &
+Expanded layering options; improved climate adaptability &
+Overbuilt apparel redundancy; specialized condition coverage \\
+
+7.15 &
+General training and daily wear apparel supporting friction-free execution and consistency. &
+Existing clothing only &
+Basic training apparel set; durable daily wear posture &
+Expanded apparel options; improved condition matching &
+Redundant apparel inventory; extended sustainment posture \\
+
+7.16 &
+Planning/journaling/self-management systems supporting adherence, documentation, and reslot discipline. &
+None &
+Single system-of-record; planner/journal; simple reminders &
+Expanded planning toolkit; improved structure and templates &
+Overbuilt operational system; redundancy and archival posture \\
+
+7.17 &
+Aquatic training and water safety capability for swim readiness when phase-relevant; does not authorize underwater without governance. &
+None &
+Basic swim safety posture; pool feasibility and verification method &
+Expanded aquatic tools; improved safety and logistics posture &
+Redundant aquatic capability; advanced safety logistics posture \\
+
+7.18 &
+Timing/measurement/course-setup tools required for admissible tests and audit traceability. &
+None &
+Timer method; scale; tape; route/pool verification posture &
+Expanded measurement tools; improved repeatability aids &
+Redundant measurement set; overbuilt course-setup capability \\
+
+7.19 &
+Protective and assistive capability to reduce predictable injury risk and support safe execution where required. &
+None &
+Basic protective supports; assistive safety item &
+Expanded protective options; improved risk reduction &
+Redundant protective inventory; advanced assistive posture \\
+
+7.20 &
+Hygiene and sanitation capability preventing illness and skin/foot breakdown under high-frequency training. &
+Household hygiene only &
+Basic hygiene kit; sanitation supplies; laundry/drying posture &
+Expanded hygiene options; improved travel continuity &
+Overbuilt sanitation redundancy; extended sustainment and backup posture \\
+
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+\clearpage
+
+\end{document}

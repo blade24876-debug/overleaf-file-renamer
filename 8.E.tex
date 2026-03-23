@@ -1,0 +1,335 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 8.E — Implementation Summary and Final Checklists}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 8.E — Implementation Summary and Final Checklists}
+
+\subsection*{8.E.1 — Standards and Tests Checklist}
+\phantomsection
+\addcontentsline{toc}{subsection}{8.E.1 — Standards and Tests Checklist}
+
+\begin{itemize}
+\item Verify every end-state standard has at least one primary test and at least one primary development phase:
+  \begin{itemize}
+  \item \textbf{ST-PU-2MIN} / \textbf{C4} / \textbf{MET-2B-010} / Phase 09 End and Phase 13 End.
+  \item \textbf{ST-RUN-2MI} / \textbf{C9} / \textbf{MET-2B-015} / Phase 06 End and Phase 10 End.
+  \item \textbf{ST-RUCK-12MI-55LB} / \textbf{C12} / \textbf{MET-2B-021} / Phase 08 End and Phase 13 End.
+  \item \textbf{ST-SWIM-500M} / \textbf{C13} / \textbf{MET-2B-023} / Phase 04 End and Phase 10 End.
+  \item If fail → map to the most specific blocking issue:
+    \begin{itemize}
+    \item missing test feasibility due to equipment timing → \textbf{ISS-08-001} or \textbf{ISS-08-004},
+    \item swim logging/unit validity gap → \textbf{ISS-08-005},
+    \item underwater governance feasibility gap → \textbf{ISS-08-002} or \textbf{ISS-08-003}.
+    \end{itemize}
+  \end{itemize}
+
+\item Verify every phase exit standard is measurable via Stage 2 protocol:
+  \begin{itemize}
+  \item Each gate-relevant standard ST-* maps to a protocol card C\# and \textbf{MET-2B}-\#\#\# (see 8.A and 8.B mappings).
+  \item Any required gate standard that lacks an executable protocol/event posture in protected windows is inadmissible.
+  \item If fail → \textbf{ISS-08-001} (pull-up feasibility timing), \textbf{ISS-08-002} (underwater unschedulable), \textbf{ISS-08-005} (swim Pool \textbf{ID}/unit drift), or \textbf{ISS-08-007} (logging overload causing systematic inadmissibility).
+  \end{itemize}
+
+\item Verify no gate test is placed before at least one build phase exists:
+  \begin{itemize}
+  \item Gate tests must occur only inside Stage 3 protected windows (Phase \#\# Mid/End) and must not be scheduled as “first-week proof” without prior build exposure.
+  \item Evidence reference pattern: Phase \#\# Mid/End + Stage 3 protected window + C\# / \textbf{MET-2B}-\#\#\#.
+  \item If fail → map by cause:
+    \begin{itemize}
+    \item forced early gate due to reslot compression → \textbf{ISS-08-007} (overload) or \textbf{ISS-08-004} (timing fragility for long ruck),
+    \item governance-gated test forced early → \textbf{ISS-08-002} (underwater).
+    \end{itemize}
+  \end{itemize}
+
+\item Verify validity conditions are consistently referenced across gates:
+  \begin{itemize}
+  \item Stage 1.F admissibility posture applies: only \textbf{VALID} tests and admissible sessions count for gates.
+  \item Stage 2.E required fields must be present: Route \textbf{ID} / Pool \textbf{ID} / Machine \textbf{ID}, tool identity, Evidence Ref where required, timestamps; missing fields → inadmissible.
+  \item If fail → map to:
+    \begin{itemize}
+    \item cardio compliance misclassification risk (\textbf{MET-2B-045}) → \textbf{ISS-08-008},
+    \item underwater admissibility misclassification risk (\textbf{MET-2B-025}) → \textbf{ISS-08-003},
+    \item Pool \textbf{ID}/unit drift for swim → \textbf{ISS-08-005},
+    \item systemic missing fields due to logging burden → \textbf{ISS-08-007}.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\subsection*{8.E.2 — Gear and Environment Checklist}
+\phantomsection
+\addcontentsline{toc}{subsection}{8.E.2 — Gear and Environment Checklist}
+
+\begin{itemize}
+\item Verify no phase requires equipment not introduced at Tier 1 or higher by Stage 6 timing:
+  \begin{itemize}
+  \item Pull-up gate feasibility dependency: \textbf{ST-PULLUP-MAX} (\textbf{C6} / \textbf{MET-2B-012}) must not be gate-required before 7.01 pull-up solution feasibility; timing conflict risk → \textbf{ISS-08-001}.
+  \item Long ruck gate dependency stack: \textbf{ST-RUCK-12MI-55LB} (\textbf{C12} / \textbf{MET-2B-021}) depends on 7.07, 7.11, 7.18, 7.14, 7.19, 7.13 being at the required tier by the first decisive gate window; if not → \textbf{ISS-08-004}.
+  \item Biometrics dependency: \textbf{ST-BF-PCT} (\textbf{C2} / \textbf{MET-2B-002}) cannot be treated as gate-critical earlier than 7.09 Tier 1 timing; if required early → \textbf{ISS-08-006}.
+  \item If fail → cite the relevant issue \textbf{ID} above.
+  \end{itemize}
+
+\item Verify each equipment-dependent standard maps to at least one Stage 7 overview:
+  \begin{itemize}
+  \item \textbf{ST-RUCK-6MI-35LB} (\textbf{C12} / \textbf{MET-2B-019}) → 7.07, 7.11, 7.18, 7.14, 7.19, 7.13.
+  \item \textbf{ST-RUN-5MI} (\textbf{C11} / \textbf{MET-2B-017}) → 7.08, 7.18, 7.11, 7.14.
+  \item \textbf{ST-SWIM-500YD} (\textbf{C13} / \textbf{MET-2B-022}) → 7.17, 7.18, 7.10, 7.20.
+  \item If any mapped standard lacks an applicable overview linkage, cite the relevant \textbf{ISS-08} issue and do not treat the dependency as assumed.
+  \end{itemize}
+
+\item Verify environment-dependent standards have explicit feasibility posture and substitutes:
+  \begin{itemize}
+  \item \textbf{RUN} standards: Route \textbf{ID} or Machine \textbf{ID} + settings logging (Stage 2.E) supported by 7.08 and 7.18; unsafe ice/heat/air quality/visibility requires substitution/reslot.
+  \item \textbf{SWIM} standards: Pool \textbf{ID} + pool length/unit logging (Stage 2.E) supported by 7.17 and 7.18; missing Pool \textbf{ID}/unit → inadmissible.
+  \item \textbf{RUCK} standards: Route \textbf{ID} + conditions + visibility posture (7.19) + cold/wet apparel posture (7.14); unsafe conditions → reslot.
+  \item If fail → map to:
+    \begin{itemize}
+    \item swim Pool \textbf{ID}/unit validity risk → \textbf{ISS-08-005},
+    \item long ruck multi-category environment fragility → \textbf{ISS-08-004},
+    \item cardio compliance “forced outdoors” feasibility failure that drives invalid sessions → \textbf{ISS-08-007} and/or \textbf{ISS-08-008} (depending on whether the failure is missing fields vs misclassification).
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\subsection*{8.E.3 — Safety and Recovery Checklist}
+\phantomsection
+\addcontentsline{toc}{subsection}{8.E.3 — Safety and Recovery Checklist}
+
+\begin{itemize}
+\item Verify high-risk tests are anchored to deload/test weeks per Stage 3:
+  \begin{itemize}
+  \item \textbf{RUN}/\textbf{RUCK}/\textbf{SWIM} gate-grade events occur only in Stage 3 protected windows (Phase \#\# Mid/End).
+  \item If high-risk events are forced into build weeks due to reslot compression → \textbf{ISS-08-004} (timing fragility) or \textbf{ISS-08-007} (overload-driven reslot stacking pressure).
+  \end{itemize}
+
+\item Verify no phase stacks multiple maximal tests beyond Stage 3 principles:
+  \begin{itemize}
+  \item Stage 3.A spacing/anti-stacking posture applies: do not compress missed tests into one week; reslot.
+  \item If stacking occurs due to “make-up” behavior or compressed windows → \textbf{ISS-08-007} (overload) and/or \textbf{ISS-08-004} (timing fragility for long ruck windows).
+  \end{itemize}
+
+\item Verify recovery/readiness markers are referenced where gate decisions are made:
+  \begin{itemize}
+  \item \textbf{ST-SLEEP-HRS} (\textbf{MET-2B-038}), \textbf{ST-FATIGUE-0-10} (\textbf{MET-2B-041}), \textbf{ST-SORENESS-0-10} (\textbf{MET-2B-040}), \textbf{ST-GAIT-PAIN-FLAG} (\textbf{MET-2B-036}), \textbf{ST-FOOT-HOTSPOT-FLAG} (\textbf{MET-2B-037}) appear as gating context signals.
+  \item If these markers are not captured reliably due to logging friction → \textbf{ISS-08-007}; if steps are under-logged → \textbf{ISS-08-010}.
+  \end{itemize}
+
+\item Verify water safety governance is preserved and no unsupervised underwater is implied:
+  \begin{itemize}
+  \item Underwater standards \textbf{ST-UW-ADMISS} (\textbf{C14} / \textbf{MET-2B-025}) and \textbf{ST-UW-25M} (\textbf{C14} / \textbf{MET-2B-026}) are supervised-only and conditional; missing governance prerequisites → “not scheduled; inadmissible.”
+  \item If underwater is treated as mandatory or is scheduled without explicit governance prerequisites → \textbf{ISS-08-002} and \textbf{ISS-08-003}.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{8.E.4 — Implementation Summary Narrative}
+\phantomsection
+\addcontentsline{toc}{subsection}{8.E.4 — Implementation Summary Narrative}
+
+The package is coherent at the identifier and crosswalk-key level: standards (ST-*), tests (C\# / \textbf{MET-2B}-\#\#\#), and category manuals (7.01–7.20) can be mapped end-to-end for Phase 00–Phase 13. The dominant implementation risk is not missing concepts, but feasibility and admissibility under real-world constraints: certain standards are high consequence yet depend on governance resources or equipment timing that may not be reliably available. The most critical must-fix items before deployment are the pull-up feasibility timing conflict (\textbf{ISS-08-001}) and the underwater governance feasibility and admissibility controls (\textbf{ISS-08-002}, \textbf{ISS-08-003}). Long ruck standards also have a compounded dependency stack that makes late-phase gates fragile without strict pre-window readiness checks and reslot discipline (\textbf{ISS-08-004}). The trainee must be explicitly briefed that gate credit is validity-based only, and that missing required fields means “inadmissible,” not “close enough,” because logging burden failures can otherwise produce repeated \textbf{HOLD} outcomes (\textbf{ISS-08-007}, \textbf{ISS-08-008}). The trainee must also accept that pool access and route standardization are feasibility constraints: when unsafe, the correct action is indoor substitution or reslot, not forcing an attempt. Finally, budget/tier posture is phased: required capabilities must exist by the phase timing, but optional upgrades are not required unless the program explicitly elevates them via Stage 6 timing.
+
+Must-communicate assumptions to the trainee (implementation brief):
+
+\begin{itemize}
+\item Pool access becomes operationally necessary when \textbf{SWIM} becomes gate-relevant; Pool \textbf{ID} and pool length-unit logging are mandatory (\textbf{ISS-08-005}).
+\item Route standardization is mandatory for gate-grade \textbf{RUN}/\textbf{RUCK}; Route \textbf{ID}/Machine \textbf{ID} and settings must be logged.
+\item Budget/tier posture is phased; do not pull forward purchases; do not “make do” with unsafe substitutes for ruck or pull-up capability (\textbf{ISS-08-001}, \textbf{ISS-08-004}).
+\item Water governance is absolute: no unsupervised underwater/breath-hold ever; underwater is conditional and may be “not scheduled” (\textbf{ISS-08-002}, \textbf{ISS-08-003}).
+\item Validity-only gate credit: missing required fields means inadmissible; reslot rather than infer (\textbf{ISS-08-007}, \textbf{ISS-08-008}).
+\item No novelty near gates: new tools/routes/shoes/supplements are not introduced in Deload/Test windows.
+\end{itemize}
+
+\subsection*{8.E.5 — Must Fix Pre-Deploy}
+\phantomsection
+\addcontentsline{toc}{subsection}{8.E.5 — Must Fix Pre-Deploy}
+
+\begin{itemize}
+\item \textbf{ISS-08-001} — Pull-up standard may become gate-relevant before safe anchored pull-up capability is available; blocks admissible evidence and invites unsafe improvisation.
+\item \textbf{ISS-08-002} — Underwater standard may be unschedulable due to governance resource availability; blocks safe execution and can cause repeated gate failures/reslots.
+\item \textbf{ISS-08-003} — Underwater admissibility flag can be treated as assumed “yes” without documented prerequisites; safety and admissibility breach risk.
+\item \textbf{ISS-08-004} — Long ruck gate has compounded dependency stack; any missing element blocks safe execution and risks non-deployable late-phase gates.
+\end{itemize}
+
+\subsection*{8.E.6 — Monitor Post-Launch}
+\phantomsection
+\addcontentsline{toc}{subsection}{8.E.6 — Monitor Post-Launch}
+
+\begin{itemize}
+\item \textbf{ISS-08-005} — Swim unit/Pool \textbf{ID} logging drift risk; monitor with strict Pool \textbf{ID} + length-unit enforcement and reslot when missing.
+\item \textbf{ISS-08-006} — Biometrics timing mismatch risk; monitor unless biometrics are made gate-critical earlier, which would require a Stage 6 timing adjustment.
+\item \textbf{ISS-08-007} — Logging burden overload; monitor and reduce friction via templates and operational routines without changing required fields.
+\item \textbf{ISS-08-008} — Cardio compliance misclassification risk; monitor via stricter continuity capture prompts and default-to-invalid when continuity is missing.
+\item \textbf{ISS-08-009} — Waist landmark drift risk; monitor via explicit landmark discipline and re-baseline logging when method changes.
+\item \textbf{ISS-08-010} — Steps under-logging risk; monitor via stable capture method and repeated-missing-data controls.
+\end{itemize}
+
+\end{document}

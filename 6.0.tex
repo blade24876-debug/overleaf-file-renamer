@@ -1,0 +1,451 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{tcolorbox}
+\begin{center}
+{\LARGE\bfseries Stage 6 — Phase-by-Phase Equipment and Resource Build-Out Map}\\[0.35em]
+{\Large\bfseries SOF Physical Development Transformation Program}\\[0.25em]
+{\large 182-Week Civilian-to-Selection Readiness Pipeline}\\[0.65em]
+\TitleLine
+\end{center}
+\end{tcolorbox}
+
+\vspace{0.35em}
+
+\section*{Stage 6 — Phase-by-Phase Equipment and Resource Build-Out Map}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 6 — Phase-by-Phase Equipment and Resource Build-Out Map}
+
+\subsection*{1) Purpose}
+\phantomsection
+\addcontentsline{toc}{subsection}{Introduction}
+
+Stage 6 exists to translate the fixed phase intent and gate architecture into a controlled, phase-timed capability readiness map. It defines when each capability category becomes required and at what tier, so phases do not implicitly demand equipment, space, or resources that the trainee does not yet possess under start-from-zero posture.
+
+Stage 6 is a timeline and tier map, not a buyer’s guide. It does not prescribe brands, models, retailers, pricing, or shopping actions. It defines capability readiness requirements only, using stable category IDs and a fixed tier system so downstream category overviews can carry all detail.
+
+Stage 6 covers the full continuum Phase 00 through Phase 13 and is used to prevent two classes of failure:
+
+\begin{itemize}
+\item safety failures caused by improvised substitutes for missing equipment,
+\item validity failures where required test setups cannot be reproduced because enabling capability was never introduced.
+\end{itemize}
+
+Stage 6 delivers a constrained acquisition posture: Tier 1 is introduced only when required for safety, validity, and gate readiness, and later tiers are deferred until phase demands justify them.
+
+Stage 6 produces deliverables 6.A through 6.E (listed here only; not output):
+
+\begin{itemize}
+\item 6.A — Capability Introduction Matrix, Phase 00–13
+\item 6.B — Minimal to Standard to Optimal Pathways
+\item 6.C — Phase-Specific Acquisition Deltas, Phase 00–13
+\item 6.D — Phase-Gated Safety and Dependency Flags, Higher-Risk Capability Introductions
+\item 6.E — Consistency Safety and Compliance Check, No Unmet Gear Demands, Substitution Controls
+\end{itemize}
+
+\subsection*{2) Scope}
+\phantomsection
+
+\subsubsection*{Inclusions}
+\phantomsection
+\addcontentsline{toc}{subsubsection}{Inclusions}
+
+\begin{itemize}
+\item Phase coverage: Phase 00 through Phase 13 inclusive.
+\item Two matrices (named and fixed):
+  \begin{itemize}
+  \item Matrix B1 Hardware, Environment, and Systems, 15 categories
+  \item Matrix B2 Supplements and Support, 5 categories
+  \end{itemize}
+\item Category taxonomy and vocabulary fixed to Stage 7 category IDs 7.01–7.20, used as the only category reference set.
+\item Tier system fixed and used everywhere:
+  \begin{itemize}
+  \item Tier 0 — None or Household Only
+  \item Tier 1 — Essentials
+  \item Tier 2 — Expanded and Performance
+  \item Tier 3 — Advanced and Overbuilt
+  \end{itemize}
+\item Timing granularity fixed to Entry, Mid-phase, End-phase only.
+\item Governance constraints applied to equipment timing:
+  \begin{itemize}
+  \item no phase may require a capability earlier than it appears as Tier 1 in the Stage 6 matrices,
+  \item timing interpretation is anchored to Stage 3 protected gate windows (no week numbering in Stage 6).
+  \end{itemize}
+\item Category-level capability descriptors only:
+  \begin{itemize}
+  \item tier label + short capability descriptor,
+  \item generic item types only,
+  \item explicit deferral language stating that details/specs live in Stage 7 overviews.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{Exclusions}
+\phantomsection
+
+\begin{itemize}
+\item No changes to phase purposes, durations, exit standards, or gate instruments defined upstream.
+\item No new tests, thresholds, domains, protocols, or identifiers.
+\item No programming content (no workouts, sets/reps, microcycles, intervals, or schedules).
+\item No equipment shopping lists, brands, models, retailer guidance, or pricing catalogs.
+\item No supplement dosing or procurement guidance; supplements remain OTC-only posture and are not gate-required.
+\end{itemize}
+
+\subsection*{3) How to Use}
+\phantomsection
+
+\begin{itemize}
+\item Read Stage 6 as the program’s capability timing contract. If a phase card or phase specification implies a requirement that is not introduced as Tier 1 by that phase’s Entry/Mid-phase/End-phase timing, that downstream artifact is Draft — Non-Deployable until corrected.
+\item Use Matrix B1 to ensure every physical test and execution dependency implied by Stage 2 and Stage 3 has a feasible, phase-timed capability path under start-from-zero posture.
+\item Use Matrix B2 to document the supplements and support posture without turning it into a requirement system:
+  \begin{itemize}
+  \item OTC-only,
+  \item 7.02 is education-only and never required,
+  \item any optional category remains non-gating and must not be used to justify unsafe acceleration or validity shortcuts.
+  \end{itemize}
+\item Apply Stage 3 timing interpretation discipline:
+  \begin{itemize}
+  \item “Entry/Mid-phase/End-phase” are interpreted against protected gate windows and feasibility needs,
+  \item if a capability is required to execute a gate-grade test in a protected window, it must appear as Tier 1 no later than the phase timing that precedes that window.
+  \end{itemize}
+\item Use Stage 6 outputs to feed:
+  \begin{itemize}
+  \item Stage 6.C acquisition deltas (what changes by phase at category level),
+  \item Stage 6.D dependency flags (when capability introductions become higher-risk),
+  \item Stage 7 category overviews (where all detail lives).
+  \end{itemize}
+\end{itemize}
+
+Budget posture (high-level; no pricing):
+
+\begin{itemize}
+\item Start-from-zero posture implies constrained budget and space.
+\item Acquisition is phased to avoid premature purchases.
+\item Tier 1 is introduced first and is tied to safety, validity, and gate readiness.
+\item Tier 2 and Tier 3 are deferred until phase demands justify them and the trainee’s execution stability is proven.
+\end{itemize}
+
+\subsection*{4) Inputs and Assumptions}
+\phantomsection
+
+\subsubsection*{Inputs}
+\phantomsection
+
+\begin{itemize}
+\item Stage 0 identity, start-state posture, constraints, safety boundaries, and usage doctrine.
+\item Stage 1 governance posture:
+  \begin{itemize}
+  \item validity/admissibility doctrine,
+  \item stop posture and escalation dominance,
+  \item change control and freeze-window discipline,
+  \item dependency and assumption doctrine (Stage 1.C).
+  \end{itemize}
+\item Stage 2 measurement layer:
+  \begin{itemize}
+  \item domain taxonomy,
+  \item protocol cards \textbf{C1}–\textbf{C18},
+  \item metrics and tier thresholds,
+  \item data recording conventions that constrain what tools/environments must exist for admissible tests.
+  \end{itemize}
+\item Stage 3 schedule layer:
+  \begin{itemize}
+  \item protected deload and test windows,
+  \item reslot discipline and adjustment rules,
+  \item anti-stacking intent that affects when high-consequence capabilities become required.
+  \end{itemize}
+\item Stage 4 Phase 00 specification:
+  \begin{itemize}
+  \item minimal kit posture and Phase 00 exit constraints.
+  \end{itemize}
+\item Stage 5 macro layer:
+  \begin{itemize}
+  \item phase missions and domain emphasis,
+  \item gate battery intent and tier theme posture,
+  \item capability category vocabulary 7.01–7.20 and the rule that 7.02 is never required.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{Assumption Ledger}
+\phantomsection
+
+\begin{itemize}
+\item Assumption Ledger not required.
+\end{itemize}
+
+\subsection*{5) Interfaces}
+\phantomsection
+
+\subsubsection*{Upstream dependencies}
+\phantomsection
+
+\begin{itemize}
+\item Stage 0: defines start-from-zero reality, boundaries, and operating constraints that limit what can be required early.
+\item Stage 1: defines validity/admissibility, stop posture, and change control—Stage 6 must prevent equipment-driven invalid evidence.
+\item Stage 2: defines what must be measurable and reproducible (tools, environments, and setups) for evidence to be admissible.
+\item Stage 3: defines when gate evidence is attempted; Stage 6 timing must ensure capability exists before those windows.
+\item Stage 4: defines Phase 00 minimal kit and exit posture that establishes the baseline capability floor entering Phase 01.
+\item Stage 5: defines phase intent and domain emphasis that drives capability timing and escalation.
+\end{itemize}
+
+\subsubsection*{Downstream consumers}
+\phantomsection
+
+\begin{itemize}
+\item Stage 6.A–6.E deliverables that implement the matrices, deltas, and checks.
+\item Stage 7 category overviews (execution manuals and detailed capability definitions by category).
+\item Stage 8 crosswalk and issue logging (standards ↔ tests ↔ phases ↔ resources consistency checks).
+\item Stage 9 packaging and deployment checklists (ensuring the equipment map is coherent and executable).
+\end{itemize}
+
+\subsubsection*{Crosswalk hooks}
+\phantomsection
+
+Stage 6 must carry stable join keys for later crosswalks:
+
+\begin{itemize}
+\item Phase IDs (Phase 00–Phase 13).
+\item Stage 7 category IDs 7.01–7.20.
+\item Tier level (Tier 0–Tier 3).
+\item Timing labels (Entry / Mid-phase / End-phase).
+\item Stage 3 gate windows as the anchor for timing interpretation (capability must exist before the window that depends on it).
+\end{itemize}
+
+\subsection*{6) Gate / Acceptance Criteria}
+\phantomsection
+
+Stage 6 is considered complete and deployable when:
+
+\begin{itemize}
+\item All phases Phase 00–Phase 13 are mapped across all 20 categories using the Stage 7 taxonomy.
+\item Every category has an explicit tier timing posture (Tier 0–Tier 3) using only Entry/Mid-phase/End-phase timing labels.
+\item No phase demands a capability earlier than it appears as Tier 1 in the matrices.
+\item The matrices align to Stage 5 phase demands and Stage 3 protected windows:
+  \begin{itemize}
+  \item any gate-grade test that requires a tool/environment must have a corresponding Tier 1 capability available by the phase timing that precedes the gate window.
+  \end{itemize}
+\item Supplements posture is enforced:
+  \begin{itemize}
+  \item OTC-only,
+  \item 7.02 is education-only and never required,
+  \item no supplement category is treated as a gate prerequisite.
+  \end{itemize}
+\item Stage 6 is Draft — Non-Deployable if:
+  \begin{itemize}
+  \item any phase implies unmet gear demands,
+  \item any phase requires a capability earlier than Tier 1 timing provides,
+  \item any category mapping introduces new categories, new identifiers, or conflicts with Stage 0–5 constraints.
+  \end{itemize}
+\item Any detected mismatch is flagged for Stage 8 crosswalk impact review; Stage 6 does not repair upstream doctrine.
+\end{itemize}
+
+\subsection*{7) Common Failure Modes + Controls}
+\phantomsection
+
+\begin{itemize}
+\item Treating Stage 6 as a buyer’s guide → enforce category-level descriptors only; push all detail to Stage 7 overviews.
+\item Implicit gear requirements hidden in phase cards → Stage 6.E consistency check must mark downstream artifacts Draft — Non-Deployable until the required capability is introduced as Tier 1.
+\item Premature purchases driven by enthusiasm → enforce phased acquisition posture; Tier 1 only when required for safety/validity/gate readiness.
+\item Over-requiring optional categories (especially supplements) → enforce OTC-only posture; 7.02 never required; optional categories never gate-critical.
+\item Tool/environment drift causing invalid tests → require Stage 7.18 Tier 1 readiness before any gate window that depends on measurement repeatability; enforce environment/tool logging posture.
+\item Misalignment to Stage 3 windows → anchor Entry/Mid-phase/End-phase timing to protected windows; reslot tests rather than forcing execution without capability.
+\item Inconsistent tier usage across categories → enforce Tier 0–Tier 3 everywhere with no alternate tier language.
+\item Silent changes to timing or categories → require patch-only change control and Stage 8 crosswalk review for any change that affects sequencing or capability timing.
+\end{itemize}
+
+\subsection*{8) Versioning Notes}
+\phantomsection
+
+\begin{itemize}
+\item Frozen:
+  \begin{itemize}
+  \item category taxonomy (Stage 7 IDs 7.01–7.20),
+  \item tier system (Tier 0–Tier 3),
+  \item timing granularity (Entry / Mid-phase / End-phase),
+  \item rule that no phase may require a capability earlier than it appears as Tier 1 in the matrices,
+  \item OTC-only supplements posture and 7.02 education-only, never required.
+  \end{itemize}
+\item Refinable without meaning change:
+  \begin{itemize}
+  \item wording clarity of capability descriptors,
+  \item phase-timed notes that do not change tier level or timing.
+  \end{itemize}
+\item Patch-only changes:
+  \begin{itemize}
+  \item any change that alters a tier level, timing, or category readiness expectations requires a patch entry using:
+    \begin{itemize}
+    \item \textbf{PATCH-6-001}, \textbf{PATCH-6-002}, …
+    \end{itemize}
+  \item any patch requires Stage 8 crosswalk impact review before downstream artifacts are considered deployable.
+  \end{itemize}
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,500 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{7.09 — Health Monitoring, Diagnostic-Adjacent Monitoring, and Biometrics}
+\phantomsection
+\addcontentsline{toc}{section}{7.09 — Health Monitoring, Diagnostic-Adjacent Monitoring, and Biometrics}
+
+Overview \textbf{ID}: 7.09\\
+Overview Name: Health Monitoring, Diagnostic-Adjacent Monitoring, and Biometrics\\
+Version: v1.0\\
+Governing Status: Draft — Non-Deployable\\
+Scope Boundary Statement: Covers non-diagnostic monitoring tools and routines for trend visibility, conservative safety-signal capture, and evidence continuity. Does not cover diagnosis, treatment, lab ordering, clinical interpretation, replacement of clinician judgment, or Testing, Timing, Measurement, and Course-Setup Tools (7.18).
+
+\subsection*{7.09.1 Purpose and Scope}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.09.1 Purpose and Scope}
+
+Purpose:
+
+7.09 defines non-diagnostic monitoring tools and routines that support readiness-trend and recovery-trend visibility, safety-signal detection through conservative, standardized measurement capture, and audit-grade evidence continuity and stability through standardized routines and tool-identity logging.
+
+In scope:
+
+\begin{itemize}
+\item baseline biometric and illness-context tools (scale, tape, and basic thermometer),
+\item optional consumer wearable trackers,
+\item optional chest-strap heart-rate monitors, and
+\item optional diagnostic-adjacent tools only in clinician-guided, record-only posture.
+\end{itemize}
+
+Out of scope:
+
+\begin{itemize}
+\item medical diagnosis or treatment,
+\item lab ordering,
+\item clinical interpretation,
+\item replacement of clinician judgment, and
+\item Testing, Timing, Measurement, and Course-Setup Tools (7.18).
+\end{itemize}
+
+This overview does not prescribe workouts, progression rules, testing protocols, or treatment plans.
+
+No device readout, recovery score, or trend output in this overview constitutes clearance to continue training when symptoms or stop rules are present.
+
+Diagnostic-adjacent values may be logged only; they may not be self-interpreted or used to drive self-directed treatment decisions.
+
+\subsection*{7.09.2 Governance and Safety Boundaries}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.09.2 Governance and Safety Boundaries}
+
+\begin{itemize}
+\item Monitoring is decision support, not diagnosis, not treatment advice, not a substitute for clinician evaluation, and not clearance to continue training when symptoms are present.
+\item The decision hierarchy for this category is controlling:
+  \begin{itemize}
+  \item symptoms, stop rules, and acute safety concerns override device readouts, trend outputs, and summary scores;
+  \item materially concerning symptoms plus materially concerning readings trigger immediate stop and clinician evaluation (non-diagnostic).
+  \end{itemize}
+\item Trend summaries, recovery scores, and device alerts must never override symptoms, stop rules, or acute safety concerns.
+\item When materially concerning symptoms or readings are present, stop training and route the case to clinician evaluation rather than continuing data collection.
+\item Repeated self-checks must not be used to delay clinician evaluation when stop rules or materially concerning symptoms are present.
+\item Consistency requirements:
+  \begin{itemize}
+  \item the same device, the same measurement conditions, the same time of day where relevant, and the same pre-measurement state;
+  \item the same fasted/fed, rested, and hydration-state conditions where relevant;
+  \item consistent rounding precision and unit conventions across all logged entries;
+  \item consistent anatomical landmarks and tape tension for tape-measure sites.
+  \end{itemize}
+\item When a monitoring tool changes, log the tool change and treat the trend as re-baselined until comparability is re-established.
+\item Missing entries must be recorded explicitly as missing or unknown and must not be reconstructed from memory.
+\item Do not mix units or rounding conventions within an active trend line unless the change is logged and the series is re-baselined.
+\item If anatomical landmarking changes for tape-based tracking, log the change and restart the trend rather than blending unlike measurements.
+\item No optimization claims: this category is for visibility, trend continuity, and audit stability, not self-optimization or performance-manipulation practices.
+\item No device output in this category may be used to justify overriding stop rules, acute symptoms, or conservative reslot decisions.
+\item Consumer-device readiness features may be logged for trend visibility only and must not be framed as optimization prescriptions.
+\item Diagnostic-adjacent tools are optional, clinician-guided, and record-only:
+  \begin{itemize}
+  \item record-only; no self-interpretation or self-directed action;
+  \item do not use them to self-manage symptoms, diagnoses, treatment decisions, or training clearance.
+  \end{itemize}
+\item Materially concerning values must be logged and routed to clinician evaluation rather than interpreted inside this overview.
+\item When clinician-guided diagnostic-adjacent monitoring is active, log the tool, the date introduced, and the record-only posture in the evidence file.
+\end{itemize}
+
+\subsection*{7.09.3 Tier Doctrine — Applied to Monitoring and Biometrics}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.09.3 Tier Doctrine — Applied to Monitoring and Biometrics}
+
+\begin{itemize}
+\item Tier 0: self-report daily-readiness fields, symptom-screen observation, and minimal manual measures (including resting manual pulse count), strictly non-diagnostic and record-only.
+\item Missing Tier 0 entries must be marked explicitly as missing or unknown and must not be estimated from memory.
+\item Tier 1: minimum deployable measurement-tool set for baseline biometric trends and conservative illness-context capture (scale, tape, and basic thermometer), with standardized routines, stable measurement conditions, and logged tool identity.
+\item Tier 2: expanded tools for better trend visibility and session-intensity logging (wearable HR/sleep tracker, chest-strap heart-rate monitor, pulse oximeter in clinician-guided record-only posture, and upper-arm blood-pressure cuff in record-only posture), still non-diagnostic.
+\item Additional devices increase trend visibility only; they do not create diagnostic authority, treatment guidance, or self-clearance authority.
+\item Tier 2 devices must be logged under consistent wear, placement, and timing conditions to preserve comparability.
+\item Tier 3: redundancy and higher-fidelity trend capture (heart-rate-variability-capable wearable, backup scale and backup tape, backup upper-arm blood-pressure cuff where clinician-guided blood-pressure capture is active, and offline log-backup posture), emphasizing stability, reduced variance, and evidence continuity rather than expanded metric count.
+\item Tool switches must be logged and treated as re-baselining events until comparability is re-established.
+\item Offline backup is an evidence-continuity control and does not constitute a new measurement category.
+\item Backup tools must be checked for reasonable comparability before they replace primary logging tools in an active trend line.
+\end{itemize}
+
+\subsection*{7.09.4 Selection Criteria \& Fit Checks}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.09.4 Selection Criteria \& Fit Checks}
+
+Measurement quality criteria:
+
+\begin{itemize}
+\item Repeatability and stable routines are prioritized over expanded sensor count.
+\item Prefer tools with clear unit display and stable output under consistent conditions.
+\item Prefer data-export capability to preserve audit traceability.
+\end{itemize}
+
+Fit checks (operational):
+
+\begin{itemize}
+\item Blood-pressure cuff sizing (upper-arm cuff) must match arm size; incorrect sizing undermines repeatability.
+\item Wearable fit: comfortable for overnight wear; no skin irritation; stable sensor contact.
+\item Chest-strap fit: stable contact without chafing; tolerable during longer sessions.
+\end{itemize}
+
+Data integrity:
+
+\begin{itemize}
+\item Timestamps are captured consistently.
+\item Units are consistent and not silently changed.
+\item Tool changes are treated as comparability events and logged explicitly.
+\end{itemize}
+
+\subsection*{7.09.5 Setup, Safety, and Anchoring}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.09.5 Setup, Safety, and Anchoring}
+
+Standardization routines:
+
+\begin{itemize}
+\item Time-of-day consistency for resting measures where relevant.
+\item Rested versus post-exercise distinction is explicit in logs (do not mix contexts).
+\item Repeat readings when a reading seems erratic; do not interpret; record the repeat status.
+\end{itemize}
+
+Safety posture:
+
+\begin{itemize}
+\item Symptoms override device readouts. If a red-flag symptom exists, stop immediately and seek clinician evaluation regardless of normal numbers.
+\item Do not use good numbers to justify testing through illness, pain drift, or unusual breathlessness.
+\end{itemize}
+
+Privacy and data handling:
+
+\begin{itemize}
+\item Record the minimum necessary fields to support readiness and audit.
+\item Store logs in the program’s system-of-record posture; avoid fragmented, unsynced sources.
+\end{itemize}
+
+\subsection*{7.09.6 Maintenance, Replacement, and Storage}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.09.6 Maintenance, Replacement, and Storage}
+
+\begin{itemize}
+\item Batteries and charging:
+  \begin{itemize}
+  \item replace batteries as needed and maintain charging routines to prevent missing-data gaps.
+  \end{itemize}
+\item Cleaning:
+  \begin{itemize}
+  \item wearable bands or straps and chest straps are cleaned to reduce skin irritation and device failure.
+  \item cuffs are cleaned per basic hygiene posture.
+  \end{itemize}
+\item Non-clinical accuracy posture:
+  \begin{itemize}
+  \item if outputs become erratic under stable conditions, treat as tool drift and replace or remove from use.
+  \end{itemize}
+\item Storage:
+  \begin{itemize}
+  \item dry storage protected from heat and humidity.
+  \item prevent damage to tape integrity and cuff tubing.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.09.7 Substitution Rules — Maintain Monitoring Intent}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.09.7 Substitution Rules — Maintain Monitoring Intent}
+
+\begin{itemize}
+\item If a wearable is unavailable:
+  \begin{itemize}
+  \item use rating of perceived exertion (RPE), talk test, and self-report logs; program validity is preserved because these are governance-level anchors.
+  \end{itemize}
+\item If a diagnostic-adjacent tool is absent:
+  \begin{itemize}
+  \item rely on symptom screening and stop rules; do not infer missing metrics.
+  \end{itemize}
+\item Tool change discipline (Stage 2.E posture, high level):
+  \begin{itemize}
+  \item record tool-change event (old tool $\rightarrow$ new tool),
+  \item treat trends as re-baselined after tool change,
+  \item record missing data as missing/unknown; no inference or memory backfill.
+  \end{itemize}
+\item If deviations affect admissibility:
+  \begin{itemize}
+  \item apply the appropriate validity tag posture (session/test admissibility remains governed elsewhere); do not claim gate credit on non-comparable data.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.09.8 Phase Integration Map — Required}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.09.8 Phase Integration Map — Required}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=1.05in]
+    Q[l,wd=1.55in]
+    X[l,2.75]
+    X[l,3.65]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Phase} &
+\Hdr{Required Tier (from Stage 6)} &
+\Hdr{What Changes / Becomes Mandatory} &
+\Hdr{Notes} \\
+Phase 00 &
+T0 &
+None &
+Optional only. Self-report and symptom screening are still recommended as conservative safety practice but are not tier-required. \\
+Phase 01 &
+T0 &
+None &
+Optional only. Measurement discipline should not drift; if tools are used, stabilize routines outside protected windows. \\
+Phase 02 &
+T0 &
+None &
+Optional only. If any phase artifact treats 7.09 as required in Phase 02, Requires Stage 8 review. \\
+Phase 03 &
+T0 &
+None &
+Optional only. Increasing consequence raises the value of standardization, but Stage 6 does not require Tier 1 yet. \\
+Phase 04 &
+T0 &
+None &
+Optional only. Aquatic relevance does not change 7.09 requirements. \\
+Phase 05 &
+T0 &
+None &
+Optional only. Endurance consequence increases the value of stable routines; still optional by Stage 6. \\
+Phase 06 &
+T1 (Entry) &
+Tier 1 becomes minimum deployable by Phase 06 (Entry): scale + tape + thermometer routines standardized &
+Phase 06 (Entry) is first required point. Establish stable time-of-day routines before protected windows; treat tool changes as re-baselining events. \\
+Phase 07 &
+T1 (Entry) &
+Maintain Tier 1 routines; Tier 2 tools remain optional &
+Hybrid density increases variance costs; do not add novelty near protected windows. \\
+Phase 08 &
+T1 (Entry) &
+Maintain Tier 1 routines; emphasize durability trend awareness &
+Use logs to enforce conservative downshift/reslot posture; no clinical interpretation. \\
+Phase 09 &
+T1 (Entry) &
+Maintain Tier 1 routines; prevent missing-data drift &
+Missing data defaults to missing/unknown; do not infer. \\
+Phase 10 &
+T1 (Entry) &
+Maintain Tier 1 routines; optional Tier 2 may improve trend visibility &
+If adding a wearable tracker or chest-strap heart-rate monitor, stabilize outside protected windows; do not treat as required. \\
+Phase 11 &
+T1 (Entry) &
+Maintain Tier 1 routines; optional Tier 2 may support recovery sensitivity &
+Symptoms override readouts; do not test through illness. \\
+Phase 12 &
+T1 (Entry) &
+Maintain Tier 1 routines; Tier 3 redundancy is optional only &
+Stage 6.E has flagged internal overbuild-then-reduce concerns in Stage 6.B; Requires Stage 8 review if Tier expectations drift. \\
+Phase 13 &
+T1 (Entry) &
+Maintain Tier 1 routines; consolidation emphasizes low variance &
+If any artifact implies Tier 3 is required here due to late-stage verification posture, Requires Stage 8 review. \\
+\end{longtblr}
+
+\endgroup
+
+7.09.8 Phase Integration Map Notes:
+
+\begin{itemize}
+\item Stage 6 timing used here: 7.09 first becomes minimum deployable Tier 1 at Phase 06 (Entry). If any phase demand posture requires 7.09 earlier, Requires Stage 8 review.
+\item If Stage 6 internal tier consistency creates a downstream deployability conflict, Requires Stage 8 review.
+\end{itemize}
+
+\subsection*{7.09.9 Risks, Contraindications, and Red Flags}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.09.9 Risks, Contraindications, and Red Flags}
+
+\begin{itemize}
+\item False reassurance risk: normal numbers do not override red-flag symptoms; stop posture remains controlling.
+\item Anxiety from numbers: over-monitoring can increase anxiety and drive poor decisions; prioritize stable routines and minimal necessary measures.
+\item Device error and drift: consumer tools drift; treat erratic readings as tool drift, not as medical truth; replace or omit.
+\item Overreacting to single readings: trend visibility is the goal; persistent abnormal readings with symptoms warrant clinician evaluation.
+\item Clinician referral triggers (non-diagnostic):
+  \begin{itemize}
+  \item persistent concerning symptoms,
+  \item repeated abnormal readings combined with symptoms,
+  \item suspected sleep-apnea signs,
+  \item recurrent panic or anxiety spikes,
+  \item repeated near-syncope, chest pressure, disproportionate dyspnea.
+  \end{itemize}
+\item Red-flag symptoms reminder:
+  \begin{itemize}
+  \item chest pain or pressure, syncope or near-syncope, severe or disproportionate shortness of breath, new neurologic symptoms $\rightarrow$ stop immediately and seek clinician evaluation.
+  \end{itemize}
+\item Requires Stage 8 review triggers:
+  \begin{itemize}
+  \item any artifact requiring 7.09 earlier than Phase 06 (Entry),
+  \item any artifact using 7.09 tools to justify ignoring symptoms or stop posture,
+  \item any artifact adding environmental monitors into 7.09 scope.
+  \end{itemize}
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,1171 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\clearpage
+\begin{landscape}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.15}
+
+\section*{7.14.A — Wicking Base-Layer Top}
+\phantomsection
+\addcontentsline{toc}{section}{7.14.A — Wicking Base-Layer Top}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Wicking Base-Layer Top & 32 Degrees Cool Long Sleeve Crew & \$12 & Base Layer & Phase 00 (End) & Moves sweat off the skin and dries quickly; chosen for a light synthetic knit that layers without bulk. \\
+Budget & Wicking Base-Layer Top & Russell Athletic Dri-Power Long Sleeve & \$18 & Base Layer & Phase 00 (End) & Reduces clammy chill during cool sessions; chosen for simple moisture-wicking fabric at low cost. \\
+Budget & Wicking Base-Layer Top & Under Armour Tech 2.0 Long Sleeve & \$30 & Base Layer & Phase 00 (End) & Keeps the torso drier during repeated cardio work; chosen for reliable mainstream fit and easy replacement. \\
+Standard & Wicking Base-Layer Top & REI Co-op Midweight Base Layer Crew & \$50 & Base Layer & Phase 00 (End) & Adds moisture control with a bit more cool-weather warmth; chosen for balanced weight and comfortable seam layout. \\
+Standard & Wicking Base-Layer Top & Patagonia Capilene Midweight Crew & \$69 & Base Layer & Phase 00 (End) & Helps manage sweat while limiting post-session chill; chosen for excellent odor control and durable fabric. \\
+Standard & Wicking Base-Layer Top & Smartwool Classic All-Season Merino Long Sleeve & \$85 & Base Layer & Phase 00 (End) & Regulates temperature across variable weather better than cheap polyester alone; chosen for merino comfort and lower odor buildup. \\
+Elite & Wicking Base-Layer Top & Arc'teryx Rho LT Crew & \$100 & Base Layer & Phase 00 (End) & Provides smooth next-to-skin temperature management in colder wind; chosen for premium fit and low-bulk layering. \\
+Elite & Wicking Base-Layer Top & Icebreaker 200 Oasis Long Sleeve Crewe & \$105 & Base Layer & Phase 00 (End) & Handles sweat and temperature swings with less stink retention; chosen for high-quality merino and all-day wear comfort. \\
+Elite & Wicking Base-Layer Top & Patagonia Capilene Thermal Weight Crew & \$119 & Base Layer & Phase 00 (End) & Gives better warmth retention when cold exposure climbs; chosen for premium warmth-to-weight efficiency and layer friendliness. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.14.B — Wicking Base-Layer Bottom}
+\phantomsection
+\addcontentsline{toc}{section}{7.14.B — Wicking Base-Layer Bottom}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Wicking Base-Layer Bottom & 32 Degrees Heat Baselayer Legging & \$15 & Base Layer & Phase 00 (End) & Adds lower-body warmth without soaking up sweat; chosen for cheap low-bulk cold-weather coverage. \\
+Budget & Wicking Base-Layer Bottom & Thermajohn Thermal Pants & \$18 & Base Layer & Phase 00 (End) & Helps reduce cold-stiff leg starts in winter sessions; chosen for accessible price and full-length coverage. \\
+Budget & Wicking Base-Layer Bottom & Under Armour ColdGear Leggings & \$50 & Base Layer & Phase 00 (End) & Keeps legs warmer under shorts or pants during cold outdoor work; chosen for athletic fit that stays put under movement. \\
+Standard & Wicking Base-Layer Bottom & REI Co-op Midweight Base Layer Bottoms & \$50 & Base Layer & Phase 00 (End) & Supports steady lower-body warmth through long cool outings; chosen for moderate insulation without excessive heat trapping. \\
+Standard & Wicking Base-Layer Bottom & Smartwool Classic Thermal Merino Base Layer Bottom & \$100 & Base Layer & Phase 00 (End) & Improves cold-weather comfort while managing moisture better than cotton; chosen for soft merino feel and odor resistance. \\
+Standard & Wicking Base-Layer Bottom & Patagonia Capilene Midweight Bottoms & \$69 & Base Layer & Phase 00 (End) & Helps legs stay drier and warmer in variable cold; chosen for durable fabric and low-friction layering. \\
+Elite & Wicking Base-Layer Bottom & Arc'teryx Rho Bottom & \$120 & Base Layer & Phase 00 (End) & Provides a premium warm next-to-skin layer for severe cold days; chosen for refined fit and low bunching under shells. \\
+Elite & Wicking Base-Layer Bottom & Icebreaker 200 Oasis Leggings & \$105 & Base Layer & Phase 00 (End) & Balances cold protection and breathability over longer sessions; chosen for premium merino comfort and repeat wearability. \\
+Elite & Wicking Base-Layer Bottom & Patagonia Capilene Thermal Weight Bottoms & \$119 & Base Layer & Phase 00 (End) & Adds stronger cold protection for deep-winter use; chosen for premium warmth with minimal extra bulk. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.14.C — Sun-Protective Long-Sleeve Hoodie}
+\phantomsection
+\addcontentsline{toc}{section}{7.14.C — Sun-Protective Long-Sleeve Hoodie}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Sun-Protective Long-Sleeve Hoodie & Baleaf UPF 50+ Sun Hoodie & \$28 & Sun Layer & Phase 00 (End) & Cuts sun load on long outdoor sessions; chosen for low-cost hooded coverage with quick-dry fabric. \\
+Budget & Sun-Protective Long-Sleeve Hoodie & Roadbox UPF 50+ Hoodie & \$25 & Sun Layer & Phase 00 (End) & Reduces direct sun exposure without heavy heat build-up; chosen for light fabric and accessible price. \\
+Budget & Sun-Protective Long-Sleeve Hoodie & Columbia Terminal Tackle Hoodie & \$45 & Sun Layer & Phase 00 (End) & Helps limit sunburn and neck exposure during open-route work; chosen for strong mainstream sun-shirt reputation. \\
+Standard & Sun-Protective Long-Sleeve Hoodie & Outdoor Research Echo Hoodie & \$75 & Sun Layer & Phase 00 (End) & Provides breathable coverage during hot aerobic work; chosen for very airy fabric that vents sweat well. \\
+Standard & Sun-Protective Long-Sleeve Hoodie & Patagonia Capilene Cool Daily Hoody & \$65 & Sun Layer & Phase 00 (End) & Protects skin while staying cooler than many heavier tops; chosen for soft feel and versatile all-weather use. \\
+Standard & Sun-Protective Long-Sleeve Hoodie & REI Co-op Sahara Shade Hoodie & \$60 & Sun Layer & Phase 00 (End) & Keeps arms and neck covered with less overheating risk; chosen for practical fit and broad outdoor use case. \\
+Elite & Sun-Protective Long-Sleeve Hoodie & Arc'teryx Cormac Hoody & \$90 & Sun Layer & Phase 00 (End) & Manages heat and UV exposure on long open sessions; chosen for premium moisture handling and cleaner athletic cut. \\
+Elite & Sun-Protective Long-Sleeve Hoodie & Mountain Hardwear Crater Lake Long Sleeve Hoody & \$75 & Sun Layer & Phase 00 (End) & Gives broad high-UPF coverage in direct sun; chosen for smooth cool-touch fabric and long-route comfort. \\
+Elite & Sun-Protective Long-Sleeve Hoodie & Patagonia Tropic Comfort Natural Hoody & \$79 & Sun Layer & Phase 00 (End) & Offers full upper-body sun protection with a softer premium hand feel; chosen for comfort during extended outdoor wear. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.14.D — Running Cap}
+\phantomsection
+\addcontentsline{toc}{section}{7.14.D — Running Cap}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Running Cap & adidas Superlite Cap & \$22 & Headwear & Phase 00 (End) & Shields eyes from glare and light precipitation; chosen for cheap breathable fabric and easy adjustment. \\
+Budget & Running Cap & Under Armour Iso-Chill Launch Cap & \$25 & Headwear & Phase 00 (End) & Helps manage sweat and sun during warm sessions; chosen for ventilated construction and light weight. \\
+Budget & Running Cap & Columbia Coolhead III Ball Cap & \$30 & Headwear & Phase 00 (End) & Cuts face sun and helps keep sweat off the eyes; chosen for cooling-oriented fabric at moderate cost. \\
+Standard & Running Cap & Ciele Athletics GOCap & \$45 & Headwear & Phase 00 (End) & Improves sun and sweat control without feeling heavy; chosen for proven run-specific fit and washable build. \\
+Standard & Running Cap & Brooks Propel Mesh Hat & \$35 & Headwear & Phase 00 (End) & Keeps sun off the face while venting heat well; chosen for light mesh construction and stable fit. \\
+Standard & Running Cap & Outdoor Research Swift Cap & \$35 & Headwear & Phase 00 (End) & Gives quick-drying weather coverage across mixed conditions; chosen for broad outdoor versatility and packability. \\
+Elite & Running Cap & Arc'teryx Calidum 5 Panel Hat & \$60 & Headwear & Phase 00 (End) & Provides premium lightweight weather management on long runs; chosen for refined fit and better fabric finish. \\
+Elite & Running Cap & Ciele RDCap SC & \$55 & Headwear & Phase 00 (End) & Handles repeated running use with stronger structure and ventilation; chosen for premium run-specific design. \\
+Elite & Running Cap & Janji AFO Hyperlight Cap & \$38 & Headwear & Phase 00 (End) & Minimizes heat retention during hot efforts; chosen for ultralight fabric and strong sweat handling. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.14.E — Beanie}
+\phantomsection
+\addcontentsline{toc}{section}{7.14.E — Beanie}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Beanie & Carhartt Knit Cuffed Beanie & \$20 & Cold-weather headwear & Phase 00 (End) & Reduces heat loss from the head in cold wind; chosen for durable knit and easy replacement. \\
+Budget & Beanie & Under Armour Storm Beanie & \$25 & Cold-weather headwear & Phase 00 (End) & Helps keep the head warm while shedding light moisture; chosen for athletic fit and common availability. \\
+Budget & Beanie & Columbia Whirlibird Watch Cap & \$20 & Cold-weather headwear & Phase 00 (End) & Adds simple cold protection for early winter sessions; chosen for straightforward fleece-lined warmth. \\
+Standard & Beanie & Smartwool Merino 250 Beanie & \$35 & Cold-weather headwear & Phase 00 (End) & Manages cold and sweat better than basic acrylic hats; chosen for merino comfort and odor control. \\
+Standard & Beanie & Outdoor Research Vigor Beanie & \$30 & Cold-weather headwear & Phase 00 (End) & Gives low-bulk warmth under hoods and shells; chosen for breathable technical fleece fabric. \\
+Standard & Beanie & Patagonia Brodeo Beanie & \$49 & Cold-weather headwear & Phase 00 (End) & Keeps the head warm on cold easy mileage; chosen for better knit quality and long-term durability. \\
+Elite & Beanie & Arc'teryx Rho Lightweight Wool Toque & \$50 & Cold-weather headwear & Phase 00 (End) & Provides premium low-bulk warmth during movement; chosen for refined fit and technical wool blend. \\
+Elite & Beanie & Icebreaker Merino Pocket Hat & \$40 & Cold-weather headwear & Phase 00 (End) & Balances warmth and moisture handling during long cold outings; chosen for premium merino softness. \\
+Elite & Beanie & Smartwool Thermal Merino Reversible Cuffed Beanie & \$40 & Cold-weather headwear & Phase 00 (End) & Gives warmer premium coverage for harsher winter use; chosen for reversible merino versatility and better insulation. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.14.F — Neck Gaiter}
+\phantomsection
+\addcontentsline{toc}{section}{7.14.F — Neck Gaiter}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Neck Gaiter & Turtle Fur Comfort Shell Neckula & \$20 & Neck Protection & Phase 00 (End) & Blocks wind around the neck and lower face; chosen for stretch fabric that layers easily. \\
+Budget & Neck Gaiter & Seirus Neofleece Combo Scarf & \$18 & Neck Protection & Phase 00 (End) & Adds cheap cold-wind protection around exposed skin; chosen for soft fleece coverage and easy use. \\
+Budget & Neck Gaiter & Buff Original EcoStretch & \$22 & Neck Protection & Phase 00 (End) & Gives lightweight adaptable neck and face coverage; chosen for versatile tube format and quick drying. \\
+Standard & Neck Gaiter & Smartwool Merino 250 Neck Gaiter & \$35 & Neck Protection & Phase 00 (End) & Warms the neck without trapping sweat as badly as cheap fleece; chosen for merino comfort in repeated cold use. \\
+Standard & Neck Gaiter & Outdoor Research Frostline Neck Gaiter & \$25 & Neck Protection & Phase 00 (End) & Protects throat and lower face from winter wind; chosen for technical cold-weather construction. \\
+Standard & Neck Gaiter & Buff Midweight Merino Neckwear & \$30 & Neck Protection & Phase 00 (End) & Balances warmth and breathability on cold aerobic sessions; chosen for premium natural fiber feel. \\
+Elite & Neck Gaiter & Arc'teryx Rho Neck Gaiter & \$45 & Neck Protection & Phase 00 (End) & Delivers premium cold-weather coverage with low-bulk comfort; chosen for refined fabric and fit. \\
+Elite & Neck Gaiter & Icebreaker Flexi Chute & \$30 & Neck Protection & Phase 00 (End) & Gives softer merino-based face and neck coverage for long wear; chosen for comfort and low odor retention. \\
+Elite & Neck Gaiter & Smartwool Thermal Merino Gaiter & \$40 & Neck Protection & Phase 00 (End) & Adds stronger premium insulation for harsher cold days; chosen for warmer merino construction and better softness. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.14.G — Lightweight Liner Gloves}
+\phantomsection
+\addcontentsline{toc}{section}{7.14.G — Lightweight Liner Gloves}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Lightweight Liner Gloves & Head Hybrid Touchscreen Gloves & \$18 & Hand Layer & Phase 00 (End) & Keeps hands from going numb in cool wind; chosen for cheap light coverage and easy replacement. \\
+Budget & Lightweight Liner Gloves & Under Armour Liner 2.0 Gloves & \$25 & Hand Layer & Phase 00 (End) & Reduces early cold-hand distraction during morning sessions; chosen for slim athletic fit and common sizing. \\
+Budget & Lightweight Liner Gloves & adidas Running Gloves & \$22 & Hand Layer & Phase 00 (End) & Gives simple cool-weather hand coverage without bulk; chosen for lightweight mainstream running design. \\
+Standard & Lightweight Liner Gloves & Smartwool Liner Gloves & \$30 & Hand Layer & Phase 00 (End) & Warms hands while handling sweat better than cheap synthetics; chosen for merino blend comfort. \\
+Standard & Lightweight Liner Gloves & Outdoor Research Vigor Lightweight Sensor Gloves & \$35 & Hand Layer & Phase 00 (End) & Preserves dexterity during cold starts; chosen for technical fleece and touchscreen functionality. \\
+Standard & Lightweight Liner Gloves & Black Diamond MidWeight Softshell Gloves & \$45 & Hand Layer & Phase 00 (End) & Gives a stronger cool-weather glove than basic knit liners; chosen for better wind resistance and grip. \\
+Elite & Lightweight Liner Gloves & Arc'teryx Venta Gloves & \$60 & Hand Layer & Phase 00 (End) & Blocks wind while staying slim enough for aerobic use; chosen for premium softshell build and dexterity. \\
+Elite & Lightweight Liner Gloves & Smartwool Active Fleece Wind Glove & \$45 & Hand Layer & Phase 00 (End) & Gives a warmer premium running glove without excessive bulk; chosen for better balance of warmth and breathability. \\
+Elite & Lightweight Liner Gloves & Outdoor Research Flurry Sensor Gloves & \$39 & Hand Layer & Phase 00 (End) & Provides premium light insulation and easy layering; chosen for wool blend warmth with everyday versatility. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.14.H — Wind Shirt}
+\phantomsection
+\addcontentsline{toc}{section}{7.14.H — Wind Shirt}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Wind Shirt & Outdoor Research Helium Wind Hoodie & \$99 & Wind Shell & Phase 00 (End) & Cuts wind chill during cool dry sessions; chosen for very light packable build. \\
+Budget & Wind Shirt & adidas Own the Run Wind Jacket & \$70 & Wind Shell & Phase 00 (End) & Adds basic wind protection without a full rain-shell feel; chosen for accessible mainstream running design. \\
+Budget & Wind Shirt & Brooks Canopy Jacket & \$100 & Wind Shell & Phase 00 (End) & Helps preserve comfort on breezy routes; chosen for run-oriented fit and light weather coverage. \\
+Standard & Wind Shirt & Patagonia Houdini Jacket & \$109 & Wind Shell & Phase 00 (End) & Provides highly packable wind blocking for changing conditions; chosen for proven durability and tiny packed size. \\
+Standard & Wind Shirt & Black Diamond Distance Wind Shell & \$130 & Wind Shell & Phase 00 (End) & Keeps upper-body chill down without much heat trapping; chosen for breathable technical mountain-run fabric. \\
+Standard & Wind Shirt & Arc'teryx Squamish Hoody & \$160 & Wind Shell & Phase 00 (End) & Gives more refined wind control across cold gusty sessions; chosen for premium balance of breathability and protection. \\
+Elite & Wind Shirt & Patagonia Airshed Pro Pullover & \$139 & Wind Shell & Phase 00 (End) & Preserves airflow better than many wind layers during harder efforts; chosen for premium vented hybrid design. \\
+Elite & Wind Shirt & Rab Vital Hoody & \$95 & Wind Shell & Phase 00 (End) & Provides premium-feeling wind control at low weight; chosen for strong value and excellent packability. \\
+Elite & Wind Shirt & Norrona Falketind Aero60 Hood & \$199 & Wind Shell & Phase 00 (End) & Offers advanced lightweight wind management for frequent high-output use; chosen for premium fabric control and finish. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.14.I — Rain Shell Jacket}
+\phantomsection
+\addcontentsline{toc}{section}{7.14.I — Rain Shell Jacket}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Rain Shell Jacket & Columbia Watertight II Jacket & \$75 & Rain Shell & Phase 00 (End) & Keeps rain and cold wind off the torso; chosen for reliable entry-level storm protection. \\
+Budget & Rain Shell Jacket & Marmot PreCip Eco Jacket & \$100 & Rain Shell & Phase 00 (End) & Preserves wet-weather continuity without huge cost; chosen for proven lightweight waterproof performance. \\
+Budget & Rain Shell Jacket & REI Co-op Rainier Rain Jacket & \$100 & Rain Shell & Phase 00 (End) & Supports safe wet-session execution with simple pit-zips and solid value; chosen for practical all-around weather use. \\
+Standard & Rain Shell Jacket & Patagonia Torrentshell 3L & \$179 & Rain Shell & Phase 00 (End) & Gives stronger long-term wet protection than bargain shells; chosen for durable 3-layer construction. \\
+Standard & Rain Shell Jacket & Outdoor Research Foray II & \$225 & Rain Shell & Phase 00 (End) & Improves ventilation during wet active use; chosen for full side-zip venting and strong storm utility. \\
+Standard & Rain Shell Jacket & Black Diamond StormLine Stretch Rain Shell & \$170 & Rain Shell & Phase 00 (End) & Keeps weather out while moving more naturally than stiff shells; chosen for stretch fabric and active fit. \\
+Elite & Rain Shell Jacket & Arc'teryx Beta Jacket & \$400 & Rain Shell & Phase 00 (End) & Provides premium storm protection for repeated harsh-weather exposure; chosen for high-end waterproof build and durability. \\
+Elite & Rain Shell Jacket & Rab Kinetic Alpine 2.0 & \$230 & Rain Shell & Phase 00 (End) & Blends waterproofing with better movement comfort than many traditional shells; chosen for soft technical fabric. \\
+Elite & Rain Shell Jacket & Norrona Falketind Gore-Tex Paclite Jacket & \$299 & Rain Shell & Phase 00 (End) & Gives premium lightweight storm insurance without excess bulk; chosen for high-end weather reliability and packability. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.14.J — Wide-Brim Sun Hat}
+\phantomsection
+\addcontentsline{toc}{section}{7.14.J — Wide-Brim Sun Hat}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Wide-Brim Sun Hat & Columbia Bora Bora Booney II & \$30 & Sun Headwear & Phase 06 (End) & Expands face and neck sun coverage beyond a normal cap; chosen for ventilated booney design and low cost. \\
+Budget & Wide-Brim Sun Hat & Outdoor Research Helios Sun Hat & \$40 & Sun Headwear & Phase 06 (End) & Reduces sun load during longer exposed sessions; chosen for lightweight fabric and packable brim. \\
+Budget & Wide-Brim Sun Hat & Sunday Afternoons Charter Escape Hat & \$46 & Sun Headwear & Phase 06 (End) & Gives stronger all-around sun shading on prolonged outdoor days; chosen for travel-friendly crushable design. \\
+Standard & Wide-Brim Sun Hat & Tilley LTM6 Airflo Hat & \$99 & Sun Headwear & Phase 06 (End) & Provides better broad-brim heat and UV control for extended exposure; chosen for durable premium vented build. \\
+Standard & Wide-Brim Sun Hat & Patagonia Quandary Brimmer & \$69 & Sun Headwear & Phase 06 (End) & Adds stable brimmed protection without feeling overly bulky; chosen for secure outdoor fit and quality fabric. \\
+Standard & Wide-Brim Sun Hat & REI Co-op Sahara Path Hat & \$45 & Sun Headwear & Phase 06 (End) & Improves warm-weather adaptability with more shade than a cap; chosen for practical coverage and easy washability. \\
+Elite & Wide-Brim Sun Hat & Arc'teryx Sinsolo Hat & \$80 & Sun Headwear & Phase 06 (End) & Gives premium lightweight sun protection with a cleaner technical feel; chosen for refined materials and packability. \\
+Elite & Wide-Brim Sun Hat & Tilley AIRFLO Broad Brim Hat & \$99 & Sun Headwear & Phase 06 (End) & Provides premium hot-weather shade for long sessions; chosen for breathable construction and strong durability. \\
+Elite & Wide-Brim Sun Hat & Outdoor Research Seattle Rain Hat & \$75 & Sun Headwear & Phase 06 (End) & Adds premium brim coverage that also tolerates wet conditions; chosen for dual-condition versatility. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.14.K — Balaclava}
+\phantomsection
+\addcontentsline{toc}{section}{7.14.K — Balaclava}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Balaclava & Tough Headwear Balaclava & \$15 & Face Covering & Phase 06 (End) & Protects face and neck from colder wind exposure; chosen for cheap full-coverage cold-weather utility. \\
+Budget & Balaclava & Under Armour ColdGear Infrared Tactical Hood & \$30 & Face Covering & Phase 06 (End) & Adds fuller face warmth when a gaiter is not enough; chosen for athletic fit and cold-weather intent. \\
+Budget & Balaclava & Seirus Ultra Clava & \$25 & Face Covering & Phase 06 (End) & Helps control exposed-skin discomfort in sharp cold wind; chosen for mixed fleece-and-stretch face coverage. \\
+Standard & Balaclava & Smartwool Merino 250 Balaclava & \$45 & Face Covering & Phase 06 (End) & Balances warmth and breathability during cold aerobic work; chosen for merino comfort and odor control. \\
+Standard & Balaclava & Outdoor Research Ninjaclava & \$38 & Face Covering & Phase 06 (End) & Supports cold-air facial protection with flexible venting; chosen for proven winter sport design. \\
+Standard & Balaclava & BlackStrap The Hood Balaclava & \$40 & Face Covering & Phase 06 (End) & Gives smoother helmet- or hood-friendly coverage with less bulk; chosen for breathable synthetic construction. \\
+Elite & Balaclava & Arc'teryx Rho Balaclava & \$60 & Face Covering & Phase 06 (End) & Delivers premium cold-weather face coverage without a stiff heavy feel; chosen for refined fit and technical fleece. \\
+Elite & Balaclava & Icebreaker Oasis Balaclava & \$50 & Face Covering & Phase 06 (End) & Provides softer premium facial warmth for long cold sessions; chosen for merino comfort against the skin. \\
+Elite & Balaclava & Smartwool Intraknit Thermal Merino Balaclava & \$55 & Face Covering & Phase 06 (End) & Gives higher-end warmth and fit mapping in harsher cold; chosen for premium body-mapped insulation. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.14.L — Grid Fleece Midlayer}
+\phantomsection
+\addcontentsline{toc}{section}{7.14.L — Grid Fleece Midlayer}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Grid Fleece Midlayer & REI Co-op Trailmade Fleece Jacket & \$60 & Midlayer & Phase 06 (End) & Adds practical warmth between base and shell layers; chosen for simple affordable layering versatility. \\
+Budget & Grid Fleece Midlayer & Columbia Park View Grid Fleece & \$55 & Midlayer & Phase 06 (End) & Improves cool-weather insulation without a huge weight penalty; chosen for accessible grid-fleece construction. \\
+Budget & Grid Fleece Midlayer & Mountain Hardwear Microchill 2.0 & \$65 & Midlayer & Phase 06 (End) & Supports shoulder-season warmth during windy cool sessions; chosen for low-cost light-fleece utility. \\
+Standard & Grid Fleece Midlayer & Patagonia R1 Air Full-Zip Hoody & \$179 & Midlayer & Phase 06 (End) & Adds breathable warmth during colder active sessions; chosen for high-output fleece design that vents well. \\
+Standard & Grid Fleece Midlayer & Outdoor Research Vigor Grid Fleece & \$99 & Midlayer & Phase 06 (End) & Gives flexible thermal support with less stuffiness than solid fleece; chosen for technical grid pattern and good value. \\
+Standard & Grid Fleece Midlayer & Black Diamond Coefficient LT Hoody & \$149 & Midlayer & Phase 06 (End) & Balances warmth and mobility for active cold-weather layering; chosen for light technical fleece build. \\
+Elite & Grid Fleece Midlayer & Arc'teryx Delta Jacket & \$180 & Midlayer & Phase 06 (End) & Provides premium breathable warmth as a true technical midlayer; chosen for excellent fabric performance and durability. \\
+Elite & Grid Fleece Midlayer & Rab Ascendor Light Hoody & \$130 & Midlayer & Phase 06 (End) & Handles cold active sessions without trapping too much heat; chosen for premium mountain-use breathability. \\
+Elite & Grid Fleece Midlayer & Patagonia R1 Hoody & \$179 & Midlayer & Phase 06 (End) & Offers very refined active insulation for frequent use; chosen for proven grid-fleece performance and fit. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.14.M — Softshell Jacket}
+\phantomsection
+\addcontentsline{toc}{section}{7.14.M — Softshell Jacket}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Softshell Jacket & Eddie Bauer Sandstone Soft Shell & \$80 & Weather Layer & Phase 06 (End) & Blocks light wind and drizzle better than a fleece alone; chosen for affordable everyday softshell versatility. \\
+Budget & Softshell Jacket & Columbia Ascender Softshell & \$90 & Weather Layer & Phase 06 (End) & Supports cool windy sessions without the noise and stiffness of a hard shell; chosen for common dependable design. \\
+Budget & Softshell Jacket & Mountain Hardwear Chockstone Jacket & \$130 & Weather Layer & Phase 06 (End) & Gives more weather resistance while retaining movement freedom; chosen for durable climbing-inspired stretch fabric. \\
+Standard & Softshell Jacket & Outdoor Research Ferrosi Hoody & \$129 & Weather Layer & Phase 06 (End) & Adds versatile wind and abrasion resistance for mixed conditions; chosen for breathable stretch and huge movement comfort. \\
+Standard & Softshell Jacket & Rab Borealis Hoody & \$110 & Weather Layer & Phase 06 (End) & Works well in cool windy dry conditions without overheating quickly; chosen for lightweight high-output softshell behavior. \\
+Standard & Softshell Jacket & Black Diamond Alpine Start Hoody & \$180 & Weather Layer & Phase 06 (End) & Gives a cleaner active-weather layer for fast-changing conditions; chosen for very light breathable softshell construction. \\
+Elite & Softshell Jacket & Arc'teryx Gamma Hoody & \$300 & Weather Layer & Phase 06 (End) & Delivers premium abrasion, wind, and movement balance for repeated harsh use; chosen for high-end softshell durability. \\
+Elite & Softshell Jacket & Mammut Ultimate VII SO Hooded Jacket & \$250 & Weather Layer & Phase 06 (End) & Provides stronger wind defense than lighter softshells; chosen for premium weather-blocking laminate. \\
+Elite & Softshell Jacket & Norrona Falketind Flex1 Jacket & \$249 & Weather Layer & Phase 06 (End) & Gives premium climate adaptability without hard-shell stiffness; chosen for refined stretch-weather protection. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.14.N — Rain Pants}
+\phantomsection
+\addcontentsline{toc}{section}{7.14.N — Rain Pants}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Rain Pants & Frogg Toggs Ultra-Lite 2 Pants & \$25 & Rain Layer & Phase 06 (End) & Adds cheap emergency lower-body rain protection; chosen for low entry cost and packability. \\
+Budget & Rain Pants & REI Co-op Rainier Rain Pants & \$70 & Rain Layer & Phase 06 (End) & Keeps legs drier during sustained wet exposure; chosen for practical vented rain-pant value. \\
+Budget & Rain Pants & Marmot PreCip Eco Pants & \$100 & Rain Layer & Phase 06 (End) & Supports repeated wet-weather continuity better than a poncho-only setup; chosen for trusted lightweight waterproofing. \\
+Standard & Rain Pants & Patagonia Torrentshell 3L Rain Pants & \$149 & Rain Layer & Phase 06 (End) & Delivers stronger wet-weather lower-body protection over longer sessions; chosen for durable 3-layer build. \\
+Standard & Rain Pants & Outdoor Research Foray Rain Pants & \$159 & Rain Layer & Phase 06 (End) & Improves ventilation and on-off usability in changing conditions; chosen for full-side-zip convenience. \\
+Standard & Rain Pants & Black Diamond StormLine Stretch Rain Pants & \$150 & Rain Layer & Phase 06 (End) & Offers better moving comfort than many stiff waterproof pants; chosen for stretch shell construction. \\
+Elite & Rain Pants & Arc'teryx Beta Pant & \$300 & Rain Layer & Phase 06 (End) & Provides premium storm durability and cleaner fit under severe use; chosen for high-end waterproof shell quality. \\
+Elite & Rain Pants & Rab Downpour Eco Pants & \$120 & Rain Layer & Phase 06 (End) & Gives premium-feeling wet protection with good packability; chosen for dependable waterproof value. \\
+Elite & Rain Pants & Norrona Falketind Gore-Tex Pants & \$299 & Rain Layer & Phase 06 (End) & Supports serious wet-weather reliability on long days; chosen for premium protection and movement quality. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.14.O — Insulated Jacket}
+\phantomsection
+\addcontentsline{toc}{section}{7.14.O — Insulated Jacket}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Insulated Jacket & Columbia Powder Lite II Hooded Jacket & \$120 & Insulation Layer & Phase 06 (End) & Adds simple cold-stop warmth during winter logistics and lower-output work; chosen for low-cost synthetic insulation. \\
+Budget & Insulated Jacket & REI Co-op Trailmade Insulated Jacket & \$100 & Insulation Layer & Phase 06 (End) & Helps preserve cold-weather continuity when fleece alone is not enough; chosen for practical synthetic warmth. \\
+Budget & Insulated Jacket & Eddie Bauer CirrusLite Down Jacket & \$129 & Insulation Layer & Phase 06 (End) & Provides a cheap packable warmth jump for very cold conditions; chosen for compressible down-style convenience. \\
+Standard & Insulated Jacket & Patagonia Nano Puff Jacket & \$239 & Insulation Layer & Phase 06 (End) & Delivers dependable synthetic warmth while staying packable; chosen for durable premium all-around utility. \\
+Standard & Insulated Jacket & Arc'teryx Atom Hoody & \$300 & Insulation Layer & Phase 06 (End) & Handles active cold layering with better breathability than bulkier puffies; chosen for premium mixed-output performance. \\
+Standard & Insulated Jacket & Rab Xenair Alpine Jacket & \$230 & Insulation Layer & Phase 06 (End) & Supports active winter use without overheating as quickly; chosen for breathable synthetic insulation design. \\
+Elite & Insulated Jacket & Patagonia DAS Light Hoody & \$329 & Insulation Layer & Phase 06 (End) & Gives higher-end cold protection for harsher winter exposure; chosen for stronger warmth and weather resilience. \\
+Elite & Insulated Jacket & Arc'teryx Nuclei Hoody & \$400 & Insulation Layer & Phase 06 (End) & Provides premium emergency warmth and wind resistance in severe cold; chosen for high-performance synthetic fill. \\
+Elite & Insulated Jacket & Norrona Trollveggen Superlight Down850 Hood & \$399 & Insulation Layer & Phase 06 (End) & Offers premium high-loft warmth for very cold low-output windows; chosen for exceptional warmth-to-weight performance. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.14.P — Waterproof Insulated Gloves / Mitts}
+\phantomsection
+\addcontentsline{toc}{section}{7.14.P — Waterproof Insulated Gloves / Mitts}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Waterproof Insulated Gloves / Mitts & Carhartt Waterproof Insulated Gloves & \$35 & Hand Protection & Phase 06 (End) & Keeps hands functional in colder wet weather; chosen for durable mainstream workwear waterproofing. \\
+Budget & Waterproof Insulated Gloves / Mitts & Seirus Heatwave Apex Gloves & \$50 & Hand Protection & Phase 06 (End) & Adds better winter warmth than thin liners alone; chosen for weather-focused budget performance design. \\
+Budget & Waterproof Insulated Gloves / Mitts & Gordini Stash Lite Mitt & \$55 & Hand Protection & Phase 06 (End) & Offers simple insulated wet-cold coverage with good packability; chosen for mitten warmth at moderate cost. \\
+Standard & Waterproof Insulated Gloves / Mitts & Outdoor Research Carbide Gloves & \$89 & Hand Protection & Phase 06 (End) & Protects hands during colder wind and wet exposure without excessive bulk; chosen for strong shell-plus-insulation balance. \\
+Standard & Waterproof Insulated Gloves / Mitts & Black Diamond Mercury Mitts & \$120 & Hand Protection & Phase 06 (End) & Gives warmer hand coverage for harsher cold conditions; chosen for mitten format and removable liner system. \\
+Standard & Waterproof Insulated Gloves / Mitts & Hestra Army Leather Heli Ski Three-Finger & \$165 & Hand Protection & Phase 06 (End) & Adds durable premium cold-wet hand protection with strong grip retention; chosen for proven severe-weather performance. \\
+Elite & Waterproof Insulated Gloves / Mitts & Arc'teryx Fission SV Gloves & \$200 & Hand Protection & Phase 06 (End) & Provides premium waterproof warmth for brutal winter sessions; chosen for high-end weather sealing and dexterity. \\
+Elite & Waterproof Insulated Gloves / Mitts & Outdoor Research Alti II Gore-Tex Mitts & \$199 & Hand Protection & Phase 06 (End) & Delivers high-end extreme-cold hand protection; chosen for expedition-grade warmth and weather blocking. \\
+Elite & Waterproof Insulated Gloves / Mitts & Hestra Heli Mitt & \$160 & Hand Protection & Phase 06 (End) & Gives premium mitten warmth with excellent weather resistance; chosen for dependable severe-winter protection. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.14.Q — Waterproof Gaiters}
+\phantomsection
+\addcontentsline{toc}{section}{7.14.Q — Waterproof Gaiters}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Waterproof Gaiters & Outdoor Products Trekking Gaiters & \$25 & Lower-Leg Cover & Phase 06 (End) & Helps keep snow, slush, and wet brush off lower legs; chosen for cheap barrier coverage. \\
+Budget & Waterproof Gaiters & Unigear Gaiters & \$30 & Lower-Leg Cover & Phase 06 (End) & Adds budget lower-leg weather protection for muddy or snowy routes; chosen for basic waterproof fabric and strap closure. \\
+Budget & Waterproof Gaiters & ALPS Mountaineering Gaiters & \$35 & Lower-Leg Cover & Phase 06 (End) & Improves wet-ground and snow protection around lower pants openings; chosen for durable budget outdoor build. \\
+Standard & Waterproof Gaiters & Outdoor Research Rocky Mountain High Gaiters & \$65 & Lower-Leg Cover & Phase 06 (End) & Keeps debris and moisture out more reliably than bargain gaiters; chosen for proven trail durability. \\
+Standard & Waterproof Gaiters & Black Diamond FrontPoint Gaiters & \$75 & Lower-Leg Cover & Phase 06 (End) & Offers stronger weather sealing in harsher terrain; chosen for better fit and more durable materials. \\
+Standard & Waterproof Gaiters & Rab Trek Gaiter & \$70 & Lower-Leg Cover & Phase 06 (End) & Supports wet and cold route continuity with a cleaner technical fit; chosen for outdoor-specific design. \\
+Elite & Waterproof Gaiters & Outdoor Research Crocodile Gaiters & \$95 & Lower-Leg Cover & Phase 06 (End) & Provides premium lower-leg weather defense for severe wet or snowy use; chosen for bomber build and strong closure system. \\
+Elite & Waterproof Gaiters & Arc'teryx Norvan Gaiter & \$70 & Lower-Leg Cover & Phase 06 (End) & Gives a premium lighter running-oriented gaiter option; chosen for reduced bulk and cleaner stride feel. \\
+Elite & Waterproof Gaiters & Black Diamond Apex Gaiters & \$110 & Lower-Leg Cover & Phase 06 (End) & Adds high-end durability for abrasive rough-weather terrain; chosen for tougher premium construction. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.14.R — Packable Insulated Vest}
+\phantomsection
+\addcontentsline{toc}{section}{7.14.R — Packable Insulated Vest}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Packable Insulated Vest & Columbia Powder Lite Vest & \$90 & Core Layer & Phase 06 (End) & Adds torso warmth while leaving the arms free for active movement; chosen for low-cost synthetic insulated design. \\
+Budget & Packable Insulated Vest & REI Co-op Trailmade Vest & \$80 & Core Layer & Phase 06 (End) & Gives a simple modular warmth option for variable cool conditions; chosen for accessible synthetic fill and packability. \\
+Budget & Packable Insulated Vest & Eddie Bauer CirrusLite Vest & \$99 & Core Layer & Phase 06 (End) & Offers quick packable core insulation for stop-start cold days; chosen for easy carry and moderate cost. \\
+Standard & Packable Insulated Vest & Patagonia Nano Puff Vest & \$189 & Core Layer & Phase 06 (End) & Warms the core without the full bulk of a jacket; chosen for durable premium synthetic insulation. \\
+Standard & Packable Insulated Vest & Arc'teryx Atom Vest & \$220 & Core Layer & Phase 06 (End) & Adds a refined active-warmth layer that vents better than full sleeves; chosen for premium mobility-friendly design. \\
+Standard & Packable Insulated Vest & Rab Cirrus Vest & \$145 & Core Layer & Phase 06 (End) & Supports adaptable cold layering with easy packability; chosen for good warmth-to-weight balance. \\
+Elite & Packable Insulated Vest & Patagonia Down Sweater Vest & \$229 & Core Layer & Phase 06 (End) & Gives premium lightweight core warmth for dry cold conditions; chosen for high-quality down insulation. \\
+Elite & Packable Insulated Vest & Arc'teryx Cerium Vest & \$280 & Core Layer & Phase 06 (End) & Provides high-end packable warmth with minimal bulk; chosen for premium loft and compressibility. \\
+Elite & Packable Insulated Vest & Mountain Hardwear Ghost Whisperer Vest & \$230 & Core Layer & Phase 06 (End) & Offers premium ultralight core warmth for variable layering needs; chosen for excellent packability and low weight. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.14.S — Shell Overmitts}
+\phantomsection
+\addcontentsline{toc}{section}{7.14.S — Shell Overmitts}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Shell Overmitts & Outdoor Research Helium Rain Mitts & \$59 & Hand Shell & Phase 06 (End) & Adds waterproof shell coverage over liners in wet-cold conditions; chosen for packable emergency weather role. \\
+Budget & Shell Overmitts & Black Diamond Waterproof Overmitts & \$65 & Hand Shell & Phase 06 (End) & Improves storm protection when liner gloves alone wet out; chosen for simple shell-only coverage. \\
+Budget & Shell Overmitts & MLD eVent Rain Mitts & \$60 & Hand Shell & Phase 06 (End) & Gives lightweight weather shell backup for hand layers; chosen for compact packable storm utility. \\
+Standard & Shell Overmitts & Rab Latok Mountain GTX Mitt & \$110 & Hand Shell & Phase 06 (End) & Provides stronger weather-blocking over-mitt protection; chosen for premium Gore-Tex shell reliability. \\
+Standard & Shell Overmitts & Outdoor Research Revel Shell Mitts & \$89 & Hand Shell & Phase 06 (End) & Creates a modular hand system for cold-wet variability; chosen for more durable shell handling. \\
+Standard & Shell Overmitts & Black Diamond Soloist Finger Shell Tier Equivalent & \$110 & Hand Shell & Phase 06 (End) & Improves modular storm coverage during harsher cold-wet exposures; chosen for stronger shell durability. \\
+Elite & Shell Overmitts & Arc'teryx Alpha SL Mitt & \$120 & Hand Shell & Phase 06 (End) & Adds premium shell-only storm defense with very low packed size; chosen for high-end weather protection. \\
+Elite & Shell Overmitts & Hestra GTX Overmitt & \$130 & Hand Shell & Phase 06 (End) & Gives premium shell modularity over existing glove systems; chosen for refined waterproof construction. \\
+Elite & Shell Overmitts & Rab Endurance Down Mitten Shell-Tier Crossover & \$150 & Hand Shell & Phase 06 (End) & Provides a premium severe-weather shell-and-insulation option; chosen for high reliability in cold wet wind. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.14.T — Emergency Rain Poncho}
+\phantomsection
+\addcontentsline{toc}{section}{7.14.T — Emergency Rain Poncho}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Emergency Rain Poncho & Frogg Toggs Ultra-Lite Poncho & \$15 & Emergency Shell & Phase 06 (End) & Gives cheap emergency full-body rain coverage when weather turns suddenly; chosen for low-cost packability. \\
+Budget & Emergency Rain Poncho & Coghlan's Emergency Poncho & \$8 & Emergency Shell & Phase 06 (End) & Serves as a true last-ditch wet-weather barrier; chosen for tiny packed size and minimal price. \\
+Budget & Emergency Rain Poncho & Charles River New Englander Poncho & \$25 & Emergency Shell & Phase 06 (End) & Offers better durability than disposable emergency ponchos; chosen for reusable storm backup value. \\
+Standard & Emergency Rain Poncho & Sea to Summit Nylon Tarp Poncho & \$70 & Emergency Shell & Phase 06 (End) & Adds reusable premium wet-weather cover with more durable fabric; chosen for better field reliability. \\
+Standard & Emergency Rain Poncho & Helikon-Tex Poncho U.S. Model & \$50 & Emergency Shell & Phase 06 (End) & Provides tougher all-weather backup coverage than flimsy emergency plastic; chosen for durable military-style utility. \\
+Standard & Emergency Rain Poncho & Snugpak Patrol Poncho & \$60 & Emergency Shell & Phase 06 (End) & Gives broader storm backup with sturdier fabric and better drape; chosen for repeated field-use practicality. \\
+Elite & Emergency Rain Poncho & Hill People Gear Tarahumara Poncho Shelter Tier & \$120 & Emergency Shell & Phase 06 (End) & Premium multi-role rain cover suits users wanting overbuilt field contingency value; chosen for stronger material and versatility. \\
+Elite & Emergency Rain Poncho & Fjallraven Rain Poncho & \$120 & Emergency Shell & Phase 06 (End) & Provides premium reusable storm layer with better finish and durability; chosen for higher-quality construction. \\
+Elite & Emergency Rain Poncho & Sea to Summit Ultra-Sil Nano Tarp Poncho & \$120 & Emergency Shell & Phase 06 (End) & Gives very light premium emergency coverage for constant carry; chosen for high-end packability and weather function. \\
+\end{longtblr}
+
+\clearpage
+
+\section*{7.14.U — When These Items Are Needed}
+\phantomsection
+\addcontentsline{toc}{section}{7.14.U — When These Items Are Needed}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=1.15in]
+    Q[l,wd=.85in]
+    Q[l,wd=3.15in]
+    Q[l,wd=3.5in]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-2} = {halign=c, valign=m},
+  column{3-4} = {halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Item} &
+\Hdr{First Required Phase} &
+\Hdr{Why it becomes necessary} &
+\Hdr{What happens if missing} \\
+Wicking base-layer top & Phase 00 (End) & Tier-1 starts immediately and requires minimum weather-appropriate layers to prevent environment-driven noncompliance. & Sweat management and thermal stability degrade early, making outdoor continuity less reliable. \\
+Wicking base-layer bottom & Phase 00 (End) & Basic lower-body weather layering belongs in the same minimum safe apparel posture for cold volatility. & Cold-leg stiffness and weather-driven avoidance become more likely on exposed days. \\
+Sun-protective hoodie & Phase 00 (End) & Outdoor exposure begins early enough that sun and sweat management need a simple repeatable upper-body solution. & Hot-weather and sun-exposed sessions rely on less effective ad hoc clothing choices. \\
+Running cap & Phase 00 (End) & A minimal headwear layer helps control glare, drizzle, and sweat from the start. & Eye glare, dripping sweat, and light precipitation create avoidable execution friction. \\
+Beanie & Phase 00 (End) & Cold volatility makes basic head warmth part of the first safe outdoor apparel baseline. & Early cold sessions are more likely to feel harsher and get pushed indoors unnecessarily. \\
+Neck gaiter & Phase 00 (End) & Basic cold and wind protection at the neck and lower face fits the minimum weather-appropriate layer set. & Wind exposure to the neck and face is harder to manage conservatively. \\
+Lightweight liner gloves & Phase 00 (End) & Basic hand protection belongs in the same first-layer weather readiness set as beanie and gaiter. & Cool-weather hand discomfort becomes a recurring avoidable distraction. \\
+Wind shirt & Phase 00 (End) & Tier-1 explicitly includes basic wind protection as part of minimum deployable environmental apparel. & Breezy conditions are more likely to create cold-stress drift or unnecessary indoor substitution. \\
+Rain shell jacket & Phase 00 (End) & Tier-1 also includes basic rain protection so light precipitation does not collapse session continuity. & Wet-weather execution becomes more fragile and reslots increase. \\
+Wide-brim sun hat & Phase 06 (End) & Expanded climate adaptability starts at Phase-06, where broader heat and sun management becomes justified. & Hot exposed long-session comfort remains narrower than the phase density may justify. \\
+Balaclava & Phase 06 (End) & It is more specialized than a neck gaiter and fits the first expanded cold-condition coverage tier. & Severe cold face protection remains limited to less complete simpler layers. \\
+Grid fleece midlayer & Phase 06 (End) & Expanded layering options are part of the Tier-2 step at Phase-06. & Cold-weather adaptability stays more binary, forcing either too little or too much insulation. \\
+Softshell jacket & Phase 06 (End) & Improved climate adaptability includes an active-weather layer between fleece and hard shell. & Mixed wind-and-light-precipitation conditions remain harder to handle cleanly. \\
+Rain pants & Phase 06 (End) & Lower-body wet control is more appropriate to the expanded weather system than the bare minimum entry kit. & Prolonged wet conditions are more likely to compromise lower-body comfort and continuity. \\
+Insulated jacket & Phase 06 (End) & Colder weather throughput and longer outdoor exposure make a dedicated insulation layer more reasonable by Tier-2. & Serious cold-weather outings rely on weaker stacking and less reliable warmth control. \\
+Waterproof insulated gloves & Phase 06 (End) & Colder wet conditions require more than liner gloves once the apparel system expands. & Hand protection remains underpowered in harsher winter moisture and wind. \\
+Waterproof gaiters & Phase 06 (End) & Specialized lower-leg weather sealing fits the expanded tier where wet snow and slush become repeated validity risks. & Snow, brush, and wet debris are more likely to enter lower-leg openings and disrupt sessions. \\
+Packable insulated vest & Phase 06 (End) & Modular core warmth is an expanded adaptability tool once conditions and exposure durations diversify. & Fine-tuning torso warmth remains less flexible during variable cold conditions. \\
+Shell overmitts & Phase 06 (End) & They are a specialized wet-cold hand-layer expansion inside the same Tier-2 climate-adaptability class. & Hand protection layering remains less modular when gloves begin wetting out. \\
+Emergency rain poncho & Phase 06 (End) & A backup full-body wet-weather contingency belongs in the expanded continuity posture rather than the bare minimum starter kit. & Sudden weather shifts are harder to manage conservatively when the main shell system is overloaded or unavailable. \\
+\end{longtblr}
+
+\endgroup
+\end{landscape}
+\clearpage
+
+\section*{7.14.V — Compliance Checklist}
+\phantomsection
+\addcontentsline{toc}{section}{7.14.V — Compliance Checklist}
+
+\begin{itemize}
+\item Only one deliverable is provided for Target Category 7.14.
+\item The locked title format and required output structure are used.
+\item The chart uses the exact required columns.
+\item Twenty distinct items are included, and each item contains three Budget rows, three Standard rows, and three Elite rows.
+\item Rows are grouped by item and progress from foundational weather-appropriate layers toward expanded and specialized environmental coverage.
+\item Notes are concise and each entry states both the intended use/effect and the reason that specific item was chosen.
+\item Stage 6.B is treated as authoritative, and conflicting older Stage 7.14 timing language is reconciled explicitly.
+\item Controlled timing assumptions are limited to the locked capability classes: Phase 00 Tier 1 essentials and Phase 06 Tier 2 expanded climate adaptability.
+\item No training programming, sets, reps, new tests, new thresholds, retailer links, affiliate links, promo codes, or live price research are included.
+\item The required post-chart timing table is included and matches the chart timing.
+\end{itemize}
+
+\end{document}

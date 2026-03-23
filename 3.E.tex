@@ -1,0 +1,570 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 3.E — Adjustment Rules for Illness, Regression, and Risk Flags}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 3.E — Adjustment Rules for Illness, Regression, and Risk Flags}
+
+\subsection*{3.E.1 Core Adjustment Principles}
+\phantomsection
+\addcontentsline{toc}{subsection}{3.E.1 Core Adjustment Principles}
+
+\begin{itemize}
+\item Validity-first is mandatory: \textbf{INVALID} tests provide no gate credit and cannot be used to justify \textbf{ADVANCE}; the corrective action is reslot to the next protected deload+test window.
+\item Safety-first is mandatory: red-flag symptoms or safety failures trigger \textbf{STOP} \textbf{NOW}; the day’s planned tests are aborted and are inadmissible for gate use; \textbf{MEDICAL} \textbf{HOLD} posture is applied when indicated by stop-rule triggers or clinician restriction.
+\item Preserve macro integrity: keep the work-to-deload rhythm intact; adjust by reslotting tests rather than compressing, stacking, or forcing tests into build weeks.
+\item No stacking make-ups: missed or invalid tests are not “recovered” by stacking multiple high-cost tests into one week or by violating Stage 3.A spacing intent.
+\item Reslot priority order (fixed; use in this sequence):
+\begin{enumerate}
+\item next deload+test week within the same phase,
+\item if the end gate is missed: use an existing buffer or Transition week if explicitly defined in Stage 3.D; otherwise extend the phase under patch control,
+\item if still not possible or risk posture remains unacceptable: default to \textbf{HOLD}, or \textbf{REGRESS}, or \textbf{MEDICAL} \textbf{HOLD} consistent with Stage 1 governance.
+\end{enumerate}
+\item Environment validity is a gate control: unsafe or non-standard route/pool/machine conditions trigger postpone and reslot; do not accept compromised conditions as “good enough” for gate-grade evidence.
+\item Tool drift is validity drift: undocumented tool changes (route verification method, pool unit/length, treadmill identity/settings, timing method) invalidate gate-grade interpretation and require either verified late-entry proof or reslot.
+\item First-appearance posture is protected: higher-cost proof events are not pulled forward into earlier segments as a substitute after a miss; they are reslotted, not escalated.
+\item Convert, do not force: when readiness is compromised, convert a planned deload+test week into deload-only or check-in-only; reslot maximal tests forward.
+\item Retest discipline is mandatory: retests occur only in deload+test weeks or reduced-stress windows and must respect Stage 3.A stacking and spacing intent.
+\item Documentation is a control: every adjustment \textbf{MUST} be logged with (a) validity tag impact (\textbf{VALID}/\textbf{MODIFIED}/\textbf{INVALID} for sessions; \textbf{VALID}/\textbf{INVALID} for tests), (b) reason-code posture (\textbf{SESSION-RC} or \textbf{TEST-RC} as applicable), (c) gate impact posture (\textbf{ADVANCE}/\textbf{HOLD}/\textbf{REGRESS}/\textbf{MEDICAL} \textbf{HOLD}), and (d) reslot target week.
+\item Domain cost hierarchy for overload resolution:
+\begin{itemize}
+\item protect the primary proof event first (the decisive gate item for the phase),
+\item defer secondary high-cost events before deferring the primary proof event,
+\item maintain continuous low-cost monitoring (\textbf{BODYCOMP}, \textbf{RECOVERY}, \textbf{DURABILITY}) even when major tests are deferred.
+\end{itemize}
+\item Underwater governance removal rule (fixed): removing underwater from a scheduled window because governance/supervision is unavailable is allowed without patch; it \textbf{MUST} be documented as “not scheduled; inadmissible without governance; surface-only schedule continues,” and no proxy equivalency is permitted.
+\end{itemize}
+
+\subsection*{3.E.2 Illness and Acute Injury Handling Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{3.E.2 Illness and Acute Injury Handling Rules}
+
+\begin{itemize}
+\item Cancel/postpone criteria (non-diagnostic; governance-level):
+\begin{itemize}
+\item \textbf{STOP} \textbf{NOW} triggers (chest pain/pressure; syncope/near-syncope; disproportionate shortness of breath; new neurologic symptoms; heat illness signs; acute injury with instability/swelling; gait-altering pain/mechanics change) cancel all testing that day and render intended tests inadmissible for gate use.
+\item Illness with systemic symptoms (e.g., feverishness, severe GI distress, significant respiratory illness reducing exertion tolerance) postpones gate-grade testing and converts the planned test week to deload-only or check-in-only.
+\end{itemize}
+
+\item What gets logged (minimum required):
+\begin{itemize}
+\item Test Validity Tag outcome: planned gate-grade test is recorded as not executed or aborted; any partial attempt is \textbf{INVALID} for gate use.
+\item Reason-code posture:
+\begin{itemize}
+\item Sessions: use \textbf{SESSION-RC-003} (\textbf{ILL}) or \textbf{SESSION-RC-002} (PAIN) or \textbf{SESSION-RC-007} (\textbf{SAFETY}) as primary as applicable; add free-text trigger detail.
+\item Tests: use \textbf{TEST-RC-004} (\textbf{SAFETY}) when aborted for safety; use \textbf{TEST-RC-002} (\textbf{ENV}) when environment is unsafe; use \textbf{TEST-RC-001} (\textbf{MEAS}) when measurement integrity fails.
+\end{itemize}
+\item Reslot target window: the next deload+test week within the same phase is the default.
+\item Gate impact posture: default \textbf{HOLD} if end-of-phase gate cannot be executed validly.
+\end{itemize}
+
+\item Return-to-testing posture:
+\begin{itemize}
+\item Testing is delayed until symptoms resolve and no red-flag posture exists.
+\item Near-max or maximal testing is delayed until safe; do not attempt “modified maximal” compromises to salvage a gate.
+\end{itemize}
+
+\item Multi-week disruption posture:
+\begin{itemize}
+\item Default gate posture is \textbf{HOLD}.
+\item If the end gate cannot be executed within remaining protected windows, phase extension is permitted only under patch control.
+\item If risk posture worsens or stop-rule events recur, gate posture may escalate to \textbf{REGRESS} or \textbf{MEDICAL} \textbf{HOLD} per governance.
+\end{itemize}
+
+\item Binding rule: red-flag symptoms on test day mean abort; no modified maximal test is attempted “to get something on the board.”
+\end{itemize}
+
+\subsection*{3.E.3 Regression Handling Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{3.E.3 Regression Handling Rules}
+
+\begin{itemize}
+\item Noise versus true regression (operational, conservative):
+\begin{itemize}
+\item Noise is a single off-day output with no corroborating pattern and no safety compromise; it is recorded but does not force immediate schedule compression.
+\item Meaningful regression is any of the following:
+\begin{itemize}
+\item a \textbf{VALID} test result below the required tier threshold for the current gate context (do not redefine thresholds here),
+\item two consecutive \textbf{VALID} results trending worse in a gate-critical metric within the decision window,
+\item a \textbf{VALID} result accompanied by worsening \textbf{DURABILITY}/\textbf{RECOVERY} signals that indicate the performance is not safely reproducible.
+\end{itemize}
+\end{itemize}
+
+\item Retest attempt posture (binding):
+\begin{itemize}
+\item There is no fixed cap on attempts because advancement requires standards; however, retests \textbf{MUST} remain controlled:
+\begin{itemize}
+\item \textbf{VALID} under comparable conditions and fully logged per Stage 2 conventions,
+\item scheduled only in deload+test weeks, baseline weeks, or reduced-stress windows explicitly intended for verification,
+\item must not violate Stage 3.A stacking and spacing intent,
+\item repeated retests must not be compressed into consecutive weeks unless replacing an \textbf{INVALID}/missed attempt under controlled conditions and without increasing risk exposure.
+\end{itemize}
+\end{itemize}
+
+\item What not to do (explicit prohibitions):
+\begin{itemize}
+\item Do not chase immediate retests repeatedly (“retest spiral”).
+\item Do not stack multiple time trials across domains in the same week to compensate for one regression.
+\item Do not generate a cycle of \textbf{INVALID} attempts to manufacture progress; \textbf{INVALID} provides no gate credit.
+\end{itemize}
+
+\item Gate posture linkage:
+\begin{itemize}
+\item If regression occurs on a gate-critical metric and cannot be corrected with a valid retest within the phase’s remaining protected windows, default posture is \textbf{HOLD} with reslot or extension under patch control.
+\item If regression coincides with durability breakdown (gait-altering pain, recurrent foot breakdown, repeated \textbf{STOP} \textbf{NOW} triggers), escalation to \textbf{REGRESS} or \textbf{MEDICAL} \textbf{HOLD} is indicated per governance.
+\end{itemize}
+\end{itemize}
+
+\subsection*{3.E.4 Risk Flags and Readiness-Based Adjustments}
+\phantomsection
+\addcontentsline{toc}{subsection}{3.E.4 Risk Flags and Readiness-Based Adjustments}
+
+Hard-stop triggers (cancel/postpone; may initiate \textbf{MEDICAL} \textbf{HOLD}):
+
+\begin{itemize}
+\item \textbf{STOP} \textbf{NOW} red-flag symptoms (cardiovascular, neurologic, heat illness signs).
+\item Gait-altering pain or mechanics change (\textbf{DURABILITY} constraint with immediate termination posture).
+\item Acute instability or swelling suggesting acute injury risk.
+\item Water governance violation (any unsupervised underwater/breath-hold attempt) or missing governance prerequisites for scheduled underwater work.
+\item Unsafe environment for the planned test: ice/unsafe footing, severe wind/visibility hazards, lightning/storm risk, unsafe heat exposure, poor air quality, pool closure/crowding that breaks validity, machine failure or unverified settings.
+\end{itemize}
+
+Yellow-flag trend triggers (downgrade test week to deload-only or check-in-only; reslot maximal tests forward):
+
+\begin{itemize}
+\item Sustained sleep debt trend (persistent low sleep opportunity or worsening sleep quality) that increases injury risk and contaminates test validity.
+\item Elevated soreness/fatigue trend that indicates fatigue contamination risk for gate-grade tests.
+\item Worsening pain trend even if non-emergent, especially if it approaches mechanics change.
+\item Repeated \textbf{MODIFIED} or \textbf{INVALID} sessions in the decision window (evidence-quality failure and/or recovery collapse).
+\item Repeated missed sessions logged under time/environment constraints (\textbf{SESSION-RC-005} \textbf{TIME}; \textbf{SESSION-RC-001} \textbf{ENV}; \textbf{SESSION-RC-008} \textbf{WEATHER}) and/or \textbf{TRAVEL} disruptions.
+\item Tool/environment drift not stabilized (new route, new treadmill, new pool unit/length, new footwear interface) inside a test window.
+\end{itemize}
+
+Governance-level examples (non-diagnostic; scheduling actions):
+
+\begin{itemize}
+\item If a deload+test week begins with yellow-flag trends (sleep collapse, rising soreness, repeated \textbf{MODIFIED} sessions), convert the week to deload-only or check-in-only:
+\begin{itemize}
+\item permit low-cost monitoring and one low-cost check-in major event only if it remains within Stage 3.A caps/spacing intent,
+\item reslot maximal \textbf{RUN}/\textbf{RUCK}/\textbf{SWIM} time trials to the next protected window.
+\end{itemize}
+\item If a hard-stop trigger occurs during a scheduled test, terminate immediately; record the test as \textbf{INVALID} with \textbf{TEST-RC-004} (\textbf{SAFETY}) and default gate posture \textbf{HOLD} for that metric until a \textbf{VALID} retest exists.
+\end{itemize}
+
+\subsection*{3.E.5 Reslotting and Phase Extension Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{3.E.5 Reslotting and Phase Extension Rules}
+
+Reslotting rules (binding):
+
+\begin{itemize}
+\item Missed or \textbf{INVALID} end-of-phase gate tests default to \textbf{HOLD}.
+\item Required gate tests \textbf{MUST} be reslotted to the next available protected window inside the same phase.
+\item If no protected window remains, phase extension is permitted only under patch control. There is no fixed maximum extension cap; extensions must remain conservative, validity-driven, and must not violate Stage 3.A stacking/spacing intent.
+\item Underwater removal due to missing governance is allowed without patch and must be documented as not scheduled and inadmissible without governance; no proxy replacement.
+\end{itemize}
+
+Allowed without patch (must be documented and auditable):
+
+\begin{itemize}
+\item Swap sequencing of tests within the same deload+test week (without adding events, without violating caps/spacing intent).
+\item Reslot a missed test to the next scheduled deload+test week within the same phase.
+\item Downgrade a planned deload+test week into deload-only or check-in-only and reslot maximal tests forward.
+\item Remove underwater testing when governance is unavailable, documented as inadmissible without governance; surface-only schedule continues.
+\item Handle travel disruption using existing time or environment reason codes plus free-text note \textbf{TRAVEL}:
+\begin{itemize}
+\item Primary session cause \textbf{SHOULD} be \textbf{SESSION-RC-006} (\textbf{TRAVEL}) where applicable; add \textbf{SESSION-RC-005} (\textbf{TIME}) or \textbf{SESSION-RC-001} (\textbf{ENV}) only as explanatory detail in notes if the system records a single primary code.
+\end{itemize}
+\end{itemize}
+
+Requires patch (change control; revalidation required):
+
+\begin{itemize}
+\item Add a new test week (new protected window not already defined in Stage 3.B/3.D).
+\item Extend phase duration.
+\item Change which tests serve as gate tests for the phase.
+\item Change the cadence pattern or work-to-deload ratio for the phase.
+\item Change the phase-level stress map structure (protected window placement pattern).
+\end{itemize}
+
+Documentation requirements (minimum; applies to all adjustments):
+
+\begin{itemize}
+\item Record validity tags (session: \textbf{VALID}/\textbf{MODIFIED}/\textbf{INVALID}; test: \textbf{VALID}/\textbf{INVALID}) and reason-code posture (\textbf{SESSION-RC} or \textbf{TEST-RC}) with free-text context.
+\item Record gate impact posture (\textbf{ADVANCE}/\textbf{HOLD}/\textbf{REGRESS}/\textbf{MEDICAL} \textbf{HOLD}) and the reslot target week.
+\item When patch is required: create the patch entry per change-control doctrine and record revalidation scope (at minimum Stage 3 artifacts + affected Stage 4–5 phase consumers, plus crosswalk impact check when required).
+\end{itemize}
+
+\clearpage
+\begin{landscape}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[c,1.35]
+    X[c,1.45]
+    Q[c,wd=1.20in]
+    X[c,1.25]
+    X[c,1.70]
+    X[c,2.85]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Adjustment Type} &
+\Hdr{Example} &
+\Hdr{Allowed Without Patch} &
+\Hdr{Requires Patch} &
+\Hdr{Gate Impact} &
+\Hdr{Documentation Required} \\
+
+Reslot within phase &
+End-of-phase \textbf{RUN} time trial \textbf{INVALID} due to unsafe ice &
+Yes &
+No &
+\textbf{HOLD} for the affected metric until \textbf{VALID} retest; phase remains current &
+Test row: \textbf{INVALID} + \textbf{TEST-RC-002} (\textbf{ENV}) or \textbf{TEST-RC-004} (\textbf{SAFETY}); reslot target week; environment notes; Evidence Ref \\
+
+Swap test order inside same protected week &
+Move \textbf{CAL} battery earlier in the deload+test week; move \textbf{SWIM} later &
+Yes &
+No &
+None if \textbf{VALID} evidence produced; otherwise \textbf{HOLD} for missing metric &
+Updated staged battery note; confirm caps/spacing intent preserved; record any constraints \\
+
+Convert deload+test to deload-only &
+Sleep collapse and rising pain trend in the lead-in week &
+Yes &
+No &
+\textbf{HOLD} for unexecuted gate tests; reslot to next protected window &
+Weekly review note; sessions tagged appropriately; reason code posture (\textbf{SESSION-RC-003} \textbf{ILL} or \textbf{SESSION-RC-002} PAIN or \textbf{SESSION-RC-007} \textbf{SAFETY} as applicable); reslot target \\
+
+Remove underwater from scheduled window &
+Certified lifeguard + dedicated safety spotter not available &
+Yes &
+No &
+Underwater metric remains untested; \textbf{HOLD} for underwater metric; no proxy credit &
+Record: “not scheduled; inadmissible without governance; surface-only schedule continues”; do not attempt; no substitution claim \\
+
+Reslot due to travel &
+\textbf{TRAVEL} disrupts access to route/pool &
+Yes &
+No &
+\textbf{HOLD} if end gate cannot be executed validly &
+Session tags + \textbf{SESSION-RC-006} (\textbf{TRAVEL}) (and \textbf{TRAVEL} note); test reslot target; environment/access notes \\
+
+Add new protected test week &
+Insert an extra deload+test week after the planned end gate &
+No &
+Yes &
+Phase extension or schedule change impacts gate timing; default \textbf{HOLD} until executed &
+Patch entry; updated phase map; revalidation scope recorded; crosswalk impact check \\
+
+Extend phase duration &
+Extend Phase by +2 weeks to regain a protected window &
+No &
+Yes &
+\textbf{HOLD} until standards met with admissible evidence; no \textbf{ADVANCE} until met &
+Patch entry; updated Stage 3.B/3.D references; downstream revalidation list \\
+
+Change gate test set &
+Replace a \textbf{RUN} gate with an \textbf{AER} time trial as “equivalent” &
+No &
+Yes (and likely prohibited) &
+Prohibited equivalency; cannot justify \textbf{ADVANCE} &
+Patch request denied unless Stage 2 authorizes; record non-deployable posture if attempted \\
+
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+\clearpage
+
+\begin{landscape}
+
+\subsection*{3.E.6 Decision Table}
+\phantomsection
+\addcontentsline{toc}{subsection}{3.E.6 Decision Table}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.65]
+    X[l,1.55]
+    X[l,1.20]
+    X[l,1.85]
+    X[l,2.35]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Situation} &
+\Hdr{Example Trigger} &
+\Hdr{Immediate Action} &
+\Hdr{Next-Step Adjustment} &
+\Hdr{Notes} \\
+
+Minor fatigue with slightly elevated RPE trend &
+\textbf{RECOVERY} markers elevated; no red flags &
+Proceed with deload posture; keep tests tentative &
+Convert deload+test week to check-in-only if trends persist; reslot maximal tests to next protected window &
+Do not force maximal attempts under fatigue contamination risk; document \textbf{RECOVERY} trend and scheduling decision; no gate credit without \textbf{VALID} tests \\
+
+Plateau for several weeks with no health concerns &
+Multiple \textbf{VALID} results stable but not improving &
+Maintain schedule; do not compress &
+Keep end-of-phase gate; add only one check-in major event in next protected window if needed for replication &
+Plateau does not justify stacking; focus is replication-quality and validity; document as \textbf{HOLD} if standards not met \\
+
+Significant regression on a key \textbf{RUN} or \textbf{RUCK} gate test with \textbf{VALID} result below threshold &
+\textbf{VALID} \textbf{RUN}/\textbf{RUCK} result below required tier for current gate &
+Record \textbf{VALID} result; do not rationalize upward &
+Reslot retest to next protected window; consider deload-only conversion if durability/recovery signals are degraded &
+No immediate “retest tomorrow”; preserve spacing intent; gate posture defaults \textbf{HOLD} if end gate unmet \\
+
+Onset of pain with altered mechanics suggesting overuse trend &
+\textbf{DURABILITY}: gait-altering pain flag = Yes &
+\textbf{STOP} \textbf{NOW} for provoking exposure; terminate test attempt &
+Convert week to deload-only; reslot major tests; consider \textbf{REGRESS} posture if mechanics change persists &
+Test attempt is \textbf{INVALID} if continued; document pain + mechanics change; sessions may become \textbf{MODIFIED}/\textbf{INVALID} with \textbf{SESSION-RC-002} (PAIN) \\
+
+Illness with fever/systemic symptoms or respiratory illness reducing exertion tolerance &
+Systemic illness signs; abnormal dyspnea at low effort &
+Cancel major tests; do not “test anyway” &
+Convert week to deload-only; reslot to next protected window; default \textbf{HOLD} for missed gate &
+Tests aborted are \textbf{INVALID} for gate use; use \textbf{SESSION-RC-003} (\textbf{ILL}) where applicable and \textbf{TEST-RC-004} (\textbf{SAFETY}) for aborted tests \\
+
+Red-flag symptoms on test day (cardiovascular/neurologic/heat illness) &
+Chest pain; syncope; confusion; heat illness signs &
+\textbf{STOP} \textbf{NOW}; terminate all testing &
+\textbf{MEDICAL} \textbf{HOLD} posture when indicated; reslot all gate tests; no make-up stacking &
+Any test evidence that continues is inadmissible; document trigger, action, escalation; gate posture \textbf{HOLD}/ \textbf{MEDICAL} \textbf{HOLD} as applicable \\
+
+Environment invalidates testing (route/pool/machine) &
+Ice; lightning; poor air quality; pool closure/crowding; machine settings not verifiable &
+Do not attempt gate-grade test &
+Reslot to next protected window or substitute indoors only if Stage 2 validity/logging preserves comparability &
+If attempted under compromised conditions, tag \textbf{INVALID} with \textbf{TEST-RC-002} (\textbf{ENV}) or \textbf{TEST-RC-001} (\textbf{MEAS}); do not claim tier attainment \\
+
+Water governance unavailable for underwater work &
+No certified lifeguard and/or no dedicated safety spotter &
+Do not attempt underwater; record not authorized &
+Remove underwater from window; reslot only when governance is guaranteed &
+Document: “not scheduled; inadmissible without governance; surface-only schedule continues.” No proxy equivalency permitted \\
+
+Travel disrupts scheduled test week &
+\textbf{TRAVEL} removes access to route/pool/tools &
+Reslot tests; preserve safety and validity &
+Use next protected window; if end gate missed and no window remains, phase extension under patch control &
+Log sessions with \textbf{SESSION-RC-006} (\textbf{TRAVEL}) and \textbf{TRAVEL} note; do not stack tests on return; gate posture defaults \textbf{HOLD} if tests cannot be executed validly \\
+
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+\clearpage
+
+\subsection*{3.E.7 Conflict Resolution Rule}
+\phantomsection
+\addcontentsline{toc}{subsection}{3.E.7 Conflict Resolution Rule}
+
+\begin{itemize}
+\item Missed, \textbf{INVALID}, or unsafe tests cannot be used for advancement. \textbf{INVALID} provides no gate credit and cannot support \textbf{ADVANCE}.
+\item If any adjustment violates Stage 1 governance (validity tags, stop posture, change control) or Stage 2 validity requirements (protocol conditions, logging completeness), downstream execution is Draft — Non-Deployable until corrected and re-versioned.
+\item Safety overrides schedule and performance. \textbf{STOP} \textbf{NOW} and \textbf{MEDICAL} \textbf{HOLD} postures control scheduling decisions when triggers occur.
+\end{itemize}
+
+\end{document}

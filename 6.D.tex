@@ -1,0 +1,505 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 6.D — Minimal vs Ideal Kit Pathways}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 6.D — Minimal vs Ideal Kit Pathways}
+
+\subsection*{6.D.1 Narrative}
+\phantomsection
+\addcontentsline{toc}{subsection}{6.D.1 Narrative}
+
+\subsubsection*{Minimal Path definition}
+\phantomsection
+
+Minimal Path is the minimum deployable capability pathway that keeps every phase executable under start-from-zero constraints while preserving safety containment, validity prerequisites for admissible evidence, and continuity under real-world friction (weather, access, fatigue drift). Minimal Path aligns to the baseline Tier timeline in Stage 6.B. For any given phase, Minimal Path means: every category that is Tier 1 or higher in Stage 6.B for that phase is present, stable, and usable by the time gate-grade evidence is required.
+
+\subsubsection*{Ideal Path definition}
+\phantomsection
+
+Ideal Path is a governed pull-forward overlay that increases reliability and reduces variance without changing what is “required.” Ideal Path selectively pulls forward Tier 2–Tier 3 capabilities only when they materially reduce (a) missed sessions due to access or weather friction, (b) invalid or non-comparable test events due to tool drift, and (c) predictable injury risk due to foot, load, or recovery-interface failures. Ideal Path is not “max spending.” It is risk-managed investment that targets the failure modes most likely to break gate windows.
+
+\subsubsection*{Non-negotiable governing rule for phase execution}
+\phantomsection
+
+No phase may be executed without its Minimal Path Tier 1 prerequisites across applicable categories. If Minimal Path readiness is not met, the correct posture is delay escalation, reslot gate attempts inside the next protected window, and default \textbf{HOLD} for phase advancement. Do not improvise unsafe substitutions to “force” a timeline.
+
+\subsubsection*{Validity substitution constraint tied to Stage 2 admissibility}
+\phantomsection
+
+Substitutions are permitted only when they preserve (1) safety boundaries, (2) Stage 2 comparability requirements for the specific measurement construct, and (3) Stage 1.F admissibility posture (\textbf{VALID} evidence only for gates). If a substitution changes the measurement construct (different tool class, different environment unit class, different route/pool verification posture) and comparability cannot be preserved, the resulting evidence is not gate-admissible and must be reslotted rather than “accepted anyway.”
+
+\subsubsection*{Aquatics governance note}
+\phantomsection
+
+Aquatics capability (7.17) supports surface swim feasibility and safety logistics only. Underwater/breath-hold remains governance-gated and supervised-only; it must never be forced by equipment ownership. If governance, access, or supervision cannot be guaranteed, underwater remains “not scheduled; inadmissible without governance” regardless of Ideal Path status.
+
+\subsubsection*{Freeze-window discipline for validity protection}
+\phantomsection
+
+Treat shoes, ruck interfaces, timing devices, and supplements as system variables. Do not introduce first-time or changed interfaces inside Deload+Test windows or during gate attempts. Stabilize any change in earlier work weeks so protected windows remain validity-clean and low variance.
+
+\clearpage
+\begin{landscape}
+
+\subsection*{6.D.2 Summary Table}
+\phantomsection
+\addcontentsline{toc}{subsection}{6.D.2 Summary Table}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.42in]
+    X[l,1.85]
+    X[l,3.20]
+    X[l,3.20]
+    X[l,3.40]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Phase \#} &
+\Hdr{Phase Name} &
+\Hdr{Minimal Path Key Tier Levels by Category Group} &
+\Hdr{Ideal Path Key Tier Levels by Category Group} &
+\Hdr{Comments} \\
+
+00 &
+Phase 00 — Bodily Reactivation and Baseline Creation &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T0/T0/T0\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T1/T1/T0\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T0/T1/T1\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T1/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T1/T1\newline
+\textbf{SM}: T1\newline
+\textbf{AQ}: T0 &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T1/T1/T0\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T1/T1/T1\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T0/T1/T2\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T1/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T1/T1\newline
+\textbf{SM}: T2\newline
+\textbf{AQ}: T0 &
+Minimal Path is strict “start-from-zero essentials” for admissibility and safe continuity. Ideal pull-forward highest ROI: indoor \textbf{COND} continuity (weather-proof), early \textbf{TEST} tool redundancy (avoid invalid logs), basic \textbf{PROTECT} to reduce predictable foot/skin failures. Freeze-window discipline is decisive even here: avoid changing shoes, timer, and log system near Weeks 4, 8, 12, and 16 protected windows. \\
+
+01 &
+Phase 01 — Base Conditioning and Hypertrophy &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T1/T1/T0\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T1/T1/T0\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T0/T1/T1\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T1/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T1/T1\newline
+\textbf{SM}: T1\newline
+\textbf{AQ}: T0 &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T1/T2/T0\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T1/T2/T1\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T1/T2/T2\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T1/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T1/T1\newline
+\textbf{SM}: T2\newline
+\textbf{AQ}: T0 &
+Minimal Path introduces minimum deployable \textbf{STR} and \textbf{COND} capability for consistent execution. Ideal reduces missed sessions and invalid tests: pull \textbf{TEST} tool robustness earlier and add \textbf{REC}/\textbf{MOB} consistency to reduce overuse drift as volume rises. \\
+
+02 &
+Phase 02 — Maximal Strength Development &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T1/T1/T0\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T1/T1/T0\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T0/T1/T1\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T1/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T1/T1\newline
+\textbf{SM}: T1\newline
+\textbf{AQ}: T0 &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T2/T2/T0\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T2/T2/T1\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T1/T2/T2\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T1/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T1/T1\newline
+\textbf{SM}: T2\newline
+\textbf{AQ}: T0 &
+Ideal pull-forward targets reliability of \textbf{STR} exposure and measurement comparability (\textbf{STR} implement stability, \textbf{TEST} tool stability). Freeze-window discipline: do not change \textbf{STR} implement class or logging method inside protected windows if tests depend on comparability. \\
+
+03 &
+Phase 03 — Converting Strength to Power and Endurance for SOF Selection &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T1/T1/T1\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T1/T1/T1\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T0/T1/T2\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T1/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T1/T1\newline
+\textbf{SM}: T1\newline
+\textbf{AQ}: T0 &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T2/T2/T2\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T2/T2/T2\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T1/T2/T2\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T1/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T1/T1\newline
+\textbf{SM}: T2\newline
+\textbf{AQ}: T0 &
+Minimal Path introduces first minimum deployable \textbf{RUCK} capability by Phase 03 end gate. Ideal pull-forward reduces ruck-interface novelty risk: stabilize fit/config well before protected windows and improve \textbf{PROTECT} + \textbf{REC} to prevent hotspots and gait drift. \\
+
+04 &
+Phase 04 — Strength-Endurance and Work Capacity Development &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T1/T1/T1\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T1/T1/T1\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T0/T1/T2\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T1/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T1/T1\newline
+\textbf{SM}: T1\newline
+\textbf{AQ}: T1 &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T2/T2/T2\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T2/T2/T2\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T1/T2/T2\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T1/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T1/T1\newline
+\textbf{SM}: T2\newline
+\textbf{AQ}: T1 &
+Minimal Path introduces first minimum deployable \textbf{AQUA} capability (surface-only feasibility and safety logistics). Ideal focuses on reducing invalid swim evidence (pool verification/logging fidelity) while preserving governance: underwater remains conditional and never forced. \\
+
+05 &
+Phase 05 — Aerobic Base and Extended Stamina Development &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T1/T1/T1\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T1/T1/T1\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T0/T1/T2\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T1/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T1/T1\newline
+\textbf{SM}: T1\newline
+\textbf{AQ}: T1 &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T2/T2/T2\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T2/T2/T2\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T1/T2/T2\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T2/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T2/T1\newline
+\textbf{SM}: T2\newline
+\textbf{AQ}: T1 &
+Ideal pull-forward highest ROI: \textbf{ENV} apparel expansion and nutrition/hydration robustness to prevent environment-driven reslots and endurance-window invalidity. Freeze-window discipline becomes more consequential: route/tool/footwear changes near long events increase variance and threaten admissibility. \\
+
+06 &
+Phase 06 — Lactate Threshold and Power-Endurance Development &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T2/T2/T2\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T2/T2/T2\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T1/T2/T2\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T2/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T2/T1\newline
+\textbf{SM}: T2\newline
+\textbf{AQ}: T2 &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T2/T2/T2\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T2/T2/T2\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T1/T2/T3\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T2/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T2/T1\newline
+\textbf{SM}: T2\newline
+\textbf{AQ}: T2 &
+Minimal Path reaches Tier 2 across most systems for continuity and validity. Ideal pull-forward is narrowly targeted: test-tool redundancy (avoid invalid gate weeks) and proactive \textbf{FEET}/\textbf{PROTECT} stability to prevent ruck/run interference and last-minute reslots. \\
+
+07 &
+Phase 07 — Advanced Hybrid Overload &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T2/T2/T2\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T2/T2/T2\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T1/T2/T2\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T2/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T2/T1\newline
+\textbf{SM}: T2\newline
+\textbf{AQ}: T2 &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T2/T2/T2\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T2/T2/T2\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T1/T2/T3\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T2/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T2/T1\newline
+\textbf{SM}: T3\newline
+\textbf{AQ}: T2 &
+Hybrid overload increases drift risk: Ideal focuses on \textbf{SELF-MGMT} redundancy (planning discipline, adherence control) and \textbf{TEST} tool redundancy to reduce invalidity and stacking temptations. \\
+
+08 &
+Phase 08 — Structural Durability and Load Tolerance &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T2/T2/T2\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T2/T2/T2\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T1/T2/T2\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T2/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T2/T1\newline
+\textbf{SM}: T2\newline
+\textbf{AQ}: T2 &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T2/T2/T3\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T3/T2/T3\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T1/T2/T3\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T2/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T2/T1\newline
+\textbf{SM}: T2\newline
+\textbf{AQ}: T2 &
+Ideal pull-forward emphasizes ruck and foot-interface redundancy (reduce blister/gait drift probability) and \textbf{PROTECT} posture to prevent predictable breakdown during long-load milestones. Freeze-window discipline is strict: no first-time ruck or boot interface changes inside protected windows. \\
+
+09 &
+Phase 09 — High-Volume Calisthenics and Stamina &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T2/T2/T2\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T2/T2/T2\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T1/T2/T2\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T2/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T2/T1\newline
+\textbf{SM}: T2\newline
+\textbf{AQ}: T2 &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T2/T2/T3\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T3/T3/T3\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T1/T2/T3\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T2/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T2/T1\newline
+\textbf{SM}: T2\newline
+\textbf{AQ}: T2 &
+Ideal pull-forward concentrates on \textbf{REC}/\textbf{MOB} and \textbf{PROTECT} to reduce high-volume \textbf{CAL} overuse drift and preserve repeatable test windows. This is reliability-focused, not performance-driven. \\
+
+10 &
+Phase 10 — Advanced Tactical Readiness &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T2/T2/T2\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T2/T2/T2\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T1/T2/T2\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T2/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T2/T1\newline
+\textbf{SM}: T2\newline
+\textbf{AQ}: T2 &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T2/T2/T3\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T3/T3/T3\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T1/T2/T3\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T2/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T2/T1\newline
+\textbf{SM}: T3\newline
+\textbf{AQ}: T2 &
+Ideal pull-forward targets the categories most likely to invalidate multi-domain gate days: \textbf{TEST} tools, \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} stability, and \textbf{SELF-MGMT} to enforce reslot discipline instead of stacking. Aquatics remains surface-focused; underwater remains governance-gated and may remain not scheduled. \\
+
+11 &
+Phase 11 — Pre-Selection Conditioning and Recovery &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T2/T2/T2\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T2/T2/T2\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T1/T2/T2\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T2/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T2/T1\newline
+\textbf{SM}: T2\newline
+\textbf{AQ}: T2 &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T2/T2/T3\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T3/T3/T3\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T1/T2/T3\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T2/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T2/T1\newline
+\textbf{SM}: T3\newline
+\textbf{AQ}: T2 &
+Ideal pull-forward continues the “variance minimization” posture: reduce late-phase failures driven by foot breakdown, recovery collapse, and tool drift. Maintain freeze-window discipline rigorously. \\
+
+12 &
+Phase 12 — Final Pre-Selection Conditioning &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T2/T2/T3\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T3/T3/T3\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T1/T3/T3\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T2/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T2/T1\newline
+\textbf{SM}: T3\newline
+\textbf{AQ}: T3 &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T2/T2/T3\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T3/T3/T3\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T2/T3/T3\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T2/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T2/T1\newline
+\textbf{SM}: T3\newline
+\textbf{AQ}: T3 &
+Minimal Path introduces selective Tier 3 “verification reliability” posture (redundancy where failure would invalidate decisive windows). Ideal adds limited monitoring robustness (\textbf{BIO} to T2) without changing what is required for deployability. \\
+
+13 &
+Phase 13 — Full-Spectrum Readiness Consolidation &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T2/T2/T3\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T3/T3/T3\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T1/T3/T3\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T2/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T2/T1\newline
+\textbf{SM}: T3\newline
+\textbf{AQ}: T3 &
+\textbf{HW}: \textbf{STR}/\textbf{COND}/\textbf{RUCK} = T2/T2/T3\newline
+\textbf{FR}: \textbf{FEET}/\textbf{REC}/\textbf{PROTECT} = T3/T3/T3\newline
+\textbf{ML}: \textbf{BIO}/\textbf{LOG}/\textbf{TEST} = T2/T3/T3\newline
+\textbf{NH}: \textbf{NUT}/\textbf{HYG} = T2/T1\newline
+\textbf{AP}: \textbf{ENV}/\textbf{GEN} = T2/T1\newline
+\textbf{SM}: T3\newline
+\textbf{AQ}: T3 &
+Consolidation maintains Tier 3 stability posture and enforces “no novelty near protected windows” as a hard validity control. Ideal differs mainly by earlier monitoring robustness; neither changes what is required for deployability. \\
+
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+\end{document}

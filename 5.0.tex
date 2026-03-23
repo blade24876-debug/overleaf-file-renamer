@@ -1,0 +1,451 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{tcolorbox}
+\begin{center}
+{\LARGE\bfseries Stage 5 — Macro Design for Phases 01–13}\\[0.35em]
+{\Large\bfseries SOF Physical Development Transformation Program}\\[0.25em]
+{\large 182-Week Civilian-to-Selection Readiness Pipeline}\\[0.65em]
+\TitleLine
+\end{center}
+\end{tcolorbox}
+
+\vspace{0.35em}
+
+\section*{Stage 5 — Macro Design for Phases 01–13}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 5 — Macro Design for Phases 01–13}
+
+\subsection*{Introduction}
+\phantomsection
+\addcontentsline{toc}{subsection}{Introduction}
+
+\subsubsection*{1) Purpose}
+
+Stage 5 exists to define the long-horizon macro design for Phases 01–13 so downstream phase specifications, equipment timing, and audit crosswalks can be built without drifting from the fixed governance and measurement architecture. It converts the end-state envelope and fixed stage doctrine into a phase-by-phase macro framework with stable joins: what each phase is for, what domains are emphasized, what gates are evaluated, and how those gates are scheduled inside protected windows.
+
+Stage 5 is needed because a 24-week Phase 01 followed by twelve-week Phases 02–13 requires a consistent, repeatable structure that preserves evidence integrity across years. Without a locked macro design layer, the program tends to drift into ad hoc sequencing, informal gate changes, and inconsistent domain emphasis that breaks comparability and undermines gate legitimacy.
+
+Stage 5 will produce the following internal deliverable set, later, as a closed Stage 5 package:
+
+\begin{itemize}
+\item 5.A — Master Macro-Phase Table, Compact Overview
+\item 5.B — Detailed Phase Cards — Phase Row Template — Phase 01–13
+\item 5.C — Adaptation Sequencing Narrative, 3.5-Year Logic
+\item 5.D — Phase Dependencies and Gating Rules
+\item 5.E — Alignment With Test Calendar and Deload Map
+\end{itemize}
+
+\subsubsection*{2) Scope}
+
+\paragraph*{Inclusions}
+
+\begin{itemize}
+\item Macro design for Phases 01–13 only, with Phase 00 referenced solely as the entry bridge governed by Stage 4.
+\item Phase mission statements and phase sequencing logic that explain why each phase exists and why the order is fixed.
+\item Domain-level emphasis mapping using Stage 2 taxonomy (\textbf{RUN}, \textbf{SWIM}, \textbf{CAL}, \textbf{RUCK}, \textbf{STR}, \textbf{BODYCOMP}, \textbf{DURABILITY}, \textbf{RECOVERY}) to describe what each phase prioritizes without prescribing programming.
+\item Gate mapping posture:
+  \begin{itemize}
+  \item which Phase gates exist conceptually per phase,
+  \item which gate batteries reference Stage 2 tests and metrics,
+  \item how gate decisions are constrained to protected Stage 3 deload and test windows.
+  \end{itemize}
+\item Dependency mapping and crosswalk join keys required for:
+  \begin{itemize}
+  \item Stage 6 capability timing (when equipment-dependent domains are introduced),
+  \item Stage 8 crosswalk integrity (standards, tests, phases, resources).
+  \end{itemize}
+\item Phase duration references locked for macro design:
+  \begin{itemize}
+  \item Phase 01 fixed at 24 weeks,
+  \item Phases 02–13 fixed at 12 weeks each,
+  \item any alternative duration narrative encountered downstream is treated as Requires Stage 8 review.
+  \end{itemize}
+\end{itemize}
+
+\paragraph*{Exclusions}
+
+\begin{itemize}
+\item No Phase 00 redesign, edits, or reinterpretation; Phase 00 entry/exit posture remains governed by Stage 4.
+\item No programming detail: no workouts, sets, reps, intervals, weekly microcycles, or day-by-day schedules.
+\item No new tests, thresholds, domain tags, metric IDs, protocol cards, or validity schemas; Stage 2 instrument set remains authoritative.
+\item No equipment lists, brands, shopping guidance, or acquisition planning content; Stage 6 and Stage 7 own equipment timing and category manuals.
+\item No rewrite of Stage 3 deload and test window posture; Stage 5 must conform to Stage 3 protected windows and reslot discipline.
+\end{itemize}
+
+\subsubsection*{3) How to Use}
+
+\paragraph*{Coach usage}
+
+\begin{itemize}
+\item Use Stage 5 to interpret the full Phase 01–13 pipeline as a controlled sequence of adaptation goals and verification points, not as a flexible menu of interchangeable blocks.
+\item Use Stage 5 to understand which domains are prioritized by phase so execution decisions do not drift into non-phase-appropriate emphasis (for example, attempting high-consequence load or impact verification before prerequisite tolerance and evidence stability exist).
+\item Use Stage 5 to map gates to Stage 2 tests by identifier and to schedule those gates only inside protected Stage 3 windows. Gate attempts outside protected windows are not treated as gate-grade evidence.
+\item Use Stage 5 to maintain coherence between:
+  \begin{itemize}
+  \item phase intent,
+  \item gate posture,
+  \item dependency readiness,
+  \item and reslot discipline when evidence is invalid or missed.
+  \end{itemize}
+\item Use Stage 5 to preserve governance discipline: gate decisions rely on admissible evidence and are constrained by safety, validity tagging, and change control doctrine.
+\end{itemize}
+
+\paragraph*{Crosswalk usage}
+
+\begin{itemize}
+\item Treat Stage 5 phase rows and phase cards as stable join points for later stages:
+  \begin{itemize}
+  \item Stage 6 uses Stage 5 to time equipment-dependent capability introductions and to prevent premature gear requirements.
+  \item Stage 8 uses Stage 5 to crosswalk phases, tests, standards and to detect missing joins or drift.
+  \end{itemize}
+\item Ensure every phase reference in downstream artifacts can be traced back to Stage 5:
+  \begin{itemize}
+  \item Phase \textbf{ID} and duration,
+  \item declared domain emphasis,
+  \item referenced gate batteries (Stage 2 IDs),
+  \item and protected-window placement posture (Stage 3).
+  \end{itemize}
+\end{itemize}
+
+\paragraph*{Execution discipline reminder}
+
+\begin{itemize}
+\item Gate outcomes depend on valid evidence:
+  \begin{itemize}
+  \item validity tags and admissibility posture remain governed by Stage 1,
+  \item test execution and logging remain governed by Stage 2,
+  \item scheduling and reslot posture remain governed by Stage 3,
+  \item Phase 00 entry bridge remains governed by Stage 4.
+  \end{itemize}
+\item If a downstream phase artifact implies gate decisions can be made on incomplete logs, \textbf{INVALID} conditions, or unrecognized tests, that conflict is Requires Stage 8 review.
+\end{itemize}
+
+\subsubsection*{4) Inputs and Assumptions}
+
+\paragraph*{Inputs}
+
+\begin{itemize}
+\item Stage 0 authorities:
+  \begin{itemize}
+  \item program identity and scope,
+  \item fixed start-state posture and start-from-zero constraints,
+  \item end-state envelope targets,
+  \item operating constraints and safety boundaries.
+  \end{itemize}
+\item Stage 1 authorities:
+  \begin{itemize}
+  \item validity tags and admissibility posture,
+  \item stop posture and escalation doctrine,
+  \item gate outcomes,
+  \item freeze windows and change control discipline.
+  \end{itemize}
+\item Stage 2 authorities:
+  \begin{itemize}
+  \item canonical domain taxonomy,
+  \item metrics inventory and stable IDs,
+  \item protocol card library and test validity posture,
+  \item tier thresholds and alignment,
+  \item data recording conventions and evidence standards.
+  \end{itemize}
+\item Stage 3 authorities:
+  \begin{itemize}
+  \item protected deload and test window posture,
+  \item anti-stacking and spacing intent,
+  \item reslot and adjustment doctrine for invalid/missed tests and risk flags.
+  \end{itemize}
+\item Stage 4 authorities:
+  \begin{itemize}
+  \item Phase 00 specification,
+  \item Phase 00 exit standards and Phase 01 entry posture as the gate bridge into Stage 5’s first phase.
+  \end{itemize}
+\item Fixed phase durations for Stage 5 macro design:
+  \begin{itemize}
+  \item Phase 01 = 24 weeks,
+  \item Phases 02–13 = 12 weeks each.
+  \end{itemize}
+\end{itemize}
+
+\paragraph*{Assumption Ledger}
+
+\begin{itemize}
+\item Assumption Ledger not required for Stage 5 Intro.
+\end{itemize}
+
+\subsubsection*{5) Interfaces}
+
+\paragraph*{Upstream dependencies}
+
+\begin{itemize}
+\item Stage 0 provides identity, constraints, boundaries, and end-state envelope that Stage 5 must satisfy without reinterpretation.
+\item Stage 1 provides governance discipline (validity, admissibility, stop posture, change control) that constrains what gate claims are allowed.
+\item Stage 2 provides the measurement layer (domain tags, protocol cards, metrics, thresholds, logging) that Stage 5 references by \textbf{ID} only.
+\item Stage 3 provides scheduling doctrine (protected windows, reslot discipline, stacking and spacing posture) that Stage 5 must conform to.
+\item Stage 4 provides the Phase 00 bridge and exit posture that defines Phase 01 entry conditions.
+\end{itemize}
+
+\paragraph*{Downstream consumers}
+
+\begin{itemize}
+\item Stage 6 uses Stage 5 to align equipment capability timing and to prevent unmet gear demands or premature equipment-dependent exposures.
+\item Stage 7 uses Stage 5 as the phase-intent backdrop for category overviews that support execution without redefining phase doctrine.
+\item Stage 8 uses Stage 5 as a primary crosswalk spine to verify consistency between standards, tests, phases, resources, and evidence posture and to log unresolved conflicts.
+\item Stage 9 uses Stage 5 as macro doctrine for packaging, implementation guidance, and audit traceability across artifacts.
+\end{itemize}
+
+\paragraph*{Crosswalk hooks}
+
+Stage 5 must carry stable join keys so later stages can reconcile without interpretation drift:
+
+\begin{itemize}
+\item Phase IDs (Phase 01–Phase 13) and fixed duration fields.
+\item Phase mission and primary physiological focus (macro intent fields).
+\item Domain emphasis mapping using Stage 2 canonical domain tags.
+\item Gate batteries referenced by Stage 2 protocol card IDs and metric IDs, without inventing or renaming instruments.
+\item Tier posture language (\textbf{ENTRY} / \textbf{INTERMEDIATE} / \textbf{SELECTION-READY}) referenced as Stage 2-defined tiers, not redefined in Stage 5.
+\item Scheduling hooks that reference Stage 3 protected windows posture and reslot discipline (Stage 5 does not author calendars; it must remain compatible with them).
+\item Environment and measurement dependencies needed for valid evidence (route/tool stability, pool verification posture, measurement tool consistency), referenced as requirements to be satisfied by Stage 2 and Stage 6 without being rewritten.
+\item Category and resource references required for Stage 7 and Stage 6 timing, expressed as capability dependencies rather than shopping guidance.
+\end{itemize}
+
+\subsubsection*{6) Gate and Acceptance Criteria for Stage 5}
+
+Stage 5 is complete and deployable as a macro design artifact when:
+
+\begin{itemize}
+\item Phases 01–13 are defined with stable mission and domain-emphasis posture that aligns to the end-state envelope and does not contradict Stages 0–4.
+\item Phase durations match the fixed duration references:
+  \begin{itemize}
+  \item Phase 01 = 24 weeks,
+  \item Phases 02–13 = 12 weeks each.
+  \end{itemize}
+\item Gate mapping is explicit at a doctrine level:
+  \begin{itemize}
+  \item each phase declares its gate intent,
+  \item gates reference Stage 2 tests and metrics by identifier or by explicit “use Stage 2 \textbf{ID}” only when an \textbf{ID} is genuinely absent from the authoritative Stage 2 set,
+  \item no new tests or renamed instruments are introduced.
+  \end{itemize}
+\item Stage 3 protected-window posture is respected:
+  \begin{itemize}
+  \item Stage 5 does not move gates into build weeks,
+  \item Stage 5 does not imply gate-grade decisions can be made outside protected deload and test windows,
+  \item reslot discipline remains controlling.
+  \end{itemize}
+\item Crosswalk join keys are present:
+  \begin{itemize}
+  \item Phase \textbf{ID}, phase week markers concept, domain emphasis tags, gate battery references, and dependency hooks are carried in a way Stage 6 and Stage 8 can join without reinterpretation.
+  \end{itemize}
+\item Any detected conflict between Stage 5 macro framing and upstream authorities is explicitly flagged as Requires Stage 8 review under the relevant section, rather than silently corrected.
+\end{itemize}
+
+\subsubsection*{7) Common Failure Modes and Controls}
+
+\begin{itemize}
+\item Drifting into programming detail -> enforce Stage 5 boundary: macro intent only; programming belongs downstream and must reference Stage 5 without redefining it.
+\item Inventing or renaming tests and metrics → require Stage 2 identifier references; any non-Stage 2 instrument is not deployable and is flagged for Stage 8 review.
+\item Moving gates into build weeks instead of protected test windows → enforce Stage 3 protected-window posture as a hard constraint and require reslot discipline for invalid/missed evidence.
+\item Failing to carry crosswalk join keys → require Phase IDs, domain tags, gate battery references, and dependency hooks in every phase row so Stage 6 and Stage 8 can reconcile without inference.
+\item Narrative duration drift versus fixed duration references → enforce the fixed phase durations; any alternate narrative is flagged as Requires Stage 8 review and does not change the macro design.
+\item Validity drift caused by missing environment or tool standardization → require Stage 2.E environment and tool stability posture as a dependency for gate-grade tests; schedule remains protected and reslot is used when validity is compromised.
+\item Sequencing drift that violates prerequisites → enforce phase dependency logic and prevent pulling high-consequence domains forward as a shortcut; reslot rather than escalate.
+\item Overloading gates with too many domains in one window → enforce Stage 3 anti-stacking intent at the macro level by limiting gate battery scope and prioritizing decisive gate elements.
+\end{itemize}
+
+\subsubsection*{8) Versioning Notes}
+
+\begin{itemize}
+\item Frozen within Stage 5:
+  \begin{itemize}
+  \item Phase 01–13 structure and ordering,
+  \item fixed phase duration references,
+  \item domain taxonomy references (Stage 2 canonical tags),
+  \item the rule that gates reference Stage 2 instruments and Stage 3 windows without invention or relocation.
+  \end{itemize}
+\item Refinable without meaning change:
+  \begin{itemize}
+  \item wording clarity,
+  \item phase descriptions that increase specificity of intent without altering mission, sequencing, or gate mapping.
+  \end{itemize}
+\item Change control required:
+  \begin{itemize}
+  \item any edit that alters phase purposes, sequencing logic, dependencies, or gate mapping posture,
+  \item any edit that changes how gates are scheduled relative to Stage 3 protected windows,
+  \item any edit that introduces new instruments or implies equivalency not defined in Stage 2.
+  \end{itemize}
+\item Conflict handling posture:
+  \begin{itemize}
+  \item conflicts are flagged explicitly (Requires Stage 8 review) and tracked as issues; upstream doctrine is not silently corrected or reinterpreted within Stage 5.
+  \end{itemize}
+\end{itemize}
+
+\end{document}

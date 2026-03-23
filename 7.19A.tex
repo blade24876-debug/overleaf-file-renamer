@@ -1,0 +1,1272 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\clearpage
+\begin{landscape}
+
+\section*{7.19.A - Reflective Vest}
+\phantomsection
+\addcontentsline{toc}{section}{7.19.A - Reflective Vest}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Reflective vest & Nathan HyperBrite Vest & \$25 & Visibility layer & Phase-03 & Improves low-light roadside visibility, and it was chosen for lightweight 360-degree reflectivity with simple front closure. \\
+Budget & Reflective vest & Amphipod Xinglet Vest & \$30 & Visibility layer & Phase-03 & Makes dawn or dusk route exposure easier to see, and it was chosen for minimal-bulk stretch fit over training layers. \\
+Budget & Reflective vest & Proviz Classic Running Vest & \$35 & Visibility layer & Phase-03 & Adds obvious torso-level visibility in traffic-adjacent conditions, and it was chosen for broad reflective panel coverage. \\
+Standard & Reflective vest & Brooks Run Visible Vest & \$65 & Visibility layer & Phase-03 & Helps keep the torso visible in dim urban light, and it was chosen for body-mapped reflectivity and a run-friendly cut. \\
+Standard & Reflective vest & Nike Flash Running Vest & \$70 & Visibility layer & Phase-03 & Supports safer low-light movement, and it was chosen for lightweight reflective fabric that layers cleanly over a shirt or shell. \\
+Standard & Reflective vest & New Balance Impact Run Heat Grid Vest & \$75 & Visibility layer & Phase-03 & Improves visibility without heavy warmth, and it was chosen for a trim athletic fit that stays stable while moving. \\
+Elite & Reflective vest & Proviz Reflect360 Vest & \$95 & Visibility layer & Phase-03 & Creates stronger all-angle nighttime visibility, and it was chosen for highly reflective full-surface fabric rather than small accent strips. \\
+Elite & Reflective vest & Noxgear Tracer 2 & \$60 & Visibility layer & Phase-03 & Makes the runner easier to see from multiple directions, and it was chosen for illuminated harness-style visibility with very low weight. \\
+Elite & Reflective vest & Brooks Run Visible Insulated Vest & \$140 & Visibility layer & Phase-03 & Adds visibility and mild cold-weather buffering together, and it was chosen for brighter integrated reflectivity with better foul-weather usability. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.19.B - Reflective Bands Set}
+\phantomsection
+\addcontentsline{toc}{section}{7.19.B - Reflective Bands Set}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Reflective bands set & Nathan Reflective Slap Wrap 2-Pack & \$12 & Visibility band & Phase-03 & Improves limb-level motion visibility, and it was chosen for fast slap-on use when a full vest is unnecessary. \\
+Budget & Reflective bands set & Amphipod Xinglet Reflective Bands & \$15 & Visibility band & Phase-03 & Helps arms or ankles stand out in low light, and it was chosen for quick-adjust strap simplicity. \\
+Budget & Reflective bands set & GEAR AID Tenacious Reflective Tape Strips & \$10 & Visibility band & Phase-03 & Adds low-cost reflective surfaces to moving points, and it was chosen for flexible placement on bands or gear. \\
+Standard & Reflective bands set & Nite Ize SlapLit Rechargeable Bracelets & \$20 & Visibility band & Phase-03 & Makes limb movement more visible at night, and it was chosen for reflective plus active-light function in one band. \\
+Standard & Reflective bands set & Nathan LightBender Mini R & \$25 & Visibility band & Phase-03 & Improves ankle or wrist visibility in darkness, and it was chosen for illuminated wrap design that stays easy to reposition. \\
+Standard & Reflective bands set & Proviz LED Reflective Bands & \$22 & Visibility band & Phase-03 & Supports better side-angle visibility on darker routes, and it was chosen for combining reflective material with active flashing modes. \\
+Elite & Reflective bands set & Noxgear Tracer Lamp Kit Arm Bands & \$30 & Visibility band & Phase-03 & Enhances moving-point visibility around the body, and it was chosen for brighter powered visibility than passive reflective strips alone. \\
+Elite & Reflective bands set & Amphipod Vizlet LED Bands & \$28 & Visibility band & Phase-03 & Makes wrists or ankles easier to identify in traffic, and it was chosen for compact LED visibility with low carry burden. \\
+Elite & Reflective bands set & Nathan HyperBrite RX Bands & \$26 & Visibility band & Phase-03 & Improves moving-limb recognition in marginal light, and it was chosen for stronger reflective pop with a more secure elastic hold. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.19.C - Clip-On Safety Light}
+\phantomsection
+\addcontentsline{toc}{section}{7.19.C - Clip-On Safety Light}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Clip-on safety light & Nathan StrobeLight & \$18 & Active light & Phase-03 & Makes the user easier to see in low light, and it was chosen for a very simple clip format with clear flash modes. \\
+Budget & Clip-on safety light & Amphipod Versa-Light Max & \$20 & Active light & Phase-03 & Adds basic active visibility where reflectivity alone is weak, and it was chosen for clip versatility on shirts, hats, or packs. \\
+Budget & Clip-on safety light & Nite Ize SpotLit Clip & \$16 & Active light & Phase-03 & Improves small-area lighting visibility, and it was chosen for compact size that is easy to keep permanently attached to gear. \\
+Standard & Clip-on safety light & Nathan HyperBrite Mini & \$25 & Active light & Phase-03 & Supports clearer visibility in predawn or dusk conditions, and it was chosen for stronger output with simple one-button use. \\
+Standard & Clip-on safety light & Proviz Clip-On Light & \$24 & Active light & Phase-03 & Adds a dependable flashing visibility point, and it was chosen for straightforward weather-resistant construction. \\
+Standard & Clip-on safety light & Black Diamond Deploy Run Light & \$30 & Active light & Phase-03 & Improves rearward visibility while moving, and it was chosen for stronger stability on clothing than cheaper loose clips. \\
+Elite & Clip-on safety light & BioLite Dash 450 & \$60 & Active light & Phase-03 & Adds a brighter visibility tool for darker routes, and it was chosen for premium rechargeable performance and stable mounting. \\
+Elite & Clip-on safety light & Knog Plus Light & \$25 & Active light & Phase-03 & Improves all-purpose clip-on visibility, and it was chosen for slim premium design and reliable USB recharge. \\
+Elite & Clip-on safety light & Noxgear Tracer Clip Light & \$35 & Active light & Phase-03 & Makes low-light route presence more obvious, and it was chosen for cleaner brightness and better mounting security. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.19.D - Rescue Whistle}
+\phantomsection
+\addcontentsline{toc}{section}{7.19.D - Rescue Whistle}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Rescue whistle & FOX 40 Classic & \$8 & Signal device & Phase-03 & Provides an immediate audible attention signal, and it was chosen for pealess reliability in wet or cold conditions. \\
+Budget & Rescue whistle & Acme Tornado 636 & \$10 & Signal device & Phase-03 & Adds a simple emergency signaling option, and it was chosen for high volume with a compact body. \\
+Budget & Rescue whistle & Nitecore NWS10 Titanium Whistle & \$9 & Signal device & Phase-03 & Gives a lightweight backup signaling tool, and it was chosen for durable corrosion-resistant construction. \\
+Standard & Rescue whistle & FOX 40 Sonik Blast CMG & \$15 & Signal device & Phase-03 & Produces a stronger alert in noisy environments, and it was chosen for louder output with a cushioned bite area. \\
+Standard & Rescue whistle & Storm Safety Whistle & \$12 & Signal device & Phase-03 & Helps carry farther in wind or open terrain, and it was chosen for very high sound projection. \\
+Standard & Rescue whistle & Acme Tornado 2000 & \$14 & Signal device & Phase-03 & Adds a more assertive signal option, and it was chosen for louder emergency tone than cheap flat whistles. \\
+Elite & Rescue whistle & FOX 40 Fusion CMG & \$20 & Signal device & Phase-03 & Improves emergency attention signaling with better carry comfort, and it was chosen for premium grip and strong volume. \\
+Elite & Rescue whistle & FOX 40 Mini CMG with lanyard & \$18 & Signal device & Phase-03 & Keeps a loud signal tool easier to carry on-body, and it was chosen for compact size without sacrificing much output. \\
+Elite & Rescue whistle & Acme Tornado Safety Kit & \$18 & Signal device & Phase-03 & Creates a more dependable signal package, and it was chosen for pairing a proven whistle body with immediate carry hardware. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.19.E - Sun Cap}
+\phantomsection
+\addcontentsline{toc}{section}{7.19.E - Sun Cap}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Sun cap & adidas Superlite Cap & \$22 & Sun headwear & Phase-03 & Reduces glare and direct sun on exposed routes, and it was chosen for light breathable fabric with a familiar athletic fit. \\
+Budget & Sun cap & Nike Dri-FIT Club Cap & \$30 & Sun headwear & Phase-03 & Helps keep sun and sweat out of the eyes, and it was chosen for moisture-managing fabric and simple curved brim. \\
+Budget & Sun cap & Under Armour Blitzing Cap & \$28 & Sun headwear & Phase-03 & Adds basic heat and glare management, and it was chosen for structured fit that stays stable while moving. \\
+Standard & Sun cap & Ciele GOCap & \$45 & Sun headwear & Phase-03 & Improves hot-route comfort with less head bulk, and it was chosen for highly breathable run-specific construction. \\
+Standard & Sun cap & Outdoor Research Swift Cap & \$35 & Sun headwear & Phase-03 & Cuts sun exposure while staying light, and it was chosen for technical fabric that dries faster than casual caps. \\
+Standard & Sun cap & Patagonia Duckbill Cap & \$39 & Sun headwear & Phase-03 & Supports airflow in hotter training conditions, and it was chosen for a very light packable brimmed design. \\
+Elite & Sun cap & Arc'teryx Calvus Cap & \$50 & Sun headwear & Phase-03 & Lowers heat and glare burden during long exposed work, and it was chosen for premium technical fabric and a secure low-bounce fit. \\
+Elite & Sun cap & Satisfy Running Cap & \$90 & Sun headwear & Phase-03 & Improves hot-weather comfort in a very light package, and it was chosen for premium ultralight materials and refined ventilation. \\
+Elite & Sun cap & Ciele RDCap Elite & \$60 & Sun headwear & Phase-03 & Provides a cleaner high-output sun layer, and it was chosen for premium breathability and a softer flexible brim. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.19.F - Sunglasses}
+\phantomsection
+\addcontentsline{toc}{section}{7.19.F - Sunglasses}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Sunglasses & Tifosi Swank & \$30 & Eye protection & Phase-03 & Reduces sun glare and eye fatigue outdoors, and it was chosen for low-cost polarized-style protection with secure casual-sport fit. \\
+Budget & Sunglasses & Goodr OG & \$25 & Eye protection & Phase-03 & Cuts glare during bright sessions, and it was chosen for a no-slip lightweight frame that works well while running. \\
+Budget & Sunglasses & Knockaround Fast Lanes Sport & \$35 & Eye protection & Phase-03 & Improves visual comfort in strong sun, and it was chosen for grippy nose contact and simple impact-resistant style. \\
+Standard & Sunglasses & Tifosi Rail & \$80 & Eye protection & Phase-03 & Protects the eyes in brighter route conditions, and it was chosen for better wrap coverage and sport-specific retention. \\
+Standard & Sunglasses & Smith Shift Split MAG & \$149 & Eye protection & Phase-03 & Improves glare control with broader coverage, and it was chosen for secure fit and easier lens management. \\
+Standard & Sunglasses & Oakley Flak 2.0 XL & \$194 & Eye protection & Phase-03 & Supports better bright-light visibility during faster work, and it was chosen for proven sport retention and wide lens field. \\
+Elite & Sunglasses & Oakley Radar EV Path & \$222 & Eye protection & Phase-03 & Gives stronger wraparound eye shielding in sun and wind, and it was chosen for premium sport optics and stable fit. \\
+Elite & Sunglasses & Julbo Aerolite & \$200 & Eye protection & Phase-03 & Helps reduce glare without heavy frame feel, and it was chosen for very light high-coverage performance construction. \\
+Elite & Sunglasses & Smith Wildcat & \$205 & Eye protection & Phase-03 & Adds fuller eye protection in bright or windy conditions, and it was chosen for larger shield coverage with premium clarity. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.19.G - Work/Training Gloves}
+\phantomsection
+\addcontentsline{toc}{section}{7.19.G - Work/Training Gloves}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Work/training gloves & Mechanix Original & \$30 & Hand protection & Phase-03 & Reduces hand abrasion during carries and rough equipment handling, and it was chosen for durable palms with breathable backs. \\
+Budget & Work/training gloves & Ironclad General Utility & \$25 & Hand protection & Phase-03 & Adds simple friction protection for implements, and it was chosen for padded palm zones with easy washability. \\
+Budget & Work/training gloves & Firm Grip Utility Gloves & \$15 & Hand protection & Phase-03 & Protects the hands during basic rough handling, and it was chosen for low-cost grip texture and sturdy synthetic palms. \\
+Standard & Work/training gloves & PIG Full Dexterity Utility Gloves & \$45 & Hand protection & Phase-03 & Reduces friction without sacrificing too much tool feel, and it was chosen for better dexterity than bulky work gloves. \\
+Standard & Work/training gloves & Mechanix FastFit & \$22 & Hand protection & Phase-03 & Helps protect the hands with faster on-off transitions, and it was chosen for elastic cuff convenience and dependable palm durability. \\
+Standard & Work/training gloves & Black Diamond Crag Gloves & \$25 & Hand protection & Phase-03 & Adds light protective grip for rough surfaces, and it was chosen for breathable back panels and a flexible fit. \\
+Elite & Work/training gloves & Outdoor Research Ironsight Gloves & \$59 & Hand protection & Phase-03 & Protects hands while preserving control, and it was chosen for premium fit and reinforced grip zones. \\
+Elite & Work/training gloves & Arc'teryx Venta Gloves & \$80 & Hand protection & Phase-03 & Adds a more refined protective glove for colder rough handling, and it was chosen for premium materials and a close athletic fit. \\
+Elite & Work/training gloves & PIG Alpha Gloves & \$60 & Hand protection & Phase-03 & Improves hand protection with better dexterity, and it was chosen for a premium tactile feel that stays usable with small buckles and straps. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.19.H - Knee Sleeves}
+\phantomsection
+\addcontentsline{toc}{section}{7.19.H - Knee Sleeves}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Knee sleeves & McDavid Knee Sleeve & \$25 & Comfort sleeve & Phase-12 & Adds warmth and compression feel around the knee, and it was chosen for a simple low-cost neoprene design. \\
+Budget & Knee sleeves & Nordic Lifting Knee Sleeves & \$35 & Comfort sleeve & Phase-12 & Provides non-medical knee warmth during repetitive loading, and it was chosen for a thicker budget sleeve that stays in place well. \\
+Budget & Knee sleeves & Gymreapers Knee Sleeves 7-mm & \$40 & Comfort sleeve & Phase-12 & Supports interface comfort in loaded training, and it was chosen for firm compression feel and durable stitching. \\
+Standard & Knee sleeves & Rehband RX Knee Sleeve 7-mm & \$55 & Comfort sleeve & Phase-12 & Improves knee warmth and a secure sleeve feel, and it was chosen for proven neoprene durability in repeated training use. \\
+Standard & Knee sleeves & SBD Knee Sleeves & \$85 & Comfort sleeve & Phase-12 & Adds a tighter premium support feel, and it was chosen for strong shape retention under repeated loading. \\
+Standard & Knee sleeves & Rogue Knee Sleeves & \$55 & Comfort sleeve & Phase-12 & Gives a stable non-medical comfort layer for the knee, and it was chosen for dependable construction with a simple fit profile. \\
+Elite & Knee sleeves & Stoic Knee Sleeves & \$95 & Comfort sleeve & Phase-12 & Provides premium warmth and sleeve stability, and it was chosen for denser material and secure fit under harder sessions. \\
+Elite & Knee sleeves & Hookgrip Knee Sleeves & \$80 & Comfort sleeve & Phase-12 & Adds a premium consistent sleeve feel, and it was chosen for well-controlled compression and strong durability. \\
+Elite & Knee sleeves & Rehband X-RX Knee Sleeve & \$70 & Comfort sleeve & Phase-12 & Helps maintain knee comfort in repetitive work, and it was chosen for higher-end material feel with reliable stay-put performance. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.19.I - Elbow Sleeves}
+\phantomsection
+\addcontentsline{toc}{section}{7.19.I - Elbow Sleeves}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Elbow sleeves & McDavid Elbow Sleeve & \$20 & Comfort sleeve & Phase-12 & Adds non-medical elbow warmth during repeated pressing or pulling, and it was chosen for low-cost simple neoprene coverage. \\
+Budget & Elbow sleeves & Nordic Lifting Elbow Sleeves & \$25 & Comfort sleeve & Phase-12 & Improves elbow comfort feel under repeated loading, and it was chosen for a snug budget fit that stays secure. \\
+Budget & Elbow sleeves & Gymreapers Elbow Sleeves & \$30 & Comfort sleeve & Phase-12 & Provides a simple compression interface for the elbow, and it was chosen for thicker material and durable seams. \\
+Standard & Elbow sleeves & Rehband Elbow Sleeve & \$40 & Comfort sleeve & Phase-12 & Gives steadier warmth and sleeve security, and it was chosen for proven training durability and better fit quality. \\
+Standard & Elbow sleeves & Rogue Elbow Sleeves & \$35 & Comfort sleeve & Phase-12 & Supports non-medical elbow comfort in higher-volume work, and it was chosen for straightforward construction with good stability. \\
+Standard & Elbow sleeves & SBD Elbow Sleeves & \$75 & Comfort sleeve & Phase-12 & Adds a firmer premium sleeve feel, and it was chosen for stronger compression consistency than bargain sleeves. \\
+Elite & Elbow sleeves & Stoic Elbow Sleeves & \$70 & Comfort sleeve & Phase-12 & Improves elbow comfort during repeated sessions, and it was chosen for premium knit tension and durable shape retention. \\
+Elite & Elbow sleeves & Hookgrip Elbow Sleeves & \$55 & Comfort sleeve & Phase-12 & Provides a stable high-end elbow interface, and it was chosen for refined material feel and consistent compression. \\
+Elite & Elbow sleeves & Rehband X-RX Elbow Sleeve & \$50 & Comfort sleeve & Phase-12 & Adds premium elbow warmth and secure placement, and it was chosen for better long-use comfort than cheaper neoprene sleeves. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.19.J - Blister Tape}
+\phantomsection
+\addcontentsline{toc}{section}{7.19.J - Blister Tape}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Blister tape & Leukotape P & \$12 & Friction barrier & Phase-03 & Reduces friction at known hotspots, and it was chosen for very strong adhesion that survives sweat and long movement. \\
+Budget & Blister tape & KT Tape Blister Prevention Tape & \$10 & Friction barrier & Phase-03 & Protects small rub zones before they open into blisters, and it was chosen for flexible pre-cut convenience. \\
+Budget & Blister tape & Mueller Athletic Tape & \$6 & Friction barrier & Phase-03 & Creates a basic protective layer over friction points, and it was chosen for low cost and easy availability. \\
+Standard & Blister tape & Engo Blister Prevention Patches & \$15 & Friction barrier & Phase-03 & Reduces shoe-rub at the source, and it was chosen for shoe-applied patches that target repeat hot spots directly. \\
+Standard & Blister tape & RockTape H2O & \$20 & Friction barrier & Phase-03 & Helps preserve skin under wetter conditions, and it was chosen for stronger water resistance than ordinary tape. \\
+Standard & Blister tape & Hypafix Dressing Retention Tape & \$14 & Friction barrier & Phase-03 & Gives broader skin coverage where narrow strips are insufficient, and it was chosen for flexible wide-format protection. \\
+Elite & Blister tape & Leukotape Classic Box Set & \$25 & Friction barrier & Phase-03 & Supports higher-volume hotspot management, and it was chosen for premium bulk availability and proven long wear. \\
+Elite & Blister tape & Fixomull Stretch & \$18 & Friction barrier & Phase-03 & Adds a smoother skin-conforming barrier, and it was chosen for stretchier premium adherence over mobile areas. \\
+Elite & Blister tape & Engo Patch Kit Full Pack & \$22 & Friction barrier & Phase-03 & Improves repeated shoe-interface control, and it was chosen for a more complete set of source-control patches. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.19.K - Chafe Barrier Stick}
+\phantomsection
+\addcontentsline{toc}{section}{7.19.K - Chafe Barrier Stick}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Chafe barrier stick & BodyGlide Original Stick & \$10 & Friction barrier & Phase-03 & Reduces skin-on-skin rubbing in high-friction zones, and it was chosen for clean easy application with low mess. \\
+Budget & Chafe barrier stick & Gold Bond Friction Defense & \$8 & Friction barrier & Phase-03 & Helps reduce repetitive rubbing during long sessions, and it was chosen for low-cost broad availability and easy carry. \\
+Budget & Chafe barrier stick & Squirrel's Nut Butter Stick & \$14 & Friction barrier & Phase-03 & Creates a waxier protective layer for longer movement windows, and it was chosen for staying power on sweat-prone skin. \\
+Standard & Chafe barrier stick & 2Toms SportShield Roll-On & \$16 & Friction barrier & Phase-03 & Improves anti-rub control on exact hot spots, and it was chosen for a precise roll-on format. \\
+Standard & Chafe barrier stick & Chamois Butt'r Original & \$15 & Friction barrier & Phase-03 & Reduces repetitive friction in clothing-pressure zones, and it was chosen for smoother cream spread across larger areas. \\
+Standard & Chafe barrier stick & Zealios Betwixt & \$22 & Friction barrier & Phase-03 & Helps preserve skin comfort during longer hot sessions, and it was chosen for a slick premium feel without heavy residue. \\
+Elite & Chafe barrier stick & HikeGoo Blister and Chafe Cream & \$17 & Friction barrier & Phase-03 & Supports longer movement comfort in high-friction environments, and it was chosen for a hiking-specific longer-wear formula. \\
+Elite & Chafe barrier stick & Joshua Tree Foot Stuff & \$18 & Friction barrier & Phase-03 & Helps reduce skin shear under extended use, and it was chosen for a premium wax-based texture that stays in place. \\
+Elite & Chafe barrier stick & BodyGlide Foot Glide & \$10 & Friction barrier & Phase-03 & Improves hotspot prevention on feet and toes, and it was chosen for a specialized format aimed at repetitive foot friction. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.19.L - Front + Rear Light Set}
+\phantomsection
+\addcontentsline{toc}{section}{7.19.L - Front + Rear Light Set}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Front + rear light set & Nathan Terra Fire + StrobeLight set & \$55 & Lighting kit & Phase-06 & Improves front-and-rear visibility together, and it was chosen for a simple matched lighting setup rather than one isolated light. \\
+Budget & Front + rear light set & Amphipod Versa-Light Max combo & \$45 & Lighting kit & Phase-06 & Supports safer all-angle low-light movement, and it was chosen for a low-cost paired visibility approach. \\
+Budget & Front + rear light set & Proviz LED Arm Band plus rear clip combo & \$50 & Lighting kit & Phase-06 & Adds clearer multi-direction visibility, and it was chosen for paired forward and rear signaling at a moderate budget. \\
+Standard & Front + rear light set & BioLite Dash 450 + SeeMe 100 combo & \$90 & Lighting kit & Phase-06 & Creates a stronger dusk-and-dark route lighting posture, and it was chosen for reputable run-specific front and rear units. \\
+Standard & Front + rear light set & Knog Plus Twinpack & \$50 & Lighting kit & Phase-06 & Improves visibility from both directions with less bulk, and it was chosen for compact rechargeable lights with easy mounting. \\
+Standard & Front + rear light set & Black Diamond Deploy 325 + rear clip combo & \$85 & Lighting kit & Phase-06 & Supports more reliable low-light execution, and it was chosen for stable sport-oriented mounts and useful beam output. \\
+Elite & Front + rear light set & Petzl Iko Core + Nite Ize rear beacon combo & \$130 & Lighting kit & Phase-06 & Improves route visibility and self-lighting in darker conditions, and it was chosen for premium head-light comfort plus strong rear signaling. \\
+Elite & Front + rear light set & Silva Trail Runner Free 2 Ultra + rear clip kit & \$140 & Lighting kit & Phase-06 & Adds a more dependable all-angle lighting posture, and it was chosen for better runtime and stable higher-end head lighting. \\
+Elite & Front + rear light set & Noxgear Tracer 2 with chest lamp combo & \$120 & Lighting kit & Phase-06 & Creates a very strong visibility envelope in darkness, and it was chosen for 360-degree active visibility plus front illumination. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.19.M - Clear Safety Glasses}
+\phantomsection
+\addcontentsline{toc}{section}{7.19.M - Clear Safety Glasses}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Clear safety glasses & 3M Virtua CCS & \$12 & Eye shield & Phase-06 & Protects the eyes from dust and debris without tint, and it was chosen for cheap wrap coverage with decent ventilation. \\
+Budget & Clear safety glasses & Pyramex I-Force Sporty & \$18 & Eye shield & Phase-06 & Adds a basic clear-lens barrier in windy or dirty conditions, and it was chosen for anti-fog sport-style fit. \\
+Budget & Clear safety glasses & Bolle Safety Rush+ Clear & \$15 & Eye shield & Phase-06 & Reduces eye irritation from grit and airflow, and it was chosen for lightweight wraparound coverage. \\
+Standard & Clear safety glasses & Oakley SI Ballistic M Frame & \$140 & Eye shield & Phase-06 & Improves eye protection in harsher outdoor conditions, and it was chosen for stronger optical clarity and secure sport fit. \\
+Standard & Clear safety glasses & Wiley X Saber Advanced Clear & \$80 & Eye shield & Phase-06 & Protects against wind and debris more seriously, and it was chosen for durable ballistic-style construction. \\
+Standard & Clear safety glasses & Smith Aegis Echo Clear & \$90 & Eye shield & Phase-06 & Adds stronger clear-lens eye coverage, and it was chosen for premium anti-fog performance and stable fit. \\
+Elite & Clear safety glasses & Oakley SI Ballistic Alpha & \$180 & Eye shield & Phase-06 & Supports high-quality clear eye protection in severe conditions, and it was chosen for premium optics and robust field durability. \\
+Elite & Clear safety glasses & Revision Sawfly Clear Kit & \$130 & Eye shield & Phase-06 & Adds a refined clear-shield option, and it was chosen for military-grade durability with interchangeable-lens capability. \\
+Elite & Clear safety glasses & Gatorz Magnum clear lens & \$180 & Eye shield & Phase-06 & Improves eye shielding with a very durable frame, and it was chosen for premium rigidity and secure wrap fit. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.19.N - Wind/Dust Eye Shield}
+\phantomsection
+\addcontentsline{toc}{section}{7.19.N - Wind/Dust Eye Shield}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Wind/dust eye shield & Bolle Chronoshield Clear & \$25 & Eye shield & Phase-06 & Reduces eye watering in windy conditions, and it was chosen for a larger shield lens than ordinary glasses. \\
+Budget & Wind/dust eye shield & Tifosi Rail Shield & \$80 & Eye shield & Phase-06 & Helps keep dust and wind off the eyes, and it was chosen for broad wrap coverage with a sport-stable fit. \\
+Budget & Wind/dust eye shield & Smith Shift Split clear lens & \$149 & Eye shield & Phase-06 & Improves eye comfort in gritty airflow, and it was chosen for oversized lens coverage that blocks more peripheral wind. \\
+Standard & Wind/dust eye shield & Oakley Sutro Lite Sweep & \$184 & Eye shield & Phase-06 & Protects the eyes from sun, wind, and airborne grit, and it was chosen for very broad shield coverage. \\
+Standard & Wind/dust eye shield & Julbo Fury & \$140 & Eye shield & Phase-06 & Supports clearer eye comfort at speed, and it was chosen for lightweight shield geometry with good wrap. \\
+Standard & Wind/dust eye shield & 100\% S2 & \$165 & Eye shield & Phase-06 & Adds larger coverage for dusty windy conditions, and it was chosen for stable fit and strong wraparound shape. \\
+Elite & Wind/dust eye shield & Oakley Kato & \$314 & Eye shield & Phase-06 & Gives maximum single-lens wind shielding, and it was chosen for a premium close-face shield design. \\
+Elite & Wind/dust eye shield & Smith Wildcat & \$205 & Eye shield & Phase-06 & Improves protection in mixed sun and debris conditions, and it was chosen for hybrid shield coverage with dependable retention. \\
+Elite & Wind/dust eye shield & Julbo Rush & \$230 & Eye shield & Phase-06 & Adds premium wind-blocking eye coverage, and it was chosen for high-clarity optics and aggressive wrap geometry. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.19.O - Fingerless Carry Gloves}
+\phantomsection
+\addcontentsline{toc}{section}{7.19.O - Fingerless Carry Gloves}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Fingerless carry gloves & Harbinger Training Grip Gloves & \$18 & Hand protection & Phase-06 & Reduces palm friction while keeping fingers free, and it was chosen for simple pad zones and easy gym-bag carry. \\
+Budget & Fingerless carry gloves & Nike Fundamental Training Gloves & \$20 & Hand protection & Phase-06 & Helps protect the palms without losing fingertip feel, and it was chosen for a lightweight fingerless training design. \\
+Budget & Fingerless carry gloves & Adidas Essential Fitness Gloves & \$18 & Hand protection & Phase-06 & Supports cleaner handle contact with less palm abrasion, and it was chosen for breathable fingerless construction. \\
+Standard & Fingerless carry gloves & Mechanix Specialty 0.5 Fingerless & \$25 & Hand protection & Phase-06 & Protects the palms while preserving strap and buckle dexterity, and it was chosen for thinner high-control palm material. \\
+Standard & Fingerless carry gloves & Harbinger Pro WristWrap Gloves & \$25 & Hand protection & Phase-06 & Combines hand protection with a more secure cuff feel, and it was chosen for integrated wrap support. \\
+Standard & Fingerless carry gloves & PIG fingerless utility & \$35 & Hand protection & Phase-06 & Improves carry comfort without a bulky closed-finger feel, and it was chosen for better dexterity than padded gym gloves. \\
+Elite & Fingerless carry gloves & Grip Power Pads Pro Gloves & \$35 & Hand protection & Phase-06 & Reduces friction on bars and carries while staying minimal, and it was chosen for premium palm coverage with cleaner breathability. \\
+Elite & Fingerless carry gloves & Mechanix M-Pact Fingerless & \$40 & Hand protection & Phase-06 & Adds premium hand protection for rougher repeated handling, and it was chosen for stronger pad durability with open fingers. \\
+Elite & Fingerless carry gloves & PIG Delta Utility fingerless & \$45 & Hand protection & Phase-06 & Improves carry grip and comfort with less hand fatigue, and it was chosen for premium dexterity and durable palm construction. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.19.P - Wrist Wraps}
+\phantomsection
+\addcontentsline{toc}{section}{7.19.P - Wrist Wraps}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Wrist wraps & Harbinger Red Line Wrist Wraps & \$15 & Comfort wrap & Phase-12 & Adds a firmer wrist interface during loaded hand work, and it was chosen for simple adjustable wrap tension. \\
+Budget & Wrist wraps & Gymreapers Wrist Wraps & \$20 & Comfort wrap & Phase-12 & Supports wrist comfort during repeated loading, and it was chosen for durable elastic with easy hook-and-loop closure. \\
+Budget & Wrist wraps & Rogue Wrist Wraps & \$18 & Comfort wrap & Phase-12 & Provides a basic non-medical wrist support feel, and it was chosen for straightforward sturdy construction. \\
+Standard & Wrist wraps & SBD Wrist Wraps & \$45 & Comfort wrap & Phase-12 & Adds a more stable premium wrist feel under harder sets, and it was chosen for strong material recovery and controlled stiffness. \\
+Standard & Wrist wraps & Stoic Wrist Wraps & \$35 & Comfort wrap & Phase-12 & Improves comfort and tension consistency, and it was chosen for a firmer wrap profile than entry options. \\
+Standard & Wrist wraps & Schiek Wrist Support Wraps & \$25 & Comfort wrap & Phase-12 & Creates a cleaner anchored wrist interface, and it was chosen for a widely trusted support design with easy adjustment. \\
+Elite & Wrist wraps & Titan Signature Gold Wrist Wraps & \$40 & Comfort wrap & Phase-12 & Provides premium high-tension wrist containment, and it was chosen for stronger stiffness and longer wear life. \\
+Elite & Wrist wraps & Cerberus Wrist Wraps & \$35 & Comfort wrap & Phase-12 & Adds a refined premium wrap feel, and it was chosen for good material durability with a secure closure. \\
+Elite & Wrist wraps & A7 Strength Wrist Wraps & \$32 & Comfort wrap & Phase-12 & Supports a more stable wrist interface during repeated heavy handling, and it was chosen for premium elastic consistency. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.19.Q - Ankle Sleeves}
+\phantomsection
+\addcontentsline{toc}{section}{7.19.Q - Ankle Sleeves}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Ankle sleeves & McDavid Elastic Ankle Sleeve & \$15 & Comfort sleeve & Phase-12 & Adds warmth and compression feel around the ankle, and it was chosen for a simple low-cost slip-on design. \\
+Budget & Ankle sleeves & Bodyprox Ankle Support Sleeve & \$18 & Comfort sleeve & Phase-12 & Supports interface comfort in repetitive foot loading, and it was chosen for basic compressive knit with easy daily use. \\
+Budget & Ankle sleeves & Zamst Filmista Ankle Sleeve & \$25 & Comfort sleeve & Phase-12 & Improves ankle comfort under repetitive sessions, and it was chosen for a thinner less bulky feel than brace-style supports. \\
+Standard & Ankle sleeves & CEP Compression Ankle Sleeve & \$25 & Comfort sleeve & Phase-12 & Adds a more secure low-profile ankle layer, and it was chosen for sport-specific knit compression and comfort. \\
+Standard & Ankle sleeves & Bauerfeind Sports Ankle Support & \$60 & Comfort sleeve & Phase-12 & Provides a refined supportive feel without a rigid brace, and it was chosen for premium knit quality and stable fit. \\
+Standard & Ankle sleeves & McDavid Phantom 2+ Ankle Sleeve & \$40 & Comfort sleeve & Phase-12 & Helps create a stronger comfort interface around the ankle, and it was chosen for a more supportive premium profile. \\
+Elite & Ankle sleeves & Zamst Filmista Ankle Sleeve & \$65 & Comfort sleeve & Phase-12 & Adds a premium higher-control ankle support feel, and it was chosen for stronger strap architecture with a slim footprint. \\
+Elite & Ankle sleeves & Bauerfeind Sports Ankle Compression Sleeve & \$70 & Comfort sleeve & Phase-12 & Improves ankle comfort during denser use, and it was chosen for premium fit and durable medical-style knit quality. \\
+Elite & Ankle sleeves & CEP Ortho Ankle Sleeve tier & \$55 & Comfort sleeve & Phase-12 & Supports a cleaner premium ankle interface, and it was chosen for close fit with strong long-session comfort. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.19.R - Patellar Strap}
+\phantomsection
+\addcontentsline{toc}{section}{7.19.R - Patellar Strap}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Patellar strap & Mueller Jumpers Knee Strap & \$12 & Comfort strap & Phase-12 & Adds a focused below-knee support feel, and it was chosen for a simple adjustable strap that is easy to test conservatively. \\
+Budget & Patellar strap & Bodyprox Patella Tendon Strap & \$14 & Comfort strap & Phase-12 & Provides a low-profile comfort aid during repetitive knee loading, and it was chosen for padded pressure distribution at low cost. \\
+Budget & Patellar strap & McDavid Patella Strap & \$15 & Comfort strap & Phase-12 & Helps create a more controlled patellar comfort interface, and it was chosen for straightforward sizing and secure fastening. \\
+Standard & Patellar strap & Cho-Pat Original Knee Strap & \$30 & Comfort strap & Phase-12 & Adds a more refined focused strap feel, and it was chosen for a well-known targeted support design. \\
+Standard & Patellar strap & Zamst JK Band & \$20 & Comfort strap & Phase-12 & Supports repetitive knee comfort with less bulk, and it was chosen for a cleaner sport-oriented construction. \\
+Standard & Patellar strap & Mueller Hg80 Patella Strap & \$18 & Comfort strap & Phase-12 & Improves non-medical comfort during loaded movement, and it was chosen for sturdier materials than bargain straps. \\
+Elite & Patellar strap & Bauerfeind Sports Knee Strap & \$50 & Comfort strap & Phase-12 & Adds a premium patellar interface, and it was chosen for stronger material quality and a more polished fit. \\
+Elite & Patellar strap & Cho-Pat Dual Action Strap & \$35 & Comfort strap & Phase-12 & Provides a more adjustable premium knee comfort setup, and it was chosen for dual-pressure control rather than a single basic band. \\
+Elite & Patellar strap & Bauerfeind Sports Knee Strap & \$40 & Comfort strap & Phase-12 & Supports a more refined knee comfort feel in repetitive sessions, and it was chosen for premium construction with stable placement. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.19.S - High-Visibility Beacon Light}
+\phantomsection
+\addcontentsline{toc}{section}{7.19.S - High-Visibility Beacon Light}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & High-visibility beacon light & Guardian Angel Micro Series & \$45 & Beacon light & Phase-12 & Adds a stronger fail-safe visibility signal in poor light, and it was chosen for brighter 360-degree beacon output than a basic clip light. \\
+Budget & High-visibility beacon light & Nite Ize Radiant Marker Light & \$20 & Beacon light & Phase-12 & Provides a more obvious safety signal than passive reflectivity alone, and it was chosen for simple multi-mode visibility in a small package. \\
+Budget & High-visibility beacon light & LEDlenser CU2R marker light & \$30 & Beacon light & Phase-12 & Improves conspicuity in very low light, and it was chosen for rechargeable marker-light simplicity with stronger output than tiny blinkers. \\
+Standard & High-visibility beacon light & Guardian Angel Elite Series & \$65 & Beacon light & Phase-12 & Gives a more assertive all-angle visibility presence, and it was chosen for powerful magnetic mounting and very bright multi-direction LEDs. \\
+Standard & High-visibility beacon light & Petzl E+LITE emergency signal role & \$35 & Beacon light & Phase-12 & Adds a compact emergency visibility backup, and it was chosen for dependable long-storage readiness and low bulk. \\
+Standard & High-visibility beacon light & Silva Simi marker light tier & \$28 & Beacon light & Phase-12 & Supports clearer last-resort visibility, and it was chosen for compact bright signaling with easy carry. \\
+Elite & High-visibility beacon light & Guardian Angel Wearable Safety Light Max & \$80 & Beacon light & Phase-12 & Creates a very strong redundancy signal for decisive windows, and it was chosen for premium brightness and all-angle attention capture. \\
+Elite & High-visibility beacon light & Guardian Angel Elite Series & \$60 & Beacon light & Phase-12 & Improves late-phase low-light safety redundancy, and it was chosen for broad illuminated coverage rather than one tiny flashing point. \\
+Elite & High-visibility beacon light & Guardian Angel Wearable Safety Light Max & \$70 & Beacon light & Phase-12 & Adds a stronger visible redundancy tool, and it was chosen for brighter higher-end lighting suited to repeated dark deployments. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.19.T - Backup Light Power Kit}
+\phantomsection
+\addcontentsline{toc}{section}{7.19.T - Backup Light Power Kit}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Backup light power kit & Anker Nano Power Bank 5K & \$30 & Power backup & Phase-12 & Keeps safety lights usable during long or repeated windows, and it was chosen for a small trusted power backup format. \\
+Budget & Backup light power kit & Nitecore NB10000 Gen 3 & \$60 & Power backup & Phase-12 & Adds a lightweight redundant charging source, and it was chosen for strong capacity with very low carry weight. \\
+Budget & Backup light power kit & Goal Zero Flip 24 & \$25 & Power backup & Phase-12 & Supports basic recharging of low-draw safety devices, and it was chosen for simple built-in plug convenience. \\
+Standard & Backup light power kit & Anker 10K Slim Power Bank & \$40 & Power backup & Phase-12 & Improves runtime resilience for rechargeable lights, and it was chosen for a dependable mid-capacity daily-use balance. \\
+Standard & Backup light power kit & BioLite Charge 40 PD & \$60 & Power backup & Phase-12 & Supports stronger field charging continuity, and it was chosen for better output flexibility than very basic power banks. \\
+Standard & Backup light power kit & Goal Zero Venture 35 & \$70 & Power backup & Phase-12 & Adds a tougher weather-ready charging option, and it was chosen for a more outdoor-suitable shell. \\
+Elite & Backup light power kit & Nitecore Carbo 10000 & \$100 & Power backup & Phase-12 & Creates a premium low-weight backup-power posture, and it was chosen for stronger energy-to-weight efficiency in a field kit. \\
+Elite & Backup light power kit & Anker Prime 12K & \$90 & Power backup & Phase-12 & Adds a higher-end reliable recharge reserve, and it was chosen for premium power output and better device compatibility. \\
+Elite & Backup light power kit & Goal Zero Sherpa 100PD & \$250 & Power backup & Phase-12 & Provides an overbuilt late-phase power backup, and it was chosen for large-capacity redundancy when light failure would threaten gate execution. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.19 - When These Items Are Needed}
+\phantomsection
+\addcontentsline{toc}{section}{7.19 - When These Items Are Needed}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=1.75in]
+    Q[l,wd=1.20in]
+    X[l,2.55]
+    X[l,3.20]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-3} = {halign=c, valign=m},
+  column{4} = {halign=l, valign=m},
+  cell{1}{4} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Item} &
+\Hdr{First Phase Required} &
+\Hdr{Why It Becomes Necessary} &
+\Hdr{What Happens If Missing} \\
+Reflective vest & Phase-03 & Stage-6 first activates 7.19 at Phase-03 end, and torso-level visibility is the clearest first safety control for outdoor low-light exposure. & Low-light outdoor visibility remains weaker and conservative substitution pressure rises sooner. \\
+Reflective bands set & Phase-03 & Limb-level reflectivity complements the same first protective posture once outdoor movement and route complexity rise. & Motion visibility is reduced, especially from side angles and at longer viewing distances. \\
+Clip-on safety light & Phase-03 & Basic active lighting fits the first minimum deployable safety posture when reflectivity alone may be insufficient. & Low-light route safety becomes more fragile and more dependent on ambient lighting. \\
+Rescue whistle & Phase-03 & A simple signal device belongs in the first conservative safety layer because it is low-cost and high-utility. & Emergency attention signaling remains more limited during outdoor solo sessions. \\
+Sun cap & Phase-03 & Basic head-and-glare protection fits the first deployable protective set once outdoor exposure becomes consequential. & Sun glare and direct heat exposure stay less controlled during brighter sessions. \\
+Sunglasses & Phase-03 & Basic eye comfort and glare reduction fit the same first environmental protection posture. & Bright-light visual comfort is worse and eye strain risk is higher. \\
+Work/training gloves & Phase-03 & Hand-friction control becomes relevant when load-interface complexity rises at the same point 7.19 first activates. & Palm abrasion and rough-handle friction remain more likely during carries and equipment handling. \\
+Knee sleeves & Phase-12 & Basic non-medical comfort sleeves fit the first protective posture as conservative interface supports rather than treatment tools. & One common low-friction warmth / compression comfort option is absent. \\
+Elbow sleeves & Phase-12 & Elbow comfort aids belong to the same first-wave non-medical protective set. & Repetitive elbow interface comfort remains less manageable with simple conservative aids. \\
+Blister tape & Phase-03 & Stage-7.19 includes tape/barrier-style interface supports, and early load-interface complexity makes hotspot control more relevant. & Preventable friction points are harder to control before they become more disruptive. \\
+Chafe barrier stick & Phase-03 & Barrier products serve the same conservative anti-friction role as tape in the first minimum protective kit. & Repetitive skin-rub issues are more likely to persist during longer sessions. \\
+Front + rear light set & Phase-06 & Tier-2 expanded 7.19 posture justifies stronger visibility redundancy and better all-angle lighting. & Low-light route safety remains dependent on a single small light or passive reflectivity. \\
+Clear safety glasses & Phase-06 & Expanded condition matching includes non-tinted eye shielding for debris, wind, and low-light conditions. & Eye protection options remain too narrow when glare is not the problem but debris or airflow is. \\
+Wind/dust eye shield & Phase-06 & Tier-2 improved risk reduction supports broader wrap eye coverage when rougher environments are recurrent. & Dust, wind, and grit exposure remain less controlled on rougher routes. \\
+Fingerless carry gloves & Phase-06 & Expanded protective options allow more specific hand-interface tools than the first simple general glove. & Users wanting palm protection without full-finger bulk have fewer practical options. \\
+Wrist wraps & Phase-12 & Improved protective options and interface-specific comfort aids fit the first expanded 7.19 posture. & Wrist-interface comfort remains more limited under denser repeated loading. \\
+Ankle sleeves & Phase-12 & Tier-2 climate-and-interface matching reasonably includes lower-joint comfort aids once training density is higher. & Ankle comfort layering remains narrower during repeated outdoor or loaded work. \\
+Patellar strap & Phase-12 & A more specific non-medical knee comfort aid belongs to the expanded protective toolkit rather than the initial essentials-only layer. & Targeted conservative knee-interface options remain more limited. \\
+High-visibility beacon light & Phase-12 & Tier-3 late-phase redundancy supports fail-safe visibility where a simple light failure could derail execution. & Visibility redundancy is weaker if the primary lighting layer fails in a decisive window. \\
+Backup light power kit & Phase-12 & Stage-7.19 Tier-3 emphasizes backup power and fail-safe capability for highly variable environments. & Rechargeable visibility tools remain more vulnerable to single-point battery or charging failure. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.19 - Compliance Checklist}
+\phantomsection
+\addcontentsline{toc}{section}{7.19 - Compliance Checklist}
+
+\begin{itemize}
+\item Only one deliverable is provided for Target Category 7.19.
+\item The locked title format and required output structure are used.
+\item The chart uses the exact required columns.
+\item Twenty distinct items are included, and each item contains three Budget rows, three Standard rows, and three Elite rows.
+\item Rows are grouped by item and progress from foundational visibility and interface controls toward expanded protective options and late-phase redundancy.
+\item Notes include both the intended effect or use and the reason the specific item was chosen.
+\item Stage-6 timing is treated as authoritative, with Phase-03 for first minimum deployable protective posture, Phase-06 for expanded protective options, and Phase-12 for redundancy and fail-safe capability.
+\item Stage-8 environment and ruck crosswalk logic requires timing reconciliation, because multiple comfort-support items are positioned earlier than the locked category timing.
+\item No medical diagnosis, treatment advice, programming, new tests, new thresholds, retailer links, affiliate links, promo codes, or live price research are included.
+\item The required post-chart timing table is included, but several rows require reconciliation against 7.19.4 and 7.19.9.
+\end{itemize}
+
+\end{landscape}
+
+\end{document}

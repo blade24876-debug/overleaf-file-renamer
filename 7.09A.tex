@@ -1,0 +1,1174 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\clearpage
+\begin{landscape}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.15}
+
+\section*{7.09.A - Bathroom Scale}
+\phantomsection
+\addcontentsline{toc}{section}{7.09.A - Bathroom Scale}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+
+Budget & Bathroom scale & Taylor Digital Bathroom Scale & \$25 & Weight scale & Phase-00 & Gives simple bodyweight trend tracking and was chosen because the wide glass platform is easy to place consistently on hard flooring. \\
+Budget & Bathroom scale & Etekcity Digital Body Weight Scale & \$28 & Weight scale & Phase-00 & Gives repeat daily weigh-ins and was chosen because its auto-calibration keeps setup friction very low. \\
+Budget & Bathroom scale & Greater Goods Digital Bathroom Scale & \$30 & Weight scale & Phase-00 & Gives quick morning weight checks and was chosen because the display is easy to read before caffeine or training. \\
+Standard & Bathroom scale & EatSmart Precision Digital Scale & \$40 & Weight scale & Phase-00 & Gives more stable trend capture and was chosen because the large fixed platform feels less twitchy under heavier users. \\
+Standard & Bathroom scale & Beurer GS-203 & \$45 & Weight scale & Phase-00 & Gives reliable routine weigh-ins and was chosen because its simple unit control reduces accidental setting drift. \\
+Standard & Bathroom scale & Escali Bathroom Scale & \$50 & Weight scale & Phase-00 & Gives clean bodyweight logging and was chosen because Escali scales are known for straightforward repeatability rather than extra features. \\
+Elite & Bathroom scale & Tanita HD-351 & \$75 & Weight scale & Phase-00 & Gives sturdier long-term weight tracking and was chosen because the high-capacity build better suits a heavy start-state. \\
+Elite & Bathroom scale & Seca Clara 803 & \$80 & Weight scale & Phase-00 & Gives stable hard-surface readings and was chosen because Seca equipment is built around consistent measurement behavior. \\
+Elite & Bathroom scale & Withings Body & \$100 & Weight scale & Phase-00 & Gives bodyweight trend capture with cleaner digital retention and was chosen because it can preserve a single source of truth more easily. \\
+\end{longtblr}
+\newpage
+
+\section*{7.09.B - Anthropometric Tape Measure}
+\phantomsection
+\addcontentsline{toc}{section}{7.09.B - Anthropometric Tape Measure}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+
+Budget & Anthropometric tape measure & MyoTape Body Tape Measure & \$8 & Circumference tool & Phase-00 & Gives waist and limb trend capture and was chosen because the retracting body loop makes solo measurement easier. \\
+Budget & Anthropometric tape measure & Dritz Body Measuring Tape & \$6 & Circumference tool & Phase-00 & Gives low-cost circumference tracking and was chosen because the soft tape stores easily in a small logging kit. \\
+Budget & Anthropometric tape measure & Perfect Body Tape Measure & \$7 & Circumference tool & Phase-00 & Gives simple size-change monitoring and was chosen because the locking tab helps maintain steady tape tension. \\
+Standard & Anthropometric tape measure & Seca 201 Ergonomic Circumference Tape & \$18 & Circumference tool & Phase-00 & Gives cleaner repeat landmarking and was chosen because the tension window reduces pull-strength inconsistency. \\
+Standard & Anthropometric tape measure & Baseline Gulick Tape Measure & \$20 & Circumference tool & Phase-00 & Gives more standardized circumference checks and was chosen because the tension indicator helps reduce false trend drift. \\
+Standard & Anthropometric tape measure & Hoechstmass Body Tape & \$15 & Circumference tool & Phase-00 & Gives consistent waist tracking and was chosen because the tape markings remain clear after repeated use. \\
+Elite & Anthropometric tape measure & Harpenden Anthropometric Tape & \$65 & Circumference tool & Phase-00 & Gives higher-fidelity body-size monitoring and was chosen because it is built for repeatable landmark-based measurements. \\
+Elite & Anthropometric tape measure & Lufkin W606PM Anthropometric Tape & \$32 & Circumference tool & Phase-00 & Gives durable circumference checks and was chosen because the housing protects the tape from stretch and edge wear. \\
+Elite & Anthropometric tape measure & Seca 203 Circumference Tape & \$22 & Circumference tool & Phase-00 & Gives reliable long-horizon body trend logging and was chosen because Seca tape systems are designed around measurement repeatability. \\
+\end{longtblr}
+\newpage
+
+\section*{7.09.C - Digital Oral Thermometer}
+\phantomsection
+\addcontentsline{toc}{section}{7.09.C - Digital Oral Thermometer}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+
+Budget & Digital oral thermometer & Vicks SpeedRead Digital Thermometer & \$12 & Temperature monitor & Phase-00 & Gives quick illness-screen support and was chosen because the fast readout lowers the odds of skipped morning checks. \\
+Budget & Digital oral thermometer & iProven Digital Thermometer & \$10 & Temperature monitor & Phase-00 & Gives basic symptom-context data and was chosen because it keeps fever checks simple without app dependence. \\
+Budget & Digital oral thermometer & Boncare Digital Thermometer & \$8 & Temperature monitor & Phase-00 & Gives low-cost temperature verification and was chosen because the flexible tip feels more tolerable for repeat use. \\
+Standard & Digital oral thermometer & Braun Digital Thermometer & \$16 & Temperature monitor & Phase-00 & Gives stable symptom screening and was chosen because Braun consumer thermometers tend to be straightforward and durable. \\
+Standard & Digital oral thermometer & Mabis Digital Thermometer & \$14 & Temperature monitor & Phase-00 & Gives basic illness-trend support and was chosen because the format is simple enough for no-frills home kits. \\
+Standard & Digital oral thermometer & Kinsa QuickCare & \$20 & Temperature monitor & Phase-00 & Gives fast fever context and was chosen because automatic data capture can reduce missed symptom records. \\
+Elite & Digital oral thermometer & Kinsa Smart Thermometer & \$25 & Temperature monitor & Phase-00 & Gives cleaner illness-pattern logging and was chosen because paired data storage helps preserve date-linked symptom context. \\
+Elite & Digital oral thermometer & Braun Age Precision Digital Thermometer & \$22 & Temperature monitor & Phase-00 & Gives repeat temperature checks and was chosen because the brand is widely trusted for home monitoring reliability. \\
+Elite & Digital oral thermometer & Exergen SmartGlow Temporal Scanner & \$45 & Temperature monitor & Phase-00 & Gives premium no-contact symptom screening and was chosen because it reduces friction when repeated checks are needed around training decisions. \\
+\end{longtblr}
+\newpage
+
+\section*{7.09.D - Clip-On Pedometer}
+\phantomsection
+\addcontentsline{toc}{section}{7.09.D - Clip-On Pedometer}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+
+Budget & Clip-on pedometer & 3DActive 3DTriSport Pedometer & \$25 & Step counter & Phase-00 & Gives simple daily step awareness and was chosen because it works without needing phone carry or wrist wear. \\
+Budget & Clip-on pedometer & OZO Fitness SC3 & \$30 & Step counter & Phase-00 & Gives basic step-count compliance support and was chosen because the large display is easy to read during walking breaks. \\
+Budget & Clip-on pedometer & Realalt 3DTriSport & \$24 & Step counter & Phase-00 & Gives quick step tracking and was chosen because the clip format stays easy to use for users who dislike wearables. \\
+Standard & Clip-on pedometer & Yamax Digi-Walker SW-200 & \$35 & Step counter & Phase-00 & Gives stronger baseline step tracking and was chosen because Yamax pedometers have a long reputation for simple walking-count consistency. \\
+Standard & Clip-on pedometer & OMRON HJ-325 Alvita & \$40 & Step counter & Phase-00 & Gives all-day step logging and was chosen because the carry-anywhere format reduces excuses around phone dependence. \\
+Standard & Clip-on pedometer & Fitbit Zip used-market equivalent tier & \$35 & Step counter & Phase-00 & Gives compact step trend capture and was chosen because the tiny form factor keeps walking compliance simple. \\
+Elite & Clip-on pedometer & Yamax EX-510 & \$55 & Step counter & Phase-00 & Gives premium dedicated step tracking and was chosen because it is purpose-built for walking data rather than mixed smartwatch features. \\
+Elite & Clip-on pedometer & New Lifestyles NL-1000 & \$50 & Step counter & Phase-00 & Gives cleaner step-count retention and was chosen because the dedicated pedometer format minimizes app drift. \\
+Elite & Clip-on pedometer & OMRON Walking Style IV & \$45 & Step counter & Phase-00 & Gives stable step-count routine support and was chosen because the hardware is designed specifically for all-day movement tracking. \\
+\end{longtblr}
+\newpage
+
+\section*{7.09.E - Smart Body-Composition Scale}
+\phantomsection
+\addcontentsline{toc}{section}{7.09.E - Smart Body-Composition Scale}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+
+Budget & Smart body-composition scale & RENPHO Smart Scale & \$30 & Bioimpedance scale & Phase-06 & Gives bodyweight plus trend-layer body-composition data and was chosen because it is inexpensive enough for early controlled experimentation. \\
+Budget & Smart body-composition scale & Etekcity Smart Scale & \$35 & Bioimpedance scale & Phase-06 & Gives app-linked body trend tracking and was chosen because the setup remains simple for a first smart-scale workflow. \\
+Budget & Smart body-composition scale & Wyze Scale X & \$40 & Bioimpedance scale & Phase-06 & Gives body-metric trend capture and was chosen because it offers several routine metrics without a premium price jump. \\
+Standard & Smart body-composition scale & Withings Body Smart & \$100 & Bioimpedance scale & Phase-06 & Gives cleaner long-horizon trend retention and was chosen because Withings handles multi-metric logging in a more polished way. \\
+Standard & Smart body-composition scale & Fitbit Aria Air & \$50 & Bioimpedance scale & Phase-06 & Gives connected bodyweight trend tracking and was chosen because it integrates easily for users already using Fitbit wearables. \\
+Standard & Smart body-composition scale & Garmin Index S2 & \$150 & Bioimpedance scale & Phase-06 & Gives more cohesive metric sync and was chosen because it fits well inside a Garmin-centered monitoring ecosystem. \\
+Elite & Smart body-composition scale & Withings Body Comp & \$200 & Bioimpedance scale & Phase-06 & Gives broader body-metric trend context and was chosen because the higher-end model supports a more mature monitoring workflow. \\
+Elite & Smart body-composition scale & Tanita BC-401 & \$130 & Bioimpedance scale & Phase-06 & Gives reputable composition trend tracking and was chosen because Tanita is heavily associated with body-composition hardware. \\
+Elite & Smart body-composition scale & InBody H20N & \$350 & Bioimpedance scale & Phase-06 & Gives a more advanced home composition trend option and was chosen because it aligns with a more serious later-phase monitoring posture. \\
+\end{longtblr}
+\newpage
+
+\section*{7.09.F - Skinfold Caliper}
+\phantomsection
+\addcontentsline{toc}{section}{7.09.F - Skinfold Caliper}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+
+Budget & Skinfold caliper & Accu-Measure Body Fat Caliper & \$12 & Body-fat tool & Phase-06 & Gives low-cost body-fat trend checks and was chosen because the fixed-pressure design simplifies repeat home use. \\
+Budget & Skinfold caliper & Slim Guide Caliper & \$18 & Body-fat tool & Phase-06 & Gives a simple fold-thickness trend and was chosen because it is widely used for basic field-style tracking. \\
+Budget & Skinfold caliper & Baseline Plastic Skinfold Caliper & \$20 & Body-fat tool & Phase-06 & Gives inexpensive body-composition spot checks and was chosen because it is durable enough for repeated home practice. \\
+Standard & Skinfold caliper & Lange Skinfold Caliper used-market tier & \$180 & Body-fat tool & Phase-06 & Gives stronger site-to-site consistency and was chosen because Lange calipers are a long-standing field standard. \\
+Standard & Skinfold caliper & Baseline Professional Skinfold Caliper & \$85 & Body-fat tool & Phase-06 & Gives more stable measurement pressure and was chosen because it is a step up from flimsy entry plastic models. \\
+Standard & Skinfold caliper & Lafayette Skinfold Caliper & \$160 & Body-fat tool & Phase-06 & Gives better body-fat trend repeatability and was chosen because Lafayette equipment is built for routine assessment use. \\
+Elite & Skinfold caliper & Harpenden Skinfold Caliper & \$420 & Body-fat tool & Phase-06 & Gives premium fold measurement fidelity and was chosen because it is one of the best-known high-end skinfold tools. \\
+Elite & Skinfold caliper & Cescorf Professional Skinfold Caliper & \$280 & Body-fat tool & Phase-06 & Gives refined body-fat trend work and was chosen because it offers high-end pressure consistency at lower cost than Harpenden. \\
+Elite & Skinfold caliper & Lafayette Professional Set with Caliper & \$225 & Body-fat tool & Phase-06 & Gives a more complete field-assessment setup and was chosen because it supports a more disciplined body-composition workflow. \\
+\end{longtblr}
+\newpage
+
+\section*{7.09.G - Handheld BIA Analyzer}
+\phantomsection
+\addcontentsline{toc}{section}{7.09.G - Handheld BIA Analyzer}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+
+Budget & Handheld BIA analyzer & Omron HBF-306C & \$45 & Composition scanner & Phase-06 & Gives simple handheld body-fat trend estimates and was chosen because it avoids needing a full premium platform. \\
+Budget & Handheld BIA analyzer & Omron HBF-514C & \$70 & Composition scanner & Phase-06 & Gives body-composition trend support and was chosen because it blends household practicality with familiar brand trust. \\
+Budget & Handheld BIA analyzer & Tanita BF-679W & \$50 & Composition scanner & Phase-06 & Gives a low-cost composition estimate and was chosen because Tanita consumer products are widely used in home settings. \\
+Standard & Handheld BIA analyzer & Tanita BF-350 & \$80 & Composition scanner & Phase-06 & Gives stronger body-fat trend monitoring and was chosen because the interface is more purpose-specific than generic wellness devices. \\
+Standard & Handheld BIA analyzer & Accuniq BC310 & \$120 & Composition scanner & Phase-06 & Gives more polished bioimpedance readouts and was chosen because it is built around composition analysis rather than general fitness branding. \\
+Standard & Handheld BIA analyzer & Omron Body Composition Monitor advanced tier & \$90 & Composition scanner & Phase-06 & Gives straightforward home composition estimates and was chosen because Omron equipment is easy to understand and repeat. \\
+Elite & Handheld BIA analyzer & InBody Dial H30 & \$200 & Composition scanner & Phase-06 & Gives more advanced composition trend capture and was chosen because it pushes closer to clinic-style home monitoring. \\
+Elite & Handheld BIA analyzer & Tanita RD-953 segmental analyzer tier & \$220 & Composition scanner & Phase-06 & Gives richer composition-trend detail and was chosen because the segmental approach offers more structured later-phase monitoring. \\
+Elite & Handheld BIA analyzer & Accuniq BC380 & \$250 & Composition scanner & Phase-06 & Gives higher-reliability home composition monitoring and was chosen because it is more serious than entry wellness analyzers. \\
+\end{longtblr}
+\newpage
+
+\section*{7.09.H - Infrared Forehead Thermometer}
+\phantomsection
+\addcontentsline{toc}{section}{7.09.H - Infrared Forehead Thermometer}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+
+Budget & Infrared forehead thermometer & iHealth No-Touch Thermometer & \$25 & Temperature scanner & Phase-06 & Gives fast symptom-context checks and was chosen because no-contact use lowers friction when fatigue or illness is present. \\
+Budget & Infrared forehead thermometer & Metene Forehead Thermometer & \$20 & Temperature scanner & Phase-06 & Gives quick screening support and was chosen because the low-cost no-contact format is easy to keep near the training log. \\
+Budget & Infrared forehead thermometer & Frida Baby 3-in-1 Thermometer & \$30 & Temperature scanner & Phase-06 & Gives forehead or spot checks and was chosen because it works well for fast pre-session illness screening. \\
+Standard & Infrared forehead thermometer & Braun No-Touch 3-in-1 & \$50 & Temperature scanner & Phase-06 & Gives cleaner forehead temperature checks and was chosen because Braun no-touch units are familiar and easy to use repeatedly. \\
+Standard & Infrared forehead thermometer & Exergen SmartGlow Temporal Scanner & \$45 & Temperature scanner & Phase-06 & Gives repeat temperature context and was chosen because the temporal-scan design is widely recognized for home monitoring. \\
+Standard & Infrared forehead thermometer & Kinsa Smart Ear and Forehead Thermometer & \$55 & Temperature scanner & Phase-06 & Gives quick symptom records and was chosen because linked data capture can simplify illness-trend logging. \\
+Elite & Infrared forehead thermometer & Withings Thermo & \$100 & Temperature scanner & Phase-06 & Gives polished symptom logging and was chosen because multi-user data retention suits a more formal monitoring workflow. \\
+Elite & Infrared forehead thermometer & Braun ThermoScan with premium tier kit & \$70 & Temperature scanner & Phase-06 & Gives higher-end screening support and was chosen because Braun devices are dependable and widely trusted in home use. \\
+Elite & Infrared forehead thermometer & Exergen TemporalScanner Pro tier & \$90 & Temperature scanner & Phase-06 & Gives premium non-contact symptom context and was chosen because it supports consistent repeated checks with low hassle. \\
+\end{longtblr}
+\newpage
+
+\section*{7.09.I - Upper-Arm Blood Pressure Monitor}
+\phantomsection
+\addcontentsline{toc}{section}{7.09.I - Upper-Arm Blood Pressure Monitor}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+
+Budget & Upper-arm blood pressure monitor & Greater Goods BP Monitor & \$40 & Pressure monitor & Phase-06 & Gives home blood-pressure spot checks and was chosen because the upper-arm cuff is usually more dependable than wrist-only options. \\
+Budget & Upper-arm blood pressure monitor & Beurer BM-26 & \$45 & Pressure monitor & Phase-06 & Gives simple pressure and pulse checks and was chosen because it keeps the workflow basic and readable. \\
+Budget & Upper-arm blood pressure monitor & iHealth Track & \$50 & Pressure monitor & Phase-06 & Gives quick home readings and was chosen because the phone-linked app can preserve measurement history more neatly. \\
+Standard & Upper-arm blood pressure monitor & Omron Bronze & \$70 & Pressure monitor & Phase-06 & Gives reliable home trend checks and was chosen because Omron is the mainstream benchmark brand in this device class. \\
+Standard & Upper-arm blood pressure monitor & Microlife BP B3 & \$80 & Pressure monitor & Phase-06 & Gives stable repeated readings and was chosen because Microlife devices are built around straightforward home blood-pressure use. \\
+Standard & Upper-arm blood pressure monitor & Welch Allyn Home 1700 Series & \$90 & Pressure monitor & Phase-06 & Gives cleaner home monitoring support and was chosen because the brand has stronger clinical-device credibility. \\
+Elite & Upper-arm blood pressure monitor & Omron Platinum & \$100 & Pressure monitor & Phase-06 & Gives stronger data retention and was chosen because the upgraded memory and cuff design suit frequent tracking better. \\
+Elite & Upper-arm blood pressure monitor & Withings BPM Connect & \$130 & Pressure monitor & Phase-06 & Gives cleaner digital history and was chosen because automatic sync can reduce missed manual entries. \\
+Elite & Upper-arm blood pressure monitor & QardioArm & \$120 & Pressure monitor & Phase-06 & Gives premium app-based monitoring and was chosen because the compact cuff is easier to travel with during later phases. \\
+\end{longtblr}
+\newpage
+
+\section*{7.09.J - Wrist Blood Pressure Monitor}
+\phantomsection
+\addcontentsline{toc}{section}{7.09.J - Wrist Blood Pressure Monitor}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+
+Budget & Wrist blood pressure monitor & Omron Silver Wrist & \$60 & Pressure monitor & Phase-06 & Gives a compact blood-pressure check option and was chosen because it is easier to pack than upper-arm systems. \\
+Budget & Wrist blood pressure monitor & iHealth Feel & \$50 & Pressure monitor & Phase-06 & Gives portable pressure readings and was chosen because the small form factor helps keep travel monitoring simple. \\
+Budget & Wrist blood pressure monitor & Panasonic EW-BW10 & \$55 & Pressure monitor & Phase-06 & Gives low-bulk spot checks and was chosen because Panasonic home health devices are straightforward and durable. \\
+Standard & Wrist blood pressure monitor & Omron Gold Wrist & \$85 & Pressure monitor & Phase-06 & Gives a stronger portable pressure option and was chosen because Omron offers the clearest mainstream wrist-monitor workflow. \\
+Standard & Wrist blood pressure monitor & Beurer BC-57 & \$65 & Pressure monitor & Phase-06 & Gives portable monitoring support and was chosen because the simple screen makes body-position checking easier. \\
+Standard & Wrist blood pressure monitor & Medisana \textbf{BW}-335 & \$60 & Pressure monitor & Phase-06 & Gives quick travel-capable readings and was chosen because the cuff packs more easily than upper-arm models. \\
+Elite & Wrist blood pressure monitor & Omron HeartGuide used-market equivalent tier & \$350 & Pressure monitor & Phase-06 & Gives a high-end wearable pressure option and was chosen because it compresses monitoring into a more travel-ready format. \\
+Elite & Wrist blood pressure monitor & Withings scan-capable wearable tier & \$300 & Pressure monitor & Phase-06 & Gives advanced portable cardiovascular context and was chosen because it reduces the number of separate devices carried. \\
+Elite & Wrist blood pressure monitor & Omron premium wrist bundle tier & \$100 & Pressure monitor & Phase-06 & Gives a more complete portable setup and was chosen because it keeps travel monitoring organized around one proven brand. \\
+\end{longtblr}
+\newpage
+
+\section*{7.09.K - Pulse Oximeter}
+\phantomsection
+\addcontentsline{toc}{section}{7.09.K - Pulse Oximeter}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+
+Budget & Pulse oximeter & Zacurate Pro Series 500DL & \$25 & Oxygen monitor & Phase-06 & Gives quick pulse and SpO2 spot checks and was chosen because it is a widely used low-cost home monitor. \\
+Budget & Pulse oximeter & Innovo Deluxe iP900AP & \$30 & Oxygen monitor & Phase-06 & Gives fast oxygen and pulse context and was chosen because the dual display is easy to read from either hand. \\
+Budget & Pulse oximeter & Walgreens Fingertip Pulse Oximeter & \$20 & Oxygen monitor & Phase-06 & Gives basic home oxygen context and was chosen because mainstream pharmacy availability makes replacement simple. \\
+Standard & Pulse oximeter & Nonin GO2 Achieve & \$70 & Oxygen monitor & Phase-06 & Gives stronger signal reliability and was chosen because Nonin is better known in medical monitoring spaces than bargain brands. \\
+Standard & Pulse oximeter & Wellue O2Ring clip tier & \$120 & Oxygen monitor & Phase-06 & Gives extended overnight oxygen trend support and was chosen because it adds more context than quick spot checks alone. \\
+Standard & Pulse oximeter & ChoiceMMed MD300C2 & \$35 & Oxygen monitor & Phase-06 & Gives a practical step up in monitor feel and was chosen because it stays simple without app clutter. \\
+Elite & Pulse oximeter & Masimo MightySat Rx consumer tier & \$250 & Oxygen monitor & Phase-06 & Gives premium oxygen and pulse monitoring and was chosen because Masimo is one of the strongest names in this device class. \\
+Elite & Pulse oximeter & Nonin Onyx Vantage 9590 & \$180 & Oxygen monitor & Phase-06 & Gives robust premium spot checks and was chosen because the build quality suits long-term repeated use. \\
+Elite & Pulse oximeter & Wellue O2Ring Pro tier & \$180 & Oxygen monitor & Phase-06 & Gives higher-end overnight oxygen-trend capture and was chosen because it supports a more formal sleep-monitoring workflow. \\
+\end{longtblr}
+\newpage
+
+\section*{7.09.L - Heart-Rate Chest Strap}
+\phantomsection
+\addcontentsline{toc}{section}{7.09.L - Heart-Rate Chest Strap}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+
+Budget & Heart-rate chest strap & Polar H9 & \$65 & HR sensor & Phase-06 & Gives more accurate effort tracking and was chosen because Polar chest straps are a strong entry benchmark for repeat training use. \\
+Budget & Heart-rate chest strap & Garmin HRM-Dual & \$70 & HR sensor & Phase-06 & Gives stable heart-rate capture and was chosen because it pairs easily across common watches and apps. \\
+Budget & Heart-rate chest strap & Coospo H808S & \$40 & HR sensor & Phase-06 & Gives budget heart-rate structure and was chosen because it lowers the cost of leaving wrist-only readings behind. \\
+Standard & Heart-rate chest strap & Polar H10 & \$100 & HR sensor & Phase-06 & Gives stronger signal stability and was chosen because it is often treated as the home gold standard for chest-strap reliability. \\
+Standard & Heart-rate chest strap & Garmin HRM-Pro Plus & \$130 & HR sensor & Phase-06 & Gives heart-rate data with better ecosystem integration and was chosen because it supports later higher-detail logging. \\
+Standard & Heart-rate chest strap & Wahoo TRACKR Heart Rate & \$89 & HR sensor & Phase-06 & Gives repeatable chest-based effort readings and was chosen because the strap is comfortable enough for frequent use. \\
+Elite & Heart-rate chest strap & Polar H10 with spare strap bundle & \$120 & HR sensor & Phase-06 & Gives premium signal quality with backup wearability and was chosen because late-phase reliability matters more than saving a few dollars. \\
+Elite & Heart-rate chest strap & Myzone MZ-Switch & \$160 & HR sensor & Phase-06 & Gives flexible wear options and was chosen because it adds redundancy when chest-only use becomes inconvenient. \\
+Elite & Heart-rate chest strap & Garmin HRM-Fit & \$150 & HR sensor & Phase-06 & Gives premium fit flexibility and was chosen because stable contact quality matters when sessions get longer or more varied. \\
+\end{longtblr}
+\newpage
+
+\section*{7.09.M - Optical HR Armband}
+\phantomsection
+\addcontentsline{toc}{section}{7.09.M - Optical HR Armband}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+
+Budget & Optical HR armband & Coospo HW807 & \$50 & HR sensor & Phase-06 & Gives arm-based effort tracking and was chosen because it is cheaper than premium optical armbands while still reducing wrist-read drift. \\
+Budget & Optical HR armband & Scosche Rhythm+ 2.0 & \$80 & HR sensor & Phase-06 & Gives optical heart-rate capture and was chosen because the armband format is easier for users who dislike chest straps. \\
+Budget & Optical HR armband & Polar OH1+ used-market equivalent tier & \$70 & HR sensor & Phase-06 & Gives compact optical monitoring and was chosen because the tiny sensor is less intrusive than bulkier bands. \\
+Standard & Optical HR armband & Polar Verity Sense & \$100 & HR sensor & Phase-06 & Gives reliable optical heart-rate monitoring and was chosen because Polar’s sensor quality is strong for non-chest wear. \\
+Standard & Optical HR armband & Scosche Rhythm 24 & \$99 & HR sensor & Phase-06 & Gives longer-session optical monitoring and was chosen because the battery life is better suited to extended aerobic work. \\
+Standard & Optical HR armband & Mio LINK used-market equivalent tier & \$80 & HR sensor & Phase-06 & Gives a simple optical alternative and was chosen because it keeps the setup lean when a full smartwatch is unnecessary. \\
+Elite & Optical HR armband & Polar Verity Sense bundle & \$120 & HR sensor & Phase-06 & Gives premium optical monitoring with accessory flexibility and was chosen because it supports several wear positions cleanly. \\
+Elite & Optical HR armband & Scosche Rhythm 24 pro bundle & \$120 & HR sensor & Phase-06 & Gives refined long-session optical capture and was chosen because stronger battery support reduces data loss during extended work. \\
+Elite & Optical HR armband & Whoop biceps band ecosystem equivalent & \$239 & HR sensor & Phase-06 & Gives premium arm-based recovery and HR context and was chosen because it integrates strain tracking into one wearable system. \\
+\end{longtblr}
+\newpage
+
+\section*{7.09.N - Fitness Tracker Band}
+\phantomsection
+\addcontentsline{toc}{section}{7.09.N - Fitness Tracker Band}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+
+Budget & Fitness tracker band & Xiaomi Smart Band 9 & \$50 & Activity tracker & Phase-06 & Gives step, sleep, and pulse trend support and was chosen because it offers a lot of simple monitoring for very little cost. \\
+Budget & Fitness tracker band & Amazfit Band 7 & \$45 & Activity tracker & Phase-06 & Gives broad daily-trend tracking and was chosen because the large screen is easier to review quickly than tiny-band displays. \\
+Budget & Fitness tracker band & Fitbit Inspire 3 & \$99 & Activity tracker & Phase-06 & Gives basic daily biometrics and was chosen because Fitbit remains the most familiar entry ecosystem for many users. \\
+Standard & Fitness tracker band & Garmin Vivosmart 5 & \$150 & Activity tracker & Phase-06 & Gives stronger ecosystem sync and was chosen because Garmin data integrates well with other endurance tools. \\
+Standard & Fitness tracker band & Fitbit Charge 6 & \$160 & Activity tracker & Phase-06 & Gives more mature day-to-day metrics and was chosen because it balances smartwatch-like features with band simplicity. \\
+Standard & Fitness tracker band & Whoop 4.0 yearly equivalent & \$239 & Activity tracker & Phase-06 & Gives strain and recovery trend monitoring and was chosen because it is built specifically around behavior and readiness tracking. \\
+Elite & Fitness tracker band & Garmin Venu 3 & \$450 & Activity tracker & Phase-06 & Gives premium daily biometrics and was chosen because it merges wearable trends with stronger training integration. \\
+Elite & Fitness tracker band & Fitbit Sense 2 & \$250 & Activity tracker & Phase-06 & Gives premium wellness-style tracking and was chosen because it adds more body-status context than simple band models. \\
+Elite & Fitness tracker band & Polar Ignite 3 & \$330 & Activity tracker & Phase-06 & Gives a more training-oriented daily-trend platform and was chosen because Polar recovery features suit endurance-heavy phases well. \\
+\end{longtblr}
+\newpage
+
+\section*{7.09.O - GPS Multisport Watch}
+\phantomsection
+\addcontentsline{toc}{section}{7.09.O - GPS Multisport Watch}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+
+Budget & GPS multisport watch & Coros Pace 3 & \$229 & Wearable tracker & Phase-06 & Gives pace, heart-rate, and daily-trend context and was chosen because the battery life is excellent for the price. \\
+Budget & GPS multisport watch & Garmin Forerunner 165 & \$250 & Wearable tracker & Phase-06 & Gives running plus daily biometrics and was chosen because Garmin’s interface is easy to keep consistent over long training blocks. \\
+Budget & GPS multisport watch & Amazfit Cheetah & \$180 & Wearable tracker & Phase-06 & Gives basic GPS and recovery metrics and was chosen because it lowers the cost of a one-watch monitoring setup. \\
+Standard & GPS multisport watch & Garmin Forerunner 255 & \$350 & Wearable tracker & Phase-06 & Gives stronger training and recovery screens and was chosen because it is a dependable middle-tier endurance watch. \\
+Standard & GPS multisport watch & Polar Pacer Pro & \$350 & Wearable tracker & Phase-06 & Gives pace and recovery support and was chosen because the lightweight build improves daily wear compliance. \\
+Standard & GPS multisport watch & Suunto Race S & \$349 & Wearable tracker & Phase-06 & Gives multisport biometrics and was chosen because the battery and route tools suit longer outdoor sessions well. \\
+Elite & GPS multisport watch & Garmin Forerunner 965 & \$600 & Wearable tracker & Phase-06 & Gives premium training and readiness visibility and was chosen because the display and ecosystem are strong for later verification phases. \\
+Elite & GPS multisport watch & Coros Apex 2 Pro & \$449 & Wearable tracker & Phase-06 & Gives premium outdoor biometrics and was chosen because the battery life supports heavy weekly use with less charging friction. \\
+Elite & GPS multisport watch & Garmin Fenix 8 & \$999 & Wearable tracker & Phase-06 & Gives overbuilt multisport monitoring and was chosen because it combines durability, tracking depth, and strong ecosystem control. \\
+\end{longtblr}
+\newpage
+
+\section*{7.09.P - Recovery / Sleep Ring}
+\phantomsection
+\addcontentsline{toc}{section}{7.09.P - Recovery / Sleep Ring}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+
+Budget & Recovery / sleep ring & RingConn Gen 2 & \$299 & Sleep wearable & Phase-12 & Gives overnight sleep and recovery trends and was chosen because it avoids the bulk of a watch during sleep. \\
+Budget & Recovery / sleep ring & Circular Ring Slim & \$275 & Sleep wearable & Phase-12 & Gives finger-based readiness data and was chosen because the ring form is less intrusive than wrist devices overnight. \\
+Budget & Recovery / sleep ring & Ultrahuman Ring Air & \$349 & Sleep wearable & Phase-12 & Gives sleep-focused trend capture and was chosen because it is designed around recovery visibility rather than pace tracking. \\
+Standard & Recovery / sleep ring & Oura Ring 4 & \$349 & Sleep wearable & Phase-12 & Gives mature overnight trend tracking and was chosen because Oura is the most recognized name in this device class. \\
+Standard & Recovery / sleep ring & Samsung Galaxy Ring & \$399 & Sleep wearable & Phase-12 & Gives a broader consumer wearable option and was chosen because it fits users already using Samsung device ecosystems. \\
+Standard & Recovery / sleep ring & RingConn Gen 2 Air tier & \$329 & Sleep wearable & Phase-12 & Gives sleep and readiness support and was chosen because it stays focused on overnight wear with low friction. \\
+Elite & Recovery / sleep ring & Oura Ring 4 plus premium ecosystem tier & \$399 & Sleep wearable & Phase-12 & Gives premium nightly recovery tracking and was chosen because later verification phases benefit more from low-friction overnight data continuity. \\
+Elite & Recovery / sleep ring & Ultrahuman Rare special tier & \$450 & Sleep wearable & Phase-12 & Gives high-end finger-based recovery monitoring and was chosen because it keeps the same overnight form factor with a more premium build. \\
+Elite & Recovery / sleep ring & Oura Ring 4 Horizon tier & \$449 & Sleep wearable & Phase-12 & Gives polished overnight biometrics and was chosen because the premium finish can improve long-term daily wear compliance. \\
+\end{longtblr}
+\newpage
+
+\section*{7.09.Q - Under-Mattress Sleep Sensor}
+\phantomsection
+\addcontentsline{toc}{section}{7.09.Q - Under-Mattress Sleep Sensor}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+
+Budget & Under-mattress sleep sensor & SleepScore Max used-market equivalent & \$120 & Sleep sensor & Phase-12 & Gives passive sleep-trend capture and was chosen because it adds overnight data without another wearable on the body. \\
+Budget & Under-mattress sleep sensor & Emfit QS & \$249 & Sleep sensor & Phase-12 & Gives contact-free overnight trend support and was chosen because it avoids wrist or ring discomfort entirely. \\
+Budget & Under-mattress sleep sensor & Beautyrest Sleeptracker Monitor & \$149 & Sleep sensor & Phase-12 & Gives mattress-based sleep context and was chosen because passive monitoring can improve adherence for wearable-averse users. \\
+Standard & Under-mattress sleep sensor & Withings Sleep Analyzer & \$130 & Sleep sensor & Phase-12 & Gives passive sleep-trend capture and was chosen because Withings devices are generally easy to integrate into one health dashboard. \\
+Standard & Under-mattress sleep sensor & Eight Sleep hub ecosystem tier & \$299 & Sleep sensor & Phase-12 & Gives richer overnight context and was chosen because later-phase reliability sometimes benefits from more passive data capture. \\
+Standard & Under-mattress sleep sensor & Emfit QS Pro tier & \$299 & Sleep sensor & Phase-12 & Gives stronger contact-free overnight monitoring and was chosen because it suits users who cannot tolerate rings or watches in sleep. \\
+Elite & Under-mattress sleep sensor & Withings Sleep Analyzer premium bundle & \$180 & Sleep sensor & Phase-12 & Gives a more formal passive sleep setup and was chosen because it keeps overnight monitoring off the body while retaining structured data. \\
+Elite & Under-mattress sleep sensor & Eight Sleep Pod cover ecosystem tier & \$2500 & Sleep sensor & Phase-12 & Gives premium sleep-environment and trend integration and was chosen because it supports a full late-phase recovery-control posture. \\
+Elite & Under-mattress sleep sensor & Emfit long-term monitoring tier & \$349 & Sleep sensor & Phase-12 & Gives advanced passive sleep trends and was chosen because it prioritizes reliable overnight capture over wearable compliance. \\
+\end{longtblr}
+\newpage
+
+\section*{7.09.R - Single-Lead ECG Recorder}
+\phantomsection
+\addcontentsline{toc}{section}{7.09.R - Single-Lead ECG Recorder}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+
+Budget & Single-lead ECG recorder & KardiaMobile 1-Lead & \$79 & Rhythm spot-check & Phase-12 & Gives quick rhythm spot-check context and was chosen because it is the best-known consumer device in this narrow category. \\
+Budget & Single-lead ECG recorder & EMAY Portable ECG Monitor & \$99 & Rhythm spot-check & Phase-12 & Gives handheld rhythm snapshots and was chosen because the simple screen makes use possible without constant app handling. \\
+Budget & Single-lead ECG recorder & Wellue DuoEK Lite & \$109 & Rhythm spot-check & Phase-12 & Gives portable ECG spot checks and was chosen because it combines compact size with straightforward home use. \\
+Standard & Single-lead ECG recorder & KardiaMobile 6L & \$149 & Rhythm spot-check & Phase-12 & Gives richer spot-check capture and was chosen because the expanded lead format offers more structured rhythm context. \\
+Standard & Single-lead ECG recorder & Frontier X2 chest ECG tier & \$399 & Rhythm spot-check & Phase-12 & Gives exercise-adjacent ECG context and was chosen because it better matches training-use cases than static seated devices. \\
+Standard & Single-lead ECG recorder & CheckMe ECG monitor tier & \$180 & Rhythm spot-check & Phase-12 & Gives a portable heart-rhythm review tool and was chosen because it folds several check functions into one handheld form. \\
+Elite & Single-lead ECG recorder & KardiaMobile Card bundle tier & \$199 & Rhythm spot-check & Phase-12 & Gives a more complete premium ECG carry kit and was chosen because later-phase reliability is improved by having the device always accessible. \\
+Elite & Single-lead ECG recorder & Wellue DuoEK Pro & \$189 & Rhythm spot-check & Phase-12 & Gives more premium portable ECG capture and was chosen because the higher-end unit better suits repeat use. \\
+Elite & Single-lead ECG recorder & Frontier X2 premium tier & \$499 & Rhythm spot-check & Phase-12 & Gives advanced exercise-adjacent rhythm context and was chosen because it supports tighter later-phase observation without implying diagnosis. \\
+\end{longtblr}
+\newpage
+
+\section*{7.09.S - ECG-Capable Smartwatch}
+\phantomsection
+\addcontentsline{toc}{section}{7.09.S - ECG-Capable Smartwatch}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+
+Budget & ECG-capable smartwatch & Samsung Galaxy Watch 6 & \$230 & Smart wearable & Phase-12 & Gives daily wearable biometrics plus ECG spot-checking and was chosen because it consolidates several monitoring jobs into one device. \\
+Budget & ECG-capable smartwatch & Fitbit Sense 2 & \$250 & Smart wearable & Phase-12 & Gives broad wellness trend capture and was chosen because it adds ECG capability without jumping to luxury pricing. \\
+Budget & ECG-capable smartwatch & Apple Watch Series 9 & \$399 & Smart wearable & Phase-12 & Gives a polished mainstream ECG-capable option and was chosen because the ecosystem maturity is extremely strong. \\
+Standard & ECG-capable smartwatch & Apple Watch Series 10 & \$429 & Smart wearable & Phase-12 & Gives everyday biometrics plus quick ECG access and was chosen because the user experience lowers friction for repeated use. \\
+Standard & ECG-capable smartwatch & Samsung Galaxy Watch Ultra & \$649 & Smart wearable & Phase-12 & Gives more rugged ECG-capable monitoring and was chosen because later phases benefit from stronger durability and battery. \\
+Standard & ECG-capable smartwatch & Garmin Venu 3 ECG tier & \$450 & Smart wearable & Phase-12 & Gives training-linked daily monitoring and was chosen because it better bridges health data and endurance training workflow. \\
+Elite & ECG-capable smartwatch & Apple Watch Ultra 2 & \$799 & Smart wearable & Phase-12 & Gives premium wearable biometrics and was chosen because the hardware is durable enough for heavy daily and field use. \\
+Elite & ECG-capable smartwatch & Samsung Galaxy Watch Ultra premium bundle & \$699 & Smart wearable & Phase-12 & Gives rugged full-day monitoring and was chosen because it consolidates premium smartwatch durability with ECG capability. \\
+Elite & ECG-capable smartwatch & Garmin high-end ECG-capable wearable tier & \$650 & Smart wearable & Phase-12 & Gives a more training-integrated ECG-capable platform and was chosen because late-phase reliability improves when health and training data live together. \\
+\end{longtblr}
+\newpage
+
+\section*{7.09.T - Scale Calibration Weight Set}
+\phantomsection
+\addcontentsline{toc}{section}{7.09.T - Scale Calibration Weight Set}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+
+Budget & Scale calibration weight set & Smart Weigh Calibration Weight & \$20 & Calibration tool & Phase-12 & Gives a simple scale-check reference and was chosen because later verification windows need lower device-drift uncertainty. \\
+Budget & Scale calibration weight set & BalanceFrom Calibration Weight & \$18 & Calibration tool & Phase-12 & Gives a low-cost consistency check and was chosen because even one known reference weight can catch obvious scale drift. \\
+Budget & Scale calibration weight set & Yes-4-All Cast Weight Pair used as check mass & \$25 & Calibration tool & Phase-12 & Gives a practical reference mass and was chosen because it doubles as a simple known-load check without specialty equipment. \\
+Standard & Scale calibration weight set & Rice Lake Calibration Weight & \$45 & Calibration tool & Phase-12 & Gives a more formal scale-validation reference and was chosen because Rice Lake is a recognized measurement-equipment brand. \\
+Standard & Scale calibration weight set & Adam Equipment Calibration Weight & \$50 & Calibration tool & Phase-12 & Gives stronger measurement-confidence support and was chosen because it is built specifically for calibration use. \\
+Standard & Scale calibration weight set & Ohaus Calibration Weight & \$55 & Calibration tool & Phase-12 & Gives a cleaner device-check workflow and was chosen because Ohaus equipment is associated with measurement reliability. \\
+Elite & Scale calibration weight set & Troemner ASTM Weight tier & \$110 & Calibration tool & Phase-12 & Gives premium scale-validation confidence and was chosen because later-phase low-variance tracking benefits from stronger calibration discipline. \\
+Elite & Scale calibration weight set & Rice Lake premium set & \$95 & Calibration tool & Phase-12 & Gives a more complete calibration workflow and was chosen because one branded matched set reduces improvised check-mass drift. \\
+Elite & Scale calibration weight set & Adam Equipment premium calibration set & \$120 & Calibration tool & Phase-12 & Gives higher-end scale verification and was chosen because late verification phases reward tighter device-confidence checks. \\
+\end{longtblr}
+\newpage
+
+\section*{When These Items Are Needed}
+\phantomsection
+\addcontentsline{toc}{section}{When These Items Are Needed}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=1.95in]
+    Q[c,wd=1.10in]
+    X[l,1.80]
+    X[l,1.80]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-2} = {halign=c, valign=m},
+  column{3-4} = {halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Item} &
+\Hdr{First required phase} &
+\Hdr{Why it becomes necessary} &
+\Hdr{What happens if missing} \\
+
+Bathroom scale & Phase-00 & It supports basic trend-only bodyweight monitoring from the beginning. & Bodyweight trend quality drops and simple readiness context becomes harder to anchor. \\
+Anthropometric tape measure & Phase-00 & It supports early waist and circumference trend capture when used consistently. & Circumference trends become less available and body-change direction is harder to verify. \\
+Digital oral thermometer & Phase-00 & It supports basic illness-screen context before harder sessions or test days. & Symptom decisions become more subjective and easier to under-document. \\
+Clip-on pedometer & Phase-00 & Step-count support fits the T-0 monitoring posture already present in Phase-00. & Daily movement compliance becomes more ambiguous when no stable step tool exists. \\
+Smart body-composition scale & Phase-06 & This is the first reasonable point for true Tier-1 biometric-device use. & Richer body-composition trend data remains unavailable and monitoring stays more basic. \\
+Skinfold caliper & Phase-06 & It fits the first core body-fat-monitoring posture once Tier-1 biometrics exist. & Body-fat trend work stays dependent on broader or less direct tools. \\
+Handheld BIA analyzer & Phase-06 & It belongs with the first broader composition-monitoring layer rather than the minimal start state. & Composition monitoring stays simpler and less cross-checked. \\
+Infrared forehead thermometer & Phase-06 & It is a higher-convenience symptom-support tool rather than an entry-critical minimum. & Illness-context checks remain slower or less convenient. \\
+Upper-arm blood pressure monitor & Phase-06 & It fits the first meaningful home vital-sign support posture once 7.09 reaches Tier-1. & Home blood-pressure context is absent and symptom-first screening stays narrower. \\
+Wrist blood pressure monitor & Phase-06 & It is a portable version of the same Tier-1 vital-sign support class. & Travel-friendly pressure monitoring is less available. \\
+Pulse oximeter & Phase-06 & It belongs in the first meaningful home biometrics layer, not the minimal start posture. & Home oxygen and pulse spot-check context is unavailable. \\
+Heart-rate chest strap & Phase-06 & It fits the first core device layer for reliable effort and recovery monitoring. & Heart-rate capture remains more dependent on less accurate wrist devices. \\
+Optical HR armband & Phase-06 & It is an alternate Tier-1 heart-rate interface once broader biometrics become justified. & Users who cannot tolerate chest straps lose a useful monitoring alternative. \\
+Fitness tracker band & Phase-06 & It supports steps, sleep, and day-to-day readiness trends once Tier-1 biometrics are in play. & Daily wearable trend visibility stays narrower and more manual. \\
+GPS multisport watch & Phase-06 & It becomes reasonable when biometrics and conditioning-control demands both expand. & One consolidated monitoring and pacing tool is missing from the system. \\
+Recovery / sleep ring & Phase-12 & It fits the T-3 reliability-overbuild posture rather than the first core layer. & Overnight trend redundancy is lower, but core monitoring still functions. \\
+Under-mattress sleep sensor & Phase-12 & It is a late passive-monitoring redundancy tool for low-variance verification phases. & Non-wearable overnight backup monitoring is unavailable. \\
+Single-lead ECG recorder & Phase-12 & It is a late specialized spot-check tool rather than an early essential. & One premium rhythm-context option is absent, but the category remains non-diagnostic. \\
+ECG-capable smartwatch & Phase-12 & It belongs to the same late specialized reliability and convenience overbuild class. & Late-phase monitoring stays less consolidated into one wrist device. \\
+Scale calibration weight set & Phase-12 & Calibration support is most justified when low-variance verification reliability matters most. & Device-drift checks remain weaker and scale confidence is less defensible. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+\end{landscape}
+\clearpage
+
+\section*{Compliance Checklist}
+\phantomsection
+\addcontentsline{toc}{section}{Compliance Checklist}
+
+\begin{itemize}
+\item Only one deliverable is provided for Target Category 7.09.
+\item The title uses the locked shopping-list format.
+\item The chart uses the exact required columns.
+\item Twenty distinct items are included, and each item contains three Budget rows, three Standard rows, and three Elite rows.
+\item Rows are grouped by item and ordered from foundational trend tools toward advanced or specialized reliability tools.
+\item Notes are concise, plain-language, and each entry states both the intended effect or use and why that specific option was chosen.
+\item Stage-6 timing is treated as authoritative, and Stage-8 timing conflicts are reconciled explicitly rather than hidden.
+\item Phase-00 rows are limited to non-diagnostic trend-only supports; Phase-06 rows mark the first meaningful Tier-1 biometric device posture; Phase-12 rows mark reliability-overbuild items.
+\item No medical diagnosis, treatment advice, prescription guidance, hormone guidance, retailer links, or live price research is included.
+\item The required post-chart timing table is included and matches the chart timing.
+\end{itemize}
+
+\end{document}

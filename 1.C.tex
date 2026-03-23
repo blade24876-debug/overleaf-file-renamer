@@ -1,0 +1,462 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{landscape}
+
+\section*{Stage 1.C — Assumptions and Dependencies}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 1.C — Assumptions and Dependencies}
+
+\subsection*{1.C.1 Assumptions and Dependencies Table}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.C.1 Assumptions and Dependencies Table}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.75]
+    X[l,1.55]
+    X[l,3.85]
+    Q[l,wd=1.05in]
+    Q[l,wd=0.60in]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Assumption/Dependency} &
+\Hdr{Rationale} &
+\Hdr{Validation Method} &
+\Hdr{Due-By} &
+\Hdr{Owner} \\
+
+\textbf{DEP-1C-001} — Medical clearance posture for starting Phase 00 &
+High-risk start state requires a non-diagnostic clearance posture and explicit restriction capture so execution stays inside safe bounds. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: Medical confirms “fit for progressive exercise under documented restrictions and limitations” OR a restriction envelope is documented in writing and reflected in session substitutions.\par
+\textbf{FAIL}: \textbf{MEDICAL} \textbf{HOLD}; restrict to clinician-cleared activity only; \textbf{HOLD} Phase start and any gate decisions until posture is resolved; Refer to Medical.} &
+Before Phase 00 Week 1 &
+Medical \\
+
+\textbf{DEP-1C-002} — Stop-rule understanding and escalation access &
+Safety controls are operational only if Trainee and Coach Lead can execute \textbf{STOP} \textbf{NOW} and escalation without hesitation. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: Coach Lead conducts stop-rule briefing; Trainee demonstrates correct \textbf{STOP} \textbf{NOW} actions and escalation pathway; emergency contact access verified.\par
+\textbf{FAIL}: \textbf{HOLD} start; do not attempt higher-consequence exposures; refer to Medical when symptoms suggest red-flag posture; document failure as a governance blocker.} &
+Before Phase 00 Week 1 &
+Coach Lead \\
+
+\textbf{DEP-1C-003} — Safe primary Cardio route OR indoor substitute modality available &
+Cardio is mandatory every session; feasibility must exist in the environment (outdoor or indoor). &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: Safe route is identified and repeatable OR an indoor substitute modality is available and safe.\par
+\textbf{FAIL}: Substitute lower-risk modality or environment; if no safe option exists, \textbf{HOLD} execution and reslot until feasibility exists; do not force unsafe conditions.} &
+Before Phase 00 Week 1 &
+Coach Lead \\
+
+\textbf{DEP-1C-004} — Weather and environment substitution plan active and usable &
+Environmental hazards can invalidate safety and comparability; a go/no-go and substitution posture prevents unsafe exposure and invalid evidence. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: Documented triggers (ice, lightning/storm risk, unsafe heat, poor air quality) and the indoor substitution/reslot posture are executable.\par
+\textbf{FAIL}: Substitute indoor only; delay testing;
+\textbf{HOLD} gates impacted by environment; reslot to the next protected window; document environment constraint same day.} &
+Before Phase 00 Week 1 &
+Coach Lead \\
+
+\textbf{DEP-1C-005} — Logging method and compliance capability daily and session &
+Admissibility and auditability require same-day logs; missing logs make evidence inadmissible for gates. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: Single primary logging method exists; daily and session fields can be captured same day; missing values are recorded as \textbf{MISSING}/\textbf{UNKNOWN}, not inferred.\par
+\textbf{FAIL}: \textbf{HOLD} gate; treat evidence as inadmissible; implement conservative substitution posture until logging stability is proven; do not advance on unlogged execution.} &
+Before Phase 00 Week 1 &
+Trainee \\
+
+\textbf{DEP-1C-006} — 7.18 Testing, Timing, Measurement, and Course-Setup Tools readiness &
+Validity depends on tool identity and stable measurement methods (timer, step tracking method, scale, tape). &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: Timer method available; step tracking method available; scale and tape available; tool identity/description can be logged; rounding and unit posture followed.\par
+\textbf{FAIL}: \textbf{HOLD} any time-based gate claims; treat affected tests as \textbf{INVALID} for gate use; reslot to next protected window; record missing tool as \textbf{MISSING} and do not backfill by memory.} &
+Before Phase 00 Week 1 &
+Equipment Lead \\
+
+\textbf{DEP-1C-007} — 7.11 Footwear Systems and Foot Care readiness: footwear interface established and fit verified &
+Footwear instability is a primary driver of hotspots, gait drift, and invalid locomotion evidence. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: Stable footwear + sock plan + lacing system established; no progressing hotspots in routine exposures; gait remains stable.\par
+\textbf{FAIL}: Substitute lower-risk modality; delay escalation; \textbf{HOLD} gait-dependent gate claims; document foot flags; reslot any gait-dependent tests.} &
+Before Phase 00 Week 1 &
+Equipment Lead \\
+
+\textbf{DEP-1C-008} — 7.11 Footwear Systems and Foot Care readiness: footcare supplies and hotspot protocol available &
+Foot breakdown rapidly escalates to blistering and invalidates progression; proactive protocol is required. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: Hotspot detection and response protocol is available and used; supplies exist to prevent hotspot → blister escalation.\par
+\textbf{FAIL}: Downshift next exposures; substitute lower-friction modalities; \textbf{HOLD} escalation; if blister occurs, remove higher-friction locomotion until resolved; document under PAIN/\textbf{SAFETY} posture.} &
+Before Phase 00 Week 1 &
+Equipment Lead \\
+
+\textbf{DEP-1C-009} — Schedule stability for the required weekly cadence &
+Cadence is fixed; risk is managed by dose and substitution, not by collapsing frequency. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: Time blocks exist for 6 sessions/week; execution plan supports reslot and Minimum Viable Sessions when needed.\par
+\textbf{FAIL}: \textbf{HOLD} gates that require compliance; substitute lower-risk modalities to preserve cadence; prohibit make-up stacking; document \textbf{TIME}/\textbf{TRAVEL} constraints and reslot.} &
+Before Phase 00 Week 1 &
+Trainee \\
+
+\textbf{DEP-1C-010} — Sleep opportunity window identified and mitigations defined without medical treatment &
+Sleep instability drives safety risk and invalid evidence; it must be treated as a gating constraint signal. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: Sleep opportunity window is identified; constraints are documented; conservative downshift posture defined.\par
+\textbf{FAIL}: Downshift intensity and density; avoid high-cost test attempts; \textbf{HOLD} gate-grade tests until stability returns; document sleep streak triggers and reslot tests.} &
+Before Phase 00 Week 1 &
+Trainee \\
+
+\textbf{DEP-1C-011} — 7.17 Aquatic Training and Water Safety Equipment governance posture &
+Water governance is absolute; underwater/breath-hold is prohibited without governance and supervision posture. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: For any aquatic testing domain use, facility permission and surface safety posture are confirmed; underwater/breath-hold remains prohibited unless governance prerequisites are explicitly met later.\par
+\textbf{FAIL}: Underwater is not authorized; treat as “not scheduled; inadmissible without governance”; \textbf{HOLD} any underwater-related gate claim; reslot only when governance exists.} &
+Before first \textbf{SWIM} test; Before any underwater/breath-hold exposure &
+Coach Lead \\
+
+\textbf{DEP-1C-012} — 7.01 Strength and Resistance Training Equipment minimum viable readiness &
+Later phases require safe \textbf{STR} exposure and/or \textbf{STR} proxy testing; start-from-zero means the capability must be phased and validated. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: Minimum safe resistance capability exists for phase-intent (stable implement identity and load method); environment is safe; tool identity is loggable.\par
+\textbf{FAIL}: Delay escalation; \textbf{HOLD} \textbf{STR} proxy test events; substitute patterning-only intent; reslot gate \textbf{STR} tests to the next protected window when readiness exists.} &
+Before Phase 02 Week 1 &
+Equipment Lead \\
+
+\textbf{ASM-1C-001} — 7.02 Hormonal Support and Adaptogens OTC Education Only &
+Category is education-only; it must not become a required capability and must not drift into dosing/procurement guidance. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: Documented as education-only and not required; no dosing/sourcing/cycling/procurement content is used.\par
+\textbf{FAIL}: Not required; remove from execution requirements; Refer to Medical for education questions; \textbf{HOLD} any artifact that attempts to require 7.02 as a dependency.} &
+Before Phase 00 Week 1 &
+Medical \\
+
+\textbf{ASM-1C-002} — 7.03 Foundational Health Supplements OTC &
+Optional category; may be used only within legal/OTC boundaries and must not affect admissibility logic. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: If used, OTC-only and stable; no medical claims; no gate credit depends on it.\par
+\textbf{FAIL}: Omit; do not replace sleep, recovery, or safety controls with supplements; if novelty near gates occurs, reslot tests rather than “correcting” with supplement changes.} &
+Before Phase 00 Week 1 &
+Trainee \\
+
+\textbf{ASM-1C-003} — 7.04 Performance and Auxiliary Supplements OTC &
+Optional category; must not become a prerequisite or alter evidence posture. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: If used, OTC-only and stable; no novelty introduced inside protected test windows; documented as context only.\par
+\textbf{FAIL}: Omit; treat novelty near protected windows as a validity risk and reslot tests if comparability is compromised.} &
+Before first protected test window &
+Trainee \\
+
+\textbf{ASM-1C-004} — 7.05 Cognitive Performance and Energy Enhancers OTC &
+Optional category with high novelty risk for test validity (stimulant timing can contaminate evidence). &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: Either not used, or used in a stable, repeatable pattern that is logged; no first-time introduction inside protected test windows.\par
+\textbf{FAIL}: Omit; if introduced near a gate, treat the test attempt as non-comparable and reslot; do not claim gate credit on novelty-contaminated evidence.} &
+Before first protected test window &
+Trainee \\
+
+\textbf{ASM-1C-005} — 7.06 Recovery, Sleep, and Stress-Support Aids OTC &
+Optional category; may support recovery but must not replace sleep or safety governance. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: If used, OTC-only, stable, and logged as context; no medical claims.\par
+\textbf{FAIL}: Omit; apply downshift posture instead; preserve safety and admissibility rules without relying on aids.} &
+Before Phase 00 Week 1 &
+Trainee \\
+
+\textbf{DEP-1C-013} — 7.07 Load-Bearing, Rucking, and Carry Systems minimum viable readiness &
+\textbf{RUCK} capability introduces high-consequence foot/skin and load-interface risk; it must be validated before first ruck exposure or gate. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: Load-bearing system is safe and adjustable; dry-load verification method exists; configuration can be held stable and logged.\par
+\textbf{FAIL}: Delay escalation; \textbf{HOLD} ruck gate tests; substitute lower-risk conditioning modalities; reslot to the next protected window when readiness exists.} &
+Before first ruck exposure; Before Phase 04 Week 1 &
+Equipment Lead \\
+
+\textbf{DEP-1C-014} — 7.08 Conditioning, Endurance, and Aerobic Training Tools minimum viable readiness &
+Year-round continuity requires at least one safe low-impact conditioning option when outdoor conditions are unsafe. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: At least one controllable low-impact modality is available and safe (route or indoor tool) and can be logged consistently.\par
+\textbf{FAIL}: Substitute lower-risk environment or modality; if no safe option exists, \textbf{HOLD} execution escalation and reslot; do not force unsafe outdoor conditions.} &
+Before Phase 00 Week 1 &
+Equipment Lead \\
+
+\textbf{DEP-1C-015} — 7.09 Health Monitoring, Diagnostics, and Biometrics minimum viable readiness &
+Optional category that can enhance audit and early risk detection; must remain non-diagnostic and not become a gate requirement by default. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: If used, device identity and method are stable and logged; outputs are treated as non-diagnostic context only.\par
+\textbf{FAIL}: Omit; rely on Stage 2 \textbf{RECOVERY} and \textbf{DURABILITY} markers; do not block advancement unless a downstream artifact incorrectly makes this mandatory (then mark that artifact Draft — Non-Deployable).} &
+By Phase 02 Week 1 &
+Trainee \\
+
+\textbf{DEP-1C-016} — 7.10 Logistics, Maintenance, Storage, and Sustainment Equipment minimum viable readiness &
+Sustainment reduces friction, prevents equipment/footwear failures, and supports continuous execution under start-from-zero constraints. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: Minimum drying/storage/maintenance posture exists for footwear and basic tools; hygiene sustainment supports foot integrity.\par
+\textbf{FAIL}: Downshift exposure; avoid wet/cold exposures that cannot be recovered from; \textbf{HOLD} escalation when sustainment failures repeatedly drive hotspots or missed sessions.} &
+Before Phase 00 Week 1 &
+Equipment Lead \\
+
+\textbf{DEP-1C-017} — 7.12 Recovery, Mobility, and Tissue-Care Implements minimum viable readiness &
+Supports durability and recovery; reduces predictable breakdown from stiffness, hotspots, and mobility drift. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: Minimum recovery/mobility capability exists (safe surface, mobility implements as applicable) and is usable daily.\par
+\textbf{FAIL}: Substitute with no-tool alternatives; \textbf{HOLD} any gate item that requires stable execution conditions that cannot be created safely; reslot tests if safe setup cannot be ensured.} &
+By Phase 00 Week 2 &
+Equipment Lead \\
+
+\textbf{DEP-1C-018} — 7.13 Nutrition Preparation and Hydration Systems minimum viable readiness &
+Hydration and basic preparation feasibility protect safety (heat risk) and support adherence; no nutrition programming is implied. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: Hydration container and basic access posture exist for sessions; constraints documented; no medical claims.\par
+\textbf{FAIL}: Downshift intensity; substitute climate-controlled environment; \textbf{HOLD} high-consequence test attempts under dehydration risk; document constraints and reslot.} &
+Before Phase 00 Week 1 &
+Trainee \\
+
+\textbf{DEP-1C-019} — 7.14 Environmental Apparel Cold Hot Wet Inclement Weather minimum viable readiness &
+Grand Forks environment volatility is a predictable safety constraint; apparel readiness prevents unsafe exposure or forced cancellations. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: Minimum apparel posture exists to execute safely in expected conditions OR indoor substitution plan is executable.\par
+\textbf{FAIL}: Substitute indoor; postpone outdoor tests; \textbf{HOLD} any gate attempt that would require unsafe exposure; reslot to next protected window.} &
+Before Phase 00 Week 1 &
+Equipment Lead \\
+
+\textbf{DEP-1C-020} — 7.15 General Training and Daily Wear Apparel minimum viable readiness &
+Basic execution feasibility requires safe, workable clothing posture; prevents avoidable non-compliance. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: Training apparel posture supports safe movement and weather conditions.\par
+\textbf{FAIL}: Use indoor substitutes; delay exposures that require specific environmental protection; \textbf{HOLD} if lack of apparel repeatedly forces missed sessions without documented substitutions.} &
+Before Phase 00 Week 1 &
+Trainee \\
+
+\textbf{DEP-1C-021} — 7.16 Operational Self-Management Systems Journaling Planning Mental Conditioning minimum viable readiness &
+Execution over 182+ weeks requires stable self-management and documentation discipline; it supports admissibility and reslot decisions. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: Planning and logging routines exist; the single system-of-record is used; no backfilled memory outcomes.\par
+\textbf{FAIL}: \textbf{HOLD} gates; treat evidence as non-admissible until discipline is restored; apply conservative substitution posture until stable execution returns.} &
+Before Phase 00 Week 1 &
+Trainee \\
+
+\textbf{DEP-1C-022} — 7.19 Protective and Assistive Equipment minimum viable readiness &
+Protective items can be required to safely introduce load-bearing and higher-consequence exposure; not all are required early, but readiness must be planned. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: If required for a phase (per risk posture), protective/assistive capability exists and is loggable; use is stable (no novelty near gates).\par
+\textbf{FAIL}: Delay escalation; \textbf{HOLD} affected gate tests; substitute lower-risk modality; reslot to next protected window.} &
+Before first \textbf{RUCK} escalation; Before Phase 04 Week 1 &
+Equipment Lead \\
+
+\textbf{DEP-1C-023} — 7.20 Personal Hygiene, Health, and Sanitation Items minimum viable readiness &
+Hygiene and sanitation reduce skin/foot breakdown and illness risk; supports continuous execution at 6 sessions/week. &
+\SetCell{halign=l,valign=t}
+{\textbf{PASS}: Minimum hygiene posture exists to prevent recurrent foot/skin degradation and illness-driven misses.\par
+\textbf{FAIL}: Downshift exposure; increase conservative substitutions; \textbf{HOLD} escalation if repeated breakdown prevents admissible evidence; document constraints.} &
+Before Phase 00 Week 1 &
+Trainee \\
+
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+\clearpage
+
+\subsection*{1.C.2 Dependency Failure Doctrine — Compact}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.C.2 Dependency Failure Doctrine — Compact}
+
+\begin{itemize}
+\item Dependency failures are treated as owned control problems: the correct action is to preserve intent, reduce risk, and document; not to ignore the failure.
+\item Substitution precedence is fixed: preserve intent → reduce risk → document the change. If a safe substitution cannot preserve intent, terminate the exposure and apply \textbf{STOP} \textbf{NOW} posture when indicated.
+\item Do not reduce weekly frequency as the primary response to dependency failure. Preserve 6 sessions per week by downshifting dose, complexity, and modality where feasible; deviations require documentation and may impact admissibility.
+\item Missing required fields are handled using missing-data doctrine: record \textbf{UNKNOWN}/\textbf{MISSING}; no inference. Evidence that lacks required fields is inadmissible for gate decisions.
+\item If a dependency materially affects measurability or comparability (route, tool identity, measurement method), the affected test evidence defaults to \textbf{INVALID} for gate use and is treated as not yet tested until rerun under valid conditions.
+\item Gates default to \textbf{HOLD} when required dependencies are unmet or unverified. \textbf{REGRESS} and \textbf{MEDICAL} \textbf{HOLD} are reserved for explicit triggers and stop-rule categories, not for administrative inconvenience.
+\item Dependency failures that recur are treated as structural: escalation is delayed until the dependency is restored or formally patched; do not “push through” and hope it holds.
+\item Every \textbf{MODIFIED} or \textbf{INVALID} session resulting from a dependency failure must include the applicable reason code and a short observable trigger note; missing documentation converts evidence into inadmissible status for gates.
+\item Missed or invalid gate attempts are reslotted to the next protected window; do not stack make-ups to compress timelines.
+\item Dependency updates are versioned. Do not silently change dependency definitions, due-by timing, or validation criteria; any material change requires controlled patch discipline and downstream impact review.
+\end{itemize} 
+
+
+\end{document}

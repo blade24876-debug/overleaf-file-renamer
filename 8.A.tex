@@ -1,0 +1,497 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{8.A.1 Master Standards Index Table}
+\phantomsection
+\addcontentsline{toc}{section}{8.A.1 Master Standards Index Table}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=1.25in]
+    X[c,2.60]
+    Q[c,wd=0.95in]
+    X[c,3.10]
+    X[c,2.40]
+    Q[c,wd=1.30in]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Standard \textbf{ID}} &
+\Hdr{Metric / Standard} &
+\Hdr{Domain} &
+\Hdr{Target Value or Range} &
+\Hdr{Critical Phases } &
+\Hdr{End-State Relevance} \\
+\textbf{ST-BW-WKAVG} &
+\textbf{MET-2B-001} — Bodyweight — Weekly Average (\textbf{C1}) &
+\textbf{BODYCOMP} &
+\textasciitilde 180 lb (82 kg) &
+Phase 13 End; per Stage 5 exit standard set &
+High \\
+\textbf{ST-BF-PCT} &
+\textbf{MET-2B-002} — Body Fat Estimate Percent — Method/Device Recorded (\textbf{C2}) &
+\textbf{BODYCOMP} &
+12–17.5\% &
+Phase 13 End; per Stage 5 exit standard set &
+High \\
+\textbf{ST-CIRC-NECK} &
+\textbf{MET-2B-003} — Circumference — Neck (\textbf{C3}) &
+\textbf{BODYCOMP} &
+Monitoring standard — \textbf{VALID} logging; no numeric gate &
+None — monitoring &
+Low \\
+\textbf{ST-CIRC-CHEST} &
+\textbf{MET-2B-004} — Circumference — Chest (\textbf{C3}) &
+\textbf{BODYCOMP} &
+Monitoring standard — \textbf{VALID} logging; no numeric gate &
+None — monitoring &
+Low \\
+\textbf{ST-CIRC-BICEP} &
+\textbf{MET-2B-005} — Circumference — Bicep (\textbf{C3}) &
+\textbf{BODYCOMP} &
+Monitoring standard — \textbf{VALID} logging; no numeric gate &
+None — monitoring &
+Low \\
+\textbf{ST-CIRC-FOREARM} &
+\textbf{MET-2B-006} — Circumference — Forearm (\textbf{C3}) &
+\textbf{BODYCOMP} &
+Monitoring standard — \textbf{VALID} logging; no numeric gate &
+None — monitoring &
+Low \\
+\textbf{ST-CIRC-WAIST} &
+\textbf{MET-2B-007} — Circumference — Waist (\textbf{C3}) &
+\textbf{BODYCOMP} &
+Monitoring standard — \textbf{VALID} logging; no numeric gate &
+None — monitoring &
+Low \\
+\textbf{ST-CIRC-THIGH} &
+\textbf{MET-2B-008} — Circumference — Thigh (\textbf{C3}) &
+\textbf{BODYCOMP} &
+Monitoring standard — \textbf{VALID} logging; no numeric gate &
+None — monitoring &
+Low \\
+\textbf{ST-CIRC-CALF} &
+\textbf{MET-2B-009} — Circumference — Calf (\textbf{C3}) &
+\textbf{BODYCOMP} &
+Monitoring standard — \textbf{VALID} logging; no numeric gate &
+None — monitoring &
+Low \\
+\textbf{ST-PU-2MIN} &
+\textbf{MET-2B-010} — Push-Ups — 2-Minute Timed, Strict (\textbf{C4}) &
+\textbf{CAL} &
+\textasciitilde 100 strict reps (2 minutes) &
+Phase 13 End; per Stage 5 exit standard set &
+High \\
+\textbf{ST-SITUP-2MIN} &
+\textbf{MET-2B-011} — Sit-Ups — 2-Minute Timed, Standard (\textbf{C5}) &
+\textbf{CAL} &
+\textasciitilde 100 strict reps (2 minutes) &
+Phase 13 End; per Stage 5 exit standard set &
+High \\
+\textbf{ST-PULLUP-MAX} &
+\textbf{MET-2B-012} — Pull-Ups — Strict Dead-Hang (\textbf{C6}) &
+\textbf{CAL} &
+20+ strict reps &
+Phase 13 End; per Stage 5 exit standard set &
+High \\
+\textbf{ST-PLANK-FOREARM} &
+\textbf{MET-2B-013} — Plank — Forearm (\textbf{C7}) &
+\textbf{CAL} &
+$\geq$3:45 (mm:ss) &
+Phase 13 End; per Stage 5 exit standard set &
+High \\
+\textbf{ST-RUN-15MI} &
+\textbf{MET-2B-014} — 1.5-Mile Run Time Trial (\textbf{C8}) &
+\textbf{RUN} &
+\textasciitilde 9:00 (mm:ss) &
+Phase 13 End; per Stage 5 exit standard set &
+High \\
+\textbf{ST-RUN-2MI} &
+\textbf{MET-2B-015} — 2-Mile Run Time Trial (\textbf{C9}) &
+\textbf{RUN} &
+\textasciitilde 12:30 (mm:ss) &
+Phase 13 End; per Stage 5 exit standard set &
+High \\
+\textbf{ST-RUN-3MI} &
+\textbf{MET-2B-016} — 3-Mile Run Time Trial (\textbf{C10}) &
+\textbf{RUN} &
+\textasciitilde 20:00 (mm:ss) &
+Phase 13 End; per Stage 5 exit standard set &
+High \\
+\textbf{ST-RUN-5MI} &
+\textbf{MET-2B-017} — 5-Mile Run Time Trial (\textbf{C11}) &
+\textbf{RUN} &
+\textasciitilde 30–35:00 (mm:ss) &
+Phase 13 End; per Stage 5 exit standard set &
+High \\
+\textbf{ST-RUCK-3MI-25LB} &
+\textbf{MET-2B-018} — 3-Mile Ruck Time Trial — 25 lb (\textbf{C12}) &
+\textbf{RUCK} &
+3 mi with 25 lb dry load: \textasciitilde 45:00 (mm:ss) &
+Phase 13 End; per Stage 5 exit standard set &
+High \\
+\textbf{ST-RUCK-6MI-35LB} &
+\textbf{MET-2B-019} — 6-Mile Ruck Time Trial — 35 lb (\textbf{C12}) &
+\textbf{RUCK} &
+6 mi with 35 lb dry load: \textasciitilde 90:00 (mm:ss) &
+Phase 13 End; per Stage 5 exit standard set &
+High \\
+\textbf{ST-RUCK-9MI-45LB} &
+\textbf{MET-2B-020} — 9-Mile Ruck Time Trial — 45 lb (\textbf{C12}) &
+\textbf{RUCK} &
+9 mi with 45 lb dry load: \textasciitilde 135:00 (mm:ss) &
+Phase 13 End; per Stage 5 exit standard set &
+High \\
+\textbf{ST-RUCK-12MI-55LB} &
+\textbf{MET-2B-021} — 12-Mile Ruck Time Trial — 55 lb (\textbf{C12}) &
+\textbf{RUCK} &
+12 mi with 55 lb dry load: \textasciitilde 180:00 (mm:ss) &
+Phase 13 End; per Stage 5 exit standard set &
+High \\
+\textbf{ST-SWIM-500YD} &
+\textbf{MET-2B-022} — Swim 500 yd Time — No Fins (\textbf{C13}) &
+\textbf{SWIM} &
+500 yd: \textasciitilde 10:30 (mm:ss) &
+Phase 13 End; per Stage 5 exit standard set &
+High \\
+\textbf{ST-SWIM-500M} &
+\textbf{MET-2B-023} — Swim 500 m Time — No Fins (\textbf{C13}) &
+\textbf{SWIM} &
+500 m: \textasciitilde 10:00 (mm:ss) &
+Phase 13 End; per Stage 5 exit standard set &
+High \\
+\textbf{ST-WATER-CONF-EXP} &
+\textbf{MET-2B-024} — Water Confidence Exposure Flag (\textbf{C13}) &
+\textbf{SWIM} &
+Monitoring standard — \textbf{VALID} logging; no numeric gate &
+None — monitoring &
+Low \\
+\textbf{ST-UW-ADMISS} &
+\textbf{MET-2B-025} — Underwater Exposure Admissibility Flag (\textbf{C14}) &
+\textbf{SWIM} &
+Y only when governance prerequisites satisfied (certified lifeguard + dedicated safety spotter + controlled pool); otherwise N; unsupervised attempt prohibited &
+Phase 10 Mid–Phase 13 End (governance-gated) &
+Med \\
+\textbf{ST-UW-25M} &
+\textbf{MET-2B-026} — Underwater 25 m Time — One Breath (\textbf{C14}) &
+\textbf{SWIM} &
+30–45 seconds (governance-constrained; supervised-only) &
+Phase 10 Mid–Phase 13 End (governance-gated) &
+High \\
+\textbf{ST-STR-HINGE-3-5RM} &
+\textbf{MET-2B-027} — Hinge Strength Proxy — \textbf{3-RM} or \textbf{5-RM} Load (\textbf{C17}) &
+\textbf{STR} &
+Tiered thresholds: \textbf{ENTRY} / \textbf{INTERMEDIATE} / \textbf{SELECTION-READY} per Stage 2.D &
+None — monitoring &
+Low \\
+\textbf{ST-STR-SQUAT-3-5RM} &
+\textbf{MET-2B-028} — Squat Strength Proxy — \textbf{3-RM} or \textbf{5-RM} Load (\textbf{C17}) &
+\textbf{STR} &
+Tiered thresholds: \textbf{ENTRY} / \textbf{INTERMEDIATE} / \textbf{SELECTION-READY} per Stage 2.D &
+None — monitoring &
+Low \\
+\textbf{ST-STR-UPPER-PUSH-3-5RM} &
+\textbf{MET-2B-029} — Upper Push Strength Proxy — \textbf{3-RM} or \textbf{5-RM} Load (\textbf{C17}) &
+\textbf{STR} &
+Tiered thresholds: \textbf{ENTRY} / \textbf{INTERMEDIATE} / \textbf{SELECTION-READY} per Stage 2.D &
+None — monitoring &
+Low \\
+\textbf{ST-STR-UPPER-PULL-3-5RM} &
+\textbf{MET-2B-030} — Upper Pull Strength Proxy — \textbf{3-RM} or \textbf{5-RM} Load (\textbf{C17}) &
+\textbf{STR} &
+Tiered thresholds: \textbf{ENTRY} / \textbf{INTERMEDIATE} / \textbf{SELECTION-READY} per Stage 2.D &
+None — monitoring &
+Low \\
+\textbf{ST-STR-CARRY-CAP} &
+\textbf{MET-2B-031} — Carry Capacity — Load Outcome (\textbf{C17}) &
+\textbf{STR} &
+Tiered thresholds: \textbf{ENTRY} / \textbf{INTERMEDIATE} / \textbf{SELECTION-READY} per Stage 2.D &
+None — monitoring &
+Low \\
+\textbf{ST-AER-ROW-TT} &
+\textbf{MET-2B-032} — Rower Time Trial (\textbf{C18}) &
+\textbf{AER} &
+Tiered thresholds: \textbf{ENTRY} / \textbf{INTERMEDIATE} / \textbf{SELECTION-READY} per Stage 2.D &
+None — monitoring &
+Low \\
+\textbf{ST-AER-BIKE-TT} &
+\textbf{MET-2B-033} — Bike Time Trial (\textbf{C18}) &
+\textbf{AER} &
+Tiered thresholds: \textbf{ENTRY} / \textbf{INTERMEDIATE} / \textbf{SELECTION-READY} per Stage 2.D &
+None — monitoring &
+Low \\
+\textbf{ST-AER-ELLIP-TT} &
+\textbf{MET-2B-034} — Elliptical Time Trial (\textbf{C18}) &
+\textbf{AER} &
+Tiered thresholds: \textbf{ENTRY} / \textbf{INTERMEDIATE} / \textbf{SELECTION-READY} per Stage 2.D &
+None — monitoring &
+Low \\
+\textbf{ST-PAIN-0-10} &
+\textbf{MET-2B-035} — Pain Severity — 0–10 + Location Recorded (\textbf{C16}) &
+\textbf{DURABILITY} &
+Monitoring standard — \textbf{VALID} logging; no numeric gate &
+None — monitoring &
+Low \\
+\textbf{ST-GAIT-PAIN-FLAG} &
+\textbf{MET-2B-036} — Gait-Altering Pain Flag (\textbf{C16}) &
+\textbf{DURABILITY} &
+No required for advancement posture; Yes = gate disqualifier signal &
+Phase 00 End–Phase 13 End (all gates) &
+Med \\
+\textbf{ST-FOOT-HOTSPOT-FLAG} &
+\textbf{MET-2B-037} — Foot Hotspot or Blister Flag + Location (\textbf{C16}) &
+\textbf{DURABILITY} &
+Monitoring standard — \textbf{VALID} logging; no numeric gate &
+None — monitoring &
+Low \\
+\textbf{ST-SLEEP-HRS} &
+\textbf{MET-2B-038} — Sleep Hours (\textbf{C15}) &
+\textbf{RECOVERY} &
+Monitoring standard — \textbf{VALID} logging; no numeric gate &
+None — monitoring &
+Low \\
+\textbf{ST-SLEEP-QUAL-0-10} &
+\textbf{MET-2B-039} — Sleep Quality (\textbf{C15}) &
+\textbf{RECOVERY} &
+Monitoring standard — \textbf{VALID} logging; no numeric gate &
+None — monitoring &
+Low \\
+\textbf{ST-SORENESS-0-10} &
+\textbf{MET-2B-040} — Soreness (\textbf{C15}) &
+\textbf{RECOVERY} &
+Monitoring standard — \textbf{VALID} logging; no numeric gate &
+None — monitoring &
+Low \\
+\textbf{ST-FATIGUE-0-10} &
+\textbf{MET-2B-041} — Fatigue (\textbf{C15}) &
+\textbf{RECOVERY} &
+Monitoring standard — \textbf{VALID} logging; no numeric gate &
+None — monitoring &
+Low \\
+\textbf{ST-RPE-0-10} &
+\textbf{MET-2B-042} — Session RPE (\textbf{C15}) &
+\textbf{RECOVERY} &
+Monitoring standard — \textbf{VALID} logging; no numeric gate &
+None — monitoring &
+Low \\
+\textbf{ST-STEPS} &
+\textbf{MET-2B-043} — Steps Count (\textbf{C15}) &
+\textbf{RECOVERY} &
+10,000 steps/day (baseline activity requirement) &
+None — monitoring &
+Med \\
+\textbf{ST-VALID-SESSION} &
+\textbf{MET-2B-044} — Session Validity Tag &
+\textbf{RECOVERY} &
+Assigned same-day: \textbf{VALID} / \textbf{MODIFIED} / \textbf{INVALID}; inadmissible if missing &
+Phase 00 End–Phase 13 End (all gates) &
+Med \\
+\textbf{ST-CARDIO-MIN-MET} &
+\textbf{MET-2B-045} — Cardio Minimum Standard Met &
+\textbf{RECOVERY} &
+Y required; Cardio minimum = 30 minutes continuous per session; No or non-continuous → session \textbf{INVALID} (no gate credit) &
+Phase 00 End–Phase 13 End (all gates) &
+Med \\
+\textbf{ST-WK-ADMISS-PCT} &
+\textbf{MET-2B-046} — Weekly Admissible Session Compliance Percent &
+\textbf{RECOVERY} &
+$\geq$5/6 admissible sessions per week average across decision window (Stage 1.F default) &
+Phase 00 End–Phase 13 End (all gates) &
+Med \\
+\end{longtblr}
+
+\endgroup
+
+\section*{8.A.2 Standards Coverage Summary}
+\phantomsection
+\addcontentsline{toc}{section}{8.A.2 Standards Coverage Summary}
+
+\begin{itemize}
+\item Every Stage 2.B metric has an \textbf{ST-ID}: YES (\textbf{MET-2B-001} through \textbf{MET-2B-046}).
+\item Every \textbf{ST-ID} maps to at least one \textbf{MET-2B}-\#\#\# reference in the Metric / Standard field: YES (every row embeds its \textbf{MET-2B}-\#\#\#).
+\item Testable standards map to at least one protocol card C\# where visible: YES (\textbf{C1}–\textbf{C18} shown in Metric / Standard where applicable); metrics with protocol N/A are computed governance/compliance standards by design (Session Validity Tag; Cardio Minimum Standard Met; Weekly Admissible Session Compliance Percent).
+\end{itemize}
+
+\end{document}

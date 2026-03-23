@@ -1,0 +1,1312 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\clearpage
+\begin{landscape}
+
+\section*{7.07.A - Intro daypack}
+\phantomsection
+\addcontentsline{toc}{section}{7.07.A - Intro daypack}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Intro daypack & Osprey Daylite Plus & \$75 & Small pack & Phase-03 (End) & Light-entry carry option for short conservative ruck starts, chosen because its simple harness keeps setup easy to repeat. \\
+Budget & Intro daypack & REI Co-op Trail 25 & \$100 & Small pack & Phase-03 (End) & Early light-load carrier for controlled walking exposure, chosen because the back panel gives more shape than floppy school bags. \\
+Budget & Intro daypack & 5.11 Rush-12 2.0 & \$110 & Small pack & Phase-03 (End) & Intro load platform for tighter urban or short-route use, chosen because the boxier build holds compact ballast more securely. \\
+Standard & Intro daypack & Kelty Redwing 36 & \$150 & Small pack & Phase-03 (End) & First real ruck-style daypack for early stable load carriage, chosen because the larger body and belt improve control over basic packs. \\
+Standard & Intro daypack & Gregory Zulu 30 & \$180 & Small pack & Phase-03 (End) & Short-route load carrier for users wanting more ventilation, chosen because its suspension reduces hot-back buildup on longer walks. \\
+Standard & Intro daypack & Mystery Ranch Rip Ruck 24 & \$159 & Small pack & Phase-03 (End) & Compact structured carrier for repeatable short loaded sessions, chosen because its rigid shape keeps denser loads from collapsing inward. \\
+Elite & Intro daypack & Go-Ruck GR-1 21-L & \$335 & Small pack & Phase-03 (End) & Premium short-session ruck starter, chosen because the dense frame sheet and simple cavity stabilize plates unusually well. \\
+Elite & Intro daypack & Eberlestock Bandit & \$279 & Small pack & Phase-03 (End) & Compact load carrier for controlled trail or field use, chosen because the tougher shell handles abrasion better than softer daypacks. \\
+Elite & Intro daypack & Mystery Ranch 2-Day Assault Pack & \$229 & Small pack & Phase-03 (End) & Early loaded daypack for users wanting more structure and access, chosen because its harness feels more planted under denser loads. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.07.B - Mid-volume ruck}
+\phantomsection
+\addcontentsline{toc}{section}{7.07.B - Mid-volume ruck}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Mid-volume ruck & 5.11 Rush-24 2.0 & \$130 & Medium pack & Phase-03 (End) & First meaningful ruck body for longer walks, chosen because the bigger chassis carries denser loads better than small daypacks. \\
+Budget & Mid-volume ruck & Kelty Redwing 44 Tactical & \$190 & Medium pack & Phase-03 (End) & Early medium-capacity ruck for longer conservative sessions, chosen because the volume and belt balance simplicity with usable support. \\
+Budget & Mid-volume ruck & Osprey Hikelite 32 & \$140 & Medium pack & Phase-03 (End) & Intro medium-load pack for lighter routes, chosen because its suspended back keeps airflow better in warmer conditions. \\
+Standard & Mid-volume ruck & Gregory Stout 45 & \$190 & Medium pack & Phase-03 (End) & Stable medium-volume ruck for repeatable early pacing work, chosen because the harness and frame transfer load more cleanly to the hips. \\
+Standard & Mid-volume ruck & Mystery Ranch Scree 32 & \$239 & Medium pack & Phase-03 (End) & Trail-capable ruck for denser medium loads, chosen because the frame and access layout make reloading and fit checks straightforward. \\
+Standard & Mid-volume ruck & Osprey Talon 44 & \$220 & Medium pack & Phase-03 (End) & Medium ruck for moving faster with controlled load, chosen because its close-to-body ride reduces sway on uneven ground. \\
+Elite & Mid-volume ruck & Go-Ruck GR-2 34-L & \$415 & Medium pack & Phase-03 (End) & Premium medium ruck for dense plate-heavy sessions, chosen because the stiffer body resists sag better than softer hiking packs. \\
+Elite & Mid-volume ruck & Eberlestock Halftrack & \$329 & Medium pack & Phase-03 (End) & Medium tactical-style ruck for rugged route use, chosen because the padded harness tolerates repeated abrasion and repeated reloading well. \\
+Elite & Mid-volume ruck & Kifaru Escape and Evade & \$349 & Medium pack & Phase-03 (End) & Medium-capacity load pack for users prioritizing durability, chosen because its construction feels more purpose-built than casual travel bags. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.07.C - Heavy framed ruck}
+\phantomsection
+\addcontentsline{toc}{section}{7.07.C - Heavy framed ruck}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Heavy framed ruck & Teton Sports Scout 55 & \$95 & Framed pack & Phase-06 (End) & First framed option for longer loaded durations, chosen because the frame adds more vertical support than soft-body packs. \\
+Budget & Heavy framed ruck & ALPS Mountaineering Commander Lite & \$200 & Framed pack & Phase-06 (End) & Budget framed carrier for more meaningful load transfer, chosen because the stiffer frame helps keep heavier ballast from slumping low. \\
+Budget & Heavy framed ruck & Kelty Coyote 65 & \$190 & Framed pack & Phase-06 (End) & Longer-session framed ruck for entry Tier-2 work, chosen because the belt and suspension give a real step up in support. \\
+Standard & Heavy framed ruck & Osprey Rook 65 & \$220 & Framed pack & Phase-06 (End) & Mid-tier framed ruck for sustained load carriage, chosen because the adjustable torso fit improves repeatability across longer blocks. \\
+Standard & Heavy framed ruck & Gregory Baltoro 65 & \$330 & Framed pack & Phase-06 (End) & Load-transfer-focused ruck for more demanding sessions, chosen because the suspension handles heavier trail carriage without as much shoulder drag. \\
+Standard & Heavy framed ruck & Mystery Ranch Bridger 65 & \$389 & Framed pack & Phase-06 (End) & Stable framed platform for growing ruck demands, chosen because the harness and frame stay composed under denser packing. \\
+Elite & Heavy framed ruck & Mystery Ranch Terraframe 65 & \$525 & Framed pack & Phase-06 (End) & Premium heavy-load ruck for high-repeatability carriage, chosen because the frame is unusually strong for awkward or shifting cargo. \\
+Elite & Heavy framed ruck & Kifaru 44 Mag & \$650 & Framed pack & Phase-06 (End) & High-end framed carrier for serious Tier-2 durability, chosen because the modular frame system makes load transfer highly tunable. \\
+Elite & Heavy framed ruck & Stone Glacier Sky 5900 & \$689 & Framed pack & Phase-06 (End) & Premium mountain-style ruck for long-duration load carry, chosen because the frame stays rigid while keeping total system weight relatively low. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.07.D - Backup ruck platform}
+\phantomsection
+\addcontentsline{toc}{section}{7.07.D - Backup ruck platform}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Backup ruck platform & Kelty Asher 55 & \$160 & Spare pack & Phase-12 (End) & Lower-cost spare ruck for late-pipeline continuity, chosen because it gives a functional backup without matching premium-system cost. \\
+Budget & Backup ruck platform & REI Co-op Traverse 60 & \$249 & Spare pack & Phase-12 (End) & Backup carriage option for verification windows, chosen because the frame and fit system are strong enough to prevent total session loss. \\
+Budget & Backup ruck platform & Teton Sports Explorer 75 & \$120 & Spare pack & Phase-12 (End) & Large-volume reserve carrier for emergency swap use, chosen because it gives a workable fallback when the main pack fails unexpectedly. \\
+Standard & Backup ruck platform & Osprey Aether 65 & \$340 & Spare pack & Phase-12 (End) & Mid-tier backup for late-cycle reliability, chosen because the fit system can be dialed in close to a primary pack quickly. \\
+Standard & Backup ruck platform & Gregory Paragon 58 & \$280 & Spare pack & Phase-12 (End) & Spare framed ruck for protected windows, chosen because it balances real support with less bulk than expedition-sized backups. \\
+Standard & Backup ruck platform & Mystery Ranch Glacier 50 & \$375 & Spare pack & Phase-12 (End) & Durable reserve ruck for late-stage no-cancel posture, chosen because the frame and harness remain trustworthy under meaningful load. \\
+Elite & Backup ruck platform & Seek Outside Unaweep 6300 & \$775 & Spare pack & Phase-12 (End) & Premium backup frame system for final verification reliability, chosen because it can cover heavy-load failure without improvising a new interface. \\
+Elite & Backup ruck platform & Kifaru Duplex Lite + Hoodlum & \$850 & Spare pack & Phase-12 (End) & High-end spare configuration for zero-cancel redundancy, chosen because the modular frame lets a known-good setup be rebuilt fast. \\
+Elite & Backup ruck platform & Stone Glacier Terminus 7000 & \$699 & Spare pack & Phase-12 (End) & Overbuilt reserve ruck for worst-case continuity, chosen because it offers strong frame integrity with less dead weight than many large backups. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.07.E - Rigid load plates}
+\phantomsection
+\addcontentsline{toc}{section}{7.07.E - Rigid load plates}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Rigid load plates & Yes-4-All Cast Iron Ruck Plates & \$45 & Load module & Phase-03 (End) & Simple rigid ballast for early repeatable loading, chosen because cast iron keeps weight identity clearer than improvised household objects. \\
+Budget & Rigid load plates & Titan Fitness Ruck Plates & \$55 & Load module & Phase-03 (End) & Budget rigid load for stable pack setup, chosen because the flatter profile sits more predictably than loose gym plates. \\
+Budget & Rigid load plates & Kensui Adjustable Ruck Plate & \$70 & Load module & Phase-03 (End) & Flexible entry load tool for cautious progression, chosen because the adjustable format reduces the need to buy several early plates. \\
+Standard & Rigid load plates & Go-Ruck Standard Ruck Plate & \$90 & Load module & Phase-03 (End) & Straightforward plate for repeatable ruck loading, chosen because the narrow shape sits higher and closer than many generic plates. \\
+Standard & Rigid load plates & Rogue Echo Weight Vest Plates & \$95 & Load module & Phase-03 (End) & Dense rigid load for compact carriage setups, chosen because the casting is consistent and edges feel less crude than bargain plates. \\
+Standard & Rigid load plates & 5.11 TacTec Weight Plates & \$85 & Load module & Phase-03 (End) & Flat dense ballast for structured carry work, chosen because the profile fits snugly in plate-style carriers and compact pack sleeves. \\
+Elite & Rigid load plates & Go-Ruck Long Ruck Plate & \$105 & Load module & Phase-03 (End) & Premium longer-format load for taller sleeves, chosen because the extra length reduces bounce in vertically oriented pockets. \\
+Elite & Rigid load plates & Rogue USA Cast Weight Vest Plates & \$125 & Load module & Phase-03 (End) & High-quality rigid ballast for precise repeat loading, chosen because the casting tolerance feels better controlled than cheap alternatives. \\
+Elite & Rigid load plates & Hyperwear Hyper Vest Elite Plates & \$140 & Load module & Phase-03 (End) & Refined plate option for compact high-fit carriage systems, chosen because the plate geometry is smoother and easier on fabric interfaces. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.07.F - Filler bag kit}
+\phantomsection
+\addcontentsline{toc}{section}{7.07.F - Filler bag kit}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Filler bag kit & Yes-4-All Sandbag Filler Bags & \$20 & Soft ballast & Phase-03 (End) & Low-cost filler system for controlled soft loading, chosen because separate inserts reduce the mess of dumping loose fill directly into the shell. \\
+Budget & Filler bag kit & REP Sandbag Filler Set & \$25 & Soft ballast & Phase-03 (End) & Basic filler kit for stable internal packing, chosen because the insert sizes make simple load changes cleaner than loose sand. \\
+Budget & Filler bag kit & Brute Force Filler Bags & \$30 & Soft ballast & Phase-03 (End) & Soft load inserts for conservative carry starts, chosen because tougher shells reduce blowout risk during repeated reloading. \\
+Standard & Filler bag kit & Go-Ruck Sandbag Filler Bags & \$40 & Soft ballast & Phase-03 (End) & Better-contained soft ballast for repeat carries, chosen because the tighter closures keep fine fill from migrating through the bag. \\
+Standard & Filler bag kit & Cerberus Strength Filler Bags & \$35 & Soft ballast & Phase-03 (End) & Mid-tier filler inserts for denser carry work, chosen because the heavier fabric tolerates drag and repacking better. \\
+Standard & Filler bag kit & Rogue Sandbag Filler Set & \$35 & Soft ballast & Phase-03 (End) & Reliable internal ballast for repeatable loading, chosen because the fill bags seat neatly inside stronger outer shells. \\
+Elite & Filler bag kit & Brute Force Heavy-Duty Filler Bags & \$45 & Soft ballast & Phase-03 (End) & Premium filler inserts for rougher handling, chosen because the reinforced seams hold up better under repeated compression. \\
+Elite & Filler bag kit & Go-Ruck Heavy Filler Bag & \$45 & Soft ballast & Phase-03 (End) & Denser controlled filler option for repeat ruck loading, chosen because the construction feels less likely to leak under frequent moves. \\
+Elite & Filler bag kit & Cerberus Heavy-Duty Filler Bag Set & \$50 & Soft ballast & Phase-03 (End) & Higher-end soft ballast for overbuilt reliability, chosen because the stiffer material keeps the inserts from deforming as quickly. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.07.G - Sandbag load module}
+\phantomsection
+\addcontentsline{toc}{section}{7.07.G - Sandbag load module}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Sandbag load module & REP Sandbag & \$70 & Soft load & Phase-03 (End) & Early soft-load option for stable awkward loading, chosen because the simple shell gives more control than improvised duffels. \\
+Budget & Sandbag load module & Brute Force Core Sandbag & \$80 & Soft load & Phase-03 (End) & Intro awkward-load tool for carries and holds, chosen because the handle layout keeps grip choices simple for newer users. \\
+Budget & Sandbag load module & Yes-4-All Sandbag & \$35 & Soft load & Phase-03 (End) & Very low-cost soft ballast shell for basic carry exposure, chosen because it offers a safer learning tool than loose household objects. \\
+Standard & Sandbag load module & Go-Ruck Sandbag 2.0 & \$110 & Soft load & Phase-03 (End) & Stable handled soft load for repeat carries, chosen because the build quality is better at preventing seam drift and shift. \\
+Standard & Sandbag load module & Cerberus Strength Sandbag & \$90 & Soft load & Phase-03 (End) & Mid-tier shell for controlled awkward loading, chosen because the fabric and closure feel tougher than many entry sandbags. \\
+Standard & Sandbag load module & Rogue Feed Sack & \$65 & Soft load & Phase-03 (End) & Compact soft load for simple front-carry work, chosen because the stripped-down shape is easy to repack and easy to store. \\
+Elite & Sandbag load module & Rogue Strongman Sandbag & \$105 & Soft load & Phase-03 (End) & Premium awkward-load shell for harder carry work, chosen because the shell tolerates heavier repeated loading with less seam drift. \\
+Elite & Sandbag load module & Brute Force Strongman Sandbag & \$120 & Soft load & Phase-03 (End) & High-end sandbag for demanding carry blocks, chosen because the heavier shell handles rougher landings and rougher surfaces better. \\
+Elite & Sandbag load module & Hyperwear Strongman Sandbag & \$130 & Soft load & Phase-03 (End) & Premium handled soft-load option, chosen because the finishing quality makes repeated grip-and-carry work feel more controlled. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.07.H - Compression strap set}
+\phantomsection
+\addcontentsline{toc}{section}{7.07.H - Compression strap set}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Compression strap set & Nite Ize CamJam Tie-Down Strap & \$18 & Retention strap & Phase-03 (End) & Basic anti-shift strap for early load control, chosen because the cam buckle adds quick tension without complicated hardware. \\
+Budget & Compression strap set & REI Co-op Packmod Straps & \$20 & Retention strap & Phase-03 (End) & Simple pack-retention straps for early setups, chosen because the straightforward format makes repeat tension easier to remember. \\
+Budget & Compression strap set & Sea to Summit Accessory Straps & \$22 & Retention strap & Phase-03 (End) & Basic load-lock straps for soft modules, chosen because the buckle style is easy to adjust with cold or tired hands. \\
+Standard & Compression strap set & Voile Rack Straps & \$28 & Retention strap & Phase-03 (End) & Mid-tier load-control straps for awkward cargo, chosen because the stretchy polyurethane grips loads better than plain webbing. \\
+Standard & Compression strap set & Sea to Summit TPU Guide Accessory Straps & \$30 & Retention strap & Phase-03 (End) & Stronger strap option for wet or muddy conditions, chosen because the tougher material holds tension more reliably outdoors. \\
+Standard & Compression strap set & Nite Ize CamJam XT Aluminum Strap & \$35 & Retention strap & Phase-03 (End) & Upgraded retention strap for denser loads, chosen because the aluminum hardware feels more secure under repeated tensioning. \\
+Elite & Compression strap set & Voile XL Straps & \$35 & Retention strap & Phase-03 (End) & Premium anti-shift straps for bigger loads, chosen because the longer reach locks awkward cargo more cleanly to the pack. \\
+Elite & Compression strap set & Austere Mission Operator Straps & \$40 & Retention strap & Phase-03 (End) & High-end retention straps for rough-use load control, chosen because the build feels more durable than standard consumer tie-downs. \\
+Elite & Compression strap set & Nite Ize CamJam XT 18-ft Strap & \$42 & Retention strap & Phase-03 (End) & Longer premium tie-down for larger ruck modules, chosen because it handles oversized loads without improvising knot systems. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.07.I - Hanging load scale}
+\phantomsection
+\addcontentsline{toc}{section}{7.07.I - Hanging load scale}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Hanging load scale & Etekcity Luggage Scale & \$13 & Load verifier & Phase-03 (End) & Simple weight-check tool for first ruck verification, chosen because it is cheap enough to remove excuse-based guessing. \\
+Budget & Hanging load scale & Samsonite Manual Luggage Scale & \$18 & Load verifier & Phase-03 (End) & Basic mechanical verifier for pack weight, chosen because it avoids battery dependence during simple load checks. \\
+Budget & Hanging load scale & Amazon Basics Digital Luggage Scale & \$12 & Load verifier & Phase-03 (End) & Low-cost load check for repeat sessions, chosen because it gives a quick number instead of estimating by feel. \\
+Standard & Hanging load scale & Taylor Digital Luggage Scale & \$20 & Load verifier & Phase-03 (End) & Mid-tier digital verifier for consistent pack setup, chosen because the display is easier to read during quick loading checks. \\
+Standard & Hanging load scale & EatSmart Precision Voyager & \$18 & Load verifier & Phase-03 (End) & Travel-friendly scale for repeatable dry-load checks, chosen because the body feels sturdier than very cheap scales. \\
+Standard & Hanging load scale & Travelon Stop and Lock Scale & \$22 & Load verifier & Phase-03 (End) & Compact verification tool for home or travel, chosen because the lock feature makes the reading easier to record accurately. \\
+Elite & Hanging load scale & My Weigh SRM-20 & \$55 & Load verifier & Phase-03 (End) & Higher-precision hanging scale for more rigorous loading, chosen because it gives a more confidence-inspiring measurement posture. \\
+Elite & Hanging load scale & Brecknell PS25 & \$70 & Load verifier & Phase-03 (End) & Premium small hanging scale for repeated verification blocks, chosen because the body is more robust than luggage-grade tools. \\
+Elite & Hanging load scale & Kern CH-50-K-50 & \$90 & Load verifier & Phase-03 (End) & Overbuilt scale for strict repeatability, chosen because the industrial style reduces confidence drift in later gate windows. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.07.J - Pack rain cover}
+\phantomsection
+\addcontentsline{toc}{section}{7.07.J - Pack rain cover}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Pack rain cover & Osprey Ultralight Raincover Small & \$30 & Weather shell & Phase-06 (End) & Wet-weather pack cover for longer outdoor carries, chosen because it protects the main bag without changing the core fit interface. \\
+Budget & Pack rain cover & REI Co-op Rain Cover 25-40-L & \$35 & Weather shell & Phase-06 (End) & Basic storm cover for mid-volume packs, chosen because it gives simple weather continuity at low cost. \\
+Budget & Pack rain cover & Outdoor Research PackOut Rain Cover & \$39 & Weather shell & Phase-06 (End) & Rain protection for repeated wet-route sessions, chosen because the fit is simpler to deploy quickly in shifting weather. \\
+Standard & Pack rain cover & Gregory Raincover 40-60-L & \$40 & Weather shell & Phase-06 (End) & Mid-tier rain cover for longer rucks, chosen because the sizing fits framed packs more cleanly than many generic covers. \\
+Standard & Pack rain cover & Sea to Summit Ultra-Sil Pack Cover & \$45 & Weather shell & Phase-06 (End) & Lightweight weather shell for frequent carry days, chosen because the low bulk makes it easier to keep permanently packed. \\
+Standard & Pack rain cover & Deuter Raincover II & \$35 & Weather shell & Phase-06 (End) & Reliable pack shield for sustained outdoor use, chosen because the fit stays cleaner on fuller pack shapes. \\
+Elite & Pack rain cover & Hyperlite Mountain Gear Pack Cover & \$69 & Weather shell & Phase-06 (End) & Premium wet-weather shell for long-duration route continuity, chosen because the lighter material adds less bulk to the ruck. \\
+Elite & Pack rain cover & Fjallraven Rain Cover 16-28 & \$55 & Weather shell & Phase-06 (End) & Higher-end cover for users wanting a better-finished weather layer, chosen because the fabric feels more durable than bargain nylon. \\
+Elite & Pack rain cover & Mystery Ranch Rain Fly & \$50 & Weather shell & Phase-06 (End) & Pack-specific weather protection for late-cycle reliability, chosen because the fit tends to stay truer on structured pack bodies. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.07.K - Dry bag load cells}
+\phantomsection
+\addcontentsline{toc}{section}{7.07.K - Dry bag load cells}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Dry bag load cells & SealLine Baja Dry Bag & \$18 & Waterproof cell & Phase-06 (End) & Waterproof internal load cell for wet routes, chosen because it keeps soft ballast contained when rain would otherwise ruin the pack. \\
+Budget & Dry bag load cells & Outdoor Research Dry Sack & \$20 & Waterproof cell & Phase-06 (End) & Simple water-resistant load bag for variable weather, chosen because it keeps spare clothing or softer ballast separated cleanly. \\
+Budget & Dry bag load cells & Osprey Ultralight Dry Sack & \$18 & Waterproof cell & Phase-06 (End) & Lightweight internal cell for keeping loads compartmentalized, chosen because it adds weather control without much extra weight. \\
+Standard & Dry bag load cells & Sea to Summit Big River Dry Bag & \$30 & Waterproof cell & Phase-06 (End) & Tougher dry cell for repeated wet-day carry, chosen because the fabric resists abrasion better than lighter sack styles. \\
+Standard & Dry bag load cells & NRS Tuff Sack & \$25 & Waterproof cell & Phase-06 (End) & Durable internal dry cell for rougher routes, chosen because the closure and fabric feel more confidence-inspiring when reloaded often. \\
+Standard & Dry bag load cells & SealLine Blocker Dry Bag & \$28 & Waterproof cell & Phase-06 (End) & Mid-tier internal cell for cleaner load organization, chosen because the shape packs more neatly into framed bags than bulkier sacks. \\
+Elite & Dry bag load cells & Watershed Chattooga & \$109 & Waterproof cell & Phase-06 (End) & Premium submersible-grade load cell for harsh weather continuity, chosen because its sealing system is far more secure than roll-top basics. \\
+Elite & Dry bag load cells & Hyperlite Mountain Gear Roll-Top Stuff Sack & \$55 & Waterproof cell & Phase-06 (End) & Higher-end internal dry cell for late-stage route reliability, chosen because it keeps bulk down while still protecting critical contents. \\
+Elite & Dry bag load cells & Ortlieb PS-10 Dry Bag & \$35 & Waterproof cell & Phase-06 (End) & Premium dry-bag option for reliable wet-route packing, chosen because the coating and closure feel more trustworthy over time. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.07.L - Load shaper pad}
+\phantomsection
+\addcontentsline{toc}{section}{7.07.L - Load shaper pad}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Load shaper pad & Gossamer Gear Thinlight & \$25 & Shape pad & Phase-06 (End) & Internal shape aid for soft-load packing, chosen because the thin foam helps stop sag without adding much bulk. \\
+Budget & Load shaper pad & Nemo Switchback Short & \$50 & Shape pad & Phase-06 (End) & Folded foam insert for pack structure, chosen because the accordion format makes it easy to create a repeatable internal frame. \\
+Budget & Load shaper pad & Therm-a-Rest Z Lite Sol & \$55 & Shape pad & Phase-06 (End) & Foam structure aid for softer carry loads, chosen because the dense closed-cell foam holds shape better than cheap camping pads. \\
+Standard & Load shaper pad & Exped FlexMat & \$40 & Shape pad & Phase-06 (End) & Mid-tier foam insert for load shaping, chosen because the pad cuts cleanly to fit odd pack cavities more easily. \\
+Standard & Load shaper pad & Therm-a-Rest RidgeRest Classic & \$35 & Shape pad & Phase-06 (End) & Simple dense foam for internal rigidity, chosen because the ridged structure resists flattening better under repeated packing. \\
+Standard & Load shaper pad & Nemo Switchback Regular & \$60 & Shape pad & Phase-06 (End) & Full-length foam insert for larger bags, chosen because the broader surface stabilizes tall soft loads more evenly. \\
+Elite & Load shaper pad & Exped FlexMat Plus & \$60 & Shape pad & Phase-06 (End) & Thicker premium shaper for heavier soft loads, chosen because the added depth cushions hard edges while still stiffening the pack. \\
+Elite & Load shaper pad & HEST Foamy & \$109 & Shape pad & Phase-06 (End) & Premium foam insert for overbuilt comfort and shape, chosen because the denser pad reduces hot spots against the back panel. \\
+Elite & Load shaper pad & Therm-a-Rest Z Lite Sol Regular & \$60 & Shape pad & Phase-06 (End) & Larger premium foam insert for repeatable pack geometry, chosen because the pad keeps soft cargo from bowing into the spine line. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.07.M - Farmer carry handles}
+\phantomsection
+\addcontentsline{toc}{section}{7.07.M - Farmer carry handles}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Farmer carry handles & Titan Farmers Walk Handles & \$120 & Carry implement & Phase-06 (End) & Straightforward loaded-carry tool for expanding grip and trunk demand, chosen because the simple steel design does the job cheaply. \\
+Budget & Farmer carry handles & Bells of Steel Farmers Walk Handles & \$150 & Carry implement & Phase-06 (End) & Entry loaded-carry option for controlled lane work, chosen because the handle set is more stable than improvising dumbbell carries. \\
+Budget & Farmer carry handles & CAP Barbell Farmer Walk Handles & \$90 & Carry implement & Phase-06 (End) & Low-cost carry implement for short lane sessions, chosen because fixed handles give more repeatability than ad hoc object carries. \\
+Standard & Farmer carry handles & REP Farmers Walk Handles & \$199 & Carry implement & Phase-06 (End) & Mid-tier carry tool for repeatable heavy carries, chosen because the finish and weld quality feel stronger than bargain handle sets. \\
+Standard & Farmer carry handles & Rogue Farmers Walk Handles & \$215 & Carry implement & Phase-06 (End) & Loaded-carry standard for serious carry work, chosen because the build tolerates repeated heavy loading with less wobble. \\
+Standard & Farmer carry handles & Fringe Sport Farmers Walk Handles & \$180 & Carry implement & Phase-06 (End) & Mid-tier lane carry option for grip and posture work, chosen because the design balances price with a sturdier feel. \\
+Elite & Farmer carry handles & Sorinex Farmer Handles & \$295 & Carry implement & Phase-06 (End) & Premium carry tool for hard repeated use, chosen because the commercial-grade build better suits high-volume late-cycle sessions. \\
+Elite & Farmer carry handles & Eleiko Farmers Walk Handles & \$420 & Carry implement & Phase-06 (End) & High-end carry implement for strict repeatability, chosen because the manufacturing quality gives a cleaner feel under load. \\
+Elite & Farmer carry handles & Williams Strength Farmers Walk Handles & \$350 & Carry implement & Phase-06 (End) & Overbuilt carry set for durable lane work, chosen because the steel and finish are built for institutional-style use. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.07.N - Strongman carry sandbag}
+\phantomsection
+\addcontentsline{toc}{section}{7.07.N - Strongman carry sandbag}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Strongman carry sandbag & REP Sandbag & \$70 & Carry bag & Phase-06 (End) & Simple handled carry bag for expanding awkward-load tolerance, chosen because it is easier to store than bigger strongman shells. \\
+Budget & Strongman carry sandbag & Brute Force Core Sandbag & \$80 & Carry bag & Phase-06 (End) & Compact carry bag for mixed holds and carries, chosen because the handle layout makes entry-level awkward loading less chaotic. \\
+Budget & Strongman carry sandbag & Rogue Feed Sack & \$65 & Carry bag & Phase-06 (End) & Small carry bag for front-loaded marching and holds, chosen because the stripped-down shape keeps the movement challenge honest. \\
+Standard & Strongman carry sandbag & Cerberus Strength Sandbag & \$90 & Carry bag & Phase-06 (End) & Mid-tier carry bag for heavier awkward loading, chosen because the shell feels tougher and better finished than cheaper options. \\
+Standard & Strongman carry sandbag & Go-Ruck Sandbag 2.0 & \$110 & Carry bag & Phase-06 (End) & Handled soft-load carrier for repeat carry sessions, chosen because the fabric and stitching feel built for frequent dragging and reloading. \\
+Standard & Strongman carry sandbag & Hyperwear SandBell Pro & \$100 & Carry bag & Phase-06 (End) & Softer carry option for users wanting lower bruise cost, chosen because the flatter shape is friendlier in constrained spaces. \\
+Elite & Strongman carry sandbag & Rogue Strongman Sandbag & \$105 & Carry bag & Phase-06 (End) & Premium awkward-load bag for harder carries, chosen because the shell tolerates heavier repeated loading with less seam drift. \\
+Elite & Strongman carry sandbag & Brute Force Strongman Sandbag & \$120 & Carry bag & Phase-06 (End) & High-end carry bag for demanding blocks, chosen because the heavier shell handles rougher landings and rougher surfaces better. \\
+Elite & Strongman carry sandbag & Cerberus Strongman Sandbag Pro & \$130 & Carry bag & Phase-06 (End) & Overbuilt awkward-load carrier for late-stage durability, chosen because the upgraded build reduces cancellation risk from shell failure. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.07.O - Weighted vest or plate carrier}
+\phantomsection
+\addcontentsline{toc}{section}{7.07.O - Weighted vest or plate carrier}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Weighted vest or plate carrier & CAP Barbell Adjustable Weighted Vest & \$60 & Load vest & Phase-06 (End) & Compact load-carriage option for shorter controlled carries, chosen because it adds load without needing a full ruck setup every time. \\
+Budget & Weighted vest or plate carrier & RunFast Weighted Vest & \$80 & Load vest & Phase-06 (End) & Simple weighted vest for tighter spaces, chosen because fixed-pocket loading keeps the interface straightforward for short use. \\
+Budget & Weighted vest or plate carrier & MIR Short Weighted Vest & \$120 & Load vest & Phase-06 (End) & Budget vest for compact carry sessions, chosen because the shorter build reduces belt clash compared with longer vest bodies. \\
+Standard & Weighted vest or plate carrier & 5.11 TacTec Plate Carrier & \$200 & Load vest & Phase-06 (End) & Plate-style carrier for short structured loaded movement, chosen because the fit and padding feel more stable than bargain vests. \\
+Standard & Weighted vest or plate carrier & Rogue Plate Carrier & \$160 & Load vest & Phase-06 (End) & Compact load carrier for lane work and carries, chosen because the rigid plate format is easier to verify and reproduce. \\
+Standard & Weighted vest or plate carrier & MIR Pro X Weighted Vest & \$250 & Load vest & Phase-06 (End) & Heavier-duty vest for controlled loading blocks, chosen because the adjustable loading distribution reduces the slop of cheap vests. \\
+Elite & Weighted vest or plate carrier & Go-Ruck Weighted Vest 2.0 & \$195 & Load vest & Phase-06 (End) & Premium compact carrier for dense short loaded sessions, chosen because the fit stays closer and cleaner than looser vest designs. \\
+Elite & Weighted vest or plate carrier & Hyperwear Hyper Vest Elite & \$230 & Load vest & Phase-06 (End) & Sleeker load vest for users prioritizing minimal bounce, chosen because the close fit feels less intrusive during steady movement. \\
+Elite & Weighted vest or plate carrier & Kensui EZ-Vest & \$180 & Load vest & Phase-06 (End) & Plate-holding vest for modular loading, chosen because the system makes controlled weight changes easier without buying several vests. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.07.P - Drag harness}
+\phantomsection
+\addcontentsline{toc}{section}{7.07.P - Drag harness}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Drag harness & Yes-4-All Sled Harness & \$25 & Drag system & Phase-06 (End) & Entry drag harness for low-skill resisted drags, chosen because the simple belt format keeps setup fast and understandable. \\
+Budget & Drag harness & Titan Sled Pull Harness & \$40 & Drag system & Phase-06 (End) & Basic drag harness for short controlled pulls, chosen because it is sturdier than improvised straps tied around the waist. \\
+Budget & Drag harness & CAP Barbell Sled Harness & \$30 & Drag system & Phase-06 (End) & Low-cost drag option for flat-surface pulling, chosen because it gives a safer anchor point than hand-held towing improvisation. \\
+Standard & Drag harness & Spud Inc Sled Drag Harness & \$75 & Drag system & Phase-06 (End) & Mid-tier drag harness for repeat sessions, chosen because the webbing and build feel more secure under repeated towing. \\
+Standard & Drag harness & Rogue Sled Harness & \$65 & Drag system & Phase-06 (End) & Standard drag harness for controlled backward and forward drags, chosen because the strap layout reduces twisting during longer sets. \\
+Standard & Drag harness & Bells of Steel Sled Harness & \$55 & Drag system & Phase-06 (End) & Practical drag harness for expansion-phase carry-adjacent work, chosen because it offers better fit and durability than entry options. \\
+Elite & Drag harness & Torque Fitness Drag Harness & \$99 & Drag system & Phase-06 (End) & Premium drag harness for harder repeat use, chosen because the fit stays more secure when pace or surface resistance changes. \\
+Elite & Drag harness & Sorinex Drag Harness & \$120 & Drag system & Phase-06 (End) & Overbuilt drag harness for institutional durability, chosen because the hardware and webbing better tolerate repeated high-tension use. \\
+Elite & Drag harness & Exxentric Sprint Track Harness & \$149 & Drag system & Phase-06 (End) & High-end drag interface for refined resisted movement, chosen because the design distributes force more comfortably at the waist and hips. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.07.Q - Field repair tape}
+\phantomsection
+\addcontentsline{toc}{section}{7.07.Q - Field repair tape}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Field repair tape & Duck Max Strength Tape & \$7 & Repair tape & Phase-12 (End) & Emergency patch tape for tears or loose edges, chosen because it is cheap insurance against a late-cycle cancellation. \\
+Budget & Field repair tape & Scotch Extreme Duct Tape & \$8 & Repair tape & Phase-12 (End) & Quick field fix tape for shell or strap issues, chosen because it bonds more reliably outdoors than very cheap household tape. \\
+Budget & Field repair tape & Gorilla Tape & \$10 & Repair tape & Phase-12 (End) & Strong stopgap repair tape for pack damage, chosen because the aggressive adhesive holds better on rough fabric in bad weather. \\
+Standard & Field repair tape & Gear Aid Tenacious Tape & \$11 & Repair tape & Phase-12 (End) & Purpose-built gear patch tape for fabric tears, chosen because it is cleaner and more fabric-friendly than generic duct tape. \\
+Standard & Field repair tape & 3-M All Weather Duct Tape & \$14 & Repair tape & Phase-12 (End) & Stronger outdoor patch tape for emergency fixes, chosen because the adhesive stands up better to cold and damp conditions. \\
+Standard & Field repair tape & T-Rex Tape & \$13 & Repair tape & Phase-12 (End) & Heavy-duty emergency repair tape for field failures, chosen because it stays grippy under rough handling and repeated flex. \\
+Elite & Field repair tape & Gear Aid Tenacious Tape Max & \$18 & Repair tape & Phase-12 (End) & Premium reinforced patch tape for more serious tears, chosen because the larger tougher patch reduces the chance of re-failure. \\
+Elite & Field repair tape & Gear Aid Seam Grip WP Repair Tape & \$14 & Repair tape & Phase-12 (End) & Waterproof repair tape for wet-weather gear damage, chosen because it seals better when moisture exposure matters. \\
+Elite & Field repair tape & Gear Aid Tenacious Tape Flex Patches & \$15 & Repair tape & Phase-12 (End) & Stretchier repair patches for curved or high-flex areas, chosen because they move with the fabric instead of peeling quickly. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.07.R - Buckle repair kit}
+\phantomsection
+\addcontentsline{toc}{section}{7.07.R - Buckle repair kit}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Buckle repair kit & Coghlan's Side Release Buckles & \$8 & Repair hardware & Phase-12 (End) & Cheap spare buckle set for emergency strap failure, chosen because replacing one broken buckle is better than losing a session. \\
+Budget & Buckle repair kit & ITW Nexus Repair Buckles & \$10 & Repair hardware & Phase-12 (End) & Simple field-spare buckle option, chosen because the brand is widely used in load-bearing gear and easy to match. \\
+Budget & Buckle repair kit & Sea to Summit Field Repair Buckle & \$11 & Repair hardware & Phase-12 (End) & Screw-in buckle spare for field fixes, chosen because it can be installed without cutting and re-sewing the strap. \\
+Standard & Buckle repair kit & Gear Aid Buckle Repair Kit & \$15 & Repair hardware & Phase-12 (End) & Mid-tier repair set for keeping packs operational, chosen because it covers several common buckle failures in one bundle. \\
+Standard & Buckle repair kit & Sea to Summit Side Release Field Repair Buckle & \$13 & Repair hardware & Phase-12 (End) & Practical buckle spare for quicker pack recovery, chosen because the pin-style replacement works well when field tools are limited. \\
+Standard & Buckle repair kit & National Molding Replacement Buckles & \$12 & Repair hardware & Phase-12 (End) & Reliable buckle replacement set for webbing repairs, chosen because the hardware quality is stronger than cheap generic assortments. \\
+Elite & Buckle repair kit & AustriAlpin COBRA Buckle Set & \$45 & Repair hardware & Phase-12 (End) & Premium hardware spare for high-load interfaces, chosen because the stronger metal buckle suits overbuilt redundancy planning. \\
+Elite & Buckle repair kit & Sea to Summit LadderLock Field Repair Buckle & \$15 & Repair hardware & Phase-12 (End) & Premium specialized spare for strap-adjustment failures, chosen because it fixes a specific weak point without replacing the whole harness. \\
+Elite & Buckle repair kit & ITW GhillieTEX Buckle Set & \$20 & Repair hardware & Phase-12 (End) & Higher-end buckle spare set for repeat use platforms, chosen because the hardware is trusted in heavier-duty carry systems. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.07.S - Field repair tool kit}
+\phantomsection
+\addcontentsline{toc}{section}{7.07.S - Field repair tool kit}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Field repair tool kit & Singer Sewing Kit & \$12 & Repair kit & Phase-12 (End) & Basic repair kit for small seam failures, chosen because it gives a cheap way to stop minor damage becoming a cancelled session. \\
+Budget & Field repair tool kit & Gear Aid Aquaseal +FD Repair Kit & \$15 & Repair kit & Phase-12 (End) & Simple adhesive repair set for tears and delamination, chosen because it patches fabric damage more cleanly than tape alone. \\
+Budget & Field repair tool kit & Coghlan's Sewing Kit & \$7 & Repair kit & Phase-12 (End) & Tiny backup sewing set for field carry, chosen because it is light enough to keep packed without excuse. \\
+Standard & Field repair tool kit & Speedy Stitcher Sewing Awl & \$18 & Repair kit & Phase-12 (End) & Mid-tier repair tool for heavier fabric stitching, chosen because it handles webbing and dense material better than tiny travel needles. \\
+Standard & Field repair tool kit & Gear Aid Seam Grip +TF Kit & \$20 & Repair kit & Phase-12 (End) & Adhesive-focused repair set for fabric and seam fixes, chosen because it restores function faster than waiting to re-sew everything. \\
+Standard & Field repair tool kit & Sailrite Hand Sewing Kit & \$25 & Repair kit & Phase-12 (End) & Stronger hand-sewing setup for pack repairs, chosen because the components are better suited to tougher outdoor materials. \\
+Elite & Field repair tool kit & Speedy Stitcher Deluxe Kit & \$30 & Repair kit & Phase-12 (End) & Premium awl-based repair set for repeated heavy-material fixes, chosen because it is better prepared for thick webbing repairs. \\
+Elite & Field repair tool kit & Leatherman Signal & \$140 & Repair kit & Phase-12 (End) & Multi-tool repair option for field failures, chosen because it combines cutting, pliers, and quick-fix capability in one carryable tool. \\
+Elite & Field repair tool kit & Gear Aid Aquaseal Repair Bundle & \$35 & Repair kit & Phase-12 (End) & Premium adhesive repair bundle for late-stage reliability, chosen because it covers several fabric failure types in one package. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{7.07.T - Replacement sternum strap}
+\phantomsection
+\addcontentsline{toc}{section}{7.07.T - Replacement sternum strap}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Replacement sternum strap & Osprey Sternum Strap & \$10 & Spare interface & Phase-12 (End) & Small spare to keep a known-good fit available, chosen because a broken chest strap can quickly destabilize shoulder loading. \\
+Budget & Replacement sternum strap & Gregory Sternum Strap & \$12 & Spare interface & Phase-12 (End) & Backup chest strap for pack continuity, chosen because replacing a small failed part is cheaper than parking the whole pack. \\
+Budget & Replacement sternum strap & CamelBak Sternum Strap with Whistle & \$10 & Spare interface & Phase-12 (End) & Lightweight spare strap for fast fixes, chosen because it restores basic harness control with very little packed weight. \\
+Standard & Replacement sternum strap & Mystery Ranch Sternum Strap & \$15 & Spare interface & Phase-12 (End) & Mid-tier spare for stronger harness systems, chosen because the hardware feels more robust than many generic replacements. \\
+Standard & Replacement sternum strap & 5.11 Replacement Sternum Strap & \$18 & Spare interface & Phase-12 (End) & Practical spare for tactical-style packs, chosen because it matches heavier webbing systems better than ultralight replacements. \\
+Standard & Replacement sternum strap & Deuter Chest Strap Replacement & \$15 & Spare interface & Phase-12 (End) & Backup chest strap for hiking-style packs, chosen because it preserves fit consistency without swapping the full harness. \\
+Elite & Replacement sternum strap & Eberlestock Sternum Strap Replacement & \$20 & Spare interface & Phase-12 (End) & Premium spare for rugged pack systems, chosen because it helps keep a heavy-use pack deployable during final verification windows. \\
+Elite & Replacement sternum strap & Go-Ruck Sternum Strap Replacement & \$20 & Spare interface & Phase-12 (End) & Overbuild spare for dense-rig packs, chosen because a matching replacement keeps the carry feel closer to the original setup. \\
+Elite & Replacement sternum strap & Kifaru Sternum Strap Replacement & \$25 & Spare interface & Phase-12 (End) & High-end spare strap for modular frames, chosen because it preserves known harness geometry during late-cycle no-novelty posture. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{When These Items Are Needed}
+\phantomsection
+\addcontentsline{toc}{section}{When These Items Are Needed}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=1.20in]
+    Q[c,wd=1.05in]
+    Q[l,wd=4.8in]
+    Q[l,wd=2.25in]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, valign=m},
+  column{1-2} = {halign=c},
+  column{3-4} = {halign=l},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Item} &
+\Hdr{First required phase} &
+\Hdr{Why it becomes necessary} &
+\Hdr{What happens if missing} \\
+Intro daypack & Phase-03 (End) & Phase-03 is the first point where minimum deployable ruck capability must exist in some stable form. & Early load carriage is forced into unstable household substitutes or is delayed entirely. \\
+Mid-volume ruck & Phase-03 (End) & A slightly larger stable pack becomes useful once carriage duration and load stability matter more than minimalist convenience. & Early ruck exposure remains cramped, less stable, and harder to configure repeatably. \\
+Heavy framed ruck & Phase-06 (End) & Tier-2 expansion is the first point where real load transfer and longer-duration stability become necessary. & Longer ruck sessions rely on softer platforms that increase shoulder drag and sway. \\
+Backup ruck platform & Phase-12 (End) & Tier-3 overbuild is about redundancy and no-cancel reliability near final verification windows. & A single pack failure can cancel or compromise key late-pipeline evidence windows. \\
+Rigid load plates & Phase-03 (End) & Minimum viable ruck capability needs a stable dense load that is easier to verify than improvised ballast. & Load identity drifts and the pack is more likely to carry unsafe shifting objects. \\
+Filler bag kit & Phase-03 (End) & Soft internal ballast gives a safer way to tune load without loose fill moving inside the pack. & Weight changes become messier, less repeatable, and more likely to shift during the session. \\
+Sandbag load module & Phase-03 (End) & A simple awkward-load tool fits the first deployable carry posture without forcing big hardware purchases. & Carry variety narrows and awkward-load exposure is pushed toward improvised objects. \\
+Compression strap set & Phase-03 (End) & Tier-1 load carriage requires anti-shift control and consistent internal containment. & Load movement rises, pack balance degrades, and hotspot risk increases. \\
+Hanging load scale & Phase-03 (End) & Stage-6 and the standards crosswalk both require basic weight-verification posture for admissible ruck work. & Dry load becomes guesswork and the evidence chain becomes weaker or inadmissible. \\
+Pack rain cover & Phase-06 (End) & Longer outdoor sessions and wider weather exposure make simple wet-weather continuity more important at Tier-2. & Rain exposure drives internal wetting, damaged contents, and more abandoned sessions. \\
+Dry bag load cells & Phase-06 (End) & Tier-2 weather continuity and cleaner internal packing make waterproof internal cells useful for longer blocks. & Wet routes more easily contaminate ballast, spare layers, and pack organization. \\
+Load shaper pad & Phase-06 (End) & Better internal shape control becomes useful once soft loads and longer durations create back-panel sag or edge hot spots. & Softer loads collapse into the back panel and become less comfortable or less repeatable. \\
+Farmer carry handles & Phase-06 (End) & Tier-2 carry expansion justifies a sturdier dedicated implement for lane-based loaded carries. & Carry work stays limited to less stable objects that are harder to standardize. \\
+Strongman carry sandbag & Phase-06 (End) & Expanded carry variety becomes reasonable once the base ruck interface is already stable. & Awkward-load carrying remains underdeveloped or gets pushed into poor improvised choices. \\
+Weighted vest or plate carrier & Phase-06 (End) & Tier-2 expansion is the first sensible point for compact alternate load carriage beyond the main ruck system. & Short loaded movement options remain tied to the full pack even when a tighter tool would fit better. \\
+Drag harness & Phase-06 (End) & Carry-adjacent pulling tools fit the broader Tier-2 system expansion without changing the safety doctrine. & Pulling exposure relies on hand-held improvisation or is skipped when sled work is desired. \\
+Field repair tape & Phase-12 (End) & Verification-reliability overbuild requires fast repair capability for small late-stage failures. & Minor tears can force unnecessary cancellations during protected windows. \\
+Buckle repair kit & Phase-12 (End) & Tier-3 redundancy includes the small hardware most likely to break at the worst possible time. & A single failed buckle can sideline an otherwise usable pack or carry system. \\
+Field repair tool kit & Phase-12 (End) & Overbuild posture needs a way to restore function when stitches, seams, or adhesive surfaces fail. & Small failures escalate into no-go equipment problems during final verification periods. \\
+Replacement sternum strap & Phase-12 (End) & Late-phase redundancy includes spare fit-interface components so known-good geometry can be preserved. & A small harness-part failure can destabilize load carriage and force novelty late in the pipeline. \\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+\clearpage
+
+\section*{Compliance Checklist}
+\phantomsection
+\addcontentsline{toc}{section}{Compliance Checklist}
+
+\begin{itemize}
+\item Only one deliverable is provided for Target Category 7.07.
+\item The locked title format and required output structure are used.
+\item The chart uses the exact required columns.
+\item Twenty distinct items are included, and each item contains three Budget rows, three Standard rows, and three Elite rows.
+\item Rows are grouped by item and progress from foundational load platforms and load modules toward carry expansion and late-stage redundancy.
+\item First-phase timing follows Stage-6 controlling authority and the Stage-8 ruck standards crosswalk.
+\item Notes describe the intended use of each entry and why that specific item was chosen rather than giving generic labels alone.
+\item No workouts, sets, reps, weekly splits, or new testing standards are included.
+\item The required post-chart timing table is included and matches the chart timing.
+\item The output stops after this compliance checklist.
+\end{itemize}
+
+\end{document}

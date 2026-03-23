@@ -1,0 +1,1312 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\clearpage
+\begin{landscape}
+
+\section*{7.12.A — Exercise Mat}
+\phantomsection
+\addcontentsline{toc}{section}{7.12.A — Exercise Mat}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Exercise Mat & Amazon Basics 1/2-in. Exercise Mat & \$25 & Floor Surface & Phase 00 (End) & Creates a stable non-slip surface for daily mobility, and it is chosen because the thicker foam is forgiving on knees and elbows on hard floors. \\
+Budget & Exercise Mat & Gaiam Essentials Fitness Mat & \$22 & Floor Surface & Phase 00 (End) & Supports floor drills and cooldown work, and it is chosen because the light roll-up design is easy to store in small spaces. \\
+Budget & Exercise Mat & ProsourceFit Tri-Fold Folding Mat & \$40 & Floor Surface & Phase 00 (End) & Gives cushioned contact for planks and resets, and it is chosen because the fold-flat format works well when the floor is rough or cold. \\
+Standard & Exercise Mat & Manduka Begin Yoga Mat & \$58 & Floor Surface & Phase 00 (End) & Improves traction for daily mobility sequences, and it is chosen because the surface grip is better than most cheap foam mats. \\
+Standard & Exercise Mat & Rogue Individual Mat & \$95 & Floor Surface & Phase 00 (End) & Provides a durable base for repeated home training use, and it is chosen because the denser construction resists tearing under shoes and implements. \\
+Standard & Exercise Mat & Airex Fitline 180 & \$90 & Floor Surface & Phase 00 (End) & Cushions joints during repeated floor-contact work, and it is chosen because the closed-cell foam stays cleaner and maintains support better over time. \\
+Elite & Exercise Mat & Manduka PRO & \$138 & Floor Surface & Phase 00 (End) & Supports long-term daily mobility and floor work, and it is chosen because the premium density and grip hold up exceptionally well under repeated heavy use. \\
+Elite & Exercise Mat & Airex Coronella & \$130 & Floor Surface & Phase 00 (End) & Makes floor-based recovery work more comfortably, and it is chosen because the extra length and shock absorption suit larger users better. \\
+Elite & Exercise Mat & Liforme Original Yoga Mat & \$150 & Floor Surface & Phase 00 (End) & Improves controlled positioning during mobility work, and it is chosen because the premium, grippy top surface helps maintain precise body placement. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.12.B — Foam Roller}
+\phantomsection
+\addcontentsline{toc}{section}{7.12.B — Foam Roller}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Foam Roller & Amazon Basics High-Density Foam Roller & \$18 & Roller & Phase 00 (End) & Helps reduce post-session stiffness in large muscle groups, and it is chosen because the plain firm cylinder is cheap and easy to learn on. \\
+Budget & Foam Roller & Yes-4-All EVA Foam Roller & \$20 & Roller & Phase 00 (End) & Supports simple quad, calf, and upper-back rolling, and it is chosen because the EVA build is slightly more durable than bargain soft foam. \\
+Budget & Foam Roller & ProsourceFit High-Density Roller & \$22 & Roller & Phase 00 (End) & Promotes basic tissue-pressure work after training, and it is chosen because the standard shape makes technique easier to keep conservative. \\
+Standard & Foam Roller & TriggerPoint Core Roller & \$35 & Roller & Phase 00 (End) & Assists general lower-body recovery work, and it is chosen because the slightly softer surface is more tolerable for frequent beginners. \\
+Standard & Foam Roller & REP Smooth Foam Roller & \$29 & Roller & Phase 00 (End) & Supports routine tissue-care without aggressive edges, and it is chosen because the smoother shell is less likely to encourage over-pressing. \\
+Standard & Foam Roller & Hyperice Vyper Go & \$129 & Roller & Phase 00 (End) & Helps warm tissue before mobility blocks, and it is chosen because the compact powered format adds gentle vibration without a huge footprint. \\
+Elite & Foam Roller & TriggerPoint GRID 1.0 & \$40 & Roller & Phase 00 (End) & Encourages whole-leg and trunk rolling between dense sessions, and it is chosen because the textured shell feels more durable and easier to grip. \\
+Elite & Foam Roller & Rollga Standard & \$50 & Roller & Phase 00 (End) & Supports pressure work while reducing direct spine pressure, and it is chosen because the contour shape fits around the back better than flat rollers. \\
+Elite & Foam Roller & Hyperice Vyper 3 & \$199 & Roller & Phase 00 (End) & Improves pre-session tissue wake-up and post-session downshift, and it is chosen because the premium vibration control gives more recovery variety than static rollers. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.12.C — Massage Ball}
+\phantomsection
+\addcontentsline{toc}{section}{7.12.C — Massage Ball}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Massage Ball & Pro-Tec Athletics Massage Ball & \$10 & Pressure Ball & Phase 00 (End) & Targets small tight spots in the foot or hip, and it is chosen because the simple firm sphere is easy to place against a wall or floor. \\
+Budget & Massage Ball & TriggerPoint MobiPoint Ball & \$13 & Pressure Ball & Phase 00 (End) & Helps release compact hotspots in smaller tissue areas, and it is chosen because the raised surface gives grip without needing a harder lacrosse ball feel. \\
+Budget & Massage Ball & Yes-4-All Massage Lacrosse Balls & \$9 & Pressure Ball & Phase 00 (End) & Supports conservative point-pressure work on feet and glutes, and it is chosen because the two-ball pack makes daily availability easier. \\
+Standard & Massage Ball & RAD Rounds Set & \$25 & Pressure Ball & Phase 00 (End) & Improves localized tissue-pressure options, and it is chosen because the multi-density set gives easier progression than one fixed hardness. \\
+Standard & Massage Ball & Tune Up Fitness Therapy Balls & \$18 & Pressure Ball & Phase 00 (End) & Helps gentle tissue work in smaller areas, and it is chosen because the softer shell is less likely to provoke bruising than harder balls. \\
+Standard & Massage Ball & Hyperice Hypersphere Mini & \$79 & Pressure Ball & Phase 00 (End) & Adds small-area tissue activation before mobility work, and it is chosen because the powered vibration makes short sessions more effective in tight spaces. \\
+Elite & Massage Ball & RAD Centre Ball & \$30 & Pressure Ball & Phase 00 (End) & Supports more controlled pressure around awkward body contours, and it is chosen because the center groove changes contact better than a plain sphere. \\
+Elite & Massage Ball & Hyperice Hypersphere & \$149 & Pressure Ball & Phase 00 (End) & Helps wake up tight calves and glutes quickly, and it is chosen because the larger powered format covers more surface area than mini balls. \\
+Elite & Massage Ball & MobilityWOD Supernova 2.0 & \$45 & Pressure Ball & Phase 00 (End) & Provides firm spot-pressure on deep tension points, and it is chosen because the premium shell stays consistent under repeated heavy use. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.12.D — Stretch Strap}
+\phantomsection
+\addcontentsline{toc}{section}{7.12.D — Stretch Strap}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Stretch strap & OPTP Stretch Out Strap & \$16 & Mobility Strap & Phase 00 (End) & Assists hamstring and calf range work, and it is chosen because the looped sections make solo stretching easier to standardize. \\
+Budget & Stretch strap & Tumaz Stretch Strap & \$10 & Mobility Strap & Phase 00 (End) & Supports simple lower-body flexibility work, and it is chosen because the many hand loops make position changes easy without knots. \\
+Budget & Stretch strap & Trideer Stretching Strap & \$9 & Mobility Strap & Phase 00 (End) & Helps gentle mobility access without pulling on unstable furniture, and it is chosen because the nylon build is straightforward and inexpensive. \\
+Standard & Stretch strap & Strapworks Stretch Strap & \$18 & Mobility Strap & Phase 00 (End) & Aids controlled assisted range work, and it is chosen because the webbing feels sturdier and less stretchy than very cheap straps. \\
+Standard & Stretch strap & OPTP Slant Board Stretching Strap Combo Tier Equivalent & \$25 & Mobility Strap & Phase 00 (End) & Expands calf and hamstring mobility work, and it is chosen because the rehab-oriented construction supports repeat daily use. \\
+Standard & Stretch strap & Rogue MobilityWOD Stretch Band & \$22 & Mobility Strap & Phase 00 (End) & Assists shoulder and posterior-chain mobility drills, and it is chosen because the premium strap material handles repeated tensioning well. \\
+Elite & Stretch strap & Perform Better Stretch Strap & \$20 & Mobility Strap & Phase 00 (End) & Supports daily mobility sequencing, and it is chosen because the commercial-style stitching is built for frequent repeated use. \\
+Elite & Stretch strap & TRX Stretching Strap & \$30 & Mobility Strap & Phase 00 (End) & Makes assisted stretching and positioning easier, and it is chosen because the handle layout is more comfortable during longer holds. \\
+Elite & Stretch strap & Crossover Symmetry Stretch Strap & \$35 & Mobility Strap & Phase 00 (End) & Improves controlled assisted range access, and it is chosen because the hardware and handle finish feel cleaner than basic looped nylon options. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.12.E — Loop Mobility Band Set}
+\phantomsection
+\addcontentsline{toc}{section}{7.12.E — Loop Mobility Band Set}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Loop Mobility Band Set & Fit Simplify Resistance Loop Set & \$12 & Loop Band & Phase 00 (End) & Helps activate hips and glutes before movement, and it is chosen because the set gives several low-cost tension options in one pouch. \\
+Budget & Loop Mobility Band Set & ProsourceFit Resistance Loop Set & \$14 & Loop Band & Phase 00 (End) & Supports warm-up activation and simple mobility drills, and it is chosen because the band sizes are easy to distinguish quickly. \\
+Budget & Loop Mobility Band Set & Perform Better Mini Band Set & \$18 & Loop Band & Phase 00 (End) & Adds light resistance to lateral steps and activation work, and it is chosen because the durable latex holds tension better than bargain multi-packs. \\
+Standard & Loop Mobility Band Set & Rogue Monster Bands Mini Set & \$35 & Loop Band & Phase 00 (End) & Improves activation quality in warm-ups, and it is chosen because the heavier-duty bands feel more reliable under frequent use. \\
+Standard & Loop Mobility Band Set & Serious Steel Mini Loop Set & \$30 & Loop Band & Phase 00 (End) & Supports repeat glute and hip pattern prep, and it is chosen because the tension spread is clearer across the set. \\
+Standard & Loop Mobility Band Set & TRX Strength Mini Bands & \$30 & Loop Band & Phase 00 (End) & Helps switch quickly between prep drills, and it is chosen because the premium finish and bag make the set easier to keep organized. \\
+Elite & Loop Mobility Band Set & Mark Bell Hip Circle Set & \$45 & Loop Band & Phase 00 (End) & Enhances hip activation before loaded work, and it is chosen because the fabric-and-latex hybrid feels less likely to roll on the legs. \\
+Elite & Loop Mobility Band Set & Hyperwear Mini Loop Band Set & \$32 & Loop Band & Phase 00 (End) & Supports higher-comfort activation work, and it is chosen because the soft-touch finish is easier on skin during frequent sessions. \\
+Elite & Loop Mobility Band Set & Perform Better Fabric Mini Band Set & \$40 & Loop Band & Phase 00 (End) & Improves lateral activation without constant band snapback, and it is chosen because the fabric style is more comfortable for longer warm-up blocks. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.12.F — Yoga Block}
+\phantomsection
+\addcontentsline{toc}{section}{7.12.F — Yoga Block}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Yoga block & Gaiam Yoga Block & \$12 & Positioning Block & Phase 00 (End) & Raises the floor for limited-range mobility positions, and it is chosen because the simple foam brick is easy to use under hands or hips. \\
+Budget & Yoga block & Amazon Basics Yoga Block & \$10 & Positioning Block & Phase 00 (End) & Supports modified floor reach positions, and it is chosen because the low cost makes keeping a pair realistic from the start. \\
+Budget & Yoga block & Reehut Yoga Block Set & \$14 & Positioning Block & Phase 00 (End) & Helps shorten difficult ranges during daily mobility, and it is chosen because the pair format expands setup options cheaply. \\
+Standard & Yoga block & Manduka Recycled Foam Block & \$22 & Positioning Block & Phase 00 (End) & Improves position control in supported stretches, and it is chosen because the denser foam feels more stable under bodyweight. \\
+Standard & Yoga block & Hugger Mugger Foam Block & \$18 & Positioning Block & Phase 00 (End) & Makes modified mobility shapes easier to hold, and it is chosen because the edges and density feel cleaner than very soft entry blocks. \\
+Standard & Yoga block & Jade Yoga Cork Block & \$24 & Positioning Block & Phase 00 (End) & Supports more stable hand-supported positions, and it is chosen because cork compresses less than soft foam under load. \\
+Elite & Yoga block & Manduka Cork Block & \$28 & Positioning Block & Phase 00 (End) & Gives firm support for loaded mobility positions, and it is chosen because the premium cork stays very stable over time. \\
+Elite & Yoga block & B Yoga Cork Block & \$30 & Positioning Block & Phase 00 (End) & Helps maintain cleaner supported ranges, and it is chosen because the finish and density feel more secure in sweaty conditions. \\
+Elite & Yoga block & Yoga Design Lab Cork Block & \$32 & Positioning Block & Phase 00 (End) & Improves supported mobility positioning, and it is chosen because the premium cork texture gives strong grip and durability. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.12.G — Slant Board / Calf Wedge}
+\phantomsection
+\addcontentsline{toc}{section}{7.12.G — Slant Board / Calf Wedge}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Slant board / calf wedge & StrongTek Slant Board & \$35 & Angle Board & Phase 00 (End) & Helps ankle and calf range work, and it is chosen because the fixed incline gives a simple repeatable setup. \\
+Budget & Slant board / calf wedge & ProStretch The Original Calf Stretcher & \$28 & Angle Board & Phase 00 (End) & Supports lower-leg mobility and foot comfort work, and it is chosen because the rocker shape makes calf work intuitive. \\
+Budget & Slant board / calf wedge & Slant Board Guy Adjustable Slant Board & \$45 & Angle Board & Phase 00 (End) & Improves ankle-dorsiflexion access before squats and running, and it is chosen because the adjustable angles allow conservative progression. \\
+Standard & Slant board / calf wedge & Fitterfirst Pro Slant Board & \$70 & Angle Board & Phase 00 (End) & Supports daily calf and ankle mobility, and it is chosen because the sturdier construction feels more secure under full bodyweight. \\
+Standard & Slant board / calf wedge & Cando Adjustable Incline Board & \$65 & Angle Board & Phase 00 (End) & Helps repeat lower-leg mobility work precisely, and it is chosen because the rehab-style board offers several usable positions. \\
+Standard & Slant board / calf wedge & Escape Fitness Stretching Slant Board & \$60 & Angle Board & Phase 00 (End) & Gives a cleaner dedicated calf stretch platform, and it is chosen because the grip surface feels better for frequent barefoot or sock use. \\
+Elite & Slant board / calf wedge & Fitterfirst Professional Slant Board & \$95 & Angle Board & Phase 00 (End) & Improves ankle range and calf tissue tolerance, and it is chosen because the premium frame is more durable for high-frequency use. \\
+Elite & Slant board / calf wedge & The Tib Bar Guy Solo Slant Board & \$85 & Angle Board & Phase 00 (End) & Supports lower-leg prep with a compact footprint, and it is chosen because the overbuilt construction handles repeated loaded use well. \\
+Elite & Slant board / calf wedge & Squat Wedge 2.0 Set & \$55 & Angle Wedge & Phase 00 (End) & Aids heel-elevated mobility and position work, and it is chosen because the separate wedges allow more stance-width flexibility than one board. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.12.H — Mobility Stick}
+\phantomsection
+\addcontentsline{toc}{section}{7.12.H — Mobility Stick}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Mobility stick & Yes4All Massage Stick & \$14 & Mobility Rod & Phase 00 (End) & Helps roll quads and calves quickly after training, and it is chosen because the handled stick is easier to control than a floor roller. \\
+Budget & Mobility stick & Pro-Tec Athletics Roller Massager & \$22 & Mobility Rod & Phase 00 (End) & Supports light manual tissue work on the lower body, and it is chosen because the spindle design glides smoothly without much learning curve. \\
+Budget & Mobility stick & Tiger Tail Original Massage Stick & \$30 & Mobility Rod & Phase 00 (End) & Improves post-session leg downshift, and it is chosen because the foam-covered barrel feels gentler than hard ridged rollers. \\
+Standard & Mobility stick & RAD Rod & \$50 & Mobility Rod & Phase 00 (End) & Assists precision tissue work along calves and hamstrings, and it is chosen because the premium surface gives smoother pressure control. \\
+Standard & Mobility stick & TriggerPoint GRID STK & \$35 & Mobility Rod & Phase 00 (End) & Helps manually address tighter spots after running or lifting, and it is chosen because the textured sections add more varied contact. \\
+Standard & Mobility stick & Stick Travel Stick & \$35 & Mobility Rod & Phase 00 (End) & Supports quick recovery passes away from home, and it is chosen because the slim format travels more easily than full rollers. \\
+Elite & Mobility stick & Tiger Tail The Long One & \$40 & Mobility Rod & Phase 00 (End) & Covers larger tissue areas more efficiently, and it is chosen because the longer barrel suits bigger lower-body surfaces. \\
+Elite & Mobility stick & RAD Helix & \$70 & Mobility Rod & Phase 00 (End) & Adds more precise rolling pressure along long muscle lines, and it is chosen because the premium shape distributes force more evenly. \\
+Elite & Mobility stick & Roll Recovery R8 Plus & \$159 & Mobility Rod & Phase 00 (End) & Speeds calf and quad tissue work, and it is chosen because the spring-loaded frame applies controlled pressure with less hand fatigue. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.12.I — Foot Massage Roller}
+\phantomsection
+\addcontentsline{toc}{section}{7.12.I — Foot Massage Roller}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Foot massage roller & Pro-Tec Athletics Orb Extreme Mini & \$10 & Foot Roller & Phase 00 (End) & Helps reduce plantar tightness after walking, and it is chosen because the compact size fits easily into a daily footcare kit. \\
+Budget & Foot massage roller & Vive Foot Roller & \$10 & Foot Roller & Phase 00 (End) & Supports simple arch and forefoot pressure work, and it is chosen because the ridged roller shape is easy to use while seated. \\
+Budget & Foot massage roller & TheraBand Foot Roller & \$14 & Foot Roller & Phase 00 (End) & Assists foot-downshift work after time on feet, and it is chosen because the cold-capable cylinder adds another recovery option. \\
+Standard & Foot massage roller & TriggerPoint Nano Foot Roller & \$18 & Foot Roller & Phase 00 (End) & Helps unload small foot hotspots before they become larger issues, and it is chosen because the shape is made specifically for arches. \\
+Standard & Foot massage roller & RAD Neuro Ball & \$25 & Foot Roller & Phase 00 (End) & Supports more controlled arch pressure work, and it is chosen because the smaller targeted design handles foot contours well. \\
+Standard & Foot massage roller & Mobo Board Mini Foot Tool Equivalent Market Tier & \$30 & Foot Roller & Phase 00 (End) & Encourages small foot movement and pressure variation, and it is chosen because it goes beyond plain straight rolling. \\
+Elite & Foot massage roller & Naboso Neuro Ball & \$30 & Foot Roller & Phase 00 (End) & Improves plantar stimulation and light pressure work, and it is chosen because the textured surface gives a more distinct sensory cue. \\
+Elite & Foot massage roller & Roll Recovery R3 Orthopedic Foot Roller & \$39 & Foot Roller & Phase 00 (End) & Supports routine arch care and small hotspot management, and it is chosen because the premium shape rolls more smoothly under bodyweight. \\
+Elite & Foot massage roller & TriggerPoint MobiPoint + Nano Bundle & \$28 & Foot Roller & Phase 00 (End) & Gives both rolling and spot-pressure options for foot care, and it is chosen because the paired tools cover more foot zones than one roller alone. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.12.J — Peanut Roller}
+\phantomsection
+\addcontentsline{toc}{section}{7.12.J — Peanut Roller}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Peanut roller & ProsourceFit Peanut Massage Ball & \$12 & Dual-Ball Tool & Phase 06 (End) & Helps apply pressure along the upper back without loading the spine directly, and it is chosen because the joined-ball shape creates a safer channel than a single ball. \\
+Budget & Peanut roller & Yes-4-All Peanut Massage Ball & \$10 & Dual-Ball Tool & Phase 06 (End) & Supports back and neck-adjacent tissue work, and it is chosen because the low-cost molded design is simple to place against the floor or wall. \\
+Budget & Peanut roller & Amazon Basics Peanut Massage Ball & \$11 & Dual-Ball Tool & Phase 06 (End) & Assists paraspinal tissue downshift after harder training blocks, and it is chosen because the basic firm rubber body is easy to clean and store. \\
+Standard & Peanut roller & RAD Helix Peanut & \$30 & Dual-Ball Tool & Phase 06 (End) & Provides more controlled pressure around the spine, and it is chosen because the premium contour makes placement feel steadier than bargain peanuts. \\
+Standard & Peanut roller & MobilityWOD Peanut & \$28 & Dual-Ball Tool & Phase 06 (End) & Helps address upper-back stiffness between sessions, and it is chosen because the denser shell holds shape well under bodyweight. \\
+Standard & Peanut roller & TriggerPoint Peanut Massage Roller & \$25 & Dual-Ball Tool & Phase 06 (End) & Supports mid-back tissue work with less spinal compression, and it is chosen because the known brand quality is usually more consistent than generic copies. \\
+Elite & Peanut roller & Naboso Peanut & \$35 & Dual-Ball Tool & Phase 06 (End) & Combines dual-ball pressure with stronger sensory feedback, and it is chosen because the textured premium surface adds more traction and body awareness. \\
+Elite & Peanut roller & RAD Centre + Helix Combo Tier & \$55 & Dual-Ball Tool & Phase 06 (End) & Gives refined upper-back pressure control, and it is chosen because the paired premium shapes offer more positioning flexibility than one peanut alone. \\
+Elite & Peanut roller & Tune Up Fitness Coregeous Ball Tier Equivalent & \$40 & Dual-Ball Tool & Phase 06 (End) & Supports broader trunk and back release work, and it is chosen because the larger dual-contact surface feels less sharp under the torso. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.12.K — Long Mobility Band Set}
+\phantomsection
+\addcontentsline{toc}{section}{7.12.K — Long Mobility Band Set}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Long Mobility Band Set & Serious Steel Assisted Pull-Up Bands & \$40 & Long Band & Phase 06 (End) & Assists broader mobility and traction-style stretching options, and it is chosen because the set gives several resistance levels for progression. \\
+Budget & Long Mobility Band Set & WODFitters Resistance Bands Set & \$38 & Long Band & Phase 06 (End) & Expands shoulder and hip mobility drills, and it is chosen because the multi-band pack covers both light and heavier assistance work. \\
+Budget & Long Mobility Band Set & ProsourceFit Resistance Bands Set & \$35 & Long Band & Phase 06 (End) & Supports banded stretches and joint prep, and it is chosen because the value set is large enough to cover most home recovery needs. \\
+Standard & Long Mobility Band Set & Rogue Monster Bands Set & \$95 & Long Band & Phase 06 (End) & Adds more durable mobility and assistance options, and it is chosen because the thicker latex holds up well under repeated loading. \\
+Standard & Long Mobility Band Set & Perform Better Superband Set & \$110 & Long Band & Phase 06 (End) & Supports a wide range of banded mobility patterns, and it is chosen because the commercial-style construction is reliable over time. \\
+Standard & Long Mobility Band Set & TRX Strength Bands & \$70 & Long Band & Phase 06 (End) & Helps create cleaner assisted mobility angles, and it is chosen because the premium finish feels more predictable than bargain latex. \\
+Elite & Long Mobility Band Set & Westside Barbell Jump Stretch Band Set & \$125 & Long Band & Phase 06 (End) & Expands advanced mobility and assistance options, and it is chosen because the power-focused build tolerates repeated high-tension use well. \\
+Elite & Long Mobility Band Set & Rubberbanditz Pull-Up Assist Set & \$120 & Long Band & Phase 06 (End) & Supports finer tension matching for mobility and prep, and it is chosen because the broader resistance ladder makes tool selection easier. \\
+Elite & Long Mobility Band Set & EliteFTS Pro Mini and Monster Band Bundle & \$130 & Long Band & Phase 06 (End) & Gives a deep pool of mobility resistances in one system, and it is chosen because the overbuilt bundle reduces the need for later replacement. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.12.L — Massage Cane}
+\phantomsection
+\addcontentsline{toc}{section}{7.12.L — Massage Cane}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Massage cane & Body Back Buddy Classic & \$35 & Self-Massage Cane & Phase 06 (End) & Helps reach hard-to-access upper-back trigger spots, and it is chosen because the multi-knob frame makes self-use easier than improvised objects. \\
+Budget & Massage cane & LiBa Back and Neck Massager & \$28 & Self-Massage Cane & Phase 06 (End) & Supports self-pressure on shoulder and neck-adjacent tension points, and it is chosen because the lower-cost hook shape is simple to learn. \\
+Budget & Massage cane & Gaiam Restore Muscle Therapy Cane & \$30 & Self-Massage Cane & Phase 06 (End) & Assists targeted pressure without needing another person, and it is chosen because the lighter frame is easier for beginners to position. \\
+Standard & Massage cane & Theracane Max Massager & \$40 & Self-Massage Cane & Phase 06 (End) & Gives stronger leverage for stubborn upper-body tightness, and it is chosen because the proven rigid frame keeps pressure more consistent. \\
+Standard & Massage cane & TriggerPoint AcuCurve Cane & \$35 & Self-Massage Cane & Phase 06 (End) & Helps apply manual pressure around the back and shoulders, and it is chosen because the curve design is comfortable to anchor and control. \\
+Standard & Massage cane & GoFit Muscle Massage Hook & \$32 & Self-Massage Cane & Phase 06 (End) & Supports precision point work on upper-body tension areas, and it is chosen because the handled design feels a bit easier to guide. \\
+Elite & Massage cane & Body Back Buddy Elite & \$45 & Self-Massage Cane & Phase 06 (End) & Improves self-directed pressure control, and it is chosen because the premium molded body feels sturdier and smoother in repeated use. \\
+Elite & Massage cane & Thera Cane Professional & \$45 & Self-Massage Cane & Phase 06 (End) & Targets hard-to-reach hotspots with less contortion, and it is chosen because the heavier rigid frame gives cleaner leverage. \\
+Elite & Massage cane & Pressure Positive Company Acupressure Cane Tier & \$55 & Self-Massage Cane & Phase 06 (End) & Supports more refined self-pressure work, and it is chosen because the premium hook geometry offers several useful contact angles. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.12.M — Heating Pad}
+\phantomsection
+\addcontentsline{toc}{section}{7.12.M — Heating Pad}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Heating pad & Sunbeam Standard Heating Pad & \$25 & Heat Aid & Phase 06 (End) & Provides gentle warmth for stiff areas after training, and it is chosen because the classic pad is simple to use and widely available. \\
+Budget & Heating pad & Pure Enrichment PureRelief Pad & \$30 & Heat Aid & Phase 06 (End) & Helps downshift local tightness before or after mobility work, and it is chosen because the plush cover is more comfortable for routine use. \\
+Budget & Heating pad & GENIANI King Size Heating Pad & \$28 & Heat Aid & Phase 06 (End) & Supports broader heat coverage for larger muscle groups, and it is chosen because the oversized pad fits back and hamstring areas better. \\
+Standard & Heating pad & Thermophore MaxHEAT Pad & \$55 & Heat Aid & Phase 06 (End) & Delivers stronger dry heat to stubborn stiff zones, and it is chosen because the weighted design holds contact better than flimsy pads. \\
+Standard & Heating pad & Battle Creek Original Thermophore & \$60 & Heat Aid & Phase 06 (End) & Helps warm tissue before easier mobility sessions, and it is chosen because the moist-heat capable construction feels more penetrating than basic pads. \\
+Standard & Heating pad & Sunbeam GoHeat Portable Heating Pad & \$70 & Heat Aid & Phase 06 (End) & Adds portable heat for recovery on the move, and it is chosen because the cordless format reduces setup friction. \\
+Elite & Heating pad & Hyperice Venom 2 Back & \$249 & Heat Aid & Phase 06 (End) & Combines warmth with gentle vibration for recovery prep, and it is chosen because the wrap format stays in place better than a flat pad. \\
+Elite & Heating pad & Therabody RecoveryTherm Back & \$249 & Heat Aid & Phase 06 (End) & Supports more targeted heat-based downshift, and it is chosen because the premium wrap system feels more secure during seated recovery. \\
+Elite & Heating pad & Thermotex Platinum Infrared Pad & \$180 & Heat Aid & Phase 06 (End) & Provides a larger premium heat platform, and it is chosen because the infrared-style design appeals to users wanting a more dedicated recovery tool. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.12.N — Reusable Cold Pack}
+\phantomsection
+\addcontentsline{toc}{section}{7.12.N — Reusable Cold Pack}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Reusable cold pack & FlexiKold Gel Ice Pack & \$18 & Cold Aid & Phase 06 (End) & Gives a simple cold option for irritated areas after harder sessions, and it is chosen because the flexible gel conforms better than stiff packs. \\
+Budget & Reusable cold pack & TheraICE Flexible Ice Pack & \$15 & Cold Aid & Phase 06 (End) & Supports brief cooldown on localized hot spots, and it is chosen because the soft shell is easy to wrap around small joints. \\
+Budget & Reusable cold pack & Rester's Choice Ice Pack Set & \$20 & Cold Aid & Phase 06 (End) & Helps rotate several cold packs through the week, and it is chosen because the multi-pack reduces waiting on refreezing. \\
+Standard & Reusable cold pack & Chattanooga ColPac & \$25 & Cold Aid & Phase 06 (End) & Provides a more clinical-feeling reusable cold option, and it is chosen because the brand is known for durable cold-retention products. \\
+Standard & Reusable cold pack & NatraCure FlexiKold Compression Wrap & \$28 & Cold Aid & Phase 06 (End) & Combines cooling with easier attachment, and it is chosen because the built-in wrap is more convenient than holding a loose pack. \\
+Standard & Reusable cold pack & Hyperice Ice Compression Wrap Tier Equivalent & \$45 & Cold Aid & Phase 06 (End) & Supports quicker post-session cooldown on targeted regions, and it is chosen because the wrap style keeps pressure and cold more consistent. \\
+Elite & Reusable cold pack & Hyperice X Knee / X Shoulder Tier & \$159 & Cold Aid & Phase 06 (End) & Adds premium cooling with compression for repeat post-session use, and it is chosen because the integrated design is cleaner than separate wrap-and-pack setups. \\
+Elite & Reusable cold pack & Game Ready Replacement-Style Cold Wrap Market Tier & \$90 & Cold Aid & Phase 06 (End) & Improves wrap fit around larger joints, and it is chosen because the premium contouring reduces constant repositioning. \\
+Elite & Reusable cold pack & Hilph Compression Ice Pack Kit & \$35 & Cold Aid & Phase 06 (End) & Gives a more complete premium-at-home cold setup, and it is chosen because the kit format covers several body areas with one purchase. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.12.O — Percussive Massage Gun}
+\phantomsection
+\addcontentsline{toc}{section}{7.12.O — Percussive Massage Gun}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Percussive Massage Gun & Bob and Brad C-2 Massage Gun & \$90 & Percussive Tool & Phase 06 (End) & Helps quick post-session tissue downshift, and it is chosen because the lighter body is easier to handle than many bulky cheap guns. \\
+Budget & Percussive Massage Gun & Ekrin Bantam & \$149 & Percussive Tool & Phase 06 (End) & Supports simple recovery passes on larger muscle groups, and it is chosen because the compact design is easier to store and charge. \\
+Budget & Percussive Massage Gun & Theragun Relief & \$149 & Percussive Tool & Phase 06 (End) & Assists easy guided tissue work, and it is chosen because the mainstream brand simplifies attachment and support access. \\
+Standard & Percussive Massage Gun & Hyperice Hypervolt Go 2 & \$129 & Percussive Tool & Phase 06 (End) & Adds portable percussion for tight calves and quads, and it is chosen because the compact premium motor is quieter than many value options. \\
+Standard & Percussive Massage Gun & Theragun Prime & \$299 & Percussive Tool & Phase 06 (End) & Helps larger-area recovery work feel more controlled, and it is chosen because the ergonomic handle reduces awkward wrist angles. \\
+Standard & Percussive Massage Gun & Hyperice Hypervolt 2 & \$249 & Percussive Tool & Phase 06 (End) & Supports broader tissue downshift with less hand fatigue, and it is chosen because the motor and attachment quality are more refined than cheaper guns. \\
+Elite & Percussive Massage Gun & Theragun Elite & \$399 & Percussive Tool & Phase 06 (End) & Provides stronger adjustable percussion for repeated dense training blocks, and it is chosen because the premium app and speed control improve consistency. \\
+Elite & Percussive Massage Gun & Hyperice Hypervolt 2 Pro & \$329 & Percussive Tool & Phase 06 (End) & Supports faster post-session recovery routines, and it is chosen because the stronger motor handles deeper larger-muscle work well. \\
+Elite & Percussive Massage Gun & Theragun PRO Plus & \$599 & Percussive Tool & Phase 06 (End) & Adds the most overbuilt percussion option in the category, and it is chosen because the premium ergonomics and battery setup suit high-frequency use. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.12.P — Vibration Foam Roller}
+\phantomsection
+\addcontentsline{toc}{section}{7.12.P — Vibration Foam Roller}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Vibration foam roller & LifePro Rumblex Roller & \$120 & Vibrating Roller & Phase 06 (End) & Adds gentle vibration to large-area rolling, and it is chosen because the lower cost makes powered rolling more accessible. \\
+Budget & Vibration foam roller & RumbleRoller Beastie Bar + Vibration Market Tier Equivalent & \$100 & Vibrating Roller & Phase 06 (End) & Supports higher-throughput tissue prep, and it is chosen because the powered format offers more effect than a plain roller alone. \\
+Budget & Vibration foam roller & Rolflex Vibrating Roller Tier Equivalent & \$129 & Vibrating Roller & Phase 06 (End) & Helps warm larger muscle groups before movement, and it is chosen because the roller shape stays familiar for users already using standard foam tools. \\
+Standard & Vibration foam roller & Hyperice Vyper Go & \$129 & Vibrating Roller & Phase 06 (End) & Improves quick tissue wake-up before mobility blocks, and it is chosen because the compact premium design stores more easily than full-size powered rollers. \\
+Standard & Vibration foam roller & TriggerPoint GRID Vibe Plus & \$99 & Vibrating Roller & Phase 06 (End) & Adds vibration while keeping a familiar textured shell, and it is chosen because the price stays moderate for a branded powered roller. \\
+Standard & Vibration foam roller & Therabody Wave Roller & \$149 & Vibrating Roller & Phase 06 (End) & Supports broader rolling and warm-up prep, and it is chosen because the premium density balances support and comfort well. \\
+Elite & Vibration foam roller & Hyperice Vyper 3 & \$199 & Vibrating Roller & Phase 06 (End) & Delivers higher-end vibration-assisted rolling, and it is chosen because the speed range is broader and the shell feels more durable. \\
+Elite & Vibration foam roller & Therabody Wave Roller with App Workflow & \$149 & Vibrating Roller & Phase 06 (End) & Improves guided recovery routines, and it is chosen because the integrated guidance may improve adherence for complex users. \\
+Elite & Vibration foam roller & Power Plate Roller & \$149 & Vibrating Roller & Phase 06 (End) & Adds premium vibration to large-area recovery work, and it is chosen because the Power Plate ecosystem appeals to users who want a more polished tool set. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.12.Q — Leg Elevation Wedge}
+\phantomsection
+\addcontentsline{toc}{section}{7.12.Q — Leg Elevation Wedge}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Leg elevation wedge & Cushy Form Leg Elevation Pillow & \$40 & Elevation Wedge & Phase 06 (End) & Supports post-session leg elevation and downshift, and it is chosen because the simple foam wedge covers the role without a large spend. \\
+Budget & Leg elevation wedge & K\"olbs Elevated Leg Wedge & \$45 & Elevation Wedge & Phase 06 (End) & Helps unload tired lower legs after long standing or loaded days, and it is chosen because the wider top surface feels more stable. \\
+Budget & Leg elevation wedge & LightEase Leg Support Pillow & \$38 & Elevation Wedge & Phase 06 (End) & Encourages comfortable legs-up recovery positioning, and it is chosen because the size is manageable in smaller rooms. \\
+Standard & Leg elevation wedge & Avana Leg Support Pillow & \$70 & Elevation Wedge & Phase 06 (End) & Improves comfort during longer elevation blocks, and it is chosen because the more structured foam keeps shape better over time. \\
+Standard & Leg elevation wedge & Sleep Again Elevation Pillow & \$65 & Elevation Wedge & Phase 06 (End) & Provides a cleaner post-ruck recovery posture, and it is chosen because the broad incline works for a wider range of leg lengths. \\
+Standard & Leg elevation wedge & InteVision Foam Bed Wedge & \$50 & Elevation Wedge & Phase 06 (End) & Supports versatile elevation and positioning use, and it is chosen because the layered design gives a more supportive feel than cheaper wedges. \\
+Elite & Leg elevation wedge & Brentwood Home Zuma Therapeutic Wedge & \$89 & Elevation Wedge & Phase 06 (End) & Adds a more premium elevation tool for lower-leg recovery, and it is chosen because the foam quality feels more durable and stable. \\
+Elite & Leg elevation wedge & MedCline Therapeutic Wedge Tier & \$150 & Elevation Wedge & Phase 06 (End) & Supports a more refined supported-recovery position, and it is chosen because the medical-style geometry is more deliberate than generic wedges. \\
+Elite & Leg elevation wedge & Avana Slant Bed Wedge System & \$120 & Elevation Wedge & Phase 06 (End) & Creates a more dedicated elevated recovery setup, and it is chosen because the premium system can double as a dedicated recovery-station component. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.12.R — Door Anchor Stretch System}
+\phantomsection
+\addcontentsline{toc}{section}{7.12.R — Door Anchor Stretch System}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Door anchor stretch system & Vive Door Stretch Strap & \$12 & Anchor System & Phase 06 (End) & Expands assisted stretch angles using a normal doorway, and it is chosen because the pocketed strap is simple and inexpensive. \\
+Budget & Door anchor stretch system & OPTP Doorway Stretch Strap & \$20 & Anchor System & Phase 06 (End) & Supports hamstring and hip mobility with better leverage, and it is chosen because the multi-loop design makes solo use easier. \\
+Budget & Door anchor stretch system & Crossover Symmetry Door Anchor & \$15 & Anchor System & Phase 06 (End) & Helps create stable anchored mobility positions, and it is chosen because the anchor is more purpose-built than improvised towel setups. \\
+Standard & Door anchor stretch system & TRX Door Anchor + Strap Setup & \$35 & Anchor System & Phase 06 (End) & Adds more stable assisted mobility options, and it is chosen because the hardware quality improves trust during tensioned work. \\
+Standard & Door anchor stretch system & Perform Better Door Anchor System & \$28 & Anchor System & Phase 06 (End) & Supports a broader range of anchored mobility drills, and it is chosen because the commercial-style build is more durable than bargain anchors. \\
+Standard & Door anchor stretch system & Spud Inc. Door Strap Anchor & \$30 & Anchor System & Phase 06 (End) & Improves anchored stretching without floor clutter, and it is chosen because the webbing strength feels overbuilt for repeated use. \\
+Elite & Door anchor stretch system & Crossover Symmetry Shoulder System & \$169 & Anchor System & Phase 06 (End) & Supports upper-body mobility and activation with more control, and it is chosen because the premium band-and-anchor system is more complete than a single strap. \\
+Elite & Door anchor stretch system & TRX Pro + Door Anchor Mobility-Use Tier & \$250 & Anchor System & Phase 06 (End) & Creates a very versatile anchored mobility station, and it is chosen because the full premium system supports many bodyweight and stretch options. \\
+Elite & Door anchor stretch system & Angles90 Door Anchor Mobility Kit & \$60 & Anchor System & Phase 06 (End) & Adds cleaner anchored pull angles for mobility work, and it is chosen because the handle-and-anchor kit offers more ergonomic grip options. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.12.S — Compression Boots}
+\phantomsection
+\addcontentsline{toc}{section}{7.12.S — Compression Boots}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Compression boots & FIT KING Leg Air Massager & \$90 & Pneumatic Recovery & Phase 12 (End) & Supports lower-leg recovery after high-density weeks, and it is chosen because the entry price makes pneumatic compression accessible. \\
+Budget & Compression boots & QUINEAR Air Compression Recovery System & \$130 & Pneumatic Recovery & Phase 12 (End) & Helps reduce leg heaviness after long time-on-feet work, and it is chosen because the basic controller is simple to operate. \\
+Budget & Compression boots & CINCOM Leg Massager & \$80 & Pneumatic Recovery & Phase 12 (End) & Adds a home recovery option for tired calves and thighs, and it is chosen because the compact foldable sleeves store more easily than premium systems. \\
+Standard & Compression boots & Hyperice Normatec Go & \$399 & Pneumatic Recovery & Phase 12 (End) & Supports portable compression-based downshift, and it is chosen because the wearable calf format is easier to deploy quickly than full-leg boots. \\
+Standard & Compression boots & Rapid Reboot Recovery Boots & \$699 & Pneumatic Recovery & Phase 12 (End) & Improves post-session leg reset in heavy training blocks, and it is chosen because the full-leg system offers stronger recovery coverage than cheaper massagers. \\
+Standard & Compression boots & Therabody JetBoots Prime & \$499 & Pneumatic Recovery & Phase 12 (End) & Helps compress the leg-reset process into a shorter window, and it is chosen because the travel-friendly integrated design reduces setup burden. \\
+Elite & Compression boots & Hyperice Normatec 3 Legs & \$899 & Pneumatic Recovery & Phase 12 (End) & Provides a premium full-leg compression option, and it is chosen because the segment control and brand ecosystem are widely trusted. \\
+Elite & Compression boots & Therabody JetBoots Pro Plus & \$999 & Pneumatic Recovery & Phase 12 (End) & Adds a very high-end portable compression system, and it is chosen because the cordless build fits field and travel sustainment better. \\
+Elite & Compression boots & Recovery Systems RPX 2024 Boots & \$1295 & Pneumatic Recovery & Phase 12 (End) & Supports the most overbuilt compression workflow here, and it is chosen because the premium chamber control is intended for heavy repeated use. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.12.T — Mobility / Stretch Station}
+\phantomsection
+\addcontentsline{toc}{section}{7.12.T — Mobility / Stretch Station}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Mobility / stretch station & Precor StretchTrainer 240i Used-Market Tier & \$250 & Stretch Station & Phase 12 (End) & Creates a dedicated flexibility station for repeat use, and it is chosen because even used commercial units offer better support than improvised furniture. \\
+Budget & Mobility / stretch station & Sunny Health and Fitness Stretching Machine & \$250 & Stretch Station & Phase 12 (End) & Supports guided lower-body stretching, and it is chosen because the home-market machine is cheaper than commercial stretch units. \\
+Budget & Mobility / stretch station & Lifepro Stretch Partner & \$199 & Stretch Station & Phase 12 (End) & Helps make supported hamstring and hip stretching easier to repeat, and it is chosen because the simpler mechanism lowers the barrier to use. \\
+Standard & Mobility / stretch station & Precor StretchTrainer 240i refurbished & \$800 & Stretch Station & Phase 12 (End) & Improves supported daily flexibility work, and it is chosen because the commercial design is durable and easy to enter and exit. \\
+Standard & Mobility / stretch station & Nitrofit Limber Pro Stretch Machine & \$499 & Stretch Station & Phase 12 (End) & Creates a more dedicated recovery-space posture, and it is chosen because the design supports several major lower-body stretch patterns. \\
+Standard & Mobility / stretch station & True Stretch Cage Used-Market Tier & \$700 & Stretch Station & Phase 12 (End) & Expands full-body supported mobility work, and it is chosen because the cage format offers many anchored positions in one footprint. \\
+Elite & Mobility / stretch station & True Stretch Cage New-Market Tier & \$1495 & Stretch Station & Phase 12 (End) & Provides a premium dedicated mobility station, and it is chosen because the multi-grip frame supports a very wide range of repeatable positions. \\
+Elite & Mobility / stretch station & Precor StretchTrainer 240i New-Market Tier & \$1299 & Stretch Station & Phase 12 (End) & Supports high-frequency assisted flexibility work, and it is chosen because the premium commercial build is made for repeated long-term use. \\
+Elite & Mobility / stretch station & StretchLab / Commercial-Assisted Stretch Bench Equivalent Market Tier & \$1600 & Stretch Station & Phase 12 (End) & Creates the most dedicated stretch-space posture in this category, and it is chosen because the full bench-style setup reduces improvisation almost completely. \\
+\end{longtblr}
+
+\endgroup
+
+\clearpage
+
+\section*{7.12.U — When These Items Are Needed}
+\phantomsection
+\addcontentsline{toc}{section}{7.12.U — When These Items Are Needed}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=2.20in]
+    Q[c,wd=1.25in]
+    Q[l,wd=3.10in]
+    Q[l,wd=3.10in]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, valign=m},
+  column{1-2} = {halign=c},
+  column{3-4} = {halign=l},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Item} &
+\Hdr{First Required Phase} &
+\Hdr{Why it becomes necessary} &
+\Hdr{What happens if missing} \\
+Exercise mat & Phase 00 (End) & A safe surface is part of the locked Tier 1 class and is also tied to early admissible floor-contact work. & Floor-based mobility, cooldown, and even simple plank-surface stability become less reliable and less comfortable. \\
+Foam roller & Phase 00 (End) & It fits the locked basic tissue-care implement class used to manage early stiffness and preserve movement quality. & Large-area tissue downshift remains harder to perform consistently after sessions. \\
+Massage Ball & Phase 00 (End) & It is a simple low-aggression point-pressure tool that fits the same basic tissue-care posture. & Smaller hotspot areas have fewer conservative self-care options before they become more annoying. \\
+Stretch Strap & Phase 00 (End) & It is one of the simplest basic mobility tools in the Tier 1 class and supports repeatable solo range work. & Assisted lower-body mobility becomes more improvised and less repeatable. \\
+Loop Mobility Band Set & Phase 00 (End) & It fits the basic mobility-tool class and supports daily activation and range-access work with very low complexity. & Warm-up activation and simple resistance-assisted mobility become more limited. \\
+Yoga Block & Phase 00 (End) & It supports safer and more accessible floor-position scaling inside the basic mobility-tool class. & Limited-range positions stay harder to modify and repeat cleanly. \\
+Slant board / calf wedge & Phase 00 (End) & It is a simple mobility-access tool for early ankle and calf range management without implying treatment. & Lower-leg mobility work remains less standardized and less comfortable. \\
+Mobility Stick & Phase 00 (End) & It provides another low-aggression basic tissue-care option that is easy to apply conservatively. & Quick manual soft-tissue work between sessions becomes less convenient. \\
+Foot Massage Roller & Phase 00 (End) & It supports early foot-interface durability from the first walking-based training blocks onward. & Foot-specific downshift options narrow, which can make small foot irritation easier to ignore. \\
+Peanut Roller & Phase 06 (End) & It fits the expanded recovery-options class rather than the minimum early kit. & Upper-back and paraspinal pressure work remains less controlled than it could be. \\
+Long Mobility Band Set & Phase 06 (End) & It belongs to the expanded mobility-set class once more tool variety is justified. & Banded traction-style mobility and heavier assistance options remain limited. \\
+Massage Cane & Phase 06 (End) & It is an improved reach-and-control recovery tool that fits the expanded Tier 2 posture. & Hard-to-reach upper-body tension points stay harder to address independently. \\
+Heating Pad & Phase 06 (End) & It belongs to the improved recovery-options class once workload density makes additional downshift tools more useful. & Warmth-based pre-mobility or post-session comfort options remain narrower. \\
+Reusable Cold Pack & Phase 06 (End) & It is another improved recovery option used once denser work creates more reasons to cool irritated areas conservatively. & Quick localized cooldown support is unavailable in the home toolkit. \\
+Percussive Massage Gun & Phase 06 (End) & It is a higher-throughput recovery tool that fits the expanded Tier 2 class rather than the basic starter kit. & Faster large-area tissue downshift remains harder to accomplish. \\
+Vibration Foam Roller & Phase 06 (End) & It belongs to the same expanded-recovery class as other powered tools and is not part of the minimum baseline. & Powered large-area prep and downshift options remain absent. \\
+Leg Elevation Wedge & Phase 06 (End) & It fits the improved recovery-options class once long time-on-feet exposure and denser weeks are more common. & Comfortable supported leg-elevation recovery becomes less easy to perform. \\
+Door Anchor Stretch System & Phase 06 (End) & It is an expanded mobility-set item because it adds anchored stretch options beyond the basic floor kit. & Anchored solo mobility patterns remain narrower and more improvised. \\
+Compression Boots & Phase 12 (End) & They fit the locked Tier 3 redundant recovery-tool posture and are not needed for the minimum deployable category earlier. & A premium late-phase leg-recovery option is absent, but the core category remains functional. \\
+Mobility / stretch station & Phase 12 (End) & It fits the locked dedicated mobility/recovery-space posture that only appears in Tier 3. & Recovery-space redundancy and dedicated stretch infrastructure remain simpler and less overbuilt. \\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+\clearpage
+
+\section*{7.12.V — Compliance Checklist}
+\phantomsection
+\addcontentsline{toc}{section}{7.12.V — Compliance Checklist}
+
+\begin{itemize}
+\item Only one deliverable is provided for Target Category 7.12.
+\item The locked title format and required output structure are used.
+\item The chart uses the exact required columns.
+\item Twenty distinct items are included, and each item contains three Budget rows, three Standard rows, and three Elite rows.
+\item Rows are grouped by item and progress from foundational surface and mobility tools toward expanded recovery options and dedicated-space tools.
+\item Notes contain both the intended effect or use of the item and the reason that specific product was chosen, with unique wording for every entry.
+\item Stage 6 timing is treated as authoritative, and conflicting earlier Stage 7.12 overview timing is reconciled explicitly.
+\item Controlled assumptions are limited to capability-class mapping: Tier 1 basics at Phase 00, Tier 2 expanded tools at Phase 06, and Tier 3 redundancy / dedicated-space tools at Phase 12.
+\item No training programming, workouts, sets, reps, new tests, new thresholds, retailer links, affiliate links, promo codes, or live price research are included.
+\item The required post-chart timing table is included and matches the chart timing.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,437 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{7.02 — Hormonal Support and Adaptogens — OTC}
+\phantomsection
+\addcontentsline{toc}{section}{7.02 — Hormonal Support and Adaptogens — OTC}
+
+\subsection*{7.02.1 Purpose \& Scope}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.02.1 Purpose \& Scope}
+
+7.02 exists to define education-only boundaries for OTC adaptogens and OTC “hormonal support” marketing categories, with strict clinician escalation posture for endocrine concerns. It is not a performance lever and is never required for any phase. It cannot be used to justify gate outcomes or to override safety, recovery, and validity posture.
+
+\subsection*{7.02.2 Governance and Safety Boundaries}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.02.2 Governance and Safety Boundaries}
+
+\begin{itemize}
+\item OTC-only for any item discussed here.
+\item Endocrine concerns are not self-managed: seek licensed clinician evaluation when trigger symptoms or abnormal labs occur.
+\item Prohibited content and behavior:
+  \begin{itemize}
+  \item no advice on anabolic agents, controlled substances, SARMs, peptides, research chemicals, or prescription-only hormones,
+  \item no dosing/sourcing/cycling/procurement guidance for prescription hormones,
+  \item no “post-cycle” or hormone manipulation strategies.
+  \end{itemize}
+\item Validity protection:
+  \begin{itemize}
+  \item do not introduce new supplement variables near Deload+Test windows or gate attempts,
+  \item do not change supplement variables to “rescue” a poor test week or low-compliance window.
+  \end{itemize}
+\item Safety-first: any adverse reaction, red-flag symptom, or unusual physiologic response triggers \textbf{STOP} \textbf{NOW} posture for that day’s testing/exposure and clinician escalation when indicated.
+\end{itemize}
+
+\subsection*{7.02.3 Tier Doctrine Applied to 7.02}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.02.3 Tier Doctrine Applied to 7.02}
+
+Tiering for 7.02 represents the degree of education and documentation posture, not a required acquisition pathway.
+
+\begin{itemize}
+\item Tier 0: education-only boundary awareness; no product required; no execution dependency.
+\item Tier 1: optional single-variable trial posture (one item at a time), conservative dosing range context, and strict documentation; still never required.
+\item Tier 2: optional expanded education depth and tighter documentation controls to reduce novelty and interaction risk; still never required.
+\item Tier 3: optional overbuilt documentation and risk-control posture (redundancy in tracking, conservative stop rules, and clinician coordination); still never required.
+\end{itemize}
+
+In every phase and every tier, 7.02 remains non-required and cannot be treated as a gate dependency.
+
+\subsection*{7.02.4 Selection Criteria \& Fit Checks}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.02.4 Selection Criteria \& Fit Checks}
+
+\begin{itemize}
+\item Eligibility filter (non-diagnostic):
+  \begin{itemize}
+  \item if the trainee is already using prescription medications (especially thyroid, psychiatric, anticoagulants, blood pressure), treat any adaptogen use as clinician-led discussion only.
+  \item if the trainee has a history of severe anxiety/panic, insomnia vulnerability, or adverse reactions to stimulants, avoid activating adaptogens and treat as omit-by-default.
+  \end{itemize}
+\item Product type selection (generic):
+  \begin{itemize}
+  \item prefer single-ingredient items to reduce interaction uncertainty.
+  \item avoid multi-ingredient “hormone boosters” and proprietary blends; they increase novelty risk and make adverse-event attribution impossible.
+  \end{itemize}
+\item Stability requirement:
+  \begin{itemize}
+  \item one variable at a time; do not change dose and item simultaneously.
+  \item do not initiate or change within Deload+Test windows.
+  \end{itemize}
+\item Fit check outcomes (operational):
+  \begin{itemize}
+  \item “Fit” means no adverse effects, no sleep disruption, no anxiety escalation, no GI distress that affects training execution, and no changes that contaminate gates.
+  \item “Not fit” means any adverse event trend or any need to chase dose/stack multiple items to “feel it,” which is prohibited.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.02.5 Setup, Safety, and Anchoring}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.02.5 Setup, Safety, and Anchoring}
+
+\begin{itemize}
+\item Setup posture (non-prescriptive):
+  \begin{itemize}
+  \item choose one optional item at a time, keep timing stable if used, and document as a controlled variable.
+  \item do not use adaptogens as a pre-test acute performance enhancer; this contaminates comparability and violates “no novelty near gate” posture.
+  \end{itemize}
+\item Anchoring to governance:
+  \begin{itemize}
+  \item treat 7.02 as never required; omit is always acceptable.
+  \item any endocrine concern triggers clinician evaluation; do not self-diagnose.
+  \end{itemize}
+\item Stop posture for adverse events:
+  \begin{itemize}
+  \item discontinue the optional item if adverse effects occur (insomnia, anxiety, palpitations, rash, GI distress, unusual dizziness).
+  \item if the adverse event is severe or includes red-flag symptoms, \textbf{STOP} \textbf{NOW} posture applies and escalation is required per governance.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.02.6 Maintenance, Replacement, and Storage}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.02.6 Maintenance, Replacement, and Storage}
+
+\begin{itemize}
+\item Storage:
+  \begin{itemize}
+  \item store in a cool, dry location; avoid heat/humidity exposure that degrades stability.
+  \item keep containers closed; prevent moisture contamination.
+  \end{itemize}
+\item Replacement:
+  \begin{itemize}
+  \item respect expiration dates; discard expired products.
+  \item discontinue and discard if odor/appearance changes or contamination is suspected.
+  \end{itemize}
+\item Documentation:
+  \begin{itemize}
+  \item maintain a simple log record (item type, dose, timing, start/stop date, adverse events).
+  \item keep label photo and lot information where available, to support audit and contamination risk mitigation.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.02.7 Substitution Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.02.7 Substitution Rules}
+
+\begin{itemize}
+\item Primary substitution for any optional 7.02 item is omit. This category is never required.
+\item If the intent is “stress support,” substitute with governance-aligned controls:
+  \begin{itemize}
+  \item downshift training intensity/density,
+  \item protect sleep opportunity,
+  \item apply Stage 1.F and Stage 3 reslot discipline rather than forcing gate attempts.
+  \end{itemize}
+\item If endocrine symptoms appear, substitute with clinician evaluation:
+  \begin{itemize}
+  \item stop self-directed experimentation,
+  \item provide clinician with symptom log and medication/supplement disclosure,
+  \item do not resume until cleared.
+  \end{itemize}
+\item Validity substitution rule:
+  \begin{itemize}
+  \item do not introduce or change 7.02 variables inside protected windows; if a change occurs, treat gate attempts as validity-sensitive and reslot rather than claiming gate credit.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.02.8 Phase Integration Map}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.02.8 Phase Integration Map}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.05in]
+    Q[l,wd=1.70in]
+    X[l,2.25]
+    X[l,3.75]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Phase} &
+\Hdr{Required Tier (from Stage 6)} &
+\Hdr{What Changes / Becomes Mandatory} &
+\Hdr{Notes} \\
+Phase 00 & T0 & None & Never required. Strongly discourage novelty near Deload+Test windows; focus is compliance, sleep, and low-risk tolerance. \\
+Phase 01 & T0 & None & Never required. If used at all, stabilize well before protected windows and document as context only. \\
+Phase 02 & T0 & None & Never required. If \textbf{STR} consequence increases, do not use 7.02 to mask recovery debt or to justify escalation. \\
+Phase 03 & T0 & None & Never required. Treat any change as a controlled variable; no introductions near gates. \\
+Phase 04 & T0 & None & Never required. Aquatic phase relevance does not change 7.02 posture. \\
+Phase 05 & T0 & None & Never required. Longer endurance windows increase the importance of sleep and hydration; do not attempt to “supplement around” instability. \\
+Phase 06 & T0 & None & Never required. Higher consequence gates demand lower variance; avoid novel supplements near protected windows. \\
+Phase 07 & T0 & None & Never required. Hybrid density increases drift risk; governance response is reslot/downshift, not supplement escalation. \\
+Phase 08 & T0 & None & Never required. Durability constraints dominate; treat 7.02 as omit-by-default. \\
+Phase 09 & T0 & None & Never required. \textbf{CAL} volume is controlled through programming and recovery posture, not adaptogen reliance. \\
+Phase 10 & T0 & None & Never required. Underwater governance is unrelated; 7.02 remains education-only. \\
+Phase 11 & T0 & None & Never required. Late-phase validity demands discourage novelty; omit remains preferred. \\
+Phase 12 & T0 & None & Never required. Verification blocks require low variance; do not add or change supplements inside protected windows. \\
+Phase 13 & T0 & None & Never required. Consolidation demands repeatability; omit remains preferred. \\
+\end{longtblr}
+
+\endgroup
+
+Phase Integration Map Notes:
+
+\begin{itemize}
+\item Stage 6 represents 7.02 as education engagement posture across phases. This overview treats required tier as T0 for every phase because 7.02 is never required; any education engagement remains optional.
+\end{itemize}
+
+\subsection*{7.02.9 Risks, Contraindications, and Red Flags}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.02.9 Risks, Contraindications, and Red Flags}
+
+High-level risks (education-only; non-diagnostic):
+
+\begin{itemize}
+\item Interaction risk:
+  \begin{itemize}
+  \item sedatives/sleep medications, antidepressants, stimulants, thyroid medications, anticoagulants, and blood pressure medications can interact with OTC botanicals.
+  \item default posture: if interaction risk is plausible or uncertain, omit and seek clinician input.
+  \end{itemize}
+\item Sleep disruption and anxiety amplification:
+  \begin{itemize}
+  \item common failure mode is worsening sleep quality, anxiety, agitation, or palpitations, which degrades recovery and contaminates gate evidence.
+  \end{itemize}
+\item GI intolerance and dehydration risk:
+  \begin{itemize}
+  \item nausea, diarrhea, appetite disruption can reduce training feasibility and increase safety risk.
+  \end{itemize}
+\item Contamination and mislabeling risk:
+  \begin{itemize}
+  \item OTC supplements can have variable purity; treat this as a validity and safety risk, especially when selection-readiness contexts may require clean compliance posture.
+  \end{itemize}
+\item Endocrine red flags (trigger clinician evaluation; do not self-manage):
+  \begin{itemize}
+  \item persistent low libido or sexual dysfunction,
+  \item unexplained fatigue that does not respond to sleep normalization,
+  \item unexplained weight change with temperature intolerance,
+  \item persistent mood changes, new anxiety/panic, or sleep collapse,
+  \item new breast tenderness/swelling, unexplained bruising, or edema.
+  \end{itemize}
+\item Common lab abnormalities that should trigger clinician evaluation (non-diagnostic examples):
+  \begin{itemize}
+  \item abnormal TSH/free T4,
+  \item abnormal total/free testosterone with abnormal LH/FSH,
+  \item abnormal prolactin,
+  \item unexplained elevated liver enzymes,
+  \item abnormal fasting glucose/A1c,
+  \item abnormal hematocrit/hemoglobin changes,
+  \item abnormal lipid profile changes not explained by diet/execution context.
+  \end{itemize}
+\end{itemize}
+
+Stop posture:
+
+\begin{itemize}
+\item If severe symptoms occur (chest pain/pressure, syncope/near-syncope, severe shortness of breath, new neurologic symptoms), \textbf{STOP} \textbf{NOW} and escalation posture applies per governance. Do not attribute symptoms to supplements as a “normal reaction.”
+\end{itemize}
+
+Requires Stage 8 review triggers (governance drift):
+
+\begin{itemize}
+\item Any downstream artifact that attempts to treat 7.02 as required, or introduces prohibited prescription hormone guidance, requires Stage 8 review and renders the artifact non-deployable until corrected.
+\end{itemize}
+
+\subsection*{7.02.10 Compliance Checklist}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.02.10 Compliance Checklist}
+
+\begin{itemize}
+\item \textbf{PASS}/\textbf{FAIL}: Category is explicitly OTC-only and education-only; no prescription hormone guidance appears.
+\item \textbf{PASS}/\textbf{FAIL}: No dosing/sourcing/cycling/procurement guidance for prescription hormones appears; no prohibited substances are discussed.
+\item \textbf{PASS}/\textbf{FAIL}: 7.02 is explicitly never required for any phase; no gate dependency posture is implied.
+\item \textbf{PASS}/\textbf{FAIL}: Clinician escalation triggers include endocrine symptom examples and common lab abnormality examples without diagnostic claims.
+\item \textbf{PASS}/\textbf{FAIL}: Validity contamination controls are explicit (no novelty near Deload+Test windows; controlled variable documentation).
+\item \textbf{PASS}/\textbf{FAIL}: Water governance and broader safety boundaries are not contradicted (no breath-hold/underwater instruction; no unsafe claims).
+\end{itemize}
+
+\end{document}

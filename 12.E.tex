@@ -1,0 +1,620 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 12.E — Maintenance Handoff Checklist Post-Phase 13 Sustainment}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 12.E — Maintenance Handoff Checklist Post Phase 13 Sustainment}
+
+\subsection*{12.E.1 Sustainment Purpose and Non-Redesign Boundary}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.E.1 Sustainment Purpose and Non-Redesign Boundary}
+
+\begin{itemize}
+\item This appendix transitions Program v1.0 execution into sustainment posture without adding new training content, new tests, new thresholds, or phase edits.
+\item Sustainment preserves:
+  \begin{itemize}
+  \item validity and logging discipline (Stage 1.F tags; Stage 2.E required fields),
+  \item safety governance and stop posture (\textbf{STOP} \textbf{NOW} / \textbf{MEDICAL} \textbf{HOLD} posture retained),
+  \item version and archive discipline (Stage 9 packaging/versioning doctrine; canonical versioning location preserved).
+  \end{itemize}
+\item Sustainment decisions \textbf{MUST} NOT use inadmissible evidence:
+  \begin{itemize}
+  \item record \textbf{UNKNOWN} / \textbf{MISSING}; no inference,
+  \item \textbf{INVALID} tests provide no gate credit and are treated as not yet tested for readiness verification,
+  \item reslot discipline applies; no stacking make-ups.
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\begin{landscape}
+
+\subsection*{12.E.2 Coach and Admin Handoff Checklist}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.E.2 Coach and Admin Handoff Checklist}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.80in]
+    X[l,5.15]
+    X[l,3.45]
+    Q[l,wd=1.25in]
+    Q[l,wd=1.15in]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Checkbox} &
+\Hdr{Item} &
+\Hdr{Evidence pointer} &
+\Hdr{Owner} &
+\Hdr{Initials/Date} \\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Final logs archived and verified complete with Stage 2.E required fields present &
+Binder corpus: Stage 2.E log sections; /99\_Change\_Log\_and\_Archive/ &
+Coach Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Phase 13 completion gate outcome documented and signed &
+Binder: Phase 13 end gate packet; outcome \textbf{ADVANCE}/\textbf{HOLD}/\textbf{REGRESS}/\textbf{MEDICAL} \textbf{HOLD} recorded &
+Coach Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Stage 8 issues dispositioned using allowed values only (Resolved / Deferred / Accepted Waiver / Archived) &
+/08\_QA\_and\_Crosswalks/ (8.D); central \textbf{ISSUE-LOG} export &
+Coach Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Equipment inventory updated and verified complete (7.01–7.20) &
+12.E.3 completed table; /07\_Category\_Overviews/ inventory pointer &
+Equipment Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Maintenance schedule established for high-wear items (ruck components; footwear/socks rotation; conditioning machines where used) &
+Binder: sustainment notes section; /07\_Category\_Overviews/ (7.07; 7.11; 7.08; 7.10) &
+Equipment Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Version freeze applied and next planned review date set &
+/99\_Change\_Log\_and\_Archive/Versioning/\textbf{FREEZE-WINDOWS} &
+Coach Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Binder/package archive and versioning handoff completed (binder pointer; versioning pointer; final \textbf{CHANGE-LOG}/\textbf{PATCH-REGISTER}/\textbf{FREEZE-WINDOWS} state recorded) &
+Binder: archive pointer page; /99\_Change\_Log\_and\_Archive/Versioning/ &
+Coach Lead &
+\\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+\begin{landscape}
+
+\subsection*{12.E.3 Equipment Inventory Update Checklist 20 Lines}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.E.3 Equipment Inventory Checklist}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.80in]
+    X[l,5.15]
+    X[l,3.45]
+    Q[l,wd=1.25in]
+    Q[l,wd=1.15in]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Checkbox} &
+\Hdr{Item} &
+\Hdr{Evidence pointer} &
+\Hdr{Owner} &
+\Hdr{Initials/Date} \\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+7.01 Strength and Resistance Training Equipment &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Equipment Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+7.02 Hormonal Support and Adaptogens OTC Education Only &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Coach Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+7.03 Foundational Health Supplements OTC &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Trainee &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+7.04 Performance and Auxiliary Supplements OTC &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Trainee &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+7.05 Cognitive Performance and Energy Enhancers OTC &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Trainee &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+7.06 Recovery, Sleep, and Stress-Support Aids OTC &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Trainee &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+7.07 Load-Bearing, Rucking, and Carry Systems &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Equipment Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+7.08 Conditioning, Endurance, and Aerobic Training Tools &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Equipment Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+7.09 Health Monitoring, Diagnostics, and Biometrics &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Coach Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+7.10 Logistics, Maintenance, Storage, and Sustainment Equipment &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Equipment Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+7.11 Footwear Systems and Foot Care &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Trainee &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+7.12 Recovery, Mobility, and Tissue-Care Implements &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Trainee &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+7.13 Nutrition Preparation and Hydration Systems &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Trainee &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+7.14 Environmental Apparel Cold Hot Wet Inclement &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Trainee &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+7.15 General Training and Daily Wear Apparel &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Trainee &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+7.16 Operational Self-Management Systems Journaling Planning Mental Conditioning &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Coach Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+7.17 Aquatic Training and Water Safety Equipment &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Equipment Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+7.18 Testing, Timing, Measurement, and Course-Setup Tools &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Coach Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+7.19 Protective and Assistive Equipment &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Equipment Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+7.20 Personal Hygiene, Health, and Sanitation Items &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Trainee &
+\\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+\begin{landscape}
+
+\subsection*{12.E.4 Trainee Sustainment Checklist}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.E.4 Trainee Sustainment Checklist}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.80in]
+    X[l,5.15]
+    X[l,3.45]
+    Q[l,wd=1.25in]
+    Q[l,wd=1.15in]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Checkbox} &
+\Hdr{Item} &
+\Hdr{Evidence pointer} &
+\Hdr{Owner} &
+\Hdr{Initials/Date} \\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Understands ongoing validity and logging posture remains in force during sustainment (Stage 1.F validity tags; Stage 2.E required fields) &
+Binder: 1.F; 2.E; sustainment notes section &
+Trainee &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Footwear replacement plan and footcare continuation maintained &
+/07\_Category\_Overviews/ (7.11); inventory row 7.11 in 12.E.3 &
+Trainee &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Hygiene/sanitation and gear drying workflow continues &
+/07\_Category\_Overviews/ (7.20; 7.10); inventory rows 7.20 and 7.10 in 12.E.3 &
+Trainee &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Medical follow-up posture if any red flags occurred in final phases (high-level; no medical advice) &
+Binder: safety event notes; \textbf{MEDICAL} \textbf{HOLD} records if any &
+Medical &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Minimal sustainment test kit maintained (cross-reference 12.E.5) &
+12.E.5 completed table; /07\_Category\_Overviews/ (7.18) &
+Coach Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Periodic readiness verification posture retained (Stage 2 gate-critical tests only; no new tests; quarterly cadence aligns to 12.E.6) &
+Binder: Stage 2 protocol reference list; quarterly audit records 12.E.6 &
+Coach Lead &
+\\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+\subsection*{12.E.5 Minimal Sustainment Test Kit 7.18 Itemized}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.E.5 Minimal Sustainment Test Kit 7.18 Itemized}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.80in]
+    X[l,5.75]
+    X[l,3.75]
+    Q[l,wd=0.75in]
+    Q[l,wd=0.75in]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Checkbox} &
+\Hdr{Item} &
+\Hdr{Evidence pointer} &
+\Hdr{Owner} &
+\Hdr{Initials/Date} \\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Timing device stopwatch or timer &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Coach Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Backup timing device if used &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Coach Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Route \textbf{ID} cards or route record sheets (\textbf{ROUTE}-\#\# references) &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Coach Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Pool \textbf{ID} card (\textbf{POOL}-\#\#) if swim verification is used in sustainment &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Coach Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Machine \textbf{ID} card (\textbf{MACH}-\#\#) if treadmill/erg verification is used in sustainment &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Coach Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Measuring tape &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Trainee &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Bodyweight scale &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Trainee &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Course markers (cones/chalk/tape) if used &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Equipment Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Waterproof note card and pen if pool logging is used &
+Tier: \_\_\_\_; Status: OK / Repair / Replace; Location: \_\_\_\_\_\_\_\_\_\_\_\_ &
+Coach Lead &
+\\
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ] &
+Binder logging capture method (scan/export workflow pointer into binder corpus and package folder) &
+Binder pointer: \_\_\_\_; Folder path: \_\_\_\_ &
+Coach Lead &
+\\
+\end{longtblr}
+
+\endgroup
+
+\subsection*{12.E.6 Quarterly Sustainment Audit Mini-Template}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.E.6 Quarterly Sustainment Audit Mini-Template}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.80in]
+    X[l,5.75]
+    X[l,3.75]
+    Q[l,wd=0.75in]
+    Q[l,wd=0.75in]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Checkbox} &
+\Hdr{Item} &
+\Hdr{Evidence pointer} &
+\Hdr{Owner} &
+\Hdr{Initials/Date} \\
+&
+Stage 2.E minimum dataset compliance; Stage 1.F validity tag usage; periodic readiness verification results using Stage 2 gate-critical tests (test names use Stage 2 \textbf{ID}); active \textbf{ISS-08}-\#\#\# and disposition (Resolved / Deferred / Accepted Waiver / Archived) &
+& Coach Lead / Trainee / Medical / Equipment Lead
+&
+ \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\subsection*{12.E.7 Sign-Off Block}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.E.7 Sign-Off Block}
+
+\begin{itemize}
+\item  
+Coach Lead \\\\Signature/Typed Acknowledgment:\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\\\Name: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_   \\\\Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ 
+\item Trainee \\\\Signature/Typed Acknowledgment:\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\\\Name: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_   \\\\Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ 
+\item Equipment Lead \\\\Signature/Typed Acknowledgment:\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\\\Name: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_   \\\\Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ 
+\end{itemize}
+
+\end{document}

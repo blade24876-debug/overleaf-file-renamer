@@ -1,0 +1,430 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{7.18 — Testing, Timing, Measurement, and Course-Setup Tools}
+\phantomsection
+\addcontentsline{toc}{section}{7.18 — Testing, Timing, Measurement, and Course-Setup Tools}
+
+\subsection*{7.18.1 Purpose \& Scope}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.1 Purpose \& Scope}
+
+7.18 defines the tool capability required to time, measure, and document tests and comparable training benchmarks under controlled, repeatable conditions. It focuses on tool readiness and environment identity readiness (routes, pools, machines) needed to produce admissible evidence and to prevent “almost the same” route/tool drift.
+
+\subsection*{7.18.2 Governance and Safety Boundaries}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.2 Governance and Safety Boundaries}
+
+\begin{itemize}
+\item Tools exist to preserve validity and safety: standard conditions, repeatability, audit trail.
+\item Environment safety overrides measurement:
+  \begin{itemize}
+  \item unsafe routes, heat/ice, air quality, and visibility hazards → substitute or reschedule to the next valid window; do not push through.
+  \end{itemize}
+\item No medical guidance: health red flags abort testing per governance posture.
+\item No “best device” claims: capability and repeatability posture only.
+\end{itemize}
+
+\subsection*{7.18.3 Tier Doctrine — Applied to Testing/Measurement Tools}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.3 Tier Doctrine — Applied to Testing/Measurement Tools}
+
+\begin{itemize}
+\item Tier 0: informal measurement posture; safe substitutes only; inadmissible for gates.
+\item Tier 1: minimum deployable tools that enable valid timing and baseline measurement capture; route measurement method capability exists (GPS mapping capability allowed) with strict logging posture.
+\item Tier 2: redundancy and higher-validity course measurement capability (measuring wheel or certified loop), plus safe course markers and pool aids.
+\item Tier 3: overbuilt redundancy and expanded course control kits; optional weather meter for condition capture; still subordinate to environment safety overrides.
+\end{itemize}
+
+\subsection*{7.18.4 Selection Criteria \& Fit Checks}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.4 Selection Criteria \& Fit Checks}
+
+\begin{itemize}
+\item Accuracy and repeatability over novelty:
+  \begin{itemize}
+  \item consistent device outputs under consistent conditions.
+  \end{itemize}
+\item Readability and usability:
+  \begin{itemize}
+  \item clear display; easy operation under gloves or cold; lap function reliability.
+  \end{itemize}
+\item Battery and durability posture:
+  \begin{itemize}
+  \item predictable battery replacement schedule; resistance to sweat/rain.
+  \end{itemize}
+\item Data export and traceability posture:
+  \begin{itemize}
+  \item ability to record Route/Pool/Machine IDs and settings notes in a stable log system (7.16).
+  \end{itemize}
+\item Fit checks:
+  \begin{itemize}
+  \item timer can reliably capture laps without mis-presses,
+  \item scale and tape produce stable repeated measures under consistent conditions,
+  \item mapping method produces stable, re-usable route definitions.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.18.5 Setup, Safety, and Anchoring}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.5 Setup, Safety, and Anchoring}
+
+\begin{itemize}
+\item Register environment units:
+  \begin{itemize}
+  \item Route \textbf{ID} posture: define Route \textbf{ID} and surface class; avoid frequent changes.
+  \item Pool \textbf{ID} posture: record pool identity and length unit; lane conditions noted.
+  \item Machine \textbf{ID} posture (if treadmill/rower/bike/elliptical used): record machine identity and settings.
+  \end{itemize}
+\item Safe course setup:
+  \begin{itemize}
+  \item place markers to avoid trip hazards and traffic hazards; do not create unsafe roadside courses.
+  \end{itemize}
+\item Protected window posture:
+  \begin{itemize}
+  \item freeze tools and routes inside decision windows as much as possible; if changed, log and treat comparability as sensitive.
+  \end{itemize}
+\item Safety overrides:
+  \begin{itemize}
+  \item if conditions are unsafe (ice glaze, lightning, whiteout, air quality warning, heat concern), do not test; substitute/reslot per Stage 3.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.18.6 Maintenance, Replacement, and Storage}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.6 Maintenance, Replacement, and Storage}
+
+\begin{itemize}
+\item Timer: battery replacement posture; keep spare battery where feasible; protect from water exposure.
+\item Tape: replace when stretched/warped; keep clean and dry.
+\item Scale: keep on stable surface; battery replacement posture; avoid moisture exposure.
+\item Markers: replace cracked cones; store to avoid deformation.
+\item Storage:
+  \begin{itemize}
+  \item keep the test kit staged and ready, not scattered across locations; cross-reference 7.10 staging posture.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.18.7 Substitution Rules — When Tools/Environment Are Not Valid}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.7 Substitution Rules — When Tools/Environment Are Not Valid}
+
+\begin{itemize}
+\item If tool readiness is not met:
+  \begin{itemize}
+  \item do not attempt gate-grade testing using Tier 0 substitutes.
+  \item reslot to the next protected window once Tier 1+ tooling is restored.
+  \end{itemize}
+\item If environment is unsafe:
+  \begin{itemize}
+  \item substitute indoor modality only when Stage 2 validity and Stage 2.E logging can preserve comparability (Machine \textbf{ID} + settings logged).
+  \item otherwise reslot; do not force.
+  \end{itemize}
+\item Stage 2.E logging/validity fields required when substitutions occur:
+  \begin{itemize}
+  \item Route \textbf{ID} / Pool \textbf{ID} / Machine \textbf{ID},
+  \item tool consistency and tool description or tool \textbf{ID},
+  \item Evidence Ref where applicable,
+  \item validity tags and reason codes when deviations affect admissibility.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.18.8 Phase Integration Map — Required}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.8 Phase Integration Map — Required}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.05in]
+    Q[l,wd=1.55in]
+    X[l,3.15]
+    X[l,3.95]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Phase} &
+\Hdr{Required Tier (from Stage 6)} &
+\Hdr{What Changes / Becomes Mandatory} &
+\Hdr{Notes} \\
+Phase 00 &
+T1 (E) &
+Tier 1 required by Phase 00 (E): timer + tape + scale + log capture method &
+Establish stable tool identity immediately; do not swap tools in protected windows. \\
+Phase 01 &
+T1 (End) &
+Maintain Tier 1; GPS mapping method capability becomes operationally necessary &
+Phase 01 (End): register Route IDs and keep route class stable; log mapping method used. \\
+Phase 02 &
+T1 (End) &
+Maintain Tier 1; tool stability becomes more consequential &
+Phase 02 (End): document tool identity consistently; no novelty near Deload+Test. \\
+Phase 03 &
+T2 (End) &
+Tier 2 required by Phase 03 (End): backup timer + measuring wheel/certified loop + course markers &
+Higher consequence gate days require redundancy and higher-validity route measurement. \\
+Phase 04 &
+T2 (End) &
+Maintain Tier 2; pool measurement aids become operationally necessary when swim is introduced &
+Phase 04 (End): Pool \textbf{ID} and pool length unit must be logged; missing Pool \textbf{ID} makes evidence inadmissible. \\
+Phase 05 &
+T2 (End) &
+Maintain Tier 2; route consistency becomes higher consequence for longer events &
+Phase 05 (End): avoid route/tool changes in decision windows; reslot if comparability breaks. \\
+Phase 06 &
+T2 (End) &
+Maintain Tier 2; multi-domain gate days increase need for stable course setups &
+Phase 06 (End): tool changes are treated as comparability events; log and stabilize earlier. \\
+Phase 07 &
+T2 (End) &
+Maintain Tier 2; prevent drift under hybrid density &
+Phase 07 (End): staging and redundancy reduce invalid tests due to “forgotten tool” events. \\
+Phase 08 &
+T2 (End) &
+Maintain Tier 2; load-tolerance phases increase the cost of invalid measurements &
+Phase 08 (End): load verification posture is recorded (dry load vs carried water logged separately). \\
+Phase 09 &
+T2 (End) &
+Maintain Tier 2; high-volume phases require stable logistics &
+Phase 09 (End): avoid “new timer/new route” drift. \\
+Phase 10 &
+T2 (End) &
+Maintain Tier 2; higher consequence windows increase variance sensitivity &
+Phase 10 (End): course and tool stability becomes decisive. \\
+Phase 11 &
+T2 (End) &
+Maintain Tier 2; recovery sensitivity increases the cost of invalid retests &
+Phase 11 (End): reslot rather than forcing tests under poor conditions. \\
+Phase 12 &
+T3 (End) &
+Tier 3 required by Phase 12 (End): redundant measurement sets + course control kit + optional weather meter &
+Overbuild is reliability posture to reduce missed/invalid protected windows; stabilize well before verification blocks. \\
+Phase 13 &
+T3 (End) &
+Maintain Tier 3; consolidation requires low variance and repeatable evidence &
+Phase 13 (End): freeze tools/routes; log any unavoidable change as a comparability event. \\
+\end{longtblr}
+
+\endgroup
+
+7.18.8 Phase Integration Map Notes:
+
+\begin{itemize}
+\item If any phase artifact demands Tier 2 course markers or measuring wheel earlier than Phase 03 (End), requires Stage 8 review.
+\item If any artifact treats Tier 0 measurement as gate-admissible, requires Stage 8 review.
+\end{itemize}
+
+\subsection*{7.18.9 Risks, Contraindications, and Red Flags}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.18.9 Risks, Contraindications, and Red Flags}
+
+\begin{itemize}
+\item Validity risk from tool drift:
+  \begin{itemize}
+  \item switching timers/scales/tapes/routes without logging contaminates comparability and can invalidate gate decisions.
+  \end{itemize}
+\item Safety risk from unsafe course setup:
+  \begin{itemize}
+  \item markers placed in traffic zones or creating trip hazards elevate injury risk; avoid and reslot.
+  \end{itemize}
+\item Environment hazard overrides:
+  \begin{itemize}
+  \item ice glaze, lightning, whiteout/near-zero visibility, official air-quality warning, extreme heat concern → do not test; substitute/reslot.
+  \end{itemize}
+\item Missing evidence risk:
+  \begin{itemize}
+  \item missing Route/Pool/Machine IDs or missing Evidence Ref (when required) makes evidence inadmissible.
+  \end{itemize}
+\item Red-flag symptoms override testing:
+  \begin{itemize}
+  \item chest pain/pressure, syncope/near-syncope, disproportionate dyspnea, new neurologic symptoms → abort and seek evaluation posture.
+  \end{itemize}
+\item Requires Stage 8 review triggers:
+  \begin{itemize}
+  \item any mismatch between Stage 6 timing and phase demands for test tooling,
+  \item any attempt to redefine Stage 2.E fields or to permit inference/backfill.
+  \end{itemize}
+\end{itemize}
+
+\end{document}

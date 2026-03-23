@@ -1,0 +1,472 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{7.05 — Cognitive Performance and Energy Enhancers — OTC}
+\phantomsection
+\addcontentsline{toc}{section}{7.05 — Cognitive Performance and Energy Enhancers — OTC}
+
+\subsection*{7.05.1 Purpose \& Scope}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.1 Purpose \& Scope}
+
+7.05 defines optional OTC cognitive/energy enhancer capability posture and the governance rules that constrain it. The intent is to reduce preventable execution failures (fatigue-driven cancellations, inconsistent alertness) without permitting stimulant misuse, sleep displacement, anxiety escalation, or evidence contamination in protected windows. This overview frames stimulants as a controlled variable, not a performance lever and not a substitute for recovery fundamentals.
+
+\subsection*{7.05.2 Governance and Safety Boundaries}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.2 Governance and Safety Boundaries}
+
+\begin{itemize}
+\item OTC-only posture. No prescription guidance of any kind.
+\item Safety hierarchy is non-negotiable: sleep → nutrition/hydration → training dose control → clinician evaluation override any energy product considerations.
+\item Prohibited product classes (non-negotiable):
+  \begin{itemize}
+  \item proprietary stimulant blends
+  \item fat burners / “thermogenics”
+  \item DMAA/DMHA-like stimulants
+  \item ephedra-like products
+  \item undisclosed stimulant products
+  \item “research chemical” or gray-market nootropics
+  \end{itemize}
+\item Change-control posture:
+  \begin{itemize}
+  \item one item at a time (introduce or remove only one cognitive/energy variable per change window),
+  \item no changes near Deload+Test weeks or gate windows,
+  \item log start/stop and adverse effects; treat unlogged changes as validity-contaminating context.
+  \end{itemize}
+\item Prescription medication interaction caution posture (referral-only, non-diagnostic):
+  \begin{itemize}
+  \item if already on prescription stimulants or blood pressure medication, treat OTC stimulant use as clinician-led only (do not self-experiment; do not combine; discuss with Medical).
+  \end{itemize}
+\item Validity posture:
+  \begin{itemize}
+  \item stimulants do not upgrade readiness; \textbf{VALID} evidence still controls gates.
+  \item do not use novel stimulants to “salvage” test performance or to justify advancement claims.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.05.3 Tier Doctrine Applied to Cognitive/Energy Enhancers}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.3 Tier Doctrine Applied to Cognitive/Energy Enhancers}
+
+\begin{itemize}
+\item Tier 0: household caffeine sources and non-product fundamentals. Tier 0 is “do nothing new” posture and is the default for most of the pipeline.
+\item Tier 1: single-ingredient, transparent-format OTC options that can be logged and controlled with minimal interaction complexity.
+\item Tier 2: optional expanded cognitive support options emphasizing transparency, third-party testing, and conservative risk posture (still no stacks).
+\item Tier 3: overbuilt governance and documentation posture (verification preference rules, standardization packs), not “stronger stimulants.”
+\end{itemize}
+
+Tiering in 7.05 describes governance complexity and controllability, not “required” capability. A higher tier is never framed as necessary for phase completion.
+
+\subsection*{7.05.4 Selection Criteria \& Fit Checks}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.4 Selection Criteria \& Fit Checks}
+
+\begin{itemize}
+\item Selection criteria (generic; non-prescriptive):
+  \begin{itemize}
+  \item single-ingredient formats are preferred over blends to reduce interaction uncertainty and to support one-change-at-a-time posture.
+  \item avoid products with “proprietary matrix,” “energy blend,” or undisclosed stimulant labeling.
+  \item prefer third-party testing/COA posture when available; keep label transparency as a minimum.
+  \end{itemize}
+\item Fit checks (operational):
+  \begin{itemize}
+  \item sleep stability preserved (no new insomnia or sleep fragmentation trend).
+  \item no anxiety/panic escalation, agitation, or irritability spikes.
+  \item no palpitations, dizziness, lightheadedness, or unusual breathlessness at low effort.
+  \item no GI distress that affects session execution.
+  \item stable, repeatable response across multiple non-protected weeks before any decision window.
+  \end{itemize}
+\item “Not fit” triggers:
+  \begin{itemize}
+  \item panic symptoms or severe anxiety spike.
+  \item palpitations with dizziness/lightheadedness.
+  \item repeated insomnia or sleep collapse pattern.
+  \item any tendency to increase use to compensate for poor sleep or poor recovery.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.05.5 Setup, Safety, and Anchoring}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.5 Setup, Safety, and Anchoring}
+
+\begin{itemize}
+\item Anchoring rules:
+  \begin{itemize}
+  \item stimulants are optional; they do not create readiness and do not justify gate claims.
+  \item sleep and training dose control are the primary levers; if fatigue is high, downshift rather than stimulate.
+  \end{itemize}
+\item Change-control implementation:
+  \begin{itemize}
+  \item introduce only one cognitive/energy variable at a time.
+  \item do not introduce new products or change format/timing near Deload+Test weeks.
+  \item maintain stable patterns during decision windows (no “new coffee,” “new gum,” “new tablet,” “new drink” changes).
+  \end{itemize}
+\item Prescription medication context posture (non-diagnostic; referral-only):
+  \begin{itemize}
+  \item if on prescription stimulants or blood pressure medication: clinician-led only for any OTC stimulant consideration; default to omit unless cleared.
+  \item if on psychiatric medications: treat stimulant/activating products as higher-risk; clinician discussion when uncertain; omit if ambiguous cases.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.05.6 Maintenance, Replacement, and Storage}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.6 Maintenance, Replacement, and Storage}
+
+\begin{itemize}
+\item Storage:
+  \begin{itemize}
+  \item keep products dry and within safe temperature ranges.
+  \item avoid leaving consumables in vehicles during extreme temperature swings.
+  \end{itemize}
+\item Replacement:
+  \begin{itemize}
+  \item track expiration dates; discard expired products.
+  \item maintain like-for-like replacement during decision windows; do not change formulation mid-window.
+  \end{itemize}
+\item Documentation hygiene:
+  \begin{itemize}
+  \item keep a stable log record of: product type, format (coffee/tea/tablet/gum), start date, stop date, observed effects, adverse effects.
+  \item if lot/batch information is available, keep label photo for audit traceability.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.05.7 Substitution Rules — Fundamentals First Alternatives}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.7 Substitution Rules — Fundamentals First Alternatives}
+
+\begin{itemize}
+\item Fundamentals-first substitutions (preferred):
+  \begin{itemize}
+  \item sleep opportunity protection, schedule adjustments, and downshift posture take precedence over adding stimulants.
+  \item hydration and nutrition adequacy should be corrected first; do not misattribute dehydration or under-fueling as “need caffeine.”
+  \item training dose control: reduce intensity and/or select lower-impact modalities when fatigue is high; do not stimulate to preserve a planned intensity day.
+  \end{itemize}
+\item Validity/logging linkage (Stage 2.E posture at high level):
+  \begin{itemize}
+  \item if a stimulant variable changes during a decision window, it is logged as a controlled variable and gate interpretation becomes variance-sensitive.
+  \item if adverse effects cause missed or aborted tests, the test is treated as not admissible for gate credit and is reslotted under the protected-window posture.
+  \end{itemize}
+\item If a hard stop trigger occurs (panic/anxiety spike, palpitations, dizziness):
+  \begin{itemize}
+  \item stop the stimulant variable,
+  \item log the event,
+  \item do not test that day,
+  \item apply conservative reslot posture and clinician referral when indicated.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.05.8 Phase Integration Map — Required}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.8 Phase Integration Map — Required}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.10}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[c,wd=1.05in]
+    Q[c,wd=1.55in]
+    X[c,2.85]
+    X[c,3.85]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Phase} &
+\Hdr{Required Tier (from Stage 6)} &
+\Hdr{What Changes / Becomes Mandatory} &
+\Hdr{Notes} \\
+Phase 00 &
+T0 &
+None &
+Optional-layer only. Coffee/tea (Tier 0) may exist, but no novelty near protected windows. If prescription stimulant use exists, OTC stimulant additions are clinician-led only. \\
+Phase 01 &
+T0 &
+None &
+Optional-layer only. Stable variables only; no new stimulants introduced in Deload+Test windows. \\
+Phase 02 &
+T0 &
+None &
+Optional-layer only. Do not use stimulants to compensate for increased \textbf{STR} stress or sleep debt; downshift dose instead. \\
+Phase 03 &
+T0 &
+None &
+Optional-layer only. Ruck introduction phases increase fatigue cost; respond with recovery controls, not stimulant escalation. \\
+Phase 04 &
+T0 &
+None &
+Optional-layer only. Aquatic relevance does not change stimulant posture; maintain stability and documentation. \\
+Phase 05 &
+T0 &
+None &
+Optional-layer only. Longer endurance windows increase the cost of GI/sleep disruption; omit is preferred if stability is not proven. \\
+Phase 06 &
+T0 &
+None &
+Optional-layer only. Higher consequence windows require low variance; any change near gates is discouraged and logged as a controlled variable if it occurs. \\
+Phase 07 &
+T0 &
+None &
+Optional-layer only. Hybrid density increases risk of stimulant dependence; enforce fundamentals-first and sleep protection. \\
+Phase 08 &
+T0 &
+None &
+Optional-layer only. Durability/load tolerance phases treat sleep and recovery as primary controls; stimulants remain optional and conservative. \\
+Phase 09 &
+T0 &
+None &
+Optional-layer only. High \textbf{CAL} volume phases should not introduce stimulant novelty near protected windows. \\
+Phase 10 &
+T0 &
+None &
+Optional-layer only. If any testing/clearance implications exist, contamination risk posture becomes more important (COA preference; avoid blends). \\
+Phase 11 &
+T0 &
+None &
+Optional-layer only. Late phases reward low variance and stable sleep; omit is preferred if any instability exists. \\
+Phase 12 &
+T0 &
+None &
+Optional-layer only. Verification blocks require stable variables; no changes near protected windows. \\
+Phase 13 &
+T0 &
+None &
+Optional-layer only. Consolidation demands repeatability; stimulants do not create gate credit and do not justify advancement claims. \\
+\end{longtblr}
+
+\endgroup
+
+Notes:
+
+\begin{itemize}
+\item Phase Integration Map displays Stage 6 required tier values as-is (T0 throughout). Any downstream artifact implying 7.05 is required for deployability is a mismatch and requires Stage 8 review.
+\end{itemize}
+
+\subsection*{7.05.9 Risks, Contraindications, and Red Flags}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.9 Risks, Contraindications, and Red Flags}
+
+\begin{itemize}
+\item Anxiety/panic escalation risk (hard stop):
+  \begin{itemize}
+  \item panic symptoms, severe anxiety spike, agitation, or dissociation triggers: stop, log, do not test that day; clinician referral posture when severe or recurrent.
+  \end{itemize}
+\item Cardiovascular sensitivity risk (hard stop when severe):
+  \begin{itemize}
+  \item palpitations with dizziness, chest pressure/pain, near-syncope, or disproportionate shortness of breath triggers \textbf{STOP} \textbf{NOW} posture and escalation per governance.
+  \end{itemize}
+\item Sleep displacement risk:
+  \begin{itemize}
+  \item stimulants can cause delayed sleep onset and sleep fragmentation; this degrades recovery and invalidates comparability.
+  \item if sleep collapses after introduction, stop the new variable and revert to baseline.
+  \end{itemize}
+\item Medication interaction risk (referral-only posture):
+  \begin{itemize}
+  \item if on prescription stimulants or blood pressure medication, OTC stimulant use is clinician-led only; default omit unless cleared.
+  \item if on psychiatric medications, treat activating OTC products as higher risk; clinician discussion when uncertain; omit if ambiguous.
+  \end{itemize}
+\item Contamination and banned-substance risk posture:
+  \begin{itemize}
+  \item proprietary blends and undisclosed stimulants increase contamination risk and cannot be defended in an audit posture.
+  \item control: avoid blends; prefer transparent labeling and third-party testing/COA when available.
+  \end{itemize}
+\item Prohibited product risk:
+  \begin{itemize}
+  \item fat burners, DMAA/DMHA-like, ephedra-like, “research” nootropics, and undisclosed stimulants are prohibited; recommending them is non-deployable and requires Stage 8 review.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.05.10 Compliance Checklist — Pass/Fail}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.05.10 Compliance Checklist — Pass/Fail}
+
+\begin{itemize}
+\item \textbf{PASS}/\textbf{FAIL}: OTC-only posture maintained; no prescription guidance, no hormone guidance, no illegal/gray-market substances.
+\item \textbf{PASS}/\textbf{FAIL}: No dosing ranges, cycling protocols, stack prescriptions, or test-day dosing instructions appear.
+\item \textbf{PASS}/\textbf{FAIL}: Tier 0 includes coffee and tea (household) and Tier 1 includes single-ingredient caffeine formats; no proprietary blends promoted.
+\item \textbf{PASS}/\textbf{FAIL}: Prohibited product classes are explicitly listed (proprietary stimulant blends, fat burners, DMAA/DMHA-like, ephedra-like, undisclosed stimulants).
+\item \textbf{PASS}/\textbf{FAIL}: Hard stop triggers include panic/anxiety spike with “stop, log, do not test that day” posture.
+\item \textbf{PASS}/\textbf{FAIL}: Interaction caution posture is explicit: prescription stimulant or BP medication context is clinician-led only; no medical advice given.
+\item \textbf{PASS}/\textbf{FAIL}: Change-control posture is explicit: one item at a time; no novelty near Deload+Test/gate windows; logging required.
+\item \textbf{PASS}/\textbf{FAIL}: Phase Integration Map reflects Stage 6 required tier values as-is and does not frame 7.05 as required for deployability.
+\end{itemize}
+
+\end{document}

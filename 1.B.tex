@@ -1,0 +1,483 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+
+\begin{landscape}
+
+\section*{Stage 1.B — Key Risks and Mitigations}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 1.B — Key Risks and Mitigations}
+
+\subsection*{1.B.1 Risk Register: Top Risks With Owned Controls}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.B.1 Risk Register: Top Risks With Owned Controls}
+
+\subsubsection*{Rating scale semantics, governance descriptors only:}
+\phantomsection
+
+\begin{itemize}
+\item Likelihood \textbf{L1}–\textbf{L5}: \textbf{L1} Rare; \textbf{L2} Unlikely; \textbf{L3} Possible; \textbf{L4} Likely; \textbf{L5} Almost Certain.
+\item Impact \textbf{I1}–\textbf{I5}: \textbf{I1} Minor; \textbf{I2} Moderate; \textbf{I3} Serious; \textbf{I4} Major; \textbf{I5} Catastrophic.
+\item Likelihood band mapping for column display: \textbf{L1}–\textbf{L2} Low; \textbf{L3} Medium; \textbf{L4}–\textbf{L5} High.
+\item Impact band mapping for column display: \textbf{I1}–\textbf{I2} Low; \textbf{I3} Medium; \textbf{I4}–\textbf{I5} High.
+\item Risk Score = L × I.
+\item Banding thresholds: Score 1–6 Low; Score 8–12 Medium; Score 15–25 High; Scores 7, 13, 14 default to Medium unless explicitly justified otherwise.
+\end{itemize}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=1.90in]
+    Q[l,wd=2.50in]
+    Q[l,wd=2.40in]
+    Q[l,wd=1.50in]
+    Q[l,wd=2.60in]
+    Q[l,wd=0.60in]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Risk} &
+\Hdr{Trigger or Signal} &
+\Hdr{Impact} &
+\Hdr{Likelihood} &
+\Hdr{Mitigation} &
+\Hdr{Owner} \\
+
+\textbf{RISK-1B-001} — Musculoskeletal injury from overuse, impact, or load escalation too fast Score = 16 (High) &
+Pain that alters mechanics; limp/guarding; swelling; instability; loss of ROM; persistent pain beyond 48 hours after exposure; pain that migrates with compensation; post-run or post-ruck pain trend rising week-over-week; repeated Modified sessions due to pain; foot hotspots escalating into blisters; sudden jump in run or ruck exposure versus prior week; session RPE spikes above intended tier with deteriorating form &
+\textbf{I4} (High) — Major: injury event triggers Hold or Regress; may trigger Medical Hold; loss of run/ruck exposure; invalid test windows; prolonged disruption of 6-session throughput; increased risk of secondary injuries from compensation; evidence becomes non-admissible for progression &
+\textbf{L4} (High) — Likely given obese novice baseline, prior orthopedic surgeries, and high weekly exposure frequency; impact and load are high-consequence domains requiring conservative gating &
+Immediate today: \textbf{STOP} the provoking exposure if mechanics change; substitute to lowest-risk cardio modality; downshift intensity tier; regress movement pattern to pain-free range; document pain map and mechanics change.
+\newline Containment 1–2 weeks: cap impact and load; advance only one lever at a time; enforce conservative substitution ladder; increase recovery monitoring; re-establish stable technique and tolerance before reintroducing the exposure; maintain 6 sessions per week using low-risk modalities.
+\newline Escalation Trigger: inability to bear weight normally; focal bony pain; rapid swelling; joint instability; neurologic symptoms; pain trend worsening by 48–72 hours despite downshift; any \textbf{STOP} \textbf{NOW} trigger → Medical evaluation and restriction update.
+\newline Default Gate Posture: \textbf{HOLD} or \textbf{REGRESS}.
+\newline Documentation: pain location and severity 0–10; mechanics change yes/no; modality substituted; intensity tier; session RPE; foot hotspots; action taken; Owner notified; disposition. &
+Coach Lead \\
+\end{longtblr}
+
+\newpage
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=1.90in]
+    Q[l,wd=2.50in]
+    Q[l,wd=2.40in]
+    Q[l,wd=1.50in]
+    Q[l,wd=2.60in]
+    Q[l,wd=0.60in]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Risk} &
+\Hdr{Trigger or Signal} &
+\Hdr{Impact} &
+\Hdr{Likelihood} &
+\Hdr{Mitigation} &
+\Hdr{Owner} \\
+\textbf{RISK-1B-002} — Cardiovascular red flags during training or testing Score=15 (High) &
+Chest pain, pressure, tightness; syncope or near-syncope; severe or unusual shortness of breath out of proportion to effort; palpitations with dizziness; confusion or disorientation; sudden severe headache with neurologic features; unusual exercise intolerance versus baseline; repeated \textbf{STOP} \textbf{NOW} symptoms during exertion; heat illness red flags with confusion &
+\textbf{I5} (High) — Catastrophic: life-threatening risk; immediate termination; emergency response may be required; program halted; all evidence from the event is inadmissible; \textbf{MEDICAL} \textbf{HOLD} required until cleared &
+\textbf{L3} (Medium) — Possible due to obesity and unknown exertional tolerance envelope until cleared; risk increases under heat, dehydration, stimulant effects, or ungoverned intensity spikes &
+Immediate today: \textbf{STOP} \textbf{NOW}; move to safety; initiate emergency escalation when indicated; do not resume the session; document onset, activity, and environment.
+\newline Containment 1–2 weeks: remove vigorous exposure; use low-intensity, low-impact activity only if safe; suspend testing and any maximal efforts; enforce conservative re-entry posture only after clearance.
+\newline Escalation Trigger: any chest pain, syncope, confusion, severe dyspnea, or neurologic signs → urgent evaluation; no return to higher intensity without clinician clearance; treat repeated events as Medical Hold triggers.
+\newline Default Gate Posture: \textbf{MEDICAL} \textbf{HOLD}.
+\newline Documentation: symptom description; time of onset; modality and intensity tier; session RPE; environment; action taken; who was notified; disposition; clearance status. &
+Coach Lead \\
+
+\textbf{RISK-1B-003} — Non-adherence, missed sessions, schedule collapse, and throughput loss Score=16 (High) &
+Fewer than 5 of 6 sessions completed in a week; repeated missed days in the same slot; repeated “late start” drift that causes element omission; repeated \textbf{INVALID} sessions; missing logs or same-day logging failures; step-count deficit streak below 10,000 steps/day for 3 or more consecutive days; repeated failure to complete Cardio minimum; avoidance of mobility or cooldown blocks; make-up volume behavior appears &
+\textbf{I4} (High) — Major: loss of adaptation and tolerance; increased injury risk when returning; invalid test comparisons; gate evidence fails; phase is not executed as designed; risk of program abandonment increases; progression decisions become unsafe or non-auditable &
+\textbf{L4} (High) — Likely in a 182-week pipeline with start-from-zero friction, variable environment, and high weekly frequency requirement &
+Immediate today: complete a lowest-risk full-structure session using substitutions rather than skipping; log same day; tag Valid/Modified/Invalid correctly; prohibit make-up doubling; document the constraint that caused non-adherence.
+\newline Containment 1–2 weeks: lock fixed training windows; reduce decision friction by pre-writing substitutions; downshift intensity to protect tolerance; implement weekly compliance review; stabilize minimum infrastructure dependencies that drive misses (footwear, timing, hydration, safe route).
+\newline Escalation Trigger: compliance below 80\% in a week; repeated missing logs; repeated \textbf{INVALID} sessions in the gate window → Coach Lead corrective action; treat phase progression as blocked until compliance proof re-established.
+\newline Default Gate Posture: \textbf{HOLD}.
+\newline Documentation: completion count out of 6; reasons for missed sessions; validity distribution; steps trend; Cardio completion trend; corrective actions and Owner. &
+Trainee \\
+
+\textbf{RISK-1B-004} — Sleep debt and recovery failure degrading safety, validity, and tolerance Score=16 (High) &
+Sleep under 6 hours for 3 or more nights; sleep disruption trend; daytime sleepiness; rising soreness 0–10 trend; persistent fatigue 0–10 trend; session RPE trending higher at the same nominal workload; talk-test failure at intended easy/steady tier; increased irritability or cognitive fog affecting safe execution; repeated foot hotspots and pain flags concurrent with poor sleep &
+\textbf{I4} (High) — Major: increased injury probability; reduced capacity to sustain 6 sessions/week; compromised evidence validity; increased need for substitutions; higher likelihood of Hold/Regress; test outcomes become non-decision-grade due to fatigue distortion &
+\textbf{L4} (High) — Likely given start-state risk profile, CPAP-managed sleep apnea context, and long-horizon exposure demands &
+Immediate today: downshift intensity tier; reduce impact and complexity; prioritize low-risk aerobic time and mobility; avoid any maximal testing; document sleep hours and readiness flags in Recovery Notes.
+\newline Containment 1–2 weeks: enforce consistent sleep opportunity window; reduce late-day high arousal exposures; stabilize routine and timing; keep cadence but lower dose; re-check recovery trends weekly and treat persistent deficits as a risk-control priority.
+\newline Escalation Trigger: persistent severe sleep disruption; safety-relevant daytime impairment; repeated near-miss events; \textbf{STOP} \textbf{NOW} symptoms or mental red flags associated with sleep collapse → Medical referral when indicated; training intensity remains capped until stability returns.
+\newline Default Gate Posture: \textbf{HOLD} or \textbf{REGRESS}.
+\newline Documentation: sleep hours; fatigue/soreness 0–10; session RPE; talk-test cue; substitutions applied; any safety flags; next-day impairment notes. &
+Trainee \\
+
+\textbf{RISK-1B-005} — Inadequate training space or minimal equipment early causing durability and adherence failures Score=9 (Medium) &
+Repeated inability to execute session elements due to space constraints; unsafe home training lane; clutter or trip hazards; inability to dry footwear; inability to store basic items leading to repeated setup friction; repeated Modified/Invalid sessions due to logistics; inability to complete cooldown or mobility due to environment &
+\textbf{I3} (Medium) — Serious: increases predictable foot breakdown and injury risk; erodes adherence; forces uncontrolled substitutions; degrades evidence quality; increases likelihood of missed sessions &
+\textbf{L3} (Medium) — Possible due to start-from-zero posture, limited storage, and gradual home furnishing &
+Immediate today: remove unsafe hazards; select lowest-footprint, lowest-risk substitutions; protect Cardio minimum via indoor modality when needed; document the constraint.
+\newline Containment 1–2 weeks: establish a designated training footprint; define storage and drying routine; pre-stage minimal tools; reduce setup time; implement weekly safety check of training lane and drying capacity.
+\newline Escalation Trigger: repeated near-falls; repeated inability to complete required session elements; persistent inability to dry footwear leading to recurrent skin breakdown → Equipment Lead intervention and Coach Lead review; restrict higher-risk exposures until resolved.
+\newline Default Gate Posture: \textbf{HOLD}.
+\newline Documentation: constraint type; what elements were affected; substitutions used; safety hazards noted; corrective actions scheduled and Owner. &
+Equipment Lead \\
+
+\textbf{RISK-1B-006} — Budget constraints blocking minimum kit acquisition and creating safety or validity failures Score=16 (High) &
+Continued use of non-suitable shoes; lack of basic clothing layers for climate; inability to secure hydration container; inability to time Cardio duration reliably; inability to maintain basic footcare supplies; repeated session degradation due to missing basics; repeated environment failures because indoor substitutes cannot be accessed &
+\textbf{I4} (High) — Major: increases injury probability; blocks safe running and rucking progression; causes repeated Modified/Invalid sessions; compromises evidence admissibility; increases dropout risk; delays phase progression &
+\textbf{L4} (High) — Likely given constrained budget range, start-from-zero kit posture, and multi-domain requirements over time &
+Immediate today: prioritize safety-critical basics over performance optimization; downshift to lowest-risk modalities that do not require missing kit; document the constraint and its impact on validity and safety.
+\newline Containment 1–2 weeks: stage procurement to minimum viable kit first; prohibit gear-dependent exposures when minimum infrastructure is unmet; stabilize timing and measurement capability so Cardio minimum and tests remain auditable; implement acquisition events as logged dependencies.
+\newline Escalation Trigger: inability to obtain training-appropriate footwear; inability to time or log Cardio; repeated Invalid sessions due to missing basics → Equipment Lead action; gate outcome defaults to \textbf{HOLD} until minimum executable kit exists.
+\newline Default Gate Posture: \textbf{HOLD}.
+\newline Documentation: missing item category; affected session elements; risk multipliers observed (foot hotspots, environment hazards); timeline for acquisition; Owner actions. &
+Equipment Lead \\
+
+\textbf{RISK-1B-007} — Schedule drift and uncontrolled substitutions contaminating validity and phase intent Score=12 (Medium) &
+Substitutions not documented; repeated changes to modality or intensity without logging; repeated omission of Mobility or Cooldown; Cardio time reduced below minimum; repeated \textbf{MODIFIED} / \textbf{INVALID} tagging due to missing fields; repeated “\textbf{UNKNOWN}/\textbf{MISSING}” for critical fields; repeated session structure drift; perceived “busy day” becomes default behavior &
+\textbf{I3} (Medium) — Serious: evidence becomes non-admissible; gate decisions default conservative; phase intent erodes; trends become non-comparable; increased injury risk from erratic dosing; audit failure posture &
+\textbf{L4} (High) — Likely in long execution unless actively governed; drift pressure increases under fatigue, schedule changes, and access variability &
+Immediate today: enforce documentation of substitutions and validity tag; restore session structure using lowest-risk options; if an element cannot be satisfied, tag accordingly and do not claim gate credit.
+\newline Containment 1–2 weeks: implement a pre-approved substitution ladder; require explicit authorized lever selection; enforce weekly validity distribution review; apply freeze-window posture near test windows to prevent moving targets.
+\newline Escalation Trigger: repeated undocumented substitutions; repeated \textbf{INVALID} sessions in a gate window; evidence integrity concerns → Coach Lead corrective action; testing and advancement paused until documentation quality restored.
+\newline Default Gate Posture: \textbf{HOLD}.
+\newline Documentation: what changed; why; authorized lever; intensity tier; RPE; environment constraints; validity tag; corrective action assigned. &
+Coach Lead \\
+
+\end{longtblr}
+
+\newpage
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=1.90in]
+    Q[l,wd=2.50in]
+    Q[l,wd=2.40in]
+    Q[l,wd=1.50in]
+    Q[l,wd=2.60in]
+    Q[l,wd=0.60in]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Risk} &
+\Hdr{Trigger or Signal} &
+\Hdr{Impact} &
+\Hdr{Likelihood} &
+\Hdr{Mitigation} &
+\Hdr{Owner} \\
+\textbf{RISK-1B-008} — Environment and weather constraints causing unsafe exposures or execution collapse Score=12 (Medium) &
+Unsafe route conditions; ice or low visibility; lightning; unsafe heat conditions; poor air quality; repeated outdoor session cancellations; indoor substitute failures; repeated facility access disruptions; environment not recorded in log; route changes that break comparability &
+\textbf{I3} (Medium) — Serious: safety incident risk increases; sessions become Modified/Invalid; compliance decays; test validity compromised; phase intent disrupted when substitutions become ad hoc &
+\textbf{L4} (High) — Likely given Grand Forks seasonal volatility and reliance on outdoor routes plus variable facility access &
+Immediate today: apply go/no-go rule; substitute to indoor low-risk modality; document environment conditions and substitution; do not force outdoor exposure under unsafe conditions.
+\newline Containment 1–2 weeks: build a route library and an indoor substitution library; define environment logging minimums; stabilize test environments in the lead-in period; enforce “measured versus estimated” notation for comparability.
+\newline Escalation Trigger: repeated near-miss events; repeated inability to complete Cardio minimum due to access; repeated compromised tests due to environment drift → Coach Lead review; gate outcome defaults to Hold until stability re-established.
+\newline Default Gate Posture: \textbf{HOLD}.
+\newline Documentation: weather category; surface category; route safety note; substitution used; any near-miss; effect on validity and planned testing. &
+Coach Lead \\
+
+\textbf{RISK-1B-009} — Footwear and footcare failure causing hotspots, blisters, gait alteration, and injury cascade Score=20 (High) &
+Foot hotspots during or after sessions; blister formation or tearing; maceration from wet socks; recurrent hotspot at same location; footwear pain increasing; gait alteration; inability to complete Cardio minimum due to foot pain; repeated ruck or run attempts despite hotspots &
+\textbf{I4} (High) — Major: gait alteration drives secondary injuries; forces modality substitution and progression delays; increases infection risk if wounds worsen; invalidates run/ruck evidence; can trigger Hold/Regress and potential Medical Hold if severe &
+\textbf{L5} (High) — Almost certain risk pressure early due to non-suitable shoes at baseline and high bodyweight; foot interface is a primary bottleneck for consistent exposure &
+Immediate today: stop and treat hotspot at first signal; if gait is altered, terminate impact exposure and substitute to low-impact; document location and severity; do not “finish anyway.”
+\newline Containment 1–2 weeks: standardize shoe–sock–lacing system; enforce drying and hygiene routine; cap impact and load until skin integrity stable; implement post-session foot inspection as mandatory; apply “no novelty near tests” for footwear changes.
+\newline Escalation Trigger: signs of infection; inability to walk normally; worsening pain over 48–72 hours; recurrent severe blistering despite controls → Medical evaluation; gate outcome Hold until foot integrity is stable and repeatable.
+\newline Default Gate Posture: \textbf{HOLD} or \textbf{REGRESS}.
+\newline Documentation: hotspot location; severity 0–10; gait change yes/no; footwear used; moisture exposure; action taken; time-to-resolution trend. &
+Equipment Lead \\
+\textbf{RISK-1B-010} — Water safety governance breach including any unsupervised underwater or breath-hold attempt Score=10 (Medium) &
+Any underwater or breath-hold attempt without certified supervision; breath-hold practiced alone; hyperventilation behaviors; repeated attempts without recovery; panic or disorientation; delayed surfacing; violation of facility rules or lifeguard direction; missing supervision documentation &
+\textbf{I5} (High) — Catastrophic: high-consequence drowning/shallow-water blackout risk; immediate termination; potential permanent restriction; all evidence inadmissible; program integrity breach; may trigger program-wide corrective action &
+\textbf{L2} (Low) — Unlikely if governance is enforced, but risk exists due to novelty, bravado, or misunderstanding; consequence remains extreme &
+Immediate today: terminate exposure immediately; exit water; document violation; notify Coach Lead; no further underwater/breath-hold exposure permitted.
+\newline Containment 1–2 weeks: lock aquatic domain to surface-only substitutes; re-brief governance rules and abort discipline; require documented certified supervision prerequisites before any future underwater work is scheduled.
+\newline Escalation Trigger: any loss of consciousness, near-blackout, rescue event, or severe distress → emergency response and Medical clearance required before any aquatic progression; treat as a safety event requiring heightened review.
+\newline Default Gate Posture: \textbf{MEDICAL} \textbf{HOLD}.
+\newline Documentation: supervision status; facility rules context; behavior observed; abort actions; notifications; disposition; restriction applied. &
+Coach Lead \\
+
+\textbf{RISK-1B-011} — Mental health destabilization and acute psychological red flags Score=15 (High) &
+Acute panic with loss of control; dissociation; suicidal ideation indicators; self-harm risk indicators; severe agitation; confusion or disorientation; inability to safely continue session; repeated sleep collapse with escalating distress; refusal or inability to report safety status &
+\textbf{I5} (High) — Catastrophic: immediate safety risk; emergency escalation may be required; training continuity is subordinate to safety; gate evidence is invalid; Medical Hold likely until stabilized &
+\textbf{L3} (Medium) — Possible given baseline depression treatment context and long-horizon stressors; risk increases under sleep debt, major life stress, and cumulative fatigue &
+Immediate today: \textbf{STOP} \textbf{NOW}; move to safety; initiate escalation according to severity; notify Coach Lead; if there is imminent self-harm risk, contact emergency services; do not continue training.
+\newline Containment 1–2 weeks: restrict to conservative low-arousal activity only if safe; implement heightened check-ins and documentation of red flags; remove any exposure that increases agitation or dissociation; stabilize routines and reduce intensity volatility.
+\newline Escalation Trigger: suicidal ideation indicators, self-harm risk indicators, severe confusion, or inability to remain safe → emergency escalation and Medical evaluation; no return to normal training until cleared and risk posture is controlled.
+\newline Default Gate Posture: \textbf{MEDICAL} \textbf{HOLD}.
+\newline Documentation: trigger observed; immediate actions taken; who was notified; disposition; restrictions applied; clearance status when provided. &
+Medical \\
+
+\textbf{RISK-1B-012} — Medication or medical-management tolerance shifts causing unsafe exertional symptoms Score=12 (Medium) &
+New or worsening dizziness; abnormal exertional intolerance; palpitations or tremor sensation with distress; unusual heat intolerance; unusual nausea or GI intolerance that impairs hydration; severe insomnia spike; confusion; repeated Stop Now symptoms temporally associated with exertion; repeated abnormal response at low intensity &
+\textbf{I4} (High) — Major: session termination and conservative regression required; testing postponed; potential \textbf{MEDICAL} \textbf{HOLD}; evidence from affected sessions/tests inadmissible; increased risk of unsafe escalation if ignored &
+\textbf{L3} (Medium) — Possible due to multiple clinician-managed medications and high sensitivity during early conditioning adaptation and heat/cold stress &
+Immediate today: \textbf{STOP} \textbf{NOW} if symptoms are concerning or safety-ambiguous; downshift to rest; document symptoms, timing, and context; do not provide medication adjustments; notify Medical when indicated.
+\newline Containment 1–2 weeks: cap intensity to low-to-moderate; remove heat and high arousal exposures; maintain low-impact Cardio and mobility only if tolerated; treat recurrence as a governance signal requiring review before any progression.
+\newline Escalation Trigger: any chest pain, syncope, severe dyspnea, neurologic symptoms, or repeated concerning symptoms → urgent evaluation; resume constraints remain binding until updated by clinician documentation.
+\newline Default Gate Posture: \textbf{HOLD} or \textbf{MEDICAL} \textbf{HOLD}.
+\newline Documentation: symptom description; onset time; modality and intensity tier; RPE; environment; action taken; Medical notification; disposition. &
+Medical \\
+
+\textbf{RISK-1B-013} — Cold and ice slip-fall exposure distinct from general weather volatility Score=12 (Medium) &
+Ice on walking routes; near-slip events; actual falls; reduced traction; low daylight visibility risk; high wind causing balance compromise; route changes to unsafe terrain; repeated outdoor exposure despite recorded unsafe conditions &
+\textbf{I3} (Medium) — Serious: acute injury risk (sprains, fractures); forced rest; loss of weekly cadence; test window disruption; increased fear and avoidance driving adherence decay &
+\textbf{L4} (High) — Likely due to Grand Forks winter conditions and outdoor steps/route requirements unless indoor substitutions are used &
+Immediate today: apply go/no-go rule for ice; substitute to indoor Cardio modality; reduce speed and complexity; document hazard conditions; do not force outdoor compliance under unsafe surfaces.
+\newline Containment 1–2 weeks: establish winter route rules; define indoor substitutions as default during unsafe periods; enforce visibility timing rules; require environment logging with “ice present” flags; prohibit running or load carriage on unsafe surfaces.
+\newline Escalation Trigger: any fall; repeated near-falls; persistent fear or instability → Coach Lead review; Medical evaluation when indicated by injury signs; gate posture defaults to \textbf{HOLD} until safe access is stable.
+\newline Default Gate Posture: \textbf{HOLD}.
+\newline Documentation: hazard type; near-miss/fall yes/no; action taken; substitution used; any injury signs; disposition. &
+Coach Lead \\
+
+\textbf{RISK-1B-014} — Testing invalidity and evidence contamination Score=16 (High) &
+Unmeasured course; unknown pool length; inconsistent rep standards; missing environment notes; missing timing method or unreliable timing; retroactive log entries; missing validity tags; peak-output chasing behavior; substitutions not recorded; test conducted under fatigue spike without documentation; use of Modified/Invalid sessions as gate evidence &
+\textbf{I4} (High) — Major: wrong gate decisions; unsafe advancement; false confidence; repeated re-testing; audit failure; inability to prove readiness; compromised comparability across months and phases &
+\textbf{L4} (High) — Likely unless actively governed due to long timeline, variable environments, and human tendency to “count it anyway” &
+Immediate today: classify compromised evidence as Invalid for gate purposes; document why; do not use for advancement; schedule retest only after conditions are stabilized; correct logging immediately (no silent edits).
+\newline Containment 1–2 weeks: standardize measurement conditions; lock route and timing method; enforce environment logging minimums; enforce freeze-window discipline near test windows; verify session validity prerequisites before testing occurs.
+\newline Escalation Trigger: repeated invalid tests; repeated missing logs; evidence manipulation or falsification signals → Coach Lead enforcement action; gate outcome defaults to Hold until a Valid retest set exists and evidence integrity is restored.
+\newline Default Gate Posture: \textbf{HOLD}.
+\newline Documentation: test conditions; course measured yes/no; surface category; weather category; deviations; validity tag; evidence used versus excluded. &
+Coach Lead \\
+
+\textbf{RISK-1B-015} — Nutrition inconsistency and hydration instability driven by resource constraints Score=12 (Medium) &
+Repeated missed meals due to logistics; repeated dehydration flags noted in Recovery Notes; repeated GI intolerance disrupting sessions; large day-to-day energy swings reflected in unusual fatigue and irritability; inability to maintain consistent hydration access during sessions; repeated reports of “low energy” that force intensity collapse &
+\textbf{I3} (Medium) — Serious: recovery quality degrades; adherence collapses; performance evidence becomes non-comparable; increased injury risk; body composition progress stalls; test weeks become unreliable &
+\textbf{L4} (High) — Likely given start-from-zero resource posture, budget constraints, and long execution horizon &
+Immediate today: stabilize basic intake and hydration behaviors at a governance level; avoid aggressive restriction behaviors; document deviations that affect safety or session completion; maintain conservative intensity when intake/hydration is unstable.
+\newline Containment 1–2 weeks: implement a consistent, low-friction nutrition and hydration routine compatible with budget and storage; standardize pre-session hydration availability; avoid novelty near tests; maintain logging of deviations that impact readiness and validity.
+\newline Escalation Trigger: persistent inability to hydrate safely; repeated dizziness or severe intolerance; concerning symptoms → Medical referral when indicated; gate posture defaults to Hold if fueling instability compromises evidence quality and safety.
+\newline Default Gate Posture: \textbf{HOLD}.
+\newline Documentation: hydration access yes/no; notable intake disruptions; GI intolerance notes; fatigue 0–10 trend; effect on session completion and substitutions. &
+Trainee \\
+
+\textbf{RISK-1B-016} — Excessive early intensity escalation and intensity tier misuse Score=12 (Medium) &
+Repeated Tier 4–5 efforts outside governed windows; talk-test failure at intended easy/steady tiers; frequent session RPE 8–10 with rising soreness and pain flags; “make-up” intensity after missed sessions; chasing PRs during non-test sessions; stacking hard days due to schedule drift &
+\textbf{I4} (High) — Major: injury probability rises; recovery collapses; validity degrades; gate outcomes become conservative; test windows become contaminated; program interruptions increase &
+\textbf{L3} (Medium) — Possible due to motivation spikes and misinterpretation of intensity language; risk increases under stress, sleep debt, and frustration &
+Immediate today: cap intensity to the intended tier; substitute to low-impact modalities; enforce no make-up intensity; document the intensity mismatch and the corrective action.
+\newline Containment 1–2 weeks: re-brief tier definitions and talk-test anchors; enforce one lever change at a time; implement weekly intensity distribution review; downshift until soreness, pain flags, and RPE trends stabilize.
+\newline Escalation Trigger: rising pain trends; mechanics-altering pain; repeated Invalid sessions due to incomplete structure; Stop Now events → Coach Lead review and Medical escalation when indicated; gate posture defaults to \textbf{HOLD} or \textbf{REGRESS} until controlled execution is demonstrated.
+\newline Default Gate Posture: \textbf{HOLD} or \textbf{REGRESS}.
+\newline Documentation: intensity tier used; RPE; talk-test cue; soreness/pain trends; substitutions applied; corrective actions and Owner. &
+Coach Lead \\
+
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+\subsection*{1.B.2 Risk Response Doctrine: Compact Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.B.2 Risk Response Doctrine: Compact Rules}
+
+\begin{itemize}
+\item Stop rules \textbf{MUST} override all other objectives. Any \textbf{STOP} \textbf{NOW} trigger requires immediate termination of the exposure, followed by documentation and escalation as required.
+\item Safety ambiguity \textbf{MUST} default conservative: downshift exposure immediately; terminate if uncertainty remains; document and seek Medical evaluation when indicated.
+\item Pain that alters mechanics \textbf{MUST} end that exposure today. Continued work through mechanics change is prohibited and contaminates evidence.
+\item Substitution posture \textbf{MUST} be risk-reducing and ordered: preserve time and session structure first; reduce impact second; reduce intensity third; document the authorized lever used.
+\item Gate decisions \textbf{MUST} be constrained by evidence admissibility. \textbf{INVALID} sessions and \textbf{INVALID} tests provide no gate credit and \textbf{MUST} NOT justify advancement.
+\item When high-risk triggers are active, default gate posture \textbf{MUST} be Hold, Regress, or Medical Hold as specified in the risk register, regardless of short-term performance improvements.
+\item Documentation is a control. For any risk event, the minimum log \textbf{MUST} include: trigger or signal; time; modality; intensity tier and RPE; environment; action taken; Owner notified; disposition; and whether mechanics changed.
+\item Validity discipline \textbf{MUST} be enforced: any missing required session elements or missing required documentation forces \textbf{MODIFIED} or \textbf{INVALID} tagging per doctrine; no pretend valid behavior is permitted.
+\item Water governance is absolute: underwater or breath-hold exposure \textbf{MUST} NOT occur without certified supervision; absent certified supervision, surface-only substitutes \textbf{MUST} be used.
+\item Evidence contamination rule: compromised or uncontrolled testing conditions \textbf{MUST} be treated as invalid for gate purposes; the default outcome is Hold until retested under Valid conditions.
+\item Owner executes mitigations day-to-day. Coach Lead coordinates and enforces gate posture and documentation standards. Medical provides clearance and restrictions when indicated; coaching does not substitute for clinician decision-making.
+\item No make-up volume or make-up intensity is permitted. Catch-up behavior increases risk and invalidates comparability; the correct response is conservative substitution and re-stabilization of routine.
+\end{itemize}
+
+
+\end{document}

@@ -1,0 +1,401 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 5.A — Master Macro-Phase Table}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 5.A — Master Macro-Phase Table}
+
+\subsection*{5.A.1 Master Macro-Phase Table}
+\phantomsection
+\addcontentsline{toc}{subsection}{5.A.1 Master Macro-Phase Table}
+
+\begin{landscape}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.70in]
+    X[l,1.55]
+    Q[l,wd=0.75in]
+    X[l,2.10]
+    X[l,2.20]
+    X[l,1.70]
+    X[l,1.90]
+    X[l,2.15]
+    X[l,2.20]
+    Q[l,wd=0.95in]
+    X[l,3.35]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Phase \#} &
+\Hdr{Name} &
+\Hdr{Duration} &
+\Hdr{Mission} &
+\Hdr{Primary Physiological Focus} &
+\Hdr{Primary Modalities Domains} &
+\Hdr{Default Work:Deload Pattern Stage 3} &
+\Hdr{Mid-Phase Gate Focus Tests} &
+\Hdr{End-Phase Gate Focus Tests} &
+\Hdr{Exit Standard Theme Stage 2 tier} &
+\Hdr{Required Capability Notes Category-level only} \\
+
+Phase 01 &
+Base Conditioning and Hypertrophy &
+24 &
+Build durable tolerance for six sessions per week while expanding aerobic base, standardizing \textbf{CAL}, and creating the first stable post-Phase-00 foundation. &
+Aerobic base expansion; low-impact-to-controlled \textbf{RUN} transition; hypertrophy/strength-endurance foundation; \textbf{CAL} standardization; tissue tolerance; adherence stability. &
+\textbf{RUN}, \textbf{CAL}, \textbf{STR}, \textbf{BODYCOMP}, \textbf{DURABILITY}, \textbf{RECOVERY} &
+24 weeks; repeated 3:1 with Deload+Test Weeks 4, 8, 12, 16, 20, 24 &
+\textbf{C8} / \textbf{MET-2B-014} progressing toward \textbf{C9} / \textbf{MET-2B-015}; \textbf{CAL} Gate Set: \textbf{C4} / \textbf{MET-2B-010}, \textbf{C5} / \textbf{MET-2B-011}, \textbf{C6} / \textbf{MET-2B-012}, \textbf{C7} / \textbf{MET-2B-013}; \textbf{SMB} + \textbf{MOB} Bundle (Requires Stage 8 review - no reconciled Stage 2 IDs assigned); \textbf{BODYCOMP} trend set \textbf{C1} / \textbf{MET-2B-001} and \textbf{C3} / \textbf{MET-2B-003}–009 &
+\textbf{C9} / \textbf{MET-2B-015}; \textbf{CAL} Gate Set \textbf{C4} / \textbf{MET-2B-010}, \textbf{C5} / \textbf{MET-2B-011}, \textbf{C6} / \textbf{MET-2B-012}, \textbf{C7} / \textbf{MET-2B-013}; \textbf{SMB} + \textbf{MOB} Bundle use Stage 2 \textbf{ID}; \textbf{BODYCOMP} trend confirmation &
+\textbf{ENTRY} &
+By entry: 7.11 footwear/footcare, 7.18 timing/route measurement, 7.16 self-management/logging, 7.09 body metrics, and 7.13 hydration basics. By mid-phase: 7.15 general daily/training apparel and 7.12 recovery/mobility supports should be stable. By end-phase: 7.01 Tier 0 basic strength capability should be available. 7.02 not required. \\
+
+Phase 02 &
+Maximal Strength Development &
+12 &
+Raise strength reserves under capped, auditable exposure while continuing run development and introducing the first controlled ruck and swim benchmarks. &
+Strength reserve development; connective-tissue tolerance; continued aerobic base; first controlled pool/ruck interface; early mixed-demand tolerance. &
+\textbf{STR}, \textbf{RUN}, \textbf{CAL}, \textbf{RUCK}, \textbf{SWIM}, \textbf{DURABILITY}, \textbf{RECOVERY} &
+12 weeks; 3:1 with Deload+Test Weeks 4, 8, 12 &
+\textbf{STR} proxy battery \textbf{C17} / \textbf{MET-2B-027}–031; \textbf{RUN-015} or \textbf{RUN-020} use Stage 2 \textbf{ID}; \textbf{CAL} Gate Set \textbf{C4} / \textbf{MET-2B-010}, \textbf{C5} / \textbf{MET-2B-011}, \textbf{C6} / \textbf{MET-2B-012}, \textbf{C7} / \textbf{MET-2B-013}; \textbf{C13} / \textbf{MET-2B-022} or \textbf{MET-2B-023} if pool validity is stable &
+\textbf{RUN-020} use Stage 2 \textbf{ID}; \textbf{C12} / \textbf{MET-2B-018} 3-mile ruck time trial when prerequisites are satisfied; \textbf{C13} / \textbf{MET-2B-022} or \textbf{MET-2B-023} swim 500; \textbf{C17} / \textbf{MET-2B-027}–031; \textbf{CAL} Gate Set &
+\textbf{ENTRY} &
+By entry: 7.01 must expand beyond baseline; 7.07 entry ruck platform and dry-load verification readiness required before ruck gate use; 7.17 reliable aquatic environment and supervision posture required before swim gates; 7.18 and 7.09 remain mandatory; 7.12 becomes increasingly useful by end-phase. 7.02 not required. \\
+
+Phase 03 &
+Converting Strength to Power and Endurance for SOF Selection &
+12 &
+Convert strength reserves into usable endurance output and controlled mixed-domain tolerance without allowing protocol drift or fatigue chaos. &
+Strength-endurance conversion; threshold development; stamina under controlled density; ruck interface stabilization; continued \textbf{CAL} and \textbf{RUN} integration. &
+\textbf{STR}, \textbf{RUN}, \textbf{CAL}, \textbf{RUCK}, \textbf{SWIM}, \textbf{DURABILITY}, \textbf{RECOVERY}, \textbf{AER} &
+12 weeks; 3:1 with Deload+Test Weeks 4, 8, 12 &
+\textbf{RUN-020} and/or \textbf{RUN-030} use Stage 2 \textbf{ID}; \textbf{C17} / \textbf{MET-2B-027}–031; \textbf{CAL} Gate Set; \textbf{SMB} + \textbf{MOB} Bundle use Stage 2 \textbf{ID} where carried as durability controls &
+\textbf{C12} / \textbf{MET-2B-019} 6-mile ruck time trial; \textbf{RUN-030} use Stage 2 \textbf{ID}; \textbf{C13} / \textbf{MET-2B-022} or \textbf{MET-2B-023}; \textbf{CAL} Gate Set; \textbf{AER} benchmark uses an existing Stage 2 \textbf{ID} only if it is already canonical in Stage 2 &
+\textbf{INTERMEDIATE} &
+By entry: 7.01, 7.07, 7.17, 7.18, and 7.11 must be stable. By mid-phase: 7.08 conditioning support and 7.12 tissue-care/recovery supports become increasingly necessary. 7.16 remains required for friction control and consistency. \\
+
+Phase 04 &
+Strength-Endurance and Work Capacity Development &
+12 &
+Raise sustained mixed-demand work capacity while preserving mechanics, density control, and protected-window validity. &
+Strength-endurance; work-capacity tolerance; denser mixed exposures; controlled fatigue handling; early “perform under load without drift” posture. &
+\textbf{RUN}, \textbf{CAL}, \textbf{RUCK}, \textbf{STR}, \textbf{DURABILITY}, \textbf{RECOVERY}, \textbf{COND} use Stage 2 tag &
+12 weeks; 3:1 with Deload+Test Weeks 4, 8, 12 &
+\textbf{RUN-030} use Stage 2 \textbf{ID}; \textbf{CAL} Gate Set; \textbf{C12} / \textbf{MET-2B-019} 6-mile ruck time trial as phase-valid check; \textbf{C17} / \textbf{MET-2B-027}–031 only when non-interfering &
+\textbf{RUN-030} use Stage 2 \textbf{ID}; \textbf{C12} / \textbf{MET-2B-019} 6-mile ruck time trial; \textbf{CAL} Gate Set; \textbf{COND} benchmark use Stage 2 \textbf{ID} if scheduled; durability flags from \textbf{C16} remain disqualifier layer &
+\textbf{INTERMEDIATE} &
+By entry: 7.07, 7.11, and 7.18 required. By mid-phase: 7.08, 7.12, and 7.19 may be required to preserve higher-density work capacity and interface safety. 7.14 and 7.15 become conditionally relevant where weather drives substitution pressure. \\
+
+Phase 05 &
+Aerobic Base and Extended Stamina Development &
+12 &
+Expand long-duration aerobic and stamina capacity while protecting body composition momentum and preventing pacing drift. &
+Extended aerobic base; long-duration stamina; pacing stability; workload consistency under lower-intensity but longer-duration bias. &
+\textbf{RUN}, \textbf{SWIM}, \textbf{CAL}, \textbf{RUCK}, \textbf{BODYCOMP}, \textbf{DURABILITY}, \textbf{RECOVERY} &
+12 weeks; 3:1 with Deload+Test Weeks 4, 8, 12 &
+\textbf{RUN-030} use Stage 2 \textbf{ID}; \textbf{C13} / \textbf{MET-2B-022} or \textbf{MET-2B-023} swim 500; \textbf{CAL} Gate Set; \textbf{BODYCOMP} trend continuation &
+\textbf{C11} / \textbf{MET-2B-017} 5-mile time trial; \textbf{C13} / \textbf{MET-2B-022} or \textbf{MET-2B-023}; \textbf{C12} / \textbf{MET-2B-019} only if phase-valid and non-interfering; \textbf{CAL} Gate Set &
+\textbf{INTERMEDIATE} &
+By entry: 7.08, 7.11, 7.13, and 7.18 required. By mid-phase: 7.17 pool-validity support and 7.12 recovery/mobility support must be reliable. 7.16 remains mandatory to keep long-duration execution friction low. \\
+
+Phase 06 &
+Lactate Threshold and Power-Endurance Development &
+12 &
+Improve threshold performance and durable pace control while introducing the first decisive long-ruck proof window under strict governance. &
+Threshold conditioning; power-endurance; stronger pace control; higher-intensity conditioning tolerance; long-load reliability. &
+\textbf{RUN}, \textbf{RUCK}, \textbf{CAL}, \textbf{SWIM}, \textbf{DURABILITY}, \textbf{RECOVERY}, \textbf{AER} &
+12 weeks; 3:1 with Deload+Test Weeks 4, 8, 12; Week 12 reserved for decisive long-ruck gate posture &
+\textbf{RUN-020} and/or \textbf{RUN-030} use Stage 2 \textbf{ID}; \textbf{C13} / \textbf{MET-2B-022} or \textbf{MET-2B-023}; \textbf{CAL} Gate Set; \textbf{C17} / \textbf{MET-2B-027}–031 if phase-selected and non-interfering &
+\textbf{C12} / \textbf{MET-2B-020} 9-mile ruck time trial; \textbf{RUN-030} use Stage 2 \textbf{ID}; \textbf{CAL} Gate Set; \textbf{C13} / \textbf{MET-2B-022} or \textbf{MET-2B-023} &
+\textbf{INTERMEDIATE} &
+By entry: 7.07, 7.08, 7.11, 7.12, and 7.18 required. By mid-phase: 7.09 monitoring, 7.13 fueling/hydration, and 7.17 aquatic validity support must be stable. 7.19 may be required where interface risk rises. \\
+
+Phase 07 &
+Advanced Hybrid Overload &
+12 &
+Increase integrated multi-domain stress tolerance while tightening repeatability control, no-novelty discipline, and fatigue governance. &
+Hybrid overload; multi-domain integration; fatigue management under stricter validity control; redundancy and repeatability emphasis. &
+\textbf{RUN}, \textbf{CAL}, \textbf{RUCK}, \textbf{STR}, \textbf{SWIM}, \textbf{DURABILITY}, \textbf{RECOVERY}, \textbf{AER} &
+12 weeks; 3:1 with Deload+Test Weeks 4, 8, 12; repeatability proof posture emphasized at end-phase &
+\textbf{C17} / \textbf{MET-2B-027}–031; \textbf{RUN-030} use Stage 2 \textbf{ID}; \textbf{C13} / \textbf{MET-2B-022} or \textbf{MET-2B-023}; \textbf{CAL} Gate Set; interval benchmark use Stage 2 \textbf{ID} only if already canonical &
+\textbf{C12} / \textbf{MET-2B-019} or \textbf{MET-2B-020} as phase-selected; \textbf{C11} / \textbf{MET-2B-017}; \textbf{CAL} Gate Set; repeatability proof requires no novelty and stable tools and routes &
+\textbf{INTERMEDIATE} &
+By entry: 7.01, 7.07, 7.08, 7.11, 7.12, and 7.18 required. By mid-phase: 7.10 logistics, 7.16 self-management, and 7.13 hydration/fueling systems should be mature enough to reduce test-week instability. \\
+
+Phase 08 &
+Structural Durability and Load Tolerance &
+12 &
+Build tissue resilience and interface hardening for higher load and impact demands without allowing gait, foot, or environment drift to contaminate proof windows. &
+Structural durability; load tolerance; foot/pack/gait interface hardening; higher-consequence durability proof. &
+\textbf{RUCK}, \textbf{RUN}, \textbf{CAL}, \textbf{DURABILITY}, \textbf{RECOVERY}, \textbf{STR} &
+12 weeks; 3:1 with Deload+Test Weeks 4, 8, 12; W12 is the durability/interface proof window &
+\textbf{C11} / \textbf{MET-2B-017} 5-mile time trial; \textbf{CAL} Gate Set; \textbf{C16} / \textbf{MET-2B-035}/036/037 durability flags as safety controls &
+\textbf{C12} / \textbf{MET-2B-021} 12-mile ruck time trial; \textbf{C12} / \textbf{MET-2B-020} 9-mile ruck time trial as supporting proof; \textbf{C16} / \textbf{MET-2B-035}/036/037 remain disqualifier layer; \textbf{CAL} support only if non-interfering &
+\textbf{INTERMEDIATE} &
+By entry: 7.07, 7.11, 7.12, and 7.18 required. By mid-phase: 7.19 protective/assistive items and 7.14 environmental apparel are often necessary to preserve interface stability and environmental feasibility. \\
+
+Phase 09 &
+High-Volume Calisthenics and Stamina &
+12 &
+Raise strict \textbf{CAL} density and stamina repeatability while preserving protected-window validity and preventing tendon/overuse drift. &
+High-volume \textbf{CAL} density; stamina; low-variance repetition quality; controlled running support; audit-heavy repetition environment. &
+\textbf{CAL}, \textbf{RUN}, \textbf{DURABILITY}, \textbf{RECOVERY}, \textbf{BODYCOMP} &
+Mixed, taper-aware protected-window posture; late-phase phases use protected windows rather than simple repeated 3:1 language &
+\textbf{CAL} Gate Set \textbf{C4} / \textbf{MET-2B-010}, \textbf{C5} / \textbf{MET-2B-011}, \textbf{C6} / \textbf{MET-2B-012}, \textbf{C7} / \textbf{MET-2B-013}; \textbf{RUN-020} or \textbf{RUN-030} as supporting check; optional \textbf{SWIM} only if phase-selected and non-interfering &
+\textbf{CAL} Gate Set \textbf{C4} / \textbf{MET-2B-010}, \textbf{C5} / \textbf{MET-2B-011}, \textbf{C6} / \textbf{MET-2B-012}, \textbf{C7} / \textbf{MET-2B-013}; \textbf{RUN-030} or \textbf{C11} / \textbf{MET-2B-017} as phase-selected; underwater remains supervision-gated only if supported, never implied as mandatory &
+\textbf{INTERMEDIATE} &
+By entry: 7.11, 7.12, 7.16, and 7.18 required. By mid-phase: 7.08 conditioning support and 7.13 fueling/hydration support are needed to maintain \textbf{CAL} density without recovery collapse. 7.17 only where swim remains active. \\
+
+Phase 10 &
+Advanced Tactical Readiness &
+12 &
+Converge toward assessment-quality readiness across major domains while keeping evidence clean, controlled, and governance-sensitive. &
+Assessment-quality proof; tactical physical readiness; integrated gate posture; reduced variance at higher specificity. &
+\textbf{RUN}, \textbf{RUCK}, \textbf{CAL}, \textbf{SWIM}, \textbf{STR}, \textbf{DURABILITY}, \textbf{RECOVERY} &
+Mixed, taper-aware protected-window posture &
+\textbf{C13} / \textbf{MET-2B-022} or \textbf{MET-2B-023}; \textbf{CAL} Gate Set; \textbf{RUN-015} or \textbf{RUN-020} as phase-selected; \textbf{C17} / \textbf{MET-2B-027}–031 only when non-interfering &
+\textbf{C11} / \textbf{MET-2B-017}; \textbf{C12} / \textbf{MET-2B-019} or \textbf{MET-2B-020} as phase-selected; \textbf{CAL} Gate Set; \textbf{C14} / \textbf{MET-2B-025}/026 only if governance-gated and supported &
+\textbf{SELECTION-READY} &
+By entry: 7.07, 7.17, 7.18, and 7.11 required. By mid-phase: 7.19, 7.10, 7.13, and 7.09 should all be reliable to preserve assessment-quality readiness and reduce variance in decisive windows. 7.02 remains not required. \\
+
+Phase 11 &
+Pre-Selection Conditioning and Recovery &
+12 &
+Raise readiness while protecting freshness, conservative reslot discipline, and simulation-quality execution without losing safety margin. &
+High-specificity preparation; recovery preservation; simulation posture under conservative governance; readiness under fatigue management. &
+\textbf{RUN}, \textbf{RUCK}, \textbf{CAL}, \textbf{SWIM}, \textbf{RECOVERY}, \textbf{DURABILITY} &
+Mixed, taper-aware protected-window posture; simulation weeks remain protected, not improvised &
+\textbf{RUN-030} or \textbf{C11} / \textbf{MET-2B-017} as phase-selected; \textbf{CAL} Gate Set; \textbf{C13} / \textbf{MET-2B-022} or \textbf{MET-2B-023}; simulation-quality checks use existing Stage 2 instruments only &
+\textbf{C11} / \textbf{MET-2B-017}; \textbf{C12} / \textbf{MET-2B-021} use Stage 2 \textbf{ID}; \textbf{C13} / \textbf{MET-2B-022} or \textbf{MET-2B-023}; \textbf{C14} / \textbf{MET-2B-025}/026 only if governance-gated and supported &
+\textbf{SELECTION-READY} &
+By entry: 7.07, 7.17, 7.18, 7.11, and 7.12 required. By mid-phase: 7.06 recovery/sleep support, 7.16 self-management, and 7.13 fueling/hydration should be mature enough to protect freshness and repeatability. \\
+
+Phase 12 &
+Final Pre-Selection Conditioning &
+12 &
+Execute final hard proofs under the cleanest possible validity posture, with no informal substitutions and no tolerance for invalid gate logic. &
+Final proof block; pacing accuracy; hardest admissible proofs; low-variance execution under final readiness posture. &
+\textbf{RUN}, \textbf{RUCK}, \textbf{CAL}, \textbf{SWIM}, \textbf{RECOVERY}, \textbf{DURABILITY} &
+Mixed, taper-aware protected-window posture &
+\textbf{RUN-020} or \textbf{RUN-030} as phase-selected; \textbf{C13} / \textbf{MET-2B-022} or \textbf{MET-2B-023}; \textbf{C12} / \textbf{MET-2B-020} when phase-selected; \textbf{CAL} Gate Set &
+\textbf{C11} / \textbf{MET-2B-017}; \textbf{C12} / \textbf{MET-2B-021} use Stage 2 \textbf{ID}; \textbf{C13} / \textbf{MET-2B-022} or \textbf{MET-2B-023}; \textbf{CAL} Gate Set; \textbf{C14} / \textbf{MET-2B-025}/026 only if governance-gated and supported &
+\textbf{SELECTION-READY} &
+By entry: 7.07, 7.17, 7.18, 7.11, 7.12, and 7.13 required. By mid-phase: 7.10 and 7.16 should effectively be locked supports; no critical capability should still be “optional” at this point. \\
+
+Phase 13 &
+Full-Spectrum Readiness Consolidation &
+12 &
+Consolidate and verify full-spectrum readiness under the cleanest, lowest-variance conditions possible rather than chasing new adaptation. &
+Verification; stability; audit-quality readiness expression; final low-variance consolidation. &
+\textbf{RUN}, \textbf{RUCK}, \textbf{CAL}, \textbf{SWIM}, \textbf{STR}, \textbf{BODYCOMP}, \textbf{DURABILITY}, \textbf{RECOVERY} &
+Mixed, taper-aware protected-window posture &
+Targeted weakest-domain retests using existing Stage 2 IDs only; \textbf{BODYCOMP} trend confirmation \textbf{C1} / \textbf{MET-2B-001} and \textbf{C3} / \textbf{MET-2B-003}–009; \textbf{CAL} Gate Set; selected \textbf{RUN}/\textbf{RUCK}/\textbf{SWIM} retests as needed &
+Final verification set using existing Stage 2 IDs only: \textbf{C11} / \textbf{MET-2B-017}; \textbf{C12} / \textbf{MET-2B-021} use Stage 2 \textbf{ID}; \textbf{C13} / \textbf{MET-2B-022} or \textbf{MET-2B-023}; \textbf{CAL} Gate Set; \textbf{C17} (only if finalized and deployable) / \textbf{MET-2B-027}-031 if retained as support; \textbf{C14} / \textbf{MET-2B-025}/026 only if governance-gated and supported &
+\textbf{SELECTION-READY} &
+By entry: maintain 7.01, 7.07, 7.08, 7.09, 7.10, 7.11, 7.12, 7.13, 7.16, 7.17, 7.18, 7.19, and 7.20 as applicable to final verification stability. Capability timing here is about redundancy, not expansion. 7.02 remains education-only and never required. \\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+\subsection*{5.A.2 Macro Integrity Checks}
+\phantomsection
+\addcontentsline{toc}{subsection}{5.A.2 Macro Integrity Checks}
+
+\begin{itemize}
+\item Progression logic is coherent with the locked periodization direction: intensity rises, specificity rises, and the table shifts from developmental emphasis toward assessment-quality and then verification-quality evidence.
+\item The deliverable remains specifically geared to 5.A: it is a master macro-phase table with 5.A-specific framing, not a recycled stage introduction.
+\item No gate row introduces a non-Stage-2 test family; where a specific identifier is not fully visible, the row preserves the canonical test name and marks it “use Stage 2 \textbf{ID}” rather than inventing identifiers.
+\item Work:Deload patterns remain consistent with Stage 3 doctrine or the protected-window posture inherited from it; no row moves gate-grade evidence into build weeks.
+\item Phase 01 remains the only 24-week row on the adopted Stage 5.A working basis; Phases 02–13 remain 12-week rows for this deliverable.
+\item Phase 00 remains a continuity bridge only and does not leak Stage 4 detail into Stage 5.A.
+\item Capability notes remain category-level, use 7.01–7.20 only, and do not require 7.02.
+\item The Duration Reconciliation Note remains explicit because attached materials do not fully agree on total continuity math or final-phase duration; the conflict is left to Stage 8 rather than silently normalized.
+\item The table carries enough row-level specificity to drive Stage 5.B expansion, Stage 6 capability timing, and Stage 8 crosswalk checks without drifting into programming detail.
+\end{itemize}
+
+\end{document}

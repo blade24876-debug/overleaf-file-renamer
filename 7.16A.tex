@@ -1,0 +1,1013 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{landscape}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\section*{7.16.A - Daily session log notebook}
+\phantomsection
+\addcontentsline{toc}{section}{7.16.A - Daily session log notebook}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=0.70in]
+    X[c,1.60]
+    X[c,1.70]
+    Q[c,wd=1.05in]
+    Q[c,wd=0.95in]
+    Q[c,wd=1.15in]
+    X[l,3.10]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  cell{2-Z}{7} = {halign=l},
+}
+\Hdr{Tier} & \Hdr{Item} & \Hdr{Brand} & \Hdr{Approx.\ USD Pricing} & \Hdr{Type} & \Hdr{First Phase Required} & \Hdr{Notes} \\
+Budget & Daily session log notebook & Field Notes Original Kraft & \$12 & Paper log & Phase-00 & Captures same-day session data fast, and it was chosen because pocket size lowers skipped entries. \\
+Budget & Daily session log notebook & Mead Composition Book & \$6 & Paper log & Phase-00 & Holds daily training facts in one place, and it was chosen because cheap replacement supports strict single-source use. \\
+Budget & Daily session log notebook & Oxford Campus Notebook & \$8 & Paper log & Phase-00 & Records valid-session fields simply, and it was chosen because light weight makes daily carry easier. \\
+Standard & Daily session log notebook & Leuchtturm1917 Medium Notebook & \$26 & Paper log & Phase-00 & Preserves one clean log stream, and it was chosen because numbered pages improve long-range traceability. \\
+Standard & Daily session log notebook & Moleskine Classic Ruled Notebook & \$24 & Paper log & Phase-00 & Supports daily capture and quick review, and it was chosen because the durable cover survives bag use well. \\
+Standard & Daily session log notebook & Black n' Red Casebound Notebook & \$12 & Paper log & Phase-00 & Keeps session evidence centralized, and it was chosen because strong binding tolerates heavy repeated opening. \\
+Elite & Daily session log notebook & Baronfig Confidant & \$29 & Paper log & Phase-00 & Supports disciplined one-source logging, and it was chosen because clean page layout reduces visual clutter. \\
+Elite & Daily session log notebook & Rhodia Webnotebook & \$30 & Paper log & Phase-00 & Holds detailed notes without messy bleed-through, and it was chosen because smoother paper improves fast handwriting legibility. \\
+Elite & Daily session log notebook & Levenger Circa Junior Notebook & \$35 & Paper log & Phase-00 & Maintains a dedicated paper record, and it was chosen because removable pages help reorganize logs without splitting systems. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.16.B - Single-source digital log app/file}
+\phantomsection
+\addcontentsline{toc}{section}{7.16.B - Single-source digital log app/file}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=0.70in]
+    X[c,1.60]
+    X[c,1.70]
+    Q[c,wd=1.05in]
+    Q[c,wd=0.95in]
+    Q[c,wd=1.15in]
+    X[l,3.10]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  cell{2-Z}{7} = {halign=l},
+}
+\Hdr{Tier} & \Hdr{Item} & \Hdr{Brand} & \Hdr{Approx.\ USD Pricing} & \Hdr{Type} & \Hdr{First Phase Required} & \Hdr{Notes} \\
+Budget & Single-source digital log app/file & Apple Notes & \$0 & Notes platform & Phase-00 & Captures session fields on the phone fast, and it was chosen because it is already available for many users. \\
+Budget & Single-source digital log app/file & Google Keep & \$0 & Notes platform & Phase-00 & Stores quick daily logs digitally, and it was chosen because simple sync lowers loss risk across devices. \\
+Budget & Single-source digital log app/file & Microsoft OneNote & \$0 & Notes platform & Phase-00 & Supports one organized digital record, and it was chosen because section structure helps separate phases cleanly. \\
+Standard & Single-source digital log app/file & Notion Plus & \$120 & Notes platform & Phase-00 & Centralizes daily logs and review pages, and it was chosen because databases and templates reduce repetition. \\
+Standard & Single-source digital log app/file & Evernote Personal & \$130 & Notes platform & Phase-00 & Preserves searchable long-horizon records, and it was chosen because strong search helps retrieve old session evidence quickly. \\
+Standard & Single-source digital log app/file & Day One Premium & \$35 & Notes platform & Phase-00 & Supports fast daily logging discipline, and it was chosen because dated entries reduce chronology drift. \\
+Elite & Single-source digital log app/file & Obsidian Sync & \$96 & Notes platform & Phase-00 & Builds a structured long-term log vault, and it was chosen because linked notes support deeper cross-reference without multiple systems. \\
+Elite & Single-source digital log app/file & Craft Plus & \$96 & Notes platform & Phase-00 & Keeps logs and review documents visually clean, and it was chosen because polished layout can improve consistent use. \\
+Elite & Single-source digital log app/file & Bear Pro & \$30 & Notes platform & Phase-00 & Maintains a simple premium digital log, and it was chosen because tagging stays fast without heavy setup burden. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.16.C - Weekly planner}
+\phantomsection
+\addcontentsline{toc}{section}{7.16.C - Weekly planner}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=0.70in]
+    X[c,1.60]
+    X[c,1.70]
+    Q[c,wd=1.05in]
+    Q[c,wd=0.95in]
+    Q[c,wd=1.15in]
+    X[l,3.10]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  cell{2-Z}{7} = {halign=l},
+}
+\Hdr{Tier} & \Hdr{Item} & \Hdr{Brand} & \Hdr{Approx.\ USD Pricing} & \Hdr{Type} & \Hdr{First Phase Required} & \Hdr{Notes} \\
+Budget & Weekly planner & Blue Sky Weekly Planner & \$15 & Planning book & Phase-00 & Holds the week’s six-session rhythm visibly, and it was chosen because low cost supports immediate baseline compliance. \\
+Budget & Weekly planner & At-A-Glance Weekly Appointment Book & \$18 & Planning book & Phase-00 & Supports protected training blocks, and it was chosen because hourly columns make schedule realism easier to see. \\
+Budget & Weekly planner & Moleskine Weekly Planner Pocket & \$20 & Planning book & Phase-00 & Tracks weekly commitments simply, and it was chosen because portable size keeps planning close to daily use. \\
+Standard & Weekly planner & Panda Planner & \$30 & Planning book & Phase-00 & Organizes training and recovery priorities, and it was chosen because guided sections reduce blank-page avoidance. \\
+Standard & Weekly planner & Passion Planner Weekly & \$40 & Planning book & Phase-00 & Supports structured weekly intent, and it was chosen because layout helps map tasks beside training blocks clearly. \\
+Standard & Weekly planner & Full Focus Planner & \$45 & Planning book & Phase-00 & Helps protect execution windows, and it was chosen because goal and weekly layout reinforce disciplined review. \\
+Elite & Weekly planner & Hobonichi Cousin & \$59 & Planning book & Phase-00 & Supports dense schedule control, and it was chosen because high page utility helps combine planning with brief notes. \\
+Elite & Weekly planner & Laurel Denise Horizontal Weekly Planner & \$55 & Planning book & Phase-00 & Improves whole-week visibility, and it was chosen because layered design makes fixed cadence easier to protect. \\
+Elite & Weekly planner & Baronfig Undated Planner & \$49 & Planning book & Phase-00 & Supports clean weekly control without date waste, and it was chosen because minimalist design reduces planning fatigue. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.16.D - Monthly wall calendar}
+\phantomsection
+\addcontentsline{toc}{section}{7.16.D - Monthly wall calendar}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=0.70in]
+    X[c,1.60]
+    X[c,1.70]
+    Q[c,wd=1.05in]
+    Q[c,wd=0.95in]
+    Q[c,wd=1.15in]
+    X[l,3.10]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  cell{2-Z}{7} = {halign=l},
+}
+\Hdr{Tier} & \Hdr{Item} & \Hdr{Brand} & \Hdr{Approx.\ USD Pricing} & \Hdr{Type} & \Hdr{First Phase Required} & \Hdr{Notes} \\
+Budget & Monthly wall calendar & At-A-Glance WallMates Calendar & \$15 & Visual calendar & Phase-00 & Shows the month at a glance, and it was chosen because visible placement helps prevent forgotten review dates. \\
+Budget & Monthly wall calendar & Blue Sky Monthly Wall Calendar & \$12 & Visual calendar & Phase-00 & Supports bigger-picture phase awareness, and it was chosen because simple large blocks make quick markings easy. \\
+Budget & Monthly wall calendar & House of Doolittle Monthly Wall Calendar & \$14 & Visual calendar & Phase-00 & Makes recurring checkpoints visible, and it was chosen because clean month pages reduce clutter in shared spaces. \\
+Standard & Monthly wall calendar & Martha Stewart Monthly Dry-Erase Calendar & \$20 & Visual calendar & Phase-00 & Supports changeable monthly scheduling, and it was chosen because erasable use handles reslots cleanly. \\
+Standard & Monthly wall calendar & U Brands Monthly Calendar Board & \$25 & Visual calendar & Phase-00 & Keeps key dates visible and editable, and it was chosen because board format works well for repeated phase updates. \\
+Standard & Monthly wall calendar & Quartet Magnetic Monthly Planner & \$35 & Visual calendar & Phase-00 & Improves long-horizon visibility, and it was chosen because magnets and writing space support quick status cues. \\
+Elite & Monthly wall calendar & Pottery Barn Dry-Erase Calendar Board & \$79 & Visual calendar & Phase-00 & Supports polished visible planning, and it was chosen because sturdier build makes permanent wall use more realistic. \\
+Elite & Monthly wall calendar & Martha Brook Acrylic Wall Planner & \$95 & Visual calendar & Phase-00 & Creates a durable month-view command surface, and it was chosen because premium clarity improves fast reading. \\
+Elite & Monthly wall calendar & Levenger Glass Planning Board & \$120 & Visual calendar & Phase-00 & Maintains a premium visible schedule anchor, and it was chosen because smooth durable surface supports constant updating. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.16.E - Simple reminder watch / timer}
+\phantomsection
+\addcontentsline{toc}{section}{7.16.E - Simple reminder watch / timer}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=0.70in]
+    X[c,1.60]
+    X[c,1.70]
+    Q[c,wd=1.05in]
+    Q[c,wd=0.95in]
+    Q[c,wd=1.15in]
+    X[l,3.10]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  cell{2-Z}{7} = {halign=l},
+}
+\Hdr{Tier} & \Hdr{Item} & \Hdr{Brand} & \Hdr{Approx.\ USD Pricing} & \Hdr{Type} & \Hdr{First Phase Required} & \Hdr{Notes} \\
+Budget & Simple reminder watch / timer & Casio F-91W & \$20 & Reminder device & Phase-00 & Provides simple alarms and elapsed time, and it was chosen because minimal complexity reduces setup drift. \\
+Budget & Simple reminder watch / timer & Casio W800H & \$25 & Reminder device & Phase-00 & Supports reminders and timing in one cheap unit, and it was chosen because long battery life lowers maintenance friction. \\
+Budget & Simple reminder watch / timer & Gymboss Interval Timer & \$21 & Reminder device & Phase-00 & Delivers basic timed prompts, and it was chosen because clip-on simplicity keeps reminders visible during sessions. \\
+Standard & Simple reminder watch / timer & Timex Ironman Classic 30 & \$45 & Reminder device & Phase-00 & Supports repeating alarms and timing reliably, and it was chosen because sports-watch layout is easy to use under fatigue. \\
+Standard & Simple reminder watch / timer & Casio G-Shock DW5600 & \$75 & Reminder device & Phase-00 & Handles alarms and hard daily wear well, and it was chosen because ruggedness prevents frequent replacement. \\
+Standard & Simple reminder watch / timer & Gymboss MAX & \$30 & Reminder device & Phase-00 & Gives louder clearer timed reminders, and it was chosen because simpler programming reduces missed prompts. \\
+Elite & Simple reminder watch / timer & Garmin Forerunner 165 & \$250 & Reminder device & Phase-00 & Supports alarms, timing, and future training integration, and it was chosen because one device can reduce tool sprawl. \\
+Elite & Simple reminder watch / timer & Apple Watch SE & \$249 & Reminder device & Phase-00 & Delivers reminders and quick data capture, and it was chosen because strong ecosystem integration can improve compliance. \\
+Elite & Simple reminder watch / timer & Coros Pace 3 & \$229 & Reminder device & Phase-00 & Combines reminders with durable sports timing, and it was chosen because strong battery life lowers charge-related misses. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.16.F - Test evidence logbook}
+\phantomsection
+\addcontentsline{toc}{section}{7.16.F - Test evidence logbook}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=0.70in]
+    X[c,1.60]
+    X[c,1.70]
+    Q[c,wd=1.05in]
+    Q[c,wd=0.95in]
+    Q[c,wd=1.15in]
+    X[l,3.10]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  cell{2-Z}{7} = {halign=l},
+}
+\Hdr{Tier} & \Hdr{Item} & \Hdr{Brand} & \Hdr{Approx.\ USD Pricing} & \Hdr{Type} & \Hdr{First Phase Required} & \Hdr{Notes} \\
+Budget & Test evidence logbook & Mead Composition Book & \$6 & Test ledger & Phase-01 & Stores benchmark outcomes cleanly, and it was chosen because cheap dedicated separation prevents test notes from scattering. \\
+Budget & Test evidence logbook & Oxford Ruled Notebook & \$8 & Test ledger & Phase-01 & Captures timed-event evidence simply, and it was chosen because lightweight format is easy to bring to test sites. \\
+Budget & Test evidence logbook & Black n' Red Spiral Notebook & \$10 & Test ledger & Phase-01 & Holds test records and context together, and it was chosen because page turning is fast during field use. \\
+Standard & Test evidence logbook & Leuchtturm1917 A-5 Notebook & \$26 & Test ledger & Phase-01 & Supports orderly benchmark records, and it was chosen because page numbering improves evidence reference later. \\
+Standard & Test evidence logbook & Moleskine Professional Notebook & \$30 & Test ledger & Phase-01 & Keeps test notes more structured, and it was chosen because sectioned pages help separate event types. \\
+Standard & Test evidence logbook & Rhodia Goalbook & \$32 & Test ledger & Phase-01 & Supports cleaner results indexing, and it was chosen because dot-grid plus index improve retrieval of past tests. \\
+Elite & Test evidence logbook & Levenger Circa Junior & \$35 & Test ledger & Phase-01 & Supports rearranged evidence packets, and it was chosen because removable pages help preserve neat test archives. \\
+Elite & Test evidence logbook & Baronfig Confidant Plus & \$39 & Test ledger & Phase-01 & Holds cleaner long-window benchmark notes, and it was chosen because premium paper supports dense writing clearly. \\
+Elite & Test evidence logbook & Moleskine Smart Planner & \$35 & Test ledger & Phase-01 & Blends written evidence with digital capture, and it was chosen because hybrid use can reduce transcription errors. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.16.G - Weekly review binder}
+\phantomsection
+\addcontentsline{toc}{section}{7.16.G - Weekly review binder}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=0.70in]
+    X[c,1.60]
+    X[c,1.70]
+    Q[c,wd=1.05in]
+    Q[c,wd=0.95in]
+    Q[c,wd=1.15in]
+    X[l,3.10]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  cell{2-Z}{7} = {halign=l},
+}
+\Hdr{Tier} & \Hdr{Item} & \Hdr{Brand} & \Hdr{Approx.\ USD Pricing} & \Hdr{Type} & \Hdr{First Phase Required} & \Hdr{Notes} \\
+Budget & Weekly review binder & Amazon Basics 1-in Binder & \$8 & Review binder & Phase-01 & Keeps weekly review sheets in one place, and it was chosen because very low cost supports early system setup. \\
+Budget & Weekly review binder & Avery Economy Binder & \$10 & Review binder & Phase-01 & Centralizes weekly review paperwork, and it was chosen because common format makes refills easy to find. \\
+Budget & Weekly review binder & Staples Better Binder & \$12 & Review binder & Phase-01 & Holds review pages more securely, and it was chosen because stronger rings reduce page loss. \\
+Standard & Weekly review binder & Avery Durable View Binder & \$15 & Review binder & Phase-01 & Supports a cleaner recurring review packet, and it was chosen because customizable covers improve fast identification. \\
+Standard & Weekly review binder & Wilson Jones Heavy Duty Binder & \$18 & Review binder & Phase-01 & Handles thicker review loads well, and it was chosen because sturdier rings resist failure under repeated use. \\
+Standard & Weekly review binder & Samsill Durable Binder & \$16 & Review binder & Phase-01 & Preserves organized weekly history, and it was chosen because reinforced spine improves long-horizon durability. \\
+Elite & Weekly review binder & Levenger Circa Sliver Notebook System & \$55 & Review binder & Phase-01 & Makes review packet reordering easier, and it was chosen because disc-bound flexibility supports a maturing system. \\
+Elite & Weekly review binder & Kokuyo Campus Smart Ring Binder & \$25 & Review binder & Phase-01 & Supports lighter modular review carry, and it was chosen because slim design reduces bulk in travel bags. \\
+Elite & Weekly review binder & Filofax Notebook A-5 & \$30 & Review binder & Phase-01 & Maintains a premium portable review system, and it was chosen because pages can be moved without tearing. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.16.H - After-action review notebook}
+\phantomsection
+\addcontentsline{toc}{section}{7.16.H - After-action review notebook}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=0.70in]
+    X[c,1.60]
+    X[c,1.70]
+    Q[c,wd=1.05in]
+    Q[c,wd=0.95in]
+    Q[c,wd=1.15in]
+    X[l,3.10]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  cell{2-Z}{7} = {halign=l},
+}
+\Hdr{Tier} & \Hdr{Item} & \Hdr{Brand} & \Hdr{Approx.\ USD Pricing} & \Hdr{Type} & \Hdr{First Phase Required} & \Hdr{Notes} \\
+Budget & After-action review notebook & Field Notes Memo Book & \$12 & Review log & Phase-01 & Captures short reflection and correction notes, and it was chosen because small format makes post-session use more likely. \\
+Budget & After-action review notebook & Mead Memo Notebook & \$6 & Review log & Phase-01 & Supports quick AAR capture, and it was chosen because low cost lowers hesitation about high-volume use. \\
+Budget & After-action review notebook & Oxford Pocket Notebook & \$8 & Review log & Phase-01 & Stores concise error-and-fix notes, and it was chosen because small pages encourage brief operational writing. \\
+Standard & After-action review notebook & Leuchtturm1917 Pocket Notebook & \$18 & Review log & Phase-01 & Preserves consistent AAR history, and it was chosen because indexed pages help retrieve repeated themes fast. \\
+Standard & After-action review notebook & Moleskine Cahier & \$15 & Review log & Phase-01 & Supports simple review loops, and it was chosen because softcover form slips easily into a kit bag. \\
+Standard & After-action review notebook & Rite in the Rain Notebook & \$12 & Review log & Phase-01 & Captures outdoor after-action notes reliably, and it was chosen because weather resistance keeps notes usable. \\
+Elite & After-action review notebook & Baronfig Vanguard & \$19 & Review log & Phase-01 & Encourages cleaner concise reviews, and it was chosen because minimalist pages reduce cognitive clutter. \\
+Elite & After-action review notebook & Rhodia Webnotebook A-6 & \$20 & Review log & Phase-01 & Supports dense compact observations, and it was chosen because premium paper keeps rapid notes legible. \\
+Elite & After-action review notebook & Traveler's Notebook Refill & \$14 & Review log & Phase-01 & Fits a portable modular review system, and it was chosen because refillability supports long-horizon continuity. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.16.I - Clipboard / test log board}
+\phantomsection
+\addcontentsline{toc}{section}{7.16.I - Clipboard / test log board}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=0.70in]
+    X[c,1.60]
+    X[c,1.70]
+    Q[c,wd=1.05in]
+    Q[c,wd=0.95in]
+    Q[c,wd=1.15in]
+    X[l,3.10]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  cell{2-Z}{7} = {halign=l},
+}
+\Hdr{Tier} & \Hdr{Item} & \Hdr{Brand} & \Hdr{Approx.\ USD Pricing} & \Hdr{Type} & \Hdr{First Phase Required} & \Hdr{Notes} \\
+Budget & Clipboard / test log board & Officemate Wood Clipboard & \$8 & Field organizer & Phase-01 & Gives a hard writing surface for test logging, and it was chosen because simplicity keeps field use friction low. \\
+Budget & Clipboard / test log board & Saunders Recycled Aluminum Clipboard & \$15 & Field organizer & Phase-01 & Supports outdoor recordkeeping better, and it was chosen because rigid metal resists flex in standing use. \\
+Budget & Clipboard / test log board & Dexas Slimcase Clipboard & \$18 & Field organizer & Phase-01 & Holds papers and writing surface together, and it was chosen because internal storage cuts loose-sheet loss. \\
+Standard & Clipboard / test log board & Saunders WorkMate Storage Clipboard & \$30 & Field organizer & Phase-01 & Organizes test forms and pens in one unit, and it was chosen because storage improves field discipline. \\
+Standard & Clipboard / test log board & Rite in the Rain Clipboard & \$22 & Field organizer & Phase-01 & Supports wet-weather documentation, and it was chosen because water resistance protects early outdoor evidence. \\
+Standard & Clipboard / test log board & Dexas Clipboard with Storage & \$22 & Field organizer & Phase-01 & Keeps test materials together cleanly, and it was chosen because hinged storage reduces setup scatter. \\
+Elite & Clipboard / test log board & Saunders Cruiser Mate & \$45 & Field organizer & Phase-01 & Creates a premium all-in-one field writing station, and it was chosen because it handles larger form stacks cleanly. \\
+Elite & Clipboard / test log board & Pelican Hardback Writing Pad Case & \$55 & Field organizer & Phase-01 & Protects important test paperwork, and it was chosen because harder shell reduces crush and moisture risk. \\
+Elite & Clipboard / test log board & Levenger Circa Foldover Clipboard & \$40 & Field organizer & Phase-01 & Supports cleaner premium form handling, and it was chosen because foldover design improves paper security. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.16.J - Tab divider / index set}
+\phantomsection
+\addcontentsline{toc}{section}{7.16.J - Tab divider / index set}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=0.70in]
+    X[c,1.60]
+    X[c,1.70]
+    Q[c,wd=1.05in]
+    Q[c,wd=0.95in]
+    Q[c,wd=1.15in]
+    X[l,3.10]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  cell{2-Z}{7} = {halign=l},
+}
+\Hdr{Tier} & \Hdr{Item} & \Hdr{Brand} & \Hdr{Approx.\ USD Pricing} & \Hdr{Type} & \Hdr{First Phase Required} & \Hdr{Notes} \\
+Budget & Tab divider / index set & Avery Big Tab Dividers & \$8 & Index tabs & Phase-01 & Separates phases and review blocks clearly, and it was chosen because large tabs improve quick retrieval. \\
+Budget & Tab divider / index set & Oxford Write-On Dividers & \$7 & Index tabs & Phase-01 & Supports simple categorization, and it was chosen because handwritten tabs adapt easily as the system grows. \\
+Budget & Tab divider / index set & Amazon Basics Dividers & \$6 & Index tabs & Phase-01 & Creates cheap category separation, and it was chosen because low price encourages early organization instead of delay. \\
+Standard & Tab divider / index set & Avery Ultra Tabs & \$10 & Index tabs & Phase-01 & Improves evidence navigation, and it was chosen because stronger adhesive tabs hold up through repeated reference. \\
+Standard & Tab divider / index set & Wilson Jones Multicolor Dividers & \$9 & Index tabs & Phase-01 & Makes sections visually distinct, and it was chosen because color coding speeds retrieval under fatigue. \\
+Standard & Tab divider / index set & Post-it Durable Tabs & \$12 & Index tabs & Phase-01 & Supports movable indexing, and it was chosen because repositioning helps refine the system without reprinting. \\
+Elite & Tab divider / index set & Levenger Circa Tab Dividers & \$20 & Index tabs & Phase-01 & Supports premium modular organization, and it was chosen because durable dividers tolerate repeated reordering. \\
+Elite & Tab divider / index set & Filofax A-5 Dividers & \$18 & Index tabs & Phase-01 & Helps keep bound planning systems ordered, and it was chosen because higher build quality resists fray. \\
+Elite & Tab divider / index set & Kokuyo Index Tabs Set & \$15 & Index tabs & Phase-01 & Provides a cleaner premium indexing feel, and it was chosen because thin strong tabs reduce bulk buildup. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.16.K - Time-blocking planner}
+\phantomsection
+\addcontentsline{toc}{section}{7.16.K - Time-blocking planner}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=0.70in]
+    X[c,1.60]
+    X[c,1.70]
+    Q[c,wd=1.05in]
+    Q[c,wd=0.95in]
+    Q[c,wd=1.15in]
+    X[l,3.10]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  cell{2-Z}{7} = {halign=l},
+}
+\Hdr{Tier} & \Hdr{Item} & \Hdr{Brand} & \Hdr{Approx.\ USD Pricing} & \Hdr{Type} & \Hdr{First Phase Required} & \Hdr{Notes} \\
+Budget & Time-blocking planner & Clever Fox Planner Pro & \$30 & Blocking planner & Phase-07 & Structures dense days into protected blocks, and it was chosen because guided pages reduce self-management drift. \\
+Budget & Time-blocking planner & Time Block Planner by Cal Newport & \$28 & Blocking planner & Phase-07 & Supports disciplined schedule allocation, and it was chosen because the layout is explicitly built for time blocking. \\
+Budget & Time-blocking planner & Full Focus Planner & \$45 & Blocking planner & Phase-07 & Helps protect execution windows, and it was chosen because daily block structure fits rising hybrid density. \\
+Standard & Time-blocking planner & Hobonichi Cousin A-5 & \$59 & Blocking planner & Phase-07 & Handles hour-by-hour structure well, and it was chosen because detailed daily pages support complex scheduling. \\
+Standard & Time-blocking planner & Passion Planner Daily & \$45 & Blocking planner & Phase-07 & Supports detailed day planning, and it was chosen because the format pairs scheduling with priority review. \\
+Standard & Time-blocking planner & Laurel Denise Weekly Planner & \$55 & Blocking planner & Phase-07 & Improves multi-view planning, and it was chosen because layered pages make conflicts easier to catch. \\
+Elite & Time-blocking planner & Planner Pad Organizer & \$40 & Blocking planner & Phase-07 & Supports top-down prioritization and scheduling, and it was chosen because the funnel layout clarifies execution order. \\
+Elite & Time-blocking planner & Franklin Planner Daily & \$60 & Blocking planner & Phase-07 & Creates a more formal blocking workflow, and it was chosen because structured daily pages reinforce disciplined review. \\
+Elite & Time-blocking planner & Papier Productivity Planner & \$40 & Blocking planner & Phase-07 & Supports premium daily structure, and it was chosen because polished design can increase consistent use in dense phases. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.16.L - Dry-erase weekly planning board}
+\phantomsection
+\addcontentsline{toc}{section}{7.16.L - Dry-erase weekly planning board}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=0.70in]
+    X[c,1.60]
+    X[c,1.70]
+    Q[c,wd=1.05in]
+    Q[c,wd=0.95in]
+    Q[c,wd=1.15in]
+    X[l,3.10]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  cell{2-Z}{7} = {halign=l},
+}
+\Hdr{Tier} & \Hdr{Item} & \Hdr{Brand} & \Hdr{Approx.\ USD Pricing} & \Hdr{Type} & \Hdr{First Phase Required} & \Hdr{Notes} \\
+Budget & Dry-erase weekly planning board & U Brands Weekly Planner Board & \$20 & Visual planner & Phase-07 & Makes the week visible at a glance, and it was chosen because visual exposure reduces forgotten blocks. \\
+Budget & Dry-erase weekly planning board & Quartet Weekly Planner Board & \$25 & Visual planner & Phase-07 & Supports reslotting and fast edits, and it was chosen because erasable format reduces rewrite friction. \\
+Budget & Dry-erase weekly planning board & Amazon Basics Magnetic Dry-Erase Board & \$18 & Visual planner & Phase-07 & Creates a simple visible planning anchor, and it was chosen because low cost supports early upgrade adoption. \\
+Standard & Dry-erase weekly planning board & Board Dudes Magnetic Weekly Planner & \$30 & Visual planner & Phase-07 & Supports more organized weekly scheduling, and it was chosen because magnetic use helps pin supporting notes. \\
+Standard & Dry-erase weekly planning board & MasterVision Dry-Erase Weekly Planner & \$35 & Visual planner & Phase-07 & Maintains better readability, and it was chosen because clearer section lines help prevent overlap drift. \\
+Standard & Dry-erase weekly planning board & Martha Stewart Weekly Dry-Erase Board & \$28 & Visual planner & Phase-07 & Supports frequent schedule changes cleanly, and it was chosen because more polished layout helps quick scanning. \\
+Elite & Dry-erase weekly planning board & Levenger Glass Weekly Board & \$95 & Visual planner & Phase-07 & Creates a durable premium planning surface, and it was chosen because glass stays cleaner under heavy repeated use. \\
+Elite & Dry-erase weekly planning board & Pottery Barn Weekly Wall Planner & \$79 & Visual planner & Phase-07 & Supports a fixed visible command board, and it was chosen because sturdier construction suits permanent setup. \\
+Elite & Dry-erase weekly planning board & Acrylic Family Weekly Board Studio tier & \$110 & Visual planner & Phase-07 & Offers a polished high-visibility weekly display, and it was chosen because premium clarity improves fast interpretation. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.16.M - Task manager app}
+\phantomsection
+\addcontentsline{toc}{section}{7.16.M - Task manager app}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=0.70in]
+    X[c,1.60]
+    X[c,1.70]
+    Q[c,wd=1.05in]
+    Q[c,wd=0.95in]
+    Q[c,wd=1.15in]
+    X[l,3.10]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  cell{2-Z}{7} = {halign=l},
+}
+\Hdr{Tier} & \Hdr{Item} & \Hdr{Brand} & \Hdr{Approx.\ USD Pricing} & \Hdr{Type} & \Hdr{First Phase Required} & \Hdr{Notes} \\
+Budget & Task manager app & Microsoft To Do & \$0 & Task platform & Phase-07 & Tracks tasks beyond session logs, and it was chosen because free ecosystem entry lowers adoption friction. \\
+Budget & Task manager app & Todoist Free & \$0 & Task platform & Phase-07 & Captures actionable follow-ups quickly, and it was chosen because simple recurring tasks support routine stability. \\
+Budget & Task manager app & TickTick Free & \$0 & Task platform & Phase-07 & Organizes daily non-training actions, and it was chosen because reminders and lists stay lightweight. \\
+Standard & Task manager app & Todoist Pro & \$48 & Task platform & Phase-07 & Supports richer recurring workflows, and it was chosen because repeat task control helps protect weekly discipline. \\
+Standard & Task manager app & TickTick Premium & \$36 & Task platform & Phase-07 & Improves habit and task structure, and it was chosen because calendar views reduce scheduling blind spots. \\
+Standard & Task manager app & Asana Starter & \$132 & Task platform & Phase-07 & Supports more formal planning layers, and it was chosen because project views help separate domains cleanly. \\
+Elite & Task manager app & Sunsama & \$240 & Task platform & Phase-07 & Integrates planning and execution in one place, and it was chosen because daily guided workflow reduces drift. \\
+Elite & Task manager app & Things 3 & \$50 & Task platform & Phase-07 & Provides a polished premium task system, and it was chosen because elegant use can improve long-term consistency. \\
+Elite & Task manager app & Motion & \$228 & Task platform & Phase-07 & Automates task placement into the calendar, and it was chosen because dense phases benefit from lower planning overhead. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.16.N - Calendar / time-blocking app}
+\phantomsection
+\addcontentsline{toc}{section}{7.16.N - Calendar / time-blocking app}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=0.70in]
+    X[c,1.60]
+    X[c,1.70]
+    Q[c,wd=1.05in]
+    Q[c,wd=0.95in]
+    Q[c,wd=1.15in]
+    X[l,3.10]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  cell{2-Z}{7} = {halign=l},
+}
+\Hdr{Tier} & \Hdr{Item} & \Hdr{Brand} & \Hdr{Approx.\ USD Pricing} & \Hdr{Type} & \Hdr{First Phase Required} & \Hdr{Notes} \\
+Budget & Calendar / time-blocking app & Google Calendar & \$0 & Scheduling platform & Phase-07 & Holds protected time blocks digitally, and it was chosen because broad sync keeps schedule visibility high. \\
+Budget & Calendar / time-blocking app & Apple Calendar & \$0 & Scheduling platform & Phase-07 & Supports simple time blocking, and it was chosen because default device integration reduces friction. \\
+Budget & Calendar / time-blocking app & Outlook Calendar & \$0 & Scheduling platform & Phase-07 & Tracks appointments and blocks cleanly, and it was chosen because strong cross-device access aids consistency. \\
+Standard & Calendar / time-blocking app & Fantastical Premium & \$57 & Scheduling platform & Phase-07 & Improves scheduling speed, and it was chosen because cleaner event entry reduces planning drag. \\
+Standard & Calendar / time-blocking app & BusyCal & \$50 & Scheduling platform & Phase-07 & Offers richer calendar views, and it was chosen because dense schedules benefit from better time visibility. \\
+Standard & Calendar / time-blocking app & Structured Pro & \$15 & Scheduling platform & Phase-07 & Simplifies day sequencing, and it was chosen because timeline view helps keep blocks realistic. \\
+Elite & Calendar / time-blocking app & Sunsama Calendar Workflow & \$240 & Scheduling platform & Phase-07 & Combines planning and schedule execution, and it was chosen because guided daily structure reduces hybrid-phase chaos. \\
+Elite & Calendar / time-blocking app & Motion Calendar & \$228 & Scheduling platform & Phase-07 & Auto-places work into time blocks, and it was chosen because automation can reduce missed planning steps. \\
+Elite & Calendar / time-blocking app & Akiflow & \$228 & Scheduling platform & Phase-07 & Unifies tasks and calendar flow, and it was chosen because stronger integration supports denser operational control. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.16.O - Waterproof field notebook}
+\phantomsection
+\addcontentsline{toc}{section}{7.16.O - Waterproof field notebook}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=0.70in]
+    X[c,1.60]
+    X[c,1.70]
+    Q[c,wd=1.05in]
+    Q[c,wd=0.95in]
+    Q[c,wd=1.15in]
+    X[l,3.10]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  cell{2-Z}{7} = {halign=l},
+}
+\Hdr{Tier} & \Hdr{Item} & \Hdr{Brand} & \Hdr{Approx.\ USD Pricing} & \Hdr{Type} & \Hdr{First Phase Required} & \Hdr{Notes} \\
+Budget & Waterproof field notebook & Rite in the Rain Top-Spiral Notebook & \$6 & Field log & Phase-07 & Captures notes in wet or dirty settings, and it was chosen because weather resistance preserves field records. \\
+Budget & Waterproof field notebook & Field Notes Expedition & \$15 & Field log & Phase-07 & Supports portable outdoor note capture, and it was chosen because waterproof pages suit harsh conditions. \\
+Budget & Waterproof field notebook & Elan Weatherproof Notebook & \$10 & Field log & Phase-07 & Keeps quick observations readable outdoors, and it was chosen because cheap weatherproofing lowers hesitation to carry it. \\
+Standard & Waterproof field notebook & Rite in the Rain Side-Spiral Kit & \$12 & Field log & Phase-07 & Improves portable resilience, and it was chosen because paired cover options protect notes during repeated field handling. \\
+Standard & Waterproof field notebook & Expedition Edition Notebook by Karst & \$20 & Field log & Phase-07 & Supports smoother weatherproof writing, and it was chosen because premium synthetic pages resist damage better. \\
+Standard & Waterproof field notebook & Clairefontaine All Weather Notebook & \$14 & Field log & Phase-07 & Gives better paper feel in harsh conditions, and it was chosen because writeability remains decent when damp. \\
+Elite & Waterproof field notebook & Rite in the Rain Bound Book & \$18 & Field log & Phase-07 & Supports tougher field carry, and it was chosen because stronger binding survives repeated wet-use better. \\
+Elite & Waterproof field notebook & Tactical Notebook Cover + Rite in the Rain Insert & \$35 & Field log & Phase-07 & Creates a more durable field system, and it was chosen because protected carry reduces torn-page failure. \\
+Elite & Waterproof field notebook & Baronfig Squire + Weatherproof Pad Set & \$45 & Field log & Phase-07 & Supports premium field capture, and it was chosen because integrated carry improves low-friction use outside. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.16.P - Digital voice recorder}
+\phantomsection
+\addcontentsline{toc}{section}{7.16.P - Digital voice recorder}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=0.70in]
+    X[c,1.60]
+    X[c,1.70]
+    Q[c,wd=1.05in]
+    Q[c,wd=0.95in]
+    Q[c,wd=1.15in]
+    X[l,3.10]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  cell{2-Z}{7} = {halign=l},
+}
+\Hdr{Tier} & \Hdr{Item} & \Hdr{Brand} & \Hdr{Approx.\ USD Pricing} & \Hdr{Type} & \Hdr{First Phase Required} & \Hdr{Notes} \\
+Budget & Digital voice recorder & Sony ICD-PX370 & \$60 & Audio capture & Phase-07 & Captures quick spoken notes when writing is impractical, and it was chosen because simple controls reduce missed capture. \\
+Budget & Digital voice recorder & Olympus WS-853 & \$70 & Audio capture & Phase-07 & Supports mobile voice logging, and it was chosen because compact form fits easy kit carry. \\
+Budget & Digital voice recorder & Tascam DR-05X & \$120 & Audio capture & Phase-07 & Records cleaner audio for reviews, and it was chosen because file transfer is straightforward. \\
+Standard & Digital voice recorder & Sony ICD-UX570 & \$100 & Audio capture & Phase-07 & Improves quick voice capture quality, and it was chosen because built-in USB simplifies upload and archive. \\
+Standard & Digital voice recorder & Zoom H1essential & \$100 & Audio capture & Phase-07 & Captures better spoken debriefs, and it was chosen because premium mic quality aids later transcription. \\
+Standard & Digital voice recorder & Olympus WS-883 & \$100 & Audio capture & Phase-07 & Supports cleaner mobile dictation, and it was chosen because menu simplicity lowers operation errors. \\
+Elite & Digital voice recorder & Zoom H2essential & \$170 & Audio capture & Phase-07 & Records higher-quality spoken reviews, and it was chosen because richer capture helps long-form AAR use. \\
+Elite & Digital voice recorder & Sony ICD-UX580 & \$120 & Audio capture & Phase-07 & Gives a more polished premium recorder workflow, and it was chosen because compact reliability suits repeated field carry. \\
+Elite & Digital voice recorder & Tascam Portacapture X6 & \$399 & Audio capture & Phase-07 & Creates a very robust audio-review option, and it was chosen because advanced capture supports overbuilt documentation needs. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.16.Q - Smart reusable notebook}
+\phantomsection
+\addcontentsline{toc}{section}{7.16.Q - Smart reusable notebook}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=0.70in]
+    X[c,1.60]
+    X[c,1.70]
+    Q[c,wd=1.05in]
+    Q[c,wd=0.95in]
+    Q[c,wd=1.15in]
+    X[l,3.10]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  cell{2-Z}{7} = {halign=l},
+}
+\Hdr{Tier} & \Hdr{Item} & \Hdr{Brand} & \Hdr{Approx.\ USD Pricing} & \Hdr{Type} & \Hdr{First Phase Required} & \Hdr{Notes} \\
+Budget & Smart reusable notebook & Rocketbook Core Mini & \$20 & Reusable log & Phase-07 & Supports repeated rewrite-and-scan use, and it was chosen because reusability lowers paper churn in dense phases. \\
+Budget & Smart reusable notebook & Rocketbook Core & \$36 & Reusable log & Phase-07 & Blends handwritten capture with scanning, and it was chosen because it keeps one reusable notebook in play. \\
+Budget & Smart reusable notebook & Rocketbook Flip & \$30 & Reusable log & Phase-07 & Supports top-spiral quick notes, and it was chosen because clipboard-like orientation suits rapid session capture. \\
+Standard & Smart reusable notebook & Rocketbook Fusion & \$40 & Reusable log & Phase-07 & Adds planning templates to handwriting capture, and it was chosen because mixed page types reduce tool switching. \\
+Standard & Smart reusable notebook & Moleskine Smart Writing Set Notebook & \$29 & Reusable log & Phase-07 & Supports hybrid note capture, and it was chosen because familiar notebook feel can improve buy-in. \\
+Standard & Smart reusable notebook & Kindle Scribe Basic Notebook Workflow & \$340 & Reusable log & Phase-07 & Creates a paper-light note system, and it was chosen because digital export reduces archive friction. \\
+Elite & Smart reusable notebook & Rocketbook Pro & \$45 & Reusable log & Phase-07 & Provides a sturdier premium reusable notebook, and it was chosen because stronger build suits heavier use. \\
+Elite & Smart reusable notebook & reMarkable 2 & \$379 & Reusable log & Phase-07 & Supports focused digital handwriting, and it was chosen because distraction-light design preserves planning discipline. \\
+Elite & Smart reusable notebook & Supernote Nomad & \$299 & Reusable log & Phase-07 & Creates a high-end reusable handwriting system, and it was chosen because excellent note organization supports dense phases. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.16.R - Cloud backup service}
+\phantomsection
+\addcontentsline{toc}{section}{7.16.R - Cloud backup service}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=0.70in]
+    X[c,1.60]
+    X[c,1.70]
+    Q[c,wd=1.05in]
+    Q[c,wd=0.95in]
+    Q[c,wd=1.15in]
+    X[l,3.10]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  cell{2-Z}{7} = {halign=l},
+}
+\Hdr{Tier} & \Hdr{Item} & \Hdr{Brand} & \Hdr{Approx.\ USD Pricing} & \Hdr{Type} & \Hdr{First Phase Required} & \Hdr{Notes} \\
+Budget & Cloud backup service & Google One 100-GB & \$20 & Backup platform & Phase-12 & Preserves digital records off-device, and it was chosen because low cost supports redundant archive protection. \\
+Budget & Cloud backup service & iCloud+ 50-GB & \$12 & Backup platform & Phase-12 & Supports simple device backup, and it was chosen because native sync lowers user error in Apple ecosystems. \\
+Budget & Cloud backup service & Microsoft OneDrive 100-GB & \$24 & Backup platform & Phase-12 & Backs up key files and scans, and it was chosen because Microsoft integration keeps export friction low. \\
+Standard & Cloud backup service & Dropbox Plus & \$120 & Backup platform & Phase-12 & Supports organized archive syncing, and it was chosen because familiar folder behavior suits evidence storage. \\
+Standard & Cloud backup service & Google One 2-TB & \$100 & Backup platform & Phase-12 & Gives more archive headroom, and it was chosen because larger capacity supports scans, photos, and logs together. \\
+Standard & Cloud backup service & OneDrive Personal & \$70 & Backup platform & Phase-12 & Supports a fuller long-term archive, and it was chosen because Office ecosystem fit can simplify file discipline. \\
+Elite & Cloud backup service & Dropbox Professional & \$240 & Backup platform & Phase-12 & Provides a more robust archive environment, and it was chosen because stronger file history supports recovery after mistakes. \\
+Elite & Cloud backup service & Box Personal Pro & \$120 & Backup platform & Phase-12 & Supports cleaner evidence storage, and it was chosen because document-focused structure fits archival posture well. \\
+Elite & Cloud backup service & Sync Pro Solo & \$96 & Backup platform & Phase-12 & Adds secure redundant storage, and it was chosen because privacy-forward backup strengthens long-horizon record protection. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.16.S - Portable document scanner}
+\phantomsection
+\addcontentsline{toc}{section}{7.16.S - Portable document scanner}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=0.70in]
+    X[c,1.60]
+    X[c,1.70]
+    Q[c,wd=1.05in]
+    Q[c,wd=0.95in]
+    Q[c,wd=1.15in]
+    X[l,3.10]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  cell{2-Z}{7} = {halign=l},
+}
+\Hdr{Tier} & \Hdr{Item} & \Hdr{Brand} & \Hdr{Approx.\ USD Pricing} & \Hdr{Type} & \Hdr{First Phase Required} & \Hdr{Notes} \\
+Budget & Portable document scanner & Brother DS-640 & \$110 & Scan device & Phase-12 & Converts paper records to digital backup, and it was chosen because slim size supports home or travel scanning. \\
+Budget & Portable document scanner & Epson ES-50 & \$130 & Scan device & Phase-12 & Supports quick single-page capture, and it was chosen because easy portability lowers archive delay. \\
+Budget & Portable document scanner & Canon imageFORMULA P-208II & \$180 & Scan device & Phase-12 & Handles multi-page capture better, and it was chosen because automatic feeding reduces scanning friction. \\
+Standard & Portable document scanner & Fujitsu ScanSnap iX100 & \$219 & Scan device & Phase-12 & Makes paper-to-cloud archiving smoother, and it was chosen because strong mobile scanning workflow reduces backlog. \\
+Standard & Portable document scanner & Epson RR-60 & \$180 & Scan device & Phase-12 & Supports more dependable travel scanning, and it was chosen because bundled software helps file organization. \\
+Standard & Portable document scanner & Brother DS-940DW & \$180 & Scan device & Phase-12 & Adds wireless convenience, and it was chosen because fewer cable steps support same-day archive discipline. \\
+Elite & Portable document scanner & Fujitsu ScanSnap iX1300 & \$329 & Scan device & Phase-12 & Creates a faster premium archive pipeline, and it was chosen because desk-ready speed reduces paperwork lag. \\
+Elite & Portable document scanner & Raven Original & \$299 & Scan device & Phase-12 & Supports polished scan-to-cloud handling, and it was chosen because stronger workflow tools reduce misfiled records. \\
+Elite & Portable document scanner & Epson RapidReceipt RR-600W & \$400 & Scan device & Phase-12 & Handles heavier capture loads, and it was chosen because high throughput fits overbuilt verification posture. \\
+\end{longtblr}
+
+\newpage
+
+\section*{7.16.T - Archival storage box}
+\phantomsection
+\addcontentsline{toc}{section}{7.16.T - Archival storage box}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=0.70in]
+    X[c,1.60]
+    X[c,1.70]
+    Q[c,wd=1.05in]
+    Q[c,wd=0.95in]
+    Q[c,wd=1.15in]
+    X[l,3.10]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  cell{2-Z}{7} = {halign=l},
+}
+\Hdr{Tier} & \Hdr{Item} & \Hdr{Brand} & \Hdr{Approx.\ USD Pricing} & \Hdr{Type} & \Hdr{First Phase Required} & \Hdr{Notes} \\
+Budget & Archival storage box & Bankers Box Stor/File Medium-Duty File Box & \$12 & Archive case & Phase-12 & Keeps paper records consolidated, and it was chosen because low cost makes physical archiving easy to start. \\
+Budget & Archival storage box & IRIS Portable File Box & \$20 & Archive case & Phase-12 & Supports safer paper storage, and it was chosen because the latch reduces casual page spill. \\
+Budget & Archival storage box & Really Useful Box 19-L & \$30 & Archive case & Phase-12 & Holds binders and notebooks together, and it was chosen because clear walls improve quick identification. \\
+Standard & Archival storage box & Storex File Box & \$25 & Archive case & Phase-12 & Protects archived paper from casual crush and dust, and it was chosen because handle carry helps relocation. \\
+Standard & Archival storage box & Vaultz Locking File Box & \$45 & Archive case & Phase-12 & Adds more controlled physical storage, and it was chosen because locking protection improves archive discipline. \\
+Standard & Archival storage box & Sterilite File Crate & \$18 & Archive case & Phase-12 & Supports simple vertical paper storage, and it was chosen because open crate access encourages actual filing. \\
+Elite & Archival storage box & SentrySafe Fireproof File Box & \$75 & Archive case & Phase-12 & Protects critical hard-copy records better, and it was chosen because fire resistance adds stronger archive security. \\
+Elite & Archival storage box & Honeywell Fire/Water Chest & \$110 & Archive case & Phase-12 & Supports more resilient paper preservation, and it was chosen because water resistance reduces household loss risk. \\
+Elite & Archival storage box & Pelican 1450 Document Case Setup & \$180 & Archive case & Phase-12 & Creates an overbuilt physical archive option, and it was chosen because hard-shell protection suits verification-critical records. \\
+\end{longtblr}
+
+\newpage
+
+\section*{When These Items Are Needed}
+\phantomsection
+\addcontentsline{toc}{section}{When These Items Are Needed}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    X[c,1.25]
+    Q[c,wd=1.25in]
+    X[l,2.55]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  cell{2-Z}{1-2} = {halign=c, valign=m},
+}
+\Hdr{Item} & \Hdr{First required phase} & \Hdr{Why it becomes necessary} & \Hdr{What happens if missing} \\
+Daily session log notebook & Phase-00 & Phase-00 requires a single source-of-record so daily validity, pain, hotspot, sleep, and RPE fields are not left to memory. & Same-day evidence becomes easier to miss or backfill, and gate defensibility weakens immediately. \\
+Single-source digital log app/file & Phase-00 & The same Tier-1 posture can be met digitally if one authoritative file is maintained from the start. & Logs become fragmented across apps or messages, which weakens auditability and trend review. \\
+Weekly planner & Phase-00 & A simple planner supports the earliest six-session rhythm without requiring a complex expanded system. & Training blocks are easier to miss, stack, or drift without a visible weekly plan. \\
+Monthly wall calendar & Phase-00 & A visible calendar helps anchor reviews, checkpoints, and reslots before the system becomes denser. & Weekly execution becomes more short-sighted and phase-level dates are easier to lose track of. \\
+Simple reminder watch / timer & Phase-00 & Stage-6 Tier-1 includes simple reminders, and reminders reduce forgetfulness without adding heavy decision load. & Session starts, recovery tasks, and review cues are more likely to be skipped or delayed. \\
+Test evidence logbook & Phase-01 & Early benchmark windows need a dedicated record so results and context are not buried inside daily notes. & Test records become harder to retrieve and compare across later gates. \\
+Weekly review binder & Phase-01 & Once the first benchmark cycle appears, weekly review artifacts need a dedicated home to support review discipline. & Review pages drift into loose stacks and are less likely to be used consistently. \\
+After-action review notebook & Phase-01 & Phase-01 is the earliest reasonable point for a distinct AAR habit because execution patterns begin repeating enough to review. & Lessons learned stay embedded in memory and are less likely to change future behavior. \\
+Clipboard / test log board & Phase-01 & Early field or gym testing benefits from a stable writing surface and form control. & On-site evidence capture becomes sloppier and easier to misplace. \\
+Tab divider / index set & Phase-01 & Once multiple record types exist, indexing becomes necessary to keep one system usable rather than chaotic. & Retrieval slows and the system becomes more likely to fragment by convenience. \\
+Time-blocking planner & Phase-07 & Stage-6.B raises 7.16 to Tier-2 at Phase-07 because hybrid density increases scheduling drift and missed-session risk. & Dense weeks remain harder to structure cleanly, which raises stacking and reslot errors. \\
+Dry-erase weekly planning board & Phase-07 & A visible board fits the expanded execution-control posture when scheduling complexity rises. & Rapid weekly reslots stay less visible, and day-to-day planning drift is easier to miss. \\
+Task manager app & Phase-07 & Expanded self-management adds structured task control so recurring operational actions do not live only in memory. & Non-session tasks such as reviews, prep, or follow-ups become easier to forget. \\
+Calendar / time-blocking app & Phase-07 & Digital time blocking becomes more valuable when density and coordination pressure increase. & Real-time schedule control remains less flexible when the week changes quickly. \\
+Waterproof field notebook & Phase-07 & Portability and indexing upgrades fit the first expanded toolkit once outdoor or travel logging becomes more frequent. & Field notes are easier to lose or damage when weather or movement conditions worsen. \\
+Digital voice recorder & Phase-07 & Audio capture becomes useful when dense days make written note-taking too slow or impractical. & Quick observations and debriefs are more likely to be forgotten before later transcription. \\
+Smart reusable notebook & Phase-07 & A reusable hybrid capture tool fits Tier-2’s goal of better structure with lower repetitive friction. & Handwritten planning remains either paper-heavy or less easily exported for archive. \\
+Cloud backup service & Phase-12 & Stage-6.B raises 7.16 to Tier-3 at Phase-12 for redundant planning discipline and higher verification reliability. & Digital single-point failure remains higher during the most consequential proof windows. \\
+Portable document scanner & Phase-12 & Tier-3 archival posture benefits from rapid conversion of paper evidence into backed-up digital copies. & Paper records remain more fragile and slower to secure into redundancy. \\
+Archival storage box & Phase-12 & A physical archive container fits the same overbuilt reliability posture for verification-critical paper records. & Hard-copy documents remain more vulnerable to loss, mix-ups, and environmental damage. \\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+\newpage
+
+\section*{Compliance Checklist}
+\phantomsection
+\addcontentsline{toc}{section}{Compliance Checklist}
+
+\begin{itemize}
+\item Only one deliverable is provided for Target Category 7.16.
+\item The locked title format and required output structure are used.
+\item The chart uses the exact required columns.
+\item Twenty distinct items are included, and each item contains exactly three Budget rows, three Standard rows, and three Elite rows.
+\item Rows are grouped by item and progress from foundational single-source logging and planning tools toward expanded execution-control tools and late-phase redundancy.
+\item Notes state both the intended use/effect and the reason the specific item was chosen.
+\item Stage-6.B timing is treated as authoritative, with Phase-00 for Tier-1 essentials, Phase-07 for Tier-2 expanded execution control, and Phase-12 for Tier-3 redundancy and archival posture.
+\item Phase-01 item placements are controlled Tier-1 item-level assumptions tied to early benchmark admissibility and review discipline, not a category-level Tier escalation.
+\item No therapy, diagnosis, prescription guidance, programming content, new tests, new thresholds, retailer links, affiliate links, promo codes, or live price research are included.
+\item The required post-chart timing table is included and phase labels match the chart.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,906 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{landscape}
+
+\subsection*{7.03.A - Whey Protein Concentrate}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.03.A - Whey Protein Concentrate}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Whey protein concentrate &
+Body Fortress Super Advanced Whey &
+\$28 &
+Dairy protein &
+Phase-00 &
+Helps close daily protein gaps cheaply, and this tub is easy to replace in most big-box stores. \\
+Budget &
+Whey protein concentrate &
+Nutricost Whey Protein Concentrate &
+\$32 &
+Dairy protein &
+Phase-00 &
+Supports basic protein adequacy with a simple format, and the price stays low for large servings. \\
+Budget &
+Whey protein concentrate &
+\textbf{NOW} Sports Whey Protein &
+\$35 &
+Dairy protein &
+Phase-00 &
+Adds easy mixed-drink protein after training, and the label stays relatively straightforward for low-friction use. \\
+Standard &
+Whey protein concentrate &
+Optimum Nutrition Gold Standard Whey &
+\$40 &
+Dairy protein &
+Phase-00 &
+Bridges missed protein intake with a familiar formula, and the brand is widely available enough for continuity. \\
+Standard &
+Whey protein concentrate &
+Dymatize Elite 100\% Whey &
+\$38 &
+Dairy protein &
+Phase-00 &
+Makes routine protein intake easier to repeat, and the powder mixes smoothly enough to reduce avoidance. \\
+Standard &
+Whey protein concentrate &
+Levels Grass-Fed Whey &
+\$45 &
+Dairy protein &
+Phase-00 &
+Covers protein shortfalls with fewer extras, and the ingredient list is cleaner than many cheaper blends. \\
+Elite &
+Whey protein concentrate &
+Legion Whey+ &
+\$60 &
+Dairy protein &
+Phase-00 &
+Supports protein adequacy with a more minimalist formula, and the product is chosen for tighter QC posture. \\
+Elite &
+Whey protein concentrate &
+Transparent Labs Grass-Fed Whey &
+\$60 &
+Dairy protein &
+Phase-00 &
+Helps maintain daily protein consistency, and the transparent label suits a conservative attribution mindset. \\
+Elite &
+Whey protein concentrate &
+Ascent Native Fuel Whey &
+\$55 &
+Dairy protein &
+Phase-00 &
+Reduces missed protein targets with an easy-drinking powder, and the taste profile can improve compliance. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+\subsection*{7.03.B - Whey Protein Isolate}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.03.B - Whey Protein Isolate}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Whey protein isolate &
+Myprotein Impact Whey Isolate &
+\$42 &
+Dairy protein &
+Phase-00 &
+Gives a leaner protein option for tighter calorie control, and the bag format stores easily in small spaces. \\
+Budget &
+Whey protein isolate &
+Nutricost Whey Protein Isolate &
+\$50 &
+Dairy protein &
+Phase-00 &
+Helps raise protein intake with less filler, and the price stays relatively controlled for isolate class. \\
+Budget &
+Whey protein isolate &
+Isopure Unflavored Whey Isolate &
+\$55 &
+Dairy protein &
+Phase-00 &
+Fits plain mixing into other foods or drinks, and the unflavored format reduces flavor fatigue. \\
+Standard &
+Whey protein isolate &
+Dymatize ISO-100 &
+\$52 &
+Dairy protein &
+Phase-00 &
+Supports quick, low-friction protein intake, and the light mixability makes it easier to use consistently. \\
+Standard &
+Whey protein isolate &
+Rule One R1 Protein Isolate &
+\$50 &
+Dairy protein &
+Phase-00 &
+Raises protein intake without a heavy texture, and the formula is simple enough for repeat daily use. \\
+Standard &
+Whey protein isolate &
+\textbf{NOW} Sports Whey Protein Isolate &
+\$55 &
+Dairy protein &
+Phase-00 &
+Helps meet protein targets with a lower-lactose option, and the sports line has a straightforward presentation. \\
+Elite &
+Whey protein isolate &
+Transparent Labs Grass-Fed Whey Isolate &
+\$60 &
+Dairy protein &
+Phase-00 &
+Supports protein adequacy with a cleaner panel, and the product suits a more controlled ingredient posture. \\
+Elite &
+Whey protein isolate &
+Kaged Whey Protein Isolate &
+\$58 &
+Dairy protein &
+Phase-00 &
+Makes daily protein easier on the stomach for some users, and the texture is smoother than many isolates. \\
+Elite &
+Whey protein isolate &
+Ascent Native Fuel Whey &
+\$55 &
+Dairy protein &
+Phase-00 &
+Provides a lighter protein option that feels less chalky, which can improve adherence during busy days. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+\subsection*{7.03.C - Micellar Casein Protein}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.03.C - Micellar Casein Protein}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Micellar casein protein &
+Nutricost Casein Protein &
+\$40 &
+Milk protein &
+Phase-01 &
+Adds a slower-digesting protein option for long gaps between meals, and the price is still manageable. \\
+Budget &
+Micellar casein protein &
+Optimum Nutrition Gold Standard Casein &
+\$42 &
+Milk protein &
+Phase-01 &
+Helps cover late-day protein gaps with a thicker shake, and the brand is easy to keep consistent. \\
+Budget &
+Micellar casein protein &
+Dymatize Elite Casein &
+\$38 &
+Milk protein &
+Phase-01 &
+Supports steadier protein intake across longer breaks, and the tub cost stays lower than many premium options. \\
+Standard &
+Micellar casein protein &
+Rule One Slow Motion Casein &
+\$42 &
+Milk protein &
+Phase-01 &
+Extends protein coverage when meal timing is irregular, and the powder texture is easier to work with than many caseins. \\
+Standard &
+Micellar casein protein &
+Kaged Micellar Casein &
+\$45 &
+Milk protein &
+Phase-01 &
+Provides a thicker meal-gap protein option, and the formula keeps the ingredient list relatively clean. \\
+Standard &
+Micellar casein protein &
+MuscleFeast Grass-Fed Micellar Casein &
+\$48 &
+Milk protein &
+Phase-01 &
+Supports longer satiety between meals, and the brand is chosen for a more stripped-down label posture. \\
+Elite &
+Micellar casein protein &
+Naked Casein &
+\$55 &
+Milk protein &
+Phase-01 &
+Helps preserve protein continuity with minimal extras, and the plain formula suits conservative troubleshooting. \\
+Elite &
+Micellar casein protein &
+Legion Casein+ &
+\$55 &
+Milk protein &
+Phase-01 &
+Gives a slower protein option with clearer labeling, and the product fits a tighter QC preference. \\
+Elite &
+Micellar casein protein &
+Ascent Micellar Casein &
+\$50 &
+Milk protein &
+Phase-01 &
+Supports overnight or long-gap protein intake, and the smoother taste can reduce skipped use. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+\subsection*{7.03.D - Plant Protein Blend}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.03.D - Plant Protein Blend}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Plant protein blend &
+Orgain Organic Protein &
+\$25 &
+Plant protein &
+Phase-00 &
+Covers protein gaps without dairy, and the broad retail availability helps keep the same product in rotation. \\
+Budget &
+Plant protein blend &
+Nutiva Plant Protein &
+\$26 &
+Plant protein &
+Phase-00 &
+Gives a non-dairy fallback for protein adequacy, and the simple plant-forward positioning is easy to understand. \\
+Budget &
+Plant protein blend &
+\textbf{NOW} Sports Pea Protein &
+\$28 &
+Plant protein &
+Phase-00 &
+Supports dairy-free protein intake, and the plain format works for users who want fewer add-ins. \\
+Standard &
+Plant protein blend &
+Vega Sport Premium Protein &
+\$45 &
+Plant protein &
+Phase-00 &
+Raises daily protein in a dairy-free form, and the sports-oriented blend is easy to keep as a single product. \\
+Standard &
+Plant protein blend &
+Garden of Life Sport Plant Protein &
+\$40 &
+Plant protein &
+Phase-00 &
+Helps maintain protein intake while avoiding whey, and the product is widely recognized and easy to re-buy. \\
+Standard &
+Plant protein blend &
+KOS Organic Plant Protein &
+\$38 &
+Plant protein &
+Phase-00 &
+Supports consistent protein intake with a smoother taste profile, and better palatability can improve adherence. \\
+Elite &
+Plant protein blend &
+Truvani Plant Protein &
+\$50 &
+Plant protein &
+Phase-00 &
+Provides a cleaner-label plant option, and the shorter ingredient panel fits a conservative selection posture. \\
+Elite &
+Plant protein blend &
+Ritual Essential Protein Daily Shake 18+ &
+\$49 &
+Plant protein &
+Phase-00 &
+Supports protein adequacy with a more transparent formula, and the product is chosen for stronger label clarity. \\
+Elite &
+Plant protein blend &
+Momentous Essential Plant Protein &
+\$55 &
+Plant protein &
+Phase-00 &
+Gives a premium non-dairy protein fallback, and the brand suits a tighter quality-control bias. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+\subsection*{7.03.E - Ready-to-Drink Protein Shake}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.03.E - Ready-to-Drink Protein Shake}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Ready-to-drink protein shake &
+Premier Protein &
+\$26 &
+Ready-to-drink protein &
+Phase-00 &
+Solves missed meals fast, and the shelf-stable carton format works well for low-prep days. \\
+Budget &
+Ready-to-drink protein shake &
+Pure Protein Shake &
+\$24 &
+Ready-to-drink protein &
+Phase-00 &
+Provides grab-and-go protein when cooking fails, and the multipacks are cheap enough for routine use. \\
+Budget &
+Ready-to-drink protein shake &
+Muscle Milk Pro Series &
+\$30 &
+Ready-to-drink protein &
+Phase-00 &
+Adds portable protein for busy days, and the thicker shake can feel more substantial than lighter cartons. \\
+Standard &
+Ready-to-drink protein shake &
+Fairlife Nutrition Plan &
+\$32 &
+Ready-to-drink protein &
+Phase-00 &
+Helps hit protein targets with minimal prep, and the taste quality often improves long-term compliance. \\
+Standard &
+Ready-to-drink protein shake &
+Core Power 26g &
+\$35 &
+Ready-to-drink protein &
+Phase-00 &
+Covers post-session protein intake quickly, and the chilled bottle format is easy to tolerate after training. \\
+Standard &
+Ready-to-drink protein shake &
+OWYN Pro Elite &
+\$38 &
+Ready-to-drink protein &
+Phase-00 &
+Gives a dairy-free ready protein option, and the shelf-stable cartons suit travel or car storage. \\
+Elite &
+Ready-to-drink protein shake &
+Slate Milk High Protein &
+\$40 &
+Ready-to-drink protein &
+Phase-00 &
+Provides portable protein with a lighter mouthfeel, and the canned format packs easily into a work bag. \\
+Elite &
+Ready-to-drink protein shake &
+ICONIC Protein Drink &
+\$42 &
+Ready-to-drink protein &
+Phase-00 &
+Supports protein continuity when refrigeration is limited, and the product is chosen for cleaner labeling. \\
+Elite &
+Ready-to-drink protein shake &
+ALOHA Protein Drink &
+\$39 &
+Ready-to-drink protein &
+Phase-00 &
+Adds a plant-based portable protein option, and the simple flavor profile can reduce flavor burnout. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+\subsection*{7.03.F - Single-Serve Protein Packets}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.03.F - Single-Serve Protein Packets}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Single-serve protein packets &
+Optimum Nutrition Gold Standard On-The-Go &
+\$18 &
+Portion pack &
+Phase-00 &
+Solves travel-day protein gaps, and the packets remove scoop measurement hassle in small living spaces. \\
+Budget &
+Single-serve protein packets &
+Isopure Protein to Go &
+\$20 &
+Portion pack &
+Phase-00 &
+Gives portable single-use protein for travel continuity, and the stick format is easy to keep in a bag. \\
+Budget &
+Single-serve protein packets &
+Dymatize ISO-100 Single Serve &
+\$22 &
+Portion pack &
+Phase-00 &
+Reduces skipped shakes when routine breaks, and the pre-portioned packs improve consistency. \\
+Standard &
+Single-serve protein packets &
+Orgain Organic Protein Travel Packs &
+\$24 &
+Portion pack &
+Phase-00 &
+Helps keep non-dairy protein available on the move, and the packets simplify portion control. \\
+Standard &
+Single-serve protein packets &
+Truvani Travel Packs &
+\$28 &
+Portion pack &
+Phase-00 &
+Supports portable protein use with a shorter ingredient list, and single packets limit mess and waste. \\
+Standard &
+Single-serve protein packets &
+Legion Whey+ Single Serves &
+\$30 &
+Portion pack &
+Phase-00 &
+Provides a repeatable travel protein option, and the pre-measured packs reduce guesswork in unstable routines. \\
+Elite &
+Single-serve protein packets &
+Momentous Essential Protein Single Serves &
+\$35 &
+Portion pack &
+Phase-00 &
+Keeps premium protein continuity during travel, and the packet format prevents inaccurate self-portioning. \\
+Elite &
+Single-serve protein packets &
+Transparent Labs Single-Serve Whey &
+\$36 &
+Portion pack &
+Phase-00 &
+Supports portable protein intake with clearer labeling, and the format suits strict one-product troubleshooting. \\
+Elite &
+Single-serve protein packets &
+Kaged Whey Isolate Travel Packs &
+\$34 &
+Portion pack &
+Phase-00 &
+Preserves protein continuity during long days away from home, and the measured packs are easier to keep consistent. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+\subsection*{7.03.G - Meal Replacement Shake}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.03.G - Meal Replacement Shake}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1-Z}{1-7} = {fg=black},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget &
+Meal replacement shake &
+SlimFast Original &
+\$15 &
+Meal replacement &
+Phase-01 &
+Covers a missed meal in a very low-effort format, and the low entry price makes testing feasible. \\
+Budget &
+Meal replacement shake &
+Orgain Nutritional Shake Mix &
+\$28 &
+Meal replacement &
+Phase-01 &
+Provides broader meal-gap coverage than plain protein, and the powder format stores well in tight spaces. \\
+Budget &
+Meal replacement shake &
+Soylent Powder &
+\$35 &
+Meal replacement &
+Phase-01 &
+Helps stabilize intake on chaotic days, and the all-in-one format reduces prep demands. \\
+Standard &
+Meal replacement shake &
+Huel Powder &
+\$40 &
+Meal replacement &
+Phase-01 &
+Gives a more structured meal substitute when food prep fails, and the product is easy to standardize daily. \\
+Standard &
+Meal replacement shake &
+Garden of Life Raw Organic Meal &
+\$45 &
+Meal replacement &
+Phase-01 &
+Supports broader calorie and micronutrient coverage, and the formula suits users wanting a single backup shake. \\
+Standard &
+Meal replacement shake &
+Huel Black Edition &
+\$45 &
+Meal replacement &
+Phase-01 &
+Provides a higher-protein meal fallback, and the product works well when training volume rises but prep time does not. \\
+Elite &
+Meal replacement shake
+
+\end{longtblr}
+
+\end{landscape}
+
+\end{document}

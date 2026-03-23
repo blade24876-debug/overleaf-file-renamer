@@ -1,0 +1,442 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{tcolorbox}
+\begin{center}
+Stage 1 — Charter, Governance, and Templates\\[0.35em]
+SOF Physical Development Transformation Program\\[0.25em]
+182-Week Civilian-to-Selection Readiness Pipeline\\[0.65em]
+\TitleLine
+\end{center}
+\end{tcolorbox}
+
+\vspace{0.35em}
+
+\section*{Stage 1 — Charter, Governance, and Templates}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 1 — Charter, Governance, and Templates}
+
+\subsection*{Introduction}
+\phantomsection
+\addcontentsline{toc}{subsection}{Introduction}
+
+\subsubsection*{1) Purpose}
+
+Stage 1 exists to function as the governance authority layer for the full 182-week civilian-to-selection readiness pipeline, Phase 00 through Phase 13. Stage 1 locks the operational definitions, compliance doctrine, evidence posture, and change-control mechanics that prevent execution drift, prevent unsafe escalation, and preserve audit-ready comparability over a multi-year horizon.
+
+Stage 1 \textbf{MUST} achieve the following:
+
+\begin{itemize}
+\item Stabilize decision language. Stage 1 locks canonical definitions and stable terminology so later artifacts cannot silently change meaning to justify convenience, speed, or preference. If definitions drift, evidence becomes non-comparable, and gate decisions become subjective.
+
+\item Convert Stage 0 constants into enforceable governance controls. Stage 0 defines what is fixed; Stage 1 defines how those fixed rules are applied operationally in day-to-day decision-making, including what counts, what does not count, and what happens when compliance fails.
+
+\item Make execution auditable. Stage 1 defines the minimum structures and required schemas so a third-party coach can audit execution and reach the same decisions using the same admissible evidence without needing oral context, personal familiarity, or informal “coach intuition.”
+
+\item Make risk an owned control problem. Stage 1 defines how risks are tracked, detected early via triggers or signals, mitigated through explicit controls, and owned by a single accountable Owner. Risk posture is operational and enforceable, not rhetorical.
+
+\item Make dependencies explicit and validated. Stage 1 ensures prerequisites are not “assumed until failure.” Dependencies have validation methods, due-by timing, Owners, and explicit fail actions that enforce substitution, delay, Hold, Regress, or Medical Hold as required.
+
+\item Prevent mid-pipeline moving targets. Stage 1 establishes freeze-window and patch discipline so evidence remains comparable and so changes do not corrupt gates, invalidate tests, or create hidden contradictions between stages.
+\end{itemize}
+
+Stage 1 does not prescribe day-to-day training. Any downstream artifact is non-deployable if it violates Stage 0 or Stage 1.
+
+\subsubsection*{2) Scope}
+
+\paragraph*{2.1 Inclusions}
+
+Stage 1 controls compliance and governance across Phase 00 through Phase 13 by deliverable.
+
+\begin{itemize}
+\item 1.A Project Charter
+
+Locks mission framing, scope boundaries, non-negotiables, definition-of-success posture aligned to Stage 0 targets, decision hierarchy, roles and decision rights, enforcement posture, and charter-level change-control posture. 1.A \textbf{MUST} define what is fixed, what is allowed to vary, and who has stop authority, gate authority, and patch authority.
+
+\item 1.B Key Risks and Mitigations
+
+Defines the owned risk register with triggers or signals, impacts, likelihood, mitigations, and Owners. 1.B \textbf{MUST} convert predictable failure modes into a detection-and-response system that constrains gates and prevents unsafe escalation.
+
+\item 1.C Assumptions and Dependencies
+
+Defines prerequisites as validated dependencies with rationale, validation method, due-by timing, Owner assignment, and explicit fail actions. 1.C \textbf{MUST} enforce substitute, delay, Hold, Regress, or Medical Hold posture when dependencies are unmet, and \textbf{MUST} prevent “pretend ready” assumptions.
+
+\item 1.D Milestone Plan and Output Order
+
+Locks stage build sequence, prerequisite posture, and internal order controls that prevent out-of-order artifact generation. 1.D \textbf{MUST} implement no-skip rules and define how out-of-order work is handled: non-deployable until reconciled and re-versioned.
+
+\item 1.E Standardized Templates
+
+Locks the standardized templates and table schemas used downstream so artifacts remain complete, comparable, and crosswalk-ready. 1.E \textbf{MUST} provide mandatory schemas with stable headers and required fields.
+
+Includes:
+
+1.E.1 Overview Template
+
+1.E.2 Phase Row Template
+
+\item 1.F Governance Rules and Validity Doctrine
+
+Locks validity tagging, gate outcomes, stop-rule integration, freeze windows, patch protocol, change-log requirements, and admissibility rules for gate decisions. 1.F \textbf{MUST} define the rules-of-evidence layer that prevents invalid sessions/tests from being used to justify advancement, and \textbf{MUST} formalize stop posture as overriding schedule and performance.
+\end{itemize}
+
+Stage 1 is the compliance authority across Phase 00–Phase 13. Stage 1 operationalizes Stage 0 constants into enforceable governance controls and \textbf{MUST} NOT redefine Stage 0.
+
+\paragraph*{2.2 Exclusions}
+
+Stage 1 explicitly excludes:
+
+\begin{itemize}
+\item Training prescriptions, weekly microcycles, exercise programming, intervals, sets, reps, progressions, and day-to-day schedules.
+\item Test protocol details and scoring standards, which belong to Stage 2.
+\item Test calendars and deload maps, which belong to Stage 3.
+\item Phase playbooks and phase prescriptions, which belong to Stage 4 and Stage 5.
+\item Equipment build-out and overviews, which belong to Stage 6 and Stage 7.
+\item Crosswalk and QA packet, which belong to Stage 8.
+\item Packaging and implementation guide, which belong to Stage 9.
+\end{itemize}
+
+\subsubsection*{3) How to Use}
+
+Stage 1 is used as the continuous governance reference layer for build and execution. Coach Lead \textbf{MUST} treat Stage 1 as the compliance checklist applied to every downstream artifact and every gate decision.
+
+When Stage 1 \textbf{MUST} be consulted:
+
+\begin{itemize}
+\item Program start and Phase 00 start: confirm governance readiness, including role mechanics, decision rights, stop posture, validity discipline, dependency validation posture, and minimum dataset expectations.
+
+\item Weekly execution oversight: review compliance, evidence completeness, validity tagging distribution, risk triggers or signals, pain trends, environment constraints, and dependency status changes that could alter safe execution.
+
+\item Mid-phase and end-of-phase gates: apply gate doctrine, confirm admissible evidence posture, refuse advancement without \textbf{VALID} evidence, and document gate outcomes with traceability to dated records.
+
+\item Test weeks and evidence verification windows: confirm that evidence is produced under recorded conditions and that no novelty or uncontrolled changes contaminate comparability.
+
+\item Injury events, mechanics-altering pain, red-flag symptoms, and mental red flags: execute stop posture, document the event, escalate to Medical when indicated, and constrain gates until stability and admissibility are restored.
+
+\item Environment and logistics changes: route changes, weather shifts, facility access changes, equipment failures, or schedule disruptions that affect validity or safety. Apply substitution doctrine and documentation requirements; do not permit drift or undocumented workarounds.
+
+\item Any proposed execution change: determine whether the change is a runtime coaching adjustment within authorized levers or a doctrine-level change requiring a patch. If doctrine changes are required, initiate patch protocol; no silent edits.
+\end{itemize}
+
+Conflict resolution posture:
+
+\begin{itemize}
+\item Stage 0 governs constants: identity, scope boundaries, operating constraints, safety boundaries, end-state envelope, and package usage doctrine.
+\item Stage 1 governs compliance: validity, gate mechanics, stop-rule integration, risk and dependency posture, standardized templates, and change control.
+\item Downstream artifacts \textbf{MUST} comply. If they do not comply, they are non-deployable until patched, corrected, and re-versioned. No silent edits.
+\end{itemize}
+
+Decision checklist use:
+
+\begin{itemize}
+\item Stage 1 artifacts are used as decision checklists for gate outcomes: \textbf{ADVANCE}, \textbf{HOLD}, \textbf{REGRESS}, and \textbf{MEDICAL} \textbf{HOLD}. Decisions \textbf{MUST} be documented, evidence-based, and restricted to admissible evidence.
+\end{itemize}
+
+Audit posture:
+
+\begin{itemize}
+\item Stage 1 is written so a third-party coach can interpret the rules without outside context, audit compliance, and reach the same decision given the same admissible evidence. Stage 1 therefore \textbf{MUST} remain explicit, stable in terminology, and resistant to interpretation drift.
+\end{itemize}
+
+\subsubsection*{4) Inputs and Assumptions}
+
+\paragraph*{4.1 Inputs Binding}
+
+Stage 1 is constrained by Stage 0 as governing inputs. Stage 1 references Stage 0 without redefining it.
+
+Inputs Stage 1 \textbf{MUST} treat as binding include, at minimum:
+
+\begin{itemize}
+\item Program structure: 182-week pipeline, Phase 00 through Phase 13 executed in order.
+\item Start-state and start-from-zero posture as the governing feasibility constraint.
+\item End-state target envelope and definition-of-done posture, including repeatability and audit-grade evidence requirements.
+\item Operating constraints: 6 sessions per week, fixed session structure, Cardio minimum, steps posture as a separate governance anchor, and the linkage between constraints and session validity.
+\item Safety, legal, and medical boundaries: OTC-only posture for guidance, no prescription guidance, no hormone dosing/sourcing/cycling/procurement, and strict water safety governance including prohibition on unsupervised underwater or breath-hold exposure.
+\item Execution and update discipline: validity-only evidence for advancement decisions, freeze windows, patch protocol, and conflict hierarchy.
+\end{itemize}
+
+\paragraph*{4.2 Assumption Ledger: Only If Needed}
+
+\begin{itemize}
+\item A low-friction daily logging method exists and is usable enough to support validity tagging, minimum dataset capture, and trend review.
+\item Owners can be assigned and held accountable using the approved Owner taxonomy: Coach Lead, Trainee, Medical, Equipment Lead.
+\item Stop rules can be executed immediately when triggers or signals appear, and are treated as mandatory actions rather than discretionary preferences.
+\item Dependencies can be validated by explicit methods and due-by timing, and are not treated as “assumed true” until failure.
+\item Change control can be applied operationally using freeze windows and patch discipline, including safety-critical patch posture when required.
+\end{itemize}
+
+\subsubsection*{5) Interfaces}
+
+\paragraph*{5.1 Upstream Dependencies}
+
+\begin{itemize}
+\item Stage 0, 0.1 through 0.6, is authoritative and constrains Stage 1.
+\item Stage 1 \textbf{MUST} NOT redefine Stage 0 constants; it operationalizes them into enforceable governance controls.
+\end{itemize}
+
+\paragraph*{5.2 Downstream Consumers}
+
+\begin{itemize}
+\item Stages 2 through Stage 12 depend on Stage 1 for stable terminology, standardized templates, validity posture, gate mechanics, stop-rule integration, and change-control discipline.
+\item During execution, Stage 1 remains a continuous reference for compliance evaluation, risk response, dependency validation, gate decisions, and controlled updates.
+\end{itemize}
+
+\paragraph*{5.3 Crosswalk Hooks}
+
+Stage 1 defines crosswalk-critical governance elements used everywhere downstream and treated as stable keys:
+
+\begin{itemize}
+\item Governance tags and outcomes:
+
+\textbf{VALID}, \textbf{MODIFIED}, \textbf{INVALID}, ,\textbf{ADVANCE}, \textbf{HOLD}, \textbf{REGRESS}, \textbf{MEDICAL} \textbf{HOLD}
+
+Risk flag
+
+Dependency
+
+Owner
+
+Trigger or signal
+
+\item Template structures that downstream artifacts \textbf{MUST} use:
+
+Overview Template
+
+Phase Row Template
+
+\item Change-control posture:
+
+versioning, freeze windows, patch protocol, and change log entries that preserve evidence comparability and require downstream revalidation after governance-layer changes.
+\end{itemize}
+
+\subsubsection*{6) Gate / Acceptance Criteria}
+
+Stage 1 is complete and deployable only when all criteria below are satisfied:
+
+\begin{itemize}
+\item Deliverables 1.A through 1.F are produced.
+\item No contradictions exist with Stage 0 constants. Any contradiction renders Stage 1 non-deployable until corrected and re-versioned.
+\item Required tables use required columns with no renamed headers and no missing decision-critical fields; standardized templates remain stable and enforceable.
+\item Validity doctrine is explicit and enforceable such that sessions and tests can be classified consistently and gate decisions are restricted to admissible evidence.
+\item Change-control posture is explicit and enforceable, including freeze windows, patch protocol, and approval triggers for high-risk changes.
+\item Stop rules and escalation pathways are unambiguous, apply to both training sessions and test events, and override schedule and performance.
+\item A third-party coach can audit compliance, evidence quality, and artifact deployability without outside context and reach the same decision given the same admissible evidence.
+\end{itemize}
+
+\subsubsection*{7) Common Failure Modes and Controls}
+
+\begin{itemize}
+\item Governance drift, terms redefined midstream → locked terminology and standardized templates; Stage 0 and Stage 1 override hierarchy enforced; non-deployable rule applied.
+\item Vague risk handling without triggers or signals → owned risk register requires observable triggers or signals, impacts, mitigations, and a single Owner.
+\item Dependencies assumed until failure → dependency table requires validation method, due-by timing, Owner, and fail action; validation is enforced before escalation.
+\item Out-of-order build sequence → milestone plan gates prevent downstream artifacts from being produced without prerequisites; out-of-order artifacts are non-deployable until reconciled and re-versioned.
+\item Ad hoc mid-phase changes → freeze windows and patch protocol; explicit entries and validation checks required; no silent edits.
+\item Unsafe escalation under motivation or time pressure → stop rules and regression triggers; conservative substitution posture; no make-up volume; safety overrides schedule and performance.
+\item Invalid sessions or tests counted as compliance → validity-only evidence policy; no logs equals no evidence; no evidence equals no gate credit; gate outcome defaults to \textbf{HOLD} when evidence is insufficient.
+\item Documentation collapse → minimum dataset requirements; gate decisions prohibited without auditable evidence; repeated missing data forces conservative gate posture.
+\item Owner ambiguity and diffusion of responsibility → single accountable Owner required for each risk, dependency, gate action, and patch; unowned items are treated as governance defects.
+\item Template drift and renamed columns → standardized schemas are mandatory; renamed headers or missing decision-critical fields render artifacts non-deployable.
+\item Cherry-picked evidence and peak-day claims → repeatability posture enforced; anomalous outputs do not authorize advancement without admissible replication.
+\item Quiet weakening of safety boundaries → \textbf{MUST} NOT rules enforced; boundary violations trigger documentation, conservative gate posture, and revalidation of affected artifacts.
+\end{itemize}
+
+\subsubsection*{8) Versioning Notes}
+
+Frozen in Stage 1:
+
+\begin{itemize}
+\item governance terms and definitions used across the system
+\item templates and locked table structures, including required headers and mandatory fields
+\item validity discipline and evidence rules that constrain gate credit and admissibility
+\item stop-rule posture and escalation doctrine aligned to Stage 0 safety boundaries
+\item change-control posture, including freeze windows, patch discipline, and change log requirements
+\end{itemize}
+
+Permitted evolution is limited to clarifying language that does not change meaning, requirements, or enforcement posture. Any substantive change \textbf{MUST} be introduced through explicit change log entries under freeze-window discipline and \textbf{MUST} preserve alignment with Stage 0 constants.
+
+Downstream artifacts \textbf{MUST} be revalidated after any governance-layer change. If revalidation is not performed, affected downstream artifacts are non-deployable until alignment is restored.
+
+\subsection*{Stage 1 Contents Map}
+\phantomsection
+\addcontentsline{toc}{subsection}{Stage 1 Contents Map}
+
+\begin{itemize}
+\item 1.A Project Charter — Locks mission, scope boundaries, non-negotiables, definition-of-success posture aligned to Stage 0, decision hierarchy, roles and decision rights, and charter-level change-control posture.
+\item 1.B Key Risks and Mitigations — Owned risk register with triggers or signals, impacts, likelihood, mitigations, and Owners; constrains gates and prevents unsafe escalation.
+\item 1.C Assumptions and Dependencies — Converts prerequisites into validated dependencies with rationale, validation methods, due-by timing, Owners, and explicit fail actions enforcing substitution, delay, Hold, Regress, or Medical Hold.
+\item 1.D Milestone Plan and Output Order — Locks stage build sequence and prerequisite gates; prevents out-of-order artifacts and contradiction-driven rework.
+\item 1.E Standardized Templates — Mandatory template infrastructure, Overview Template and Phase Row Template, enforcing completeness, comparability, and auditability.
+\item 1.F Governance Rules and Validity Doctrine — Formalizes validity tagging, gate outcomes, stop-rule integration, freeze windows, patch protocol, and admissibility rules restricting advancement decisions to Valid evidence only.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,558 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{7.16 — Operational Self-Management Systems — Journaling, Planning, Mental Conditioning}
+\phantomsection
+\addcontentsline{toc}{section}{7.16 — Operational Self-Management Systems — Journaling, Planning, Mental Conditioning}
+
+\subsection*{7.16.1 Purpose \& Scope}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.16.1 Purpose \& Scope}
+
+7.16 provides the operational systems that make adherence and auditability possible: planning, journaling, review cadence, and non-clinical mental skills routines that keep execution safe and consistent. It supports the required datasets for daily/session/test logs and enforces the “no inference” posture for missing data.
+
+\subsection*{7.16.2 Governance and Safety Boundaries}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.16.2 Governance and Safety Boundaries}
+
+\begin{itemize}
+\item Non-clinical boundary: this is performance and adherence infrastructure, not mental health treatment.
+\item Evidence integrity boundary: missing or reconstructed logs degrade admissibility for gates; record \textbf{MISSING}/\textbf{UNKNOWN} rather than inferring.
+\item Stop posture boundary: mental \textbf{STOP} \textbf{NOW} triggers must be treated as safety events, logged, and escalated for professional support at a high level.
+\item Privacy boundary: record only the minimum necessary; protect the log store; avoid oversharing sensitive content.
+\end{itemize}
+
+\subsection*{7.16.3 Tier Doctrine — Applied to Self-Management}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.16.3 Tier Doctrine — Applied to Self-Management}
+
+\begin{itemize}
+\item Tier 0: start-from-zero capture options; minimal friction; offline-first by default; sufficient to begin compliance.
+\item Tier 1: minimum deployable system-of-record with offline fallback, repeatable templates, and weekly audit routine.
+\item Tier 2: expanded structure: dashboards/rollups, more robust staging scripts, and stronger reslot discipline tooling as consequence increases.
+\item Tier 3: redundancy and high reliability: duplicate capture pathways, travel kits, and structured decision-window controls that reduce variance.
+\end{itemize}
+
+\subsection*{7.16.4 Minimum Dataset Reminder — Stage 2.E field list only}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.16.4 Minimum Dataset Reminder — Stage 2.E field list only}
+
+Daily minimum fields:
+
+\begin{itemize}
+\item ISO timestamp
+\item Phase/Week
+\item Sleep hours
+\item Sleep quality 0–10
+\item Soreness 0–10
+\item Fatigue 0–10
+\item Pain 0–10 plus location
+\item Steps count
+\item Notes
+\end{itemize}
+
+Session minimum fields:
+
+\begin{itemize}
+\item ISO timestamp
+\item Phase/Week
+\item Session \#
+\item Session Validity Tag (\textbf{VALID} / \textbf{MODIFIED} / \textbf{INVALID})
+\item \textbf{SESSION-RC} (only if \textbf{MODIFIED} or \textbf{INVALID})
+\item Cardio Min Standard Met (Y/N)
+\item Cardio modality
+\item Cardio duration minutes
+\item Cardio intensity (RPE plus talk test cue)
+\item Main work domains
+\item Session RPE 0–10
+\item Pain flags
+\item Foot flags
+\item Notes
+\end{itemize}
+
+Test-event minimum fields:
+
+\begin{itemize}
+\item ISO timestamp
+\item Phase/Week
+\item Protocol Card C\#
+\item Linked Metric \textbf{ID}(s)
+\item Domain tag
+\item Environment unit \textbf{ID}
+\item Tool standard (timer/scale/tape)
+\item Warm-up completed (Y/N)
+\item Test Validity Tag (\textbf{VALID} / \textbf{INVALID})
+\item \textbf{TEST-RC} (only if \textbf{INVALID})
+\item Result
+\item Evidence Ref
+\item Replication status
+\item Conditions notes
+\item Stop/Abort (Y/N plus reason)
+\end{itemize}
+
+\subsection*{7.16.5 Selection Criteria \& Fit Checks}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.16.5 Selection Criteria \& Fit Checks}
+
+\begin{itemize}
+\item Low friction: the system must be usable daily without “catch-up” burden.
+\item Single source of truth: one canonical repository; avoid parallel logs that diverge.
+\item Offline resilience: paper or offline file must exist for device failures.
+\item Privacy posture: protect sensitive entries; record only what is required.
+\item Fit checks:
+  \begin{itemize}
+  \item daily log completion time is short and repeatable,
+  \item session logs can be completed same-day,
+  \item test-event logs capture evidence refs and environment IDs without reconstruction.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.16.6 Setup, Safety, and Anchoring}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.16.6 Setup, Safety, and Anchoring}
+
+\begin{itemize}
+\item Setup posture:
+  \begin{itemize}
+  \item designate one canonical system-of-record location and one offline fallback location.
+  \item pre-build templates for daily/session/test logs so no new schema is invented mid-execution.
+  \end{itemize}
+\item Safety anchoring:
+  \begin{itemize}
+  \item stop posture is logged as a safety event; do not hide it to protect pride or narrative.
+  \end{itemize}
+\item Protected window anchoring:
+  \begin{itemize}
+  \item use pre-window checklists to freeze variables (routes/tools/shoes/caffeine changes) per governance.
+  \end{itemize}
+\item Non-clinical mental skills anchoring:
+  \begin{itemize}
+  \item short, repeatable routines (breathing, attention control, planning) are permitted; avoid clinical framing.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.16.7 Maintenance, Replacement, and Storage}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.16.7 Maintenance, Replacement, and Storage}
+
+\begin{itemize}
+\item Weekly maintenance:
+  \begin{itemize}
+  \item review missing fields; mark \textbf{MISSING}/\textbf{UNKNOWN} explicitly; do not infer.
+  \item archive weekly summaries.
+  \end{itemize}
+\item Backup posture:
+  \begin{itemize}
+  \item periodic export/backup of digital logs to prevent loss.
+  \item store paper logs dry and organized.
+  \end{itemize}
+\item Template maintenance:
+  \begin{itemize}
+  \item update only via patch discipline; avoid “silent schema drift.”
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.16.8 Substitution Rules — When Tools Fail}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.16.8 Substitution Rules — When Tools Fail}
+
+\begin{itemize}
+\item If the primary digital system fails:
+  \begin{itemize}
+  \item switch to offline fallback immediately; capture the same required fields; later transcribe without memory inference.
+  \end{itemize}
+\item If a weekly review is missed:
+  \begin{itemize}
+  \item perform it at the next opportunity; do not backfill metrics—use available evidence only.
+  \end{itemize}
+\item If evidence refs are missing:
+  \begin{itemize}
+  \item record as \textbf{MISSING}; do not claim gate credit where evidence is required; reslot tests if needed.
+  \end{itemize}
+\item Validity linkage:
+  \begin{itemize}
+  \item deviations that affect admissibility require correct validity tagging and reason-code posture per Stage 1.F; do not invent new reason codes.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Patch Record Template — aligned to Stage 1.F}
+\phantomsection
+\addcontentsline{toc}{subsection}{Patch Record Template — aligned to Stage 1.F}
+
+\begin{landscape}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=0.90in]
+    Q[c,wd=0.95in]
+    X[c,2.20]
+    X[c,1.40]
+    X[c,1.75]
+    X[c,1.75]
+    Q[c,wd=0.95in]
+    Q[c,wd=1.05in]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Patch \textbf{ID}} &
+\Hdr{Date} &
+\Hdr{Target (Stage/Section)} &
+\Hdr{Change} &
+\Hdr{Rationale} &
+\Hdr{Validation Check} &
+\Hdr{Owner} &
+\Hdr{Impact Level} \\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+\subsection*{Weekly Audit Checklist Template}
+\phantomsection
+\addcontentsline{toc}{subsection}{Weekly Audit Checklist Template}
+
+\begin{itemize}
+\item Session validity distribution reviewed (\textbf{VALID} / \textbf{MODIFIED} / \textbf{INVALID}).
+\item Test validity rate reviewed (\textbf{VALID} / \textbf{INVALID}).
+\item Tool consistency logged (tool changes explicitly recorded).
+\item Route/environment consistency logged (Route \textbf{ID} / Environment Unit \textbf{ID} stability where applicable).
+\item Risk flags reviewed (pain trends, foot flags, sleep/fatigue trends).
+\item Upcoming Deload+Test readiness pointers reviewed (no novelty posture; staging complete).
+\item Reslot log reviewed for missed/invalid tests; no make-up stacking; next protected window identified.
+\item Patch log reviewed: any changes recorded; no silent edits.
+\end{itemize}
+
+\subsection*{7.16.9 Phase Integration Map — Required}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.16.9 Phase Integration Map — Required}
+
+\begin{landscape}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[c,wd=1.05in]
+    Q[c,wd=1.55in]
+    X[c,3.40]
+    X[c,3.85]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Phase} &
+\Hdr{Required Tier (from Stage 6)} &
+\Hdr{What Changes / Becomes Mandatory} &
+\Hdr{Notes} \\
+Phase 00 &
+T1 (E) &
+Tier 1 required: single system-of-record + offline fallback; daily and session logs executed same-day &
+Phase 00 (E): minimum viable evidence system is required for admissibility posture. \\
+Phase 01 &
+T1 (End) &
+Maintain Tier 1; add routine weekly audit cadence as volume rises &
+Phase 01 (End): weekly audit becomes operationally necessary; templates remain stable. \\
+Phase 02 &
+T1 (End) &
+Maintain Tier 1; stricter “no novelty near protected windows” checklists as test consequence increases &
+Phase 02 (End): pre-window lock scripts become higher ROI. \\
+Phase 03 &
+T1 (End) &
+Maintain Tier 1; ruck/systems complexity increases need for staging scripts and reslot discipline &
+Phase 03 (End): increase check-in script specificity (pain/foot flags). \\
+Phase 04 &
+T1 (End) &
+Maintain Tier 1; multi-domain logistics increases audit discipline &
+Phase 04 (End): weekly audit becomes non-negotiable for drift detection. \\
+Phase 05 &
+T1 (End) &
+Maintain Tier 1; longer efforts increase value of dashboard rollups (optional until Stage 6 elevates tier) &
+Phase 05 (End): add simple rollups if missed sessions or drift appears. \\
+Phase 06 &
+T2 (End) &
+Tier 2 becomes required: dashboard rollups + reslot decision log + scripted daily check-in &
+Phase 06 (End): consequence and density justify stronger tooling; prevent make-up stacking. \\
+Phase 07 &
+T2 (End) &
+Maintain Tier 2; increase audit cadence tightness near protected windows &
+Phase 07 (End): weekly audit executed with higher discipline; reslot log actively used. \\
+Phase 08 &
+T2 (End) &
+Maintain Tier 2; increase check-in emphasis for durability/foot interface &
+Phase 08 (End): pain/foot flags drive downshift/reslot decisions; keep reporting honest. \\
+Phase 09 &
+T2 (End) &
+Maintain Tier 2; increase check-in specificity for high-volume fatigue &
+Phase 09 (End): dashboard rollups help prevent silent overload. \\
+Phase 10 &
+T2 (End) &
+Maintain Tier 2; multi-domain gates increase value of pre-window lock scripts &
+Phase 10 (End): expand lock script to include tool/route/footwear and stimulant stability. \\
+Phase 11 &
+T2 (End) &
+Maintain Tier 2; recovery sensitivity increases audit criticality &
+Phase 11 (End): audit prevents invalid gate interpretations due to fatigue contamination. \\
+Phase 12 &
+T3 (End) &
+Tier 3 becomes required: redundant capture pathway + travel kit + decision-window lock script &
+Phase 12 (End): high-consequence windows justify redundancy to prevent data loss and variance. \\
+Phase 13 &
+T3 (End) &
+Maintain Tier 3; consolidation emphasizes low variance and repeatable evidence &
+Phase 13 (End): lock scripts and redundancy prevent last-minute drift. \\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+7.16.9 Phase Integration Map Notes:
+
+\begin{itemize}
+\item If any phase artifact demands Tier 2/3 self-management tools earlier than Stage 6 timing, Requires Stage 8 review.
+\item If any artifact attempts to change Stage 2.E required fields or Stage 1.F validity tags via “convenience,” Requires Stage 8 review.
+\end{itemize}
+
+\subsection*{7.16.10 Risks, Contraindications, and Red Flags}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.16.10 Risks, Contraindications, and Red Flags}
+
+\begin{itemize}
+\item Evidence integrity risks:
+  \begin{itemize}
+  \item missing logs, reconstructed entries, and multi-source log drift can invalidate gate decisions.
+  \item control: single source-of-truth + offline fallback; \textbf{MISSING}/\textbf{UNKNOWN} posture; weekly audit.
+  \end{itemize}
+\item Behavioral drift risks:
+  \begin{itemize}
+  \item missed sessions “made up” by stacking violates reslot discipline and increases injury risk.
+  \item control: reslot log and weekly audit; enforce no-stacking posture.
+  \end{itemize}
+\item Privacy risks:
+  \begin{itemize}
+  \item oversharing personal content can reduce compliance; keep records minimal and operational.
+  \end{itemize}
+\item Mental \textbf{STOP} \textbf{NOW} triggers (explicit):
+  \begin{itemize}
+  \item acute panic or dissociation → \textbf{STOP} \textbf{NOW}; stop exposure; log event; seek professional support.
+  \item suicidal ideation or self-harm statements → \textbf{STOP} \textbf{NOW}; log; seek professional support.
+  \item inability to safely self-regulate in-session → \textbf{STOP} \textbf{NOW}; stop exposure; log; seek professional support.
+  \end{itemize}
+\item Red-flag posture:
+  \begin{itemize}
+  \item do not test that day when \textbf{STOP} \textbf{NOW} triggers occur.
+  \item do not attempt to “work through” severe mental distress as training.
+  \end{itemize}
+\item Requires Stage 8 review triggers:
+  \begin{itemize}
+  \item any downstream artifact that treats mental health events as “normal discomfort” rather than \textbf{STOP} \textbf{NOW}.
+  \item any timing mismatch where a phase requires capabilities earlier than Stage 6 Tier timing.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.16.11 Compliance Checklist — Pass/Fail}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.16.11 Compliance Checklist — Pass/Fail}
+
+\begin{itemize}
+\item \textbf{PASS}/\textbf{FAIL}: Tier 1 includes offline-capable fallback and is required by Phase 00 (E) per Stage 6 timing.
+\item \textbf{PASS}/\textbf{FAIL}: Minimum Dataset Reminder block lists daily/session/test-event fields without altering schema.
+\item \textbf{PASS}/\textbf{FAIL}: Patch Record Template matches Stage 1.F posture and includes required fields.
+\item \textbf{PASS}/\textbf{FAIL}: Weekly Audit Checklist Template aligns to Stage 1.F and Stage 3.E posture and introduces no new numeric rules.
+\item \textbf{PASS}/\textbf{FAIL}: Phase Integration Map aligns to Stage 6 timing and calls out later-phase increases in check-in scripts, audit cadence, and dashboard rollups.
+\item \textbf{PASS}/\textbf{FAIL}: Mental \textbf{STOP} \textbf{NOW} triggers are explicit and include stop, log, and seek professional support posture.
+\end{itemize}
+
+\end{document}

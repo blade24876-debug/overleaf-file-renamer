@@ -1,0 +1,1278 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\clearpage
+\begin{landscape}
+
+\section*{7.17.A - Swim goggles}
+\phantomsection
+\addcontentsline{toc}{section}{7.17.A - Swim goggles}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.10in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.05in]
+    X[l,2.65]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Swim goggles & Speedo Vanquisher 2.0 & \$25 & Eye protection & Phase-04 & Keeps chlorinated water out of the eyes, and it was chosen because the gasketed fit is widely dependable for first pool use. \\
+Budget & Swim goggles & TYR Socket Rockets 2.0 & \$20 & Eye protection & Phase-04 & Improves clear sight in the lane, and it was chosen because the low-profile design reduces drag for a novice growing into repeat swim sessions. \\
+Budget & Swim goggles & Arena Tracks & \$18 & Eye protection & Phase-04 & Reduces eye irritation and lane interruption, and it was chosen because the seal is forgiving on a wide range of face shapes. \\
+Standard & Swim goggles & Aqua Sphere Kayenne & \$30 & Eye protection & Phase-04 & Improves forward visibility and comfort, and it was chosen because the larger lens makes pool orientation easier for newer swimmers. \\
+Standard & Swim goggles & FINIS Lightning & \$35 & Eye protection & Phase-04 & Supports steadier sighting and fewer mid-set adjustments, and it was chosen because the frame balances comfort with a race-capable profile. \\
+Standard & Swim goggles & TYR Blackhawk Racing & \$35 & Eye protection & Phase-04 & Maintains a stable water seal and clear vision, and it was chosen because it offers a more performance-oriented fit without becoming too unforgiving. \\
+Elite & Swim goggles & Arena Cobra Ultra Swipe & \$60 & Eye protection & Phase-04 & Preserves vision with less fog disruption, and it was chosen because the premium lens treatment improves repeatability during denser pool weeks. \\
+Elite & Swim goggles & TheMagic5 Custom & \$70 & Eye protection & Phase-04 & Improves seal reliability and comfort, and it was chosen because the custom fit helps reduce leak-driven session interruptions. \\
+Elite & Swim goggles & Speedo Fastskin Hyper Elite & \$85 & Eye protection & Phase-04 & Delivers very stable sightlines in the water, and it was chosen because the premium hydrodynamic shape suits long-term progression into faster pool work. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.17.B - Swim cap}
+\phantomsection
+\addcontentsline{toc}{section}{7.17.B - Swim cap}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.10in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.05in]
+    X[l,2.65]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Swim cap & Speedo Elastomeric Solid Cap & \$8 & Head covering & Phase-04 & Keeps hair controlled and reduces drag variability, and it was chosen because it is cheap and durable enough for frequent pool rotation. \\
+Budget & Swim cap & TYR Wrinkle-Free Silicone Cap & \$10 & Head covering & Phase-04 & Improves repeatable fit and visibility in the lane, and it was chosen because the silicone material lasts better than very cheap latex caps. \\
+Budget & Swim cap & Arena Classic Silicone Cap & \$10 & Head covering & Phase-04 & Standardizes head coverage and helps contain water drag, and it was chosen because the fit is simple and reliable for routine training. \\
+Standard & Swim cap & Speedo Long Hair Silicone Cap & \$15 & Head covering & Phase-04 & Keeps hair and water resistance better controlled, and it was chosen because the extra volume reduces painful overstretching. \\
+Standard & Swim cap & TYR Silicone Adult Swim Cap & \$12 & Head covering & Phase-04 & Improves visibility and hair control, and it was chosen because it is a durable middle-ground cap with easy replacement availability. \\
+Standard & Swim cap & Arena Smartcap & \$18 & Head covering & Phase-04 & Reduces drag and secures more hair volume, and it was chosen because the shaped construction supports a smoother fit for thicker hair. \\
+Elite & Swim cap & Arena 3D Soft Cap & \$22 & Head covering & Phase-04 & Improves hydrodynamic smoothness and comfort, and it was chosen because the premium molded design resists wrinkling around the crown. \\
+Elite & Swim cap & Speedo Fastskin Cap & \$20 & Head covering & Phase-04 & Supports a cleaner race-style water profile, and it was chosen because it holds shape well during repeat harder efforts. \\
+Elite & Swim cap & TYR Tracer-X Race Cap & \$25 & Head covering & Phase-04 & Minimizes drag variability and keeps the fit snug, and it was chosen because the race-oriented form works well once swim execution becomes more repeatable. \\
+\end{longtblr}
+
+\endgroup
+
+\iffalse
+\section*{7.17.C - Kickboard}
+\phantomsection
+\addcontentsline{toc}{section}{7.17.C - Kickboard}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.10in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.05in]
+    X[l,2.65]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Kickboard & Speedo Team Kickboard & \$18 & Technique aid & Phase-04 & Isolates lower-body kick work and body position awareness, and it was chosen because the simple durable foam makes it easy to learn with. \\
+Budget & Kickboard & TYR Classic Kickboard & \$20 & Technique aid & Phase-04 & Supports kick endurance and surface comfort, and it was chosen because the classic shape is predictable and easy to control. \\
+Budget & Kickboard & Arena Kickboard & \$22 & Technique aid & Phase-04 & Helps build basic kick mechanics without adding breath-management complexity, and it was chosen because the board is sturdy and easy to grip. \\
+Standard & Kickboard & FINIS Alignment Kickboard & \$30 & Technique aid & Phase-04 & Improves kick work while encouraging better arm alignment, and it was chosen because the grip position helps reduce sloppy shoulder posture. \\
+Standard & Kickboard & Speedo Elite Kickboard & \$25 & Technique aid & Phase-04 & Builds kick-specific tolerance and steadier flotation, and it was chosen because the denser board resists flex better than bargain models. \\
+Standard & Kickboard & Arena Elite Kickboard & \$28 & Technique aid & Phase-04 & Supports more repeatable kick sets, and it was chosen because the firmer profile holds shape well through frequent pool use. \\
+Elite & Kickboard & TYR Hydrofoil Kickboard & \$35 & Technique aid & Phase-04 & Improves kick isolation with less wobble, and it was chosen because the higher-end shape feels cleaner in the water during repeated technique work. \\
+Elite & Kickboard & FINIS Alignment Board & \$35 & Technique aid & Phase-04 & Reinforces more stable upper-body alignment during kick practice, and it was chosen because it doubles as a cleaner posture cue than plain boards. \\
+Elite & Kickboard & Arena Kickboard Pro & \$38 & Technique aid & Phase-04 & Gives a more refined kick-training platform, and it was chosen because the premium foam density and finish better tolerate heavy repeated use. \\
+\end{longtblr}
+
+\endgroup
+\fi
+
+\section*{7.17.D - Mesh gear bag}
+\phantomsection
+\addcontentsline{toc}{section}{7.17.D - Mesh gear bag}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.35in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.00in]
+    Q[l,wd=1.05in]
+    X[l,2.20]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Mesh gear bag & Speedo Deluxe Ventilator Mesh Bag & \$22 & Gear transport & Phase-04 & Keeps wet pool gear draining and visible, and it was chosen because the open mesh reduces mildew-causing trapped moisture. \\
+Budget & Mesh gear bag & TYR Big Mesh Mummy Backpack & \$25 & Gear transport & Phase-04 & Improves transport and drying airflow, and it was chosen because it carries several basic pool items without becoming bulky. \\
+Budget & Mesh gear bag & Arena Fast Mesh Bag & \$20 & Gear transport & Phase-04 & Supports quick gear grouping after the session, and it was chosen because the simple drawstring design limits post-swim friction. \\
+Standard & Mesh gear bag & FINIS Mesh Gear Bag & \$30 & Gear transport & Phase-04 & Keeps accessories ventilated and easier to find, and it was chosen because the stronger mesh and seams hold up better to repeated use. \\
+Standard & Mesh gear bag & Nike Mesh Swim Bag & \$28 & Gear transport & Phase-04 & Helps gear dry during transport instead of fermenting in a sealed tote, and it was chosen because the layout is simple and durable. \\
+Standard & Mesh gear bag & Funkita Mesh Gear Bag & \$32 & Gear transport & Phase-04 & Improves organization of wet swim items, and it was chosen because the roomier profile handles towel-plus-accessory loads more easily. \\
+Elite & Mesh gear bag & Arena Team 45 Mesh Backpack & \$55 & Gear transport & Phase-04 & Creates a more structured ventilated carry system, and it was chosen because it combines airflow with better shape retention. \\
+Elite & Mesh gear bag & TYR Alliance Wet/Dry Mesh Backpack & \$60 & Gear transport & Phase-04 & Supports cleaner wet/dry separation and better pack carry, and it was chosen because the hybrid layout reduces pool-deck clutter. \\
+Elite & Mesh gear bag & Speedo Teamster 2.0 & \$85 & Gear transport & Phase-04 & Improves high-frequency swim logistics, and it was chosen because the premium compartment layout keeps recurring pool items easy to stage. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.17.E - Quick-dry towel}
+\phantomsection
+\addcontentsline{toc}{section}{7.17.E - Quick-dry towel}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.35in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.05in]
+    X[l,2.20]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Quick-dry towel & PackTowl Personal & \$20 & Drying cloth & Phase-04 & Dries the body quickly after pool work, and it was chosen because it packs smaller and dries faster than a household bath towel. \\
+Budget & Quick-dry towel & Speedo Shammy & \$18 & Drying cloth & Phase-04 & Removes surface water with very little bulk, and it was chosen because it is purpose-built for swim-bag carry. \\
+Budget & Quick-dry towel & Dock \& Bay Quick Dry Towel & \$22 & Drying cloth & Phase-04 & Cuts post-swim wetness and carry weight, and it was chosen because the microfiber format dries faster between back-to-back sessions. \\
+Standard & Quick-dry towel & Sea to Summit DryLite Towel & \$30 & Drying cloth & Phase-04 & Improves drying speed and packability, and it was chosen because the fabric balances absorbency with lower stink risk. \\
+Standard & Quick-dry towel & PackTowl Luxe & \$28 & Drying cloth & Phase-04 & Adds a softer post-pool drying option, and it was chosen because it feels more comfortable while still drying faster than cotton. \\
+Standard & Quick-dry towel & Nomadix Mini Towel & \$30 & Drying cloth & Phase-04 & Keeps a dedicated swim towel in the bag without much space penalty, and it was chosen because the material handles frequent laundering well. \\
+Elite & Quick-dry towel & Nomadix Original Towel & \$40 & Drying cloth & Phase-04 & Gives fuller body drying coverage with quick turnover, and it was chosen because the larger premium size works better for colder exits from the pool. \\
+Elite & Quick-dry towel & PackTowl Body & \$35 & Drying cloth & Phase-04 & Improves full-size drying without carrying a bulky cotton towel, and it was chosen because it still dries quickly after repeated use. \\
+Elite & Quick-dry towel & Matador NanoDry Towel & \$39 & Drying cloth & Phase-04 & Creates a highly packable premium dry-out option, and it was chosen because it adds very little bulk to a tight aquatic kit. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.17.F - Earplugs}
+\phantomsection
+\addcontentsline{toc}{section}{7.17.F - Earplugs}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.10in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.05in]
+    X[l,2.65]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Earplugs & Mack's AquaBlock & \$8 & Water plug & Phase-04 & Reduces water entry into the ear canal, and it was chosen because the moldable silicone gives a cheap reliable seal. \\
+Budget & Earplugs & Speedo Ergo Ear Plugs & \$10 & Water plug & Phase-04 & Helps limit ear irritation during repeated pool sessions, and it was chosen because the shaped design is easy for beginners to place correctly. \\
+Budget & Earplugs & TYR Soft Silicone Ear Plugs & \$8 & Water plug & Phase-04 & Improves comfort when water exposure bothers the ears, and it was chosen because the soft silicone tends to feel less harsh during longer swims. \\
+Standard & Earplugs & Arena Earplug Pro & \$15 & Water plug & Phase-04 & Keeps more water out while staying compact, and it was chosen because the reusable design fits regular swim-bag rotation better than disposables. \\
+Standard & Earplugs & Alpine SwimSafe & \$18 & Water plug & Phase-04 & Supports ear protection without fully blocking ambient awareness, and it was chosen because the filter-style design suits repeated training use. \\
+Standard & Earplugs & SurfEars 3.0 & \$55 & Water plug & Phase-04 & Reduces trapped-water irritation while preserving more situational sound, and it was chosen because the fit system is more secure than generic plugs. \\
+Elite & Earplugs & SurfEars 4.0 & \$65 & Water plug & Phase-04 & Gives a more stable premium ear seal with better reuse comfort, and it was chosen because the adjustable tips help reduce fit drift. \\
+Elite & Earplugs & Doc's Proplugs Vented & \$22 & Water plug & Phase-04 & Protects the ears while allowing some pressure balance, and it was chosen because the vented design is well regarded for repeated water use. \\
+Elite & Earplugs & TYR Ergo Flex Ear Plugs & \$14 & Water plug & Phase-04 & Adds a softer premium-feeling seal, and it was chosen because the flexible shape improves comfort during longer pool sessions. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.17.G - Nose clip}
+\phantomsection
+\addcontentsline{toc}{section}{7.17.G - Nose clip}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.10in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.15in]
+    Q[l,wd=1.05in]
+    X[l,2.45]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Nose clip & Speedo Competition Nose Clip & \$8 & Breath-control aid & Phase-04 & Helps limit unwanted nasal water entry, and it was chosen because the simple pinch design is easy to learn with. \\
+Budget & Nose clip & TYR Nose Clip & \$7 & Breath-control aid & Phase-04 & Reduces distraction from leaking water into the nose, and it was chosen because the low-cost frame makes it easy to keep as a bag staple. \\
+Budget & Nose clip & Arena Nose Clip Pro & \$9 & Breath-control aid & Phase-04 & Improves breathing comfort for water-anxious swimmers, and it was chosen because the soft pad contact feels gentler than bare metal clips. \\
+Standard & Nose clip & FINIS Nose Clip & \$10 & Breath-control aid & Phase-04 & Helps newer swimmers focus on body position instead of nasal leakage, and it was chosen because the fit is stable without a lot of pressure. \\
+Standard & Nose clip & Arena Pro II Nose Clip & \$11 & Breath-control aid & Phase-04 & Supports more repeatable face comfort during drill work, and it was chosen because the updated pad shape tends to stay put better. \\
+Standard & Nose clip & Speedo BioFUSE Nose Clip & \$12 & Breath-control aid & Phase-04 & Improves comfort across longer sessions, and it was chosen because the softer frame makes repeat use more tolerable. \\
+Elite & Nose clip & TYR Ergo Nose Clip & \$12 & Breath-control aid & Phase-04 & Helps stabilize nasal comfort during repeated pool work, and it was chosen because the ergonomic frame gives a more refined fit. \\
+Elite & Nose clip & Arena Cobra Nose Clip & \$14 & Breath-control aid & Phase-04 & Adds a cleaner premium fit, and it was chosen because the race-style build feels more secure during harder turns and push-offs. \\
+Elite & Nose clip & FINIS Stability Nose Clip & \$15 & Breath-control aid & Phase-04 & Supports less fiddling once placed, and it was chosen because the premium spring feel holds more consistently through a full session. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.17.H - Wet/dry transport bag}
+\phantomsection
+\addcontentsline{toc}{section}{7.17.H - Wet/dry transport bag}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.55in]
+    X[l,1.25]
+    Q[l,wd=0.95in]
+    Q[l,wd=0.90in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Wet/dry transport bag & Earth Pak Dry Bag & \$20 & Wet bag & Phase-04 & Separates soaked pool kit from dry gear, and it was chosen because the roll-top format is simple and reliable. \\
+Budget & Wet/dry transport bag & Sea to Summit Lightweight Dry Bag & \$18 & Wet bag & Phase-04 & Keeps wet items contained with little bulk, and it was chosen because the thin profile fits easily inside a larger swim bag. \\
+Budget & Wet/dry transport bag & Osprey Ultralight Dry Sack & \$20 & Wet bag & Phase-04 & Reduces drip spread after pool sessions, and it was chosen because the drawstring-and-roll shape is easy to pack fast. \\
+Standard & Wet/dry transport bag & SealLine Baja Dry Bag & \$25 & Wet bag & Phase-04 & Improves leak control and wet-kit separation, and it was chosen because the tougher shell handles repeated pool-deck use better. \\
+Standard & Wet/dry transport bag & NRS Bill's Bag Lite & \$40 & Wet bag & Phase-04 & Supports more durable soaked-gear transport, and it was chosen because the heavier material better resists seam wear. \\
+Standard & Wet/dry transport bag & YETI SideKick Dry 3-L & \$50 & Wet bag & Phase-04 & Keeps smaller wet items isolated from electronics and paper, and it was chosen because the closure is quick and very secure. \\
+Elite & Wet/dry transport bag & Patagonia Guidewater Dry Bag & \$79 & Wet bag & Phase-04 & Creates a very reliable wet-gear barrier, and it was chosen because the premium construction handles frequent rough transport well. \\
+Elite & Wet/dry transport bag & Watershed Chattooga Dry Duffel & \$129 & Wet bag & Phase-04 & Protects adjacent kit from persistent soaked contents, and it was chosen because the seal system is more trustworthy than basic roll-tops. \\
+Elite & Wet/dry transport bag & YETI Panga Waterproof Dry Bag & \$300 & Wet bag & Phase-04 & Gives near-zero-leak transport for heavily soaked gear, and it was chosen because the overbuilt shell is ideal for repeated high-use aquatic carry. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.17.I - Deck footwear}
+\phantomsection
+\addcontentsline{toc}{section}{7.17.I - Deck footwear}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.00in]
+    Q[l,wd=1.05in]
+    X[l,2.75]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Deck sandals & adidas Adilette Shower Slides & \$30 & Pool footwear & Phase-04 & Keeps bare feet off wet locker-room surfaces, and it was chosen because the simple quick-dry slide format is easy to use daily. \\
+Budget & Deck sandals & Nike Victori One Shower Slides & \$30 & Pool footwear & Phase-04 & Reduces slip and hygiene friction around the pool, and it was chosen because the soft footbed improves brief post-swim comfort. \\
+Budget & Deck sandals & Speedo Surfwalker Pro 3.0 & \$35 & Pool footwear & Phase-04 & Protects the feet on slick deck and shower floors, and it was chosen because the closed-toe water-shoe style adds more traction than basic slides. \\
+Standard & Deck sandals & Crocs Classic Clog & \$50 & Pool footwear & Phase-04 & Improves locker-room footing and dries quickly, and it was chosen because the ventilated clog is durable and easy to rinse clean. \\
+Standard & Deck sandals & OOFOS OOahh Slide & \$60 & Pool footwear & Phase-04 & Gives softer underfoot recovery after pool exits, and it was chosen because the foam platform is more comfortable for longer walkouts. \\
+Standard & Deck sandals & Hoka Ora Recovery Slide 3 & \$60 & Pool footwear & Phase-04 & Supports a cushioned post-swim walk, and it was chosen because the molded rocker shape feels stable while still being easy to dry. \\
+Elite & Deck sandals & OOFOS OOahh Sport Flex & \$80 & Pool footwear & Phase-04 & Protects the feet and adds more secure strap retention, and it was chosen because the adjustable upper improves fit consistency. \\
+Elite & Deck sandals & Hoka Ora Luxe & \$80 & Pool footwear & Phase-04 & Improves comfort and traction around wet facilities, and it was chosen because the premium upper feels more locked-in than a loose slide. \\
+Elite & Deck sandals & Birkenstock Arizona Essentials EVA & \$50 & Pool footwear & Phase-04 & Creates a more structured waterproof deck shoe, and it was chosen because the dual-strap shape keeps the foot steadier in transit. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.17.J - Anti-fog treatment}
+\phantomsection
+\addcontentsline{toc}{section}{7.17.J - Anti-fog treatment}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.55in]
+    X[l,1.25]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.05in]
+    X[l,2.35]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Anti-fog treatment & JAWS Quick Spit Anti-Fog Spray & \$10 & Lens treatment & Phase-06 & Helps keep the lens clear during repeated lengths, and it was chosen because the spray format is cheap and easy to reapply. \\
+Budget & Anti-fog treatment & Arena Instant Anti-Fog Spray & \$11 & Lens treatment & Phase-06 & Reduces fog-based pauses and wall collisions, and it was chosen because it is made specifically for swim lenses. \\
+Budget & Anti-fog treatment & Spit Anti-Fog Spray & \$9 & Lens treatment & Phase-06 & Preserves sight through the set, and it was chosen because the small bottle travels easily in a pool bag. \\
+Standard & Anti-fog treatment & TYR Anti-Fog Spray & \$10 & Lens treatment & Phase-06 & Improves repeat session visibility, and it was chosen because the brand match makes it easy to pair with common TYR goggle materials. \\
+Standard & Anti-fog treatment & Speedo Anti-Fog Spray & \$12 & Lens treatment & Phase-06 & Helps maintain lane clarity and reduces stop-start frustration, and it was chosen because the formulation is easy to find and replace. \\
+Standard & Anti-fog treatment & Zoggs Fogbuster & \$13 & Lens treatment & Phase-06 & Supports clearer underwater sightlines, and it was chosen because the compact bottle suits repeated bag carry. \\
+Elite & Anti-fog treatment & JAWS Premium Anti-Fog & \$14 & Lens treatment & Phase-06 & Extends clearer lens performance across denser swim weeks, and it was chosen because the premium formula tends to last longer between applications. \\
+Elite & Anti-fog treatment & TheMagic5 Anti-Fog Spray & \$15 & Lens treatment & Phase-06 & Improves vision reliability in custom-fit goggles, and it was chosen because it is tuned for higher-end lens coatings. \\
+Elite & Anti-fog treatment & Arena Swipe Anti-Fog Restorer & \$15 & Lens treatment & Phase-06 & Helps restore anti-fog performance after repeated use, and it was chosen because it supports longer service life in premium goggles. \\
+\end{longtblr}
+
+\endgroup
+
+\iffalse
+\section*{7.17.K - Pull buoy}
+\phantomsection
+\addcontentsline{toc}{section}{7.17.K - Pull buoy}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.10in]
+    X[l,1.35]
+    Q[l,wd=0.95in]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.05in]
+    X[l,2.65]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Pull buoy & Speedo Pull Buoy & \$18 & Technique aid & Phase-10 & Supports upper-body pull focus and bodyline control, and it was chosen because the simple shape is stable without overcomplicating setup. \\
+Budget & Pull buoy & TYR Pull Float & \$20 & Technique aid & Phase-10 & Helps isolate the pull while reducing kick demand, and it was chosen because the foam density stays reliable through repeated use. \\
+Budget & Pull buoy & Arena Freeflow Pull Buoy & \$20 & Technique aid & Phase-10 & Improves body-position awareness during pull work, and it was chosen because the contour tends to sit securely between the thighs. \\
+Standard & Pull buoy & FINIS Pull Buoy & \$22 & Technique aid & Phase-10 & Creates steadier upper-body-focused repeats, and it was chosen because the durable foam and shape are well established in swim training. \\
+Standard & Pull buoy & Speedo Elite Pull Buoy & \$25 & Technique aid & Phase-10 & Helps hold a cleaner horizontal position, and it was chosen because the refined contour reduces slip compared with simpler blocks. \\
+Standard & Pull buoy & TYR Hydrofoil Pull Float & \$24 & Technique aid & Phase-10 & Supports more stable leg flotation during pull sets, and it was chosen because the hydrodynamic profile feels cleaner at higher speeds. \\
+Elite & Pull buoy & Arena Pullbuoy Pro & \$28 & Technique aid & Phase-10 & Gives a more secure premium hold through stronger pulling work, and it was chosen because the shape is tuned for less wobble. \\
+Elite & Pull buoy & FINIS Foam Pull Buoy & \$25 & Technique aid & Phase-10 & Improves bodyline repeatability with a reliable buoyant feel, and it was chosen because the foam quality stays consistent over time. \\
+Elite & Pull buoy & TYR Hydrofoil 2.0 Pull Float & \$30 & Technique aid & Phase-10 & Supports cleaner high-repetition pull work, and it was chosen because the updated profile reduces drag and leg drift. \\
+\end{longtblr}
+
+\endgroup
+\fi
+
+\iffalse
+\section*{7.17.L - Training fins}
+\phantomsection
+\addcontentsline{toc}{section}{7.17.L - Training fins}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.30in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Training fins & Speedo Short Blade Training Fins & \$35 & Technique aid & Phase-10 & Increases kick feedback and ankle engagement, and it was chosen because the short blade keeps the emphasis on training rather than pure propulsion. \\
+Budget & Training fins & TYR Stryker Silicone Fins & \$40 & Technique aid & Phase-10 & Helps reinforce kick rhythm and water feel, and it was chosen because the soft silicone improves comfort during repeated sets. \\
+Budget & Training fins & Arena Powerfin & \$50 & Technique aid & Phase-10 & Builds stronger kick timing and leg drive, and it was chosen because the blade shape supports pool technique work cleanly. \\
+Standard & Training fins & FINIS Zoomers Gold & \$60 & Technique aid & Phase-10 & Supports faster kick turnover and better ankle mobility, and it was chosen because the short-blade benchmark design is widely trusted. \\
+Standard & Training fins & Arena Powerfin Pro & \$65 & Technique aid & Phase-10 & Improves kick strength and body alignment, and it was chosen because the stiffer build offers a stronger training effect than soft entry fins. \\
+Standard & Training fins & DMC Elite Max & \$70 & Technique aid & Phase-10 & Gives a snappier kick response and better water feel, and it was chosen because the silicone blade is durable and efficient. \\
+Elite & Training fins & DMC Elite 2 & \$80 & Technique aid & Phase-10 & Sharpens kick rhythm without the drag of long fins, and it was chosen because the premium blade feel supports faster more technical work. \\
+Elite & Training fins & TYR CrossBlade 2.0 & \$75 & Technique aid & Phase-10 & Increases propulsion while still keeping technique focus, and it was chosen because the design splits the difference between power and control. \\
+Elite & Training fins & FINIS Positive Drive Fins & \$60 & Technique aid & Phase-10 & Encourages a more stable kick path and ankle-driven propulsion, and it was chosen because the blade geometry supports controlled technical refinement. \\
+\end{longtblr}
+
+\endgroup
+\fi
+
+\iffalse
+\section*{7.17.M - Center-mount swim snorkel}
+\phantomsection
+\addcontentsline{toc}{section}{7.17.M - Center-mount swim snorkel}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.70in]
+    X[l,1.15]
+    Q[l,wd=0.95in]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.05in]
+    X[l,2.45]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Center-mount swim snorkel & FINIS Original Swimmer's Snorkel & \$45 & Technique aid & Phase-10 & Removes breathing disruption so bodyline and stroke timing can be isolated, and it was chosen because it is the classic simple center-mount design. \\
+Budget & Center-mount swim snorkel & Arena Swim Snorkel Pro & \$45 & Technique aid & Phase-10 & Supports uninterrupted stroke practice, and it was chosen because the rigid front mount stays stable once fitted. \\
+Budget & Center-mount swim snorkel & TYR Ultralite Snorkel Elite & \$40 & Technique aid & Phase-10 & Helps focus on head position and pull path, and it was chosen because the lighter frame can feel less cumbersome for longer drills. \\
+Standard & Center-mount swim snorkel & FINIS Stability Snorkel & \$55 & Technique aid & Phase-10 & Improves uninterrupted technique work with less side wobble, and it was chosen because the newer frame tends to sit more securely. \\
+Standard & Center-mount swim snorkel & Aqua Sphere Focus Snorkel & \$45 & Technique aid & Phase-10 & Supports cleaner line and breathing-free drill work, and it was chosen because the hydrodynamic tube shape feels smoother in the water. \\
+Standard & Center-mount swim snorkel & Arena Swim Snorkel III & \$50 & Technique aid & Phase-10 & Helps maintain steady head position through repeated lengths, and it was chosen because the updated fit system is more adjustable. \\
+Elite & Center-mount swim snorkel & FINIS Freestyle Snorkel & \$45 & Technique aid & Phase-10 & Supports technique work with a slightly freer-feeling frontal mount, and it was chosen because the profile reduces central obstruction for some swimmers. \\
+Elite & Center-mount swim snorkel & TYR HyperDry Elite Snorkel & \$60 & Technique aid & Phase-10 & Keeps drill flow more continuous with less splash interruption, and it was chosen because the higher-end purge and top design improve usability. \\
+Elite & Center-mount swim snorkel & Aqua Sphere Focus-X Snorkel & \$60 & Technique aid & Phase-10 & Improves uninterrupted technical repetition, and it was chosen because the premium mounting feel is steadier through harder push-offs. \\
+\end{longtblr}
+
+\endgroup
+\fi
+
+\iffalse
+\section*{7.17.N - Hand paddles}
+\phantomsection
+\addcontentsline{toc}{section}{7.17.N - Hand paddles}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.05in]
+    X[l,2.70]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Hand paddles & Speedo Power Paddle Plus & \$20 & Technique aid & Phase-10 & Increases catch awareness and pull resistance, and it was chosen because the classic shape is simple for controlled strength-focused swim work. \\
+Budget & Hand paddles & TYR Catalyst 2 & \$20 & Technique aid & Phase-10 & Highlights flaws in hand entry and catch pressure, and it was chosen because the design is common and easy to size conservatively. \\
+Budget & Hand paddles & Arena Vortex Evolution & \$22 & Technique aid & Phase-10 & Improves feel for water on the catch, and it was chosen because the profile is useful without becoming extremely aggressive. \\
+Standard & Hand paddles & FINIS Agility Paddles & \$25 & Technique aid & Phase-10 & Forces cleaner catch mechanics by slipping when the hand path is poor, and it was chosen because the strapless design gives immediate technique feedback. \\
+Standard & Hand paddles & TYR Technoflex 2.0 & \$24 & Technique aid & Phase-10 & Adds a more forgiving technique-strength option, and it was chosen because the flex pattern feels less harsh than rigid plates. \\
+Standard & Hand paddles & Speedo Biofuse Power Paddles & \$25 & Technique aid & Phase-10 & Builds pull-specific pressure awareness, and it was chosen because the softer edges improve comfort during repeated use. \\
+Elite & Hand paddles & FINIS Iso Paddles & \$34 & Technique aid & Phase-10 & Enhances front-quadrant awareness and catch symmetry, and it was chosen because the strap layout improves hand-position feedback. \\
+Elite & Hand paddles & Arena Elite Hand Paddle & \$30 & Technique aid & Phase-10 & Gives a more precise premium pull cue, and it was chosen because the stiffer blade improves stronger technique-resistance work. \\
+Elite & Hand paddles & Aqua Sphere ErgoFlex Hand Paddle & \$32 & Technique aid & Phase-10 & Balances catch feedback and comfort, and it was chosen because the ergonomically shaped blade feels smoother on longer technical sets. \\
+\end{longtblr}
+
+\endgroup
+\fi
+
+\iffalse
+\section*{7.17.O - Aqua jogging belt}
+\phantomsection
+\addcontentsline{toc}{section}{7.17.O - Aqua jogging belt}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.45in]
+    X[l,1.25]
+    Q[l,wd=0.95in]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.05in]
+    X[l,2.60]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Aqua jogging belt & AquaJogger Classic Belt & \$40 & Flotation aid & Phase-10 & Supports suspended deep-water conditioning and low-impact water movement, and it was chosen because it is the best-known simple belt format. \\
+Budget & Aqua jogging belt & TYR Aqua Jog Belt & \$35 & Flotation aid & Phase-10 & Keeps the torso afloat for controlled vertical pool work, and it was chosen because the basic foam sections are easy to fit and adjust. \\
+Budget & Aqua jogging belt & Speedo Hydro Jog Belt & \$35 & Flotation aid & Phase-10 & Creates a lower-impact aquatic movement option, and it was chosen because the lightweight foam build works well for pool-only use. \\
+Standard & Aqua jogging belt & AquaJogger Pro Plus Belt & \$55 & Flotation aid & Phase-10 & Improves comfort and flotation stability during longer pool sessions, and it was chosen because the upgraded fit feels steadier than entry belts. \\
+Standard & Aqua jogging belt & TYR Aquatic Float Belt & \$40 & Flotation aid & Phase-10 & Supports more repeatable deep-water movement, and it was chosen because the simple secure buckle keeps the belt from riding awkwardly. \\
+Standard & Aqua jogging belt & Sporti Floatation Belt & \$30 & Flotation aid & Phase-10 & Adds a pool-specific low-impact training option, and it was chosen because the segmented foam design stays easy to pack and rinse. \\
+Elite & Aqua jogging belt & AquaJogger Active Belt & \$65 & Flotation aid & Phase-10 & Supports a cleaner more stable vertical-water posture, and it was chosen because the premium contour feels better during denser repeat use. \\
+Elite & Aqua jogging belt & AquaJogger Delta Belt & \$70 & Flotation aid & Phase-10 & Improves flotation security under longer sessions, and it was chosen because the denser support shape holds position well. \\
+Elite & Aqua jogging belt & AquaJogger Active Belt with Buoyancy Support System & \$80 & Flotation aid & Phase-10 & Creates a very stable deep-water training interface, and it was chosen because the premium support layout reduces wobble and hip drift. \\
+\end{longtblr}
+
+\endgroup
+\fi
+
+\section*{7.17.P - Goggle hard case}
+\phantomsection
+\addcontentsline{toc}{section}{7.17.P - Goggle hard case}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.40in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.15in]
+    Q[l,wd=1.05in]
+    X[l,2.40]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Goggle hard case & Speedo Protective Goggle Case & \$12 & Protective case & Phase-10 & Protects lenses from scratches and crushing, and it was chosen because a rigid shell reduces avoidable fogging and seal failures from bag abuse. \\
+Budget & Goggle hard case & TYR Goggle Protective Case & \$12 & Protective case & Phase-10 & Keeps goggles from getting smashed by wet gear, and it was chosen because the clamshell format is simple and effective. \\
+Budget & Goggle hard case & Arena Goggle Case & \$12 & Protective case & Phase-10 & Preserves lens clarity between sessions, and it was chosen because the compact hard body fits easily into swim bags. \\
+Standard & Goggle hard case & FINIS Goggle Case & \$15 & Protective case & Phase-10 & Improves lens protection and storage hygiene, and it was chosen because the structured zip case adds a cleaner premium feel. \\
+Standard & Goggle hard case & Aqua Sphere Goggle Vault & \$18 & Protective case & Phase-10 & Supports better goggle longevity and easier organization, and it was chosen because the premium shell protects larger-lens goggles well. \\
+Standard & Goggle hard case & Zoggs Hard Goggle Case & \$15 & Protective case & Phase-10 & Reduces random lens damage in transit, and it was chosen because the compact hard case handles regular bag compression well. \\
+Elite & Goggle hard case & TheMagic5 Hard Goggle Case & \$20 & Protective case & Phase-10 & Helps preserve custom-fit goggles accurately, and it was chosen because the premium form better protects higher-cost frames. \\
+Elite & Goggle hard case & Arena Fast Goggle Case & \$18 & Protective case & Phase-10 & Creates a cleaner durable storage solution, and it was chosen because the shell supports frequent wet-to-dry bag turnover well. \\
+Elite & Goggle hard case & Speedo Premium Hard Shell Case & \$18 & Protective case & Phase-10 & Protects premium goggles from lens scuff and strap crush, and it was chosen because the firmer shell improves long-term reliability. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.17.Q - Structured swim backpack}
+\phantomsection
+\addcontentsline{toc}{section}{7.17.Q - Structured swim backpack}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.70in]
+    X[l,1.10]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.15in]
+    Q[l,wd=1.05in]
+    X[l,2.30]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Structured swim backpack & Speedo Teamster 2.0 & \$85 & Structured carry & Phase-10 & Organizes goggles, towel, and accessories in one repeatable carry system, and it was chosen because the compartment layout is proven and durable. \\
+Budget & Structured swim backpack & TYR Alliance 45-L Backpack & \$80 & Structured carry & Phase-10 & Improves gear separation and quick access, and it was chosen because the large volume handles a full pool kit without stuffing. \\
+Budget & Structured swim backpack & Arena Spiky III Backpack 35 & \$75 & Structured carry & Phase-10 & Supports more orderly pool logistics than a loose mesh sack, and it was chosen because the pockets reduce rummaging and forgotten items. \\
+Standard & Structured swim backpack & Arena Fastpack 3.0 & \$95 & Structured carry & Phase-10 & Creates better wet/dry separation and bench-side organization, and it was chosen because the structure helps high-frequency swim prep stay consistent. \\
+Standard & Structured swim backpack & TYR Elite Team Backpack & \$100 & Structured carry & Phase-10 & Supports cleaner multi-item staging, and it was chosen because the tougher fabric and pocket layout suit repeated transport well. \\
+Standard & Structured swim backpack & FINIS Rival 2.0 Backpack & \$100 & Structured carry & Phase-10 & Makes session gear faster to retrieve and repack, and it was chosen because the swim-specific organization is purpose-built rather than generic. \\
+Elite & Structured swim backpack & Speedo Teamster Pro Backpack & \$110 & Structured carry & Phase-10 & Improves high-throughput pool logistics with stronger organization, and it was chosen because the premium layout reduces setup friction in denser phases. \\
+Elite & Structured swim backpack & Arena Fastpack 3.0 XL & \$120 & Structured carry & Phase-10 & Handles larger repeated carry loads cleanly, and it was chosen because the expanded structured volume suits a fuller aquatic kit. \\
+Elite & Structured swim backpack & TYR Elite 45-L Backpack & \$120 & Structured carry & Phase-10 & Gives a more durable premium transport system, and it was chosen because the reinforced build handles constant bag turnover well. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.17.R - Backup swim goggles}
+\phantomsection
+\addcontentsline{toc}{section}{7.17.R - Backup swim goggles}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.40in]
+    X[l,1.25]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.10in]
+    Q[l,wd=1.05in]
+    X[l,2.50]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Backup swim goggles & Speedo Hydrospex Classic & \$15 & Redundancy eyewear & Phase-06 & Preserves swim continuity when the primary pair leaks or fogs out, and it was chosen because the low cost makes keeping a spare realistic. \\
+Budget & Backup swim goggles & TYR Nest Pro Nano & \$18 & Redundancy eyewear & Phase-06 & Keeps a second lane-ready pair in reserve, and it was chosen because the compact fit makes it easy to store as a true spare. \\
+Budget & Backup swim goggles & Arena Cruiser Evo & \$18 & Redundancy eyewear & Phase-06 & Prevents single-pair failure from collapsing a session, and it was chosen because the comfort-first fit works well as an emergency backup. \\
+Standard & Backup swim goggles & Speedo Vanquisher 2.0 & \$25 & Redundancy eyewear & Phase-06 & Maintains continuity with a familiar lane-ready spare, and it was chosen because it is common enough to duplicate the primary interface easily. \\
+Standard & Backup swim goggles & Aqua Sphere Kayenne & \$30 & Redundancy eyewear & Phase-06 & Protects the session from lens or seal failure, and it was chosen because the larger-lens comfort profile is forgiving when a backup is suddenly needed. \\
+Standard & Backup swim goggles & TYR Blackhawk Racing & \$35 & Redundancy eyewear & Phase-06 & Gives a performance-capable spare pair, and it was chosen because it keeps the backup from feeling like a downgrade in harder swim weeks. \\
+Elite & Backup swim goggles & TheMagic5 Custom Backup Pair & \$70 & Redundancy eyewear & Phase-06 & Preserves a stable fit interface even if the first custom pair fails, and it was chosen because custom-seal continuity is the whole point of the redundancy. \\
+Elite & Backup swim goggles & Arena Cobra Ultra Swipe Backup Pair & \$60 & Redundancy eyewear & Phase-06 & Keeps late-phase pool work from failing because of one goggle issue, and it was chosen because the premium anti-fog system supports repeat reliability. \\
+Elite & Backup swim goggles & Speedo Fastskin Hyper Elite Backup Pair & \$85 & Redundancy eyewear & Phase-06 & Provides a true premium spare rather than an emergency compromise, and it was chosen because late-phase reliability matters more than novelty savings. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.17.S - Visibility cap}
+\phantomsection
+\addcontentsline{toc}{section}{7.17.S - Visibility cap}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.20in]
+    X[l,1.30]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.20in]
+    Q[l,wd=1.05in]
+    X[l,2.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Visibility cap & Speedo Neon Silicone Cap & \$10 & Visibility marker & Phase-12 & Improves head visibility in lower-clarity water settings, and it was chosen because a bright inexpensive cap is an easy redundancy item. \\
+Budget & Visibility cap & TYR Hi-Vis Silicone Cap & \$12 & Visibility marker & Phase-12 & Makes the swimmer easier to spot quickly, and it was chosen because the bright silicone color adds safety value with almost no kit burden. \\
+Budget & Visibility cap & Arena Open Water Bright Cap & \$12 & Visibility marker & Phase-12 & Improves detection on the surface, and it was chosen because the high-contrast color better supports supervised open-water-capable posture. \\
+Standard & Visibility cap & Zone3 High-Vis Swim Cap & \$15 & Visibility marker & Phase-12 & Adds stronger surface visibility in mixed conditions, and it was chosen because the brand is well known in open-water safety kit use. \\
+Standard & Visibility cap & Orca Hi-Vis Swim Cap & \$15 & Visibility marker & Phase-12 & Helps supervisors or partners reacquire the swimmer faster, and it was chosen because the open-water-specific design focuses on visibility first. \\
+Standard & Visibility cap & HUUB Bright Silicone Swim Cap & \$15 & Visibility marker & Phase-12 & Supports clearer spotting from shore or deck, and it was chosen because the vivid color options suit a safety-first use case. \\
+Elite & Visibility cap & TYR Open Water Silicone Cap & \$18 & Visibility marker & Phase-12 & Gives a more durable bright cap for repeat outdoor-capable use, and it was chosen because the premium build holds up well through many sessions. \\
+Elite & Visibility cap & blueseventy High Visibility Cap & \$18 & Visibility marker & Phase-12 & Improves detection in busier or choppier water, and it was chosen because the triathlon-oriented design prioritizes visibility and fit. \\
+Elite & Visibility cap & Zone3 Premium Hi-Vis Cap & \$20 & Visibility marker & Phase-12 & Creates a more reliable bright marker in a late-phase safety kit, and it was chosen because the premium silicone tends to resist tearing better. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.17.T - Tow float / safety buoy}
+\phantomsection
+\addcontentsline{toc}{section}{7.17.T - Tow float / safety buoy}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.75in]
+    Q[l,wd=1.75in]
+    X[l,1.15]
+    Q[l,wd=0.95in]
+    Q[l,wd=0.95in]
+    Q[l,wd=1.05in]
+    X[l,2.40]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  column{1-6} = {halign=c, valign=m},
+  column{7} = {halign=l, valign=m},
+  cell{1}{7} = {halign=c, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+}
+\Hdr{Tier} &
+\Hdr{Item} &
+\Hdr{Brand} &
+\Hdr{Approx.\ USD Pricing} &
+\Hdr{Type} &
+\Hdr{First Phase Required} &
+\Hdr{Notes} \\
+Budget & Tow float / safety buoy & Zone3 Safety Buoy & \$35 & Safety float & Phase-12 & Adds visible flotation backup and a rest point in governed open-water-capable settings, and it was chosen because the basic buoy is easy to tow and spot. \\
+Budget & Tow float / safety buoy & Orca Open Water Safety Buoy & \$35 & Safety float & Phase-12 & Improves swimmer visibility and emergency flotation access, and it was chosen because the simple shape is reliable without overcomplication. \\
+Budget & Tow float / safety buoy & Swim Secure Tow Float & \$35 & Safety float & Phase-12 & Increases detection and offers quick flotation support, and it was chosen because it is a standard open-water safety baseline item. \\
+Standard & Tow float / safety buoy & Swim Secure Dry Bag Tow Float & \$45 & Safety float & Phase-12 & Adds small dry storage as well as flotation visibility, and it was chosen because the dual-use format improves safety logistics without much extra load. \\
+Standard & Tow float / safety buoy & Zone3 Venator-X Safety Buoy & \$50 & Safety float & Phase-12 & Improves visibility and tow stability in rougher water, and it was chosen because the more structured premium design rides cleaner when moving. \\
+Standard & Tow float / safety buoy & Orca Safety Buoy with Storage & \$50 & Safety float & Phase-12 & Supports safer governed open-water-capable sessions, and it was chosen because the storage chamber adds practical logistics value. \\
+Elite & Tow float / safety buoy & Head Open Water Tow Float & \$60 & Safety float & Phase-12 & Creates a more robust high-visibility float system, and it was chosen because the premium construction supports harder repeated use. \\
+Elite & Tow float / safety buoy & blueseventy Tow Float & \$55 & Safety float & Phase-12 & Improves conspicuity and rest support in supervised outdoor water, and it was chosen because the premium tow profile feels stable and durable. \\
+Elite & Tow float / safety buoy & Zone3 Adventure Swim Safety Buoy & \$65 & Safety float & Phase-12 & Expands late-phase aquatic safety redundancy, and it was chosen because the larger premium float provides stronger visibility and utility. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.17 - When These Items Are Needed}
+\phantomsection
+\addcontentsline{toc}{section}{7.17 - When These Items Are Needed}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    X[l,1.80]
+    Q[l,wd=1.30in]
+    X[l,3.10]
+    X[l,2.80]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=c, valign=m},
+  row{2-Z} = {halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Item} & \Hdr{First Required Phase} & \Hdr{Why It Becomes Necessary} & \Hdr{What Happens If Missing} \\
+Swim goggles & Phase-04 & Phase-04 is the first locked point where minimum deployable pool surface-swim capability exists, and goggles are the primary vision-and-comfort interface. & Water clarity, eye comfort, and repeatability degrade immediately, making pool sessions more interruptive and less valid. \\
+Swim cap & Phase-04 & The overview’s acquisition order places goggles and cap first because they standardize the simplest safe repeatable pool interface. & Hair control, drag consistency, and visibility discipline are all weaker than they should be. \\
+% Kickboard & Phase-04 & It is a reasonable Tier-1 technique-support mapping because the 7.17 materials allow one simple accessory initially without accessory creep. & Basic kick-isolation and low-complexity body-position work are harder to stage cleanly. \\
+Mesh gear bag & Phase-04 & Transport and drying are named as an early acquisition layer, and the mesh bag is the simplest repeatable ventilated carry solution. & Wet gear stays less organized, dries worse, and is easier to forget or mildew. \\
+Quick-dry towel & Phase-04 & A dedicated drying item is part of minimum pool feasibility and hygiene support once aquatic work becomes phase-relevant. & Post-swim drying becomes slower, messier, and more dependent on unsuitable household towels. \\
+Earplugs & Phase-04 & They are a basic comfort and repeatability support once regular pool exposure begins, especially for users who tolerate repeated water exposure poorly. & Ear irritation risk and post-session discomfort remain less controlled. \\
+Nose clip & Phase-04 & It is a simple low-cost breathing-comfort aid when nasal water intrusion is a real early barrier to repeatable swim exposure. & Some pool sessions remain more distracting and compliance may drop for water-anxious days. \\
+Wet/dry transport bag & Phase-04 & The transport/drying layer begins with first aquatic capability because soaked items need controlled separation from dry kit. & Wet gear contaminates dry items and post-session logistics become less reliable. \\
+Deck sandals & Phase-04 & Basic deck-foot protection belongs in the first pool-feasibility posture because wet facility surfaces are predictable recurring exposure points. & Hygiene, slip control, and foot comfort degrade around the locker room and deck. \\
+Anti-fog treatment & Phase-06 & It directly supports repeatability once goggles are introduced, because fogging quickly creates stop-start swim sessions and avoidable frustration. & Goggle visibility becomes less stable and session flow breaks more often. \\
+% Pull buoy & Phase-10 & Phase-10 is the first locked Tier-2 aquatic expansion point where technique support and repeatability tools become justified. & Upper-body-focused pull work and cleaner bodyline isolation stay more limited. \\
+% Training fins & Phase-10 & They fit the Tier-2 expanded aquatic-tools posture by improving technique support rather than minimum viability. & Kick-specific technical work and propulsion-assisted drill options remain narrower. \\
+% Center-mount swim snorkel & Phase-10 & It is a classic Tier-2 technique tool because it removes breathing disruption and improves repeatability once swim becomes consistently gate-relevant. & Stroke-bodyline drill work remains more dependent on breathing tolerance and less on clean technical focus. \\
+% Hand paddles & Phase-10 & They belong in the expanded technique-support class once the baseline pool kit is already stable. & Pull-specific catch feedback and controlled upper-body resistance options remain narrower. \\
+% Aqua jogging belt & Phase-10 & It adds a deeper pool-specific non-impact training option and fits the broader Tier-2 aquatic logistics / repeatability posture. & One conservative low-impact aquatic movement alternative is absent when it could help preserve volume. \\
+Goggle hard case & Phase-10 & Protection and reliability upgrades become more useful once swim gear turnover is dense enough that small failures create repeated friction. & Lens scratches, crushed seals, and avoidable goggle damage become more likely. \\
+Structured swim backpack & Phase-10 & It fits the expanded aquatic logistics posture because denser swim weeks punish disorganized transport and missing gear. & Pool-kit carry stays less organized and repeated setup friction remains higher. \\
+Backup swim goggles & Phase-06 & Phase-06 is the first locked aquatic Tier-2 expansion point where a second ready-to-use pair becomes justified for continuity and redundancy. & A single goggle failure can cancel or corrupt a decisive swim window. \\
+Visibility cap & Phase-12 & It fits the advanced safety-logistics class for governed open-water-capable or higher-consequence visibility posture. & Surface visibility remains weaker in settings where spotting speed matters more. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{7.17 - Compliance Checklist}
+\phantomsection
+\addcontentsline{toc}{section}{7.17 - Compliance Checklist}
+
+\begin{itemize}
+\item Only one deliverable is provided for Target Category 7.17.
+\item The locked title format and required output structure are used.
+\item The chart uses the exact required columns.
+\item Twenty distinct items are included, and each item contains three Budget rows, three Standard rows, and three Elite rows.
+\item Rows are grouped by item and progress from foundational pool-surface essentials toward expanded logistics and late-phase redundancy.
+\item Notes include both the intended effect or use and the reason that specific item was chosen, and each note is unique to its entry.
+\item Stage-6.B timing is treated as authoritative: Phase-04 for Tier-1 aquatic capability, Phase-06 for Tier-2 expansion, and Phase-12 for Tier-3 reliability posture.
+\item Timing / course-setup tools were excluded from 7.17 because they belong primarily to 7.18, while apparel remained cross-referenced rather than primary 7.17 content.
+\item Underwater and breath-hold are not implied by ownership of any listed item and remain governance-gated, supervised-only exposures.
+\item No training programming, sets, reps, new tests, new thresholds, retailer links, affiliate links, promo codes, or live price research are included.
+\end{itemize}
+
+\end{landscape}
+\clearpage
+
+\end{document}

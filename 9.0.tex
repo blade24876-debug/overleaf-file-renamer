@@ -1,0 +1,389 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{tcolorbox}
+\begin{center}
+Stage 9 — Final QA, Packaging, and Implementation Guide\\[0.35em]
+\textbf{SOF} Physical Development Transformation Program\\[0.25em]
+182-Week Civilian-to-Selection Readiness Pipeline\\[0.65em]
+\TitleLine
+\end{center}
+\end{tcolorbox}
+
+\vspace{0.35em}
+
+\section*{Stage 9 — Final QA, Packaging, and Implementation Guide}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 9 — Final QA, Packaging, and Implementation Guide}
+
+\subsection*{Introduction}
+\phantomsection
+\addcontentsline{toc}{subsection}{Introduction}
+
+\subsubsection*{1) Purpose}
+
+Stage 9 exists to produce a release-ready Program v1.0 package from Stages 0–8 without altering technical content except cosmetic fixes where meaning is unchanged. Stage 9 is the deployment layer that consolidates doctrine into a canonical PDF binder and provides the operational bundle, QA status reporting, implementation guidance, and deployment checklists required for execution.
+
+Stage 9 includes deliverables 9.A–9.F. Stage 9 outputs focus on packaging integrity, audit-ready QA status reporting, trainee onboarding artifacts, and controlled change/version discipline with explicit linkage to Stage 8 Issue IDs (\textbf{ISS-08}-\#\#\#).
+
+\subsubsection*{2) Scope}
+
+\paragraph*{Inclusions}
+
+\begin{itemize}
+\item Packaging artifacts 9.A–9.F (implementation-facing deliverables; produced in this Stage 9 package).
+\item QA status reporting using Stage 8 Issue IDs \textbf{ISS-08}-\#\#\#, including:
+  \begin{itemize}
+  \item stage-level Pass/Fail plus open issues list,
+  \item deliverable-level Pass/Fail plus open issues list.
+  \end{itemize}
+\item Implementation guidance for coach/admin and trainee usage based on the packaged binder + folder bundle.
+\item Versioning and change-control artifacts stored at:
+  \begin{itemize}
+  \item /99\_Change\_Log\_and\_Archive/Versioning/
+  
+  containing:
+  \item \textbf{CHANGE-LOG}
+  \item \textbf{PATCH-REGISTER}
+  \item \textbf{FREEZE-WINDOWS}
+  
+  and a binder pointer to that location.
+  \end{itemize}
+\item Deployment checklists that verify readiness to execute without relying on unstated assumptions.
+\end{itemize}
+
+\paragraph*{Exclusions}
+
+\begin{itemize}
+\item No new programming.
+\item No new tests, thresholds, phase edits, or equipment-category expansions.
+\item No quiet upstream fixes beyond cosmetic corrections where meaning is unchanged.
+\item No rewriting or reinterpretation of Stage 8 issues; Stage 8 findings are preserved and carried forward.
+\end{itemize}
+
+\subsubsection*{3) How to Use}
+
+\paragraph*{Coach/Admin}
+
+\begin{itemize}
+\item Navigate the package as two synchronized components:
+  \begin{itemize}
+  \item canonical read-only PDF binder for doctrine,
+  \item companion folder bundle for operational artifacts (templates, logs, tables, checklists).
+  \end{itemize}
+\item Use QA status sections to determine deployability:
+  \begin{itemize}
+  \item review stage-level and deliverable-level Pass/Fail,
+  \item review Known Issues referencing \textbf{ISS-08}-\#\#\#,
+  \item treat unresolved High-severity \textbf{ISS-08}-\#\#\# as deployment blockers unless explicitly approved under controlled risk acceptance posture.
+  \end{itemize}
+\item Onboard the trainee using Stage 9 deliverables 9.A–9.F as the required execution layer; earlier stages remain coach-facing reference.
+\item Apply change control through the locked versioning location:
+  \begin{itemize}
+  \item record every substantive change via \textbf{CHANGE-LOG} and \textbf{PATCH-REGISTER},
+  \item enforce \textbf{FREEZE-WINDOWS} discipline,
+  \item re-run Stage 8 crosswalk posture after any substantive patch.
+  \end{itemize}
+\end{itemize}
+
+\paragraph*{Trainee}
+
+\begin{itemize}
+\item Stage 9 is the execution and implementation layer.
+\item All Stage 9 deliverables 9.A–9.F are required reading and execution artifacts.
+\item The trainee follows Stage 9 checklists and logs; earlier stages are not treated as the day-to-day operating interface unless explicitly directed by coach/admin.
+\end{itemize}
+
+\subsubsection*{4) Inputs and Assumptions}
+
+\paragraph*{Inputs}
+
+\begin{itemize}
+\item Stages 0–8 are completed and fixed.
+\item Stage 8 Issue Log exists and is authoritative; Issue IDs are \textbf{ISS-08}-\#\#\#.
+\item Stage 9 produces Program v1.0 as:
+  \begin{itemize}
+  \item one canonical PDF binder, and
+  \item one companion folder bundle containing operational artifacts.
+  \end{itemize}
+\end{itemize}
+
+\paragraph*{Assumption Ledger only if needed}
+
+\begin{itemize}
+\item Distribution control is managed by coach/admin (read-only binder control; controlled updates to operational bundle).
+\item Storage location and access discipline exist for:
+  \begin{itemize}
+  \item the binder,
+  \item the folder bundle,
+  \item the versioning/archive path /99\_Change\_Log\_and\_Archive/Versioning/.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{5) Interfaces}
+
+\paragraph*{Upstream dependencies}
+
+\begin{itemize}
+\item Stage 8 Issue Log and all upstream artifacts Stages 0–8 are inputs and remain fixed.
+\item Stage 9 consumes Stage 8’s coherence state, open issues inventory, and corrective principles as references without modification.
+\end{itemize}
+
+\paragraph*{Downstream consumers}
+
+\begin{itemize}
+\item Real-world execution and deployment (coach/admin and trainee).
+\item Future versioning and patch cycles, including revalidation against Stage 8 crosswalk posture.
+\end{itemize}
+
+\paragraph*{Crosswalk hooks}
+
+\begin{itemize}
+\item Issue IDs: \textbf{ISS-08}-\#\#\# used consistently across:
+  \begin{itemize}
+  \item central \textbf{ISSUE-LOG} file,
+  \item per-deliverable Known Issues sections,
+  \item QA status reporting.
+  \end{itemize}
+\item Artifact filenames follow locked convention:
+  \begin{itemize}
+  \item [StageID]-[DeliverableID]\_[Title]\_\_v-1.0
+  \end{itemize}
+  with:
+  \begin{itemize}
+  \item hyphens in IDs,
+  \item underscores in titles,
+  \item no spaces,
+  \item version suffix v-1.0 exactly.
+  \end{itemize}
+\item Folder paths and pointers:
+  \begin{itemize}
+  \item explicit binder pointer to /99\_Change\_Log\_and\_Archive/Versioning/.
+  \end{itemize}
+\item Version headers and distribution pointers embedded in the package so recipients know which artifacts are canonical and how updates are governed.
+\end{itemize}
+
+\subsubsection*{6) Gate / Acceptance Criteria}
+
+Stage 9 is complete and deployable when:
+
+\begin{itemize}
+\item Program v1.0 includes Stage 9 deliverables 9.A–9.F in the package structure.
+\item A canonical read-only PDF binder exists and matches the folder bundle contents by:
+  \begin{itemize}
+  \item stage/deliverable coverage,
+  \item titles and identifiers,
+  \item version suffix v-1.0.
+  \end{itemize}
+\item Artifact index is complete and filenames follow the locked naming convention exactly.
+\item QA status is declared in required format:
+  \begin{itemize}
+  \item stage-level Pass/Fail plus open issues list,
+  \item deliverable-level Pass/Fail plus open issues list,
+  
+  with explicit references to \textbf{ISS-08}-\#\#\#.
+  \end{itemize}
+\item Central \textbf{ISSUE-LOG} file exists containing the Stage 8 Issue Log, and each Stage 9 deliverable includes a Known Issues section listing only relevant \textbf{ISS-08}-\#\#\# IDs.
+\item Versioning folder exists at /99\_Change\_Log\_and\_Archive/Versioning/ containing \textbf{CHANGE-LOG}, \textbf{PATCH-REGISTER}, and \textbf{FREEZE-WINDOWS}, and the binder includes a pointer to that location.
+\item No new content is introduced:
+  \begin{itemize}
+  \item cosmetic corrections only are permitted when meaning is unchanged,
+  \item substantive discrepancies are referenced to \textbf{ISS-08}-\#\#\# and carried forward as Known Issues rather than silently fixed.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{7) Common Failure Modes + Controls}
+
+\begin{itemize}
+\item Quietly fixing earlier stages → prohibited; cite \textbf{ISS-08}-\#\#\# and carry forward as Known Issues; corrections occur only via controlled patching and revalidation.
+\item Missing issue IDs → enforce one central \textbf{ISSUE-LOG} and per-deliverable Known Issues sections listing relevant \textbf{ISS-08}-\#\#\# only.
+\item Inconsistent filenames → enforce locked naming convention; reject artifacts with spaces, wrong separators, or wrong version suffix.
+\item Unclear trainee access posture → enforce rule: Stage 9 deliverables 9.A–9.F are trainee-required; earlier stages are coach reference.
+\item Mid-phase edits without change-log → enforce /99\_Change\_Log\_and\_Archive/Versioning/ discipline with \textbf{CHANGE-LOG}, \textbf{PATCH-REGISTER}, \textbf{FREEZE-WINDOWS}; re-run Stage 8 crosswalk posture after substantive changes.
+\item Binder and folder bundle drift → enforce synchronization checks: binder pointer to operational artifacts; artifact index cross-checked against folder contents.
+\end{itemize}
+
+\subsubsection*{8) Versioning Notes}
+
+\begin{itemize}
+\item Stage 9 defines v1.0 packaging posture and the controlling change-log rules for deployment.
+\item Later edits require:
+  \begin{itemize}
+  \item logged version bump,
+  \item patch record entry in \textbf{PATCH-REGISTER},
+  \item revalidation against Stage 8 crosswalk posture and updated \textbf{ISSUE-LOG}.
+  \end{itemize}
+\item Cosmetic corrections are allowed only when meaning is unchanged; substantive fixes require controlled patching and explicit \textbf{ISS-08} handling carried forward as Known Issues until resolved.
+\end{itemize}
+
+\end{document}

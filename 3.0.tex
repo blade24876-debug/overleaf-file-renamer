@@ -1,0 +1,592 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{tcolorbox}
+\begin{center}
+Stage 3 — Test Calendar, Deload Map, and Macro Stress Pattern\\[0.35em]
+SOF Physical Development Transformation Program\\[0.25em]
+182-Week Civilian-to-Selection Readiness Pipeline\\[0.65em]
+\TitleLine
+\end{center}
+\end{tcolorbox}
+
+\vspace{0.35em}
+
+\section*{Stage 3 — Test Calendar, Deload Map, and Macro Stress Pattern}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 3 — Test Calendar, Deload Map, and Macro Stress Pattern}
+
+\subsection*{Introduction}
+\phantomsection
+\addcontentsline{toc}{subsection}{Introduction}
+
+Stage 3 exists to schedule testing and deload windows so gate evidence is produced safely, under comparable conditions, and with admissibility protected across the full 182-week pipeline (Phase 00 through Phase 13).
+
+Stage 3 controls when tests may be executed as gate-grade events and when fatigue-reduction periods occur so:
+
+\begin{itemize}
+\item gate-critical tests are not executed under accumulated fatigue that contaminates comparability,
+\item high-consequence domains (\textbf{RUN}, \textbf{RUCK}, \textbf{SWIM}, underwater governance) are not forced into unsafe conditions by calendar pressure,
+\item replication requirements (2 of last 3 \textbf{VALID} for gate-tier classification) are achievable without “overtesting” or chronic fatigue accumulation,
+\item invalid tests are handled by reslotting, not by compression or stacking,
+\item environmental constraints in Grand Forks, North Dakota (ice, wind, cold, heat, low daylight, variable access) are treated as predictable schedule constraints rather than exceptions.
+\end{itemize}
+
+Division of authority is non-negotiable:
+
+\begin{itemize}
+\item Stage 2 controls how tests are executed and what makes them \textbf{VALID} or \textbf{INVALID} (protocol requirements, environment/tool logging, evidence standards, and replication rules).
+\item Stage 3 controls when tests are executed as gate-grade and how deload/test windows are spaced and reslotted.
+\item Stage 3 \textbf{MUST} NOT prescribe training programming, workouts, sets/reps, intervals, pacing plans, or day-by-day session construction.
+\end{itemize}
+
+Core enforcement outcome:
+
+\begin{itemize}
+\item A test executed outside an authorized Stage 3 protected window may be logged informationally, but it \textbf{MUST} be treated conservatively for gate use when fatigue, novelty, environment risk, or incomplete logging is present. Gate-grade use is restricted to protected windows by default doctrine.
+\end{itemize}
+
+\subsubsection*{2) Scope}
+
+\paragraph*{2.1 Inclusions}
+
+Stage 3 includes enforceable scheduling doctrine that preserves safety and validity.
+
+\begin{enumerate}
+\item Macro stress doctrine (work-to-deload rhythm)
+\begin{itemize}
+\item Defines a repeating work-to-deload rhythm used across phases to prevent chronic fatigue accumulation and to protect test validity.
+\item Establishes the default posture: deload week equals test week.
+\item Defines the “protected window” concept: test-grade evidence is intended to be produced inside deload/test windows.
+\item Defines minimum time separation between protected windows to prevent continuous testing posture.
+\end{itemize}
+
+\item Protected deload/test windows doctrine (gate-grade test authorization)
+\begin{itemize}
+\item Defines the only authorized windows for gate-grade testing:
+  \begin{itemize}
+  \item Mid-phase checkpoint window (when phases are long enough to warrant a mid-phase checkpoint).
+  \item End-phase gate window (required for gate outcomes when tests are specified as gate inputs).
+  \end{itemize}
+\item Defines what “protected” means operationally:
+  \begin{itemize}
+  \item Reduced fatigue posture is required.
+  \item No novelty posture applies (environment/tool/footwear changes are restricted).
+  \item Anti-stacking spacing rules apply (see section 2.1.4).
+  \end{itemize}
+\item Defines eligibility for attempting gate-grade tests:
+  \begin{itemize}
+  \item prerequisites and readiness are governed by Stage 1.F admissibility and Stage 2.C safety screens,
+  \item durability and stop-rule constraints override schedule.
+  \end{itemize}
+\end{itemize}
+
+\item Default doctrine: deload week equals test week
+\begin{itemize}
+\item The deload/test window is a combined:
+  \begin{itemize}
+  \item fatigue reduction period, and
+  \item validity protection period.
+  \end{itemize}
+\item Within that week, high-cost tests are scheduled by spacing doctrine, not by convenience.
+\item Testing does not “replace” training. Stage 0 cadence remains 6 sessions/week; the deload/test week preserves cadence while reducing fatigue and protecting comparability (Stage 3 controls timing; programming methods remain out-of-scope).
+\end{itemize}
+
+\item Anti-stacking and spacing posture (doctrine-level only)
+
+Stage 3 defines spacing rules to avoid test contamination and injury risk. These rules apply within each protected window and when reslotting.
+
+Test event classes (for spacing doctrine; no new IDs; references are domain categories only):
+
+\begin{itemize}
+\item High-cost locomotion: \textbf{RUN} time trials (\textbf{C8}–\textbf{C11}), \textbf{RUCK} time trials (\textbf{C12}), \textbf{SWIM} time trials (\textbf{C13}), underwater governance-constrained exposure (\textbf{C14} when authorized).
+\item High-cost calisthenics: \textbf{CAL} max/timed events (\textbf{C4}–\textbf{C7}).
+\item High-cost strength proxy: \textbf{STR} proxy tests (\textbf{C17}) when executed as formal test events.
+\item High-cost non-run conditioning: \textbf{AER} time trials (\textbf{C18}) when executed as formal test events.
+\item Governance/trend markers: \textbf{BODYCOMP} measures (\textbf{C1}–\textbf{C3}), \textbf{RECOVERY} markers (\textbf{C15}), \textbf{DURABILITY} screen flags (\textbf{C16}).
+\end{itemize}
+
+Spacing doctrine (minimum enforceable rules):
+
+\begin{itemize}
+\item No more than one high-cost locomotion test event per 48 hours inside a protected window.
+\item No more than one high-cost “total-system” day (locomotion test day plus additional major test) inside a protected window.
+\item \textbf{CAL} events may be grouped only when:
+  \begin{itemize}
+  \item artifact requirements can be satisfied without compromising auditability,
+  \item the grouping does not create a “fatigue cascade” into locomotion tests within the same window.
+  \end{itemize}
+\item Underwater (\textbf{C14}) is scheduled only if governance prerequisites are already satisfied; underwater is never used to “fill a slot” in a test week.
+\item If spacing cannot be satisfied within the protected window, the correct posture is partial completion and reslotting remaining tests to the next protected window; stacking is prohibited.
+\end{itemize}
+
+\item Environment reslot/substitute posture for Grand Forks, North Dakota
+
+Stage 3 treats seasonal hazards and access variability as expected constraints:
+
+\begin{itemize}
+\item Unsafe outdoor conditions trigger indoor substitution only when Stage 2 validity fields preserve comparability (e.g., treadmill admissibility with full settings logged).
+\item If an indoor substitute cannot preserve the construct’s validity (e.g., \textbf{SWIM} without a verified pool; underwater without supervision; unverified distance), the test is reslotted.
+\item Test scheduling must assume:
+  \begin{itemize}
+  \item winter ice and low daylight risk for outdoor routes,
+  \item heat and air quality risk in warmer months,
+  \item wind and visibility volatility,
+  \item facility access volatility.
+  \end{itemize}
+\end{itemize}
+
+\item Adjustment posture (missed tests, invalid tests, illness, regression, risk flags)
+
+Stage 3 defines schedule-level responses:
+
+\begin{itemize}
+\item Missed/invalid tests are reslotted, not compressed.
+\item Illness and stop-rule events trigger conservative reslotting and may force a “no testing until stable” posture.
+\item Regression and Medical Hold posture override test schedules; calendar does not force testing.
+\end{itemize}
+
+Detailed adjustment rules are owned by Stage 3.E, but Stage 3 establishes the controlling principle: reslot rather than compress; preserve comparability; preserve safety.
+
+\item Replication enablement posture (2 of last 3 \textbf{VALID} without overtesting)
+
+Stage 3 must provide sufficient cadence opportunities for Gate-Critical metrics to meet replication requirements without encouraging excessive testing.
+
+Replication enablement rules (schedule posture):
+
+\begin{itemize}
+\item Gate-critical metrics must have recurring protected windows such that:
+  \begin{itemize}
+  \item repeated \textbf{VALID} tests can be achieved across consecutive windows,
+  \item failure in one window does not force unsafe “make-up testing.”
+  \end{itemize}
+\item Replication is not “three tests in one week.” Replication is achieved across windows under comparable conditions.
+\item When a decision window is referenced for replication, Stage 3 defines that “metric evidence window” may span multiple protected windows as needed to locate the last three \textbf{VALID} events while still respecting Stage 1.F gate posture and Stage 3 reslot rules.
+\end{itemize}
+\end{enumerate}
+
+\paragraph*{2.2 Exclusions}
+
+Stage 3 explicitly excludes:
+
+\begin{itemize}
+\item Workouts, sets/reps, intervals, weekly splits, microcycles, daily session design, pace charts, and specific training prescriptions.
+\item New tests, thresholds, domain tags, metric IDs, protocol IDs, validity tokens, or schema changes. Stage 2 is authoritative.
+\item Equipment acquisition guidance and procurement planning. Stage 6–Stage 7 own equipment timing and build-out.
+\item Medical diagnosis or treatment. Only stop posture and escalation references are permitted.
+\end{itemize}
+
+\subsubsection*{3) How to Use}
+
+Stage 3 is used by Coach Lead and Trainee as the timing control layer that prevents invalid or unsafe evidence from driving gates.
+
+\paragraph*{3.1 Authorized testing posture}
+
+\begin{itemize}
+\item Gate-grade tests are executed only inside protected deload/test windows.
+\item Tests executed outside protected windows may be logged informationally, but are presumed non-gate-grade unless:
+  \begin{itemize}
+  \item the event meets all Stage 2 validity fields,
+  \item fatigue confounders are controlled,
+  \item novelty is absent,
+  \item and a Coach Lead explicitly records that the event is treated as gate-grade (rare; requires strong justification; still must obey spacing doctrine).
+  \end{itemize}
+\end{itemize}
+
+\paragraph*{3.2 Protected window doctrine: what "deload/test week" means operationally}
+Protected window is not a license to test everything. It is a controlled evidence production period.
+
+Minimum protected window characteristics:
+
+\begin{itemize}
+\item Reduced fatigue posture relative to prior work weeks is required so tests represent capacity rather than exhaustion.
+\item High-cost test density is capped by spacing doctrine.
+\item Novelty is minimized:
+  \begin{itemize}
+  \item avoid new route/machine/pool,
+  \item avoid new footwear or ruck configuration,
+  \item avoid new timing method,
+  \item avoid new environment unit IDs immediately before gate-grade testing unless forced (if forced, treat as comparability break and default reslot for gate-grade use).
+  \end{itemize}
+\end{itemize}
+
+\paragraph*{3.3 Reslot rather than compress}
+
+\begin{itemize}
+\item If tests are missed or \textbf{INVALID}, the schedule response \textbf{MUST} be reslot to the next authorized protected window.
+\item No “make-up testing” is permitted that stacks multiple high-cost tests into a narrow timeframe or forces testing under compromised conditions.
+\item If only a subset of the planned test battery can be executed validly within a window:
+  \begin{itemize}
+  \item log the executed tests,
+  \item explicitly mark unexecuted tests as \textbf{NOT EXECUTED} (do not leave silent gaps),
+  \item reslot remaining tests to the next protected window.
+  \end{itemize}
+\end{itemize}
+
+\paragraph*{3.4 Environment substitution posture (indoor vs reslot)}
+
+Stage 3 authorizes indoor substitution only when Stage 2 validity and comparability can be preserved.
+
+Examples of authorized substitution posture (construct-preserving):
+
+\begin{itemize}
+\item \textbf{RUN} time trials may use treadmill alternatives when permitted by Stage 2 protocol conditions and full device settings are logged (\textbf{TM}-2E-###; grade recorded; adopted grade setting recorded; speed profile recorded; pauses handled per protocol).
+\item \textbf{RUCK} time trials may use treadmill alternatives when permitted by Stage 2 protocol conditions, including dry load verification, \textbf{TM}-2E-###, and full settings logging.
+\end{itemize}
+
+Examples of reslot-required posture (construct not preservable):
+
+\begin{itemize}
+\item \textbf{SWIM} tests require verified pool length and unit; if pool is unavailable or unverifiable, reslot rather than substitute with non-aquatic evidence.
+\item Underwater (\textbf{C14}) is prohibited without certified lifeguard plus dedicated safety spotter; absence forces reslot and “not authorized” logging posture.
+\item Any run/ruck test where distance cannot be verified (\textbf{MEASURE} failure) is reslot-required for gate-grade use.
+\end{itemize}
+
+\paragraph*{3.5 Replication enablement without overtesting}
+
+\begin{itemize}
+\item Replication for gate-tier classification is achieved across protected windows, not by stacking repeated attempts in a single week.
+\item If a metric’s replication status is 1/3 at the end of a protected window:
+  \begin{itemize}
+  \item do not force immediate retest outside the window,
+  \item reslot the next attempt to the next protected window.
+  \end{itemize}
+\item When a phase gate relies on tier classification:
+  \begin{itemize}
+  \item stage the gate timing so that at least two protected windows have occurred since the last major method/environment change, enabling replicated \textbf{VALID} results under comparable conditions.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{4) Inputs and Assumptions}
+
+\paragraph*{4.1 Inputs}
+
+\begin{itemize}
+\item Stage 0 constraints and environment posture, including Grand Forks, North Dakota seasonal hazards and indoor substitution necessity.
+\item Stage 1.F governance, including:
+  \begin{itemize}
+  \item Session Validity Tag: \textbf{VALID} / \textbf{MODIFIED} / \textbf{INVALID}
+  \item Test Validity Tag: \textbf{VALID} / \textbf{INVALID}
+  \item Gate outcomes: \textbf{ADVANCE} / \textbf{HOLD} / \textbf{REGRESS} / \textbf{MEDICAL} \textbf{HOLD}
+  \item Stop posture and escalation dominance
+  \item Freeze windows and change control discipline
+  \end{itemize}
+\item Stage 2 measurement layer:
+  \begin{itemize}
+  \item Domain tags: \textbf{RUN}, \textbf{SWIM}, \textbf{CAL}, \textbf{RUCK}, \textbf{STR}, \textbf{BODYCOMP}, \textbf{DURABILITY}, \textbf{RECOVERY}, \textbf{AER}
+  \item Metric IDs: \textbf{MET-2B}-###
+  \item Protocol cards: \textbf{C1}–\textbf{C18} (with applicable readiness-tier and validity rules)
+  \item Tier thresholds: \textbf{ENTRY} / \textbf{INTERMEDIATE} / \textbf{SELECTION-READY}
+  \item Stage 2.E logging conventions, Environment Unit IDs, and tool-identity posture
+  \end{itemize}
+\item Phase structure: Phase 00–Phase 13 and fixed durations per upstream macro design.
+\end{itemize}
+
+\paragraph*{4.2 Assumption Ledger (only if needed)}
+
+\begin{itemize}
+\item At least one safe outdoor route OR a stable indoor device exists to execute \textbf{RUN} and \textbf{RUCK} test constructs when a protected window is reached; when neither exists safely, default posture is reslot.
+\item Pool access is not assumed globally and is treated as phase-gated; \textbf{SWIM} tests occur only when pool length/units can be verified and logged.
+\item A timing method exists for test windows; if timing capture is unavailable or not logged, the test result is \textbf{INVALID} for gate use.
+\end{itemize}
+
+\subsubsection*{5) Interfaces}
+
+\paragraph*{5.1 Upstream dependencies}
+
+Stage 3 depends on and must remain consistent with:
+
+\begin{itemize}
+\item Stage 0 identity, operating constraints, safety/legal/medical boundaries, and environment posture.
+\item Stage 1.F governance: validity tags, stop posture, freeze windows, and change control.
+\item Stage 2 measurement architecture: domain taxonomy, metric inventory, protocol cards, tier thresholds, and logging conventions.
+\end{itemize}
+
+\paragraph*{5.2 Downstream consumers}
+
+Stage 3 serves as the schedule foundation for:
+
+\begin{itemize}
+\item Stage 4–Stage 5 phase specifications, which consume protected windows to determine mid-phase checkpoints and end-phase gate timing.
+\item Stage 8 crosswalk audits, which check Stage 3 schedules for compatibility with:
+  \begin{itemize}
+  \item Stage 2 test instruments,
+  \item Stage 6–Stage 7 resource feasibility,
+  \item environment identity consistency.
+  \end{itemize}
+\item Stage 9 packaging/implementation, which consumes Stage 3 as the scheduling doctrine for deployable execution.
+\end{itemize}
+
+\paragraph*{5.3 Crosswalk hooks}
+
+Stage 3 uses and \textbf{MUST} keep stable the following join keys and scheduling references:
+
+\begin{itemize}
+\item Phase IDs and phase week markers
+\item Protocol cards \textbf{C1}–\textbf{C18}
+\item Metric IDs: \textbf{MET-2B}-###
+\item Domain tags: \textbf{RUN}, \textbf{SWIM}, \textbf{CAL}, \textbf{RUCK}, \textbf{STR}, \textbf{BODYCOMP}, \textbf{DURABILITY}, \textbf{RECOVERY}, \textbf{AER}
+\item Environment Unit \textbf{ID} concept and tool consistency concept (Stage 2.E)
+\end{itemize}
+
+\subsubsection*{6) Gate / Acceptance Criteria}
+
+Stage 3 is complete and deployable when:
+
+\begin{itemize}
+\item Every phase has protected mid-phase and end-phase test windows consistent with Stage 3 doctrine and compatible with Stage 1.F admissibility posture and Stage 2 replication rules.
+\item Macro stress doctrine (work-to-deload rhythm) is explicit and implementable without prescribing workouts.
+\item Anti-stacking/spacing doctrine is explicit and prevents:
+  \begin{itemize}
+  \item fatigue contamination,
+  \item unsafe escalation,
+  \item and cross-domain interference (ROCK is not used; \textbf{RUCK} and \textbf{RUN} remain distinct).
+  \end{itemize}
+\item Environment reslot/substitution posture is explicit for Grand Forks constraints and preserves safety and validity:
+  \begin{itemize}
+  \item indoor substitution only when comparable under Stage 2 validity,
+  \item otherwise reslot.
+  \end{itemize}
+\item Reslot doctrine is explicit for:
+  \begin{itemize}
+  \item missed tests,
+  \item invalid tests,
+  \item illness,
+  \item regression,
+  \item and risk flags.
+  \end{itemize}
+\item Replication enablement posture is explicit and achievable without overtesting.
+\item No contradictions exist with Stage 0.5 water governance and Stage 1.F stop posture:
+  \begin{itemize}
+  \item underwater/breath-hold is never scheduled without governance prerequisites,
+  \item any breach forces conservative posture.
+  \end{itemize}
+\item Stage 3 deliverables 3.A–3.E are scoped and interlocked without introducing new tests, thresholds, domains, or identifiers.
+\end{itemize}
+
+\subsubsection*{7) Common Failure Modes + Controls}
+
+\begin{itemize}
+\item Overtesting and fatigue contamination → enforce deload/test window protection; cap high-cost test density; require spacing.
+\item Missed tests “made up” by stacking → reslot discipline; no stacking; no compression after missed weeks.
+\item Unsafe environment testing (ice/heat/air quality/low visibility) → postpone or substitute indoors only when Stage 2 validity/logging preserves comparability; otherwise reslot.
+\item Novelty near gates (new route/tool/shoes/caffeine/timekeeping) → freeze posture for verification windows; log any forced changes as comparability breaks; defer gate-grade testing until stabilized.
+\item Insufficient replication opportunities → recurring protected windows structured to enable replication across windows, not within a single week.
+\item Tool or route drift → enforce Environment Unit IDs and tool-change logging per Stage 2.E; treat drift as a comparability break until stabilized and replicated.
+\item Water governance breaches → supervised-only posture; underwater is not scheduled without governance prerequisites; any breach is inadmissible.
+\item Pool access volatility causing invalid \textbf{SWIM} evidence → pool verification mandatory; reslot \textbf{SWIM} tests rather than substituting non-swim evidence.
+\item Long-duration tests adjacent to other major tests → spacing doctrine; separate high-cost events by minimum spacing intervals.
+\item Invalid tests used anyway to support gates → \textbf{INVALID} provides no gate credit; require retest in next protected window; gate posture defaults \textbf{HOLD} for that metric until valid evidence exists.
+\item Compression after illness/injury → reslot and conservative return posture; do not force tests under unresolved risk flags.
+\item Gate claims made without replication → replication tracking required; default \textbf{HOLD} (Replication) for that metric until replication exists.
+\end{itemize}
+
+\subsubsection*{8) Versioning Notes}
+
+\begin{itemize}
+\item Frozen scheduling doctrine primitives:
+  \begin{itemize}
+  \item protected deload/test windows posture,
+  \item macro stress rhythm posture (work-to-deload),
+  \item anti-stacking/spacing doctrine,
+  \item reslot posture for invalid/missed tests,
+  \item environment-driven substitution limits for Grand Forks conditions,
+  \item replication enablement posture (cadence sufficient to achieve 2 of last 3 \textbf{VALID} without overtesting).
+  \end{itemize}
+\item Refinable only via logged change:
+  \begin{itemize}
+  \item phase-specific window placement refinements,
+  \item environment substitution clarifications that do not alter Stage 2 validity rules,
+  \item minor calendar structure clarifications that do not alter governance meaning.
+  \end{itemize}
+\item Patch/change control posture:
+  \begin{itemize}
+  \item any change to Stage 3 scheduling doctrine \textbf{MUST} be logged,
+  \item reviewed for downstream impact (Stages 4–5),
+  \item and checked for Stage 8 crosswalk implications before treated as deployable.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Stage 3 Contents Map}
+\phantomsection
+\addcontentsline{toc}{subsection}{Stage 3 Contents Map}
+
+\begin{itemize}
+\item 3.A Design Principles for Testing and Deloads — Defines scheduling principles that protect validity, safety, and comparability for all tests across Phase 00–Phase 13, including protected window and anti-stacking doctrine.
+\item 3.B Phase-Level Stress and Test Map — Establishes phase-level placement of protected test windows and stress rhythm without prescribing training, including mid-phase and end-phase window logic and minimum spacing rules.
+\item 3.C Test Cadence by Metric Type — Defines eligibility cadence for each metric category (Gate-Critical performance tests vs supporting markers vs trends) to enable replication without chronic testing burden.
+\item 3.D Integrated Phase Calendars Compact Form — Provides compact phase-level calendars showing protected test windows and gate points without day-by-day programming, using Phase Week markers and window labels only.
+\item 3.E Adjustment Rules for Illness, Regression, and Risk Flags — Defines reslot and regression scheduling rules when safety, validity, or feasibility constraints disrupt planned windows, including invalid-test retest posture and environment-driven reslots.
+\end{itemize}
+
+\end{document}

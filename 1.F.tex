@@ -1,0 +1,626 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 1.F — Governance Rules and Validity Doctrine}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 1.F — Governance Rules and Validity Doctrine}
+
+\subsection*{1.F.1 Governance Hierarchy}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.F.1 Governance Hierarchy}
+
+Ordered hierarchy (highest authority first):
+
+\begin{enumerate}
+\item Stage 0 overrides downstream content. If any downstream rule conflicts with Stage 0 constraints/boundaries, the downstream rule is non-authoritative until corrected and re-versioned.
+\item Safety boundaries override performance goals and schedule. When safety triggers occur, \textbf{STOP} \textbf{NOW} actions apply immediately; evidence from unsafe continuation is inadmissible.
+\item Governance overrides programming preferences. If a planned session cannot meet required elements/admissibility rules, it must be tagged accurately (\textbf{MODIFIED}/\textbf{INVALID}) rather than forcing compliance by unsafe means.
+\item Validity rules override “good intentions.” If evidence cannot be verified (missing minimum dataset, missing required elements, or boundary violations), it is inadmissible for gate decisions.
+\end{enumerate}
+
+Evidence produced under compromised safety (stop-rule continuation, water-governance breach, falsified/incomplete documentation) \textbf{MUST} be treated as inadmissible for advancement and \textbf{MUST} trigger default conservative gate posture (\textbf{HOLD} or \textbf{MEDICAL} \textbf{HOLD} as applicable).
+
+\newpage
+
+\subsection*{1.F.2 Session Validity Doctrine}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.F.2 Session Validity Doctrine}
+
+\subsubsection*{1.F.2.1 Required Session Elements (Non-Negotiable)}
+\phantomsection
+
+Required elements checklist (order is locked):
+
+\begin{itemize}
+\item Safety self-check
+\item Warm-up
+\item Mobility
+\item Main work
+\item Cardio
+\item Cooldown
+\item Recovery
+\item Post-session notes
+\end{itemize}
+
+Body text enforcement (not embedded in checklist labels):
+
+\begin{itemize}
+\item Cardio occurs in every training session.
+\item Cardio minimum standard is minimum 30 minutes continuous per training session.
+\item If Cardio is under the minimum or is not continuous, the session is \textbf{INVALID}  (no gate credit).
+\end{itemize}
+
+Minimum logging fields by element (governance-level; no programming prescriptions):
+
+Safety self-check (\textbf{MUST} log):
+
+\begin{itemize}
+\item readiness snapshot (sleep hours since last session; general fatigue level),
+\item pain flags (location + 0–10 severity),
+\item red-flag symptom check (presence/absence; details only if present),
+\item environment check (surface hazard, temperature band, wind/ice flag),
+\item water exposure check (if any aquatic facility is involved: certified supervision present Y/N; underwater/breath-hold planned Y/N).
+\end{itemize}
+
+Warm-up (\textbf{MUST} log):
+
+\begin{itemize}
+\item completed Y/N,
+\item modality summary (e.g., dynamic movement, easy walk),
+\item duration (minutes).
+\end{itemize}
+
+Mobility (\textbf{MUST} log):
+
+\begin{itemize}
+\item completed Y/N,
+\item target regions (shoulder/hip/ankle/general),
+\item duration (minutes),
+\item pain or restriction notes if relevant.
+\end{itemize}
+
+Main work (\textbf{MUST} log):
+
+\begin{itemize}
+\item completed Y/N,
+\item domain(s) performed (strength / calisthenics / run / ruck / swim / durability),
+\item modality summary (what was done at a high level),
+\item duration (minutes),
+\item intensity anchor (RPE and/or talk-test cue if applicable).
+\end{itemize}
+
+Cardio (\textbf{MUST} log):
+
+\begin{itemize}
+\item modality,
+\item minutes (must be ≥ the minimum stated above),
+\item intensity anchor: RPE (1–10) + talk-test cue,
+\item continuity statement: “continuous completed” or “not continuous” (if not continuous → \textbf{INVALID}).
+\end{itemize}
+
+Cooldown (\textbf{MUST} log):
+
+\begin{itemize}
+\item completed Y/N,
+\item modality summary (easy walk, stretch),
+\item duration (minutes).
+\end{itemize}
+
+Recovery (\textbf{MUST} log):
+
+\begin{itemize}
+\item sleep hours,
+\item soreness 0–10,
+\item fatigue 0–10,
+\item pain flags,
+\item foot hotspots,
+\item recovery actions taken at category level only.
+\end{itemize}
+
+Post-session notes (\textbf{MUST} log):
+
+\begin{itemize}
+\item brief factual summary,
+\item what changed vs plan,
+\item substitutions,
+\item constraints for next session,
+\item \textbf{SESSION-RC} reason code if \textbf{MODIFIED} or \textbf{INVALID}.
+\end{itemize}
+
+\subsubsection*{1.F.2.2 Tag Definitions (Operational)}
+\phantomsection
+
+\textbf{VALID}
+
+\begin{itemize}
+\item All required elements completed.
+\item Cardio completed and meets the minimum: minimum 30 minutes continuous per training session.
+\item Minimum logging dataset complete for the session (element completion + core fields).
+\item No stop-rule continuation occurred (\textbf{STOP} \textbf{NOW} triggers were not ignored).
+\end{itemize}
+
+\textbf{MODIFIED}
+
+\begin{itemize}
+\item All required elements completed.
+\item Cardio completed and meets the minimum continuous standard.
+\item A documented substitution/downgrade occurred to preserve intent while reducing risk.
+\item The substitution \textbf{MUST} NOT increase injury risk beyond current tolerance.
+\item Minimum logging dataset complete AND includes:
+\begin{itemize}
+\item trigger/signal prompting modification,
+\item what changed (planned vs executed),
+\item \textbf{SESSION-RC} reason code.
+\end{itemize}
+\end{itemize}
+
+\textbf{INVALID} 
+Any of the following forces \textbf{INVALID} :
+
+\begin{itemize}
+\item Any required element missing (not completed).
+\item Cardio under the minimum standard or not continuous.
+\item Required logging dataset missing or insufficient to verify compliance.
+\item Undocumented deviation such that intent or compliance cannot be verified.
+\item \textbf{STOP} \textbf{NOW} trigger occurred and the session continued in a manner that compromised safety governance (evidence becomes inadmissible).
+\end{itemize}
+
+Admissibility for gates:
+
+\begin{itemize}
+\item \textbf{VALID} sessions are admissible.
+\item \textbf{MODIFIED} sessions are admissible only within the cap rules defined in 1.F.4 and \textbf{MUST} use \textbf{SESSION-RC}.
+\item \textbf{INVALID} sessions are not admissible and \textbf{MUST} NOT be used to justify progression.
+\end{itemize}
+
+\subsubsection*{1.F.2.3 Reason Codes (Required; \textbf{SESSION-RC})}
+\phantomsection
+
+\textbf{SESSION-RC} codes \textbf{MUST} be used for any \textbf{MODIFIED} or \textbf{INVALID} session. Codes are assigned to the primary driver of the deviation (one primary code minimum; a secondary code MAY be added if needed for audit clarity).
+
+\textbf{SESSION-RC} Code Set (Canonical; Expandable Via Patch Without Weakening Doctrine):
+
+\begin{itemize}
+\item \textbf{SESSION-RC-001} (\textbf{ENV}) — Applies to: \textbf{MODIFIED} / \textbf{INVALID} — Environment hazard prevents safe execution (ice, extreme wind, unsafe surface, air quality).
+\begin{itemize}
+\item Minimum documentation: hazard type; location; date/time; substitute used; intensity anchor; safety self-check notes.
+\item Default gate posture if repeated: if ≥2 in window → \textbf{HOLD}; require robust indoor substitute plan.
+\end{itemize}
+\item \textbf{SESSION-RC-002} (PAIN) — Applies to: \textbf{MODIFIED} / \textbf{INVALID} — Pain or discomfort alters mechanics or indicates unsafe loading tolerance.
+\begin{itemize}
+\item Minimum documentation: pain location + 0–10; mechanics change observed Y/N; substitution details; continuity status.
+\item Default gate posture if repeated: \textbf{HOLD} or \textbf{REGRESS}; consider \textbf{MEDICAL} \textbf{HOLD} if stop-rule thresholds triggered.
+\end{itemize}
+\item \textbf{SESSION-RC-003} (\textbf{ILL}) — Applies to: \textbf{MODIFIED} / \textbf{INVALID} — Illness symptoms reduce safe training tolerance.
+\begin{itemize}
+\item Minimum documentation: symptoms category; RPE increase trend; substitution or termination; safety self-check.
+\item Default gate posture if repeated: default \textbf{HOLD}; \textbf{MEDICAL} \textbf{HOLD} if stop-rule categories triggered.
+\end{itemize}
+\item \textbf{SESSION-RC-004} (\textbf{EQUIP}) — Applies to: \textbf{MODIFIED} / \textbf{INVALID} — Equipment access failure prevents planned modality (facility closed; gear unavailable).
+\begin{itemize}
+\item Minimum documentation: what failed; substitute modality; duration; intensity anchor; continuity statement.
+\item Default gate posture if repeated: \textbf{HOLD} until the dependency is addressed and documented.
+\end{itemize}
+\item \textbf{SESSION-RC-005} (\textbf{TIME}) — Applies to: \textbf{MODIFIED} / \textbf{INVALID} — Time constraint prevents completion of required elements (including Cardio minimum).
+\begin{itemize}
+\item Minimum documentation: which elements shortened/missed; why; minutes completed; whether Cardio minimum met.
+\item Default gate posture if repeated: if Cardio minimum missed → \textbf{INVALID}; repeated \textbf{TIME} failures → \textbf{HOLD} with corrective actions.
+\end{itemize}
+\item \textbf{SESSION-RC-006} (\textbf{TRAVEL}) — Applies to: \textbf{MODIFIED} / \textbf{INVALID} — Travel disrupts environment/equipment access.
+\begin{itemize}
+\item Minimum documentation: location; substitute modality; minutes; intensity anchor; daily steps status.
+\item Default gate posture if repeated: default \textbf{HOLD} if repeated; must preserve admissible sessions via substitution ladder.
+\end{itemize}
+\item \textbf{SESSION-RC-007} (\textbf{SAFETY}) — Applies to: \textbf{MODIFIED} / \textbf{INVALID} — Safety self-check triggers conservative downgrade or termination (non-medical governance trigger).
+\begin{itemize}
+\item Minimum documentation: trigger/signal; immediate action; documentation; notifications.
+\item Default gate posture if repeated: default \textbf{HOLD}; \textbf{MEDICAL} \textbf{HOLD} if stop-rule categories triggered.
+\end{itemize}
+\item \textbf{SESSION-RC-008} (\textbf{WEATHER}) — Applies to: \textbf{MODIFIED} / \textbf{INVALID} — Weather shifts mid-session require immediate change (storm, extreme cold/heat onset).
+\begin{itemize}
+\item Minimum documentation: weather shift; action taken; substitute; environment fields.
+\item Default gate posture if repeated: \textbf{HOLD}; enforce pre-session hazard planning.
+\end{itemize}
+\item \textbf{SESSION-RC-009} (\textbf{ADMIN}) — Applies to: \textbf{INVALID} — Logging failure or missing required documentation (cannot verify compliance).
+\begin{itemize}
+\item Minimum documentation: what was missing; whether verifiable reconstruction from same-day records was attempted; why it failed.
+\item Default gate posture if repeated: repeated \textbf{ADMIN} invalidity → \textbf{HOLD} until logging compliance restored.
+\end{itemize}
+\item \textbf{SESSION-RC-010} (\textbf{WATER}) — Applies to: \textbf{INVALID} — Any water governance breach (unauthorized underwater or breath-hold attempt; lack of certified supervision).
+\begin{itemize}
+\item Minimum documentation: what occurred; supervision status; immediate stop; notifications; corrective actions.
+\item Default gate posture if repeated: immediate \textbf{MEDICAL} \textbf{HOLD} posture; governance breach requires revalidation and corrective control.
+\end{itemize}
+\end{itemize}
+
+Application rule:
+
+\begin{itemize}
+\item \textbf{SESSION-RC} is not a justification to “count” non-compliant work. It is an audit tool to describe reality and enforce conservative gate posture when trends repeat.
+\end{itemize}
+
+\newpage
+
+\subsection*{1.F.3 Test Validity Doctrine}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.F.3 Test Validity Doctrine}
+
+Tests are tagged \textbf{VALID} or \textbf{INVALID} only.
+
+Governance Requirements for a Test to Be Tagged \textbf{VALID} (Protocol-Agnostic):
+A test \textbf{MUST} be tagged \textbf{VALID} when all of the following are true:
+
+\begin{itemize}
+\item The test references the adopted test identity (\textbf{ID}/name) used by the phase row (protocol specifics exist elsewhere).
+\item Conditions are standardized enough to compare results:
+\begin{itemize}
+\item route or course consistency (or clearly logged deviation),
+\item equipment consistency (footwear, ruck load configuration, pool lane length where applicable),
+\item timing and measurement tool adequacy (timer/GPS/measured course status logged).
+\end{itemize}
+\item Safety posture is preserved:
+\begin{itemize}
+\item no stop-rule triggers were ignored,
+\item \textbf{STOP} \textbf{NOW} triggers end the attempt.
+\end{itemize}
+\item Warm-up was completed and logged (completed Y/N + duration).
+\item Environment/log context is recorded at a high level:
+\begin{itemize}
+\item course measured Y/N (or pool lane length),
+\item surface category,
+\item weather category,
+\item wind/ice flag,
+\item temperature band,
+\item supervision status for any aquatic setting (certified supervision present Y/N).
+\end{itemize}
+\end{itemize}
+
+A test \textbf{MUST} be tagged \textbf{INVALID} when any of the following occur:
+
+\begin{itemize}
+\item Core documentation missing such that conditions cannot be verified.
+\item Measurement integrity is compromised (unknown course distance; unknown load; unknown lane length).
+\item Stop-rule event occurred and the attempt continued such that safety governance was compromised.
+\item Water governance is violated (any underwater or breath-hold attempt without certified supervision).
+\end{itemize}
+
+Corrective action posture:
+
+\begin{itemize}
+\item If a test is gate-required and is \textbf{INVALID}, default gate posture is \textbf{HOLD} until the test is rerun under \textbf{VALID} conditions (unless other disqualifiers require \textbf{REGRESS} or \textbf{MEDICAL} \textbf{HOLD}).
+\end{itemize}
+
+Test Validity Table:
+
+\begin{itemize}
+\item \textbf{VALID} — Meets documentation, safety, and condition standardization requirements; timing/measurement and environment recorded — Gate impact: admissible evidence.
+\item \textbf{INVALID} — Missing documentation, compromised measurement integrity, stop-rule governance breach, or water governance breach — Corrective action: rerun under controlled conditions; correct measurement/logging; review stop-rule adherence — Gate impact: not admissible; default \textbf{HOLD} when gate-required.
+\end{itemize}
+
+\textbf{TEST-RC} (Reason Codes For \textbf{INVALID} Tests; Separate From \textbf{SESSION-RC}):
+\textbf{TEST-RC} codes \textbf{MUST} be used whenever a test is tagged \textbf{INVALID}. One primary code minimum.
+
+\begin{itemize}
+\item \textbf{TEST-RC-001} (\textbf{MEAS}) — Measurement integrity failure (course not measured; load not confirmed; lane length unknown) — Default gate posture: \textbf{HOLD} until valid retest.
+\item \textbf{TEST-RC-002} (\textbf{ENV}) — Environment not recorded or conditions materially inconsistent without documentation — Default gate posture: \textbf{HOLD} until valid retest.
+\item \textbf{TEST-RC-003} (\textbf{PROTO}) — Protocol reference missing or execution non-comparable to adopted standard — Default gate posture: \textbf{HOLD} until valid retest.
+\item \textbf{TEST-RC-004} (\textbf{SAFETY}) — \textbf{STOP} \textbf{NOW} trigger occurred or safety governance was compromised — Default gate posture: \textbf{HOLD} or \textbf{MEDICAL} \textbf{HOLD} depending on trigger category.
+\item \textbf{TEST-RC-005} (\textbf{ADMIN})  — Documentation failure (time not recorded; missing test sheet; lost record) — Default gate posture: \textbf{HOLD}; repeated \textbf{ADMIN} failures may force \textbf{REGRESS}.
+\item \textbf{TEST-RC-006} (\textbf{WATER}) — Water governance violation — Default gate posture: \textbf{MEDICAL} \textbf{HOLD}; governance-breach handling required.
+\end{itemize}
+
+Evidence artifacts note:
+
+\begin{itemize}
+\item Video, GPS, and photos are recommended (not mandatory).
+\item Missing recommended artifacts \textbf{MUST} NOT automatically invalidate a test unless core validity requirements above are violated.
+\end{itemize}
+
+\newpage
+
+\subsection*{1.F.4 Gate Decision Doctrine}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.F.4 Gate Decision Doctrine}
+
+\subsubsection*{1.F.4.1 Definitions}
+\phantomsection
+
+\begin{itemize}
+\item \textbf{ADVANCE} — Authorization to progress based on admissible evidence meeting thresholds and absence of disqualifiers.
+\item \textbf{HOLD} — Maintain current phase/progression level due to insufficient admissible evidence or unresolved risk posture.
+\item \textbf{REGRESS} — Step back to safer exposure level when tolerance is exceeded or evidence indicates instability.
+\item \textbf{MEDICAL} \textbf{HOLD} — Progression paused/restricted due to stop-rule categories or clinician-imposed limitations (governance posture only).
+\end{itemize}
+
+\subsubsection*{1.F.4.2 Evidence Requirements (Default Rules)}
+\phantomsection
+
+\begin{itemize}
+\item Default decision window: two most recent complete training weeks preceding the gate week (must not be shorter than two complete weeks absent patch).
+\item \textbf{ADVANCE} eligibility: ≥5/6 admissible sessions per week on average across the decision window.
+\item \textbf{MODIFIED} cap: outside medical issues, ≤1 \textbf{MODIFIED} per week admissible.
+\item Binary disqualifier: Any \textbf{INVALID} session within the decision window disqualifies \textbf{ADVANCE}.
+\item Gate-required tests must be \textbf{VALID}; an \textbf{INVALID} gate-required test defaults to \textbf{HOLD} until a valid retest.
+\item Dependencies for next phase must be validated; risk flags/trends must be reviewed.
+\end{itemize}
+
+\subsubsection*{1.F.4.3 Gate Table (Required)}
+\phantomsection
+
+\begin{itemize}
+\item \textbf{ADVANCE} — requires a ≥5/6 admissible average; \textbf{MODIFIED} cap compliant; zero \textbf{INVALID}; gate-required tests \textbf{VALID}; dependencies validated — disqualifiers include any \textbf{INVALID}, any required test \textbf{INVALID}, unresolved stop-rule events, unresolved gait-altering mechanics, water governance violation.
+\item \textbf{HOLD} — default when advancement cannot be justified; corrective stabilization and retest posture as required.
+\item \textbf{REGRESS} — trend indicates exposure exceeds tolerance; step back and re-govern progression.
+\item \textbf{MEDICAL} \textbf{HOLD} — stop-rule category requires clinician-led clearance or restrictions or risk posture is unacceptable.
+\end{itemize}
+
+\subsection*{1.F.5 Stop Rules and Escalation Posture (Aligned to Stage 0.5)}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.F.5 Stop Rules and Escalation Posture (Aligned to Stage 0.5)}
+
+Stop rules apply to training sessions and test events. The default action is \textbf{STOP} \textbf{NOW}. Where indicated by category, default gate posture becomes \textbf{MEDICAL} \textbf{HOLD}.
+
+Minimum \textbf{STOP} \textbf{NOW} documentation: trigger, time/context, action taken, escalation path, outcome and return-to-training condition, resulting validity tag.
+
+\subsection*{1.F.6 Freeze Windows (Change Limits During Execution)}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.F.6 Freeze Windows (Change Limits During Execution)}
+
+\subsubsection*{1.F.6.1 Definition and Default Within-Phase Model}
+\phantomsection
+
+Freeze window: execution-affecting changes are prohibited to preserve comparability and prevent drift.
+
+Default model:
+
+\begin{itemize}
+\item Week 1: ramp-in adjustment permitted (within Stage 0 constraints); document.
+\item Weeks 2 -> mid-phase test week: frozen (only safety substitutions).
+\item Post mid-phase test -> end-phase test week: frozen (only safety substitutions).
+\item Final weeks: frozen (no structural changes; only safety substitutions).
+\end{itemize}
+
+\subsubsection*{1.F.6.2 Allowed vs Patch-Required Changes}
+\phantomsection
+
+Safety substitutions and controlled day swaps may be allowed; changes affecting intent, gate tests, thresholds, cadence, required elements, phase duration, or high-consequence exposures are patch-required and must not be executed silently.
+
+\subsection*{1.F.7 Change Control (Patch Protocol + Change Log Schema)}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.F.7 Change Control (Patch Protocol + Change Log Schema)}
+
+\subsubsection*{1.F.7.1 Patch Rules}
+\phantomsection
+
+Patch must include: what, why, where, effective date, validation check, owner, impact level, revalidation scope.
+Stage 0 changes are constraint changes and trigger full revalidation including Stage 8 crosswalk rerun before downstream artifacts remain deployable.
+
+\subsubsection*{1.F.7.2 Patch Record Template}
+\phantomsection
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    X[l,.5]
+    X[l,.5]
+    X[l,.5]
+    X[l,.5]
+    X[l,.5]
+    X[l,.5]
+    X[l,.5]
+    X[l,.65]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Patch \textbf{ID}} & \Hdr{Date} & \Hdr{Target} & \Hdr{Change} & \Hdr{Rationale} & \Hdr{Validation} & \Hdr{Owner} & \Hdr{Impact Level} \\
+\end{longtblr}
+
+\endgroup
+
+\subsection*{1.F.8 Minimum Dataset for Logging (Decision-Grade Evidence)}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.F.8 Minimum Dataset for Logging (Decision-Grade Evidence)}
+
+Per-session, per-day, and per-week logs must be sufficient for a third-party reviewer to determine admissibility, threshold attainment, safety compliance, and whether gate decisions were justified.
+\newpage
+\subsection*{1.F.9 Deviation Handling (How to Correct Drift Without Hiding It)}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.F.9 Deviation Handling (How to Correct Drift Without Hiding It)}
+
+\begin{itemize}
+\item Mis-tags must be corrected with original tag, corrected tag, reason, correction date, and Coach Lead acknowledgment.
+\item \textbf{INVALID} gate-required tests must be rerun under controlled conditions; retest posture prioritizes standardization and safety over peak-output chasing.
+\item Environmental changes must be recorded; if comparability is not preserved, treat results cautiously and require additional validation exposures.
+\item Missed weeks default \textbf{HOLD}; no make-up volume; conservative re-entry; \textbf{MEDICAL} \textbf{HOLD} when stop-rule categories apply.
+\end{itemize}
+
+\subsection*{1.F.10 Conflict-Resolution Rule}
+\phantomsection
+\addcontentsline{toc}{subsection}{1.F.10 Conflict-Resolution Rule}
+
+\begin{itemize}
+\item Any downstream artifact violating 1.F governance rules \textbf{MUST} be treated as Draft — Non-Deployable until corrected and re-versioned.
+\item Gate decisions made using inadmissible evidence are invalid and \textbf{MUST} be rerun using admissible evidence within the decision-window rules.
+\end{itemize}
+
+\end{document}

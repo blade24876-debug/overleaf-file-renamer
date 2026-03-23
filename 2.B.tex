@@ -1,0 +1,813 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 2.B — Metrics and Test Inventory}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 2.B — Metrics and Test Inventory}
+
+\subsection*{2.B.1 Metric \textbf{ID} Standard and Naming Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.B.1 Metric \textbf{ID} Standard and Naming Rules}
+
+\subsubsection*{Metric \textbf{ID} format and retirement rule (mandatory):}
+\phantomsection
+
+\begin{itemize}
+\item Metric IDs \textbf{MUST} use the stage-scoped format \textbf{MET-2B}-\#\#\# (three digits, sequential).
+\item IDs \textbf{MUST} be assigned once and \textbf{MUST} NOT be reused, even if a metric is later deprecated, merged, or retired.
+\item If an \textbf{ID} is ever retired, the retirement \textbf{MUST} be explicitly recorded in the change log and the \textbf{ID} \textbf{MUST} remain permanently reserved (non-reusable).
+\item One metric equals one row equals one stable \textbf{ID}. Bundling unrelated constructs into one \textbf{ID} is prohibited.
+\end{itemize}
+
+\subsubsection*{Domain tagging rule (mandatory):}
+\phantomsection
+
+\begin{itemize}
+\item Every metric \textbf{MUST} have exactly one Primary Domain Tag.
+\item Primary Domain Tags \textbf{MUST} be selected only from the canonical set defined in Stage 2.A: \textbf{RUN}, \textbf{RUCK}, \textbf{SWIM}, \textbf{CAL}, \textbf{STR}, \textbf{BODYCOMP}, \textbf{DURABILITY}, \textbf{RECOVERY}, \textbf{AER}.
+\item Non-canonical tags, synonyms, or alternative labels (including “\textbf{STRENGTH}” as a tag label) \textbf{MUST} NOT be used in Stage 2.B.
+\item \textbf{AER} is the canonical domain for low-impact aerobic and non-run conditioning constructs (bike, rower, elliptical, step tests, walk-based aerobic checks) and \textbf{MUST} NOT be treated as interchangeable evidence for \textbf{RUN} tolerance or \textbf{RUN} performance.
+\end{itemize}
+
+\subsubsection*{Measurement type definitions (mandatory enum):}
+\phantomsection
+
+\begin{itemize}
+\item \textbf{TEST}: discrete, standardized performance outcome intended to be produced under protocol control.
+\item \textbf{TREND}: longitudinal tracking used to evaluate change over time under consistent method/conditions posture.
+\item \textbf{READINESS}: decision-support markers used to interpret safety, tolerance, and evidence admissibility posture.
+\item \textbf{COMPLIANCE}: governance compliance markers used to compute admissible execution rates and enforce operating constraints.
+\end{itemize}
+
+\subsubsection*{Gate-Critical designation rule (locked defaults):}
+\phantomsection
+
+\begin{itemize}
+\item Gate-Critical \textbf{MUST} be set to Yes for:
+  \begin{itemize}
+  \item all Stage 0.3 end-state target metrics, and
+  \item the required compliance and risk-control metrics:
+    \begin{itemize}
+    \item Session Validity Tag,
+    \item Weekly Admissible Session Compliance Percent,
+    \item Cardio Minimum Standard Met,
+    \item gait-altering pain flag.
+    \end{itemize}
+  \end{itemize}
+\item All other metrics \textbf{MUST} default to Supporting (Gate-Critical = No) unless later elevated by a phase exit standard or gate definition under controlled change.
+\end{itemize}
+
+\subsubsection*{Do and Do Not (enforceable):}
+\phantomsection
+
+Do:
+
+\begin{itemize}
+\item Do keep metric names stable and descriptive; names \textbf{MUST} remain comparable across time.
+\item Do keep units explicit and stable; any unit change requires controlled change with explicit comparability impact.
+\item Do keep definitions operational and auditable; each metric \textbf{MUST} be interpretable by a third-party reviewer.
+\item Do reference an associated protocol card C\# where obvious; use \textbf{TBD} 2.C only when protocol assignment is not yet determined.
+\end{itemize}
+
+Do Not:
+
+\begin{itemize}
+\item Do Not rename a metric to reset baselines, hide drift, or obscure poor comparability.
+\item Do Not change units silently.
+\item Do Not create duplicates (two different IDs for the same construct) to inflate progress narratives.
+\item Do Not use non-canonical domain tags or “close enough” tag substitutions.
+\end{itemize}
+
+Every \textbf{MET-2B}-\#\#\# row \textbf{MUST} be interpretable without oral context. Each metric \textbf{MUST} be defined with enough structure that a third-party reviewer can answer, at minimum:
+
+\begin{itemize}
+\item What is being measured (construct definition).
+\item How it is expressed (unit, formatting).
+\item Under what conditions it is admissible for gate use (high-level validity requirements).
+\item How it is collected (collection cadence high-level).
+\item Whether it is gate-critical (Yes/No).
+\item Which protocol card(s) govern(s) execution and admissibility (C\# reference or \textbf{TBD} 2.C in Draft — Non-Deployable posture only; use N/A when the metric is not executed as a protocolized test).
+\item What it is used for (primary use statement).
+\end{itemize}
+
+\subsubsection*{Required interpretability posture:}
+\phantomsection
+
+\begin{itemize}
+\item A metric name is not a definition. The definition is carried by the combination of Domain Tag + Measurement Type + Unit + Validity Requirements + Protocol Card reference(s).
+\item If two metrics share the same construct, they must be merged under one \textbf{ID}; if they measure meaningfully different constructs, they must remain separate IDs.
+\end{itemize}
+
+\begin{itemize}
+\item The Domain Tag column in Stage 2.B stores the Primary Domain Tag only.
+\item Secondary domain tagging (when used) is not recorded in the Stage 2.B primary inventory table. If needed, it is recorded in:
+  \begin{itemize}
+  \item protocol card validity and disqualifier notes, and/or
+  \item Stage 2.E logging conventions,
+  \end{itemize}
+  without creating dual ownership in the metrics inventory.
+\end{itemize}
+
+\subsubsection*{Unit locking (mandatory):}
+\phantomsection
+
+\begin{itemize}
+\item A metric’s unit is part of its definition. Changing a unit is a comparability break and requires controlled change with explicit impact documentation.
+\item Units must be recorded in a consistent display format across logs and reports.
+\end{itemize}
+
+\subsubsection*{Formatting rules (mandatory):}
+\phantomsection
+
+\begin{itemize}
+\item Time-based metrics expressed as seconds (mm:ss):
+  \begin{itemize}
+  \item Primary stored value is total seconds.
+  \item Display format may include mm:ss, but conversion must be consistent and traceable.
+  \end{itemize}
+\item Bodyweight expressed as lb (kg):
+  \begin{itemize}
+  \item Primary stored value may be lb with optional kg in parentheses, or vice versa, but the chosen storage posture must remain consistent across the program.
+  \end{itemize}
+\item Circumference expressed as in (cm):
+  \begin{itemize}
+  \item Sites must be stable once adopted.
+  \item Tape method and posture must remain consistent within trend windows.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{Directionality (mandatory definition posture):}
+\phantomsection
+
+\begin{itemize}
+\item Time trials: lower is better.
+\item Rep counts: higher is better.
+\item Holds (seconds): higher is better.
+\item Flags (Y/N): Y indicates presence; for gate logic, the meaning of “Y” must be specified (disqualifier, warning, or informational).
+\item 0–10 scales: higher indicates greater severity unless explicitly stated otherwise; interpretation remains conservative.
+\end{itemize}
+
+\subsubsection*{The Validity Requirements High-Level field \textbf{MUST} include, at a minimum:}
+\phantomsection
+
+\begin{itemize}
+\item Standardization posture (what must remain stable for comparability).
+\item Minimum record requirements (what must be logged to be admissible).
+\item Explicit invalidity triggers (what causes the evidence to be treated as non-admissible for gate use).
+\end{itemize}
+
+\subsubsection*{High-level validity requirements must remain protocol-agnostic in Stage 2.B:}
+\phantomsection
+
+\begin{itemize}
+\item Stage 2.B does not write stepwise procedures; it defines what conditions must be recorded and what breaks admissibility.
+\item Detailed procedures and exact validity condition field forms are owned by Stage 2.C and Stage 2.E.
+\end{itemize}
+
+\begin{itemize}
+\item Gate-Critical = Yes means:
+  \begin{itemize}
+  \item the metric is required for decision-grade gate interpretation for at least one gate posture, and/or
+  \item the metric is a governance disqualifier/eligibility control for gate decisions.
+  \end{itemize}
+\item Gate-Critical metrics cannot be “skipped without consequence.” If missing or invalid, default posture is conservative:
+  \begin{itemize}
+  \item gate-required tests: default \textbf{HOLD} until valid evidence exists,
+  \item disqualifier flags: default \textbf{HOLD}/\textbf{REGRESS}/\textbf{MEDICAL} \textbf{HOLD} as specified upstream.
+  \end{itemize}
+\item Gate-Critical = No means:
+  \begin{itemize}
+  \item the metric is supporting evidence only and does not independently justify \textbf{ADVANCE}.
+  \item Supporting metrics can still constrain gates when they indicate safety or validity compromise (for example, supporting durability markers).
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{Retirement rules (mandatory):}
+\phantomsection
+
+\begin{itemize}
+\item A retired metric remains in the inventory with its \textbf{ID} reserved.
+\item Retirement record must include:
+  \begin{itemize}
+  \item Metric \textbf{ID},
+  \item retirement date,
+  \item reason (duplicate, merged, out-of-scope, superseded),
+  \item replacement metric \textbf{ID} if merged/superseded,
+  \item comparability posture for pre- and post-retirement evidence.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{Merge rules (mandatory):}
+\phantomsection
+
+\begin{itemize}
+\item If two metrics are found to measure the same construct, one \textbf{ID} is retired and mapped to the surviving \textbf{ID}.
+\item Historical evidence is not rewritten; it is mapped through the retirement record.
+\end{itemize}
+
+\subsubsection*{Deprecation posture (permitted):}
+\phantomsection
+
+\begin{itemize}
+\item A metric may be retained but marked “Supporting only” by policy, without changing its \textbf{ID}, to reduce misuse.
+\item Deprecation must not be used to hide poor outcomes; it must be tied to construct validity and crosswalk clarity.
+\end{itemize}
+
+\begin{itemize}
+\item \textbf{TBD} 2.C is permitted only while Stage 2 remains Draft — Non-Deployable during protocol-card authorship.
+\item Gate-Critical metrics \textbf{MUST} NOT remain \textbf{TBD} 2.C at the point Stage 2 is declared Deployable — Gate Passed.
+\item \textbf{TBD} 2.C is not permission to execute tests without validity posture; it is a placeholder indicating protocol assignment is incomplete.
+\item For metrics that are not executed as protocolized tests (for example, derived \textbf{COMPLIANCE} metrics computed from logs), Associated Protocol Card C\# \textbf{MUST} be recorded as N/A (not \textbf{TBD} 2.C).
+\end{itemize}
+
+\begin{itemize}
+\item None.
+\end{itemize}
+
+\begin{itemize}
+\item Conflict source: baseline materials include legacy metric \textbf{ID} formats (for example, \textbf{MET}-\#\#\# and domain-prefixed \textbf{MET}-\#\#\# labels) that do not conform to the required \textbf{MET-2B}-\#\#\# convention. Adopted: \textbf{MET-2B}-\#\#\# is authoritative for Stage 2.B. Overridden: legacy \textbf{ID} formats. Why: this prompt locks Stage 2.B identifier conventions as crosswalk keys.
+\item Conflict source: baseline materials do not consistently include the required non-run conditioning domain construct. Adopted: \textbf{AER} is included as a canonical domain tag for non-run conditioning constructs. Overridden: any prior tendency to classify low-impact machine conditioning as \textbf{RUN}. Why: prompt explicitly requires \textbf{AER} to prevent evidence contamination and unsafe impact equivalence.
+\item Conflict source: baseline materials sometimes use “\textbf{STRENGTH}” or other synonyms as a domain tag label. Adopted: \textbf{STR} is canonical for strength and external load capacity. Overridden: the tag \textbf{STRENGTH} and any other non-canonical synonyms. Why: Stage 2.A canonical tags define \textbf{STR}; Stage 2.B prohibits non-canonical domain labels.
+\end{itemize}
+
+\clearpage
+\begin{landscape}
+
+\subsection*{2.B.2 Master Metrics Inventory}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.B.2 Master Metrics Inventory}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.55in]
+    X[l,1.55]
+    Q[l,wd=0.55in]
+    Q[l,wd=0.75in]
+    Q[l,wd=0.65in]
+    Q[l,wd=0.95in]
+    Q[l,wd=0.75in]
+    Q[l,wd=0.95in]
+    X[l,2.05]
+    X[l,1.35]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-10} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Metric \textbf{ID}} &
+\Hdr{Metric Name} &
+\Hdr{Domain} &
+\Hdr{Measurement} &
+\Hdr{Unit} &
+\Hdr{Collection Cadence} &
+\Hdr{Gate-Critical} &
+\Hdr{Associated Protocol} &
+\Hdr{Validity Requirements} &
+\Hdr{Primary Use} \\
+\textbf{MET-2B-001} & Bodyweight — Weekly Average & \textbf{BODYCOMP} & \textbf{TREND} & lb (kg) & weekly & Yes & \textbf{C1} & Consistent scale conditions; method/conditions recorded; no retroactive rewriting; anomalies noted & End-state target evidence; body composition trend governance \\
+\textbf{MET-2B-002} & Body Fat Estimate Percent — Method/Device Recorded & \textbf{BODYCOMP} & \textbf{TREND} & \% (estimate) & monthly & Yes & \textbf{C2} & Method/device and conditions recorded each time; method consistency required within trend windows; no medical claims & End-state target evidence; trend comparability control \\
+\textbf{MET-2B-003} & Circumference — Neck & \textbf{BODYCOMP} & \textbf{TREND} & in (cm) & weekly & No & \textbf{C3} & Site definition fixed; consistent tape and posture; conditions recorded; method drift logged & Supporting body composition trend and audit trace \\
+\textbf{MET-2B-004} & Circumference — Chest & \textbf{BODYCOMP} & \textbf{TREND} & in (cm) & weekly & No & \textbf{C3} & Site definition fixed; consistent tape and posture; conditions recorded; method drift logged & Supporting body composition trend and audit trace \\
+\textbf{MET-2B-005} & Circumference — Bicep & \textbf{BODYCOMP} & \textbf{TREND} & in (cm) & weekly & No & \textbf{C3} & Site definition fixed; consistent tape and posture; conditions recorded; method drift logged & Supporting body composition trend and audit trace \\
+\textbf{MET-2B-006} & Circumference — Forearm & \textbf{BODYCOMP} & \textbf{TREND} & in (cm) & weekly & No & \textbf{C3} & Site definition fixed; consistent tape and posture; conditions recorded; method drift logged & Supporting body composition trend and audit trace \\
+\textbf{MET-2B-007} & Circumference — Waist & \textbf{BODYCOMP} & \textbf{TREND} & in (cm) & weekly & No & \textbf{C3} & Site definition fixed; consistent tape and posture; conditions recorded; method drift logged & Supporting body composition trend and audit trace \\
+\textbf{MET-2B-008} & Circumference — Thigh & \textbf{BODYCOMP} & \textbf{TREND} & in (cm) & weekly & No & \textbf{C3} & Site definition fixed; consistent tape and posture; conditions recorded; method drift logged & Supporting body composition trend and audit trace \\
+\textbf{MET-2B-009} & Circumference — Calf & \textbf{BODYCOMP} & \textbf{TREND} & in (cm) & weekly & No & \textbf{C3} & Site definition fixed; consistent tape and posture; conditions recorded; method drift logged & Supporting body composition trend and audit trace \\
+\textbf{MET-2B-010} & Push-Ups — 2-Minute Timed, Strict & \textbf{CAL} & \textbf{TEST} & reps & test weeks & Yes & \textbf{C4} & Standard conditions; warm-up completion logged; strict standard applied; no stop-rule violations; context recorded & End-state target evidence; readiness tier classification input \\
+\textbf{MET-2B-011} & Sit-Ups — 2-Minute Timed, Standard & \textbf{CAL} & \textbf{TEST} & reps & test weeks & Yes & \textbf{C5} & Standard conditions; warm-up completion logged; standard applied; no stop-rule violations; context recorded & End-state target evidence; readiness tier classification input \\
+\textbf{MET-2B-012} & Pull-Ups — Strict Dead-Hang & \textbf{CAL} & \textbf{TEST} & reps & test weeks & Yes & \textbf{C6} & Standard conditions; warm-up completion logged; strict dead-hang standard; no stop-rule violations; context recorded & End-state target evidence; readiness tier classification input \\
+\textbf{MET-2B-013} & Plank — Forearm & \textbf{CAL} & \textbf{TEST} & seconds & test weeks & Yes & \textbf{C7} & Standard conditions; warm-up logged; standard form rules; termination on form failure; context recorded & End-state target evidence; readiness tier classification input \\
+\textbf{MET-2B-014} & 1.5-Mile Run Time Trial & \textbf{RUN} & \textbf{TEST} & seconds (mm:ss) & test weeks & Yes & \textbf{C8} & Measured route OR treadmill admissible when device identity and settings are logged; warm-up logged; no stop-rule violations; environment recorded & End-state target evidence; readiness tier classification input \\
+\textbf{MET-2B-015} & 2-Mile Run Time Trial & \textbf{RUN} & \textbf{TEST} & seconds (mm:ss) & test weeks & Yes & \textbf{C9} & Measured route OR treadmill admissible when device identity and settings are logged; warm-up logged; no stop-rule violations; environment recorded & End-state target evidence; readiness tier classification input \\
+\textbf{MET-2B-016} & 3-Mile Run Time Trial & \textbf{RUN} & \textbf{TEST} & seconds (mm:ss) & test weeks & Yes & \textbf{C10} & Measured route OR treadmill admissible when device identity and settings are logged; warm-up logged; no stop-rule violations; environment recorded & End-state target evidence; readiness tier classification input \\
+\textbf{MET-2B-017} & 5-Mile Run Time Trial & \textbf{RUN} & \textbf{TEST} & seconds (mm:ss) & test weeks & Yes & \textbf{C11} & Measured route OR treadmill admissible when device identity and settings are logged; warm-up logged; no stop-rule violations; environment recorded & End-state target evidence; readiness tier classification input \\
+\textbf{MET-2B-018} & 3-Mile Ruck Time Trial — 25 lb & \textbf{RUCK} & \textbf{TEST} & seconds (mm:ss) & test weeks & Yes & \textbf{C12} & Measured route OR treadmill admissible when device identity and settings are logged; environment recorded; load and footwear recorded; warm-up logged; no stop-rule violations & End-state target evidence; readiness tier classification input \\
+\textbf{MET-2B-019} & 6-Mile Ruck Time Trial — 35 lb & \textbf{RUCK} & \textbf{TEST} & seconds (mm:ss) & test weeks & Yes & \textbf{C12} & Measured route OR treadmill admissible when device identity and settings are logged; environment recorded; load and footwear recorded; warm-up logged; no stop-rule violations & End-state target evidence; readiness tier classification input \\
+\textbf{MET-2B-020} & 9-Mile Ruck Time Trial — 45 lb & \textbf{RUCK} & \textbf{TEST} & seconds (mm:ss) & test weeks & Yes & \textbf{C12} & Measured route OR treadmill admissible when device identity and settings are logged; environment recorded; load and footwear recorded; warm-up logged; no stop-rule violations & End-state target evidence; readiness tier classification input \\
+\textbf{MET-2B-021} & 12-Mile Ruck Time Trial — 55 lb & \textbf{RUCK} & \textbf{TEST} & seconds (mm:ss) & test weeks & Yes & \textbf{C12} & Measured route OR treadmill admissible when device identity and settings are logged; environment recorded; load and footwear recorded; warm-up logged; no stop-rule violations & End-state target evidence; readiness tier classification input \\
+\textbf{MET-2B-022} & Swim 500 yd Time — No Fins & \textbf{SWIM} & \textbf{TEST} & seconds (mm:ss) & test weeks & Yes & \textbf{C13} & Unit locked (yards); no fins confirmed; warm-up logged; pool verification logged; no stop-rule violations & End-state target evidence; readiness tier classification input \\
+\textbf{MET-2B-023} & Swim 500 m Time — No Fins & \textbf{SWIM} & \textbf{TEST} & seconds (mm:ss) & test weeks & Yes & \textbf{C13} & Unit locked (meters); no fins confirmed; warm-up logged; pool verification logged; no stop-rule violations & End-state target evidence; readiness tier classification input \\
+\textbf{MET-2B-024} & Surface Water Confidence Exposure Flag & \textbf{SWIM} & \textbf{COMPLIANCE} & Y/N & per session & No & \textbf{C13} & Governance marker only; surface-only posture unless governed; environment/supervision context recorded when applicable & Supporting aquatic exposure trace and governance oversight \\
+\textbf{MET-2B-025} & Underwater Exposure Admissibility Flag & \textbf{SWIM} & \textbf{COMPLIANCE} & Y/N & per underwater test event & Yes & \textbf{C14} & \textbf{MUST} be supervised and governance-permitted; certified supervision requirement; unsupervised attempt prohibited; governance prerequisites recorded & End-state underwater governance admissibility control \\
+\textbf{MET-2B-026} & Underwater 25 m — One-Breath Time & \textbf{SWIM} & \textbf{TEST} & seconds (mm:ss) & test weeks & Yes & \textbf{C14} & Governance-constrained: certified supervision; rescue-ready posture; abort discipline; pool verification; unsupervised attempt prohibited & End-state target evidence (admissible only under governance) \\
+\textbf{MET-2B-027} & Hinge Strength Proxy — \textbf{3-RM} / \textbf{5-RM} Load & \textbf{STR} & \textbf{TEST} & lb (kg) & test weeks & No & \textbf{C17} & Standardized implement/setup; warm-up logged; measurement method recorded; no stop-rule violations; submax risk posture enforced per protocol & Supporting strength progression classification (non-end-state target) \\
+\textbf{MET-2B-028} & Squat Strength Proxy — \textbf{3-RM} / \textbf{5-RM} Load & \textbf{STR} & \textbf{TEST} & lb (kg) & test weeks & No & \textbf{C17} & Standardized implement/setup; warm-up logged; measurement method recorded; no stop-rule violations; submax risk posture enforced per protocol & Supporting strength progression classification (non-end-state target) \\
+\textbf{MET-2B-029} & Upper Push Strength Proxy — \textbf{3-RM} / \textbf{5-RM} Load & \textbf{STR} & \textbf{TEST} & lb (kg) & test weeks & No & \textbf{C17} & Standardized implement/setup; warm-up logged; measurement method recorded; no stop-rule violations; submax risk posture enforced per protocol & Supporting strength progression classification (non-end-state target) \\
+\textbf{MET-2B-030} & Upper Pull Strength Proxy — \textbf{3-RM} / \textbf{5-RM} Load & \textbf{STR} & \textbf{TEST} & lb (kg) & test weeks & No & \textbf{C17} & Standardized implement/setup; warm-up logged; measurement method recorded; no stop-rule violations; submax risk posture enforced per protocol & Supporting strength progression classification (non-end-state target) \\
+\textbf{MET-2B-031} & Carry Capacity — Load Outcome & \textbf{STR} & \textbf{TEST} & lb (kg) & test weeks & No & \textbf{C17} & Carry setup standardized per protocol; warm-up logged; safe execution; no stop-rule violations; context recorded & Supporting load-handling capability classification (non-ruck construct) \\
+\textbf{MET-2B-032} & Rower Time Trial & \textbf{AER} & \textbf{TEST} & seconds (mm:ss) & test weeks & No & \textbf{C18} & Machine identity/settings recorded; warm-up logged; pauses recorded; no stop-rule violations; context recorded & Supporting low-impact conditioning performance construct \\
+\textbf{MET-2B-033} & Bike Time Trial & \textbf{AER} & \textbf{TEST} & seconds (mm:ss) & test weeks & No & \textbf{C18} & Machine identity/settings recorded; warm-up logged; pauses recorded; no stop-rule violations; context recorded & Supporting low-impact conditioning performance construct \\
+\textbf{MET-2B-034} & Elliptical Time Trial & \textbf{AER} & \textbf{TEST} & seconds (mm:ss) & test weeks & No & \textbf{C18} & Machine identity/settings recorded; warm-up logged; pauses recorded; no stop-rule violations; context recorded & Supporting low-impact conditioning performance construct \\
+\textbf{MET-2B-035} & Pain Severity — 0–10 + Location Recorded & \textbf{DURABILITY} & \textbf{READINESS} & 0–10 & daily & No & \textbf{C16} & Same-day capture; location required; trend interpreted conservatively; non-diagnostic posture & Supporting risk and tolerance interpretation \\
+\textbf{MET-2B-036} & Gait-Altering Pain Flag & \textbf{DURABILITY} & \textbf{COMPLIANCE} & Y/N & per session & Yes & \textbf{C16} & If Yes, treat as disqualifier signal; documentation required; stop-rule posture honored; no concealment & Gate disqualifier signal and regression constraint \\
+\textbf{MET-2B-037} & Foot Hotspot or Blister Flag + Location & \textbf{DURABILITY} & \textbf{COMPLIANCE} & Y/N & per session & No & \textbf{C16} & Same-day capture; location required; documentation required; used to constrain impact/load escalation & Supporting foot-interface risk governance \\
+\textbf{MET-2B-038} & Sleep Hours & \textbf{RECOVERY} & \textbf{READINESS} & hours & daily & No & \textbf{C15} & Same-day capture; self-report permitted; trend interpreted conservatively for validity and risk & Supporting readiness interpretation for validity and safety \\
+\textbf{MET-2B-039} & Sleep Quality & \textbf{RECOVERY} & \textbf{READINESS} & 0–10 & daily & No & \textbf{C15} & Same-day capture; scale anchored consistently; trend interpreted conservatively & Supporting readiness interpretation for validity and safety \\
+\textbf{MET-2B-040} & Soreness & \textbf{RECOVERY} & \textbf{READINESS} & 0–10 & daily & No & \textbf{C15} & Same-day capture; scale anchored consistently; trend interpreted conservatively & Supporting readiness interpretation for validity and safety \\
+\textbf{MET-2B-041} & Fatigue & \textbf{RECOVERY} & \textbf{READINESS} & 0–10 & daily & No & \textbf{C15} & Same-day capture; scale anchored consistently; trend interpreted conservatively & Supporting readiness interpretation for validity and safety \\
+\textbf{MET-2B-042} & Session RPE & \textbf{RECOVERY} & \textbf{READINESS} & 0–10 & per session & No & \textbf{C15} & Same-day capture; anchored scale used; interpreted with context & Supporting session intensity governance and drift detection \\
+\textbf{MET-2B-043} & Step Count & \textbf{RECOVERY} & \textbf{COMPLIANCE} & count & daily & No & \textbf{C15} & Method recorded (device/app); same-day capture; steps are baseline activity and not a session & Supporting baseline activity compliance and feasibility monitoring \\
+\textbf{MET-2B-044} & Session Validity Tag & \textbf{RECOVERY} & \textbf{COMPLIANCE} & \textbf{VALID} / \textbf{MODIFIED} / \textbf{INVALID} & per session & Yes & N/A & Must be assigned same day; based on required session elements and minimum dataset; no memory-based backfill; assigned and validated via Stage 2.E conventions & Gate eligibility and admissibility computation \\
+\textbf{MET-2B-045} & Cardio Minimum Standard Met & \textbf{RECOVERY} & \textbf{COMPLIANCE} & Y/N & per session & Yes & N/A & Requires modality, minutes, intensity anchor (RPE + talk-test cue), and continuity statement; derived from session record per Stage 2.E & Gate eligibility and enforcement of Operating Constraints \\
+\textbf{MET-2B-046} & Weekly Admissible Session Compliance Percent & \textbf{RECOVERY} & \textbf{COMPLIANCE} & \% & weekly & Yes & N/A & Computed from admissible sessions: \textbf{VALID} plus admissible \textbf{MODIFIED} per governance; \textbf{INVALID} excluded; derived per Stage 2.E weekly audit conventions & Gate eligibility threshold input (decision window dependent) \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+\end{landscape}
+\clearpage
+
+\subsubsection*{Metric \textbf{ID}}
+\phantomsection
+
+\begin{itemize}
+\item Stable identifier in \textbf{MET-2B}-\#\#\# format.
+\item Used as the primary join key for thresholds, protocol cards, phase references, and crosswalks.
+\end{itemize}
+
+\subsubsection*{Metric Name}
+\phantomsection
+
+\begin{itemize}
+\item Plain-language construct name.
+\item Must remain stable; clarifications allowed only under controlled change.
+\end{itemize}
+
+\subsubsection*{Domain Tag}
+\phantomsection
+
+\begin{itemize}
+\item Primary Domain Tag only (see 2.B.1.2).
+\item Must be one of: \textbf{RUN}, \textbf{RUCK}, \textbf{SWIM}, \textbf{CAL}, \textbf{STR}, \textbf{BODYCOMP}, \textbf{DURABILITY}, \textbf{RECOVERY}, \textbf{AER}.
+\end{itemize}
+
+\subsubsection*{Measurement Type}
+\phantomsection
+
+\begin{itemize}
+\item Must be one of: \textbf{TEST}, \textbf{TREND}, \textbf{READINESS}, \textbf{COMPLIANCE}.
+\item Determines expected logging posture and admissibility handling.
+\end{itemize}
+
+\subsubsection*{Unit}
+\phantomsection
+
+\begin{itemize}
+\item Unit-locked; changing requires controlled change.
+\item Must be consistent with threshold tables and protocol cards.
+\end{itemize}
+
+\subsubsection*{Collection Cadence High-Level}
+\phantomsection
+
+\begin{itemize}
+\item High-level cadence only (daily / weekly / monthly / per session / test weeks).
+\item Calendar placement is owned by Stage 3; Stage 2.B does not place tests in time.
+\end{itemize}
+
+\subsubsection*{Gate-Critical}
+\phantomsection
+
+\begin{itemize}
+\item Yes/No designation controlling default gate reliance posture.
+\item Gate-Critical does not imply frequent testing; it implies gate relevance when tested or when computed.
+\end{itemize}
+
+\subsubsection*{Associated Protocol Card C\#}
+\phantomsection
+
+\begin{itemize}
+\item Primary protocol reference that governs validity conditions and execution posture when the metric is executed as a protocolized test.
+\item \textbf{TBD} 2.C permitted only in draft posture for protocolized tests.
+\item N/A is required when the metric is not executed as a protocolized test (for example, derived \textbf{COMPLIANCE} metrics computed from logs under Stage 2.E).
+\end{itemize}
+
+\subsubsection*{Validity Requirements High-Level}
+\phantomsection
+
+\begin{itemize}
+\item Minimum admissibility posture; must specify what must be recorded and what breaks validity.
+\item Must remain consistent with Stage 1.F test validity doctrine and Stage 2.E validity condition schema.
+\end{itemize}
+
+\subsubsection*{Primary Use}
+\phantomsection
+
+\begin{itemize}
+\item Why the metric exists in governance: end-state evidence, tier classification, risk control, compliance enforcement, feasibility monitoring.
+\end{itemize}
+
+Stage 2.B validity requirements must remain compatible with the Stage 2 validity condition schema tokens (\textbf{ENV}, \textbf{EQUIP}, \textbf{WARMUP}, \textbf{SAFETY}, \textbf{MEASURE}). High-level alignment rules:
+
+\begin{itemize}
+\item \textbf{TEST} metrics:
+  \begin{itemize}
+  \item typically require \textbf{ENV}, \textbf{EQUIP}, \textbf{WARMUP}, \textbf{SAFETY}, \textbf{MEASURE} unless the protocol explicitly permits token N/A.
+  \end{itemize}
+\item \textbf{TREND} metrics:
+  \begin{itemize}
+  \item typically require \textbf{MEASURE} and \textbf{EQUIP}; \textbf{ENV} required to establish conditions; \textbf{WARMUP} usually N/A; \textbf{SAFETY} recorded as “no stop-rule concerns” where applicable.
+  \end{itemize}
+\item \textbf{READINESS} metrics:
+  \begin{itemize}
+  \item \textbf{ENV} usually minimal; \textbf{EQUIP} N/A unless tool-based; \textbf{MEASURE} is typically “self-report method”; \textbf{WARMUP} N/A; \textbf{SAFETY} used only when the marker indicates a stop-rule concern.
+  \end{itemize}
+\item \textbf{COMPLIANCE} metrics:
+  \begin{itemize}
+  \item must be computable from logged evidence; missing fields trigger conservative handling (e.g., Cardio minimum met cannot be “assumed”).
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{N/A usage posture (for validity condition tokens):}
+\phantomsection
+
+\begin{itemize}
+\item N/A is permitted only when the token is truly non-applicable to the construct (for example, \textbf{WARMUP} for bodyweight measurement).
+\item N/A is not permitted as a substitute for missing data on applicable tokens (for example, \textbf{MEASURE} is not N/A for run/ruck/swim distance verification).
+\end{itemize}
+
+\begin{itemize}
+\item Direct metric: measured directly in a test or measurement event (e.g., run time, plank seconds, bodyweight).
+\item Derived metric: computed from other records (e.g., weekly bodyweight average; weekly admissible compliance percent).
+\end{itemize}
+
+Derived metrics must define, in validity requirements, the minimum inputs required to compute them and the rule for handling missing inputs (default conservative).
+
+\newpage
+
+\subsection*{2.B.3 Gate-Critical Metric Set Summary}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.B.3 Gate-Critical Metric Set Summary}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.90in]
+    Q[l,wd=1.00in]
+    X[l,1.55]
+    X[l,2.35]
+    Q[l,wd=1.25in]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-5} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Domain Tag} &
+\Hdr{Metric \textbf{ID}} &
+\Hdr{Metric Name} &
+\Hdr{Used For Gate Context} &
+\Hdr{Typical Test Window} \\
+\textbf{BODYCOMP} & \textbf{MET-2B-001} & Bodyweight — Weekly Average & End-state target evidence; gate readiness posture via trend convergence & weekly \\
+\textbf{BODYCOMP} & \textbf{MET-2B-002} & Body Fat Estimate Percent — Method/Device Recorded & End-state target evidence; method-consistent trend validity for readiness posture & monthly \\
+\textbf{CAL} & \textbf{MET-2B-010} & Push-Ups — 2-Minute Timed, Strict & End-state target evidence; readiness tier classification input & test weeks \\
+\textbf{CAL} & \textbf{MET-2B-011} & Sit-Ups — 2-Minute Timed, Standard & End-state target evidence; readiness tier classification input & test weeks \\
+\textbf{CAL} & \textbf{MET-2B-012} & Pull-Ups — Strict Dead-Hang & End-state target evidence; readiness tier classification input & test weeks \\
+\textbf{CAL} & \textbf{MET-2B-013} & Plank — Forearm & End-state target evidence; readiness tier classification input & test weeks \\
+\textbf{RUN} & \textbf{MET-2B-014} & 1.5-Mile Run Time Trial & End-state target evidence; readiness tier classification input & test weeks \\
+\textbf{RUN} & \textbf{MET-2B-015} & 2-Mile Run Time Trial & End-state target evidence; readiness tier classification input & test weeks \\
+\textbf{RUN} & \textbf{MET-2B-016} & 3-Mile Run Time Trial & End-state target evidence; readiness tier classification input & test weeks \\
+\textbf{RUN} & \textbf{MET-2B-017} & 5-Mile Run Time Trial & End-state target evidence; readiness tier classification input & test weeks \\
+\textbf{RUCK} & \textbf{MET-2B-018} & 3-Mile Ruck Time Trial — 25 lb & End-state target evidence; readiness tier classification input & test weeks \\
+\textbf{RUCK} & \textbf{MET-2B-019} & 6-Mile Ruck Time Trial — 35 lb & End-state target evidence; readiness tier classification input & test weeks \\
+\textbf{RUCK} & \textbf{MET-2B-020} & 9-Mile Ruck Time Trial — 45 lb & End-state target evidence; readiness tier classification input & test weeks \\
+\textbf{RUCK} & \textbf{MET-2B-021} & 12-Mile Ruck Time Trial — 55 lb & End-state target evidence; readiness tier classification input & test weeks \\
+\textbf{SWIM} & \textbf{MET-2B-022} & Swim 500 yd Time — No Fins & End-state target evidence; unit-locked comparability & test weeks \\
+\textbf{SWIM} & \textbf{MET-2B-023} & Swim 500 m Time — No Fins & End-state target evidence; unit-locked comparability & test weeks \\
+\textbf{SWIM} & \textbf{MET-2B-025} & Underwater Exposure Admissibility Flag & Gate admissibility prerequisite for any underwater claim; governance enforcement & per underwater test event \\
+\textbf{SWIM} & \textbf{MET-2B-026} & Underwater 25 m — One-Breath Time & End-state target evidence (admissible only under governance) & test weeks \\
+\textbf{DURABILITY} & \textbf{MET-2B-036} & Gait-Altering Pain Flag & Gate disqualifier signal; regression/hold constraint & per session \\
+\textbf{RECOVERY} & \textbf{MET-2B-044} & Session Validity Tag & Gate eligibility; admissibility computation & per session \\
+\textbf{RECOVERY} & \textbf{MET-2B-045} & Cardio Minimum Standard Met & Gate eligibility; Operating Constraints enforcement (30-minute continuous cardio) & per session \\
+\textbf{RECOVERY} & \textbf{MET-2B-046} & Weekly Admissible Session Compliance Percent & Gate eligibility threshold input; decision window compliance posture & weekly \\
+\end{longtblr}
+
+\endgroup
+
+\begin{itemize}
+\item If a Gate-Critical metric is missing for a gate window where it is required:
+  \begin{itemize}
+  \item default outcome is \textbf{HOLD} unless safety posture requires \textbf{REGRESS} or \textbf{MEDICAL} \textbf{HOLD}.
+  \end{itemize}
+\item If a Gate-Critical metric is present but validity conditions are not satisfied:
+  \begin{itemize}
+  \item evidence is treated as non-admissible for gate purposes,
+  \item corrective action is re-execution under valid conditions (for tests) or restoration of method consistency (for trends).
+  \end{itemize}
+\item Gate-Critical does not mean “test more frequently.” It means “when the program claims readiness or progression, this evidence must exist and be admissible.”
+\end{itemize}
+
+\newpage
+
+\subsection*{2.B.4 Metric-to-Protocol Coverage Map}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.B.4 Metric-to-Protocol Coverage Map}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.00in]
+    X[l,2.45]
+    Q[l,wd=1.35in]
+    Q[l,wd=0.95in]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-4} = {fg=black},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Metric \textbf{ID}} &
+\Hdr{Metric Name} &
+\Hdr{Intended Protocol Card C\#} &
+\Hdr{Status} \\
+\textbf{MET-2B-001} & Bodyweight — Weekly Average & \textbf{C1} & Accepted/Complete \\
+\textbf{MET-2B-002} & Body Fat Estimate Percent — Method/Device Recorded & \textbf{C2} & Accepted/Complete \\
+\textbf{MET-2B-003} & Circumference — Neck & \textbf{C3} & Accepted/Complete \\
+\textbf{MET-2B-004} & Circumference — Chest & \textbf{C3} & Accepted/Complete \\
+\textbf{MET-2B-005} & Circumference — Bicep & \textbf{C3} & Accepted/Complete \\
+\textbf{MET-2B-006} & Circumference — Forearm & \textbf{C3} & Accepted/Complete \\
+\textbf{MET-2B-007} & Circumference — Waist & \textbf{C3} & Accepted/Complete \\
+\textbf{MET-2B-008} & Circumference — Thigh & \textbf{C3} & Accepted/Complete \\
+\textbf{MET-2B-009} & Circumference — Calf & \textbf{C3} & Accepted/Complete \\
+\textbf{MET-2B-010} & Push-Ups — 2-Minute Timed, Strict & \textbf{C4} & Accepted/Complete \\
+\textbf{MET-2B-011} & Sit-Ups — 2-Minute Timed, Standard & \textbf{C5} & Accepted/Complete \\
+\textbf{MET-2B-012} & Pull-Ups — Strict Dead-Hang & \textbf{C6} & Accepted/Complete \\
+\textbf{MET-2B-013} & Plank — Forearm & \textbf{C7} & Accepted/Complete \\
+\textbf{MET-2B-014} & 1.5-Mile Run Time Trial & \textbf{C8} & Accepted/Complete \\
+\textbf{MET-2B-015} & 2-Mile Run Time Trial & \textbf{C9} & Accepted/Complete \\
+\textbf{MET-2B-016} & 3-Mile Run Time Trial & \textbf{C10} & Accepted/Complete \\
+\textbf{MET-2B-017} & 5-Mile Run Time Trial & \textbf{C11} & Accepted/Complete \\
+\textbf{MET-2B-018} & 3-Mile Ruck Time Trial — 25 lb & \textbf{C12} & Accepted/Complete \\
+\textbf{MET-2B-019} & 6-Mile Ruck Time Trial — 35 lb & \textbf{C12} & Accepted/Complete \\
+\textbf{MET-2B-020} & 9-Mile Ruck Time Trial — 45 lb & \textbf{C12} & Accepted/Complete \\
+\textbf{MET-2B-021} & 12-Mile Ruck Time Trial — 55 lb & \textbf{C12} & Accepted/Complete \\
+\textbf{MET-2B-022} & Swim 500 yd Time — No Fins & \textbf{C13} & Accepted/Complete \\
+\textbf{MET-2B-023} & Swim 500 m Time — No Fins & \textbf{C13} & Accepted/Complete \\
+\textbf{MET-2B-024} & Surface Water Confidence Exposure Flag & \textbf{C13} & Accepted/Complete \\
+\textbf{MET-2B-025} & Underwater Exposure Admissibility Flag & \textbf{C14} & Accepted/Complete \\
+\textbf{MET-2B-026} & Underwater 25 m — One-Breath Time & \textbf{C14} & Accepted/Complete \\
+\textbf{MET-2B-027} & Hinge Strength Proxy — \textbf{3-RM} / \textbf{5-RM} Load & \textbf{C17} & Accepted/Complete \\
+\textbf{MET-2B-028} & Squat Strength Proxy — \textbf{3-RM} / \textbf{5-RM} Load & \textbf{C17} & Accepted/Complete \\
+\textbf{MET-2B-029} & Upper Push Strength Proxy — \textbf{3-RM} / \textbf{5-RM} Load & \textbf{C17} & Accepted/Complete \\
+\textbf{MET-2B-030} & Upper Pull Strength Proxy — \textbf{3-RM} / \textbf{5-RM} Load & \textbf{C17} & Accepted/Complete \\
+\textbf{MET-2B-031} & Carry Capacity — Load Outcome & \textbf{C17} & Accepted/Complete \\
+\textbf{MET-2B-032} & Rower Time Trial & \textbf{C18} & Accepted/Complete \\
+\textbf{MET-2B-033} & Bike Time Trial & \textbf{C18} & Accepted/Complete \\
+\textbf{MET-2B-034} & Elliptical Time Trial & \textbf{C18} & Accepted/Complete \\
+\textbf{MET-2B-035} & Pain Severity — 0–10 + Location Recorded & \textbf{C16} & Accepted/Complete \\
+\textbf{MET-2B-036} & Gait-Altering Pain Flag & \textbf{C16} & Accepted/Complete \\
+\textbf{MET-2B-037} & Foot Hotspot or Blister Flag + Location & \textbf{C16} & Accepted/Complete \\
+\textbf{MET-2B-038} & Sleep Hours & \textbf{C15} & Accepted/Complete \\
+\textbf{MET-2B-039} & Sleep Quality & \textbf{C15} & Accepted/Complete \\
+\textbf{MET-2B-040} & Soreness & \textbf{C15} & Accepted/Complete \\
+\textbf{MET-2B-041} & Fatigue & \textbf{C15} & Accepted/Complete \\
+\textbf{MET-2B-042} & Session RPE & \textbf{C15} & Accepted/Complete \\
+\textbf{MET-2B-043} & Step Count & \textbf{C15} & Accepted/Complete \\
+\textbf{MET-2B-044} & Session Validity Tag & N/A & Accepted/Complete \\
+\textbf{MET-2B-045} & Cardio Minimum Standard Met & N/A & Accepted/Complete \\
+\textbf{MET-2B-046} & Weekly Admissible Session Compliance Percent & N/A & Accepted/Complete \\
+\end{longtblr}
+
+\endgroup
+
+\begin{itemize}
+\item “Drafted” means the protocol card content exists in Stage 2.C for protocolized tests, or the metric is governed as a derived/log-computed construct under Stage 2.E when Intended Protocol Card C\# is N/A.
+\item “Draft planned” means the protocol card \textbf{ID} is assigned and expected to govern the metric, but the protocol card content may still be authored in Stage 2.C.
+\item “Not drafted” means protocol assignment and/or protocol content remains incomplete; metrics with “Not drafted” protocol assignment must not be treated as gate-grade unless they are non-gate-critical supporting markers used informationally.
+\item Gate-Critical metrics listed as \textbf{TBD} 2.C are permitted only while Stage 2 is in Draft posture. For Stage 2 to be Deployable, Gate-Critical metrics must have protocol card coverage assigned and authored, or be explicitly governed as N/A (derived/log-computed) with Stage 2.E defining the computation and admissibility posture.
+\end{itemize}
+
+\newpage
+
+\subsection*{2.B.5 Conflict-Resolution Rule}
+\phantomsection
+\addcontentsline{toc}{subsection}{2.B.5 Conflict-Resolution Rule}
+
+If any downstream artifact references an undefined \textbf{MET-2B}-\#\#\#, uses non-canonical domain tags, or treats inadmissible data as gate evidence, the downstream artifact is Draft — Non-Deployable until corrected and re-versioned.
+
+A downstream artifact \textbf{MUST} be labeled Draft — Non-Deployable if any of the following occurs:
+
+\begin{itemize}
+\item References a \textbf{MET-2B}-\#\#\# \textbf{ID} not present in the Stage 2.B inventory.
+\item Assigns more than one Primary Domain Tag to a single metric/test construct.
+\item Treats \textbf{AER} evidence as \textbf{RUN} evidence or uses \textbf{AER} constructs to claim \textbf{RUN} tolerance/performance.
+\item Uses invalid or unverified measurement conditions for gate-critical tests (unknown distance, unknown load, unknown swim unit) and still claims the result is admissible for gates.
+\item Attempts to use compliance metrics (Session Validity Tag, Cardio Minimum Standard Met, Weekly Admissible Session Compliance Percent) without the underlying minimum dataset required to compute them.
+\end{itemize}
+
+\begin{itemize}
+\item Correction must explicitly identify:
+  \begin{itemize}
+  \item the offending reference or tag,
+  \item the corrected \textbf{ID}/tag,
+  \item the date of correction,
+  \item the owner responsible.
+  \end{itemize}
+\item If the error affected gate decisions, an evidence integrity review is required:
+  \begin{itemize}
+  \item determine whether the gate decision relied on the incorrect metric/tag,
+  \item if yes, the gate decision must be treated as non-authoritative until rerun using admissible evidence under correct IDs and tags.
+  \end{itemize}
+\end{itemize}
+
+\end{document}

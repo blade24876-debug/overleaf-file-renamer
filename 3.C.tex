@@ -1,0 +1,689 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{landscape}
+
+\section*{Stage 3.C — Test Cadence by Metric Type}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 3.C — Test Cadence by Metric Type}
+
+\subsection*{3.C.1 Test Cadence Table}
+\phantomsection
+\addcontentsline{toc}{subsection}{3.C.1 Test Cadence Table}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.85]
+    Q[l,wd=0.75in]
+    X[l,1.55]
+    X[l,1.55]
+    X[l,1.35]
+    X[l,2.90]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Metric or Test (Stage 2 \textbf{ID})} &
+\Hdr{Domain} &
+\Hdr{Roles Baseline / Check-In / Gate / Milestone} &
+\Hdr{Recommended Frequency} &
+\Hdr{Typical Placement} &
+\Hdr{Notes and Constraints} \\
+
+Bodyweight — Weekly Average (\textbf{MET-2B-001}; \textbf{C1}) &
+\textbf{BODYCOMP} &
+Baseline; Check-in; Gate &
+Weekly (weekly average computed weekly; measurement events captured at least once weekly under \textbf{C1}) &
+Segment 1: Phase 00; Segment 2: Phase 01; Segment 3–5: Phases 02–13 &
+Gate meaning exists only when conditions are stable and recorded (\textbf{C1} + Stage 2.E). Low-cost monitoring; does not count toward major test-event caps. Validity requires same-day log entry, stable scale \textbf{ID}/descriptor, and recorded conditions (clothing state, time-of-day posture, relevant anomalies). A scale change is a comparability break until stabilized; record tool-change and treat trend conservatively across the boundary. \\
+
+Body fat estimate percent — Method/Device Recorded (\textbf{MET-2B-002}; \textbf{C2}) &
+\textbf{BODYCOMP} &
+Baseline; Check-in; Gate &
+Monthly (or every other protected window when monthly cadence is infeasible, but maintain method consistency within the comparison window) &
+Segment 1–2: baseline establishment; Segment 3–5: monthly trend &
+Method-agnostic, method-consistent within windows. A method/device change is a comparability break; record it explicitly and do not claim “improvement” across the boundary until stable repeated values exist under the new method. Low-cost monitoring; does not count toward major-event caps. Missing method/device identity or missing conditions makes the record inadmissible for gate use. \\
+
+Neck circumference (\textbf{MET-2B-003}; \textbf{C3}) &
+\textbf{BODYCOMP} &
+Baseline; Check-in &
+Weekly (or every protected window if weekly cadence is not feasible; do not infer missing sites) &
+Segment 1–2: weekly; Segment 3–5: weekly or deload/test weeks &
+Tape landmark definitions and side posture must remain stable. Limb-side rules apply only where relevant; neck is midline but landmark must be stable. Low-cost; not a major event. If “not measured,” record explicitly as NOT \textbf{MEASURED}; do not leave blank. \\
+
+Chest circumference (\textbf{MET-2B-004}; \textbf{C3}) &
+\textbf{BODYCOMP} &
+Baseline; Check-in &
+Weekly (or every protected window when necessary) &
+Segment 1–2: weekly; Segment 3–5: weekly or deload/test weeks &
+Same posture as other tape sites: stable landmark, consistent tape \textbf{ID}/descriptor, consistent posture and breathing posture if defined. Low-cost; not a major event. \\
+
+Bicep circumference (\textbf{MET-2B-005}; \textbf{C3}) &
+\textbf{BODYCOMP} &
+Baseline; Check-in &
+Weekly (or every protected window when necessary) &
+Segment 1–2: weekly; Segment 3–5: weekly or deload/test weeks &
+Limb-side must be consistent (default right). If side changes, log it as a comparability break. Low-cost; not a major event. \\
+
+Forearm circumference (\textbf{MET-2B-006}; \textbf{C3}) &
+\textbf{BODYCOMP} &
+Baseline; Check-in &
+Weekly (or every protected window when necessary) &
+Segment 1–2: weekly; Segment 3–5: weekly or deload/test weeks &
+Same posture as other limb tape sites: side consistency, stable landmark, stable tape \textbf{ID}/descriptor. Missing side/landmark makes the site inadmissible for trend comparison. \\
+
+Waist circumference (\textbf{MET-2B-007}; \textbf{C3}) &
+\textbf{BODYCOMP} &
+Baseline; Check-in; Supporting gate context &
+Weekly (preferred) &
+Segment 1: Phase 00; Segment 2: Phase 01; Segment 3–5: Phases 02–13 &
+Waist landmark and breath state must be consistent; changes are comparability breaks. Used as supporting \textbf{BODYCOMP} evidence; do not reinterpret as a performance metric. Low-cost; not a major event. \\
+
+Thigh circumference (\textbf{MET-2B-008}; \textbf{C3}) &
+\textbf{BODYCOMP} &
+Baseline; Check-in &
+Weekly (or every protected window when necessary) &
+Segment 1–2: weekly; Segment 3–5: weekly or deload/test weeks &
+Landmark and stance posture must remain stable. Limb-side must be consistent; changes logged as comparability breaks. Low-cost; not a major event. \\
+
+Calf circumference (\textbf{MET-2B-009}; \textbf{C3}) &
+\textbf{BODYCOMP} &
+Baseline; Check-in &
+Weekly (or every protected window when necessary) &
+Segment 1–2: weekly; Segment 3–5: weekly or deload/test weeks &
+Same posture as other limb tape sites. Low-cost; not a major event. \\
+
+Push-ups — 2-minute timed strict (\textbf{MET-2B-010}; \textbf{C4}) &
+\textbf{CAL} &
+Baseline; Check-in; Gate &
+Every protected deload/test window where \textbf{CAL} is in the phase battery; otherwise end-of-phase gate only &
+Segment 1: Phase 00 minimal exposure only; Segment 2–5: Phase 01 onward &
+Gate-admissible only under \textbf{VALID} test conditions and compliant \textbf{CAL} artifact evidence. \textbf{CAL} battery executed as \textbf{C4}+\textbf{C5}+\textbf{C6}+\textbf{C7} counts as one major test event for caps/spacing. Work-week maximal attempts are not gate-grade by default; schedule gate-grade attempts in protected windows. If artifact is missing/non-compliant → \textbf{INVALID} for gate use; reslot to next protected window rather than re-attempting immediately. \\
+
+Sit-ups/curl-ups — 2-minute timed (\textbf{MET-2B-011}; \textbf{C5}) &
+\textbf{CAL} &
+Baseline; Check-in; Gate &
+Every protected deload/test window where \textbf{CAL} is in the phase battery; otherwise end-of-phase gate only &
+Segment 1: Phase 00 minimal exposure only; Segment 2–5: Phase 01 onward &
+Same \textbf{CAL} artifact/validity posture. If a counting standard cannot be audited (camera angle, timer not verifiable) → \textbf{INVALID} for gate use; reslot. Avoid clustering \textbf{CAL} maximal attempts with maximal \textbf{RUN}/\textbf{RUCK} inside the same 72-hour window; \textbf{CAL} battery is one major event but still produces fatigue spillover. \\
+
+Pull-ups — strict dead-hang max reps (\textbf{MET-2B-012}; \textbf{C6}) &
+\textbf{CAL} &
+Baseline; Check-in; Gate &
+Every protected deload/test window where \textbf{CAL} is in the phase battery; otherwise end-of-phase gate only (only when strict reps are feasible) &
+Segment 2–5: Phase 01 onward (when feasible) &
+If strict reps are not feasible early, record “0” under the strict protocol rather than adopting alternate standards. Artifact evidence required for gate-validity. Grip standard (pronated) governs validity; alternate grips are informational-only unless a distinct metric is adopted. \\
+
+Plank — forearm max hold (\textbf{MET-2B-013}; \textbf{C7}) &
+\textbf{CAL} &
+Baseline; Check-in; Gate &
+Every protected deload/test window where \textbf{CAL} is in the phase battery; otherwise end-of-phase gate only &
+Segment 1: Phase 00 minimal exposure allowed; Segment 2–5: Phase 01 onward &
+Artifact required for gate-validity; timing must be auditable and termination criteria visible. Use protected windows to reduce fatigue contamination and to preserve standardized conditions. \\
+
+Hinge strength proxy — submax \textbf{3-RM}/\textbf{5-RM} (\textbf{MET-2B-027}; \textbf{C17}) &
+\textbf{STR} &
+Baseline (when introduced); Check-in; Milestone &
+Segment 3: no more than every other protected window; Segment 4–5: periodic (generally every other phase) &
+Protected deload/test windows only &
+Submax proxy only; no \textbf{1-RM} posture. Counts as a major test event when scheduled. Avoid clustering with maximal \textbf{RUN}/ruck inside the same protected week; respect 72-hour spacing from other major events. Implement identity and load verification method must be stable; tool drift triggers conservative interpretation until replicated. \\
+
+Squat strength proxy — submax \textbf{3-RM}/\textbf{5-RM} (\textbf{MET-2B-028}; \textbf{C17}) &
+\textbf{STR} &
+Baseline (when introduced); Check-in; Milestone &
+Segment 3: no more than every other protected window; Segment 4–5: periodic (generally every other phase) &
+Protected deload/test windows only &
+Same \textbf{STR} posture as hinge. Depth/control standard must be consistent per protocol; missing \textbf{MEASURE} fields invalidate gate-grade use. \\
+
+Upper push strength proxy — submax \textbf{3-RM}/\textbf{5-RM} (\textbf{MET-2B-029}; \textbf{C17}) &
+\textbf{STR} &
+Baseline (when introduced); Check-in &
+Every other phase or milestone-only &
+Protected deload/test windows only &
+Supporting strength readiness marker; do not let \textbf{STR} proxy cadence displace \textbf{RUN}/ruck/\textbf{SWIM} gate windows. Counts as major event when scheduled. \\
+
+Upper pull strength proxy — submax \textbf{3-RM}/\textbf{5-RM} (\textbf{MET-2B-030}; \textbf{C17}) &
+\textbf{STR} &
+Baseline (when introduced); Check-in &
+Every other phase or milestone-only &
+Protected deload/test windows only &
+Supporting marker; implement identity drift requires conservative handling until stabilized. Counts as major event when scheduled. \\
+
+Carry capacity proxy (\textbf{MET-2B-031}; \textbf{C17}) &
+\textbf{STR} &
+Check-in; Milestone &
+Milestone-only (phase-relevant) &
+Protected deload/test windows only &
+Must not be treated as a ruck substitute; ruck remains distinct. If the carry construct (time/distance) is not fully specified and logged per protocol, treat results conservatively and do not use for gate-grade claims. Counts as major event when scheduled. \\
+
+1.5-mile run time trial (\textbf{MET-2B-014}; \textbf{C8}) &
+\textbf{RUN} &
+Baseline; Check-in; Gate (phase-dependent) &
+End-of-phase gate default once \textbf{RUN} is introduced; mid-phase check-in only when required for trend confirmation or replication completion &
+Protected deload/test windows only &
+Gate-grade attempts occur only in protected windows. Treadmill vs route comparability is not assumed; stability requires consistent Environment Unit \textbf{ID} and settings for the events used to satisfy replication. Do not cluster with maximal ruck inside 96-hour window. \\
+
+2-mile run time trial (\textbf{MET-2B-015}; \textbf{C9}) &
+\textbf{RUN} &
+Baseline; Check-in; Gate &
+End-of-phase gate default; mid-phase check-in only when required &
+Protected deload/test windows only &
+Major test event. Spacing governed by Stage 3.A. If outdoor route is unsafe, treadmill is admissible only with \textbf{TM}-2E-\#\#\# and grade/settings logged (default grade 1\%). \\
+
+3-mile run time trial (\textbf{MET-2B-016}; \textbf{C10}) &
+\textbf{RUN} &
+Check-in; Gate &
+End-of-phase gate once introduced; check-in only when required and only inside protected windows &
+Protected deload/test windows only &
+Higher cost; default end-of-phase gate only. Requires stable environment unit and tool identity. Avoid co-locating with long ruck milestones inside the same protected week. \\
+
+5-mile run time trial (\textbf{MET-2B-017}; \textbf{C11}) &
+\textbf{RUN} &
+Milestone; Gate &
+Segment 3: milestone-only; Segment 4–5: end-of-phase gate when phase contract requires &
+Protected deload/test windows only &
+High-cost major test event. Strong spacing doctrine: do not schedule maximal \textbf{RUN} and maximal ruck within 96 hours; avoid stacking inside the same protected week. Any route/tool/footwear novelty near the window is a comparability break and triggers reslot posture for gate-grade use. \\
+
+3-mile ruck time trial — 25-lb dry (\textbf{MET-2B-018}; \textbf{C12}) &
+\textbf{RUCK} &
+Check-in; Milestone &
+Milestone-only early; periodic once ruck is introduced, generally every other phase at most &
+Protected deload/test windows only &
+Prerequisite-dependent: footwear/footcare stability required (e.g., \textbf{DEP-1C-007}, \textbf{DEP-1C-008} posture). Dry load verification required; carried water logged separately; missing load verification is inadmissible. Major test event; spacing applies. \\
+
+6-mile ruck time trial — 35-lb dry (\textbf{MET-2B-019}; \textbf{C12}) &
+\textbf{RUCK} &
+Milestone; Gate (later) &
+Every other phase once introduced; end-of-phase gate where load tolerance is phase contract &
+Protected deload/test windows only &
+Higher cost than 3-mile; treat as major event and do not cluster with maximal \textbf{RUN}. Reslot if environment unsafe or durability flags active (foot hotspots, gait-altering pain). \\
+
+9-mile ruck time trial — 45-lb dry (\textbf{MET-2B-020}; \textbf{C12} or protocol \textbf{TBD} depending on adopted coverage) &
+\textbf{RUCK} &
+Milestone; Gate (late) &
+Milestone-only; not more often than every other phase &
+Protected deload/test windows only &
+High-consequence. Requires stable load verification and environment unit consistency; route/tool drift is a comparability break. If protocol coverage is incomplete in Stage 2, it is not gate-admissible; treat as informational-only until protocol exists. \\
+
+12-mile ruck time trial — 55-lb dry (\textbf{MET-2B-021}; \textbf{C12} or protocol \textbf{TBD} depending on adopted coverage) &
+\textbf{RUCK} &
+Milestone; Gate (late) &
+Milestone-only; not more often than every other phase &
+Protected deload/test windows only &
+Highest ruck gate demand. Never used as “catch-up.” If missed/\textbf{INVALID}, reslot; do not stack into the next week. Requires dry load verification and stable ruck configuration; water logged separately. If protocol coverage is incomplete, it is not gate-admissible until drafted and validated. \\
+
+Swim 500-yard time trial — no fins (\textbf{MET-2B-022}; \textbf{C13}) &
+\textbf{SWIM} &
+Check-in; Gate (phase-dependent) &
+Every other phase once pool access is stable; end-of-phase gate when phase contract requires &
+Protected deload/test windows only &
+Unit locked to yards; no fins; allowable strokes only. Pool \textbf{ID} \textbf{POOL}-2E-\#\#\# required; pool length and unit verification required. Lane interruptions that force non-standard rest posture may invalidate gate-grade use; reslot rather than “count it anyway.” Major test event; spacing applies. \\
+
+Swim 500-meter time trial — no fins (\textbf{MET-2B-023}; \textbf{C13}) &
+\textbf{SWIM} &
+Check-in; Gate (phase-dependent) &
+Every other phase once pool access is stable; rotate with 500 yd across windows &
+Protected deload/test windows only &
+Unit locked to meters; no conversions for gate claims. Same validity posture and \textbf{POOL} verification requirements. Major test event; spacing applies. \\
+
+Water confidence exposure flag (\textbf{MET-2B-024}; \textbf{C13}) &
+\textbf{SWIM} &
+Baseline; Check-in (governance trace) &
+Per swim exposure event (record whenever an in-water session occurs that is relevant to audit trace) &
+Any week; does not require protected window &
+Governance marker for exposure trace. Not a performance test. Does not count as major event. Must not be interpreted as underwater permission. If pool environment cannot be verified, record exposure as informational only and do not treat as tier evidence. \\
+
+Underwater exposure admissibility flag (\textbf{MET-2B-025}; \textbf{C14}) &
+\textbf{SWIM} &
+Milestone; Gate prerequisite (conditional) &
+Segment-limited; only in Segment 5; captured whenever an underwater attempt is authorized &
+Protected windows only (Phase 10–13 only) &
+Governance-gated prerequisite. If prerequisites are not met, record as “not authorized” and do not attempt underwater. Not scheduled as routine. Must not be stacked with maximal \textbf{RUN} and maximal ruck in the same protected week. \\
+
+Underwater 25-meter one-breath (\textbf{MET-2B-026}; \textbf{C14}) &
+\textbf{SWIM} &
+Milestone; Gate (conditional) &
+Rare; milestone-only in Segment 5 when governance is available and stable &
+Protected windows only (Phase 10–13 only) &
+Admissible only with certified lifeguard plus dedicated safety spotter, facility permission, abort discipline, and full logging. Any governance lapse makes it inadmissible. No proxy tests substituted. Treat as major event when executed; avoid pairing with other high-cost events in the same protected week. \\
+
+Rower time trial (\textbf{MET-2B-032}; \textbf{C18}) &
+\textbf{AER} &
+Check-in; Milestone &
+Milestone-only; generally every other phase at most when used &
+Protected deload/test windows only &
+Non-impact conditioning construct. Not interchangeable with \textbf{RUN}. Counts as major event when executed as time trial. Environment Unit \textbf{ID} required (ROW-2E-\#\#\#). Machine settings must be logged; if settings drift, treat as comparability break. \\
+
+Bike time trial (\textbf{MET-2B-033}; \textbf{C18}) &
+\textbf{AER} &
+Check-in; Milestone &
+Milestone-only; generally every other phase at most when used &
+Protected deload/test windows only &
+Same posture as rower. Counts as major event when executed as time trial. Environment Unit \textbf{ID} required (BIKE-2E-\#\#\#). Not interchangeable with \textbf{RUN}/ruck. \\
+
+Elliptical time trial (\textbf{MET-2B-034}; \textbf{C18}) &
+\textbf{AER} &
+Check-in; Milestone &
+Milestone-only; generally every other phase at most when used &
+Protected deload/test windows only &
+Same posture as rower/bike. Counts as major event when executed as time trial. Environment Unit \textbf{ID} required (ELL-2E-\#\#\#). \\
+
+Pain severity 0–10 + location (\textbf{MET-2B-035}; \textbf{C16}) &
+\textbf{DURABILITY} &
+Check-in; Gate constraint &
+Daily (and pre-test day screen recommended inside protected windows) &
+All segments; all weeks &
+Non-diagnostic constraint marker. Location required when pain >0. If mechanics are altered, higher-risk tests are aborted/reslotted. Not a major event. Missing values must be recorded as \textbf{MISSING}/\textbf{UNKNOWN}; no inference. \\
+
+Gait-altering pain flag (\textbf{MET-2B-036}; \textbf{C16}) &
+\textbf{DURABILITY} &
+Check-in; Gate disqualifier &
+Per session (and explicitly recorded on test days) &
+All segments; all weeks &
+Gate-disqualifier marker. Any “Yes” within decision window constrains tier use for progression decisions in impact/load domains and drives \textbf{HOLD}/\textbf{REGRESS} posture as applicable. Not a major event, but it governs whether major tests should be attempted (abort/reslot posture). \\
+
+Foot hotspot/blister flag + location (\textbf{MET-2B-037}; \textbf{C16}) &
+\textbf{DURABILITY} &
+Check-in; Gate constraint &
+Per session (and explicitly recorded on run/ruck test days) &
+All segments; all weeks &
+Primary constraint for \textbf{RUN}/\textbf{RUCK} scheduling. Active hotspots strongly bias toward reslot of ruck and impact run tests; “push through” behavior is prohibited. Not a major event. \\
+
+Sleep hours (\textbf{MET-2B-038}; \textbf{C15}) &
+\textbf{RECOVERY} &
+Baseline; Check-in; Gate support &
+Daily &
+All segments; all weeks &
+Required daily for readiness interpretation. Missing entries weaken confidence in “stable recovery” posture and may downgrade a protected window to recovery-first (reslot major tests). \\
+
+Sleep quality 0–10 (\textbf{MET-2B-039}; \textbf{C15}) &
+\textbf{RECOVERY} &
+Check-in; Gate support &
+Daily &
+All segments; all weeks &
+Anchored scale must remain consistent. Used as decision support, not performance evidence. \\
+
+Soreness 0–10 (\textbf{MET-2B-040}; \textbf{C15}) &
+\textbf{RECOVERY} &
+Check-in; Gate support &
+Daily &
+All segments; all weeks &
+Rising trend constrains test scheduling; may trigger reslot of high-cost tests to prevent fatigue contamination and injury risk. \\
+
+Fatigue 0–10 (\textbf{MET-2B-041}; \textbf{C15}) &
+\textbf{RECOVERY} &
+Check-in; Gate support &
+Daily &
+All segments; all weeks &
+Same posture as soreness. Persistent elevation is a trigger to treat a protected window as recovery-first and reslot major tests. \\
+
+Session RPE 0–10 (\textbf{MET-2B-042}; \textbf{C15}) &
+\textbf{RECOVERY} &
+Check-in; Gate support &
+Per session &
+All segments; all weeks &
+Required to interpret workload drift and fatigue contamination risk prior to protected windows. Used as decision support; does not replace performance evidence. \\
+
+Steps count (\textbf{MET-2B-043}; \textbf{C15}) &
+\textbf{RECOVERY} &
+Baseline; Check-in; Gate support &
+Daily &
+All segments; all weeks &
+Baseline activity monitor. Steps do not count as a session and do not satisfy session structure requirements. Persistent deficits can signal feasibility collapse and may justify \textbf{HOLD}/\textbf{REGRESS} posture even when tests are improving. \\
+
+Session validity tag (\textbf{MET-2B-044}; derived; N/A protocol) &
+\textbf{RECOVERY} &
+Gate support (eligibility control) &
+Per session &
+All segments; all weeks &
+Gate eligibility and admissibility computation control. Must be assigned same day under Stage 1.F rules. Missing required fields in session log forces \textbf{INVALID} posture for gate use. \\
+
+Cardio minimum standard met (\textbf{MET-2B-045}; derived; N/A protocol) &
+\textbf{RECOVERY} &
+Gate support (operating constraint control) &
+Per session &
+All segments; all weeks &
+Compliance marker: “met” requires modality, minutes, continuity posture, and intensity anchors recorded per Stage 2.E. If not met, the session is invalidated for gate purposes under Stage 1.F posture. \\
+
+Weekly admissible session compliance percent (\textbf{MET-2B-046}; derived; N/A protocol) &
+\textbf{RECOVERY} &
+Gate (eligibility threshold input) &
+Weekly &
+All segments; all weeks &
+Computed from admissible sessions (\textbf{VALID} + admissible \textbf{MODIFIED} within cap rules; \textbf{INVALID} excluded). Used to determine if gate windows can be applied; low compliance triggers \textbf{HOLD} posture rather than “testing anyway.” \\
+
+\end{longtblr}
+
+\endgroup
+\end{landscape}
+
+\subsection*{3.C.2 Cadence Rules by Measurement Type (Scheduling Doctrine)}
+\phantomsection
+\addcontentsline{toc}{subsection}{3.C.2 Cadence Rules by Measurement Type (Scheduling Doctrine)}
+
+\subsubsection*{3.C.2.1 \textbf{TREND} metrics (\textbf{BODYCOMP})}
+\phantomsection
+
+\begin{itemize}
+\item \textbf{TREND} metrics are low-cost and are scheduled frequently to provide decision context and to detect drift.
+\item \textbf{TREND} cadence rules:
+  \begin{itemize}
+  \item \textbf{MET-2B-001} weekly average requires at least one recorded measurement event per week (\textbf{C1}) under stable tool/conditions posture; more frequent measurement events are permissible only when conditions are consistent and recorded (do not infer missing values).
+  \item \textbf{MET-2B-002} monthly cadence is the default; if access constraints exist, record the nearest feasible monthly-equivalent event, but do not treat method drift as improvement.
+  \item Tape measures (\textbf{C3}) default weekly in early segments; if operationally infeasible, capture at each protected window minimum, without backfill.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{3.C.2.2 \textbf{READINESS} metrics (\textbf{RECOVERY}, \textbf{DURABILITY})}
+\phantomsection
+
+\begin{itemize}
+\item \textbf{READINESS} metrics exist to constrain testing and to interpret whether evidence is likely contaminated by fatigue, illness, or durability breakdown signals.
+\item \textbf{READINESS} cadence rules:
+  \begin{itemize}
+  \item captured daily or per session, including during deload/test weeks,
+  \item missing readiness fields are treated as evidence-quality degradation and may force conservative scheduling (recovery-first window with reslot of major tests),
+  \item \textbf{READINESS} markers do not generate gate credit; they constrain whether gate credit can be pursued safely and comparably.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{3.C.2.3 \textbf{COMPLIANCE} metrics (\textbf{RECOVERY}-derived; \textbf{DURABILITY} flags)}
+\phantomsection
+
+\begin{itemize}
+\item \textbf{COMPLIANCE} metrics are eligibility controls for gates.
+\item \textbf{COMPLIANCE} cadence rules:
+  \begin{itemize}
+  \item per session (session validity tag; cardio minimum standard met; gait-altering pain flag as disqualifier),
+  \item weekly roll-up (weekly admissible session compliance percent),
+  \item missing compliance fields are not “assumed”; they are treated conservatively and reduce admissible evidence posture.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{3.C.2.4 \textbf{TEST} metrics (\textbf{RUN}, \textbf{RUCK}, \textbf{SWIM}, \textbf{CAL}, \textbf{STR}, \textbf{AER})}
+\phantomsection
+
+\begin{itemize}
+\item \textbf{TEST} metrics produce performance outcomes and are treated as major events when executed as formal time trials/batteries/proxies.
+\item \textbf{TEST} cadence rules:
+  \begin{itemize}
+  \item gate-grade attempts occur inside protected deload/test windows,
+  \item mid-phase check-in use is limited and is scheduled only when required for replication completion or safety/feasibility confirmation,
+  \item maximal variants (5-mile \textbf{RUN}; long ruck milestones; underwater) are scheduled as milestone-only constructs and are not repeated frequently,
+  \item invalid tests are corrected by reslot, not by immediate reattempts that violate spacing.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{3.C.3 Major Test Event Cadence Guardrails (Cross-Reference to Stage 3.A)}
+\phantomsection
+\addcontentsline{toc}{subsection}{3.C.3 Major Test Event Cadence Guardrails (Cross-Reference to Stage 3.A)}
+
+These guardrails apply whenever a \textbf{TEST} metric is scheduled as a major event:
+
+\begin{enumerate}
+\item Major event caps per protected window week:
+  \begin{itemize}
+  \item Ideal: 2 major test events.
+  \item Hard: 3 major test events.
+  \end{itemize}
+
+\item Major event spacing:
+  \begin{itemize}
+  \item Any two major test events must respect 72-hour spacing (start-to-start).
+  \item Maximal \textbf{RUN} and maximal \textbf{RUCK} must respect 96-hour separation (start-to-start).
+  \end{itemize}
+
+\item Major event packaging:
+  \begin{itemize}
+  \item \textbf{CAL} battery counts as one major event when executed as \textbf{C4}+\textbf{C5}+\textbf{C6}+\textbf{C7}.
+  \item \textbf{STR} proxy session counts as one major event, even if multiple \textbf{STR} metrics are recorded inside the same session under \textbf{C17}.
+  \item \textbf{SWIM} time trial counts as one major event per unit-locked attempt (do not schedule both 500 yd and 500 m as a routine in the same protected window unless it still meets caps/spacing and does not compromise other gate needs).
+  \end{itemize}
+
+\item Reslot precedence when cap/spacing is threatened:
+  \begin{itemize}
+  \item Lowest scheduling priority (reslot first): supporting \textbf{STR} proxies and \textbf{AER} time trials.
+  \item Next: \textbf{SWIM} (if pool access is volatile or verification uncertain).
+  \item Highest protection priority (schedule when phase contract requires): gate-required \textbf{RUN}/\textbf{RUCK} milestones and \textbf{CAL} battery, subject to safety/durability constraints.
+  \end{itemize}
+\end{enumerate}
+
+\subsection*{3.C.4 Replication Planning Posture (2 of Last 3 \textbf{VALID})}
+\phantomsection
+\addcontentsline{toc}{subsection}{3.C.4 Replication Planning Posture (2 of Last 3 \textbf{VALID})}
+
+Replication is a gate-grade stability requirement. Cadence supports replication by recurring protected windows, not by repeated same-week retests.
+
+Replication handling rules:
+
+\begin{itemize}
+\item If only one \textbf{VALID} event exists for a gate-critical metric within the decision window, the metric posture defaults to \textbf{HOLD} (Replication) for progression decisions.
+\item If two \textbf{VALID} events exist and both meet the same tier threshold, classification may be assigned (subject to comparability and disqualifier checks).
+\item If the last three \textbf{VALID} events straddle tiers, classification is assigned to the highest tier that meets the 2-of-3 rule; otherwise \textbf{HOLD} (Replication) applies for the higher tier even if one event “hit it once.”
+\item Invalid attempts are logged but do not contribute to replication.
+\item Replication is not pursued by compressing multiple major events into a single protected week. Replication is pursued across windows by consistent environments and consistent tool/measurement posture.
+\end{itemize}
+
+\subsection*{3.C.5 First-Appearance and Phase-Gating Posture (Scheduling Only)}
+\phantomsection
+\addcontentsline{toc}{subsection}{3.C.5 First-Appearance and Phase-Gating Posture (Scheduling Only)}
+
+This cadence table assumes conservative first-appearance rules for higher-consequence domains:
+
+\begin{itemize}
+\item \textbf{RUN} time trials appear as gate-grade only once mechanics are stable and environment/tool logging is compliant; early segments may log conservative capacity checks as informational attempts if required fields cannot be satisfied.
+\item \textbf{RUCK} time trials first-appearance is prerequisite-dependent:
+  \begin{itemize}
+  \item footwear interface stability and footcare capability must be demonstrated before ruck time trials are treated as gate-grade.
+  \item dry load verification and configuration lock posture must be executable.
+  \end{itemize}
+\item \textbf{SWIM} time trials first-appearance is access-dependent:
+  \begin{itemize}
+  \item pool unit/length must be verifiable and logged (\textbf{POOL}-2E-\#\#\#).
+  \item absence of pool verification triggers reslot, not substitution.
+  \end{itemize}
+\item Underwater is governance-dependent and segment-limited:
+  \begin{itemize}
+  \item scheduled only in Segment 5, Phase 10–13, and only under certified lifeguard plus dedicated safety spotter posture with facility permission.
+  \item absence of governance prerequisites means not scheduled and not attempted.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{3.C.6 Cadence Integrity Checks}
+\phantomsection
+\addcontentsline{toc}{subsection}{3.C.6 Cadence Integrity Checks}
+
+\begin{itemize}
+\item Gate-critical tests are scheduled primarily inside protected deload/test windows and are not implied as routine work-week events, protecting recovery and validity.
+\item Major test cadence does not imply stacking beyond Stage 3.A: \textbf{CAL} batteries, \textbf{RUN} time trials, \textbf{RUCK} time trials, \textbf{SWIM} time trials, \textbf{STR} proxies, and \textbf{AER} time trials are treated as major events when scheduled and must respect caps and spacing.
+\item Segment 1–2 cadence emphasizes safety, adherence, and low-risk monitoring (\textbf{BODYCOMP}, \textbf{RECOVERY}, \textbf{DURABILITY}) with conservative maximal testing posture.
+\item Segment 3 increases specificity while still concentrating major tests in protected windows, enabling replication without creating chronic fatigue contamination.
+\item Segment 4–5 cadence becomes less frequent but more consequential, with stronger spacing discipline and staged intent rather than compressed clusters.
+\item Underwater governance is respected: underwater is not scheduled when governance is inadmissible or cannot be guaranteed, and it is never treated as a routine test.
+\item Each metric category has a first-appearance posture that prevents premature escalation: \textbf{BODYCOMP}/\textbf{RECOVERY}/\textbf{DURABILITY} early; \textbf{CAL} early; \textbf{RUN} introduced and then end-gate default; \textbf{RUCK} introduced conservatively under prerequisites; \textbf{SWIM} introduced only under verified pool conditions; \textbf{STR} proxies periodic; \textbf{AER} time trials optional and non-interchangeable with \textbf{RUN}.
+\item Cadence posture supports Stage 2 replication requirements for gate classification without encouraging overtesting; missed/invalid tests are corrected by reslot, not by stacking.
+\item Cardio is treated as a required session block enforced via session validity and compliance metrics (\textbf{MET-2B-045} and \textbf{MET-2B-044}), not as a standalone test cadence construct.
+\end{itemize}
+
+\end{document}

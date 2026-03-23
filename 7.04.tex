@@ -1,0 +1,457 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{7.04 — Performance and Auxiliary Supplements — OTC}
+\phantomsection
+\addcontentsline{toc}{section}{7.04 — Performance and Auxiliary Supplements — OTC}
+
+\subsection*{7.04.1 Purpose \& Scope}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.1 Purpose \& Scope}
+
+7.04 defines optional OTC performance-adjacent consumables used as portable session adjuncts (fueling and buffering), under strict governance. The purpose is to reduce preventable execution failures (bonking, GI intolerance from improvisation, inconsistent fueling variance) without creating supplement dependence, validity manipulation, or unsafe behavior.
+
+\subsection*{7.04.2 Governance and Safety Boundaries}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.2 Governance and Safety Boundaries}
+
+\begin{itemize}
+\item OTC-only posture.
+\item Not deployability-critical: these items are never framed as required for success; they are optional capability posture only.
+\item No test-day dosing instructions, no cycling protocols, no stack prescriptions.
+\item One change at a time:
+  \begin{itemize}
+  \item change only one item or one meaningful variable (type, concentration, sweetener system) at a time,
+  \item observe tolerability before any additional change.
+  \end{itemize}
+\item No novelty near Deload+Test windows:
+  \begin{itemize}
+  \item do not introduce new gels/chews/drink mixes or buffering aids inside protected windows,
+  \item do not change composition (carb type, sweeteners, sodium level) inside protected windows.
+  \end{itemize}
+\item Adverse effect posture:
+  \begin{itemize}
+  \item stop the new item,
+  \item document the change and symptom profile,
+  \item seek clinician evaluation when indicated (non-diagnostic posture).
+  \end{itemize}
+\item Category boundary enforcement:
+  \begin{itemize}
+  \item 7.04 includes consumable session adjuncts only (gels/chews/powders/single-serve carbs).
+  \item bottles, reservoirs, bulk storage, meal prep systems, and kitchen tools are 7.13 and must not be pulled into 7.04.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.04.3 Tier Doctrine — Applied to Performance and Auxiliary Supplements}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.3 Tier Doctrine — Applied to Performance and Auxiliary Supplements}
+
+\begin{itemize}
+\item Tier 0: none required; food-and-hydration-first posture; use stable, simple options without supplement products.
+\item Tier 1: basic portable fuel options (single-serve carbohydrate) to reduce execution friction on longer sessions; conservative, stable, documented.
+\item Tier 2: expanded options to reduce GI risk through choice (texture and carb-source variety) and to support long sessions without improvised “novelty.”
+\item Tier 3: overbuilt posture emphasizing verification, redundancy, and strict change discipline, not more products.
+\end{itemize}
+
+Even if Stage 6 were to elevate 7.04 in a later patch, this overview preserves the hierarchy: fundamentals first; supplements remain optional and cannot override safety/validity posture.
+
+\subsection*{7.04.4 Selection Criteria \& Fit Checks}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.4 Selection Criteria \& Fit Checks}
+
+\begin{itemize}
+\item Selection criteria (generic, non-prescriptive):
+  \begin{itemize}
+  \item label transparency: clear carbohydrate grams and ingredient disclosure; avoid proprietary blends when possible.
+  \item single-ingredient or simple formulations preferred to reduce GI uncertainty.
+  \item third-party testing/COA preference when available, as a risk-reduction posture (not a brand recommendation).
+  \item portability and stability: can be carried without melting/ruining; stable in expected temperature range.
+  \end{itemize}
+\item Fit checks (operational):
+  \begin{itemize}
+  \item GI tolerance: no nausea, cramps, urgent diarrhea, or reflux exacerbation.
+  \item sleep stability: no secondary sleep disruption from new sweeteners or GI distress.
+  \item repeatability: stable response across multiple non-gate exposures before any decision window.
+  \item “not fit” triggers: repeated GI distress, anxiety/heart racing sensation, lightheadedness, or any symptom pattern that changes training execution.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.04.5 Setup, Safety, and Anchoring — Operational Use Boundaries}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.5 Setup, Safety, and Anchoring — Operational Use Boundaries}
+
+\begin{itemize}
+\item Anchoring rule: 7.04 is optional; it is never used to “push through” sleep debt, fatigue collapse, pain drift, or unsafe heat exposure.
+\item Operational use boundaries:
+  \begin{itemize}
+  \item use only after tolerability is demonstrated outside protected windows,
+  \item maintain stable choices during decision windows,
+  \item avoid introducing multiple new variables at once (new gel + new drink mix + new electrolyte = prohibited).
+  \end{itemize}
+\item Adverse event posture:
+  \begin{itemize}
+  \item stop the new item immediately,
+  \item document timing and symptoms,
+  \item revert to the last stable baseline.
+  \end{itemize}
+\item Medical context cautions (non-diagnostic):
+  \begin{itemize}
+  \item persistent GI distress, recurrent palpitations, dizziness, or unusual shortness of breath are not “supplement issues to work around”; they trigger stop/escalation posture as appropriate.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.04.6 Maintenance, Replacement, and Storage}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.6 Maintenance, Replacement, and Storage}
+
+\begin{itemize}
+\item Storage:
+  \begin{itemize}
+  \item protect from heat/freezing as applicable; avoid leaving gels/chews in vehicles during extreme Grand Forks temperature swings.
+  \item store dry; keep packets sealed; avoid moisture exposure for powders.
+  \end{itemize}
+\item Replacement:
+  \begin{itemize}
+  \item track expiration dates; discard expired products.
+  \item replace only like-for-like during a decision window; do not change formulation mid-window.
+  \end{itemize}
+\item Consumables management:
+  \begin{itemize}
+  \item maintain a simple inventory to avoid “ran out, substituted with novelty” events inside protected windows.
+  \item keep packaging/label photos for any item used during a decision window, to support audit traceability.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{7.04.7 Substitution Rules — Food and Hydration First}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.7 Substitution Rules — Food and Hydration First}
+
+\begin{itemize}
+\item Food-first substitutions (preferred):
+  \begin{itemize}
+  \item use stable, familiar foods as the primary approach to session fueling when feasible.
+  \item if a supplement item causes GI distress, substitute back to familiar foods rather than switching rapidly to another product.
+  \end{itemize}
+\item Hydration-first substitutions:
+  \begin{itemize}
+  \item treat hydration as a system (7.13). 7.04 does not replace 7.13. If hydration system access fails, address the system failure, not by escalating powders.
+  \end{itemize}
+\item Validity/logging linkage (Stage 2.E posture, high-level):
+  \begin{itemize}
+  \item any introduction or change to 7.04 items is documented as a controlled variable.
+  \item if a change occurs near a protected window, treat gate attempts as variance-sensitive and reslot rather than claim gate credit under novelty.
+  \end{itemize}
+\item When in doubt:
+  \begin{itemize}
+  \item omit and revert to stable baseline; do not “experiment” to salvage a test week.
+  \end{itemize}
+\end{itemize}
+
+\begin{landscape}
+
+\subsection*{7.04.8 Phase Integration Map — Required}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.8 Phase Integration Map — Required}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.05in]
+    Q[l,wd=1.55in]
+    X[l,2.75]
+    X[l,3.65]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Phase} &
+\Hdr{Required Tier (from Stage 6)} &
+\Hdr{What Changes / Becomes Mandatory} &
+\Hdr{Notes} \\
+Phase 00 &
+T0 &
+None &
+Not required. Early focus is stability; avoid introducing new consumables near protected windows. \\
+Phase 01 &
+T0 &
+None &
+Not required. If used, stabilize outside protected windows and document as a controlled variable. \\
+Phase 02 &
+T0 &
+None &
+Not required. Do not use 7.04 items to justify escalation under fatigue. \\
+Phase 03 &
+T0 &
+None &
+Not required. Ruck interface changes and footwear changes already increase variance risk; avoid adding supplement novelty. \\
+Phase 04 &
+T0 &
+None &
+Not required. Aquatic relevance does not change 7.04 posture. \\
+Phase 05 &
+T0 &
+None &
+Not required. Portable fueling may be considered as an optional adjunct for longer sessions, but remains optional and must be stabilized outside decision windows. \\
+Phase 06 &
+T0 &
+None &
+Not required. Buffering aids are optional only; GI risk is high; avoid novelty inside protected windows. \\
+Phase 07 &
+T0 &
+None &
+Not required. Hybrid density makes variance more costly; prioritize stability. \\
+Phase 08 &
+T0 &
+None &
+Not required. Durability/load tolerance risks dominate; do not add GI variance. \\
+Phase 09 &
+T0 &
+None &
+Not required. High \textbf{CAL} volume phases should not introduce novelty in consumables near gate windows. \\
+Phase 10 &
+T0 &
+None &
+Not required. If used, verification posture and documentation become more important; still optional. \\
+Phase 11 &
+T0 &
+None &
+Not required. Late-phase validity sensitivity increases; omit is preferred if stability is not proven. \\
+Phase 12 &
+T0 &
+None &
+Not required. If used at all, maintain strict standardization and avoid any formulation changes. \\
+Phase 13 &
+T0 &
+None &
+Not required. Consolidation demands low variance; no novelty near final gates. \\
+\end{longtblr}
+
+\endgroup
+
+Notes:
+
+\begin{itemize}
+\item Stage 6 baseline timing depicts 7.04 as not required (Tier 0) across phases. If any downstream artifact treats 7.04 as required for deployability, flag Requires Stage 8 review and do not correct timing here.
+\end{itemize}
+
+\end{landscape}
+
+\subsection*{7.04.9 Risks, Contraindications, and Red Flags}
+\phantomsection
+\addcontentsline{toc}{subsection}{7.04.9 Risks, Contraindications, and Red Flags}
+
+\begin{itemize}
+\item Validity contamination risk:
+  \begin{itemize}
+  \item new gels/chews/drink mixes introduced near protected windows can change perceived effort and GI tolerance, contaminating comparability.
+  \item control: stabilize outside protected windows; document changes; reslot when novelty occurs.
+  \end{itemize}
+\item GI risk (high-frequency failure mode):
+  \begin{itemize}
+  \item nausea, cramps, diarrhea, reflux exacerbation, and bloating can directly compromise sessions and test windows.
+  \item control: stop the new item; revert to stable baseline; do not rapidly rotate items.
+  \end{itemize}
+\item Electrolyte/sodium variability risk:
+  \begin{itemize}
+  \item frequent high-sodium use can be inappropriate for some individuals; do not self-manage medical conditions.
+  \item control: conservative use, documentation, clinician discussion if frequent use is contemplated.
+  \end{itemize}
+\item Buffering aids risk:
+  \begin{itemize}
+  \item beta-alanine: paresthesia, sleep disruption in sensitive individuals.
+  \item sodium bicarbonate: high GI distress probability; can derail sessions and tests.
+  \item control: informational ranges only; no test-day protocols; omit if GI instability occurs; no novelty near decision windows.
+  \end{itemize}
+\item Red flags requiring stop/escalation posture (non-diagnostic):
+  \begin{itemize}
+  \item chest pain/pressure, syncope/near-syncope, severe or disproportionate shortness of breath, new neurologic symptoms, severe allergic-type reactions.
+  \item response: \textbf{STOP} \textbf{NOW} and escalation per governance; do not attribute severe symptoms to “normal supplement effects.”
+  \end{itemize}
+\item Requires Stage 8 review triggers:
+  \begin{itemize}
+  \item any downstream content implying required supplement use for deployability,
+  \item any appearance of dosing protocols, cycling, stack prescriptions, procurement guidance, or prohibited substance references.
+  \end{itemize}
+\end{itemize}
+
+\end{document}
