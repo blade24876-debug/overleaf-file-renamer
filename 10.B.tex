@@ -1,0 +1,893 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{10.B — Adjustment Rules}
+\phantomsection
+\addcontentsline{toc}{section}{10.B — Adjustment Rules}
+
+\subsection*{10.B.1 Measurement Inputs and Signal Quality}
+\phantomsection
+\addcontentsline{toc}{subsection}{10.B.1 Measurement Inputs and Signal Quality}
+
+Minimum dataset aligned to Stage 2 logging posture (targets/rules only; schema remains Stage 2.E authority):
+
+\begin{itemize}
+\item \textbf{BODYCOMP}
+\begin{itemize}
+\item Weekly bodyweight average required (\textbf{ST-BW-WKAVG} / \textbf{MET-2B-001}); daily weigh-ins optional as inputs but not decision drivers.
+\item Weekly circumference suite required (ST-CIRC-* / \textbf{MET-2B-003} through \textbf{MET-2B-009}): neck, chest, bicep, forearm, waist, thigh, calf.
+\item Body fat estimate percent (\textbf{ST-BF-PCT} / \textbf{MET-2B-002}) is method-agnostic but trend-valid only when the same method/device and conditions are used across the comparison window.
+\end{itemize}
+\item \textbf{PERFORMANCE}/\textbf{QUALITY}
+\begin{itemize}
+\item Test-week outcomes when applicable (Stage 2 protocol outcomes under \textbf{VALID} test conditions).
+\item Session RPE trend (\textbf{ST-RPE-0-10} / \textbf{MET-2B-042}) and qualitative performance notes (non-protocolized).
+\end{itemize}
+\item \textbf{RECOVERY}
+\begin{itemize}
+\item Sleep hours (\textbf{ST-SLEEP-HRS} / \textbf{MET-2B-038}) and sleep quality (\textbf{ST-SLEEP-QUAL-0-10} / \textbf{MET-2B-039}).
+\item Soreness (\textbf{ST-SORENESS-0-10} / \textbf{MET-2B-040}) and fatigue (\textbf{ST-FATIGUE-0-10} / \textbf{MET-2B-041}).
+\item Illness flags and systemic symptom notes (non-diagnostic).
+\end{itemize}
+\item \textbf{COMPLIANCE}
+\begin{itemize}
+\item On-plan day count (tracked operationally within nutrition logs; decision thresholds below).
+\item Novelty events near gates: any meaningful diet structure change, new food class, new caffeine pattern, or new supplement category introduction inside protected windows.
+\item Deload/Test-week flags (Stage 3 protected windows).
+\end{itemize}
+\end{itemize}
+
+Signal quality rules (binding):
+
+\begin{itemize}
+\item Weekly bodyweight average drives decisions; single-day weigh-ins \textbf{MUST} NOT trigger structural changes.
+\item Waist trend is evaluated only if tape method and landmarks are consistent; if inconsistent, treat waist trend as non-comparable and do not use it for plateau determination.
+\item Minimum trend window before plateau decisions: at least 2 weeks of data unless safety triggers require earlier intervention.
+\item No major changes from a single day or single weigh-in; trend-based posture only.
+\item Do not interpret medical meaning from measurements; posture is operational and performance-support oriented.
+\item Missing-data doctrine: if required fields are missing for the decision window, treat the signal as unreliable and default to \textbf{HOLD} posture until data quality is restored.
+\end{itemize}
+
+\newpage
+\subsection*{10.B.2 Adjustment Cadence}
+\phantomsection
+\addcontentsline{toc}{subsection}{10.B.2 Adjustment Cadence}
+
+Default cadence:
+
+\begin{itemize}
+\item Weekly review and decision point using the prior 7-day window for compliance and the last 14 days for plateau determination.
+\item Hold periods after any change:
+\begin{itemize}
+\item 7–14 days hold unless safety requires earlier intervention (safety overrides timeline).
+\end{itemize}
+\item Test-week and gate-window restrictions:
+\begin{itemize}
+\item no novelty during Deload/Test weeks,
+\item no major diet structure changes in the final 7–10 days before major gates,
+\item during Deload/Test weeks, only distribution tweaks are allowed except the binding maintenance-calorie rule.
+\end{itemize}
+\end{itemize}
+
+Required table:
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.75]
+    X[l,2.70]
+    X[l,2.40]
+    X[l,2.85]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-4} = {fg=black},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Adjustment Window} &
+\Hdr{Allowed Change Types} &
+\Hdr{Not Allowed} &
+\Hdr{Documentation Required} \\
+Routine weekly review (non-protected weeks) &
+Minor tweaks if $\geq$6/7 on-plan; structural changes if $\geq$12/14 on-plan; step-size calorie change $\pm$150–250 &
+Single-day reactive changes; multiple simultaneous major changes &
+Nutrition Adjustment Log entry: date, trigger evidence, change, hold period, review date, owner \\
+7–10 days before major gate tests &
+\textbf{HOLD} posture by default; only safety-required corrections; maintain stable foods &
+Any major macro structure change; new food class; fiber overhaul; new supplement category &
+Log any deviation as “novelty event” and treat as validity confounder; default to deferral \\
+Deload/Test week (Stage 3 protected window) &
+Calories set to maintenance; test-day carb redistribution of +50–100 g offset by reduced fat calories &
+New restrictive cuts; new supplements; novelty foods; drastic fiber changes; caffeine pattern changes &
+Log: maintenance-calorie posture applied; test-day carb offset executed; no novelty confirmed \\
+Post-test week (immediate week after protected window) &
+Resume prior posture if recovery stable; otherwise maintenance reset &
+Aggressive deficit escalation in reaction to test results &
+Log: decision, rationale, and hold period; treat recovery markers as primary constraint \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+\subsection*{10.B.3 Adjustment Levers and Priority Order}
+\phantomsection
+\addcontentsline{toc}{subsection}{10.B.3 Adjustment Levers and Priority Order}
+
+Strict priority order (binding):
+
+\begin{enumerate}
+\item Compliance fixes before macro math
+\begin{itemize}
+\item Reduce friction first: simplify choices, reduce optional complexity, standardize meal timing and repeatable staples.
+\item No meal plans generated; only operational simplification rules.
+\end{itemize}
+\item Calorie adjustment step (locked)
+\begin{itemize}
+\item Default structural calorie adjustment step: $\pm$150–250 kcal/day.
+\item Only applied when compliance thresholds are met (see 10.B.4).
+\end{itemize}
+\item Macro distribution tweaks
+\begin{itemize}
+\item Protein floor remains stable within 10.A hybrid-anchor posture; do not cut protein to chase calories.
+\item Fat floor remains 20–30\% except when offsetting test-day carb increase; do not undercut fat floor as a primary lever.
+\item Carbs are the primary lever after protein and fat floor are satisfied.
+\end{itemize}
+\item Maintenance reset (locked)
+\begin{itemize}
+\item Maintenance reset equals 7 days at maintenance.
+\item Used when recovery/performance collapses, diet fatigue risk rises, or restrictive behaviors appear.
+\end{itemize}
+\item Phase-specific bias
+\begin{itemize}
+\item Early phases tolerate deficit more; later phases default to maintenance/near-maintenance per 10.A; do not force loss targets when 10.A indicates maintenance/surplus posture.
+\end{itemize}
+\end{enumerate}
+
+Required table:
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.55]
+    X[l,2.55]
+    X[l,2.15]
+    X[l,2.75]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  cell{1-Z}{1-4} = {fg=black},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Lever} &
+\Hdr{Typical Use Case} &
+\Hdr{Expected Effect} &
+\Hdr{Risk / Control} \\
+Compliance simplification &
+Low on-plan days; planning failure; friction overload &
+Improves adherence and restores signal quality &
+Risk: overcomplication; control: simplify to staple posture and hold \\
+Calorie step $\pm$150–250 &
+Trend too slow (early phases) or too fast (any phase) under adequate compliance &
+Adjusts weight trend without drastic disruption &
+Risk: overcorrection; control: 7–14 day hold \\
+Carb redistribution (no calorie change) &
+Performance/recovery strain without bodyweight trend issue; test-week prep &
+Supports training quality without increasing restriction &
+Risk: GI novelty; control: familiar staples only near gates \\
+Maintenance reset 7 days &
+Sleep/performance collapse, diet fatigue, restrictive behavior risk &
+Restores recovery markers and reduces validity contamination &
+Risk: fear of “losing progress”; control: trend-based evaluation and defined exit rule \\
+Phase bias enforcement &
+Late-phase high consequence testing &
+Prevents under-fueling that invalidates tests &
+Risk: unwanted slow loss; control: accept stability to protect evidence \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+\subsection*{10.B.4 Bodyweight and Waist Trend Decision Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{10.B.4 Bodyweight and Waist Trend Decision Rules}
+
+Locked bands and definitions apply. Compliance thresholds are gating conditions for structural changes.
+
+Compliance thresholds (binding):
+
+\begin{itemize}
+\item Minor tweaks allowed at $\geq$6/7 on-plan days in the last 7 days.
+\item Structural calorie changes require $\geq$12/14 on-plan days in the last 14 days.
+\item If thresholds are not met: do not adjust calories; execute compliance simplification and \textbf{HOLD}.
+\end{itemize}
+
+Meaningful waist reduction (operational definition, non-medical):
+
+\begin{itemize}
+\item Meaningful waist reduction exists when either:
+\begin{itemize}
+\item the weekly waist trend decreases across two consecutive weeks using consistent tape method and consistent landmark posture, OR
+\item the average of the last two weekly waist measures is lower than the prior two-week average by at least the measurement rounding unit used in Stage 2.E.
+\end{itemize}
+\item If method/landmark drift is present: treat waist signal as non-comparable and exclude from plateau logic.
+\end{itemize}
+
+Locked decision rules (if-then):
+
+\begin{itemize}
+\item Too fast loss (sustained):
+\begin{itemize}
+\item If $>0.75\%$ bodyweight/week sustained for 2 consecutive weeks AND compliance $\geq$12/14:
+\begin{itemize}
+\item raise calories by one step (+150 to +250 kcal/day),
+\item preferentially raise carbs while preserving protein and fat floor,
+\item hold 7–14 days unless safety dictates earlier adjustment.
+\end{itemize}
+\end{itemize}
+\item Too slow loss (Phase 00–Phase 05 only):
+\begin{itemize}
+\item If $<0.10\%$ bodyweight/week sustained for 2 consecutive weeks AND compliance $\geq$12/14:
+\begin{itemize}
+\item reduce calories by one step (\verb|~|150 to \verb|~|250 kcal/day) OR tighten discretionary carbs while preserving protein and fat floor,
+\item hold 7–14 days.
+\end{itemize}
+\item Phase 06+ note: later phases may be maintenance-focused; do not force loss targets when 10.A indicates maintenance/surplus posture.
+\end{itemize}
+\item Plateau (trend-based):
+\begin{itemize}
+\item If 14 days with $<0.10\%$ bodyweight change AND no meaningful waist reduction AND compliance $\geq$12/14:
+\begin{itemize}
+\item apply one calorie step reduction (\verb|~|150 to \verb|~|250 kcal/day) OR execute a structured compliance simplification pass first if compliance quality is borderline even though thresholds are met,
+\item hold 7–14 days.
+\end{itemize}
+\end{itemize}
+\item Bodyweight stable but waist improving:
+\begin{itemize}
+\item \textbf{HOLD}; do not cut further.
+\end{itemize}
+\item Bodyweight down but waist not improving and recovery poor:
+\begin{itemize}
+\item \textbf{HOLD} or execute maintenance reset; do not cut further.
+\end{itemize}
+\item Bodyweight up unexpectedly:
+\begin{itemize}
+\item assess sodium/carb swings, adherence drift, and novelty events,
+\item \textbf{HOLD} 7 days unless the 2-week trend confirms upward drift under high compliance.
+\end{itemize}
+\end{itemize}
+
+\begin{landscape}
+
+Required decision table:
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.5]
+    X[l,2.85]
+    X[l,1.75]
+    X[l,2.50]
+    Q[l,wd=.65in]
+    X[l,2.40]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Scenario} &
+\Hdr{Signal Definition trend-based} &
+\Hdr{Immediate Action} &
+\Hdr{Next-Step Adjustment} &
+\Hdr{Hold Period} &
+\Hdr{Notes} \\
+Too fast loss &
+$>0.75\%$ \textbf{BW}/week for 2 consecutive weeks; compliance $\geq$12/14 &
+Increase calories +150–250 &
+Prefer carbs upshift; maintain protein; fat within floor band &
+7–14 days &
+Protect recovery and validity; do not “reward” with novelty foods \\
+Too slow loss (Phase 00–05) &
+$<0.10\%$ \textbf{BW}/week for 2 consecutive weeks; compliance $\geq$12/14 &
+Reduce calories by 150-250 &
+Prefer carb reduction; preserve protein; keep fat floor &
+7–14 days &
+If compliance is borderline, simplify first; do not cut on poor compliance \\
+Plateau &
+14 days $<0.10\%$ \textbf{BW} change + no meaningful waist reduction; compliance $\geq$12/14 &
+Simplify or step-reduce &
+One step reduction if simplification already optimized &
+7–14 days &
+Waist signal used only if method/landmarks stable \\
+\textbf{BW} stable, waist improving &
+Waist down across 2 weeks under consistent method; \textbf{BW} flat &
+\textbf{HOLD} &
+None &
+7–14 days &
+Do not cut further; preserve performance/recovery \\
+\textbf{BW} down, waist flat, recovery poor &
+\textbf{BW} down but waist not improving; sleep/fatigue/soreness trending worse &
+\textbf{HOLD} or maintenance reset &
+7 days maintenance reset &
+7 days reset, then 7-day reassess &
+Avoid compounding restriction with recovery collapse \\
+\textbf{BW} up, short-term &
+\textbf{BW} up within 7 days; no 2-week upward trend; possible sodium/carb swing &
+\textbf{HOLD} &
+None unless 2-week trend confirms &
+7 days &
+Do not react to single week noise; check novelty events and compliance quality \\
+Compliance below threshold &
+$<12/14$ on-plan days &
+Compliance simplification &
+No structural calorie change allowed &
+7 days &
+Restore signal quality before adjustment \\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+\newpage
+\subsection*{10.B.5 Performance and Recovery Protection Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{10.B.5 Performance and Recovery Protection Rules}
+
+Do-not-cut and/or shift-to-maintenance triggers (non-medical, operational) using Stage 2 readiness markers:
+
+Triggers must include:
+
+\begin{itemize}
+\item persistent sleep debt trend (sleep hours down and/or sleep quality down),
+\item persistent elevated soreness or fatigue trend,
+\item performance regression on key markers or failed test weeks under \textbf{VALID} evidence posture,
+\item frequent \textbf{MODIFIED} or \textbf{INVALID} sessions due to fatigue or illness posture (Stage 1.F validity discipline),
+\item illness flags and systemic symptoms.
+\end{itemize}
+
+Required table:
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.35]
+    X[l,2.55]
+    X[l,2.35]
+    X[l,2.35]
+    X[l,1.95]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Trigger Cluster} &
+\Hdr{Example Signals} &
+\Hdr{Nutrition Response} &
+\Hdr{Gate Impact} &
+\Hdr{Documentation} \\
+Sleep debt cluster &
+\textbf{ST-SLEEP-HRS} (\textbf{MET-2B-038}) down for several days; \textbf{ST-SLEEP-QUAL-0-10} (\textbf{MET-2B-039}) low trend &
+\textbf{HOLD} deficit; move to maintenance if persistent; consider maintenance reset &
+Near gates: \textbf{HOLD} deficit and protect validity; reslot if tests would be compromised &
+Log signals; log response; note hold/reset period \\
+Fatigue/soreness cluster &
+\textbf{ST-FATIGUE-0-10} (\textbf{MET-2B-041}) elevated trend; \textbf{ST-SORENESS-0-10} (\textbf{MET-2B-040}) elevated trend &
+\textbf{HOLD} or maintenance reset; do not cut further &
+Gate posture: avoid new restriction near protected windows; prioritize admissible evidence &
+Log cluster; record decision; set review date \\
+Valid performance regression &
+\textbf{VALID} test regression vs required tier posture OR repeated poor session performance notes under high compliance &
+\textbf{HOLD} deficit; consider maintenance reset; keep protein stable &
+Gate posture: default to \textbf{HOLD} for progression if performance evidence degrades; protect retest feasibility &
+Log test IDs and results; log nutrition action and hold \\
+Validity contamination &
+Increased \textbf{MODIFIED}/\textbf{INVALID} sessions due to fatigue/illness; inability to meet Cardio continuity reliably &
+\textbf{HOLD} deficit; simplify; consider maintenance reset &
+Gate posture: inadmissible evidence cannot support advancement; reslot per Stage 3 &
+Log validity distribution and reasons; log nutrition response \\
+Illness/systemic symptoms &
+fever, acute respiratory illness, severe GI distress (non-diagnostic) &
+Suspend deficit; move to maintenance; focus on hydration safety; resume only when stable &
+Gate posture: tests reslot; \textbf{MEDICAL} \textbf{HOLD} may apply per governance when indicated &
+Log symptom flags; log nutrition posture change; document return criteria \\
+\end{longtblr}
+
+\endgroup
+
+Rules (binding):
+
+\begin{itemize}
+\item Near gates, recovery protection overrides weight-loss preference: default posture is hold maintenance and protect validity rather than cutting further.
+\item No medical diagnosis; refer to escalation posture when red flags occur.
+\end{itemize}
+
+\newpage
+\subsection*{10.B.6 Deload/Test Week Nutrition Adjustment Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{10.B.6 Deload/Test Week Nutrition Adjustment Rules}
+
+Binding rule:
+
+\begin{itemize}
+\item On Deload/Test weeks, calories are set to maintenance (even if currently surplus posture exists in later phases, maintain maintenance posture for that Deload/Test week unless Stage 10.A explicitly already at maintenance; in either case, do not cut).
+\end{itemize}
+
+Allowed changes:
+
+\begin{itemize}
+\item On test day(s): +50–100 g carbs offset by equal calories reduced from fats.
+\item Protein maintained within 10.A posture.
+\item Fat remains within 20–30\% floor band after offset (the offset is a distribution change, not a floor violation).
+\end{itemize}
+
+Not allowed:
+
+\begin{itemize}
+\item new restrictive cuts,
+\item new supplements or new supplement category introductions (7.03–7.06 changes discouraged; 7.02 never required),
+\item novelty foods,
+\item drastic fiber changes.
+\end{itemize}
+
+Required table:
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.55]
+    X[l,2.10]
+    X[l,2.75]
+    X[l,2.45]
+    X[l,2.10]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Week Type} &
+\Hdr{Goal} &
+\Hdr{Allowed Changes} &
+\Hdr{Not Allowed} &
+\Hdr{Notes} \\
+Deload/Test week &
+Protect recovery and test validity &
+Calories to maintenance; protein stable; carbs are upshifted; fat is reduced only to offset the test-day carb increase &
+New deficits; new foods; new supplement category changes; caffeine pattern changes &
+Treat as controlled-variable week; no novelty posture is binding \\
+Test day within Deload/Test week &
+Reduce fatigue contamination and stabilize output &
++50–100 g carbs; offset calories from fats; protein stable &
+New GI-risk foods; high-fiber experiments; “performance hacks” &
+Use familiar staples; log any deviation as novelty event \\
+Non-test days in Deload/Test week &
+Preserve stability &
+Hold maintenance calories; stable foods &
+“Catch-up restriction” after prior week &
+Maintain stable routine; do not compensate \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+\subsection*{10.B.7 Life-Constraint Overrides}
+\phantomsection
+\addcontentsline{toc}{subsection}{10.B.7 Life-Constraint Overrides}
+
+Minimum viable execution rules (operational, non-programming):
+
+\begin{itemize}
+\item Unstable access (food availability, schedule volatility)
+\begin{itemize}
+\item prioritize protein adequacy and calorie control using staples,
+\item simplify food variety to reduce planning friction,
+\item maintain tracking and on-plan day counting discipline.
+\end{itemize}
+\item Limited cooking tools
+\begin{itemize}
+\item operate within 7.13 minimal tooling posture,
+\item assembly-meal posture allowed (simple combinations), no meal plan generation,
+\item focus on repeatability and food safety.
+\end{itemize}
+\item Travel and work disruption
+\begin{itemize}
+\item portable baseline concept: stable “default meal structure” posture using accessible staples,
+\item maintain tracking and on-plan day posture,
+\item avoid novelty near gates; stabilize earlier.
+\end{itemize}
+\item Adherence collapse
+\begin{itemize}
+\item simplify to Tier 1 execution posture,
+\item remove optional complexity and hold structural changes until compliance meets thresholds.
+\end{itemize}
+\end{itemize}
+
+Required decision table:
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.20]
+    X[l,1.85]
+    X[l,2.20]
+    X[l,2.85]
+    X[l,1.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Constraint} &
+\Hdr{Example} &
+\Hdr{Immediate Action} &
+\Hdr{7-Day Plan operational} &
+\Hdr{When to Re-evaluate} \\
+Unstable access &
+missed prep, irregular meal timing &
+Simplify to staples; keep protein stable &
+Repeatable staple pattern; track daily; maintain food safety &
+Next weekly review \\
+Limited tools &
+no stove access temporarily &
+Use 7.13 minimal tools; choose safe ready-to-eat staples &
+Maintain protein and calories within posture; no novelty near gates &
+7 days \\
+Travel disruption &
+hotel/work travel week &
+Portable baseline; maintain tracking &
+Hold macro posture; avoid new foods near gates; prioritize hydration safety &
+Weekly review or post-travel \\
+Adherence collapse &
+$<6/7$ on-plan days &
+Hold macro changes; simplify &
+Remove optional foods/complexity; rebuild compliance to $\geq$12/14 for structural change &
+After 7 days, then 14-day threshold \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+\subsection*{10.B.8 Documentation and Change Control}
+\phantomsection
+\addcontentsline{toc}{subsection}{10.B.8 Documentation and Change Control}
+
+Nutrition Adjustment Log template:
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.55]
+    X[l,2.35]
+    X[l,2.10]
+    X[l,4.00]
+    X[l,3.40]
+    X[l,2.35]
+    X[l,2.10]
+    X[l,2.10]
+    X[l,6.00]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Date} &
+\Hdr{Phase/Week} &
+\Hdr{Change} &
+\Hdr{Trigger(s)} &
+\Hdr{Intended Outcome} &
+\Hdr{Hold Period} &
+\Hdr{Review Date} &
+\Hdr{Owner} &
+\Hdr{Notes} \\
+\end{longtblr}
+
+\endgroup
+
+Rules (binding):
+
+\begin{itemize}
+\item Owner must be one of: Coach Lead, Trainee, Medical, Equipment Lead.
+\item Every change must include:
+\begin{itemize}
+\item trigger evidence summary (weekly \textbf{BW} avg + waist trend if comparable + recovery markers + compliance counts),
+\item hold period (7–14 days unless safety),
+\item review date.
+\end{itemize}
+\item No mid-gate novelty posture:
+\begin{itemize}
+\item changes inside the no-novelty window require explicit documentation and should default to deferral unless safety.
+\end{itemize}
+\item Changes must remain within 10.A posture; no independent diet system is permitted.
+\end{itemize}
+
+\newpage
+\subsection*{10.B.9 Safety and Escalation Notes}
+\phantomsection
+\addcontentsline{toc}{subsection}{10.B.9 Safety and Escalation Notes}
+
+\begin{itemize}
+\item Red-flag symptoms override the plan:
+\begin{itemize}
+\item dizziness or fainting,
+\item chest pain or pressure,
+\item syncope or near-syncope,
+\item severe GI distress,
+\item heat illness signs,
+\item \textrightarrow{} stop and seek evaluation per governance; resume only after stability is restored.
+\end{itemize}
+\item Disordered-eating warning signs (operational language):
+\begin{itemize}
+\item escalating restriction beyond rules,
+\item binge/purge behaviors,
+\item obsessional tracking distress that destabilizes execution,
+\item avoidance of eating or persistent fear-driven under-eating,
+\item \textrightarrow{} seek professional support posture; do not intensify restriction; default to maintenance reset and simplification.
+\end{itemize}
+\item Caffeine change posture (locked):
+\begin{itemize}
+\item no caffeine pattern changes within 14 days of gate windows,
+\item outside that window, changes are allowed only with logging (date, reason, expected effect) and hold periods; do not stack caffeine changes with other major changes.
+\end{itemize}
+\end{itemize}
+
+\newpage
+\subsection*{10.B.10 Adjustment Integrity Checks}
+\phantomsection
+\addcontentsline{toc}{subsection}{10.B.10 Adjustment Integrity Checks}
+
+\begin{itemize}
+\item Decisions are trend-based, not single-day; weekly bodyweight average is the primary weight signal.
+\item Calorie adjustment step size is enforced: $\pm$150–250 kcal/day; no larger jumps except via maintenance reset (planned 7-day maintenance).
+\item Compliance thresholds are enforced:
+\begin{itemize}
+\item $\geq$6/7 on-plan days for minor tweaks,
+\item $\geq$12/14 on-plan days for structural calorie changes.
+\end{itemize}
+\item Protein floor is maintained within 10.A hybrid-anchor posture; protein is not cut to “make room” for restriction.
+\item Fat floor remains within 20–30\% of calories except for test-day carb offset mechanics; no chronic undercutting of fat floor.
+\item Deload/Test weeks set calories to maintenance by rule; test-day carb redistribution (+50–100 g) is implemented by offsetting fat calories; no novelty foods.
+\item No novelty near gates is enforced:
+\begin{itemize}
+\item no major structure changes in final 7–10 days before major gates,
+\item caffeine pattern changes prohibited within 14 days of gate windows.
+\end{itemize}
+\item Every change is documented with date (YYYY-MM-DD), trigger evidence, hold period, review date, and owner role taxonomy.
+\item Maintenance reset is used as the safety valve when recovery/performance collapses or restrictive behavior risk rises; exit only when readiness markers stabilize.
+\item Feasibility under start-from-zero constraints is preserved; simplification precedes math; no meal plans or specialty procurement requirements.
+\item Missing-data posture is enforced: \textbf{MISSING}/\textbf{UNKNOWN} recorded; no inference; default \textbf{HOLD} when signal quality is insufficient.
+\item Any upstream conflict is labeled "Requires Stage 8 review" rather than silently changed; this deliverable does not rewrite 10.A.
+\end{itemize}
+
+\end{document}

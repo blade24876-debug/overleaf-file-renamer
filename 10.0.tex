@@ -1,0 +1,441 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{tcolorbox}
+\begin{center}
+Stage 10 — Nutrition Operating System\\[0.35em]
+\textbf{SOF} Physical Development Transformation Program\\[0.25em]
+182-Week Civilian-to-Selection Readiness Pipeline\\[0.65em]
+\TitleLine
+\end{center}
+\end{tcolorbox}
+
+\vspace{0.35em}
+
+\section*{Stage 10 — Nutrition Operating System}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 10 — Nutrition Operating System}
+
+\subsection*{Introduction}
+\phantomsection
+\addcontentsline{toc}{subsection}{Introduction}
+
+\subsubsection*{1) Purpose}
+
+Stage 10 defines the Nutrition Operating System for the 182-week pipeline. It provides a governed, operational nutrition framework that supports body composition change from the fixed start-state to the end-state envelope while protecting recovery, training performance, and the validity of gate evidence. Stage 10 is a control system and decision ladder; it does not override training governance, test protocols, phase purposes, or equipment timelines defined upstream.
+
+Stage 10 exists to replace improvisation with auditable rules: stable inputs, controlled adjustments, conservative guardrails, and timing discipline aligned to protected test windows.
+
+\subsubsection*{2) Scope}
+
+\paragraph*{Inclusions}
+
+\begin{itemize}
+\item Stage 10 internal deliverable set (listed for completeness; not output here):
+  \begin{itemize}
+  \item 10.A Macro Ladder Phases 00–13
+  \item 10.B Adjustment Rules
+  \item 10.C Hydration and Electrolytes Operating System
+  \item 10.D Troubleshooting Ladders
+  \end{itemize}
+\item Macro ladder by phase (10.A) defining a phase-appropriate operating posture that supports the training continuum without redefining it.
+\item Adjustment rules (10.B) defining when and how changes are made (small-step, hold periods, trend-based) and how to avoid churn that contaminates validity.
+\item Hydration/electrolytes operating system (10.C) defining numeric hydration/electrolyte targets and operational controls that preserve performance and safety without unsafe practices.
+\item Troubleshooting ladders (10.D) defining common failure patterns (hunger spikes, adherence collapse, stalls, GI tolerance issues) and conservative corrective pathways.
+\item Measurement interface anchored to Stage 2 and Stage 2.E:
+  \begin{itemize}
+  \item weekly bodyweight average,
+  \item circumference suite,
+  \item recovery markers,
+  \item performance markers,
+  \item validity tags and admissibility posture for decision use.
+  \end{itemize}
+\item Timing interface anchored to Stage 3:
+  \begin{itemize}
+  \item Deload/Test windows,
+  \item reslot posture and no-stacking discipline,
+  \item “no novelty near gates/test weeks” posture for diet variables.
+  \end{itemize}
+\end{itemize}
+
+Required safety postures declared as binding for Stage 10:
+
+\begin{itemize}
+\item Weight-loss guardrail: average planned loss must not exceed 0.5\% bodyweight per week.
+\item No planned refeeds or diet breaks.
+\item Adjustments occur only via Stage 10.2 rules.
+\item No novelty near gates/test weeks posture is enforced as a controlled-variable rule.
+\item Red-flag symptom stop posture and escalation is preserved (non-medical referral posture).
+\end{itemize}
+
+Supplements posture in Stage 10:
+
+\begin{itemize}
+\item Supplements may be referenced only by category IDs 7.03–7.06 as optional supports.
+\item 7.02 remains education-only and never required.
+\item No supplement dosing guidance is provided in the Stage 10 Introductory Page.
+\end{itemize}
+
+\paragraph*{Exclusions}
+
+\begin{itemize}
+\item No training programming, workouts, or performance prescriptions.
+\item No medical diagnosis or treatment guidance.
+\item No prescription drug guidance.
+\item No hormone dosing/sourcing/cycling/procurement guidance.
+\item No meal plans, recipes, grocery lists, or product catalogs.
+\item No supplement dosing; only category-level optional references are permitted.
+\end{itemize}
+
+\subsubsection*{3) How to Use}
+
+\paragraph*{Coach Lead}
+
+\begin{itemize}
+\item Implement Stage 10 alongside training phases as a stability-first operating system:
+  \begin{itemize}
+  \item preserve controlled variables near protected test windows,
+  \item avoid rapid diet changes that alter recovery and invalidate comparisons,
+  \item enforce the 0.5\% bodyweight-per-week planned loss guardrail as a safety and performance control.
+  \end{itemize}
+\item Use Stage 2 metrics and Stage 2.E logging fields as the decision interface:
+  \begin{itemize}
+  \item decisions are trend-based, not single-day reactive.
+  \end{itemize}
+\item Apply Stage 10.B adjustment rules only at defined review points and with hold periods, especially around Deload/Test windows.
+\item When conflicts with upstream constraints are detected (e.g., a nutrition change that would break “no novelty near gates”), flag Requires Stage 8 review rather than altering upstream doctrine.
+\end{itemize}
+
+\paragraph*{Trainee}
+
+\begin{itemize}
+\item Execute daily tracking and weekly review discipline using the prescribed measurement fields:
+  \begin{itemize}
+  \item record bodyweight per posture and compute weekly average,
+  \item record circumference suite per cadence,
+  \item record recovery markers (sleep, soreness, fatigue, pain flags) for readiness context,
+  \item maintain honest logging; do not backfill by memory.
+  \end{itemize}
+\item Maintain stability:
+  \begin{itemize}
+  \item do not improvise changes week-to-week,
+  \item do not introduce new diet variables during Deload/Test windows,
+  \item follow the adjustment ladder rather than “making up” for bad days with extremes.
+  \end{itemize}
+\end{itemize}
+
+\paragraph*{Test-week posture (validity protection)}
+
+\begin{itemize}
+\item Treat Deload+Test windows as protected from novelty:
+  \begin{itemize}
+  \item maintain stable nutrition inputs to avoid confounding performance evidence,
+  \item if a deviation occurs, log it as a controlled-variable deviation and interpret test results conservatively.
+  \end{itemize}
+\item Do not use test weeks to introduce new restrictions, new hydration patterns, or novel supplement categories.
+\end{itemize}
+
+\subsubsection*{4) Inputs and Assumptions}
+
+\paragraph*{Inputs}
+
+\begin{itemize}
+\item Stage 0 start-state and end-state envelope anchors:
+  \begin{itemize}
+  \item fixed start-state (age/height/weight/body fat, sedentary posture),
+  \item end-state targets (bodyweight and body fat envelope, performance targets).
+  \end{itemize}
+\item Phase structure and durations from Stages 4–5 (Phase 00–13, fixed durations).
+\item Measurement fields from Stage 2 and Stage 2.E:
+  \begin{itemize}
+  \item bodyweight weekly average,
+  \item circumference suite,
+  \item recovery markers,
+  \item compliance markers,
+  \item missing-data doctrine (record \textbf{MISSING}/\textbf{UNKNOWN}; no inference).
+  \end{itemize}
+\item Scheduling and reslot posture from Stage 3:
+  \begin{itemize}
+  \item Deload+Test windows and protected timing,
+  \item adjustment rules for illness/regression/risk flags,
+  \item no novelty near gates/test weeks.
+  \end{itemize}
+\item Tooling feasibility from Stage 7.13 minimal-path posture:
+  \begin{itemize}
+  \item basic container and hydration systems,
+  \item cleaning and food safety posture,
+  \item no reliance on specialty or expensive infrastructure for baseline execution.
+  \end{itemize}
+\end{itemize}
+
+\paragraph*{Assumption Ledger only if needed}
+
+\begin{itemize}
+\item A tracking method is available (paper or digital), with offline fallback if needed.
+\item Ability to weigh and measure weekly using stable tools and stable routines.
+\end{itemize}
+
+\subsubsection*{5) Interfaces}
+
+\paragraph*{Upstream dependencies}
+
+\begin{itemize}
+\item Stage 0–5 constraints and phase sequencing govern training dose and gates; Stage 10 must support them without altering them.
+\item Stage 2 measurement and Stage 2.E logging conventions provide the metrics and required fields used for nutrition decisions.
+\item Stage 3 timing and reslot rules provide protected windows and no-novelty constraints that Stage 10 must respect.
+\item Stage 7.13 provides the tooling layer for food prep and hydration system feasibility.
+\end{itemize}
+
+\paragraph*{Downstream consumers}
+
+\begin{itemize}
+\item Execution decisions and gate validity protection:
+  \begin{itemize}
+  \item Stage 10 ensures nutrition does not become a hidden confounder during gate evidence collection.
+  \end{itemize}
+\item Packaging and versioning updates:
+  \begin{itemize}
+  \item any changes to Stage 10 must be controlled and recorded with patch discipline and revalidation against Stage 3 protected windows and Stage 2 measurement posture.
+  \end{itemize}
+\end{itemize}
+
+\paragraph*{Crosswalk hooks}
+
+\begin{itemize}
+\item Body composition measures:
+  \begin{itemize}
+  \item weekly bodyweight average,
+  \item circumference suite,
+  \item body fat estimate method recorded.
+  \end{itemize}
+\item Recovery markers:
+  \begin{itemize}
+  \item sleep hours/quality,
+  \item soreness/fatigue,
+  \item pain flags and foot flags.
+  \end{itemize}
+\item Deload/test week markers:
+  \begin{itemize}
+  \item protected windows and “no novelty” enforcement points.
+  \end{itemize}
+\item Change-log and patch discipline:
+  \begin{itemize}
+  \item patches recorded, impact level identified, and Stage 8 crosswalk impact review invoked when relevant.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{6) Gate / Acceptance Criteria for Stage 10}
+
+Stage 10 is complete and deployable when:
+
+\begin{itemize}
+\item All four deliverables (10.1–10.4) are produced and internally consistent with Stages 0–9 constraints.
+\item Numeric hydration/electrolyte targets exist in 10.3 (as required by Stage 10 scope) and are framed as operational targets without unsafe practices.
+\item Adjustment rules (10.2) enforce:
+  \begin{itemize}
+  \item small-step changes,
+  \item defined hold periods,
+  \item trend-based decisions using Stage 2 metrics and Stage 2.E logging posture,
+  \item the 0.5\% bodyweight-per-week planned loss guardrail.
+  \end{itemize}
+\item No planned refeeds or diet breaks posture is preserved.
+\item No novelty near gates/test weeks posture is preserved and explicitly operationalized.
+\item Feasibility under start-from-zero resources is preserved and does not require specialized equipment beyond Stage 7.13 minimal-path posture.
+\item Any detected conflict with upstream doctrine is flagged as Requires Stage 8 review rather than silently altering upstream content.
+\end{itemize}
+
+\subsubsection*{7) Common Failure Modes + Controls}
+
+\begin{itemize}
+\item Over-aggressive restriction → enforce 0.5\% bodyweight-per-week planned loss guardrail; use maintenance reset posture via Stage 10.2 rather than escalating restriction.
+\item Novelty near gate tests → enforce no novelty near gates/test weeks; stabilize inputs before protected windows; log deviations and interpret tests conservatively.
+\item Treating supplements as required → prohibit; reference only optional category-level supports 7.03–7.06; 7.02 remains education-only and never required.
+\item Poor data quality → enforce Stage 2.E field discipline; record \textbf{MISSING}/\textbf{UNKNOWN}; do not infer; do not make decisions from incomplete data.
+\item Dehydration extremes → prohibit; Stage 10.3 must explicitly prevent water-cut practices and define safe operational rules; red-flag symptom stop posture applies.
+\item Churn and weekly over-adjustment → enforce Stage 10.2 hold periods and review cadence; changes occur only by rule, not by mood.
+\end{itemize}
+
+\subsubsection*{8) Versioning Notes}
+
+\begin{itemize}
+\item Stage 10 is v1.0 aligned to program doctrine and the Stage 3 protected-window validity posture.
+\item Changes require change control:
+  \begin{itemize}
+  \item patch records with impact level and revalidation scope,
+  \item revalidation of interactions with test weeks and gate validity,
+  \item conflicts flagged as Requires Stage 8 review rather than silent edits.
+  \end{itemize}
+\item Cosmetic corrections are permitted only when meaning is unchanged; substantive changes require logged patching and crosswalk impact assessment.
+\end{itemize}
+
+\end{document}

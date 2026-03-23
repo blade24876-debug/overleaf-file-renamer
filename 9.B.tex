@@ -1,0 +1,349 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{landscape}
+\section*{9.B — Artifact Index and Folder Structure}
+\phantomsection
+\addcontentsline{toc}{section}{9.B — Artifact Index and Folder Structure}
+
+\subsection*{9.B.1 Artifact Table}
+\phantomsection
+\addcontentsline{toc}{subsection}{9.B.1 Artifact Table}
+
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.20in]
+    X[l,2.95]
+    X[l,3.00]
+    X[l,3.85]
+    X[l,1.50]
+    Q[l,wd=0.25in]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Stage} &
+\Hdr{Artifact Name} &
+\Hdr{Description} &
+\Hdr{Recommended Filename} &
+\Hdr{Depends On} &
+\Hdr{User} \\
+01 & Stage 0 — Program Snapshot and Usage Doctrine & Canonical program identity, constraints, targets, and usage doctrine packaged as Stage 0 artifact and stored under Stage 1 folder group & 01-00\_Stage\_0\_Program\_Snapshot\_and\_Usage\_Doctrine\_\_v-1.0.pdf & Stage 0 source & Coach \\
+01 & 1.A — Project Charter & Program charter defining scope, roles, and governance posture & 01-1.A\_Project\_Charter\_\_v-1.0.pdf & Stage 0 & Coach \\
+01 & 1.B — Key Risks and Mitigations & Risk register table: Risk, Trigger/Signal, Impact, Likelihood, Mitigation, Owner & 01-1.B\_Key\_Risks\_and\_Mitigations\_\_v-1.0.pdf & Stage 0; Stage 1.A & Coach \\
+01 & 1.C — Assumptions and Dependencies & Assumptions/dependencies table and dependency failure doctrine & 01-1.C\_Assumptions\_and\_Dependencies\_\_v-1.0.pdf & Stage 0; Stage 1.B; Stage 1.F & Coach \\
+01 & 1.D — Milestone Plan and Output Order & Stage sequencing and gate milestones for build order discipline & 01-1.D\_Milestone\_Plan\_and\_Output\_Order\_\_v-1.0.pdf & Stage 0; Stage 1.A–1.C & Coach \\
+01 & 1.E — Standardized Templates & Overview and Phase Row templates used across artifacts & 01-1.E\_Standardized\_Templates\_\_v-1.0.pdf & Stage 1.A & Coach \\
+01 & 1.F — Governance Rules and Validity Doctrine & Validity tags, admissibility, stop rules, freeze windows, patch/change control & 01-1.F\_Governance\_Rules\_and\_Validity\_Doctrine\_\_v-1.0.pdf & Stage 0.5; Stage 1.A–1.E & Coach \\
+02 & Stage 2 — Measurement, Standards, and Test Protocol & Stage 2 binder including 2.A–2.E measurement architecture & 02-02\_Stage\_2\_Measurement\_Standards\_and\_Test\_Protocol\_\_v-1.0.pdf & Stage 0; Stage 1.F & Coach \\
+02 & 2.A — Domain Taxonomy & Canonical domain tags and tagging rules DOM-2A-\#\#\# & 02-2.A\_Domain\_Taxonomy\_\_v-1.0.pdf & Stage 1.F & Coach \\
+02 & 2.B — Metrics and Test Inventory & \textbf{MET-2B}-\#\#\# master metric inventory and protocol coverage map & 02-2.B\_Metrics\_and\_Test\_Inventory\_\_v-1.0.pdf & Stage 2.A; Stage 1.F & Coach \\
+02 & 2.C — Standardized Test Protocol Cards \textbf{C1}–\textbf{C18} & Protocol library defining admissible test execution and invalidation triggers & 02-2.C\_Standardized\_Test\_Protocol\_Cards\_C1\_C18\_\_v-1.0.pdf & Stage 2.A; Stage 2.B; Stage 1.F & Coach \\
+02 & 2.D — Performance Thresholds and Alignment & \textbf{ENTRY} / \textbf{INTERMEDIATE} / \textbf{SELECTION-READY} thresholds aligned to Stage 0.3 targets & 02-2.D\_Performance\_Thresholds\_and\_Alignment\_\_v-1.0.pdf & Stage 2.B; Stage 2.C; Stage 0.3 & Coach \\
+02 & 2.E — Data Recording and Test Logistics Conventions & Canonical logging schemas, binder standard, IDs, and missing-data doctrine & 02-2.E\_Data\_Recording\_and\_Test\_Logistics\_Conventions\_\_v-1.0.pdf & Stage 1.F; Stage 2.A–2.D & Coach \\
+03 & Stage 3 — Test Calendar, Deload Map, and Macro Stress Pattern & Stage 3 binder including 3.A–3.E scheduling doctrine & 03-03\_Stage\_3\_Test\_Calendar\_Deload\_Map\_and\_Macro\_Stress\_Pattern\_\_v-1.0.pdf & Stage 1.F; Stage 2; Stage 0 & Coach \\
+03 & 3.A — Design Principles for Testing and Deloads & Stacking/spacing doctrine; deload=test week posture; environment reslot posture & 03-3.A\_Design\_Principles\_for\_Testing\_and\_Deloads\_\_v-1.0.pdf & Stage 1.F; Stage 2 & Coach \\
+03 & 3.B — Phase-Level Stress and Test Map & Phase-level work:deload patterns and major test windows by phase & 03-3.B\_Phase\_Level\_Stress\_and\_Test\_Map\_\_v-1.0.pdf & Stage 3.A; Stage 2 & Coach \\
+03 & 3.C — Test Cadence by Metric Type & Cadence doctrine by metric/test type and segment & 03-3.C\_Test\_Cadence\_by\_Metric\_Type\_\_v-1.0.pdf & Stage 3.A; Stage 3.B; Stage 2 & Coach \\
+03 & 3.D — Integrated Phase Calendars Compact Form & Compact calendars per phase with stress blocks and protected windows & 03-3.D\_Integrated\_Phase\_Calendars\_Compact\_Form\_\_v-1.0.pdf & Stage 3.A–3.C; Stage 2 & Coach \\
+03 & 3.E — Adjustment Rules for Illness, Regression, and Risk Flags & Reslot/extension doctrine; no stacking makeups; \textbf{HOLD}/\textbf{REGRESS}/\textbf{MEDICAL} \textbf{HOLD} posture & 03-3.E\_Adjustment\_Rules\_for\_Illness\_Regression\_and\_Risk\_Flags\_\_v-1.0.pdf & Stage 1.F; Stage 2; Stage 3.A–3.D & Coach \\
+04 & Stage 4 — Phase 00 Specification & Stage 4 binder for Phase 00 (4.A–4.G) & 04-04\_Stage\_4\_Phase\_00\_Specification\_\_v-1.0.pdf & Stage 0–3 & Coach \\
+04 & Stage 4 — Phase 00 Introductory Page & Phase 00 specification framing and interfaces & 04-04\_Stage\_4\_Phase\_00\_Introductory\_Page\_\_v-1.0.pdf & Stage 0–3 & Coach \\
+04 & 4.A — Phase 00 Overview Phase Row Template & Phase 00 mission, constraints, test batteries, exit posture, dependencies & 04-4.A\_Phase\_00\_Overview\_Phase\_Row\_Template\_\_v-1.0.pdf & Stage 3; Stage 2; Stage 1.F & Coach \\
+04 & 4.B — Phase 00 Timeline and Microcycle Structure & Phase 00 4×4-week segments and deload/test week modifiers & 04-4.B\_Phase\_00\_Timeline\_and\_Microcycle\_Structure\_\_v-1.0.pdf & Stage 3; Stage 4.A; Stage 1.F & Coach \\
+04 & 4.C — Movement Menu Regressions and Progressions & Phase 00-safe movement menu and progression/regression doctrine & 04-4.C\_Movement\_Menu\_Regressions\_and\_Progressions\_\_v-1.0.pdf & Stage 4.B; Stage 1.F & Coach \\
+04 & 4.D — Intensity Volume and Progression Rules & Phase 00 intensity anchors and downshift rules; no programming & 04-4.D\_Intensity\_Volume\_and\_Progression\_Rules\_\_v-1.0.pdf & Stage 4.A–4.C; Stage 1.F & Coach \\
+04 & 4.E — Testing Within Phase 00 Scaled Use of Stage 2 Protocols & Phase 00 test categorization and scaling boundaries tied to Stage 2 & 04-4.E\_Testing\_Within\_Phase\_00\_and\_Scaled\_Use\_of\_Stage\_2\_Protocols\_\_v-1.0.pdf & Stage 2; Stage 3; Stage 4.A & Coach \\
+04 & 4.F — Safety Red-Flag Criteria and Stop Rules & Phase 00 specific overlays on Stage 0.5 and Stage 1.F safety posture & 04-4.F\_Safety\_Red\_Flag\_Criteria\_and\_Stop\_Rules\_\_v-1.0.pdf & Stage 0.5; Stage 1.F; Stage 3.E & Coach \\
+04 & 4.G — Exit Standards Safe Entry to Phase 01 & Objective exit gate standards for Phase 00 & 04-4.G\_Exit\_Standards\_Safe\_Entry\_to\_Phase\_01\_\_v-1.0.pdf & Stage 4.A; Stage 1.F; Stage 2; Stage 3 & Coach \\
+05 & Stage 5 — Macro Design for Phases 01–13 & Stage 5 binder including 5.A–5.E macro design artifacts & 05-05\_Stage\_5\_Macro\_Design\_for\_Phases\_01\_13\_\_v-1.0.pdf & Stage 0–4; Stage 2; Stage 3 & Coach \\
+05 & Stage 5 — Introductory Page & Stage 5 purpose/scope/interfaces for Phase 01–13 macro design & 05-05\_Stage\_5\_Introductory\_Page\_\_v-1.0.pdf & Stage 0–4 & Coach \\
+05 & 5.A — Master Macro-Phase Table Compact Overview & Executive macro map Phase 01–13 with gates and capability notes & 05-5.A\_Master\_Macro\_Phase\_Table\_Compact\_Overview\_\_v-1.0.pdf & Stage 2; Stage 3; Stage 6; Stage 7 & Coach \\
+05 & 5.B — Detailed Phase Cards Phase 01–13 & Phase Row Template cards for each phase (one file per phase) & 05-5.B\_Detailed\_Phase\_Cards\_Phase\_01\_13\_\_v-1.0.pdf & Stage 2; Stage 3; Stage 6; Stage 7; \textbf{ISS-08-001}–\textbf{ISS-08-010} as applicable & Coach \\
+05 & 5.C — Adaptation Sequencing Narrative 3.5-Year Logic & Narrative sequencing logic and transition/domain emphasis tables & 05-5.C\_Adaptation\_Sequencing\_Narrative\_3\_5\_Year\_Logic\_\_v-1.0.pdf & Stage 0–4; Stage 2; Stage 3; Stage 6; Stage 7 & Coach \\
+05 & 5.D — Phase Dependencies and Gating Rules & Adjacent transition gate matrix and dependency clustering & 05-5.D\_Phase\_Dependencies\_and\_Gating\_Rules\_\_v-1.0.pdf & Stage 1.C; Stage 1.F; Stage 2; Stage 3; Stage 6 & Coach \\
+05 & 5.E — Alignment With Test Calendar and Deload Map & QA artifact verifying Stage 5 aligns with Stage 3 and Stage 2 & 05-5.E\_Alignment\_With\_Test\_Calendar\_and\_Deload\_Map\_\_v-1.0.pdf & Stage 2; Stage 3; Stage 5; Stage 8 & Coach \\
+06 & Stage 6 — Phase-by-Phase Equipment and Resource Build-Out & Stage 6 binder including 6.A–6.E capability timing maps & 06-06\_Stage\_6\_Equipment\_and\_Resource\_Build\_Out\_\_v-1.0.pdf & Stage 5; Stage 3; Stage 2 & Coach \\
+06 & Stage 6 — Introductory Page & Stage 6 scope, tier system, timing tokens & 06-06\_Stage\_6\_Introductory\_Page\_\_v-1.0.pdf & Stage 0–5 & Coach \\
+06 & 6.A — Category and Tier Definitions & Defines category taxonomy 7.01–7.20 and Tier 0–3 meanings & 06-6.A\_Category\_and\_Tier\_Definitions\_\_v-1.0.pdf & Stage 7 taxonomy & Coach \\
+06 & 6.B — Phase × Category Matrix Timeline View & Two matrices B1 and B2 tier timeline by phase & 06-6.B\_Phase\_Category\_Matrix\_Timeline\_View\_\_v-1.0.pdf & Stage 6.A; Stage 5 & Coach \\
+06 & 6.C — Phase-Specific Acquisition Lists Delta-Based & Delta-only phase-by-phase capability changes & 06-6.C\_Phase\_Specific\_Acquisition\_Lists\_Delta\_Based\_\_v-1.0.pdf & Stage 6.B & Coach \\
+06 & 6.D — Minimal vs Ideal Kit Pathways & Minimal vs ideal pathway table by phase & 06-6.D\_Minimal\_vs\_Ideal\_Kit\_Pathways\_\_v-1.0.pdf & Stage 6.B & Coach \\
+06 & 6.E — Consistency Safety and Compliance Check & QA check for internal consistency and safety posture & 06-6.E\_Consistency\_Safety\_and\_Compliance\_Check\_\_v-1.0.pdf & Stage 6.B; Stage 5; Stage 1.F; \textbf{ISS-08} references & Coach \\
+07 & Stage 7 — Systems Equipment and Capability Overviews & Stage 7 binder for 7.01–7.20 overviews & 07-07\_Stage\_7\_Category\_Overviews\_\_v-1.0.pdf & Stage 6; Stage 2.E; Stage 1.F & Coach \\
+07 & Stage 7 — Introductory Page & Stage 7 scope and alignment to Stage 6 timing & 07-07\_Stage\_7\_Introductory\_Page\_\_v-1.0.pdf & Stage 6 & Coach \\
+07 & 7.01 — Strength and Resistance Training Equipment & Strength equipment tier doctrine and phase integration & 07-7.01\_Strength\_and\_Resistance\_Training\_Equipment\_\_v-1.0.pdf & Stage 6 & Coach \\
+07 & 7.02 — Hormonal Support and Adaptogens OTC Education Only & Education-only boundaries; never required & 07-7.02\_Hormonal\_Support\_and\_Adaptogens\_OTC\_Education\_Only\_\_v-1.0.pdf & Stage 6; Stage 0.5; Stage 1.F & Coach \\
+07 & 7.03 — Foundational Health Supplements OTC & OTC-only foundational supplements governance & 07-7.03\_Foundational\_Health\_Supplements\_OTC\_\_v-1.0.pdf & Stage 6; Stage 0.5; Stage 1.F & Coach \\
+07 & 7.04 — Performance and Auxiliary Supplements OTC & Portable session adjuncts governance & 07-7.04\_Performance\_and\_Auxiliary\_Supplements\_OTC\_\_v-1.0.pdf & Stage 6; Stage 0.5; Stage 1.F & Coach \\
+07 & 7.05 — Cognitive Performance and Energy Enhancers OTC & OTC cognitive/energy governance, no dosing & 07-7.05\_Cognitive\_Performance\_and\_Energy\_Enhancers\_OTC\_\_v-1.0.pdf & Stage 6; Stage 0.5; Stage 1.F & Coach \\
+07 & 7.06 — Recovery Sleep and Stress-Support Aids OTC & OTC recovery/sleep aids governance & 07-7.06\_Recovery\_Sleep\_and\_Stress\_Support\_Aids\_OTC\_\_v-1.0.pdf & Stage 6; Stage 0.5; Stage 1.F & Coach \\
+07 & 7.07 — Load-Bearing Rucking and Carry Systems & Ruck/carry systems, safety, and phase gating & 07-7.07\_Load\_Bearing\_Rucking\_and\_Carry\_Systems\_\_v-1.0.pdf & Stage 6; \textbf{ISS-08-004} & Coach \\
+07 & 7.08 — Conditioning Endurance and Aerobic Training Tools & Conditioning tools for Cardio feasibility & 07-7.08\_Conditioning\_Endurance\_and\_Aerobic\_Training\_Tools\_\_v-1.0.pdf & Stage 6 & Coach \\
+07 & 7.09 — Health Monitoring Diagnostics and Biometrics & Consumer monitoring tools and routines & 07-7.09\_Health\_Monitoring\_Diagnostics\_and\_Biometrics\_\_v-1.0.pdf & Stage 6; \textbf{ISS-08-006} & Coach \\
+07 & 7.10 — Logistics Maintenance Storage and Sustainment & Storage/drying/staging sustainment systems & 07-7.10\_Logistics\_Maintenance\_Storage\_and\_Sustainment\_Equipment\_\_v-1.0.pdf & Stage 6 & Coach \\
+07 & 7.11 — Footwear Systems and Foot Care & Footwear interface, sock systems, blister prevention & 07-7.11\_Footwear\_Systems\_and\_Foot\_Care\_\_v-1.0.pdf & Stage 6; \textbf{ISS-08-004} & Coach \\
+07 & 7.12 — Recovery Mobility and Tissue-Care Implements & Mat, rollers, mobility tools; safety limits & 07-7.12\_Recovery\_Mobility\_and\_Tissue\_Care\_Implements\_\_v-1.0.pdf & Stage 6 & Coach \\
+07 & 7.13 — Nutrition Preparation and Hydration Systems & Containers, prep tools, reservoirs, cleaning tools & 07-7.13\_Nutrition\_Preparation\_and\_Hydration\_Systems\_\_v-1.0.pdf & Stage 6 & Coach \\
+07 & 7.14 — Environmental Apparel Cold Hot Wet Inclement & Seasonal environmental apparel systems & 07-7.14\_Environmental\_Apparel\_Cold\_Hot\_Wet\_Inclement\_Weather\_\_v-1.0.pdf & Stage 6 & Coach \\
+07 & 7.15 — General Training and Daily Wear Apparel & Rotation-based general apparel posture & 07-7.15\_General\_Training\_and\_Daily\_Wear\_Apparel\_\_v-1.0.pdf & Stage 6 & Coach \\
+07 & 7.16 — Operational Self-Management Systems & Logging/planning systems and templates & 07-7.16\_Operational\_Self\_Management\_Systems\_\_v-1.0.pdf & Stage 6; \textbf{ISS-08-007}; \textbf{ISS-08-010} & Coach \\
+07 & 7.17 — Aquatic Training and Water Safety Equipment & Pool swim kit and governance constraints & 07-7.17\_Aquatic\_Training\_and\_Water\_Safety\_Equipment\_\_v-1.0.pdf & Stage 6; \textbf{ISS-08-002}; \textbf{ISS-08-003}; \textbf{ISS-08-005} & Coach \\
+07 & 7.18 — Testing Timing Measurement and Course-Setup Tools & Timing/measurement/course setup tools & 07-7.18\_Testing\_Timing\_Measurement\_and\_Course\_Setup\_Tools\_\_v-1.0.pdf & Stage 6; Stage 2.E & Coach \\
+07 & 7.19 — Protective and Assistive Equipment & Visibility, lights, hand protection, sleeves (comfort-only) & 07-7.19\_Protective\_and\_Assistive\_Equipment\_\_v-1.0.pdf & Stage 6 & Coach \\
+07 & 7.20 — Personal Hygiene Health and Sanitation Items & Hygiene consumables and nail care & 07-7.20\_Personal\_Hygiene\_Health\_and\_Sanitation\_Items\_\_v-1.0.pdf & Stage 6 & Coach \\
+08 & Stage 8 — Crosswalk Gap Check and Consistency Audit Packet & Stage 8 audit packet binder including 8.A–8.E & 08-08\_Stage\_8\_QA\_and\_Crosswalks\_\_v-1.0.pdf & Stages 1–7 & Coach \\
+08 & Stage 8 — Introductory Page & Stage 8 scope and issue logging posture & 08-08\_Stage\_8\_Introductory\_Page\_\_v-1.0.pdf & Stages 1–7 & Coach \\
+08 & 8.A — Master Standards Index & ST-* index for all standards and \textbf{MET-2B} coverage & 08-8.A\_Master\_Standards\_Index\_\_v-1.0.pdf & Stage 2; Stage 0.3 & Coach \\
+08 & 8.B — Standards / Tests / Training Phases Crosswalk & ST-* ↔ C\# / \textbf{MET} ↔ phase development mapping & 08-8.B\_Standards\_Tests\_Training\_Phases\_Crosswalk\_\_v-1.0.pdf & Stage 2; Stage 5 & Coach \\
+08 & 8.C — Standards Gear Overviews Crosswalk & ST-* ↔ 7.xx resources ↔ Stage 6 timing mapping & 08-8.C\_Standards\_Gear\_Overviews\_Crosswalk\_\_v-1.0.pdf & Stage 6; Stage 7 & Coach \\
+08 & 8.D — Gap / Overload / Inconsistency Log and Priority Sorting & Official issue log with \textbf{ISS-08}-\#\#\# and allowed corrections only & 08-8.D\_Gap\_Overload\_Inconsistency\_Log\_and\_Priority\_Sorting\_\_v-1.0.pdf & 8.B; 8.C & Coach \\
+08 & 8.E — Implementation Summary and Final Checklists & Pre-deploy checklists and must-fix/monitor lists & 08-8.E\_Implementation\_Summary\_and\_Final\_Checklists\_\_v-1.0.pdf & 8.D & Coach \\
+09 & Stage 9 — Final QA Packaging and Implementation Guide & Stage 9 binder containing 9.A–9.G trainee-facing deployment layer & 09-09\_Stage\_9\_Final\_QA\_Packaging\_and\_Implementation\_Guide\_\_v-1.0.pdf & Stages 0–8; \textbf{ISSUE-LOG} & Both \\
+09 & Stage 9 — Introductory Page & Packaging doctrine and QA status posture & 09-09\_Stage\_9\_Introductory\_Page\_\_v-1.0.pdf & Stage 8; \textbf{ISSUE-LOG} & Both \\
+09 & 9.A — Executive Program Snapshot & High-level deployable summary for trainee onboarding & 09-9.A\_Executive\_Program\_Snapshot\_\_v-1.0.pdf & Stages 0–8; \textbf{ISS-08} references & Both \\
+09 & 9.B — Artifact Index and Folder Structure & Artifact inventory and required folder tree & 09-9.B\_Artifact\_Index\_and\_Folder\_Structure\_\_v-1.0.pdf & Stage 9 packaging rules & Both \\
+09 & 9.C — QA Summary Known Issues and Deviation Controls & Consolidated Pass/Fail and Known Issues by deliverable (\textbf{ISS-08}-\#\#\#) & 09-9.C\_QA\_Summary\_Known\_Issues\_and\_Deviation\_Controls\_\_v-1.0.pdf & Stage 8 issue log & Both \\
+09 & 9.D — Coach Implementation Guide & Execution cadence, reslot discipline, gate decision rules & 09-9.D\_Coach\_Implementation\_Guide\_\_v-1.0.pdf & Stages 1.F; 2; 3; 8 & Both \\
+09 & 9.E — Versioning Change-Log and Freeze Window Framework & Minimum viable launch plan and daily execution rules & 09-9.E\_Versioning\_Change\_Log\_and\_Freeze\_Window\_Framework\_\_v-1.0.pdf & Stage 9.A–9.D & Both \\
+09 & 9.F — Final Deployment Checklists Readiness to Execute & Versioning posture, patch discipline, freeze windows pointer & 09-9.F\_Final\_Deployment\_Checklists\_Readiness\_to\_Execute\_\_v-1.0.pdf & /99\_Change\_Log & Both \\
+10 & Stage 10 — Nutrition Operating System & Nutrition Operating System package (Stage 10.A–10.D) & 10-10\_Stage\_10\_Nutrition\_Operating\_System\_\_v-1.0.pdf & Stage 0; Stage 1.F; Stage 2; Stage 5 & Coach \\
+11 & Stage 11 — Pre-Selection Conditioning and Recovery & Final-phase conditioning/recovery package (Stage 11.A–11.D) & 11-11\_Stage\_11\_Pre\_Selection\_Conditioning\_and\_Recovery\_\_v-1.0.pdf & Stage 0; Stage 5; Stage 3; Stage 8 & Coach \\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+\subsection*{9.B.2 Suggested Folder Tree}
+\phantomsection
+\addcontentsline{toc}{subsection}{9.B.2 Suggested Folder Tree}
+
+\begingroup
+
+/01\_Charter\_and\_Governance/\\
+/02\_Tests\_and\_Standards/\\
+/03\_Test\_Calendar\_and\_Stress\_Map/\\
+/04\_Phase\_00/\\
+/05\_Phases\_01\_13/\\
+/06\_Equipment\_and\_Resources/\\
+/07\_Category\_Overviews/\\
+/08\_QA\_and\_Crosswalks/\\
+/09\_Implementation\_Guides/\\
+/10\_Nutrition\_Operating\_System/\\
+/11\_Pre\_Selection\_Conditioning\_and\_Recovery/\\
+/99\_Change\_Log\_and\_Archive/\\
+
+\endgroup
+
+\subsection*{9.B.3 Navigation Notes}
+\phantomsection
+\addcontentsline{toc}{subsection}{9.B.3 Navigation Notes}
+
+\begin{itemize}
+\item Coaches:
+  \begin{itemize}
+  \item Start at /01\_Charter\_and\_Governance/ (Stage 0 stored as 00\_\* inside this folder) to confirm constraints and validity doctrine.
+  \item Use /02\_Tests\_and\_Standards/ and /03\_Test\_Calendar\_and\_Stress\_Map/ as the measurement + scheduling backbone.
+  \item Use /04\_Phase\_00/ then /05\_Phases\_01\_13/ for phase execution doctrine, and /06\_Equipment\_and\_Resources/ + /07\_Category\_Overviews/ for capability readiness and substitutions.
+  \item Use /08\_QA\_and\_Crosswalks/ for \textbf{ISS-08}-\#\#\# known issues and deployability posture before packaging changes.
+  \end{itemize}
+\item Trainees:
+  \begin{itemize}
+  \item Required reading and execution artifacts are all Stage 9 deliverables 9.A–9.G in /09\_Implementation\_Guides/.
+  \end{itemize}
+\item Single source of truth rule:
+  \begin{itemize}
+  \item Current v1.0 lives in the main stage folders (/01 through /09).
+  \item Archives and prior versions live only in /99\_Change\_Log\_and\_Archive/ along with:
+    \begin{itemize}
+    \item \textbf{ISSUE-LOG} export(s),
+    \item per-deliverable Known Issues snapshots,
+    \item \textbf{CHANGE-LOG}, \textbf{PATCH-REGISTER}, \textbf{FREEZE-WINDOWS} under /99\_Change\_Log\_and\_Archive/Versioning/.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\end{document}

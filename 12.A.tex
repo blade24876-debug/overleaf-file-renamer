@@ -1,0 +1,694 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{landscape}
+    
+\section*{Stage 12.A — Standard Test Log Template}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 12.A — Standard Test Log Template}
+
+\subsection*{12.A.1 Template Purpose and Use Rules — Operational}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.A.1 Template Purpose and Use Rules — Operational}
+
+\begin{itemize}
+\item This appendix implements Stage 2.E minimum datasets and Stage 1.F validity doctrine.
+\item Missing required fields make the record inadmissible for gate decisions.
+\item Do not infer or reconstruct missing values; record \textbf{UNKNOWN} or \textbf{MISSING}.
+\item Session and test validity tags must reflect completion and documentation, not effort.
+\item Any late entry must be verifiable; unverifiable late entry remains \textbf{MISSING} and the record remains inadmissible for gate use.
+\end{itemize}
+
+\subsection*{12.A.2 Identifier Header — Required on Every Log Page}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.A.2 Identifier Header — Required on Every Log Page}
+
+\begin{itemize}
+\item Program Version:
+\item Phase:
+\item Phase Week:
+\item Session \#:
+\item Timestamp ISO 8601 with offset:
+\item Location:
+\item Environment Unit \textbf{ID} (\textbf{ROUTE}-\#\# / \textbf{POOL}-\#\# / \textbf{MACH}-\#\#):
+\item Notes:
+\item \textbf{ISS-08}-\#\#\# reference if a session numbering conflict is detected:
+\end{itemize}
+
+Rules:
+
+\begin{itemize}
+\item Phase must be Phase 00 through Phase 13.
+\item Phase Week must be Wk \#\# format.
+\item Session \# must be 1–6.
+\item Environment Unit \textbf{ID} must be one of \textbf{ROUTE}-\#\#, \textbf{POOL}-\#\#, or \textbf{MACH}-\#\# as applicable, recorded in a single combined field.
+\end{itemize}
+
+\newpage
+
+\subsection*{12.A.3 Reason Code Mini-Legend — Embedded}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.A.3 Reason Code Mini-Legend — Embedded}
+
+\begin{itemize}
+\item \textbf{ENV} — environment constraint or unsafe conditions
+\item PAIN — pain or mechanics alteration
+\item \textbf{EQUIP} — equipment limitation or failure
+\item \textbf{TIME} — time or schedule constraint
+\item \textbf{ILL} — illness or acute symptoms posture, non-diagnostic
+\item \textbf{SAFETY} — safety stop or red-flag posture
+\end{itemize}
+
+Rules:
+
+\begin{itemize}
+\item Session reason codes are recorded in \textbf{SESSION-RC}.
+\item Test invalidation reason codes are recorded in \textbf{TEST-RC}.
+\item Free-text notes must accompany any populated reason code.
+\end{itemize}
+
+\subsection*{12.A.4 Daily Readiness Log — Minimum Dataset Template}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.A.4 Daily Readiness Log — Minimum Dataset Template}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    X[l,0.55]
+    X[l,0.25]
+    X[l,0.15]
+    X[l,0.25]
+    X[l,0.25]
+    X[l,0.20]
+    X[l,0.70]
+    X[l,0.30]
+    X[l,0.30]
+    X[l,0.30]
+    X[l,0.90]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Timestamp ISO 8601} &
+\Hdr{Phase Week} &
+\Hdr{Sleep Hrs} &
+\Hdr{Sleep Quality} &
+\Hdr{Soreness 0–10} &
+\Hdr{Fatigue 0–10} &
+\Hdr{Pain 0–10 \`+ Location} &
+\Hdr{Foot Hotspots} &
+\Hdr{Illness Flag} &
+\Hdr{Steps Count} &
+\Hdr{Notes} \\
+\end{longtblr}
+
+\endgroup
+
+Rules block:
+
+\begin{itemize}
+\item Phase Week uses Phase \#\# Wk \#\# format.
+\item If Pain is greater than 0, location is required; otherwise record \textbf{MISSING}.
+\item Unknown values must be \textbf{UNKNOWN}; absent required values must be \textbf{MISSING}.
+\end{itemize}
+
+\newpage
+
+\subsection*{12.A.5 Session Execution Log — Minimum Dataset Template}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.A.5 Session Execution Log — Minimum Dataset Template}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    X[l,1.45]
+    X[l,0.80]
+    X[l,0.70]
+    X[l,0.85]
+    X[l,1.05]
+    X[l,0.85]
+    X[l,1.25]
+    X[l,1.35]
+    X[l,1.00]
+    X[l,0.90]
+    X[l,0.85]
+    X[l,2.50]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Timestamp ISO 8601} &
+\Hdr{Phase Week} &
+\Hdr{Session \#} &
+\Hdr{Session Validity} &
+\Hdr{\textbf{SESSION-RC}} &
+\Hdr{Cardio Modality} &
+\Hdr{Cardio Duration} &
+\Hdr{Cardio RPE} &
+\Hdr{Main Work Tags} &
+\Hdr{Session RPE} &
+\Hdr{Pain Flags} &
+\Hdr{Notes} \\
+\end{longtblr}
+
+\endgroup
+
+Rules block:
+
+\begin{itemize}
+\item \textbf{VALID} requires all mandatory session elements completed in order:
+  \begin{enumerate}
+  \item Safety self-check
+  \item Warm-up
+  \item Mobility
+  \item Main work
+  \item Cardio
+  \item Cooldown
+  \item Recovery notes
+  \item Post-session notes
+  \end{enumerate}
+\item \textbf{MODIFIED} requires:
+  \begin{itemize}
+  \item all mandatory elements completed
+  \item risk-reducing substitution documented
+  \item \textbf{SESSION-RC} populated
+  \end{itemize}
+\item \textbf{INVALID} requires:
+  \begin{itemize}
+  \item any mandatory element missing
+  \item or undocumented deviation
+  \item or required logging fields missing
+  \end{itemize}
+\item \textbf{SESSION-RC}:
+  \begin{itemize}
+  \item blank or N/A when \textbf{VALID}
+  \item required when \textbf{MODIFIED} or \textbf{INVALID}
+  \end{itemize}
+\item Main Work Domains must use Stage 2 domain tags only:
+  \begin{itemize}
+  \item \textbf{RUN}, \textbf{SWIM}, \textbf{CAL}, \textbf{RUCK}, \textbf{STR}, \textbf{BODYCOMP}, \textbf{DURABILITY}, \textbf{RECOVERY}, plus \textbf{AER} if applicable per Stage 2
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\subsection*{12.A.6 Test Event Log — Minimum Dataset Template}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.A.6 Test Event Log — Minimum Dataset Template}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    X[l,1.55]
+    X[l,0.95]
+    X[l,0.70]
+    X[l,0.85]
+    X[l,0.75]
+    X[l,0.85]
+    X[l,1.00]
+    X[l,1.35]
+    X[l,0.65]
+    X[l,0.90]
+    X[l,0.85]
+    X[l,1.15]
+    X[l,2.55]
+    X[l,1.50]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Timestamp ISO } &
+\Hdr{Phase Week} &
+\Hdr{Protocol C\#} &
+\Hdr{Metric \textbf{ID}(s)} &
+\Hdr{Test Validity} &
+\Hdr{\textbf{TEST-RC}} &
+\Hdr{Environment \textbf{ID}} &
+\Hdr{Tools} &
+\Hdr{Warm-Up} &
+\Hdr{Result} &
+\Hdr{Evidence Ref} &
+\Hdr{Replication Status} &
+\Hdr{Conditions \& Notes} &
+\Hdr{Stop/Abort} \\
+\end{longtblr}
+
+\endgroup
+
+Rules block:
+
+\begin{itemize}
+\item Linked Metric \textbf{ID}(s) must be \textbf{MET-2B}-\#\#\# format only.
+\item Environment Unit \textbf{ID} is required:
+  \begin{itemize}
+  \item missing Environment Unit \textbf{ID} makes the test inadmissible for gate use
+  \end{itemize}
+\item Evidence Ref is required for all tests:
+  \begin{itemize}
+  \item missing Evidence Ref makes the test inadmissible for gate use
+  \end{itemize}
+\item Warm-Up Completed Y/N:
+  \begin{itemize}
+  \item N forces Test Validity Tag to \textbf{INVALID}
+  \end{itemize}
+\item \textbf{TEST-RC}:
+  \begin{itemize}
+  \item required when \textbf{INVALID}
+  \item blank or N/A when \textbf{VALID}
+  \end{itemize}
+\item Replication Status:
+  \begin{itemize}
+  \item use 1/3, 2/3, 3/3 where applicable to the current decision window posture
+  \item if not applicable, record N/A
+  \end{itemize}
+\item Stop/Abort:
+  \begin{itemize}
+  \item if Y, include reason and action taken in Conditions Notes
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\subsection*{12.A.7 Weekly Summary and Gate Packet Cover — Template}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.A.7 Weekly Summary and Gate Packet Cover — Template}
+
+\begin{itemize}
+\item Week covered Phase \#\# Wk \#\#:
+\item Valid sessions count:
+\item Valid sessions percent:
+\item \textbf{MODIFIED} sessions count:
+\item \textbf{MODIFIED} sessions primary reasons:
+\item \textbf{INVALID} sessions count:
+\item \textbf{INVALID} sessions primary reasons:
+\item Tests attempted count:
+\item Tests \textbf{VALID} count:
+\item Tests \textbf{INVALID} count:
+\item Key risk flags observed:
+\item Gate recommendation \textbf{ADVANCE} / \textbf{HOLD} / \textbf{REGRESS} / \textbf{MEDICAL} \textbf{HOLD}:
+\item Issue IDs referenced (\textbf{ISS-08}-\#\#\#):
+\item Evidence packet pointers (binder pages or folder paths):
+\item Notes and next-step actions:
+\end{itemize}
+
+Rules:
+
+\begin{itemize}
+\item Gate recommendation must be one of \textbf{ADVANCE}, \textbf{HOLD}, \textbf{REGRESS}, \textbf{MEDICAL} \textbf{HOLD} only.
+\item If an accepted known issue influenced the gate recommendation, list the relevant \textbf{ISS-08}-\#\#\# in Issue IDs referenced.
+\item Evidence packet pointers must reference binder page ranges and/or package folder paths only.
+\end{itemize}
+
+\newpage
+
+\subsection*{12.A.8 Minimal Worked Example — Required}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.A.8 Minimal Worked Example — Required}
+
+Daily Readiness Log — one filled row:
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    X[l,0.55]
+    X[l,0.25]
+    X[l,0.15]
+    X[l,0.25]
+    X[l,0.25]
+    X[l,0.20]
+    X[l,0.70]
+    X[l,0.30]
+    X[l,0.30]
+    X[l,0.30]
+    X[l,0.90]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Timestamp ISO 8601} &
+\Hdr{Phase Week} &
+\Hdr{Sleep Hrs} &
+\Hdr{Sleep Quality} &
+\Hdr{Soreness 0–10} &
+\Hdr{Fatigue 0–10} &
+\Hdr{Pain 0–10 \`+ Location} &
+\Hdr{Foot Hotspots} &
+\Hdr{Illness Flag} &
+\Hdr{Steps Count} &
+\Hdr{Notes} \\
+2026-03-04T06:45:00-06:00 &
+Phase 11 Wk 02 &
+6.5 &
+5 &
+4 &
+5 &
+1 — Tightness in R Achilles &
+N \textbf{MISSING} &
+N &
+10234 &
+Travel disruption: N; Gate proximity within 14 days: N \\
+\end{longtblr}
+
+\endgroup
+
+Session Execution Log — one filled row:
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    X[l,1.45]
+    X[l,0.80]
+    X[l,0.70]
+    X[l,0.85]
+    X[l,1.05]
+    X[l,0.85]
+    X[l,1.25]
+    X[l,1.35]
+    X[l,1.00]
+    X[l,0.90]
+    X[l,0.85]
+    X[l,2.50]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Timestamp ISO 8601} &
+\Hdr{Phase Week} &
+\Hdr{Session \#} &
+\Hdr{Session Validity} &
+\Hdr{\textbf{SESSION-RC}} &
+\Hdr{Cardio Modality} &
+\Hdr{Cardio Duration} &
+\Hdr{Cardio RPE} &
+\Hdr{Main Work Tags} &
+\Hdr{Session RPE} &
+\Hdr{Pain Flags} &
+\Hdr{Notes} \\
+2026-03-04T17:10:00-06:00 &
+Phase 11 Wk 02 &
+3 &
+\textbf{MODIFIED} &
+\textbf{SESSION-RC}-\textbf{ENV} &
+Indoor bike &
+35 &
+4; full-sentence talk test pass; continuous planned &
+\textbf{AER}; \textbf{RECOVERY}; \textbf{DURABILITY} &
+5 &
+Pain 1/10 right Achilles tightness; mechanics stable &
+Outdoor route unsafe ice glaze; substituted indoor modality; all elements completed and logged; no novelty near gates confirmed \\
+\end{longtblr}
+
+\endgroup
+
+Test Event Log — one filled row:
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    X[l,1.55]
+    X[l,0.95]
+    X[l,0.70]
+    X[l,0.85]
+    X[l,0.75]
+    X[l,0.85]
+    X[l,1.00]
+    X[l,1.35]
+    X[l,0.55]
+    X[l,0.90]
+    X[l,0.85]
+    X[l,1.15]
+    X[l,2.55]
+    X[l,1.50]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Timestamp ISO } &
+\Hdr{Phase Week} &
+\Hdr{Protocol C\#} &
+\Hdr{Metric \textbf{ID}(s)} &
+\Hdr{Test Validity} &
+\Hdr{\textbf{TEST-RC}} &
+\Hdr{Environment \textbf{ID}} &
+\Hdr{Tools} &
+\Hdr{Warm-Up} &
+\Hdr{Result} &
+\Hdr{Evidence Ref} &
+\Hdr{Replication Status} &
+\Hdr{Conditions \& Notes} &
+\Hdr{Stop/Abort} \\
+2026-03-05T06:30:00-06:00 &
+Phase 11 Wk 02 &
+\textbf{C9} &
+\textbf{MET-2B-015} &
+\textbf{INVALID} &
+\textbf{TEST-RC}-\textbf{ENV} &
+\textbf{ROUTE-02} &
+Timer: phone stopwatch; Scale: N/A; Tape: N/A &
+Y &
+2-mi time 13:05 &
+\textbf{MISSING} &
+1/3 &
+Route unsafe due to ice glaze; attempt aborted after start; reslot to next protected window; Evidence Ref missing; therefore inadmissible &
+Yes, due to ice hazard; \textbf{STOP} \textbf{NOW} executed \\
+\end{longtblr}
+\end{landscape}
+
+\endgroup
+
+\end{document}

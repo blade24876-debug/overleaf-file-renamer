@@ -1,0 +1,524 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{9.F.1 Coach/Admin Checklist}
+\phantomsection
+\addcontentsline{toc}{section}{9.F.1 Coach/Admin Checklist}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    X[l,3.75]
+    Q[c,wd=0.70in]
+    X[l,3.40]
+    X[l,3.90]
+    Q[c,wd=0.60in]
+    Q[c,wd=1.0in]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=5pt, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Item} &
+\Hdr{Checkbox} &
+\Hdr{Evidence/Link (binder pointer)} &
+\Hdr{\textbf{ISS-08} \textbf{ID} if fail / accepted waiver} &
+\Hdr{Owner} &
+\Hdr{Sign-off (Initials/Date)} \\
+Charter, governance, and risk register reviewed — Stage 1 &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/01\_Charter\_and\_Governance/ (1.A–1.F) &
+ &
+Coach Lead &
+ \\
+Medical clearance posture ready — documentation captured &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+Binder corpus: Medical clearance page/scan; /01\_Charter\_and\_Governance/ (1.C \textbf{DEP-1C-001}) &
+ &
+Medical &
+ \\
+Minimum Phase 00 equipment verified — Stage 4 and Stage 6 &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/04\_Phase\_00/ (4.A–4.G); /06\_Equipment\_and\_Resources/ (6.B) &
+ &
+Equipment Lead &
+ \\
+Supportive training shoes — footwear interface &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/07\_Category\_Overviews/ (7.11); /04\_Phase\_00/ (4.A dependencies) &
+ &
+Trainee &
+ \\
+Basic footcare starter items — tape/pads posture cross-reference 7.11 and 7.20 &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/07\_Category\_Overviews/ (7.11; 7.20) &
+ &
+Trainee &
+ \\
+Bathroom scale &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/07\_Category\_Overviews/ (7.18; 7.09) &
+ &
+Trainee &
+ \\
+Measuring tape &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/07\_Category\_Overviews/ (7.18; 7.09) &
+ &
+Trainee &
+ \\
+Timer/stopwatch method &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/07\_Category\_Overviews/ (7.18) &
+ &
+Trainee &
+ \\
+Logging method ready paper or digital plus binder capture plan &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/02\_Tests\_and\_Standards/ (2.E); /07\_Category\_Overviews/ (7.16) &
+ &
+Coach Lead &
+ \\
+Hydration container &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/07\_Category\_Overviews/ (7.13) &
+ &
+Trainee &
+ \\
+Exercise mat &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/07\_Category\_Overviews/ (7.12) &
+ &
+Trainee &
+ \\
+Sturdy chair/bench/step &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/04\_Phase\_00/ (4.A lock fields for sit-to-stand); /07\_Category\_Overviews/ (7.12) &
+ &
+Trainee &
+ \\
+Indoor fallback cardio modality access plan if needed &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/07\_Category\_Overviews/ (7.08); /03\_Test\_Calendar\_and\_Stress\_Map/ (3.E reslot posture) &
+ &
+Coach Lead &
+ \\
+Logging templates tested and binder capture verified — Stage 2 and Stage 2.E &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/02\_Tests\_and\_Standards/ (2.E); binder corpus: sample exported Daily/Session/Test log PDFs &
+ &
+Coach Lead &
+ \\
+Test calendar/deload map understood — Stage 3 &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/03\_Test\_Calendar\_and\_Stress\_Map/ (3.A–3.E; 3.D calendars) &
+ &
+Coach Lead &
+ \\
+Stage 8 issues resolved or explicitly accepted — waiver captured &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/08\_QA\_and\_Crosswalks/ (8.D; 8.E); central \textbf{ISSUE-LOG} &
+Accepted waiver: \textbf{ISS-08-001} / \textbf{ISS-08-002} / \textbf{ISS-08-003} / \textbf{ISS-08-004} (only if formally approved) &
+Coach Lead &
+ \\
+File/folder structure initialized and access controlled — Stage 9.B &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/09\_Implementation\_Guides/ (9.B); folder tree created &
+ &
+Equipment Lead &
+ \\
+Stop-rule escalation path confirmed — Stage 1.F and Stage 0.5 &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/01\_Charter\_and\_Governance/ (1.F); Stage 0 safety boundary section &
+ &
+Coach Lead &
+ \\
+Versioning folder present and binder pointer to change-log confirmed — Stage 9.E &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/99\_Change\_Log\_and\_Archive/Versioning/; binder pointer page &
+ &
+Coach Lead &
+ \\
+Trainee required reading set prepared and distribution confirmed — 9.A through 9.F &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/09\_Implementation\_Guides/ (9.A–9.F PDFs) &
+ &
+Coach Lead &
+ \\
+\end{longtblr}
+
+\endgroup
+
+\section*{9.F.2 Trainee Readiness Checklist}
+\phantomsection
+\addcontentsline{toc}{section}{9.F.2 Trainee Readiness Checklist}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    X[l,3.75]
+    Q[c,wd=0.70in]
+    X[l,3.45]
+    X[l,3.45]
+    Q[c,wd=1.35in]
+    Q[c,wd=1.55in]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=5pt, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Item} &
+\Hdr{Checkbox} &
+\Hdr{Evidence/Link (binder pointer)} &
+\Hdr{\textbf{ISS-08} \textbf{ID} if fail / accepted waiver} &
+\Hdr{Owner} &
+\Hdr{Sign-off (Initials/Date)} \\
+Medical clearance obtained or documented posture per governance &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+Binder corpus: Medical clearance documentation &
+ &
+Trainee &
+ \\
+Understands objectives and commitment posture — six sessions/week; Cardio per session; honesty posture &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/09\_Implementation\_Guides/ (9.A; 9.D) &
+ &
+Trainee &
+ \\
+Has required Phase 00 gear — itemized list &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/04\_Phase\_00/ (4.A); /06\_Equipment\_and\_Resources/ (6.B) &
+ &
+Trainee &
+ \\
+Supportive training shoes — footwear interface &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/07\_Category\_Overviews/ (7.11) &
+ &
+Trainee &
+ \\
+Basic footcare starter items — tape/pads posture cross-reference 7.11 and 7.20 &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/07\_Category\_Overviews/ (7.11; 7.20) &
+ &
+Trainee &
+ \\
+Bathroom scale &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/07\_Category\_Overviews/ (7.18; 7.09) &
+ &
+Trainee &
+ \\
+Measuring tape &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/07\_Category\_Overviews/ (7.18; 7.09) &
+ &
+Trainee &
+ \\
+Timer/stopwatch method &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/07\_Category\_Overviews/ (7.18) &
+ &
+Trainee &
+ \\
+Logging method ready paper or digital plus binder capture plan &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/02\_Tests\_and\_Standards/ (2.E); /07\_Category\_Overviews/ (7.16) &
+ &
+Trainee &
+ \\
+Hydration container &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/07\_Category\_Overviews/ (7.13) &
+ &
+Trainee &
+ \\
+Exercise mat &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/07\_Category\_Overviews/ (7.12) &
+ &
+Trainee &
+ \\
+Sturdy chair/bench/step &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/04\_Phase\_00/ (4.A sit-to-stand lock fields) &
+ &
+Trainee &
+ \\
+Indoor fallback cardio modality access plan if needed &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/07\_Category\_Overviews/ (7.08) &
+ &
+Trainee &
+ \\
+Knows stop rules and reporting process — what to report immediately &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/09\_Implementation\_Guides/ (9.D); /01\_Charter\_and\_Governance/ (1.F) &
+ &
+Trainee &
+ \\
+Has logging method and measurement tools — Stage 2 and Stage 2.E posture &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/02\_Tests\_and\_Standards/ (2.E); /07\_Category\_Overviews/ (7.18) &
+ &
+Trainee &
+ \\
+Understands deload/test weeks are non-skippable — Stage 3 &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/03\_Test\_Calendar\_and\_Stress\_Map/ (3.D; 3.E) &
+ &
+Trainee &
+ \\
+Required reading confirmation — 9.A &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/09\_Implementation\_Guides/ (9.A) &
+ &
+Trainee &
+ \\
+Required reading confirmation — 9.B &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/09\_Implementation\_Guides/ (9.B) &
+ &
+Trainee &
+ \\
+Required reading confirmation — 9.C &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/09\_Implementation\_Guides/ (9.C) &
+ &
+Trainee &
+ \\
+Required reading confirmation — 9.D &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/09\_Implementation\_Guides/ (9.D) &
+ &
+Trainee &
+ \\
+Required reading confirmation — 9.E &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/09\_Implementation\_Guides/ (9.E) &
+ &
+Trainee &
+ \\
+Required reading confirmation — 9.F &
+[ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]&
+/09\_Implementation\_Guides/ (9.F) &
+ &
+Trainee &
+ \\
+\end{longtblr}
+
+\endgroup
+
+\section*{9.F.3 Closing Statement}
+\phantomsection
+\addcontentsline{toc}{section}{9.F.3 Closing Statement}
+
+This is a long-horizon, high-demand program. Honest reporting and complete logging are mandatory because gates rely on admissible evidence only. Stop immediately for red-flag symptoms and for pain that alters mechanics, and report to the coach without delay. Do not attempt to “push through” safety signals or to salvage gate attempts under compromised conditions; reslot discipline preserves safety and validity.
+
+\section*{9.F.4 Sign-off Block}
+\phantomsection
+\addcontentsline{toc}{section}{9.F.4 Sign-off Block}
+
+\begin{itemize}
+\item Coach Lead \\
+Signature/Typed Acknowledgment:\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\
+Name: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_   \\
+Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\item Trainee \\
+Signature/Typed Acknowledgment:\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\
+Name: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_   \\
+Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\item Binder Updated Confirmation \\
+Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+Location Pointer (binder/package): \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,482 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{9.D.1 Coach Implementation Guide}
+\phantomsection
+\addcontentsline{toc}{section}{9.D.1 Coach Implementation Guide}
+
+Operational bullets, binding posture. No new doctrine.
+
+\subsection*{Pre-launch review sequence}
+\phantomsection
+\addcontentsline{toc}{subsection}{Pre-launch review sequence}
+
+\begin{itemize}
+\item Confirm the canonical binder and folder bundle are synchronized and labeled v-1.0; confirm filenames follow [StageID]-[DeliverableID]\_[Title]\_\_v-1.0.pdf.
+\item Read and apply in this order before first credited session:
+  \begin{itemize}
+  \item 9.C QA Summary and Known Issues (deployment status + Must Fix Pre-Deploy).
+  \item 8.D Issue Log and Corrective Principles (\textbf{ISS-08}-\#\#\# authoritative).
+  \item 1.F Governance Rules and Validity Doctrine (\textbf{VALID}/\textbf{MODIFIED}/\textbf{INVALID}; \textbf{VALID}/\textbf{INVALID}; gate outcomes; stop posture; patch discipline).
+  \item 2.E Data Recording and Test Logistics Conventions (required fields, missing-data doctrine, environment IDs, Evidence Ref posture).
+  \item 2.C Protocol Cards used in Phase 00 and early Phase 01 windows (C\# + invalidation triggers).
+  \item 3.D Integrated Phase Calendars and 3.E Adjustment Rules (protected windows, reslot discipline, no stacking).
+  \item 4.A–4.G Phase 00 specification and exit posture (Phase 00 boundaries, Week 4/8/12/16 Deload/Test posture).
+  \end{itemize}
+\item Verify open High issues are addressed by approved handling posture before execution; do not proceed with silent workarounds:
+  \begin{itemize}
+  \item \textbf{ISS-08-001} pull-up feasibility timing risk.
+  \item \textbf{ISS-08-002} and \textbf{ISS-08-003} underwater governance feasibility/admissibility.
+  \item \textbf{ISS-08-004} long-ruck compounded dependency stack.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Medical clearance posture and stop-rule enforcement}
+\phantomsection
+\addcontentsline{toc}{subsection}{Medical clearance posture and stop-rule enforcement}
+
+\begin{itemize}
+\item Enforce clearance before any training is credited:
+  \begin{itemize}
+  \item clearance documentation must be embedded in the binder corpus before the first session counts toward gates.
+  \end{itemize}
+\item Apply stop rules and \textbf{MEDICAL} \textbf{HOLD} posture per Stage 1.F and Stage 0.5:
+  \begin{itemize}
+  \item stop rules apply to both sessions and tests.
+  \item red-flag symptoms override schedule and performance.
+  \end{itemize}
+\item Authority rule:
+  \begin{itemize}
+  \item trainee reports immediately (symptoms, pain, environment hazards, equipment failures),
+  \item coach decides once informed,
+  \item safety overrides schedule and performance and cannot be negotiated.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Phase 00 onboarding and validity compliance}
+\phantomsection
+\addcontentsline{toc}{subsection}{Phase 00 onboarding and validity compliance}
+
+\begin{itemize}
+\item Start-from-zero posture:
+  \begin{itemize}
+  \item enforce minimal kit and conservative exposure posture while preserving the 6-session rhythm.
+  \end{itemize}
+\item Session validity discipline (non-negotiable):
+  \begin{itemize}
+  \item enforce required session elements in correct order:
+    \begin{itemize}
+    \item Safety self-check → Warm-up → Mobility → Main work → Cardio → Cooldown → Recovery notes/post-session notes.
+    \end{itemize}
+  \item apply \textbf{VALID}/\textbf{MODIFIED}/\textbf{INVALID} tagging with reason-code posture (do not invent reason codes).
+  \item treat incomplete logs as inadmissible for gates; do not “credit” sessions with missing required fields.
+  \end{itemize}
+\item Phase 00 testing posture:
+  \begin{itemize}
+  \item tests occur only in Weeks 4/8/12/16 Deload/Test windows as specified in Stage 4.
+  \item if a scheduled test cannot be performed \textbf{VALID}, mark \textbf{INVALID} and reslot per Stage 3.E.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Using Stage 2 tests and Stage 3 deload/test cadence}
+\phantomsection
+\addcontentsline{toc}{subsection}{Using Stage 2 tests and Stage 3 deload/test cadence}
+
+\begin{itemize}
+\item Tests are executed only under Stage 2 protocol cards and only in Stage 3 protected windows.
+\item Invalid test provides no gate credit:
+  \begin{itemize}
+  \item treat as “not yet tested” for that gate requirement,
+  \item reslot to the next protected window per 3.E without stacking.
+  \end{itemize}
+\item Enforce required logging fields per Stage 2.E for every test event:
+  \begin{itemize}
+  \item Route \textbf{ID} / Pool \textbf{ID} / Machine \textbf{ID} as applicable,
+  \item tool identity (timer/scale/tape; tool description or \textbf{ID}),
+  \item Warm-up Completed flag,
+  \item Evidence Ref posture where required,
+  \item conditions notes and stop/abort fields.
+  \end{itemize}
+\item Enforce swim unit discipline:
+  \begin{itemize}
+  \item Pool \textbf{ID} and pool length unit must be recorded; missing unit/Pool \textbf{ID} makes evidence inadmissible (\textbf{ISS-08-005}).
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Applying Stage 3 adjustment rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{Applying Stage 3 adjustment rules}
+
+\begin{itemize}
+\item Downshift-not-drop-frequency posture:
+  \begin{itemize}
+  \item preserve the 6-session rhythm,
+  \item reduce risk via modality substitution, intensity downshift, and volume/density reduction,
+  \item reslot tests rather than compressing or stacking make-ups.
+  \end{itemize}
+\item Gate outcome defaults:
+  \begin{itemize}
+  \item \textbf{HOLD} is default when required evidence is missing/invalid or dependencies are unmet.
+  \item \textbf{REGRESS} and \textbf{MEDICAL} \textbf{HOLD} only when explicit triggers apply per Stage 1.F.
+  \end{itemize}
+\item Underwater governance unavailable:
+  \begin{itemize}
+  \item do not schedule or attempt; record “not scheduled; inadmissible without governance” and continue surface-only posture (\textbf{ISS-08-002}; \textbf{ISS-08-003}).
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Weekly QA/log review discipline}
+\phantomsection
+\addcontentsline{toc}{subsection}{Weekly QA/log review discipline}
+
+\begin{itemize}
+\item Binding cadence:
+  \begin{itemize}
+  \item daily logging QC (same-day completion, missing fields marked \textbf{MISSING}/\textbf{UNKNOWN}),
+  \item weekly review (validity distribution + compliance rollups),
+  \item mid-phase and end-phase gate reviews only in protected windows.
+  \end{itemize}
+\item Gate decision packet discipline (embedded into binder corpus):
+  \begin{itemize}
+  \item decision date,
+  \item outcome label (\textbf{ADVANCE}/\textbf{HOLD}/\textbf{REGRESS}/\textbf{MEDICAL} \textbf{HOLD}),
+  \item admissible evidence summary (ST-*/C\#/\textbf{MET-2B}-\#\#\# references),
+  \item disqualifiers reviewed (pain/gait flags, stop-rule events, environment hazards),
+  \item reslot targets if applicable.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Environment and equipment safety controls}
+\phantomsection
+\addcontentsline{toc}{subsection}{Environment and equipment safety controls}
+
+\begin{itemize}
+\item Before any phase introduces a Tier 1 requirement:
+  \begin{itemize}
+  \item verify Stage 6 tier timing readiness is met and Stage 7 overview minimum capability is present and stabilized outside protected windows.
+  \end{itemize}
+\item Session-level safety gating:
+  \begin{itemize}
+  \item visibility controls are operationally mandatory when low-light/traffic-adjacent; otherwise substitute to daylight/indoor (7.19).
+  \item unsafe environment conditions (ice glaze, lightning, air-quality warnings, heat index concern) trigger substitution/reslot per Stage 3.E.
+  \end{itemize}
+\item Substitution posture:
+  \begin{itemize}
+  \item preserve intent, reduce risk, document substitutions.
+  \item enforce environment IDs and tool consistency posture for any substitution that could affect comparability.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Change control and versioning}
+\phantomsection
+\addcontentsline{toc}{subsection}{Change control and versioning}
+
+\begin{itemize}
+\item No mid-phase changes to doctrine without:
+  \begin{itemize}
+  \item patch record entry (\textbf{PATCH}-\#\#\# as applicable),
+  \item validation check,
+  \item revalidation scope determination per Stage 1.F.
+  \end{itemize}
+\item Cosmetic-only corrections allowed only when meaning is unchanged; still logged to preserve audit trail.
+\item Any unresolved conflict remains a Known Issue referenced by \textbf{ISS-08}-\#\#\#; do not “fix in the margins.”
+\end{itemize}
+
+\subsection*{File hygiene and where logs live}
+\phantomsection
+\addcontentsline{toc}{subsection}{File hygiene and where logs live}
+
+\begin{itemize}
+\item Binding rule:
+  \begin{itemize}
+  \item runtime logs may be collected on paper or digitally, but must be exported to PDF and embedded into the binder corpus for gate and audit use.
+  \end{itemize}
+\item Storage posture:
+  \begin{itemize}
+  \item store exported logs and gate packets in the stage folders consistent with the 9.B folder tree.
+  \item archive prior versions only in /99\_Change\_Log\_and\_Archive/ with Versioning artifacts in /99\_Change\_Log\_and\_Archive/Versioning/.
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\section*{9.D.2 Trainee Quick-Start Guide}
+\phantomsection
+\addcontentsline{toc}{section}{9.D.2 Trainee Quick-Start Guide}
+
+Operational bullets, binding posture. No new doctrine.
+
+\subsection*{Required reading order}
+\phantomsection
+\addcontentsline{toc}{subsection}{Required reading order}
+
+Read and use these Stage 9 documents in this order:
+
+\begin{itemize}
+\item 9.A Executive Program Snapshot.
+\item 9.B Artifact Index and Folder Structure.
+\item 9.C QA Summary and Known Issues (including Must Fix Pre-Deploy list).
+\item 9.D Implementation Guides (this document).
+\item 9.E Versioning Change-Log and Freeze Window Framework.
+\item 9.F Final Deployment Checklists.
+\end{itemize}
+
+\subsection*{Clearance posture and stop rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{Clearance posture and stop rules}
+
+\begin{itemize}
+\item Do not start training without medical clearance on file with the coach.
+\item Stop rules apply immediately:
+  \begin{itemize}
+  \item report pain that changes mechanics,
+  \item report red-flag symptoms (chest pressure/pain, fainting/near-fainting, unusual shortness of breath, new neurologic symptoms),
+  \item report panic/dissociation or inability to self-regulate in-session,
+  \item do not self-override.
+  \end{itemize}
+\item Coach has decision authority once informed. \textbf{HOLD} or \textbf{MEDICAL} \textbf{HOLD} may be invoked.
+\end{itemize}
+
+\subsection*{Commitment expectations}
+\phantomsection
+\addcontentsline{toc}{subsection}{Commitment expectations}
+
+\begin{itemize}
+\item Sessions per week must match the operating constraints in the package (6 sessions/week).
+\item Every session must include all required elements in correct order; incomplete sessions/logs may be tagged \textbf{MODIFIED}/\textbf{INVALID} and may not count for gates.
+\item Cardio block is mandatory as part of each session structure; follow coach direction and written constraints; log honestly.
+\item If any conflict exists across documents, follow coach direction and cite the relevant \textbf{ISS-08}-\#\#\# from 9.C; do not improvise.
+\end{itemize}
+
+\subsection*{What to execute first}
+\phantomsection
+\addcontentsline{toc}{subsection}{What to execute first}
+
+\begin{itemize}
+\item Start with Phase 00 as packaged in Stage 4 (4.A–4.G) and follow the protected Week 4/8/12/16 Deload/Test posture.
+\item Execute only what the phase prescribes at the intent level and only what your current equipment and environment can support safely.
+\item Use logging conventions from Stage 2.E and validity tagging from Stage 1.F:
+  \begin{itemize}
+  \item record same-day,
+  \item do not backfill by memory,
+  \item missing fields remain \textbf{MISSING}/\textbf{UNKNOWN}.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Gear posture}
+\phantomsection
+\addcontentsline{toc}{subsection}{Gear posture}
+
+\begin{itemize}
+\item Begin with the Phase 00 minimal kit posture and stabilize it; do not change shoes/tools inside protected windows.
+\item Build capabilities only as Stage 6 indicates by phase and only after you can safely use them.
+\item Do not attempt tasks requiring Tier 1 capabilities you do not have:
+  \begin{itemize}
+  \item report the gap immediately to the coach,
+  \item do not improvise unsafe substitutes (example: ruck load carriage without stable ruck system; pull-ups without safe anchored setup).
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Sleep, hydration, and nutrition posture}
+\phantomsection
+\addcontentsline{toc}{subsection}{Sleep, hydration, and nutrition posture}
+
+\begin{itemize}
+\item Do not self-modify nutrition strategy as a program substitute; Stage 10 governs nutrition strategy once issued.
+\item Treat sleep and hydration as execution enablers and log honestly:
+  \begin{itemize}
+  \item sleep hours,
+  \item soreness/fatigue,
+  \item pain flags and foot hotspots,
+  \item steps (baseline activity) where required by the daily log.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Reporting protocol}
+\phantomsection
+\addcontentsline{toc}{subsection}{Reporting protocol}
+
+\begin{itemize}
+\item Report immediately:
+  \begin{itemize}
+  \item pain that alters mechanics,
+  \item illness symptoms,
+  \item safety issues and near-misses,
+  \item environment hazards (ice, lightning, air-quality alerts, unsafe heat),
+  \item equipment failures (lights, ruck buckles, leaking reservoir).
+  \end{itemize}
+\item Coach decides once informed. \textbf{HOLD}, \textbf{REGRESS}, or \textbf{MEDICAL} \textbf{HOLD} may be invoked when indicated.
+\item Do not hide deviations. Deviations must be logged so decisions remain auditable and gate outcomes remain defensible.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,295 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{9.E.1 Program Header}
+\phantomsection
+\addcontentsline{toc}{section}{9.E.1 Program Header}
+
+Program Name: \textbf{SOF} Physical Development Transformation Program
+
+Version: v1.0
+
+Date (YYYY-MM-DD): \rule{1.75in}{0.35pt}
+
+Architect: \rule{2.25in}{0.35pt}
+
+Based On: Stages 1–9
+
+Notes:
+
+\begin{itemize}
+\item Release posture: Program v1.0 is a packaged, deployment-ready doctrine set. The PDF binder is canonical read-only doctrine; operational artifacts are maintained in the companion folder bundle under controlled change discipline.
+\item Canonical storage pointer for versioning artifacts:
+\begin{itemize}
+\item /99\_Change\_Log\_and\_Archive/Versioning/
+\end{itemize}
+\item Stage 8 Issue IDs (\textbf{ISS-08}-\#\#\#) are authoritative reason references for known problems carried forward as Known Issues until resolved via controlled patching and revalidation.
+\end{itemize}
+
+\section*{9.E.2 Change-Log Template}
+\phantomsection
+\addcontentsline{toc}{section}{9.E.2 Change-Log Template}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.30in]
+    Q[l,wd=0.325in]
+    Q[l,wd=.6in]
+    Q[l,wd=.4in]
+    X[l,1.55]
+    X[l,1.85]
+    X[l,2.10]
+    Q[l,wd=0.5in]
+    X[l,1.75]
+    X[l,1.10]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Version} &
+\Hdr{Patch \textbf{ID}} &
+\Hdr{Date \\YYYY-MM-DD} &
+\Hdr{Changed \\By Role} &
+\Hdr{Summary of \\Changes} &
+\Hdr{Affected \\Stages/Files} &
+\Hdr{Reason Issue \textbf{ID} \\or Observation} &
+\Hdr{Impact Level \\\textbf{L1}/\textbf{L2}/\textbf{L3}} &
+\Hdr{Revalidation \\Scope} &
+\Hdr{Notes} \\
+ & & & & & & & & & \\
+\end{longtblr}
+
+\endgroup
+
+\section*{9.E.3 Guidance}
+\phantomsection
+\addcontentsline{toc}{section}{9.E.3 Guidance}
+
+\begin{itemize}
+\item Version meanings and usage conditions:
+  \begin{itemize}
+  \item Major (v2.0, v3.0, …): Used only when program identity, phase structure, or core governance constraints change in a way that materially alters downstream artifacts and deployment posture. Major versions require full revalidation and repackaging.
+  \item Minor (v1.1, v1.2, …): Used when doctrine meaning changes across one or more stages in a material but bounded way (e.g., adjustments to phase gating language, category timing posture, or test cadence posture) that affects execution and requires crosswalk revalidation.
+  \item Patch (v1.0.1, v1.0.2, …): Used for discrete corrections and controlled updates that do not change program identity and are scoped to specific artifacts/sections. Patch releases still require explicit Patch \textbf{ID}, Impact Level, and Revalidation Scope when doctrine meaning is affected.
+  \end{itemize}
+
+\item Full-phase freeze window rule:
+  \begin{itemize}
+  \item Freeze window runs from phase start through end-gate decision.
+  \item Only safety substitutions are allowed without a patch.
+  \item Any structural change (tests referenced, gate composition, cadence pattern, required capability timing, required logging fields posture) requires a patch entry, briefing, and revalidation posture per Stage 1.F Impact Level discipline.
+  \end{itemize}
+
+\item Archive rule:
+  \begin{itemize}
+  \item Older releases are stored only in /99\_Change\_Log\_and\_Archive/ (do not leave old versions in main stage folders).
+  \item Canonical versioning artifacts live in /99\_Change\_Log\_and\_Archive/Versioning/:
+    \begin{itemize}
+    \item \textbf{CHANGE-LOG}
+    \item \textbf{PATCH-REGISTER}
+    \item \textbf{FREEZE-WINDOWS}
+    \end{itemize}
+  \item The PDF binder must include a pointer/index to /99\_Change\_Log\_and\_Archive/Versioning/ so implementers can locate the authoritative change-control record.
+  \end{itemize}
+
+\item Revalidation rule:
+  \begin{itemize}
+  \item Any upstream doctrine change that affects tests, metrics, gates, protected windows, tier timing, or category dependencies requires Stage 8 impact assessment and crosswalk re-run as applicable.
+  \item Impact Level discipline:
+    \begin{itemize}
+    \item \textbf{L1}: wording clarity/local formatting only; revalidation scope is local artifact review.
+    \item \textbf{L2}: doctrine change within a stage plus direct downstream consumers; revalidation scope includes direct downstream stages and affected crosswalks.
+    \item \textbf{L3}: constraint change; revalidation scope requires full Stage 8 crosswalk re-run and updated Known Issues status before redeployment.
+    \end{itemize}
+  \end{itemize}
+
+\item Single source of truth posture:
+  \begin{itemize}
+  \item The binder is canonical read-only doctrine used for gate decisions and audit traceability.
+  \item The versioning files (\textbf{CHANGE-LOG}, \textbf{PATCH-REGISTER}, \textbf{FREEZE-WINDOWS}) are canonical in /99\_Change\_Log\_and\_Archive/Versioning/ and the binder contains a pointer to that location.
+  \item No silent edits: any non-cosmetic change is recorded with Version, Patch \textbf{ID} (when applicable), Date, Changed By Role, Impact Level, and Revalidation Scope, with \textbf{ISS-08}-\#\#\# referenced when relevant.
+  \end{itemize}
+\end{itemize}
+
+\end{document}

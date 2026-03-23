@@ -1,0 +1,266 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{landscape}
+\section*{9.C — QA Summary Known Issues and Deviation Controls}
+\phantomsection
+\addcontentsline{toc}{section}{9.C — QA Summary Known Issues and Deviation Controls}
+
+
+\section*{9.C.1 QA Status Table Required}
+\phantomsection
+\addcontentsline{toc}{section}{9.C.1 QA Status Table Required}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=1.15in]
+    Q[c,wd=0.5in]
+    X[l,1]
+    Q[c,wd=1.85in]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, valign=m},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  column{1} = {halign=l},
+  column{3} = {halign=l},
+}
+\Hdr{Area} &
+\Hdr{Status} &
+\Hdr{Summary} &
+\Hdr{Ref Stage 8 Issue IDs} \\
+Standards Coverage &
+Yellow &
+Standards are enumerated and mapped to Stage 2 tests and metrics, but coverage includes validity-sensitive standards where logging discipline and unit handling can drift (notably swim Pool \textbf{ID}/unit discipline and derived compliance fields). These do not block deployment if enforced, but require strict implementation controls. &
+\textbf{ISS-08-005}; \textbf{ISS-08-008}; \textbf{ISS-08-009}; \textbf{ISS-08-010} \\
+Gear Alignment &
+Red &
+Several gate-relevant standards have timing-sensitive resource dependencies that can block admissible gate evidence if the capability is not available at time of need, especially pull-up feasibility and the compounded long-ruck dependency stack. These are deployability blockers until resolved or explicitly de-scoped from early gates. &
+\textbf{ISS-08-001}; \textbf{ISS-08-004} \\
+Phase Sequencing and Gating &
+Red &
+Gate feasibility is threatened where standards depend on resources or governance that may not be available at the intended phase windows, including pull-up feasibility timing and underwater governance availability. Without corrective mapping language and conditional scheduling posture, phase gates can become non-executable or inadmissible. &
+\textbf{ISS-08-001}; \textbf{ISS-08-002}; \textbf{ISS-08-003}; \textbf{ISS-08-004} \\
+Safety Integration &
+Red &
+Water governance constraints create a high-consequence safety risk if underwater admissibility is treated as assumed or if governance resources are unavailable, requiring explicit conditional scheduling and admissibility computation. Long-ruck and environment hazards require strict reslot posture to prevent unsafe execution. &
+\textbf{ISS-08-002}; \textbf{ISS-08-003}; \textbf{ISS-08-004} \\
+Documentation Completeness &
+Yellow &
+Logging and computed compliance standards are well-defined but create a realistic overload risk: missing required fields converts evidence to inadmissible and can block gates for administrative reasons. Controls exist via templates and capture prompts, but the risk remains until operationally validated. &
+\textbf{ISS-08-007}; \textbf{ISS-08-008}; \textbf{ISS-08-010} \\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+\section*{9.C.2 Top Issues Required}
+\phantomsection
+\addcontentsline{toc}{section}{9.C.2 Top Issues Required}
+
+\begin{itemize}
+\item \textbf{ISS-08-001} — Pull-up gate feasibility timing risk: safe anchored pull-up capability may arrive later than early gate reliance — Must Fix Pre-Deploy
+\item \textbf{ISS-08-002} — Underwater governance availability risk: lifeguard/spotter/pool constraints can make underwater standards unschedulable — Must Fix Pre-Deploy
+\item \textbf{ISS-08-003} — Underwater admissibility misclassification risk: \textbf{ST-UW-ADMISS} can be treated as assumed “Yes” without documented prerequisites — Must Fix Pre-Deploy
+\item \textbf{ISS-08-004} — Long ruck gate compounded dependency stack: multiple categories must be ready; missing any forces reslot and can block late-phase gates — Must Fix Pre-Deploy
+\item \textbf{ISS-08-005} — Swim unit and Pool \textbf{ID} logging drift risk: missing Pool \textbf{ID}/length-unit makes evidence inadmissible — Monitor Post-Launch
+\item \textbf{ISS-08-007} — Logging burden overload risk: systematic missing fields can produce inadmissible evidence and \textbf{HOLD} outcomes — Monitor Post-Launch
+\item \textbf{ISS-08-008} — Derived Cardio compliance misclassification risk: continuity and intensity anchors can be inferred rather than captured — Monitor Post-Launch
+\end{itemize}
+
+\section*{9.C.3 Readiness Statement Required}
+\phantomsection
+\addcontentsline{toc}{section}{9.C.3 Readiness Statement Required}
+
+Program v1.0 readiness status: Not Ready.
+
+Minimum Must Fix Pre-Deploy items required for release:
+
+\begin{itemize}
+\item \textbf{ISS-08-001} — Resolve pull-up gate feasibility timing so early phase gates do not require inadmissible/unschedulable pull-up evidence.
+\item \textbf{ISS-08-002} — Enforce conditional underwater scheduling posture so underwater standards are not treated as mandatory when governance resources are unavailable.
+\item \textbf{ISS-08-003} — Enforce admissibility computation for underwater exposure so \textbf{ST-UW-ADMISS} cannot be assumed without documented prerequisites.
+\item \textbf{ISS-08-004} — Confirm and operationalize the long-ruck dependency readiness stack so decisive ruck gates are executable only when all required categories are available and stable.
+\end{itemize}
+
+\end{document}

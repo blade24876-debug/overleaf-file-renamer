@@ -1,0 +1,812 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{10.C.1 Core Doctrine — Program-Wide Rules}
+\phantomsection
+\addcontentsline{toc}{section}{10.C.1 Core Doctrine — Program-Wide Rules}
+
+\begin{itemize}
+\item Baseline plus session top-up model:
+  \begin{itemize}
+  \item meet a conservative daily baseline intake band, then add session-specific fluids based on duration and environment.
+  \end{itemize}
+\item Sip model only:
+  \begin{itemize}
+  \item sip regularly; no forced chugging; no “catch-up dumping” large volumes in short time windows.
+  \end{itemize}
+\item Avoid extremes:
+  \begin{itemize}
+  \item dehydration practices and water cuts are prohibited,
+  \item overhydration is a safety risk; do not drink past comfort cues.
+  \end{itemize}
+\item Electrolytes are condition-dependent:
+  \begin{itemize}
+  \item electrolytes are not mandatory daily intake; they are activated only when trigger conditions are met.
+  \end{itemize}
+\item No novelty near gates and test weeks:
+  \begin{itemize}
+  \item no new electrolyte products, concentrations, or timing practices inside the final 7–10 days before major gate tests,
+  \item no caffeine pattern changes within 14 days of gate windows (caffeine posture is governed elsewhere; electrolytes must not be used as stimulant substitutes).
+  \end{itemize}
+\item If a change is unavoidable due to logistics:
+  \begin{itemize}
+  \item log it clearly (date, reason, what changed),
+  \item interpret outcomes conservatively (do not claim comparable performance evidence if conditions/inputs drift).
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\section*{10.C.2 Baseline Daily Hydration Posture}
+\phantomsection
+\addcontentsline{toc}{section}{10.C.2 Baseline Daily Hydration Posture}
+
+Baseline intake framework (locked):
+
+\begin{itemize}
+\item Minimum floor: 30 mL/kg/day.
+\item Typical range: 35–45 mL/kg/day.
+\item Present as ranges; variability is expected.
+\end{itemize}
+
+Hybrid bodyweight reference rule (locked):
+
+\begin{itemize}
+\item Phase 00–Phase 01 baseline calculations use current bodyweight reference: 266 lb (121 kg).
+\item Transition toward target bodyweight reference of 180 lb (82 kg) by Phase 05 for baseline calculations (do not apply abrupt step changes; transition is gradual and logged).
+\end{itemize}
+
+Conversions for current bodyweight example (non-clinical estimate; Phase 00–01, 121 kg):
+
+\begin{itemize}
+\item Floor (30 mL/kg/day): 121 × 30 = 3630 mL/day = 3.63 L/day = 123 oz/day.
+\item Typical band (35–45 mL/kg/day):
+  \begin{itemize}
+  \item 121 × 35 = 4235 mL/day = 4.24 L/day = 143 oz/day.
+  \item 121 × 45 = 5445 mL/day = 5.45 L/day = 184 oz/day.
+  \end{itemize}
+\end{itemize}
+
+Education-only heuristics (non-diagnostic):
+\begin{itemize}
+\item thirst and urine color are rough awareness cues only; they do not override symptom-based stop posture or safety decisions.
+\end{itemize}
+
+Distribution rule (binding):
+\begin{itemize}
+\item spread intake across the day,
+\item avoid large late-day boluses,
+\item avoid rapid catch-up drinking.
+\end{itemize}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    X[l,2.55]
+    X[l,2.65]
+    X[l,4.80]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Condition} &
+\Hdr{Baseline Intake Posture} &
+\Hdr{Notes} \\
+Normal indoor day, low sweat &
+30–35 mL/kg/day floor-to-low band &
+Use distributed sips; avoid late-day boluses. \\
+Typical training day, moderate sweat &
+35–45 mL/kg/day typical band &
+Baseline is not a session replacement; session top-ups still apply. \\
+Hot day / heavy sweat day &
+45 mL/kg/day band bias plus session top-ups &
+Do not force drink; use sip model; activate electrolyte posture when triggers met. \\
+Cold day (muted thirst) &
+Maintain baseline band; schedule sips &
+Cold suppresses thirst; underdrinking risk increases; warm fluids allowed if feasible. \\
+GI upset day (mild) &
+Maintain baseline cautiously; prioritize small sips &
+If severe GI distress or vomiting/diarrhea persists, stop and seek evaluation posture. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{10.C.3 Session Hydration Rules — By Duration and Environment}
+\phantomsection
+\addcontentsline{toc}{section}{10.C.3 Session Hydration Rules — By Duration and Environment}
+
+Session types and per-hour fluid bands (locked):
+
+\begin{itemize}
+\item Cool or indoor: 8–16 oz/hr.
+\item Hot or outdoor: 16–24 oz/hr.
+\item Sip model only; do not force drinking.
+\item Hard ceiling (locked): do not exceed 32 oz/hr unless clinically directed.
+\end{itemize}
+
+Define pre/during/post posture by session type:
+
+\begin{itemize}
+\item $\leq$60 minutes, low to moderate effort:
+  \begin{itemize}
+  \item Pre: baseline hydration maintained; small pre-session sips if needed.
+  \item During: minimal sips as desired; band still applies but typically low end.
+  \item Post: resume baseline; avoid rapid catch-up.
+  \end{itemize}
+\item 60–90 minutes:
+  \begin{itemize}
+  \item Pre: ensure baseline plus modest top-up before start (avoid bolus).
+  \item During: follow per-hour band by environment; sip model.
+  \item Post: resume baseline; monitor symptoms.
+  \end{itemize}
+\item $\geq$90 minutes or prolonged outdoor / ruck exposure:
+  \begin{itemize}
+  \item Pre: baseline + modest top-up; confirm access plan (bottle/reservoir capacity per 7.13).
+  \item During: use per-hour band; activate electrolyte posture when triggers met.
+  \item Post: resume baseline; do not chug.
+  \end{itemize}
+\item Hot/humid:
+  \begin{itemize}
+  \item bias to higher end of per-hour band; prioritize safety; reslot tests if heat index triggers are exceeded.
+  \end{itemize}
+\item Cold:
+  \begin{itemize}
+  \item schedule sips; cold-sweat risk exists; maintain baseline.
+  \end{itemize}
+\end{itemize}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    X[l,1.90]
+    X[l,2.35]
+    X[l,2.55]
+    X[l,2.35]
+    X[l,2.00]
+    X[l,2.80]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Session Type} &
+\Hdr{Pre-Session} &
+\Hdr{During} &
+\Hdr{Post-Session} &
+\Hdr{Electrolyte Posture} &
+\Hdr{Notes and Safety} \\
+$\leq$60 min, low–moderate &
+Maintain baseline; optional 4–8 oz sips if thirsty &
+Sip as desired; typically within 8–16 oz/hr cool/indoor &
+Resume baseline; avoid catch-up chugging &
+Typically none &
+Do not force drinking; stop for dizziness, nausea, unusual distress. \\
+60–90 min &
+Baseline + modest top-up (e.g., small sips over 30–60 min prior) &
+8–16 oz/hr cool/indoor; 16–24 oz/hr hot/outdoor &
+Resume baseline; monitor cramps/headache &
+Consider if heavy sweat or heat exposure &
+Avoid novelty products near gates; log environment and intake estimate. \\
+$\geq$90 min or prolonged outdoor / ruck &
+Baseline + planned access (bottle/reservoir capacity) &
+8–16 oz/hr cool/indoor; 16–24 oz/hr hot/outdoor; do not exceed 32 oz/hr &
+Resume baseline; spread intake; include food as normal (no new protocol) &
+Recommended when triggers met ($\geq$90 min, heavy sweat, heat, ruck) &
+Overhydration risk rises with prolonged sessions; electrolyte posture reduces “water-only overload” risk when appropriately triggered. \\
+Hot/humid exposure &
+Baseline plus earlier pre-session sips &
+Bias 16–24 oz/hr; sip model; ceiling 32 oz/hr &
+Resume baseline; cool down; monitor symptoms &
+Recommended when triggered &
+Heat triggers can invalidate testing; reslot per Stage 3 when unsafe. \\
+Cold exposure (muted thirst) &
+Maintain baseline; warm fluids allowed &
+Schedule sips; keep within 8–16 oz/hr unless heavy clothing sweat &
+Resume baseline; avoid late-day bolus &
+Consider if prolonged outdoor with sweat &
+Cold suppresses thirst; underdrinking risk increases; do not ignore symptoms. \\
+\end{longtblr}
+
+\endgroup
+
+\section*{10.C.4 Electrolyte Operating Rules — Conservative, Non-Prescriptive}
+\phantomsection
+\addcontentsline{toc}{section}{10.C.4 Electrolyte Operating Rules — Conservative, Non-Prescriptive}
+
+Activation threshold (locked): electrolytes are recommended only if one or more apply:
+
+\begin{itemize}
+\item session duration $\geq$90 minutes,
+\item heavy sweat or heat exposure,
+\item ruck or prolonged outdoor exposure.
+\end{itemize}
+
+Sodium guidance bands (locked; no product dosing instructions):
+
+\begin{itemize}
+\item 300–600 mg sodium per hour in moderate conditions.
+\item 600–1,000 mg sodium per hour in hot conditions or heavy sweat.
+\end{itemize}
+
+Potassium and magnesium bands (locked; conservative; aligned to sodium timing):
+
+\begin{itemize}
+\item Potassium: 100–200 mg per hour (moderate); 200–300 mg per hour (hot/heavy sweat).
+\item Magnesium: 25–50 mg per hour (moderate); 50–75 mg per hour (hot/heavy sweat).
+\end{itemize}
+
+Safety cautions (binding):
+\begin{itemize}
+\item Do not megadose.
+\item If known or suspected kidney disease, clinician-directed fluid/sodium restrictions, heart failure, uncontrolled hypertension, or similar clinician constraints exist: do not self-direct electrolyte strategy; clinician oversight is required.
+\end{itemize}
+
+Product selection posture (generic, non-brand):
+
+\begin{itemize}
+\item transparent labeling of sodium/potassium/magnesium amounts,
+\item no proprietary blends masking amounts,
+\item avoid stimulant-combined electrolyte products; electrolytes are not stimulant substitutes; cross-reference Stage 7.05 boundaries by \textbf{ID} only.
+\end{itemize}
+
+Mixing posture (binding):
+
+\begin{itemize}
+\item follow label mixing instructions,
+\item do not concentrate beyond label guidance,
+\item do not create “double-strength” mixtures in protected windows.
+\end{itemize}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    X[l,2.10]
+    X[l,3.45]
+    X[l,3.35]
+    X[l,3.55]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Trigger} &
+\Hdr{Electrolyte Response} &
+\Hdr{What to Log} &
+\Hdr{When to Stop or Escalate} \\
+$\geq$90 min session &
+Apply moderate band: Na 300–600 mg/hr; K 100–200 mg/hr; Mg 25–50 mg/hr &
+Session duration, environment, electrolyte Y/N, estimated bands used &
+Severe GI distress, dizziness, confusion, chest pressure, near-syncope → stop and seek evaluation posture \\
+Hot/heavy sweat &
+Apply hot band: Na 600–1,000 mg/hr; K 200–300 mg/hr; Mg 50–75 mg/hr &
+Heat/humidity notes; sweat indicators; intake estimate &
+Heat illness signs, severe headache, vomiting, weakness → stop and seek evaluation posture; reslot tests \\
+Ruck/prolonged outdoor &
+Treat as trigger; apply moderate or hot band based on conditions &
+Dry load context noted separately in training logs; intake estimate &
+Gait-altering pain plus systemic symptoms → stop exposure and reslot; seek evaluation if red flags \\
+No trigger present &
+No electrolytes by default &
+Baseline fluids only; electrolytes N &
+If cramping persists with normal hydration posture, downshift and review; do not escalate to megadoses \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{10.C.5 Heat and Cold Safety Rules — Hydration as Risk Control}
+\phantomsection
+\addcontentsline{toc}{section}{10.C.5 Heat and Cold Safety Rules — Hydration as Risk Control}
+
+Numeric decision triggers (locked; conservative) and required actions; safety overrides schedule and validity.
+
+Heat / Heat Index triggers:
+
+\begin{itemize}
+\item Heat Index 85–89°F:
+  \begin{itemize}
+  \item caution posture; shorten exposure; indoor option ready; increase monitoring and sips.
+  \end{itemize}
+\item Heat Index 90–94°F:
+  \begin{itemize}
+  \item indoor substitution strongly preferred for longer sessions and any near-max efforts.
+  \end{itemize}
+\item Heat Index 95–99°F:
+  \begin{itemize}
+  \item reslot gate tests; indoor substitution for training; avoid prolonged outdoor exposure.
+  \end{itemize}
+\item Heat Index 100°F or higher:
+  \begin{itemize}
+  \item do not test; do not execute prolonged outdoor exposure; safety overrides schedule.
+  \end{itemize}
+\end{itemize}
+
+Cold triggers:
+
+\begin{itemize}
+\item Air temperature 10–19°F OR windchill 0–9°F:
+  \begin{itemize}
+  \item hydration remains required; schedule sips; recognize cold-sweat risk under layers.
+  \end{itemize}
+\item Windchill below 0°F:
+  \begin{itemize}
+  \item indoor substitution preferred for long sessions and any test efforts; document substitution.
+  \end{itemize}
+\end{itemize}
+
+Visibility/storm triggers overriding outdoor plans:
+
+\begin{itemize}
+\item lightning within area,
+\item active ice glaze,
+\item whiteout or near-zero visibility,
+\item official air quality warning,
+\item → substitute indoors or reslot per Stage 3 adjustment doctrine.
+\end{itemize}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    X[l,2.15]
+    X[l,2.675]
+    X[l,2.95]
+    X[l,2.85]
+    X[l,3.30]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Situation} &
+\Hdr{Numeric Trigger Example} &
+\Hdr{Immediate Action} &
+\Hdr{Next-Step Adjustment} &
+\Hdr{Notes} \\
+Moderate heat caution &
+Heat Index 85–89°F &
+Proceed only with caution; shorten exposure; plan indoor fallback &
+Use sip model; consider electrolytes if duration $\geq$90 min &
+Log heat category; do not force drinking; monitor symptoms \\
+High heat &
+Heat Index 90–94°F &
+Prefer indoor substitution for long sessions/near-max efforts &
+Reslot any gate-grade testing &
+Heat can invalidate validity and increase risk \\
+Very high heat &
+Heat Index 95–99°F &
+Reslot gate tests; substitute indoors &
+Maintain hydration baseline; avoid prolonged outdoor &
+Safety and validity override schedule \\
+Extreme heat &
+Heat Index $\geq$100°F &
+Do not test; do not do prolonged outdoor exposure &
+Indoor-only or reslot &
+Stop posture escalates on symptoms \\
+Cold exposure &
+Air 10–19°F or windchill 0–9°F &
+Proceed only with scheduled sips &
+Maintain baseline; avoid dehydration by muted thirst &
+Cold does not remove hydration requirement \\
+Severe cold &
+Windchill <0°F &
+Indoor substitution preferred for long sessions/tests &
+Reslot test efforts &
+Document substitution; protect safety \\
+Visibility/storm &
+Lightning/ice glaze/whiteout/air quality warning &
+Stop outdoor plan immediately &
+Substitute indoors or reslot per Stage 3 &
+Do not attempt to “salvage” a test under unsafe conditions \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{10.C.6 Test Week Hydration Posture — Validity Protection}
+\phantomsection
+\addcontentsline{toc}{section}{10.C.6 Test Week Hydration Posture — Validity Protection}
+
+Binding posture:
+
+\begin{itemize}
+\item Keep hydration routine stable during test weeks and the final 7–10 days before major gate tests.
+\item Avoid new electrolyte products or changes in concentration or timing practices in protected windows.
+\item Ensure adequate fluids in the 24 hours prior using baseline plus conservative session top-ups; avoid large late-day boluses.
+\item Log environment conditions affecting comparability and safety.
+\item Reslot tests when conditions invalidate safety or validity per Stage 3 adjustment doctrine.
+\end{itemize}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    X[l,1.70]
+    X[l,2.55]
+    X[l,3.60]
+    X[l,3.35]
+    X[l,3.40]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Week Type} &
+\Hdr{Goal} &
+\Hdr{Allowed Adjustments} &
+\Hdr{Not Allowed} &
+\Hdr{Notes} \\
+Deload/Test week &
+Preserve validity and reduce fatigue contamination &
+Calories set to maintenance per Stage 10.B; hydration baseline stable; session top-ups as needed &
+New electrolyte product; new concentration; new timing practice; new caffeine pattern &
+Treat electrolytes as controlled variables; stability is prioritized over “optimization” \\
+Test day(s) &
+Stable output and safety &
+If already using electrolytes, use the same product type and same mixing/timing; sip model &
+First-time electrolyte use; double-strength mixes; chugging &
+Log conditions and intake estimate; reslot if heat/cold triggers invalidate safety \\
+7–10 days pre-gate &
+Controlled variable stability &
+Hold routine; minor logistical adjustments only if unavoidable and logged &
+Any structural change to hydration/electrolyte routine &
+Interpret outcomes conservatively if any unavoidable change occurs \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{10.C.7 Logging Requirements — Hydration Fields}
+\phantomsection
+\addcontentsline{toc}{section}{10.C.7 Logging Requirements — Hydration Fields}
+
+Fields to record aligned to Stage 2.E posture (operational; no schema rewrite):
+
+\begin{itemize}
+\item Daily hydration estimate:
+  \begin{itemize}
+  \item approximate oz/day or L/day OR low/medium/high category, recorded consistently.
+  \end{itemize}
+\item Electrolyte use:
+  \begin{itemize}
+  \item Y/N plus generic product-type note (no brands) and “moderate band” vs “hot band” intent.
+  \end{itemize}
+\item Session hydration estimate:
+  \begin{itemize}
+  \item approximate pre/during/post volume or rough total.
+  \end{itemize}
+\item Environment notes relevant to hydration:
+  \begin{itemize}
+  \item hot/humid/cold; indoor/outdoor; unusual sweat indicators.
+  \end{itemize}
+\item Symptom flags:
+  \begin{itemize}
+  \item cramping; dizziness; headache; unusual fatigue; nausea or GI distress.
+  \end{itemize}
+\end{itemize}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    Q[l,wd=0.5in]
+    Q[l,wd=.5in]
+    Q[r,wd=0.5in]
+    X[l,2.10]
+    X[l,1.55]
+    Q[l,wd=1.00in]
+    X[l,1.20]
+    X[l,1.50]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Date} &
+\Hdr{Phase/Week} &
+\Hdr{Session \#} &
+\Hdr{Environment} &
+\Hdr{Fluid Estimate} &
+\Hdr{Electrolytes} &
+\Hdr{Symptoms} &
+\Hdr{Notes} \\
+&
+&
+&
+&
+&
+&
+&
+\\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{10.C.8 Common Failure Modes and Controls — Hydration-Specific}
+\phantomsection
+\addcontentsline{toc}{section}{10.C.8 Common Failure Modes and Controls — Hydration-Specific}
+
+\begin{itemize}
+\item Underdrinking due to access limits → pre-plan bottle/reservoir capacity and refill points via 7.13; do not start sessions dry.
+\item Underdrinking in cold because thirst is muted → schedule sips; warm fluids if feasible; maintain baseline.
+\item Overdrinking to catch up → sip model; spread intake across day; avoid rapid chugging.
+\item Overdrinking plain water during long/hot sessions → activate conservative electrolyte posture when triggered; avoid forced water-only intake.
+\item Treating electrolytes as mandatory daily intake → electrolytes are condition-dependent; use only when triggers apply.
+\item Introducing new electrolyte products or concentrations on test day → prohibited; no novelty near gates/test weeks.
+\item Ignoring early warning signs → downshift, move indoors, review baseline plus top-up; log signals.
+\item Poor logging (missing environment/symptoms) → hydration fields are mandatory in session notes; missing fields reduce interpretability and safety controls.
+\item Failure to reslot tests in unsafe heat/illness conditions → apply Stage 3 reslot posture; safety and validity override schedule.
+\item Using stimulant-combined electrolytes as an energy substitute → prohibited; electrolytes are not stimulant substitutes; respect 7.05 boundaries by \textbf{ID} only.
+\end{itemize}
+
+\newpage
+
+\section*{10.C.9 Escalation Triggers — Non-Medical}
+\phantomsection
+\addcontentsline{toc}{section}{10.C.9 Escalation Triggers — Non-Medical}
+
+Stop-and-seek-evaluation triggers (non-diagnostic safety posture):
+
+\begin{itemize}
+\item confusion or altered mental status,
+\item fainting or near-fainting,
+\item chest pain or pressure,
+\item severe dizziness or inability to stand/walk normally,
+\item severe headache especially with heat exposure,
+\item unusual shortness of breath not explained by exertion level,
+\item persistent vomiting or diarrhea,
+\item signs consistent with suspected heat illness especially when combined with the above.
+\end{itemize}
+
+Explicit statement: this list is not a diagnosis; it is a safety escalation posture.
+
+\newpage
+
+\section*{10.C.10 Operating System Integrity Checks}
+\phantomsection
+\addcontentsline{toc}{section}{10.C.10 Operating System Integrity Checks}
+
+\begin{itemize}
+\item Baseline hydration posture exists as ranges with a minimum floor (30 mL/kg/day) and typical range (35–45 mL/kg/day) using hybrid bodyweight reference rules across phases.
+\item Baseline plus session top-up model is specified and usable without specialized tools, using 7.13 container capability.
+\item Session rules exist for $\leq$ 60, 60–90, and $\geq$90 minutes, with hot/humid and cold modifiers and locked per-hour bands.
+\item Electrolytes are condition-dependent; activation thresholds are explicit ($\geq$90 minutes, heavy sweat/heat, ruck/prolonged outdoor).
+\item Sodium numeric bands exist (300–600 mg/hr; 600–1,000 mg/hr) and are conservative and non-prescriptive.
+\item Potassium and magnesium numeric bands exist with explicit “no megadose” and clinician-caution posture for kidney disease/clinician restrictions.
+\item Overhydration ceiling exists: do not exceed 32 oz/hr unless clinically directed; do not chug posture is explicit.
+\item Numeric heat and cold triggers exist and explicitly reslot tests per Stage 3 when conditions invalidate safety or validity.
+\item Test-week stability posture exists; no novelty near gates/test weeks is enforced for hydration/electrolyte routines.
+\item Logging fields align to Stage 2.E conventions and are implementable under start-from-zero posture, including environment notes and symptom flags.
+\item Any upstream conflict is labeled "Requires Stage 8 review" with no silent edits.
+\end{itemize}
+
+\end{document}

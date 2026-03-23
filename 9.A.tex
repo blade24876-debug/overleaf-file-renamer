@@ -1,0 +1,268 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{9.A — Executive Program Snapshot}
+\phantomsection
+\addcontentsline{toc}{section}{9.A — Executive Program Snapshot}
+
+\subsection*{9.A.1 Narrative}
+\phantomsection
+\addcontentsline{toc}{subsection}{9.A.1 Narrative}
+
+The \textbf{SOF} Physical Development Transformation Program is an 182-week civilian-to-selection readiness pipeline designed to transform a sedentary, obese, untrained 35-year-old male, 5'9" (175 cm), 266 lb (121 kg), 40\% body fat, into an athlete capable of exceeding U.S. \textbf{SOF} selection physical standards.
+
+The end-state envelope targets approximately:
+
+\begin{itemize}
+\item 180 lb (82 kg) at 12–17.5\% body fat
+\item 100 strict push-ups in 2 minutes
+\item 100 strict sit-ups in 2 minutes
+\item 20+ strict dead-hang pull-ups
+\item 3:45+ forearm plank
+\item 1.5-mile run in 9:00
+\item 2-mile run in 12:30
+\item 3-mile run in 20:00
+\item 5-mile run in 30–35:00
+\item 3 miles rucked with 25 lb in 45:00
+\item 6 miles rucked with 35 lb in 90:00
+\item 9 miles rucked with 45 lb in 135:00
+\item 12 miles rucked with 55 lb in 180:00
+\item 500-yard swim in 10:30
+\item 500-meter swim in 10:00
+\end{itemize}
+
+The program is structured as Phase 00 through Phase 13 with Phase 00 at 16 weeks, Phase 01 at 24 weeks, and Phases 02–13 at 12 weeks each, yielding an overall duration of 182 weeks as packaged.
+
+Training cadence is fixed at 6 sessions per week with a standardized session structure that includes safety self-check, warm-up, mobility, main work, Cardio, cooldown, and recovery/post-session notes; Cardio is present in every session and must meet the minimum continuous standard to be admissible for gate decisions. Progression is test-driven: Stage 2 defines the metric inventory, protocol cards (C\#), and tier thresholds, while Stage 3 defines protected deload/test windows and reslot discipline so gate evidence is collected under comparable conditions rather than forced under fatigue or unsafe environments.
+
+Equipment and resource readiness are phase-gated and tiered: Stage 6 defines when each capability category becomes minimum deployable (Tier 1+) by phase, and Stage 7 provides category-level operating manuals for selection, setup, maintenance, and substitution without brands/models. Safety posture is non-negotiable: OTC-only boundaries, no prescription guidance, no hormone dosing/sourcing/cycling/procurement, and water governance remains absolute with no unsupervised underwater or breath-hold ever.
+
+Gate decisions rely on admissible evidence only (\textbf{VALID} sessions and \textbf{VALID} tests), with stop rules and reslot posture controlling when red flags, environment hazards, or missing required fields would contaminate evidence quality.
+
+Known pre-deploy blockers include pull-up feasibility timing risk if gate reliance precedes safe anchored pull-up capability (\textbf{ISS-08-001}) and underwater governance feasibility/admissibility controls (\textbf{ISS-08-002}; \textbf{ISS-08-003}), with long-ruck gates carrying a compounded dependency stack that must be satisfied at time of need (\textbf{ISS-08-004}).
+
+\subsection*{9.A.2 Snapshot Table}
+\phantomsection
+\addcontentsline{toc}{subsection}{9.A.2 Snapshot Table}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.55in]
+    X[l,1]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Item} &
+\Hdr{Summary} \\
+Target Population &
+Sedentary, obese, untrained male, age 35; 5'9" (175 cm); 266 lb (121 kg); 40\% body fat; start-from-zero home environment (no assumed equipment, clothes, storage, or training space). \\
+Total Duration &
+182 weeks; Phase 00: 16 weeks; Phase 01: 24 weeks; Phases 02–13: 12 weeks each. \\
+Phases &
+Phase 00 — Bodily Reactivation and Baseline Creation\newline Phase 01 — Base Conditioning and Hypertrophy\newline Phase 02 — Maximal Strength Development\newline Phase 03 — Converting Strength to Power and Endurance for \textbf{SOF} Selection\newline Phase 04 — Strength-Endurance and Work Capacity Development \newline Phase 05 — Aerobic Base and Extended Stamina Development\newline Phase 06 — Lactate Threshold and Power-Endurance Development\newline Phase 07 — Advanced Hybrid Overload\newline Phase 08 — Structural Durability and Load Tolerance Phase\newline Phase 09 — High-Volume Calisthenics and Stamina\newline Phase 10 — Advanced Tactical Readiness Physical\newline Phase 11 — Pre-Selection Conditioning and Recovery\newline Phase 12 — Final Pre-Selection Conditioning\newline Phase 13 — Full-Spectrum Readiness Consolidation. \\
+Sessions / Week &
+6 sessions/week. Each session includes safety self-check, warm-up, mobility, main work, Cardio, cooldown, and recovery/post-session notes. Cardio is present every session and must meet the minimum continuous standard for admissibility; validity-only gate credit applies. \\
+Key Performance Targets &
+- BODYWEIGHT: 180 lb (82 kg); Body fat: 12–17.5\% body fat \newline
+- \textbf{CAL}: 100 strict push-ups (2 min); 100 strict sit-ups (2 min); 20 $\leq$ strict dead-hang pull-ups; plank $\geq$ 3:45 \newline
+- \textbf{RUN}: 1.5 mi 9:00; 2 mi 12:30; 3 mi 20:00; 5 mi 30–35:00 \newline
+- \textbf{RUCK} (dry load): 3 mi @ 25 lb 45:00; 6 mi @ 35 lb 90:00; 9 mi @ 45 lb 135:00; 12 mi @ 55 lb 180:00 \newline
+- \textbf{SWIM}: 500 yd 10:30; 500 m 10:00 (surface-only posture) \newline
+- \textbf{UNDERWATER}: governance-constrained only; no unsupervised underwater/breath-hold ever; feasibility/admissibility constraints tracked (\textbf{ISS-08-002}; \textbf{ISS-08-003}). \\
+Environment &
+Grand Forks, North Dakota; primarily home-based execution with gym and elliptical access; outdoor routes for walking/running/rucking with substitutions as needed under safety/environment hazards; pool access is phase-gated and not assumed early (7.17 Tier 1 begins Phase 04 (End)). \\
+Core Design Principles &
+Validity-first evidence doctrine (\textbf{VALID} sessions/tests only for gates); protected deload/test windows and reslot discipline; phase-gated exposure escalation with tiered capability readiness; conservative early-phase bias with increasing specificity and consequence later; start-from-zero logistics discipline and documentation-driven auditability. \\
+Key Safety Notes &
+- Water governance: no unsupervised underwater/breath-hold ever; underwater is conditional and governance-gated only (\textbf{ISS-08-002}; \textbf{ISS-08-003}). \newline
+- OTC-only posture; no prescription guidance; no hormone dosing/sourcing/cycling/procurement. \newline
+- Stop-rule posture: red flags abort exposure; reslot under protected windows. \newline
+- Validity-only gate credit: admissible evidence required; missing required fields render evidence inadmissible (logging burden risk monitored: \textbf{ISS-08-007}; derived Cardio compliance misclassification risk: \textbf{ISS-08-008}). \newline
+- Equipment timing must be satisfied at time of need; pull-up feasibility timing risk if gate reliance precedes safe anchored setup (\textbf{ISS-08-001}); long ruck gate dependency stack risk (\textbf{ISS-08-004}). \\
+\end{longtblr}
+
+\endgroup
+
+\end{document}

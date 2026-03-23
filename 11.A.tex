@@ -1,0 +1,539 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 11.A — Pre-Selection Conditioning Overview}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 11.A — Pre-Selection Conditioning Overview}
+
+\subsection*{11.A.1 Purpose and Scope}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.A.1 Purpose and Scope}
+
+Pre-selection conditioning, within this system, is the late-pipeline execution posture applied in the final approach period to preserve readiness, reduce injury risk, and protect the validity of gate evidence. It is defined as the operational conditioning emphasis and constraint discipline that makes selection-ready performance repeatable under controlled variables, rather than a last-minute intensification effort.
+
+\subsubsection*{Inclusions:}
+\phantomsection
+
+\begin{itemize}
+\item Conditioning domains and constraints for the late phases using Stage 2 domain taxonomy: \textbf{RUN}, \textbf{RUCK}, \textbf{CAL}, \textbf{STR}, \textbf{SWIM}, \textbf{DURABILITY}, \textbf{RECOVERY}, and \textbf{AER}.
+\item Recovery and readiness surveillance posture that protects performance and validity.
+\item Validity and evidence posture: what counts as admissible, what is invalid, and how invalidity triggers reslot discipline.
+\item Environment and equipment feasibility posture: how to decide when conditions invalidate safety or comparability and require substitution or reslot.
+\end{itemize}
+
+\subsubsection*{Exclusions:}
+\phantomsection
+
+\begin{itemize}
+\item No programming detail: no workouts, sets/reps, interval prescriptions, weekly splits, or day-by-day plans.
+\item No new tests, thresholds, domains, phase purposes, or equipment categories.
+\end{itemize}
+
+\newpage
+
+\subsection*{11.A.2 Governing Constraints and Non-Negotiables}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.A.2 Governing Constraints and Non-Negotiables}
+
+\begin{itemize}
+\item Safety hierarchy:
+  \begin{itemize}
+  \item Safety overrides validity, schedule, and performance.
+  \item \textbf{STOP} \textbf{NOW} and \textbf{MEDICAL} \textbf{HOLD} posture applies when triggered; do not negotiate or “push through.”
+  \end{itemize}
+\item Validity hierarchy:
+  \begin{itemize}
+  \item Gate decisions require admissible evidence only.
+  \item \textbf{INVALID} tests provide no gate credit and are treated as not yet tested for gate decisions; they \textbf{MUST} be reslotted per Stage 3 posture.
+  \item Sessions tagged \textbf{INVALID} provide no gate credit; \textbf{MODIFIED} is admissible only under Stage 1.F constraints.
+  \end{itemize}
+\item No novelty near gates and Deload/Test weeks:
+  \begin{itemize}
+  \item New shoes, new routes, new tools, new hydration/electrolyte practices, and major nutrition structure changes are prohibited inside protected windows and near gates under upstream doctrine.
+  \item If unavoidable changes occur due to logistics, they \textbf{MUST} be logged and evidence interpreted conservatively.
+  \end{itemize}
+\item Environment and reslot posture per Stage 3:
+  \begin{itemize}
+  \item Unsafe or validity-compromising conditions require indoor substitution (only if comparability can be preserved) or reslot to the next protected window.
+  \item No stacking make-ups to “catch up” missed tests or missed weeks.
+  \end{itemize}
+\item Water governance prohibition:
+  \begin{itemize}
+  \item No unsupervised underwater or breath-hold exposure under any circumstances.
+  \item Any underwater-related content remains governance-gated and supervised-only per upstream doctrine; if governance cannot be met, underwater is not scheduled and is inadmissible.
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\subsection*{11.A.3 Pre-Selection Conditioning Posture — Domains and Emphasis}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.A.3 Pre-Selection Conditioning Posture — Domains and Emphasis}
+
+Domain emphasis in the pre-selection period increases specificity and consequence but \textbf{MUST} NOT justify unsafe stacking, novelty, or rule-breaking.
+
+\subsubsection*{Primary readiness drivers (late-phase decision weight):}
+\phantomsection
+
+\begin{itemize}
+\item \textbf{RUN}: primary readiness driver for selection approach; relies on admissible time-trial evidence under Stage 2 protocols and Stage 3 windows.
+\item \textbf{RUCK}: primary readiness driver for load tolerance and selection-relevant durability; high orthopedic cost requires strict environment safety and equipment readiness posture.
+\item \textbf{CAL}: primary readiness driver for repeatable muscular endurance and gate comparability; validity posture is sensitive to standardized conditions and evidence capture where required.
+\end{itemize}
+
+\subsubsection*{Supporting readiness drivers (controls and enabling capacities):}
+\phantomsection
+
+\begin{itemize}
+\item \textbf{STR}: supporting readiness driver that stabilizes resilience and output; proxy testing posture remains submax and tool-identity dependent; not a license for unsafe maximal attempts.
+\item \textbf{SWIM}: supporting-to-primary depending on selection requirements; remains governed by pool feasibility, Pool \textbf{ID}/length-unit logging, and supervised-only posture for any underwater exposure.
+\item \textbf{DURABILITY}: control domain that governs whether exposure escalation is allowed; pain flags, gait changes, and foot integrity drive downshift and reslot decisions.
+\item \textbf{RECOVERY}: control domain that governs whether testing is admissible and whether schedule intensity must be downshifted to preserve validity.
+\end{itemize}
+
+\subsubsection*{\textbf{AER}:}
+\phantomsection
+
+\begin{itemize}
+\item Treated as supporting conditioning evidence only; \textbf{MUST} NOT be treated as interchangeable evidence for \textbf{RUN} tolerance or \textbf{RUN} performance.
+\end{itemize}
+
+\newpage
+
+\subsection*{11.A.4 Validity and Evidence Discipline in Pre-Selection Period}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.A.4 Validity and Evidence Discipline in Pre-Selection Period}
+
+Decision-grade evidence rules remain controlled by Stage 1.F and Stage 2/2.E; Stage 11 applies them with strict discipline because consequence is highest in the final phases.
+
+\subsubsection*{Session discipline:}
+\phantomsection
+
+\begin{itemize}
+\item Sessions \textbf{MUST} be tagged \textbf{VALID} / \textbf{MODIFIED} / \textbf{INVALID} per Stage 1.F.
+\item Any session missing required elements or required documentation is \textbf{INVALID} and provides no gate credit.
+\item Downshift-not-drop-frequency posture applies: reduce risk and dose while preserving the 6-session rhythm where feasible; do not “save time” by skipping required elements.
+\end{itemize}
+
+\subsubsection*{Test discipline:}
+\phantomsection
+
+\begin{itemize}
+\item Tests \textbf{MUST} be tagged \textbf{VALID} / \textbf{INVALID} only.
+\item A test is \textbf{VALID} only when Stage 2 protocol conditions and Stage 2.E required fields are met (Environment Unit \textbf{ID}, Tool Standard identity, Evidence Ref where required, and complete fields).
+\item Missing required fields defaults to \textbf{INVALID} for gate use; do not repair by memory.
+\end{itemize}
+
+\subsubsection*{Replication posture:}
+\phantomsection
+
+\begin{itemize}
+\item Apply the established replication rule used upstream (do not invent a new rule). When replication is required for gate classification, cadence and reslot decisions \textbf{MUST} preserve the ability to replicate within protected windows without stacking.
+\end{itemize}
+
+\subsubsection*{Logging posture:}
+\phantomsection
+
+\begin{itemize}
+\item Stage 2.E required fields must remain complete; \textbf{UNKNOWN} / \textbf{MISSING} is recorded explicitly; no inference is permitted.
+\end{itemize}
+
+\subsubsection*{Evidence table:}
+\phantomsection
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  colspec = {
+    X[l,1.70]
+    X[l,3.40]
+    X[l,3.40]
+    X[l,2.30]
+  },
+  rowhead=1,
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+}
+\Hdr{Evidence Type} &
+\Hdr{What Counts as Admissible} &
+\Hdr{Common Invalidators} &
+\Hdr{Action if Invalid} \\
+Session record &
+\textbf{VALID} sessions; \textbf{MODIFIED} only when admissible per Stage 1.F and reason-coded &
+Missing required session elements; Cardio non-compliance; missing required notes/fields &
+Tag \textbf{INVALID}; no gate credit; resume with corrected execution; review why failure occurred \\
+\textbf{RUN}/ruck/swim test event &
+\textbf{VALID} test per Stage 2 protocol + Stage 2.E fields (Route/Pool/Machine \textbf{ID}; Tool Standard; conditions; Evidence Ref where required) &
+Missing Environment Unit \textbf{ID}; missing tool identity/settings; unsafe conditions; stop-rule event; missing Evidence Ref where required &
+Tag \textbf{INVALID}; treat as not yet tested; reslot to next protected window per Stage 3 \\
+\textbf{CAL} test event &
+\textbf{VALID} test under Stage 2 standard with required evidence artifact posture where applicable + Stage 2.E completeness &
+Missing required artifact/evidence ref where required; non-standard conditions; incomplete field set &
+Tag \textbf{INVALID}; reslot; do not claim gate credit \\
+Recovery/durability markers &
+Complete daily/session logs used as gate context signals &
+Missing data; inconsistent capture timing; backfilled entries &
+Record \textbf{MISSING}; interpret conservatively; hold gate decisions if context is unreliable \\
+Equipment/environment readiness evidence &
+Verified Tier readiness and stable environment identity &
+Capability absent at time of need; late tool/route changes in protected windows &
+Default \textbf{HOLD} and reslot; do not improvise unsafe substitutes \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\subsection*{11.A.5 Readiness Surveillance and Risk Controls}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.A.5 Readiness Surveillance and Risk Controls}
+
+\subsubsection*{High-frequency monitoring focus areas (execution controls):}
+\phantomsection
+
+\begin{itemize}
+\item Sleep and fatigue trends:
+  \begin{itemize}
+  \item sleep hours and sleep quality patterns govern downshift decisions and whether test attempts remain appropriate.
+  \end{itemize}
+\item Soreness and pain flags:
+  \begin{itemize}
+  \item pain severity and location are tracked; persistent/worsening patterns trigger downshift posture.
+  \end{itemize}
+\item Gait-altering pain posture:
+  \begin{itemize}
+  \item any gait change is treated as a disqualifier signal for \textbf{RUN}/\textbf{RUCK} escalation until resolved under conservative posture.
+  \end{itemize}
+\item Foot hotspot and blister posture:
+  \begin{itemize}
+  \item hotspot trends trigger immediate friction control and exposure downshift; blisters are treated as a durability constraint that can invalidate ruck/run feasibility.
+  \end{itemize}
+\item Illness flags:
+  \begin{itemize}
+  \item illness posture triggers reslot discipline for tests and conservative execution; do not attempt high-consequence tests through illness.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{Escalation posture (governance level):}
+\phantomsection
+
+\begin{itemize}
+\item \textbf{STOP} \textbf{NOW} triggers include:
+  \begin{itemize}
+  \item chest pain/pressure, syncope/near-syncope, disproportionate dyspnea, new neurologic symptoms,
+  \item heat illness signs,
+  \item gait-altering pain or abrupt mechanics change,
+  \item panic/dissociation or inability to safely self-regulate in-session.
+  \end{itemize}
+\item \textbf{MEDICAL} \textbf{HOLD} is applied when explicit triggers apply per Stage 1.F posture; it is not used as a convenience pause.
+\end{itemize}
+
+\subsubsection*{Downshift-not-drop-frequency posture:}
+\phantomsection
+
+\begin{itemize}
+\item Preserve cadence where possible; reduce exposure risk by:
+  \begin{itemize}
+  \item shifting modality (e.g., indoor low-impact when environment is unsafe),
+  \item reducing intensity and density,
+  \item prioritizing validity protection over “getting the work in.”
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\subsection*{11.A.6 Equipment and Environment Feasibility Posture}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.A.6 Equipment and Environment Feasibility Posture}
+
+\subsubsection*{Routes and weather exposure:}
+\phantomsection
+
+\begin{itemize}
+\item Route identity and surface class must be stable for comparable evidence.
+\item When conditions are unsafe or validity-compromising (ice glaze, lightning, whiteout/near-zero visibility, official air-quality warnings, extreme heat index posture), the default posture is indoor substitution if comparability can be preserved (Machine \textbf{ID}/settings logged) or reslot to the next protected window.
+\end{itemize}
+
+\subsubsection*{Pool access where applicable:}
+\phantomsection
+
+\begin{itemize}
+\item Pool access is phase-gated and cannot be assumed; swim evidence requires Pool \textbf{ID} and pool length-unit logging.
+\item If pool access is unstable, swim tests are reslotted; do not substitute non-aquatic modalities as swim-equivalent gate evidence.
+\end{itemize}
+
+\subsubsection*{Tooling and measurement readiness:}
+\phantomsection
+
+\begin{itemize}
+\item Timing and measurement tools must be stable and documented; tool drift without documentation is validity drift.
+\item Evidence Ref posture must be followed where required; missing Evidence Ref produces inadmissible evidence.
+\end{itemize}
+
+\subsubsection*{Equipment tier readiness per Stage 6:}
+\phantomsection
+
+\begin{itemize}
+\item No capability may be treated as required earlier than Stage 6 Tier 1+ timing indicates.
+\item If a gate or phase intent implies a capability earlier than Stage 6 provides, it must be flagged "Requires Stage 8 review"; execution posture defaults to \textbf{HOLD} and reslot rather than unsafe improvisation.
+\end{itemize}
+
+\subsubsection*{Substitution posture:}
+\phantomsection
+
+\begin{itemize}
+\item Substitutions \textbf{MUST} preserve intent, reduce risk, and be logged with required Stage 2.E fields.
+\item When comparability cannot be preserved, the attempt is treated as inadmissible and reslotted.
+\end{itemize}
+
+\subsubsection*{Phase Integration Notes (non-programming; scope-limited):}
+\phantomsection
+
+\begin{itemize}
+\item This overview applies primarily to Phase 11 — Pre-Selection Conditioning and Recovery, Phase 12 — Final Pre-Selection Conditioning, and Phase 13 — Full-Spectrum Readiness Consolidation as the final approach period execution doctrine.
+\item It does not redefine phase missions; it clarifies the execution discipline required to preserve admissible evidence and to prevent late-stage variance.
+\item Known feasibility blockers that affect these phases remain tracked upstream (e.g., underwater governance availability, pull-up feasibility timing, long ruck compounded dependencies); they must be handled via \textbf{ISS-08}-\#\#\# posture and not by silent adjustments.
+\end{itemize}
+
+\newpage
+
+\subsection*{11.A.7 Risks, Contraindications, and Red Flags — Non-Medical}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.A.7 Risks, Contraindications, and Red Flags — Non-Medical}
+
+\subsubsection*{Key risk families (Stage 1.B references):}
+\phantomsection
+
+\begin{itemize}
+\item Impact exposure and tissue tolerance drift — \textbf{RISK-1B-001}
+\item Footwear/footcare failure leading to gait drift — \textbf{RISK-1B-009}
+\item Environment hazard exposure (ice/heat/visibility/air quality) — \textbf{RISK-1B-008} / \textbf{RISK-1B-013}
+\item Validity contamination from novelty or missing required fields — \textbf{RISK-1B-014}
+\item Water governance breaches — \textbf{RISK-1B-010}
+\end{itemize}
+
+\subsubsection*{Non-medical red flags requiring \textbf{STOP} \textbf{NOW} posture:}
+\phantomsection
+
+\begin{itemize}
+\item chest pain or pressure,
+\item syncope or near-syncope,
+\item disproportionate shortness of breath,
+\item new neurologic symptoms,
+\item heat illness signs,
+\item acute injury with instability or swelling,
+\item gait-altering pain or mechanics change.
+\end{itemize}
+
+\subsubsection*{Explicit water governance red flag:}
+\phantomsection
+
+\begin{itemize}
+\item Any unsupervised underwater/breath-hold attempt is a governance breach and triggers \textbf{STOP} \textbf{NOW}, reporting posture, and conservative handling under Stage 1.F; it is never treated as acceptable deviation.
+\end{itemize}
+
+\subsubsection*{Known mismatch flags (must be surfaced here if encountered during execution planning):}
+\phantomsection
+
+\begin{itemize}
+\item If pull-up gate reliance occurs before safe anchored pull-up capability is available per 7.01 and Stage 6 timing, this is a timing conflict and is flagged "Requires Stage 8 review."
+\item If underwater standards are treated as mandatory when governance prerequisites cannot be guaranteed, this is a safety/validity conflict and is flagged "Requires Stage 8 review."
+\item If long-ruck gates are scheduled without confirming the compounded dependency stack (ruck system, foot system, route validation, environment controls, hydration logistics), this is a timing/safety conflict and is flagged "Requires Stage 8 review."
+\end{itemize}
+
+\newpage
+
+\subsection*{11.A.8 Compliance Checklist — Pass/Fail}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.A.8 Compliance Checklist — Pass/Fail}
+
+\begin{itemize}
+\item \textbf{PASS}/\textbf{FAIL}: No programming detail included (no workouts, sets/reps, intervals, weekly splits, day-by-day plans).
+\item \textbf{PASS}/\textbf{FAIL}: No new tests, thresholds, domains, phase purposes, or equipment categories introduced.
+\item \textbf{PASS}/\textbf{FAIL}: Validity tokens and gate outcomes use Stage 1.F terms exactly: \textbf{VALID} / \textbf{MODIFIED} / \textbf{INVALID}; \textbf{VALID} / \textbf{INVALID}; \textbf{ADVANCE} / \textbf{HOLD} / \textbf{REGRESS} / \textbf{MEDICAL} \textbf{HOLD}; \textbf{STOP} \textbf{NOW} / \textbf{MEDICAL} \textbf{HOLD}.
+\item \textbf{PASS}/\textbf{FAIL}: Substitutions require documentation and Stage 2.E completeness; missing fields treated as \textbf{MISSING}/\textbf{UNKNOWN} with no inference and inadmissible for gates when required.
+\item \textbf{PASS}/\textbf{FAIL}: No novelty near gates posture stated and treated as binding for controlled variables.
+\item \textbf{PASS}/\textbf{FAIL}: Environment reslot posture stated and no stacking make-ups affirmed per Stage 3.
+\item \textbf{PASS}/\textbf{FAIL}: Water governance prohibition explicitly preserved; no unsupervised underwater/breath-hold implied.
+\item \textbf{PASS}/\textbf{FAIL}: Any detected mismatch is flagged "Requires Stage 8 review" in 11.A.6 and 11.A.7 rather than silently fixed.
+\end{itemize}
+
+\end{document}

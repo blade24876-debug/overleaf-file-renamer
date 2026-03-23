@@ -1,0 +1,744 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 11.C — Recovery and Injury Prevention in Final Phases}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 11.C — Recovery and Injury Prevention in Final Phases}
+
+\subsection*{11.C.1 Purpose and Scope}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.C.1 Purpose and Scope}
+
+11.C exists to preserve readiness in the final phases by reducing preventable injury risk, limiting validity drift, and sustaining repeatable performance within protected Deload/Test windows. In the late pipeline, consequence is high: small breakdowns (sleep collapse, hotspots progressing to blisters, gait drift, illness) can invalidate tests, force reslots, and destabilize gate decisions.
+
+11.C does not provide medical treatment guidance, rehabilitation protocols, or programming detail. It does not prescribe workouts, sets/reps, interval prescriptions, weekly splits, or day-by-day schedules. It provides governance overlays, risk surveillance, and operational controls aligned to Stage 1.F validity doctrine, Stage 3.E adjustment posture, and Stage 2.E logging discipline.
+
+\newpage
+
+\subsection*{11.C.2 Recovery Governance Hierarchy}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.C.2 Recovery Governance Hierarchy}
+
+Priority order (binding):
+
+\begin{itemize}
+\item Safety and stop posture override schedule and performance:
+\begin{itemize}
+\item \textbf{STOP} \textbf{NOW} and \textbf{MEDICAL} \textbf{HOLD} posture applies when indicated; do not negotiate.
+\end{itemize}
+\item Validity posture overrides “good effort”:
+\begin{itemize}
+\item inadmissible evidence cannot support \textbf{ADVANCE}.
+\end{itemize}
+\item Recovery actions are tools to preserve admissible evidence and reduce risk:
+\begin{itemize}
+\item recovery actions are not a license to force progression or to compensate for missing compliance by stacking.
+\end{itemize}
+\end{itemize}
+
+Do not do list (binding):
+
+\begin{itemize}
+\item Do not train through gait-altering pain.
+\item Do not stack make-up tests or compress missed tests into a single week.
+\item Do not add novelty near gates or Deload/Test weeks (new shoes, new route class, new tools, new hydration/electrolyte practices, major nutrition structure changes).
+\end{itemize}
+
+\newpage
+
+\subsection*{11.C.3 Final-Phase Risk Profile and What Changes Late Pipeline}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.C.3 Final-Phase Risk Profile and What Changes Late Pipeline}
+
+Late phases increase consequence because:
+
+\begin{itemize}
+\item specificity and consequence of gate-relevant tests increase,
+\item protected windows concentrate decision-grade evidence demands,
+\item fatigue tolerance is narrower and error costs are higher,
+\item environment volatility and access constraints (route/pool/tool availability) can invalidate otherwise strong performance.
+\end{itemize}
+
+Key risk families to control (Stage 1.B references):
+
+\begin{itemize}
+\item Impact and overuse drift in \textbf{RUN} exposure — \textbf{RISK-1B-001}.
+\item Load-bearing tolerance failures and interface breakdown (ruck fit, load shift) — \textbf{RISK-1B-001}.
+\item Footwear/footcare failures leading to hotspots → blisters → gait drift — \textbf{RISK-1B-009}.
+\item Sleep debt and recovery collapse contaminating validity and increasing injury risk — \textbf{RISK-1B-004}.
+\item Environment hazards (ice/heat/air quality/visibility) driving unsafe or invalid test conditions — \textbf{RISK-1B-008} / \textbf{RISK-1B-013}.
+\item Test invalidity due to missing required fields, tool drift, or environment \textbf{ID} gaps — \textbf{RISK-1B-014}.
+\item Water governance breaches (any unsupervised underwater/breath-hold attempt) — \textbf{RISK-1B-010}.
+\end{itemize}
+
+\newpage
+    
+\subsection*{11.C.4 Recovery Surveillance Signals and Triggers}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.C.4 Recovery Surveillance Signals and Triggers}
+
+Decision signals are drawn from existing Stage 2 metrics/logging; 11.C does not create a new metric system. Signals drive downshifts, reslots, and conservative gate posture.
+
+Signal families:
+
+\begin{itemize}
+\item \textbf{RECOVERY} signals:
+\begin{itemize}
+\item sleep hours and sleep quality trends,
+\item fatigue and soreness trends.
+\end{itemize}
+\item \textbf{DURABILITY} signals:
+\begin{itemize}
+\item pain severity and location,
+\item gait-altering pain flag,
+\item foot hotspot and blister flags.
+\end{itemize}
+\item \textbf{COMPLIANCE} and validity signals:
+\begin{itemize}
+\item repeated \textbf{MODIFIED} / \textbf{INVALID} sessions,
+\item missed logs or missing required fields (\textbf{UNKNOWN} / \textbf{MISSING} recorded; no inference).
+\end{itemize}
+\item Illness flags:
+\begin{itemize}
+\item non-diagnostic illness posture triggers; do not test through illness.
+\end{itemize}
+\end{itemize}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+width=\linewidth,
+rowhead=1,
+colspec = {
+X[l,1.35]
+X[l,1.55]
+X[l,1.55]
+X[l,1.15]
+X[l,1.15]
+},
+hlines,
+vlines,
+cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+row{odd} = {bg=white},
+row{even} = {bg=LightGray},
+row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Signal Cluster} &
+\Hdr{Examples} &
+\Hdr{Default Action} &
+\Hdr{Validity Impact} &
+\Hdr{What to Log} \\
+Sleep debt / recovery strain &
+sleep hours trending down; sleep quality trending low; fatigue rising &
+Downshift exposure intensity/density; consider maintenance reset posture via Stage 10 rules; protect protected windows &
+If severe near gates: convert to check-in-only or reslot; do not chase maximal attempts &
+Sleep markers; fatigue/soreness; decision; hold period; gate proximity \\
+Pain and mechanics drift &
+pain increasing; pain alters mechanics; gait-altering pain flag Yes &
+\textbf{STOP} \textbf{NOW} for that exposure; substitute lower-risk modality; consider \textbf{MEDICAL} \textbf{HOLD} if indicated &
+Gate attempts requiring \textbf{RUN}/\textbf{RUCK} are disqualified until mechanics stable; reslot tests &
+Pain severity/location; gait flag; foot flags; exposure stopped/substituted \\
+Foot integrity breakdown &
+hotspot progressing; blister present; repeated hotspot flags &
+Downshift friction exposure; enforce foot system stabilization; avoid long \textbf{RUN}/\textbf{RUCK} attempts &
+If blister/gait drift present: reslot gate tests; do not claim comparable evidence &
+Hotspot/blister flag + location; footwear/sock notes; substitution logged \\
+Validity drift / admin failure &
+missing required fields; late entries; repeated \textbf{INVALID} sessions &
+Restore logging discipline; simplify to minimum viable session posture without skipping required elements &
+Missing fields → inadmissible evidence; default \textbf{HOLD} if gate evidence incomplete &
+Missing fields recorded as \textbf{MISSING}; validity tags; reason posture; corrective action \\
+Illness flags &
+fever/systemic symptoms; respiratory illness; severe GI distress &
+Suspend maximal efforts; reslot tests; \textbf{MEDICAL} \textbf{HOLD} when indicated &
+Testing during illness is inadmissible; reslot per Stage 3 &
+Illness flags; symptoms notes; reslot decision; \textbf{MEDICAL} \textbf{HOLD} if applied \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\subsection*{11.C.5 Prevention Doctrine by Exposure Type}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.C.5 Prevention Doctrine by Exposure Type}
+
+This section defines operational controls, stop triggers, downshift posture, and documentation requirements. It does not prescribe workouts.
+
+\subsubsection*{\textbf{RUN} exposure controls}
+\phantomsection
+
+\begin{itemize}
+\item Impact-managed posture:
+\begin{itemize}
+\item \textbf{RUN} escalation \textbf{MUST} be denied when gait-altering pain is present or when foot flags indicate hotspot→blister progression risk.
+\end{itemize}
+\item Footwear interface must be stable and logged:
+\begin{itemize}
+\item footwear system changes near protected windows are prohibited; document any unavoidable change and treat outcomes conservatively.
+\end{itemize}
+\item Environment hazard checks:
+\begin{itemize}
+\item ice glaze, heat index concern, air quality warnings, and poor visibility trigger indoor substitution or reslot.
+\end{itemize}
+\end{itemize}
+
+Stop triggers:
+
+\begin{itemize}
+\item gait-altering pain, chest pain/pressure, syncope/near-syncope, disproportionate dyspnea, new neurologic symptoms, heat illness signs → \textbf{STOP} \textbf{NOW}; \textbf{MEDICAL} \textbf{HOLD} when indicated.
+\end{itemize}
+
+Downshift posture:
+
+\begin{itemize}
+\item substitute to lower-impact conditioning modality when \textbf{RUN} is unsafe; preserve cadence where feasible.
+\end{itemize}
+
+Documentation:
+
+\begin{itemize}
+\item Route/Machine identity and conditions; footwear notes; validity tag and reason posture if modified.
+\end{itemize}
+
+\subsubsection*{\textbf{RUCK} and load-bearing exposure controls}
+\phantomsection
+
+\begin{itemize}
+\item Load verification posture and pack fit checks:
+\begin{itemize}
+\item dry load recorded; water logged separately; ruck fit stable; load shift is prohibited.
+\end{itemize}
+\item No novelty pack/interface changes near gates:
+\begin{itemize}
+\item new ruck interface or new load module changes are prohibited in protected windows.
+\end{itemize}
+\end{itemize}
+
+Stop triggers:
+
+\begin{itemize}
+\item gait-altering pain; hotspot progression; instability; red-flag symptoms → \textbf{STOP} \textbf{NOW}.
+\end{itemize}
+
+Downshift posture:
+
+\begin{itemize}
+\item reduce risk exposure; substitute with lower-impact modality; reslot ruck tests; do not “prove it.”
+\end{itemize}
+
+Documentation:
+
+\begin{itemize}
+\item Route \textbf{ID}; dry load; carried water; foot flags; visibility conditions; validity tag and reason posture.
+\end{itemize}
+
+\subsubsection*{\textbf{CAL} volume controls}
+\phantomsection
+
+\begin{itemize}
+\item Tissue tolerance posture:
+\begin{itemize}
+\item avoid sudden volume spikes; avoid novelty equipment changes (bars, surfaces) near protected windows.
+\end{itemize}
+\item Grip/elbow/shoulder caution posture:
+\begin{itemize}
+\item discomfort that changes mechanics triggers downshift; do not chase “max reps” outside protected windows.
+\end{itemize}
+\end{itemize}
+
+Stop triggers:
+
+\begin{itemize}
+\item acute pain that alters mechanics; neurologic symptoms; red flags → \textbf{STOP} \textbf{NOW}.
+\end{itemize}
+
+Downshift posture:
+
+\begin{itemize}
+\item preserve cadence with reduced risk exposure; use conservative substitutions; do not force maximal attempts.
+\end{itemize}
+
+Documentation:
+
+\begin{itemize}
+\item tool/surface notes; evidence artifact posture where required; validity tag.
+\end{itemize}
+
+\subsubsection*{\textbf{STR} exposure controls}
+\phantomsection
+
+\begin{itemize}
+\item Submax posture near gates:
+\begin{itemize}
+\item avoid novelty PR chasing and unsafe attempts in proximity to high-consequence test windows.
+\end{itemize}
+\item Implement identity stability:
+\begin{itemize}
+\item if implement changes, log it and interpret trends conservatively.
+\end{itemize}
+\end{itemize}
+
+Stop triggers:
+
+\begin{itemize}
+\item acute pain/instability; red-flag symptoms → \textbf{STOP} \textbf{NOW}.
+\end{itemize}
+
+Downshift posture:
+
+\begin{itemize}
+\item reduce intensity/density; preserve cadence with safer exposures.
+\end{itemize}
+
+Documentation:
+
+\begin{itemize}
+\item tool/implement identity and load method; validity tag.
+\end{itemize}
+
+\subsubsection*{\textbf{SWIM} exposure controls}
+\phantomsection
+
+\begin{itemize}
+\item Surface-only unless governed:
+\begin{itemize}
+\item underwater/breath-hold exposure is prohibited unless governance prerequisites are met; otherwise not scheduled.
+\end{itemize}
+\item Pool conditions must support validity:
+\begin{itemize}
+\item Pool \textbf{ID} and length unit logged; unsafe/crowded conditions that compromise validity trigger reslot.
+\end{itemize}
+\end{itemize}
+
+Stop triggers:
+
+\begin{itemize}
+\item distress, disorientation, panic, dizziness, cramps, illness symptoms → \textbf{STOP} \textbf{NOW}; exit water; seek evaluation posture when indicated.
+\end{itemize}
+
+Downshift posture:
+
+\begin{itemize}
+\item reslot swim tests; substitute to non-aquatic conditioning without claiming equivalence for gate evidence.
+\end{itemize}
+
+Documentation:
+
+\begin{itemize}
+\item Pool \textbf{ID} + length unit; conditions notes; validity tag; Evidence Ref posture as required.
+\end{itemize}
+
+\subsubsection*{Environment controls (all exposures)}
+\phantomsection
+
+\begin{itemize}
+\item Heat/ice/air quality/visibility substitution posture:
+\begin{itemize}
+\item unsafe conditions trigger substitution indoors or reslot per Stage 3; do not force.
+\end{itemize}
+\end{itemize}
+
+Stop triggers:
+
+\begin{itemize}
+\item lightning, ice glaze, whiteout, official air quality warning, heat illness signs → \textbf{STOP} \textbf{NOW} for outdoor exposure.
+\end{itemize}
+
+Documentation:
+
+\begin{itemize}
+\item environment notes; substitution/reslot reason; validity impact.
+\end{itemize}
+
+\newpage
+
+\subsection*{11.C.6 Downshift and Re-Entry Posture}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.C.6 Downshift and Re-Entry Posture}
+
+Allowed actions consistent with Stage 3.E (binding):
+
+\begin{itemize}
+\item Preserve cadence where feasible:
+\begin{itemize}
+\item downshift exposure risk and intensity; do not drop the schedule as the first lever.
+\end{itemize}
+\item Substitute to lower-risk modalities:
+\begin{itemize}
+\item substitutions must preserve intent and must be logged.
+\end{itemize}
+\item Reslot tests to next protected window:
+\begin{itemize}
+\item invalid or unsafe tests are reslotted; no stacking make-ups.
+\end{itemize}
+\item Default gate outcomes:
+\begin{itemize}
+\item \textbf{HOLD} when gate evidence is incomplete or inadmissible,
+\item \textbf{MEDICAL} \textbf{HOLD} when red flags or unsafe symptoms appear per Stage 1.F posture.
+\end{itemize}
+\end{itemize}
+
+Decision table:
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+width=\linewidth,
+colspec = {
+X[c,1.65]
+X[c,2.25]
+X[c,2.85]
+X[c,2.85]
+X[c,1.60]
+},
+rowhead=1,
+hlines,
+vlines,
+cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, valign=m},
+row{odd} = {bg=white},
+row{even} = {bg=LightGray},
+}
+\Hdr{Situation} &
+\Hdr{Example Trigger} &
+\Hdr{Immediate Action} &
+\Hdr{Next-Step Adjustment} &
+\Hdr{Gate Posture} \\
+Gait-altering pain appears &
+limp/compensation noted; gait flag Yes &
+\textbf{STOP} \textbf{NOW} for \textbf{RUN}/\textbf{RUCK} exposure; substitute lower-risk modality &
+Reslot any \textbf{RUN}/\textbf{RUCK} tests; maintain cadence with safer exposures &
+\textbf{HOLD} (default) or \textbf{MEDICAL} \textbf{HOLD} if indicated \\
+Hotspot trending toward blister &
+hotspot flag repeats; pain increasing &
+Downshift friction exposure; stabilize footwear/sock interface &
+Reslot high-cost tests; enforce foot protocol consistency &
+\textbf{HOLD} (default) \\
+Sleep debt + fatigue trend &
+sleep hours/quality down; fatigue high &
+Downshift intensity/density; hold deficit posture per Stage 10; consider maintenance reset per Stage 10 rules &
+Convert planned test week to deload-only/check-in-only if needed; reslot maximal tests &
+\textbf{HOLD} (default) \\
+Illness flags present &
+fever/systemic symptoms; severe GI distress &
+\textbf{STOP} \textbf{NOW} for maximal attempts; consider \textbf{MEDICAL} \textbf{HOLD} &
+Reslot tests; preserve safety posture; no testing through illness &
+\textbf{MEDICAL} \textbf{HOLD} when indicated \\
+Environment invalidates safety &
+ice glaze, lightning, air quality warning &
+Cancel outdoor attempt immediately &
+Substitute indoors only if comparable; otherwise reslot &
+\textbf{HOLD} (default) \\
+Logging completeness failure &
+missing required fields; late entry &
+Treat evidence as inadmissible; correct logging system &
+Restore same-day capture; do not infer missing data &
+\textbf{HOLD} (default) \\
+\end{longtblr}
+
+\endgroup
+
+Requires Stage 8 review flags (if encountered):
+
+\begin{itemize}
+\item Any adjustment approach that attempts to stack make-ups to "catch up" must be flagged.
+\item Any attempt to treat inadmissible evidence (missing required fields) as gate-grade evidence.
+\end{itemize}
+
+\newpage
+
+\subsection*{11.C.7 Tooling and Environment Supports for Recovery Execution}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.C.7 Tooling and Environment Supports for Recovery Execution}
+
+Category-linked posture (no shopping lists; capability-level only; timing must not precede Stage 6):
+
+\begin{itemize}
+\item 7.11 Footwear Systems and Foot Care:
+\begin{itemize}
+\item stable footwear/sock interface; blister and hotspot posture; drying and rotation discipline.
+\end{itemize}
+\item 7.12 Recovery, Mobility, and Tissue-Care Implements:
+\begin{itemize}
+\item mat and basic mobility/tissue-care tools with safe-use limits; no “fix injury” claims.
+\end{itemize}
+\item 7.06 Recovery, Sleep, and Stress-Support Aids (optional tools):
+\begin{itemize}
+\item OTC-only posture; behavior-first hierarchy; no novelty near gates; no dosing in this deliverable.
+\end{itemize}
+\item 7.20 Personal Hygiene, Health, and Sanitation Items:
+\begin{itemize}
+\item hygiene and skin integrity consumables; basic coverage supplies; nail care.
+\end{itemize}
+\item 7.19 Protective and Assistive Equipment:
+\begin{itemize}
+\item visibility controls for low-light/traffic-adjacent sessions; prevention posture; sleeves comfort-only.
+\end{itemize}
+\item 7.10 Logistics, Maintenance, Storage, and Sustainment:
+\begin{itemize}
+\item drying workflows, staging, and inspection cadence to reduce preventable failures.
+\end{itemize}
+\end{itemize}
+
+Rules (binding):
+
+\begin{itemize}
+\item capability timing \textbf{MUST} NOT be asserted earlier than Stage 6 introduces the category at Tier 1+.
+\item missing tools do not justify unsafe substitutes; default to safer exposures and reslot gate events.
+\item if any timing mismatch is detected between needed tooling and Stage 6 timing, flag "Requires Stage 8 review" here.
+\end{itemize}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+width=\linewidth,
+colspec = {
+X[c,1.70]
+X[c,1.20]
+X[c,3.05]
+X[c,3.05]
+},
+rowhead=1,
+hlines,
+vlines,
+cells = {hsep=2pt, vsep=6pt, halign=c, valign=m},
+row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, valign=m},
+row{odd} = {bg=white},
+row{even} = {bg=LightGray},
+}
+\Hdr{Support Area} &
+\Hdr{Category Reference} &
+\Hdr{Minimum Operational Capability} &
+\Hdr{If Missing Action} \\
+Foot integrity &
+7.11; 7.20 &
+stable footwear/sock system; hotspot monitoring; drying posture &
+downshift \textbf{RUN}/\textbf{RUCK} exposure; reslot tests; \textbf{HOLD} if gate evidence depends on foot integrity \\
+Mobility/recovery implements &
+7.12 &
+mat + basic mobility/tissue-care tools; safe-use limits &
+substitute with household alternatives where safe; preserve cadence; log limitations \\
+Sleep support posture &
+7.06 (optional) &
+behavior-first sleep hygiene posture; no novelty &
+do not add new aids near gates; rely on routine stability; consider maintenance reset per Stage 10 if collapse \\
+Hygiene/sanitation &
+7.20 &
+clean-to-ready posture; skin integrity consumables; nail care &
+increase hygiene cadence; avoid wet-gear loops; downshift if skin breakdown occurs \\
+Visibility/protection &
+7.19 &
+session-level visibility controls when conditions require; hand protection as prevention &
+substitute to daylight/indoor; do not proceed in low-light/traffic-adjacent conditions \\
+Staging/drying/logistics &
+7.10 &
+drying workflow; staged kit readiness; inspection cadence &
+treat as sustainment gap; increase staging discipline; reslot tests if readiness cannot be assured \\
+\end{longtblr}
+
+\endgroup
+
+Requires Stage 8 review flags (if encountered):
+
+\begin{itemize}
+\item Any phase demand that requires a tooling capability earlier than Stage 6 tier timing provides.
+\item Any attempt to treat optional tools (7.06) as required for deployability.
+\end{itemize}
+
+\newpage
+
+\subsection*{11.C.8 Compliance Checklist — Pass/Fail}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.C.8 Compliance Checklist — Pass/Fail}
+
+\begin{itemize}
+\item \textbf{PASS}/\textbf{FAIL}: No programming detail included (no workouts, sets/reps, intervals, weekly splits, or day-by-day schedules).
+\item \textbf{PASS}/\textbf{FAIL}: No new tests, thresholds, domains, phase purposes, or equipment categories introduced.
+\item \textbf{PASS}/\textbf{FAIL}: \textbf{STOP} \textbf{NOW} and \textbf{MEDICAL} \textbf{HOLD} posture stated and aligned to Stage 0.5 / Stage 4.F governance; Stage 1.F tokens used exactly.
+\item \textbf{PASS}/\textbf{FAIL}: Downshift and reslot posture aligns to Stage 3.E; no stacking make-ups is explicit; \textbf{INVALID} tests provide no gate credit.
+\item \textbf{PASS}/\textbf{FAIL}: Documentation requirements align to Stage 2.E missing-data doctrine (\textbf{UNKNOWN}/\textbf{MISSING}; no inference) and decision-grade records posture.
+\item \textbf{PASS}/\textbf{FAIL}: Stage 7 category references are used correctly without shopping guidance; capability timing is not asserted earlier than Stage 6.
+\item \textbf{PASS}/\textbf{FAIL}: Any mismatch is flagged "Requires Stage 8 review" in 11.C.6 and 11.C.7 rather than silently fixed.
+\end{itemize}
+
+\end{document}

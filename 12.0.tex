@@ -1,0 +1,455 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{tcolorbox}
+\begin{center}
+Stage 12 — Operational Controls, Recording Standards, and Sustainment\\[0.35em]
+\textbf{SOF} Physical Development Transformation Program\\[0.25em]
+182-Week Civilian-to-Selection Readiness Pipeline\\[0.65em]
+\TitleLine
+\end{center}
+\end{tcolorbox}
+
+\vspace{0.35em}
+
+\phantomsection
+\addcontentsline{toc}{section}{Stage 12 — Operational Controls, Recording Standards, and Sustainment}
+
+\subsection*{Introduction}
+\phantomsection
+\addcontentsline{toc}{subsection}{Introduction}
+
+\subsubsection*{1) Purpose}
+
+Stage 12 exists to operationalize and enforce the program’s execution-time controls so the package remains safe, auditable, and resistant to drift across the full pipeline and into sustainment. It prevents the most common execution failures that silently corrupt outcomes: incomplete or inconsistent logs, invalid evidence being treated as “close enough,” environment variables changing without being captured, delayed \textbf{STOP} \textbf{NOW} escalation, and informal midstream changes that bypass change control. “Audit-ready execution” in this program means that any third-party reviewer can reconstruct what happened from the recorded evidence: when and where the session/test occurred, what tools and environment were used, what was completed, what was modified, why it was modified, and whether the resulting evidence is admissible for gate decisions.
+
+Stage 12 is not training design and does not prescribe workouts. It is the control layer that makes Stages 0–11 deployable in real-world conditions by locking how evidence is collected and how safety and validity doctrine is applied in the moment.
+
+\subsubsection*{2) Scope}
+
+\paragraph*{Inclusions}
+
+\begin{itemize}
+\item Execution control templates that implement Stage 1.F validity doctrine and Stage 2.E recording conventions at the point of use.
+\item Standardized capture for:
+  \begin{itemize}
+  \item required daily/session/test fields,
+  \item validity tag usage,
+  \item environment identity and conditions (routes/pools/machines),
+  \item \textbf{STOP} \textbf{NOW} escalation flow and documentation,
+  \item post-Phase 13 sustainment handoff documentation.
+  \end{itemize}
+\item Practical “how to invoke” workflow tying each template to the moment it is needed: before sessions, during sessions, after sessions, during test windows, during incidents, and during sustainment.
+\end{itemize}
+
+\paragraph*{Exclusions}
+
+\begin{itemize}
+\item No training programming, no workouts, no sets/reps, no exercise selection prescriptions.
+\item No new tests, thresholds, domains, or standards.
+\item No medical diagnosis or treatment advice.
+\item No changes to upstream doctrine; Stage 12 implements what is already locked upstream.
+\end{itemize}
+
+\subsubsection*{3) What Stage 12 Contains}
+
+\paragraph*{Stage 12.A — Standard Test Log Template}
+
+This artifact provides the minimum decision-grade log schemas for daily readiness, session execution, and test events. It standardizes required fields, timestamp posture, environment identity capture, validity tagging, and the handling of \textbf{UNKNOWN}/\textbf{MISSING} data so that incomplete records do not silently contaminate gate decisions.
+
+\paragraph*{Stage 12.B — Validity Tags: Definitions and Examples}
+
+This artifact defines the operational meaning of session and test validity tags and provides worked examples showing correct tag selection, reason code usage, and the required documentation to make evidence admissible. It is the training aid for consistent classification and the enforcement anchor for “invalid evidence provides no gate credit.”
+
+\paragraph*{Stage 12.C — Environment Recording Standards — Routes, Pool Units, Weather, Surface}
+
+This artifact locks how environments are identified and recorded (route, pool, machine), which fields are mandatory, and how weather/surface variables are captured. It preserves comparability across months and seasons by preventing unlogged environment drift and by requiring baseline restart when environments change.
+
+\paragraph*{Stage 12.D — Emergency Stop Rules and Escalation Flow}
+
+This artifact defines the \textbf{STOP} \textbf{NOW} triggers, escalation pathways, and minimum documentation for safety events. It ensures that safety overrides schedule and that evidence collected during a stop-rule breach is treated as inadmissible. It also ties incident handling to reslot posture and no-stacking discipline.
+
+\paragraph*{Stage 12.E — Maintenance Handoff Checklist Post-Phase 13 Sustainment}
+
+This artifact provides the post-Phase 13 sustainment handoff checklist for archive/versioning continuity, equipment inventory posture by category, ongoing logging discipline, and quarterly sustainment audits. It ensures the program remains deployable after the formal pipeline ends by preserving governance and audit traceability.
+
+\subsubsection*{4) How to Use Stage 12}
+
+\begin{enumerate}
+\item Before each session (pre-commit posture)
+  \begin{itemize}
+  \item Invoke Stage 12.A:
+    \begin{itemize}
+    \item complete the Identifier Header for the session day,
+    \item complete the Daily Log minimum dataset fields that are available pre-session.
+    \end{itemize}
+  \item Confirm controlled-variable stability:
+    \begin{itemize}
+    \item do not introduce novelty in protected windows,
+    \item ensure environment identity is known for any planned route/pool/machine exposure.
+    \end{itemize}
+  \end{itemize}
+
+\item During the session (execution-time control)
+  \begin{itemize}
+  \item Invoke Stage 12.A Session Execution Log:
+    \begin{itemize}
+    \item record completion of required elements,
+    \item record any deviation immediately.
+    \end{itemize}
+  \item Do-not-proceed triggers (execution time):
+    \begin{itemize}
+    \item if \textbf{STOP} \textbf{NOW} triggers occur, invoke Stage 12.D immediately and terminate the exposure,
+    \item if required session elements cannot be completed or required fields cannot be recorded, the session becomes inadmissible for gate decisions and must be tagged accordingly.
+    \end{itemize}
+  \end{itemize}
+
+\item After the session (same-day finalization)
+  \begin{itemize}
+  \item Finalize Stage 12.A Session Execution Log:
+    \begin{itemize}
+    \item apply the session validity tag using Stage 12.B definitions,
+    \item if \textbf{MODIFIED} or \textbf{INVALID}, record the reason-code posture and the observable trigger notes.
+    \end{itemize}
+  \item If an environment variable changed materially (route detour, pool change, machine change), invoke Stage 12.C:
+    \begin{itemize}
+    \item create/update the relevant environment record as required,
+    \item do not reuse an environment \textbf{ID} as an “equivalent” substitute.
+    \end{itemize}
+  \end{itemize}
+
+\item During test weeks and protected windows
+  \begin{itemize}
+  \item Invoke Stage 12.A Test Event Log for every test event:
+    \begin{itemize}
+    \item record environment identity, tool standard, and Evidence Ref where required,
+    \item apply test validity tag per Stage 12.B; invalid tests provide no gate credit.
+    \end{itemize}
+  \item Do-not-proceed triggers (protected windows):
+    \begin{itemize}
+    \item unsafe or invalid environment conditions (ice glaze, lightning risk, pool conditions breaking validity) require reslot per Stage 3 posture,
+    \item missing required environment identity or required evidence fields makes the test inadmissible; treat as \textbf{INVALID} and reslot rather than infer.
+    \end{itemize}
+  \end{itemize}
+
+\item Incident / \textbf{STOP} \textbf{NOW} event
+  \begin{itemize}
+  \item Invoke Stage 12.D immediately:
+    \begin{itemize}
+    \item execute \textbf{STOP} \textbf{NOW},
+    \item escalate by role,
+    \item document minimum dataset same-day,
+    \item apply \textbf{MEDICAL} \textbf{HOLD} posture when indicated by existing doctrine.
+    \end{itemize}
+  \item Affected sessions/tests:
+    \begin{itemize}
+    \item tag validity appropriately,
+    \item reslot impacted tests to the next protected window and do not stack make-ups.
+    \end{itemize}
+  \end{itemize}
+
+\item Post-week review and gate packet preparation
+  \begin{itemize}
+  \item Use Stage 12.A Weekly Summary and Gate Packet Cover:
+    \begin{itemize}
+    \item summarize validity distribution,
+    \item list key risk flags,
+    \item produce a gate recommendation using the locked outcomes,
+    \item include \textbf{ISS-08}-\#\#\# when a known issue influenced interpretation.
+    \end{itemize}
+  \end{itemize}
+
+\item Post-Phase 13 sustainment handoff
+  \begin{itemize}
+  \item Invoke Stage 12.E:
+    \begin{itemize}
+    \item archive and versioning handoff,
+    \item equipment inventory update by category,
+    \item establish quarterly audit cadence and documentation continuity.
+    \end{itemize}
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection*{5) Evidence and Audit Posture}
+
+Evidence is admissible only when it is identity-controlled, repeatable, and complete. Identity control means the environment is known (route, pool, machine identity captured), the tools are known (timer, scale, tape posture captured), and the timestamp and phase/session context are recorded. Repeatability means the same conditions can be recreated or meaningfully compared because substitutions and environment changes are logged explicitly, not implied. Documentation completeness means required fields are present; missing fields are recorded as \textbf{UNKNOWN} or \textbf{MISSING} with no inference. Validity tags are not motivational labels; they are admissibility controls. A \textbf{VALID} tag means evidence can be used for gate interpretation; an \textbf{INVALID} tag means no gate credit and reslot discipline applies. \textbf{MODIFIED} exists to preserve safety while keeping the record auditable; it must be reason-coded and bounded by existing doctrine.
+
+\subsubsection*{6) Roles and Responsibilities}
+
+\paragraph*{Coach Lead}
+
+\begin{itemize}
+\item Enforces validity and admissibility posture:
+  \begin{itemize}
+  \item ensures logs are complete and properly tagged,
+  \item ensures gate decisions are based on admissible evidence only.
+  \end{itemize}
+\item Enforces safety escalation:
+  \begin{itemize}
+  \item \textbf{STOP} \textbf{NOW} posture is executed immediately when triggered,
+  \item \textbf{MEDICAL} \textbf{HOLD} posture is applied when indicated by doctrine.
+  \end{itemize}
+\item Enforces change control:
+  \begin{itemize}
+  \item prevents informal drift,
+  \item ensures patches and versioning are recorded through the approved framework.
+  \end{itemize}
+\end{itemize}
+
+\paragraph*{Trainee}
+
+\begin{itemize}
+\item Executes honest, same-day logging:
+  \begin{itemize}
+  \item records required fields,
+  \item records \textbf{UNKNOWN}/\textbf{MISSING} without inference,
+  \item reports deviations immediately rather than retroactively.
+  \end{itemize}
+\item Executes safety posture:
+  \begin{itemize}
+  \item stops and reports when \textbf{STOP} \textbf{NOW} triggers occur,
+  \item does not self-override stop rules.
+  \end{itemize}
+\item Maintains controlled variables near protected windows:
+  \begin{itemize}
+  \item avoids novelty,
+  \item documents any unavoidable changes.
+  \end{itemize}
+\end{itemize}
+
+\paragraph*{Medical}
+
+\begin{itemize}
+\item Provides clearance posture and safety escalation interface when indicated by stop rules and \textbf{MEDICAL} \textbf{HOLD} posture.
+\item Does not provide program redesign; medical involvement is escalation- and clearance-oriented only.
+\end{itemize}
+
+\paragraph*{Equipment Lead}
+
+\begin{itemize}
+\item Ensures environment and tool readiness for valid testing and safe execution:
+  \begin{itemize}
+  \item environment IDs and tool standard readiness are maintained,
+  \item sustainment inventory posture and readiness is tracked for continued deployability.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{7) Hard Boundaries and Non-Negotiables}
+
+\begin{itemize}
+\item No novelty near protected windows (deload/test weeks and major gate windows).
+\item No undocumented substitutions:
+  \begin{itemize}
+  \item any change in environment/tooling must be recorded and may require new environment identity and baseline restart.
+  \end{itemize}
+\item No bypassing stop rules:
+  \begin{itemize}
+  \item \textbf{STOP} \textbf{NOW} is mandatory when triggered; delayed escalation is not permitted.
+  \end{itemize}
+\item No retroactive data reconstruction:
+  \begin{itemize}
+  \item missing fields are recorded as \textbf{UNKNOWN}/\textbf{MISSING}; no inference; late entries must be objectively verifiable or remain inadmissible for gate use.
+  \end{itemize}
+\item No informal changes outside change control:
+  \begin{itemize}
+  \item doctrine and execution rules do not drift via convenience edits; patch discipline applies.
+  \end{itemize}
+\item No stacking make-ups:
+  \begin{itemize}
+  \item missed/invalid tests are reslotted to the next protected window; do not compress to “catch up.”
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{8) Completion Criteria}
+
+Stage 12 is implemented (pass) only when all are true:
+
+\begin{itemize}
+\item Stage 12.A templates are in active use for daily, session, and test-event logging with ISO 8601 timestamps with offsets and complete required fields.
+\item Stage 12.B validity tags are applied correctly and consistently; invalid evidence is not used for gates.
+\item Stage 12.C environment identity capture is executed whenever environment changes; new IDs and baseline restarts occur when substitutions happen.
+\item Stage 12.D \textbf{STOP} \textbf{NOW} and escalation flow is rehearsed and executed; safety events are documented same-day with minimum dataset; \textbf{MEDICAL} \textbf{HOLD} posture is applied when indicated.
+\item Stage 12.E sustainment handoff checklist is ready and usable, including archive/versioning pointers and quarterly audit template.
+\item Weekly gate packets reference admissible evidence only and include \textbf{ISS-08}-\#\#\# when known issues influenced interpretation.
+\item Fail conditions:
+  \begin{itemize}
+  \item templates not used,
+  \item validity tags misapplied,
+  \item environment drift unrecorded,
+  \item stop rules bypassed or delayed,
+  \item retroactive reconstruction attempted,
+  \item informal changes made without change control.
+  \end{itemize}
+\end{itemize}
+
+\end{document}

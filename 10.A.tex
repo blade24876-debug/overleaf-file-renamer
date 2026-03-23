@@ -1,0 +1,618 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One SOF}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{10.A — Macro Ladder Phases 00–13}
+\phantomsection
+\addcontentsline{toc}{section}{10.A — Macro Ladder Phases 00–13}
+
+\subsection*{10.A.1 Macro Ladder Doctrine Program-Wide Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{10.A.1 Macro Ladder Doctrine Program-Wide Rules}
+
+\begin{itemize}
+\item Calorie posture progression across the continuum
+  \begin{itemize}
+  \item Phase 00–Phase 01: default is a safe, adherence-forward deficit that prioritizes habit formation and consistent execution under start-from-zero constraints.
+  \item Phase 02–Phase 06: default is a moderated deficit to near-maintenance posture to protect strength development, running tolerance, and recovery so performance evidence remains valid and repeatable.
+  \item Phase 07–Phase 13: default is near-maintenance to slight surplus posture with strict guardrails to protect high-specificity work, high-consequence testing, and validity in protected windows.
+  \end{itemize}
+
+\item Protein doctrine hybrid anchor expressed as grams per day ranges
+  \begin{itemize}
+  \item Anchor A basis: target bodyweight $\approx$ 180 lb.
+  \item Anchor B basis: estimated lean body mass (LBM) derived from start-state body fat estimate (uncertain).
+  \item Hybrid basis rule: use the higher of Anchor A basis and Anchor B basis as the protein basis; apply a conservative ceiling to avoid unnecessary complexity.
+  \item Multiplier rule: 1.0–1.2 g/lb of the chosen basis.
+  \item Program-wide protein target range (initial): 180–216 g/day, with bounded downward adjustment only as bodyweight decreases and intake feasibility demands, while preserving satiety, lean mass retention, and recovery support.
+  \end{itemize}
+
+\item Fat doctrine percent-based floor rule
+  \begin{itemize}
+  \item Fat floor \textbf{MUST} remain 20–30\% of total calories.
+  \item Purpose: sustainability, satiety, adherence, and avoidance of overly aggressive restriction that degrades recovery and increases drift risk.
+  \end{itemize}
+
+\item Carbohydrate doctrine grams per day ranges and timing notes
+  \begin{itemize}
+  \item Carbohydrates are the primary lever after protein targets and fat floor are satisfied.
+  \item Carbohydrates scale upward as training intensity and specificity increase (especially \textbf{RUN}, \textbf{RUCK}, and high-density \textbf{CAL} phases) and as test consequence increases.
+  \item Carbohydrates scale upward during Deload/Test weeks by design (validity protection posture), using familiar, low GI-risk staples near protected windows.
+  \item Novelty foods (new high-fiber loads, new sugar alcohols, new “performance” foods) are prohibited in the final 7–10 days before major gate tests.
+  \end{itemize}
+
+\newpage
+\item Deload and test week nutrition posture aligned to Stage 3
+  \begin{itemize}
+  \item Default: raise calories up to maintenance during Deload/Test weeks to protect validity and recovery (this is a planned, repeatable posture, not a “diet break”).
+  \item Maintain protein targets.
+  \item Keep fat within the 20–30\% floor band.
+  \item Preferentially raise carbohydrates to support performance and reduce fatigue contamination.
+  \item No novelty foods and no untested supplement changes in the Deload/Test window.
+  \end{itemize}
+
+\item No novelty near gates
+  \begin{itemize}
+  \item No major diet structure change in the final 7–10 days before major gate tests (macro ratio shifts, new food classes, new timing schemes, new supplement categories).
+  \item Any change \textbf{MUST} be logged with date, reason, and expected effect; changes are treated as controlled-variable events for validity interpretation.
+  \end{itemize}
+
+\item Budget and start-from-zero feasibility posture
+  \begin{itemize}
+  \item Default posture uses low-cost staples and minimal prep infrastructure; complexity is denied unless it improves adherence measurably.
+  \item Stage 7.13 is the tooling layer for containers/hydration; Stage 10 does not prescribe meal plans or recipes.
+  \end{itemize}
+\end{itemize}
+
+\newpage
+\subsection*{10.A.2 Baseline Calculations and Starting Targets}
+\phantomsection
+\addcontentsline{toc}{subsection}{10.A.2 Baseline Calculations and Starting Targets}
+
+This block is a transparent estimate using the fixed start-state; uncertainty is explicitly labeled.
+
+\begin{enumerate}
+\item Lean body mass estimate (uncertain)
+
+\begin{itemize}
+\item Inputs: bodyweight = 266 lb; body fat estimate = 40\% (uncertain).
+\item LBM (lb) = bodyweight \ensuremath{\times} (1 - BF estimate)
+  \begin{itemize}
+  \item LBM $\approx$ 266 \ensuremath{\times} (1 - 0.40) = 266 \ensuremath{\times} 0.60 = 159.6 lb
+  \end{itemize}
+\item Uncertainty note: the BF estimate is approximate; LBM is therefore approximate and used only to set a conservative protein basis.
+\end{itemize}
+
+\item Maintenance calorie estimate by two methods (transparent, conservative)
+
+Method 1: Mifflin–St Jeor male \textbf{BMR} \ensuremath{\times} conservative activity factor
+
+\begin{itemize}
+\item Inputs: age 35; height 175 cm; weight 121 kg
+\item \textbf{BMR} = 10\ensuremath{\times}kg + 6.25\ensuremath{\times}cm - 5\ensuremath{\times}age + 5
+  \begin{itemize}
+  \item \textbf{BMR} = 10\ensuremath{\times}121 + 6.25\ensuremath{\times}175 - 5\ensuremath{\times}35 + 5
+  \item \textbf{BMR} = 1210 + 1093.75 - 175 + 5
+  \item \textbf{BMR} $\approx$ 2133.75 kcal/day ($\approx$ 2134)
+  \end{itemize}
+\item Conservative activity factor range (early pipeline with 6 sessions/week low-impact + steps baseline): 1.25–1.40
+  \begin{itemize}
+  \item Maintenance $\approx$ 2134 \ensuremath{\times} 1.25 to 2134 \ensuremath{\times} 1.40
+  \item Maintenance $\approx$ 2668 to 2988 kcal/day
+  \end{itemize}
+\end{itemize}
+
+Method 2: Bodyweight multiplier range (context-appropriate, coarse)
+
+\begin{itemize}
+\item Conservative range: 11–13 kcal/lb (recognizing obesity can inflate this estimate and low training age can deflate effective output)
+  \begin{itemize}
+  \item Maintenance $\approx$ 266 \ensuremath{\times} 11 to 266 \ensuremath{\times} 13
+  \item Maintenance $\approx$ 2926 to 3458 kcal/day
+  \end{itemize}
+\end{itemize}
+
+Working maintenance range (decision range)
+
+\begin{itemize}
+\item Overlap exists but is narrow: approximately 2926–2988 kcal/day.
+\item Working maintenance range (widened conservatively due to method uncertainty and expected variability in steps/\textbf{NEAT}/season): 2900–3200 kcal/day.
+  \begin{itemize}
+  \item Rationale: method 1 may understate activity output if steps are consistently high; method 2 may overstate due to higher fat mass; early-phase variability is expected.
+  \end{itemize}
+\end{itemize}
+
+\item Initial deficit range appropriate for Phase 00 (guardrail enforced)
+
+\begin{itemize}
+\item Weight-loss guardrail: planned average loss \textbf{MUST} NOT exceed 0.5\% bodyweight/week.
+  \begin{itemize}
+  \item 0.5\% of 266 lb = 1.33 lb/week (maximum planned average).
+  \item Energy equivalent: 1.33 \ensuremath{\times} 3500 $\approx$ 4655 kcal/week \textrightarrow\ $\approx$ 665 kcal/day deficit ceiling (planned average).
+  \end{itemize}
+\item Phase 00 initial planned deficit range: 300–650 kcal/day below working maintenance.
+  \begin{itemize}
+  \item This is a planned range; weekly review using weekly bodyweight average governs whether it is held, reduced, or raised to maintain the guardrail.
+  \end{itemize}
+\newpage
+\item Adherence and safety notes:
+  \begin{itemize}
+  \item If red-flag symptoms occur (dizziness/fainting, chest pain/pressure, syncope/near-syncope, severe GI distress, heat illness signs), stop and follow escalation posture; the plan is suspended until safe to resume.
+  \item If weekly average loss exceeds the 0.5\% guardrail, reduce deficit immediately (move calories toward maintenance).
+  \end{itemize}
+\end{itemize}
+
+\item Starting macro target example ranges (Phase 00 example; ranges, not prescriptions)
+
+\begin{itemize}
+\item Calories (Phase 00 start range): 2600–2900 kcal/day
+  \begin{itemize}
+  \item Derived from working maintenance 2900–3200 with an initial 300–650 kcal/day planned deficit, adjusted to remain conservative while monitoring weekly trends.
+  \end{itemize}
+
+\item Protein (g/day): hybrid anchor, 1.0–1.2 g/lb of chosen basis
+  \begin{itemize}
+  \item Anchor A basis (target \textbf{BW} 180): 180–216 g/day
+  \item Anchor B basis (LBM $\approx$ 160): 160–192 g/day
+  \item Hybrid rule selects the higher basis $\to$ Anchor A dominates early
+  \item Working protein range (Phase 00): 180–210 g/day (upper bound held below the full 216 to preserve feasibility and reduce friction)
+  \item Purpose: satiety, lean mass retention, recovery support.
+  \end{itemize}
+
+\item Fat floor: 20–30\% of calories (must remain within band)
+  \begin{itemize}
+  \item At 2600 kcal/day:
+    \begin{itemize}
+    \item 20\% fat = 520 kcal $\to$ 58 g/day (520 \ensuremath{\div} 9)
+    \item 30\% fat = 780 kcal $\to$ 87 g/day (780 \ensuremath{\div} 9)
+    \end{itemize}
+  \item At 2900 kcal/day:
+    \begin{itemize}
+    \item 20\% fat = 580 kcal $\to$ 64 g/day
+    \item 30\% fat = 870 kcal $\to$ 97 g/day
+    \end{itemize}
+  \item Working fat range (Phase 00): \textasciitilde 60–95 g/day, depending on where calories sit and whether appetite/adherence requires the higher end of the fat floor band.
+  \end{itemize}
+
+\item Carbs: remainder after protein and fat are set (primary lever)
+  \begin{itemize}
+  \item Calculation method:
+    \begin{itemize}
+    \item Carbs (g) = (Calories - (Protein\ensuremath{\times}4 + Fat\ensuremath{\times}9)) \ensuremath{\div} 4
+    \end{itemize}
+  \item Example remainder bands (Phase 00, using typical midpoints):
+    \begin{itemize}
+    \item If 2750 kcal, protein 190 g (760 kcal), fat 75 g (675 kcal): carbs $\approx$ (2750 - 1435) \ensuremath{\div} 4 $\approx$ 329 g/day
+    \item If 2600 kcal, protein 200 g (800 kcal), fat 85 g (765 kcal): carbs $\approx$ (2600 - 1565) \ensuremath{\div} 4 $\approx$ 259 g/day
+    \end{itemize}
+  \item Working carb range (Phase 00): \textasciitilde 220–340 g/day, adjusted primarily by training tolerance, GI stability, and adherence, while maintaining “no novelty near gates” posture.
+  \end{itemize}
+\end{itemize}
+
+\end{enumerate}
+
+\begin{landscape}
+
+\subsection*{10.A.3 Phase-by-Phase Macro Ladder Table}
+\phantomsection
+\addcontentsline{toc}{subsection}{10.A.3 Phase-by-Phase Macro Ladder Table}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,2.10]
+    Q[l,wd=0.35in]
+    X[l,3.50]
+    X[l,2.45]
+    X[l,2.35]
+    Q[l,wd=0.5in]
+    Q[l,wd=0.5in]
+    X[l,2.60]
+    X[l,2.60]
+    X[l,2.85]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Phase} &
+\Hdr{Duration\\(Weeks)} &
+\Hdr{Nutrition \\Mission} &
+\Hdr{Bodyweight \\Trend Target} &
+\Hdr{Calorie \\Posture} &
+\Hdr{Protein \\Target} &
+\Hdr{Fat Floor \\Rule} &
+\Hdr{Carb \\Strategy} &
+\Hdr{Deload/Test Week \\Modification} &
+\Hdr{Notes} \\
+Phase 00 — Bodily Reactivation and Baseline Creation &
+16 &
+Establish deficit tolerance, tracking discipline, and safe weight-loss trend without performance chasing &
+0.25–0.5\% \textbf{BW}/week average; never >0.5\% &
+Moderate deficit (typically maintenance -300 to -650 kcal/day) &
+180–210 g/day &
+20–30\% of calories &
+Moderate carbs as remainder; prefer stable, familiar staples; GI stability prioritized &
+Raise to maintenance; protein stable; fat within band; carbs upshift; no novelty &
+Start-from-zero logistics; 7.13 minimal prep posture. Avoid aggressive deficit due to low training age and higher risk. \\
+Phase 01 — Base Conditioning and Hypertrophy &
+24 &
+Continue body comp change while protecting recovery as training volume increases &
+0.25–0.5\% \textbf{BW}/week average; never >0.5\% &
+Moderate deficit (typically -250 to -500) &
+175–205 g/day &
+20–30\% &
+Carbs slightly higher than Phase 00 to support volume; stable sources; no novelty near Deload/Test &
+Raise to maintenance; carb upshift; avoid new foods and new supplement categories &
+Avoid punitive restriction; consistency drives adherence. Supplements optional category references only (7.03–7.06). \\
+Phase 02 — Maximal Strength Development &
+12 &
+Protect strength development and recovery; slow fat loss if needed &
+0.15–0.35\% \textbf{BW}/week average; never >0.5\% &
+Mild deficit to near maintenance (typically -0 to -300) &
+170–205 g/day &
+20–30\% &
+Carbs increase to support strength sessions; keep fats within floor; maintain stable timing &
+Raise to maintenance; carb upshift preferentially; no novelty &
+Aggressive deficit avoided to protect strength and tissue tolerance; maintain tracking discipline. \\
+Phase 03 — Converting Strength to Power and Endurance for \textbf{SOF} Selection &
+12 &
+Maintain performance while continuing controlled fat loss &
+0.15–0.35\% \textbf{BW}/week average; never >0.5\% &
+Mild deficit to near maintenance (-0 to -250) &
+170–200 g/day &
+20–30\% &
+Carbs support mixed demands; stabilize pre-gate foods 7–10 days prior &
+Raise to maintenance; carbs upshift; no novelty &
+Phase begins to increase consequence; preserve test validity by stabilizing diet variables. \\
+Phase 04 — Strength-Endurance and Work Capacity Development &
+12 &
+Support work capacity and calisthenics volume without recovery collapse &
+0.15–0.35\% \textbf{BW}/week average; never >0.5\% &
+Mild deficit (-150 to -350) &
+170–200 g/day &
+20–30\% &
+Carbs used to prevent performance degradation; stable staples; avoid new high-fiber loads &
+Raise to maintenance; carbs upshift; no novelty &
+If \textbf{SWIM} becomes active, avoid GI-risk changes near swim test windows; preserve validity. \\
+Phase 05 — Aerobic Base and Extended Stamina Development &
+12 &
+Protect endurance development; avoid low-energy availability &
+0.15–0.30\% \textbf{BW}/week average; never >0.5\% &
+Mild deficit to near maintenance (-100 to -300) &
+165–200 g/day &
+20–30\% &
+Carbs increase to support longer sessions; keep familiar low GI-risk carbs near protected windows &
+Raise to maintenance; carbs upshift; no novelty &
+Avoid aggressive deficit because endurance and recovery demands rise; maintain stable hydration practices (no extremes). \\
+Phase 06 — Lactate Threshold and Power-Endurance Development &
+12 &
+Prioritize performance and recovery; fat loss becomes secondary &
+0.0–0.25\% \textbf{BW}/week average; never >0.5\% &
+Near maintenance (-0 to -200) &
+165–195 g/day &
+20–30\% &
+Carbs higher; support higher intensity; stabilize food choices near gates &
+Raise to maintenance; carb upshift; no novelty &
+This phase often exposes validity drift from under-fueling; hold conservative posture to protect gate evidence. \\
+Phase 07 — Advanced Hybrid Overload &
+12 &
+Sustain high density without over-restriction; preserve recovery &
+0.0–0.25\% \textbf{BW}/week average; never >0.5\% &
+Near maintenance (-0 to -150) &
+165–195 g/day &
+20–30\% &
+Carbs remain high and stable; avoid large swings; no novelty near protected windows &
+Raise to maintenance; carb upshift; no novelty &
+Over-restriction risk is high; treat consistency as the control. \\
+Phase 08 — Structural Durability and Load Tolerance Phase &
+12 &
+Protect durability under load; avoid diet-driven injury risk &
+0.0–0.25\% \textbf{BW}/week average; never >0.5\% &
+Near maintenance (-0 to -150) &
+165–195 g/day &
+20–30\% &
+Carbs support load tolerance; stabilize pre-ruck windows; avoid GI novelty &
+Raise to maintenance; carb upshift; no novelty &
+\textbf{RUCK} tolerance is high consequence; under-fueling increases injury risk and invalid evidence risk. \\
+Phase 09 — High-Volume Calisthenics and Stamina &
+12 &
+Support high \textbf{CAL} volume; protect soft tissue and recovery &
+0.0–0.25\% \textbf{BW}/week average; never >0.5\% &
+Near maintenance (-0 to -150) &
+160–195 g/day &
+20–30\% &
+Carbs support \textbf{CAL} density; stable routine; avoid new stimulant/supplement changes near gates &
+Raise to maintenance; carb upshift; no novelty &
+\textbf{CAL} volume is sensitive to low energy availability; preserve sleep and recovery markers. \\
+Phase 10 — Advanced Tactical Readiness Physical &
+12 &
+Maintain performance and test readiness; minimize variance &
+0.0–0.20\% \textbf{BW}/week average; never >0.5\% &
+Maintenance to slight surplus (-0 to +150) &
+160–190 g/day &
+20–30\% &
+Carbs high and stable; no novelty near gates; emphasize repeatability &
+Raise to maintenance (or hold if already at maintenance); carb upshift; no novelty &
+Underwater standards are governance-gated; do not change diet variables near any high-consequence pool windows. \\
+Phase 11 — Pre-Selection Conditioning and Recovery &
+12 &
+Protect recovery; maintain readiness; avoid diet fatigue &
+0.0–0.20\% \textbf{BW}/week average; never >0.5\% &
+Maintenance to slight deficit (-150 to -0) &
+160–190 g/day &
+20–30\% &
+Carbs stable; prioritize GI predictability; avoid new foods &
+Raise to maintenance; carb upshift; no novelty &
+Recovery emphasis increases; under-fueling increases test invalidation risk via fatigue contamination. \\
+Phase 12 — Final Pre-Selection Conditioning &
+12 &
+Maximize repeatable output; minimize confounders &
+0.0–0.15\% \textbf{BW}/week average; never >0.5\% &
+Maintenance to slight surplus (0 to +200) &
+160–190 g/day &
+20–30\% &
+Carbs high; strict no novelty; pre-window stabilization is mandatory &
+Maintain or slight upshift as needed; carb upshift; no novelty &
+Any major diet structure change is prohibited in the final 7–10 days before major gate tests; planned deload posture is allowed but must remain consistent. \\
+Phase 13 — Full-Spectrum Readiness Consolidation &
+12 &
+Consolidate selection-ready envelope with low variance &
+0.0–0.15\% \textbf{BW}/week average; never >0.5\% &
+Maintenance to slight surplus (0 to +200) &
+160–190 g/day &
+20–30\% &
+Carbs high and stable; focus on repeatability; no novelty &
+Maintain or slight upshift as needed; carb upshift; no novelty &
+End-state verification depends on stable nutrition variables; avoid last-minute restriction. \\
+\end{longtblr}
+
+\endgroup
+
+\end{landscape}
+
+\subsection*{10.A.4 Minimal vs Ideal Nutrition Execution Posture}
+\phantomsection
+\addcontentsline{toc}{subsection}{10.A.4 Minimal vs Ideal Nutrition Execution Posture}
+
+Minimal Path (budget constrained)
+
+\begin{itemize}
+\item Feasibility posture:
+  \begin{itemize}
+  \item rely on simple staples with limited variety to reduce decision fatigue and cost,
+  \item minimal prep infrastructure consistent with 7.13 Tier 1 posture (containers, basic hydration container, cleaning tools).
+  \end{itemize}
+\item Friction-reduction posture:
+  \begin{itemize}
+  \item consistency over complexity,
+  \item repeatable meal timing and repeatable food selection,
+  \item one change at a time when adjustments are required (logged with date/reason/expected effect).
+  \end{itemize}
+\item Optional supplement category references only (no dosing):
+  \begin{itemize}
+  \item 7.03 / 7.04 / 7.05 / 7.06 are optional supports, never substitutes for sleep, training dose control, or food adequacy.
+  \end{itemize}
+\end{itemize}
+
+Ideal Path (more resources)
+
+\begin{itemize}
+\item What improves adherence and quality without changing macro rules:
+  \begin{itemize}
+  \item greater food variety while preserving GI predictability,
+  \item higher convenience options that reduce prep time and missed meals,
+  \item expanded 7.13 tooling (more containers, better carry insulation, improved workflow consistency).
+  \end{itemize}
+\item Still governed by:
+  \begin{itemize}
+  \item the 0.5\% \textbf{BW}/week guardrail,
+  \item no planned refeeds/diet breaks,
+  \item no novelty near gates/test weeks,
+  \item one change at a time posture,
+  \item logging discipline and weekly review discipline.
+  \end{itemize}
+\end{itemize}
+
+\newpage
+\subsection*{10.A.5 Macro Ladder Integrity Checks}
+\phantomsection
+\addcontentsline{toc}{subsection}{10.A.5 Macro Ladder Integrity Checks}
+
+\begin{itemize}
+\item Early phases prioritize safe deficit and habit formation within the 0.5\% \textbf{BW}/week guardrail; planned average loss never exceeds 0.5\% \textbf{BW}/week.
+\item Mid phases explicitly moderate deficit to protect \textbf{STR} development, \textbf{RUN} tolerance, and recovery; aggressive restriction is denied when it would degrade performance evidence.
+\item Late phases default to near-maintenance to slight surplus posture with guardrails to protect specificity and test validity; weight loss becomes secondary to repeatable output.
+\item Deload/Test weeks raise calories to maintenance by design, with protein stable and fat within the floor band, and carbs upshifted; this posture is planned and repeatable, not “novelty.”
+\item No major diet structure changes are introduced in the final 7–10 days before major gates; any change is logged with date, reason, expected effect.
+\item Targets are measurable using Stage 2 logs:
+  \begin{itemize}
+  \item weekly bodyweight average (\textbf{MET-2B-001}),
+  \item weekly circumference suite (\textbf{MET-2B-003} through \textbf{MET-2B-009}),
+  \item recovery markers (\textbf{MET-2B-038} through \textbf{MET-2B-042}).
+  \end{itemize}
+\item Feasibility matches start-from-zero posture and 7.13 tooling assumptions; no meal plan dependence and no specialty procurement.
+\item Supplement references remain category-level optional only (7.03–7.06); 7.02 remains education-only and never required.
+\item Red-flag symptoms override the plan; the nutrition posture is suspended and escalation posture is followed when safety signals appear.
+\item Any detected conflict with locked upstream doctrine is flagged for Stage 8 review; no silent edits are performed.
+\end{itemize}
+
+\end{document}

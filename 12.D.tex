@@ -1,0 +1,393 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 12.D — Emergency Stop Rules and Escalation Flow}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 12.D — Emergency Stop Rules and Escalation Flow}
+
+\subsection*{12.D.1 Authority and Boundary Statement}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.D.1 Authority and Boundary Statement}
+
+\begin{itemize}
+\item This appendix aligns to Stage 0.5 safety and legal boundaries and Stage 1.F stop-rule doctrine and \textbf{MUST} be applied as written.
+\item This appendix is non-medical governance only:
+  \begin{itemize}
+  \item no diagnosis,
+  \item no treatment,
+  \item escalation and documentation posture only.
+  \end{itemize}
+\item Safety overrides schedule, performance goals, and evidence collection convenience.
+\item \textbf{STOP} \textbf{NOW} is mandatory when a stop trigger is present.
+\item Evidence captured during a stop-rule breach is inadmissible for gate use and \textbf{MUST} NOT support \textbf{ADVANCE}.
+\item Any impacted test window \textbf{MUST} follow Stage 3 reslot posture and no-stacking discipline.
+\end{itemize}
+
+\subsection*{12.D.2 Immediate Stop Triggers — Quick Reference}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.D.2 Immediate Stop Triggers — Quick Reference}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,1.55]
+    X[l,2.35]
+    X[l,2.10]
+    X[l,4.00]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=2pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Trigger Category} &
+\Hdr{Examples} &
+\Hdr{Immediate Action} &
+\Hdr{Minimum Documentation} \\
+Cardiovascular red flags &
+Chest pain/pressure; fainting/syncope; near-syncope; disproportionate shortness of breath; palpitations with distress; collapse &
+\textbf{STOP} \textbf{NOW}; cease activity; sit/lie down safely; EMS first if immediate danger; otherwise contact Medical &
+Timestamp ISO 8601 with timezone offset; Phase and Week and Session \# or Test Event marker; Environment Unit \textbf{ID} (\textbf{ROUTE}-\#\#/\textbf{POOL}-\#\#/\textbf{MACH}-\#\#); Activity being performed; Trigger category; Observed signs and symptoms non-diagnostic; Immediate action taken; Session validity tag \textbf{VALID}/\textbf{MODIFIED}/\textbf{INVALID} plus reason code posture OR Test validity tag \textbf{VALID}/\textbf{INVALID} plus reason code posture; EMS or Medical contacted Y/N; Who was notified and when \\
+Neurologic red flags &
+New neurologic symptoms; severe headache with concerning features; confusion/disorientation; loss of coordination; vision changes; seizure-like activity &
+\textbf{STOP} \textbf{NOW}; cease activity; stabilize; EMS first if immediate danger; otherwise contact Medical &
+Timestamp ISO 8601 with timezone offset; Phase/Week + Session \# or Test marker; Environment Unit \textbf{ID}; Activity; Trigger category; Observed signs non-diagnostic; Immediate action; Validity tag + reason code; EMS/Medical contacted Y/N; Notifications \\
+Heat illness signs &
+Dizziness; nausea/vomiting; chills/goosebumps in heat; severe headache; confusion; cessation of sweating with distress; inability to continue safely &
+\textbf{STOP} \textbf{NOW}; move to shade/indoors; cool down posture; EMS first if severe/confusion/collapse; otherwise contact Medical &
+Timestamp ISO 8601 with timezone offset; Phase/Week + Session \# or Test marker; Environment Unit \textbf{ID}; Activity; Trigger category; Observed signs; Immediate action; Validity tag + reason code; EMS/Medical contacted Y/N; Notifications \\
+Acute injury with instability or swelling &
+Joint instability; rapid swelling; audible pop with immediate functional loss; inability to bear weight safely &
+\textbf{STOP} \textbf{NOW}; cease load-bearing; stabilize; contact Medical &
+Timestamp ISO 8601 with timezone offset; Phase/Week + Session \# or Test marker; Environment Unit \textbf{ID}; Activity; Trigger category; Observed signs; Immediate action; Validity tag + reason code; Medical contacted Y/N; Notifications \\
+Gait-altering pain or mechanics change &
+Limp; compensation; altered stride; unstable joint position; pain that changes mechanics &
+\textbf{STOP} \textbf{NOW} for the exposure; substitute to lower-risk modality if safe; contact Medical if concerning &
+Timestamp ISO 8601 with timezone offset; Phase/Week + Session \# or Test marker; Environment Unit \textbf{ID}; Activity; Trigger category; Observed signs; Immediate action; Validity tag + reason code; Medical contacted Y/N; Notifications \\
+Water safety violations &
+Any unsupervised underwater/breath-hold attempt; distress in water; disorientation/panic; cramp; near-drowning indicators &
+\textbf{STOP} \textbf{NOW}; exit water immediately; lifeguard engaged if present; account for buddy; no re-entry same day; EMS if distress/near-drowning indicators; contact Medical &
+Timestamp ISO 8601 with timezone offset; Phase/Week + Session \# or Test marker; Environment Unit \textbf{ID} (\textbf{POOL}-\#\#); Activity; Trigger category; Observed signs; Immediate action; Validity tag + reason code; EMS/Medical contacted Y/N; Notifications \\
+Mental and behavioral stop triggers &
+Acute panic/dissociation; suicidal ideation/self-harm statements; inability to safely self-regulate in-session; psychotic or manic symptoms &
+\textbf{STOP} \textbf{NOW}; remove from hazard; do not continue; escalate to professional support posture; contact Medical when indicated &
+Timestamp ISO 8601 with timezone offset; Phase/Week + Session \# or Test marker; Environment Unit \textbf{ID}; Activity; Trigger category; Observed signs non-diagnostic; Immediate action; Validity tag + reason code; EMS/Medical contacted Y/N; Notifications \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\subsection*{12.D.3 Escalation Flow — Decision Tree}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.D.3 Escalation Flow — Decision Tree}
+
+\begin{enumerate}
+\item Stop
+  \begin{itemize}
+  \item \textbf{STOP} \textbf{NOW} immediately.
+  \item Terminate the exposure (session element or test attempt) without negotiation.
+  \item If a test attempt is in progress, treat the test as \textbf{INVALID} unless all protocol completion criteria were already satisfied prior to the stop trigger.
+  \end{itemize}
+
+\item Stabilize and Exit Environment
+  \begin{itemize}
+  \item Move to a safer setting:
+    \begin{itemize}
+    \item stop movement; sit/lie down as appropriate; avoid hazards.
+    \end{itemize}
+  \item If water-related:
+    \begin{itemize}
+    \item exit water immediately,
+    \item lifeguard engaged if present,
+    \item buddy accounted for,
+    \item no re-entry the same day,
+    \item log as \textbf{SAFETY},
+    \item default to \textbf{MEDICAL} \textbf{HOLD} if distress or near-drowning indicators occurred.
+    \end{itemize}
+  \end{itemize}
+
+\item Notify and Escalate by Role
+  \begin{itemize}
+  \item Emergency-services-first pathway (life-threatening or severe red flags)
+    \begin{itemize}
+    \item EMS first when immediate danger is present.
+    \item Then notify Medical.
+    \item Then notify Coach Lead.
+    \item Then notify others as needed (Equipment Lead, Trainee support contact) consistent with local policy.
+    \end{itemize}
+  \item Non-life-threatening but concerning pathway
+    \begin{itemize}
+    \item Medical first (non-diagnostic evaluation posture).
+    \item Then notify Coach Lead.
+    \item Then notify others as needed.
+    \end{itemize}
+  \item Mental and behavioral hard response pathway
+    \begin{itemize}
+    \item \textbf{STOP} \textbf{NOW}.
+    \item Remove from hazard.
+    \item Do not continue the session or test.
+    \item Escalate to professional support posture.
+    \item Document as \textbf{SAFETY}.
+    \item Apply \textbf{MEDICAL} \textbf{HOLD} posture when safety is compromised.
+    \end{itemize}
+  \end{itemize}
+
+\item Document Validity and Context
+  \begin{itemize}
+  \item Record immediately (same-day) using Stage 2.E posture:
+    \begin{itemize}
+    \item Timestamp ISO 8601 with timezone offset.
+    \item Phase, Phase Week, Session \# (1–6) or Test Event marker.
+    \item Environment Unit \textbf{ID}: \textbf{ROUTE}-\#\# or \textbf{POOL}-\#\# or \textbf{MACH}-\#\# as applicable.
+    \item Activity being performed and the exposure stage (warm-up/main work/test attempt).
+    \item Observed signs and symptoms (non-diagnostic) and trigger category.
+    \item Immediate actions taken and escalation contacts (EMS Y/N; Medical Y/N; who notified and when).
+    \item Validity tag and reason code:
+      \begin{itemize}
+      \item session: \textbf{VALID} / \textbf{MODIFIED} / \textbf{INVALID} plus \textbf{SESSION-RC} family (\textbf{ENV}/PAIN/\textbf{EQUIP}/\textbf{TIME}/\textbf{ILL}/\textbf{SAFETY}),
+      \item test: \textbf{VALID} / \textbf{INVALID} plus \textbf{TEST-RC} family (\textbf{ENV}/PAIN/\textbf{EQUIP}/\textbf{TIME}/\textbf{ILL}/\textbf{SAFETY}).
+      \end{itemize}
+    \item Tool context when applicable (Timer/Scale/Tape identity; machine settings if relevant).
+    \item Reslot posture note if a protected test window is affected:
+      \begin{itemize}
+      \item “Reslot to next deload/test week per Stage 3; no stacking make-ups.”
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+
+\item Return-to-Training Gate High-Level
+  \begin{itemize}
+  \item Return-to-training is governed by safety and admissibility:
+    \begin{itemize}
+    \item do not resume maximal efforts or gate tests until safe and cleared under appropriate posture.
+    \end{itemize}
+  \item Gate decisions:
+    \begin{itemize}
+    \item any missing admissible evidence defaults to \textbf{HOLD} or \textbf{MEDICAL} \textbf{HOLD} as appropriate.
+    \item reslot affected tests to the next protected window; do not stack make-ups.
+    \end{itemize}
+  \end{itemize}
+\end{enumerate}
+
+\newpage
+
+\subsection*{12.D.4 Post-Event Re-Entry Rules — High-Level}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.D.4 Post-Event Re-Entry Rules — High-Level}
+
+\begin{itemize}
+\item Cancel or postpone testing when stop triggers occur.
+\item Reslot impacted tests to the next deload/test week per Stage 3.
+\item Do not stack make-up tests.
+\item Default gate outcome when admissible evidence is missing:
+  \begin{itemize}
+  \item \textbf{HOLD} or \textbf{MEDICAL} \textbf{HOLD} as appropriate.
+  \end{itemize}
+\end{itemize}
+
+Default postures by category (non-medical):
+
+\begin{itemize}
+\item Cardiovascular red flags, neurologic red flags, suspected heat illness, loss of consciousness, water distress events:
+  \begin{itemize}
+  \item default \textbf{MEDICAL} \textbf{HOLD},
+  \item clinician clearance required before resuming maximal efforts or gate tests.
+  \end{itemize}
+\item Gait-altering pain or mechanics change:
+  \begin{itemize}
+  \item default \textbf{HOLD},
+  \item regress exposure and substitute lower-risk modalities,
+  \item reslot impacted tests.
+  \end{itemize}
+\item Equipment or environment safety event:
+  \begin{itemize}
+  \item default \textbf{HOLD} until controls verified and environment/tooling validity restored (correct Environment Unit \textbf{ID} and Tool Standard posture available).
+  \end{itemize}
+\item Mental and behavioral stop trigger events:
+  \begin{itemize}
+  \item \textbf{MEDICAL} \textbf{HOLD} posture when safety is compromised,
+  \item professional support required,
+  \item no gate testing until stabilized.
+  \end{itemize}
+\end{itemize}
+
+\end{document}

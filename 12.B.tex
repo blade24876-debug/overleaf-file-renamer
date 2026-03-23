@@ -1,0 +1,506 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 12.B — Validity Tags: Definitions and Examples}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 12.B — Validity Tags: Definitions and Examples}
+
+\subsection*{12.B.1 Validity Tag Definitions}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.B.1 Validity Tag Definitions}
+
+These definitions mirror Stage 1.F and must not be redefined.
+
+\subsubsection*{Session Validity Tags}
+\phantomsection
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.90in]
+    X[l,3.95]
+    X[l,2.55]
+    X[l,2.55]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Tag} &
+\Hdr{Definition} &
+\Hdr{When Used} &
+\Hdr{Gate Impact} \\
+\textbf{VALID} &
+All required session elements completed and recorded in order: Safety self-check, Warm-up, Mobility, Main work, Cardio, Cooldown, Recovery notes, Post-session notes; required fields complete; Cardio meets minimum continuous standard per governance. &
+Default tag when execution and documentation are complete and no required element is missing. &
+Gate credit: Yes. Admissible session evidence may be used in gate decision windows. \\
+\textbf{MODIFIED} &
+All required session elements completed and recorded; a risk-reducing substitution occurred that preserves intent and does not increase risk; documentation includes the substitution and reason code. Cardio still meets minimum continuous standard per governance. &
+Used when a safe substitution is executed due to environment, pain, time, equipment, illness posture, or safety constraints, and the session remains complete and documented. &
+Gate credit: Yes (conditional). Admissible only within Stage 1.F \textbf{MODIFIED} cap posture; must be reason-coded and review-triggering if repeated. \\
+\textbf{INVALID} &
+Any required session element missing, or required documentation missing, or an undocumented deviation occurred, or Cardio fails the minimum continuous standard per governance. &
+Used when execution is incomplete, documentation is incomplete, or required session structure/controls were not met. &
+Gate credit: No. Not admissible; cannot be used to justify \textbf{ADVANCE} and cannot support progression claims. \\
+\end{longtblr}
+
+\endgroup
+
+\subsubsection*{Test Validity Tags}
+\phantomsection
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.90in]
+    X[l,3.85]
+    X[l,2.75]
+    X[l,2.50]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Tag} &
+\Hdr{Definition} &
+\Hdr{Common Causes} &
+\Hdr{Gate Impact} \\
+\textbf{VALID} &
+Test executed under the applicable Stage 2 protocol posture with required Stage 2.E logging fields complete (ISO 8601 timestamp with offset, Environment Unit \textbf{ID}, Tool Standard, Warm-up posture where required, Evidence Ref where required, conditions notes); no stop-rule violation; measurement method consistent with protocol. &
+Proper execution under controlled conditions; complete logging; stable environment/tooling. &
+Gate credit: Yes. Admissible test evidence for tier classification and gates when replication posture is satisfied upstream. \\
+\textbf{INVALID} &
+Any required Stage 2.E field missing (including Environment Unit \textbf{ID} or Evidence Ref when required), protocol rules violated, warm-up not completed when required, unsafe conditions, stop-rule event, or tool/environment identity not recorded. &
+Missing Environment Unit \textbf{ID}; missing Evidence Ref; unlogged tool standard; unsafe weather/surface; pool conditions invalidate; protocol violation; abort event. &
+Gate credit: No. Not admissible; treat as not yet tested; retest/reslot per Stage 3 protected windows. \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\subsection*{12.B.2 Reason Code Set}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.B.2 Reason Code Set}
+
+Reason codes are compact families consistent with Stage 1.F posture. Codes are used as reason-code families for \textbf{SESSION-RC} (sessions) and \textbf{TEST-RC} (tests) without inventing new upstream schemas.
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.05in]
+    X[l,3.10]
+    Q[l,wd=1.30in]
+    X[l,3.10]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Reason Code} &
+\Hdr{Meaning} &
+\Hdr{Applies To} &
+\Hdr{Example} \\
+\textbf{ENV} &
+Environment constraint or unsafe/invalid conditions requiring deviation or invalidation &
+\textbf{SESSION-RC}; \textbf{TEST-RC} &
+Ice glaze or lightning forces indoor substitution (session) or reslot (test) \\
+PAIN &
+Pain or mechanics alteration affecting safe execution &
+\textbf{SESSION-RC}; \textbf{TEST-RC} &
+Gait-altering pain requires substitution or abort and reslot \\
+\textbf{EQUIP} &
+Equipment limitation or failure preventing planned execution &
+\textbf{SESSION-RC}; \textbf{TEST-RC} &
+Timer failure; ruck buckle failure; missing required tool identity \\
+\textbf{TIME} &
+Time or schedule constraint forcing a safe substitution or truncation &
+\textbf{SESSION-RC}; \textbf{TEST-RC} &
+Session shortened due to verified schedule constraint; test window missed due to time constraint \\
+\textbf{ILL} &
+Illness or acute symptoms posture (non-diagnostic) affecting safety/validity &
+\textbf{SESSION-RC}; \textbf{TEST-RC} &
+Fever/systemic symptoms → terminate attempt; reslot; may trigger \textbf{MEDICAL} \textbf{HOLD} \\
+\textbf{SAFETY} &
+Safety stop or red-flag posture requiring immediate termination/escalation &
+\textbf{SESSION-RC}; \textbf{TEST-RC} &
+Chest pressure, near-syncope, severe dizziness → \textbf{STOP} \textbf{NOW}; abort; seek evaluation posture \\
+\end{longtblr}
+
+\endgroup
+
+\subsection*{12.B.3 Worked Examples}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.B.3 Worked Examples}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,2.70]
+    Q[l,wd=0.85in]
+    Q[l,wd=0.95in]
+    X[l,3.10]
+    X[l,2.35]
+    Q[l,wd=1.35in]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Scenario} &
+\Hdr{Tag} &
+\Hdr{Reason Code} &
+\Hdr{What Must Be Documented} &
+\Hdr{Gate Impact} &
+\Hdr{Correct Next Step} \\
+Outdoor session moved indoors due to ice glaze; all elements completed and logged &
+\textbf{MODIFIED} &
+\textbf{ENV} &
+Which element changed (Cardio modality/environment); why (unsafe footing); substitution details; confirmation all required elements completed and recorded; \textbf{SESSION-RC} noted &
+Gate credit: Yes (conditional). Counts only within \textbf{MODIFIED} cap posture. &
+Document substitution \\
+Session executed but Cardio stopped at 18 minutes due to dizziness; session terminated &
+\textbf{INVALID} &
+\textbf{SAFETY} &
+Which required element failed (Cardio minimum continuous not met); \textbf{STOP} \textbf{NOW} action taken; symptom description (non-diagnostic); \textbf{SESSION-RC} recorded; escalation notes &
+Gate credit: No. Not admissible; triggers conservative gate posture. &
+\textbf{MEDICAL} \textbf{HOLD} \\
+Session executed with pain escalating to mechanics change; switched to lower-risk modality but completed all elements &
+\textbf{MODIFIED} &
+PAIN &
+Pain description and mechanics impact; substitution performed; confirmation risk reduced; all required elements completed; \textbf{SESSION-RC} recorded &
+Gate credit: Yes (conditional). Review required if repeated. &
+Document substitution \\
+Planned main work replaced due to equipment failure; session completed with safe alternative &
+\textbf{MODIFIED} &
+\textbf{EQUIP} &
+Equipment failure description; safe alternative used; all required elements completed; \textbf{SESSION-RC} recorded &
+Gate credit: Yes (conditional). &
+Document substitution \\
+Session logged late from memory with missing required fields (RPE and pain flags absent) &
+\textbf{INVALID} &
+\textbf{TIME} &
+Late entry verified? If not verifiable: record \textbf{MISSING}; identify missing required fields; tag \textbf{INVALID}; \textbf{SESSION-RC} recorded &
+Gate credit: No. Inadmissible due to missing required fields. &
+\textbf{HOLD} gate \\
+Session completed physically but mobility block was skipped and not substituted &
+\textbf{INVALID} &
+\textbf{TIME} &
+Missing required element (Mobility); no substitution; tag \textbf{INVALID}; \textbf{SESSION-RC} recorded &
+Gate credit: No. Inadmissible. &
+\textbf{HOLD} gate \\
+Illness posture: mild systemic symptoms; session downshifted to minimum viable session with all elements logged &
+\textbf{MODIFIED} &
+\textbf{ILL} &
+Illness posture note (non-diagnostic); downshift rationale; all required elements completed; \textbf{SESSION-RC} recorded &
+Gate credit: Yes (conditional). May exceed \textbf{MODIFIED} cap only under medical issue posture; triggers review. &
+Document substitution \\
+Red-flag symptoms during warm-up; session aborted before main work &
+\textbf{INVALID} &
+\textbf{SAFETY} &
+\textbf{STOP} \textbf{NOW} action; symptom description; aborted exposure; missing required elements documented; \textbf{SESSION-RC} recorded &
+Gate credit: No. Inadmissible; \textbf{MEDICAL} \textbf{HOLD} posture considered. &
+\textbf{MEDICAL} \textbf{HOLD} \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\subsection*{12.B.4 Test Examples}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.B.4 Test Examples}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,2.85]
+    Q[l,wd=0.85in]
+    Q[l,wd=0.95in]
+    X[l,3.25]
+    X[l,2.25]
+    Q[l,wd=1.60in]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+}
+\Hdr{Scenario} &
+\Hdr{Tag} &
+\Hdr{Reason Code} &
+\Hdr{What Must Be Documented} &
+\Hdr{Gate Impact} &
+\Hdr{Correct Next Step} \\
+2-mile run time trial attempted on measured route but Route \textbf{ID} not recorded &
+\textbf{INVALID} &
+\textbf{ENV} &
+ISO 8601 timestamp with offset; Environment Unit \textbf{ID} field is \textbf{MISSING}; Tool Standard recorded; warm-up posture; conditions notes; \textbf{TEST-RC} recorded; Evidence Ref recorded or \textbf{MISSING} &
+Gate credit: No. Missing Environment Unit \textbf{ID} makes test inadmissible. &
+Reslot to next deload/test week \\
+Swim test performed but pool length unit not verified; Pool \textbf{ID} recorded but length unit missing in conditions notes &
+\textbf{INVALID} &
+\textbf{ENV} &
+ISO 8601 timestamp with offset; Environment Unit \textbf{ID} (Pool \textbf{ID}); Tool Standard; warm-up Y/N; conditions notes must include pool length and units; \textbf{TEST-RC} recorded; Evidence Ref recorded &
+Gate credit: No. Unit uncertainty invalidates comparability and admissibility. &
+Retest \\
+\textbf{CAL} test completed but required artifact evidence is missing (Evidence Ref \textbf{MISSING}) &
+\textbf{INVALID} &
+\textbf{EQUIP} &
+ISO 8601 timestamp with offset; Environment Unit \textbf{ID} (Machine/Location note as applicable); Tool Standard; warm-up Y/N; Evidence Ref recorded as \textbf{MISSING}; \textbf{TEST-RC} recorded; conditions notes &
+Gate credit: No. Missing Evidence Ref makes test inadmissible when required by protocol posture. &
+Retest \\
+Ruck time trial aborted due to chest pressure; \textbf{STOP} \textbf{NOW} executed &
+\textbf{INVALID} &
+\textbf{SAFETY} &
+ISO 8601 timestamp with offset; Environment Unit \textbf{ID} (Route \textbf{ID}); Tool Standard; warm-up Y/N; Stop/Abort Y with reason; conditions notes; Evidence Ref; \textbf{TEST-RC} recorded &
+Gate credit: No. Safety stop invalidates test; escalation posture controls. &
+\textbf{MEDICAL} \textbf{HOLD} \\
+Underwater test attempted without governance prerequisites (no lifeguard/spotter confirmation) &
+\textbf{INVALID} &
+\textbf{SAFETY} &
+ISO 8601 timestamp with offset; Pool \textbf{ID}; governance prerequisites recorded as not met; Stop/Abort Y; \textbf{TEST-RC} recorded; Evidence Ref; conditions notes &
+Gate credit: No. Governance breach triggers safety handling and reslot; may trigger \textbf{MEDICAL} \textbf{HOLD} posture. &
+\textbf{MEDICAL} \textbf{HOLD} \\
+\end{longtblr}
+
+\endgroup
+
+Reason code coverage note:
+
+\begin{itemize}
+\item \textbf{ENV}, PAIN, \textbf{EQUIP}, \textbf{TIME}, \textbf{ILL}, \textbf{SAFETY} are represented at least once across the combined session and test examples. \textbf{TIME} is primarily a session context code in this set; in tests it is used only when a test window is missed or incomplete due to a verified schedule constraint and is still treated as \textbf{INVALID} for gate use.
+\end{itemize}
+
+\newpage
+
+\subsection*{12.B.5 Common Misuse Patterns and Controls}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.B.5 Common Misuse Patterns and Controls}
+
+\begin{itemize}
+\item Silent substitutions → \textbf{MUST} tag \textbf{MODIFIED} and document what changed, why, and the safe substitution used; \textbf{SESSION-RC} required.
+\item Reconstructed logs → No inference allowed; record \textbf{UNKNOWN}/\textbf{MISSING}; reconstructed entries remain inadmissible for gates.
+\item Invalid tests counted toward gates → Gate credit: No; \textbf{INVALID} tests are treated as not yet tested; retest/reslot only.
+\item Tool drift unrecorded → Tool Standard must be logged; tool changes must be documented; unlogged tool drift invalidates comparability.
+\item Weather/route changed without Environment Unit \textbf{ID} update → Environment Unit \textbf{ID} plus conditions notes required; otherwise test is \textbf{INVALID} for gate use.
+\item Hero day bias → enforce trend and replication posture used upstream; \textbf{VALID} evidence only; do not chase single-day peaks.
+\item Mislabeling incomplete sessions as \textbf{MODIFIED} → If required elements are missing or required fields are missing, tag \textbf{INVALID}; \textbf{MODIFIED} requires full element completion and documentation.
+\item Treating safety stops as “partial credit” → \textbf{STOP} \textbf{NOW} events invalidate attempts; treat as \textbf{INVALID}; apply escalation posture and reslot discipline.
+\end{itemize}
+
+\end{document}

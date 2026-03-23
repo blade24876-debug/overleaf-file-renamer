@@ -1,0 +1,387 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\begin{tcolorbox}
+\begin{center}
+Stage 11 — Pre-Selection Conditioning and Recovery\\
+\textbf{SOF} Physical Development Transformation Program\\
+182-Week Civilian-to-Selection Readiness Pipeline
+\TitleLine
+\end{center}
+\end{tcolorbox}
+
+\vspace{0.35em}
+
+\section*{Stage 11 — Pre-Selection Conditioning and Recovery}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 11 — Pre-Selection Conditioning and Recovery}
+
+\subsection*{Introduction}
+\phantomsection
+\addcontentsline{toc}{subsection}{Introduction}
+
+\subsubsection*{1) Purpose}
+
+Stage 11 exists to finalize execution doctrine for the selection approach period across the final phases, with explicit focus on maintaining admissible evidence, controlling risk, and preventing last-minute drift. Stage 11 provides operational governance and implementation posture, not programming, and it does not redesign phase missions, tests, thresholds, calendars, or equipment timing.
+
+Stage 11 leads into the locked deliverable set:
+
+\begin{itemize}
+\item 11.A — Pre-Selection Conditioning Overview
+\item 11.B — Final Preparation and Test Optimization
+\item 11.C — Recovery and Injury Prevention in Final Phases
+\item 11.D — Nutritional Adjustments for Final Selection
+\end{itemize}
+
+\subsubsection*{2) Scope}
+
+\paragraph*{Inclusions}
+
+\begin{itemize}
+\item 11.A: pre-selection conditioning posture and constraints at governance level (no workouts; no programming detail).
+\item 11.B: final preparation and test optimization posture that protects admissibility, preserves comparability, and avoids novelty in protected windows.
+\item 11.C: recovery and injury-prevention overlays for final phases, framed non-medically and aligned to stop-rule authority and \textbf{MEDICAL} \textbf{HOLD} posture where indicated.
+\item 11.D: nutrition adjustments for final selection that implement Stage 10 (10.A–10.D) without redefining it, including hydration/electrolyte stability consistent with Stage 10.C.
+\item Validity protection:
+\begin{itemize}
+\item adherence to Stage 1.F validity tags and admissibility posture (\textbf{VALID} / \textbf{MODIFIED} / \textbf{INVALID} for sessions; \textbf{VALID} / \textbf{INVALID} for tests),
+\item adherence to Stage 2 protocol card execution posture and Stage 2.E required fields (Environment Unit IDs, Tool Standard, Evidence Ref where applicable, missing-data doctrine).
+\end{itemize}
+\item Scheduling protection:
+\begin{itemize}
+\item adherence to Stage 3 protected Deload/Test windows,
+\item reslot posture for invalid/unsafe tests,
+\item no novelty near gates/test weeks.
+\end{itemize}
+\end{itemize}
+
+\paragraph*{Exclusions}
+
+\begin{itemize}
+\item No new training content or programming prescriptions (no workouts, sets/reps, intervals, weekly splits, or day-by-day schedules).
+\item No new tests, thresholds, domain tags, phase purposes, or equipment categories.
+\item No clinical diagnosis or treatment planning.
+\item No prescription guidance and no prohibited substance guidance.
+\item No changes to Stage 6–7 capability timing; Stage 11 cannot require capabilities earlier than Stage 6 indicates.
+\end{itemize}
+
+\subsubsection*{3) How to Use}
+
+\begin{itemize}
+\item Consult Stage 11 during Phases 11–13 and any time the program is inside a protected Deload/Test window where evidence is collected for gates.
+\item Apply Stage 1.F stop rules and \textbf{MEDICAL} \textbf{HOLD} posture without drift:
+\begin{itemize}
+\item safety overrides schedule and performance,
+\item red flags terminate testing and trigger reslot discipline rather than forced attempts.
+\end{itemize}
+\item Preserve admissible evidence:
+\begin{itemize}
+\item execute tests only under Stage 2 protocol posture,
+\item enforce Stage 2.E required fields (environment IDs, tool standard, evidence refs),
+\item treat missing required fields as inadmissible and reslot.
+\end{itemize}
+\item Prevent last-minute novelty:
+\begin{itemize}
+\item do not introduce new shoes, routes, tools, hydration practices, or nutrition structure inside the no-novelty windows governed upstream,
+\item if an unavoidable change occurs, log it explicitly and interpret outcomes conservatively.
+\end{itemize}
+\end{itemize}
+
+\paragraph*{Trainee operational use}
+
+\begin{itemize}
+\item Stage 11 outputs are required reading for the selection approach period once issued:
+\begin{itemize}
+\item execute with honesty posture in logs,
+\item report red flags immediately,
+\item do not self-override stop rules or attempt to “prove it” on compromised days.
+\end{itemize}
+\item Maintain controlled variables near gates:
+\begin{itemize}
+\item keep nutrition/hydration routines stable (Stage 10),
+\item keep equipment and environment identity stable (Stage 2.E).
+\end{itemize}
+\end{itemize}
+
+\paragraph*{Decision posture}
+
+\begin{itemize}
+\item Gate outcomes remain: \textbf{ADVANCE} / \textbf{HOLD} / \textbf{REGRESS} / \textbf{MEDICAL} \textbf{HOLD}.
+\item Decisions rely on admissible \textbf{VALID} evidence only; invalid tests provide no gate credit and trigger reslot per Stage 3.
+\end{itemize}
+
+\subsubsection*{4) Inputs and Assumptions}
+
+\paragraph*{Inputs}
+
+\begin{itemize}
+\item Stage 1.F governance and validity doctrine: validity tags, admissibility, stop posture, gate outcomes, freeze windows, patch discipline.
+\item Stage 2 protocol cards and \textbf{MET} inventory plus Stage 2.E required logging fields:
+\begin{itemize}
+\item Protocol Cards C# and Metric IDs \textbf{MET-2B}-###,
+\item Environment Unit IDs and Tool Standard posture,
+\item missing-data doctrine: \textbf{UNKNOWN} / \textbf{MISSING}; no inference.
+\end{itemize}
+\item Stage 3 protected Deload/Test windows, spacing intent, and reslot rules for invalid/unsafe tests.
+\item Stage 5 Phase 11–Phase 13 intent and gate posture (Stage 11 cannot redefine phase missions or gate structure).
+\item Stage 6–7 capability readiness timing and category manuals (no early requirements).
+\item Stage 10 nutrition and hydration operating systems (Stage 11 applies them operationally; does not redefine them).
+\end{itemize}
+
+\paragraph*{Assumption Ledger}
+
+\begin{itemize}
+\item Access to testing environments may vary (route availability, pool availability, facility access), requiring substitutions or reslotting consistent with validity rules.
+\item Selection timeline may be externally fixed, increasing the need for early verification of feasibility and strict no-stacking reslot posture.
+\item Environment volatility (heat, ice, air quality, visibility) may require indoor substitutions or reslot decisions consistent with Stage 3 and Stage 2.E logging posture.
+\end{itemize}
+
+\subsubsection*{5) Interfaces}
+
+\paragraph*{Upstream dependencies}
+
+\begin{itemize}
+\item Stage 1.F: validity, admissibility, stop posture, gate outcomes, freeze windows, patch discipline.
+\item Stage 2 and Stage 2.E: protocol execution and required logging fields that make evidence admissible.
+\item Stage 3: protected windows, reslot doctrine, and no novelty near gates/test weeks posture.
+\item Stage 5: Phase 11–13 mission intent and gate structure.
+\item Stage 6–7: capability timing and category-level operating manuals.
+\item Stage 10: nutrition operating system and hydration/electrolyte rules.
+\end{itemize}
+
+\paragraph*{Downstream consumers}
+
+\begin{itemize}
+\item Stage 11 deliverables 11.A–11.D.
+\item Stage 9 packaging and change control when Stage 11 is bundled into a release package; Known Issues and \textbf{ISS-08}-### references must be preserved.
+\end{itemize}
+
+\paragraph*{Crosswalk hooks}
+
+\begin{itemize}
+\item Phase IDs and gate windows (Phase 11–Phase 13 and their protected windows).
+\item Stage 2 identifiers: C# and \textbf{MET-2B}-### referenced without inventing IDs.
+\item Environment Unit IDs and Tool Standard posture (Route \textbf{ID} / Pool \textbf{ID} / Machine \textbf{ID} where applicable).
+\item Issue IDs \textbf{ISS-08}-### where applicable for known constraints that affect feasibility or admissibility.
+\item Change-control references:
+\begin{itemize}
+\item \textbf{PATCH} and \textbf{CHANGE-LOG} entries for any controlled updates,
+\item freeze-window discipline preserved.
+\end{itemize}
+\end{itemize}
+
+\subsubsection*{6) Gate / Acceptance Criteria}
+
+Stage 11 Intro is complete when it:
+
+\begin{itemize}
+\item States Stage 11 purpose and the non-programming boundary clearly.
+\item Names 11.A–11.D and describes their scope accurately without outputting their content.
+\item Explicitly references:
+\begin{itemize}
+\item Stage 1.F validity/admissibility and gate outcomes,
+\item Stage 2 protocol and Stage 2.E required fields posture,
+\item Stage 3 protected windows and reslot/no-novelty posture,
+\item Stage 10 nutrition/hydration application posture.
+\end{itemize}
+\item Preserves safety boundaries and stop-rule authority as controlling.
+\item Declares crosswalk hooks sufficient for packaging, audit traceability, and issue linkage (\textbf{ISS-08}-### where relevant).
+\item Flags any detected mismatch as "Requires Stage 8 review" rather than silently correcting upstream doctrine.
+\end{itemize}
+
+\subsubsection*{7) Common Failure Modes + Controls}
+
+\begin{itemize}
+\item Last-minute novelty near tests → prohibited; enforce no novelty posture and reslot if needed to preserve admissibility.
+\item Chasing single-day peak performance → deny; enforce validity posture and repeatable evidence preference; reslot rather than stack.
+\item Ignoring fatigue and red flags → \textbf{STOP} \textbf{NOW} posture; apply \textbf{MEDICAL} \textbf{HOLD} when indicated; do not attempt compromised tests.
+\item Drifting into unlogged changes → enforce Stage 2.E required fields and Stage 1.F change-control discipline; missing data remains \textbf{UNKNOWN}/\textbf{MISSING}.
+\item Equipment or environment assumptions late → verify Stage 6 timing; substitute or reslot; log explicitly; do not improvise unsafe substitutes.
+\item Redefining nutrition late → implement Stage 10 only; do not invent new rules; maintain stability near protected windows.
+\item Water governance drift → prohibited; no unsupervised underwater/breath-hold ever; treat any governance gap as inadmissible and reslot.
+\end{itemize}
+
+\subsubsection*{8) Versioning Notes}
+
+\begin{itemize}
+\item Stage 11 is part of Program v1.0 and is frozen unless patched under change control.
+\item Any modification requires:
+\begin{itemize}
+\item patch record entry,
+\item impact level designation,
+\item revalidation of validity and timing alignment with Stage 2.E and Stage 3 protected windows.
+\end{itemize}
+\item Any upstream conflicts must be flagged as Requires Stage 8 review rather than silently corrected.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,1083 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{10.D.1 — Ladder Framework — How Ladders Work}
+\phantomsection
+\addcontentsline{toc}{section}{10.D.1 — Ladder Framework — How Ladders Work}
+
+\begin{itemize}
+\item Verify data first:
+  \begin{itemize}
+  \item trend-based posture only; no single-day decisions.
+  \item use Stage 2 metrics and Stage 2.E logging posture as the measurement interface.
+  \item weekly bodyweight average and weekly circumference suite are primary \textbf{BODYCOMP} signals; recovery markers and session RPE are constraint signals.
+  \end{itemize}
+\item Fix compliance before changing macros:
+  \begin{itemize}
+  \item apply 10.B lever order: simplify and restore compliance before calorie math.
+  \item compliance thresholds are gating conditions:
+    \begin{itemize}
+    \item $\geq$6/7 on-plan days for minor tweaks,
+    \item $\geq$12/14 on-plan days for structural calorie changes.
+    \end{itemize}
+  \end{itemize}
+\item Enforce hold periods:
+  \begin{itemize}
+  \item 7–14 days after macro changes unless safety requires immediate reversal.
+  \item maintenance reset is 7 days at maintenance when triggered (10.B).
+  \end{itemize}
+\item No novelty near gates and test weeks:
+  \begin{itemize}
+  \item deload/test weeks: calories set to maintenance (10.B).
+  \item test-day carb redistribution allowed per 10.B (+50–100 g carbs offset by fats).
+  \item novelty foods/products prohibited near gates (final 7–10 days).
+  \item caffeine routine changes are novelty: no caffeine pattern changes within 14 days of gate windows.
+  \end{itemize}
+\item Program-wide Do Not Do set:
+  \begin{itemize}
+  \item do not crash diet or attempt \textgreater0.5\% \textbf{BW}/week planned average loss.
+  \item do not add stimulants to force adherence; do not use electrolytes as stimulant substitutes (see 10.C; cross-reference 7.05 boundaries by \textbf{ID} only).
+  \item do not add multiple new changes in the same week.
+  \item do not attempt to make up missed compliance with extra restriction, dehydration, or “compensation days.”
+  \item do not force test attempts when heat/illness/safety conditions invalidate validity; reslot per Stage 3.
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+Required ladder template table:
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,3.20]
+    X[l,1.65]
+    X[l,2.40]
+    X[l,2.40]
+    X[l,2.35]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Ladder Name} &
+\Hdr{Primary Signal} &
+\Hdr{First Check} &
+\Hdr{Escalation Trigger} &
+\Hdr{Stop Condition} \\
+Plateau Ladder — Bodyweight Trend Stalled &
+14-day trend stall &
+Compliance $\geq$12/14 and waist method consistency &
+Persistent stall after one step + hold &
+Red-flag symptoms; restrictive behavior risk \\
+Too-Fast Loss Ladder — Recovery/Performance Risk &
+\textgreater0.75\% \textbf{BW}/week $\times$ 2 weeks &
+Confirm weekly average + compliance $\geq$12/14 &
+Sleep/performance collapse &
+Red-flag symptoms \\
+Unexpected Gain Ladder — Trend Up &
+2-week upward trend &
+Sodium/carb swings + compliance &
+Sustained upward drift under high compliance &
+Red-flag symptoms \\
+Hunger/Cravings Ladder — Adherence Breakdown Risk &
+cravings/urge-to-break plan &
+Compliance trend + sleep trend &
+Repeated off-plan days &
+Restrictive behavior escalation \\
+Low Energy/High RPE Ladder — Recovery Collapse Risk &
+RPE trend up; fatigue up &
+Sleep markers + illness flags &
+\textbf{MODIFIED}/\textbf{INVALID} sessions due to fatigue &
+Red-flag symptoms \\
+Poor Sleep Trend Ladder &
+sleep hours/quality down &
+Caffeine timing stability + stressors &
+Persistent multi-week degradation &
+Panic/dissociation; self-harm statements \\
+GI Distress Ladder — Training or Daily &
+GI distress persistent &
+Novelty foods/products check &
+Persistent or severe symptoms &
+Red-flag symptoms; dehydration risk \\
+Cramping/Dehydration Symptoms Ladder — 10.C Linkage &
+cramps/dizziness &
+Heat/cold + fluid/electrolyte logging &
+Recurrent symptoms &
+Heat illness suspicion; syncope \\
+Test-Week Performance Dip Ladder — Validity Protection &
+dip in test-week output &
+No novelty confirmed; maintenance week applied &
+Repeat dips with symptoms &
+Illness/heat triggers invalidate testing \\
+Budget Constraint/Food Access Instability Ladder &
+access instability &
+protein adequacy + baseline calories &
+Repeated under-eating &
+Restrictive behavior risk \\
+Travel/Schedule Disruption Ladder &
+disrupted schedule &
+portable baseline + hydration continuity &
+Repeated missed logs/sessions &
+Red-flag symptoms \\
+Water Retention Perception Ladder &
+scale fluctuations &
+7–14 day trend check &
+persistent upward trend &
+Red-flag symptoms \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{10.D.2 — Troubleshooting Ladders — Required Set}
+\phantomsection
+\addcontentsline{toc}{section}{10.D.2 — Troubleshooting Ladders — Required Set}
+
+\subsection*{LADDER-01 — Plateau Ladder — Bodyweight Trend Stalled}
+\phantomsection
+\addcontentsline{toc}{subsection}{LADDER-01 — Plateau Ladder — Bodyweight Trend Stalled}
+
+Primary Signal: 14 days with \textless0.10\% bodyweight change and no meaningful waist reduction.\\
+Confirm With Data: Weekly bodyweight average (\textbf{MET-2B-001}) and weekly waist circumference (\textbf{MET-2B-007}) with consistent landmark/tape posture.\\
+Stop Conditions Safety: Red-flag symptoms; severe fatigue collapse; restrictive behavior escalation signs.\\
+Review Cadence: Weekly.\\
+Do Not Do: Crash diet; stack multiple changes; cut during deload/test weeks; introduce novelty near gates.\\
+Steps in order:
+
+\begin{itemize}
+\item Step 0 — Verify signal quality
+  \begin{itemize}
+  \item Trend window: last 14 days.
+  \item Compliance check: structural change requires $\geq$12/14 on-plan days. If \textless12/14, plateau is not confirmed for action; treat as compliance problem.
+  \item Waist validity: confirm consistent tape method and landmark. If inconsistent, treat waist as non-comparable and use bodyweight trend only.
+  \end{itemize}
+\item Step 1 — Lowest-cost correction
+  \begin{itemize}
+  \item Compliance simplification: remove optional complexity; standardize staples; reduce discretionary snacks; maintain protein and fat floor per 10.A/10.B.
+  \item Confirm no novelty events occurred in the last 7–10 days if gates are near.
+  \end{itemize}
+\item Step 2 — Next correction
+  \begin{itemize}
+  \item Tighten discretionary carbohydrates first (within current calorie posture) while keeping protein stable and fat floor 20–30\% intact.
+  \end{itemize}
+\item Step 3 — Macro adjustment
+  \begin{itemize}
+  \item If compliance $\geq$12/14 and plateau persists: reduce calories by one step (-150 to -250 kcal/day) per 10.B; hold 7–14 days.
+  \end{itemize}
+\item Step 4 — Escalation, hold, refer
+  \begin{itemize}
+  \item If plateau persists after one step + full hold period: execute a second compliance audit and only then consider a second single-step reduction (do not stack in one week).
+  \item If gates/test weeks are within 7–10 days: defer structural change; protect validity; reslot if needed per Stage 3.
+  \item Hold Period Before Next Change: 7–14 days after Step 3.
+  \item What to Log: Weekly \textbf{BW} average, waist method consistency, on-plan count, change date, step size, hold period, gate proximity Y/N.
+  \item Worked Example:
+    \begin{itemize}
+    \item Step 0: 14-day \textbf{BW} average change = 0.05\%; waist measures unchanged; compliance 13/14; waist method stable.
+    \item Step 1: simplify snacks; standardize breakfast/lunch staples for 7 days.
+    \item Step 2: reduce discretionary carbs (e.g., remove one routine carb add-on) without changing protein.
+    \item Step 3: after continued plateau, reduce calories by 200 kcal/day and hold 10 days.
+    \item Step 4: if still stalled and no gate window imminent, run a second compliance audit before any additional step.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\subsection*{LADDER-02 — Too-Fast Loss Ladder — Recovery/Performance Risk}
+\phantomsection
+\addcontentsline{toc}{subsection}{LADDER-02 — Too-Fast Loss Ladder — Recovery/Performance Risk}
+
+Primary Signal: \textgreater0.75\% bodyweight per week sustained for 2 consecutive weeks.\\
+Confirm With Data: Weekly \textbf{BW} average trend (\textbf{MET-2B-001}) across two weeks + compliance $\geq$12/14.\\
+Stop Conditions Safety: Red-flag symptoms; severe dizziness; near-syncope; severe GI distress.\\
+Review Cadence: Weekly.\\
+Do Not Do: Keep cutting “because it’s working”; add stimulants; restrict fluids.\\
+Steps in order:
+
+\begin{itemize}
+\item Step 0 — Verify signal quality
+  \begin{itemize}
+  \item Trend window: last 14 days.
+  \item Compliance: $\geq$12/14 required to treat as true signal rather than noise.
+  \item Check for acute water shifts (high sodium/carb swings) before acting.
+  \end{itemize}
+\item Step 1 — Lowest-cost correction
+  \begin{itemize}
+  \item Ensure deload/test posture is not being violated (maintenance week rules).
+  \item Confirm hydration baseline and session top-ups align to 10.C; do not interpret dehydration as “fat loss.”
+  \end{itemize}
+\item Step 2 — Next correction
+  \begin{itemize}
+  \item Shift distribution: increase carbohydrates modestly while keeping protein stable; keep fat within 20–30\%.
+  \end{itemize}
+\item Step 3 — Macro adjustment
+  \begin{itemize}
+  \item Raise calories by one step (+150 to +250 kcal/day) per 10.B; preferentially raise carbs while keeping fat floor intact.
+  \end{itemize}
+\item Step 4 — Escalation, hold, refer
+  \begin{itemize}
+  \item If fast loss continues with recovery decline: execute 7-day maintenance reset per 10.B; resume prior posture only when sleep/fatigue stabilize.
+  \item If red-flag symptoms appear: stop and seek evaluation.
+  \item Hold Period Before Next Change: 7–14 days after Step 3 unless safety requires maintenance reset sooner.
+  \item What to Log: Two-week \textbf{BW} rate, sleep/fatigue markers, calorie step change, carb distribution change, hold period.
+  \item Worked Example:
+    \begin{itemize}
+    \item Step 0: Week 1 loss 0.9\%, Week 2 loss 0.8\%, compliance 14/14.
+    \item Step 2: increase carbs slightly (no novelty foods).
+    \item Step 3: +200 kcal/day; hold 10 days.
+    \item Step 4: if fatigue remains elevated, apply 7-day maintenance reset.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\subsection*{LADDER-03 — Unexpected Gain Ladder — Trend Up}
+\phantomsection
+\addcontentsline{toc}{subsection}{LADDER-03 — Unexpected Gain Ladder — Trend Up}
+
+Primary Signal: Perceived gain or a 2-week upward trend in weekly \textbf{BW} average.\\
+Confirm With Data: Weekly \textbf{BW} averages across 14 days + waist trend only if method consistent; compliance thresholds apply.\\
+Stop Conditions Safety: Red-flag symptoms; severe GI distress; suspected illness with systemic symptoms.\\
+Review Cadence: Weekly.\\
+Do Not Do: Cut immediately based on a single weigh-in; add dehydration tactics.\\
+Steps in order:
+
+\begin{itemize}
+\item Step 0 — Verify signal quality
+  \begin{itemize}
+  \item Trend window: 7–14 days; primary decision uses 14-day trend.
+  \item Compliance check: if \textless12/14, treat as compliance problem, not a metabolism problem.
+  \end{itemize}
+\item Step 1 — Lowest-cost correction
+  \begin{itemize}
+  \item Check for sodium/carb swing and novelty events (new foods, new eating window, new caffeine pattern).
+  \item Re-stabilize to baseline staples and routine.
+  \end{itemize}
+\item Step 2 — Next correction
+  \begin{itemize}
+  \item Execute a compliance rebuild week (target $\geq$6/7 on-plan) with simplified, repeatable choices.
+  \end{itemize}
+\item Step 3 — Macro adjustment
+  \begin{itemize}
+  \item Only if a 14-day upward trend persists under $\geq$12/14 compliance: reduce calories by one step (-150 to -250) and hold 7–14 days.
+  \end{itemize}
+\item Step 4 — Escalation, hold, refer
+  \begin{itemize}
+  \item If trend continues upward and recovery markers degrade, hold and reassess; do not stack cuts; consider maintenance reset if diet fatigue appears.
+  \item Hold Period Before Next Change: 7–14 days after Step 3.
+  \item What to Log: 2-week trend, compliance counts, novelty events, step change and hold.
+  \item Worked Example:
+    \begin{itemize}
+    \item Step 0: single-day +3 lb after high sodium/carb day; weekly average unchanged.
+    \item Step 1: stabilize food choices for 7 days; no macro changes.
+    \item Step 3: not applied because no 2-week trend confirmed.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\subsection*{LADDER-04 — Hunger/Cravings Ladder — Adherence Breakdown Risk}
+\phantomsection
+\addcontentsline{toc}{subsection}{LADDER-04 — Hunger/Cravings Ladder — Adherence Breakdown Risk}
+
+Primary Signal: escalating hunger/cravings leading to repeated off-plan days.\\
+Confirm With Data: on-plan day count ($\geq$6/7 minor threshold), sleep quality trend, fatigue trend, and whether deficit is too aggressive.\\
+Stop Conditions Safety: restrictive behavior escalation signs; binge/purge behaviors; fear-driven avoidance of eating.\\
+Review Cadence: Weekly, with mid-week check-in if adherence is collapsing.\\
+Do Not Do: punitive restriction; “compensation days”; stimulant escalation.\\
+Steps in order:
+
+\begin{itemize}
+\item Step 0 — Verify signal quality
+  \begin{itemize}
+  \item Trend window: last 7 days for adherence; last 14 days for weight trend.
+  \item Compliance threshold check: if \textless6/7 on-plan, treat as system failure risk; macro changes are deferred until simplification is executed.
+  \end{itemize}
+\item Step 1 — Lowest-cost correction
+  \begin{itemize}
+  \item Increase structure, not restriction: standardize meal timing; reduce decision points; maintain protein target.
+  \item Add “planned consistency” options rather than reactive snacking (no meal plan generated; just simplification posture).
+  \end{itemize}
+\item Step 2 — Next correction
+  \begin{itemize}
+  \item Rebalance within current calories: increase volume foods and fiber posture using familiar foods; avoid novelty high-fiber changes near gates.
+  \end{itemize}
+\item Step 3 — Macro adjustment
+  \begin{itemize}
+  \item If cravings persist and compliance is $\geq$12/14 but hunger remains high: increase calories by +150 kcal/day (prefer carbs) OR reduce deficit by one step, hold 7–14 days.
+  \end{itemize}
+\item Step 4 — Escalation, hold, refer
+  \begin{itemize}
+  \item If restrictive behavior warning signs appear: maintenance reset 7 days; seek professional support posture; do not intensify restriction.
+  \item Hold Period Before Next Change: 7–14 days after Step 3; immediate maintenance reset if restrictive behavior risk is detected.
+  \item What to Log: hunger/craving notes, on-plan count, sleep trend, change executed, hold period, gate proximity Y/N.
+  \item Worked Example:
+    \begin{itemize}
+    \item Step 0: on-plan days 4/7; cravings high; sleep poor.
+    \item Step 1: simplify to repeatable meals and consistent meal timing for 7 days.
+    \item Step 3: not allowed until compliance improves; once compliance reaches 12/14 and hunger persists, +150 kcal/day.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\subsection*{LADDER-05 — Low Energy / High RPE Ladder — Recovery Collapse Risk}
+\phantomsection
+\addcontentsline{toc}{subsection}{LADDER-05 — Low Energy / High RPE Ladder — Recovery Collapse Risk}
+
+Primary Signal: persistent low energy and rising session RPE trend despite stable training plan.\\
+Confirm With Data: \textbf{MET-2B-042} (session RPE), \textbf{MET-2B-041} fatigue, \textbf{MET-2B-038} sleep hours, \textbf{MET-2B-039} sleep quality; confirm illness flags.\\
+Stop Conditions Safety: red-flag symptoms; inability to function; suspected heat illness; severe dizziness.\\
+Review Cadence: Weekly, with immediate action if safety signals occur.\\
+Do Not Do: cut calories further; add stimulants; “push through” with more restriction.\\
+Steps in order:
+
+\begin{itemize}
+\item Step 0 — Verify signal quality
+  \begin{itemize}
+  \item Trend window: 7 days for recovery markers and RPE; 14 days for weight trend.
+  \item Compliance threshold: macro reductions are prohibited when recovery collapse is present; do-not-cut posture applies even if weight loss is “too slow.”
+  \end{itemize}
+\item Step 1 — Lowest-cost correction
+  \begin{itemize}
+  \item Stabilize sleep opportunity and hydration posture (10.C baseline + session top-ups).
+  \item Simplify nutrition execution to reduce friction and missed intake.
+  \end{itemize}
+\item Step 2 — Next correction
+  \begin{itemize}
+  \item Redistribution within calories: shift carbs toward training days while keeping protein and fat floor intact; no novelty foods.
+  \end{itemize}
+\item Step 3 — Macro adjustment
+  \begin{itemize}
+  \item Execute maintenance reset: 7 days at maintenance per 10.B; exit only when sleep/fatigue stabilize.
+  \end{itemize}
+\item Step 4 — Escalation, hold, refer
+  \begin{itemize}
+  \item If recovery markers do not stabilize after maintenance reset or red flags occur: stop escalation and seek evaluation posture; reslot tests per Stage 3.
+  \item Hold Period Before Next Change: maintenance reset 7 days; then 7-day reassess; no structural deficit changes until stable.
+  \item What to Log: RPE trend, fatigue/sleep, hydration notes, maintenance reset start/end, review date.
+  \item Worked Example:
+    \begin{itemize}
+    \item Step 0: RPE elevated for 6 sessions; fatigue 8/10; sleep 5 hrs/night for 4 nights.
+    \item Step 3: apply 7-day maintenance reset; hold all cuts; keep protein stable.
+    \item Step 4: if still collapsing, reslot any tests and seek evaluation posture.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\subsection*{LADDER-06 — Poor Sleep Trend Ladder}
+\phantomsection
+\addcontentsline{toc}{subsection}{LADDER-06 — Poor Sleep Trend Ladder}
+
+Primary Signal: sleep hours and/or sleep quality trending down with performance friction.\\
+Confirm With Data: \textbf{MET-2B-038} sleep hours; \textbf{MET-2B-039} sleep quality; \textbf{MET-2B-041} fatigue; session validity distribution for fatigue-driven \textbf{MODIFIED}/\textbf{INVALID}.\\
+Stop Conditions Safety: panic/dissociation; self-harm statements; inability to self-regulate; red-flag symptoms.\\
+Review Cadence: Weekly; immediate escalation if \textbf{STOP} \textbf{NOW} triggers appear.\\
+Do Not Do: cut calories further; introduce new stimulants; change caffeine pattern within 14 days of gates.\\
+Steps in order:
+
+\begin{itemize}
+\item Step 0 — Verify signal quality
+  \begin{itemize}
+  \item Trend window: 7 days sleep markers; check compliance thresholds for any nutrition change.
+  \item Confirm no caffeine pattern changes occurred within 14 days of upcoming gate windows.
+  \end{itemize}
+\item Step 1 — Lowest-cost correction
+  \begin{itemize}
+  \item Compliance simplification to reduce late-night friction: stabilize meal timing; avoid late large boluses; maintain hydration distribution rule (10.C).
+  \end{itemize}
+\item Step 2 — Next correction
+  \begin{itemize}
+  \item Hold deficit; shift toward maintenance if sleep debt persists; prioritize routine stability.
+  \end{itemize}
+\item Step 3 — Macro adjustment
+  \begin{itemize}
+  \item Maintenance reset 7 days if sleep and fatigue are collapsing (10.B); keep protein stable.
+  \end{itemize}
+\item Step 4 — Escalation, hold, refer
+  \begin{itemize}
+  \item If severe/persistent sleep disruption or mental \textbf{STOP} \textbf{NOW} triggers occur: seek professional support posture; reslot tests per Stage 3; do not intensify restriction.
+  \item Optional category reference only: 7.06 (Recovery \& Sleep Aids) as non-required support posture; no dosing.
+  \item Hold Period Before Next Change: 7 days after reset; then reassess; no structural deficit changes until stable.
+  \item What to Log: sleep markers, caffeine routine stability, nutrition posture (hold/reset), gate proximity Y/N.
+  \item Worked Example:
+    \begin{itemize}
+    \item Step 0: sleep hours \textless6 for 5 of 7 nights; fatigue high; no gate within 14 days.
+    \item Step 3: execute maintenance reset 7 days; no caffeine pattern changes.
+    \item Step 4: if panic/dissociation occurs, \textbf{STOP} \textbf{NOW} and seek professional support.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\subsection*{LADDER-07 — GI Distress Ladder — Training or Daily}
+\phantomsection
+\addcontentsline{toc}{subsection}{LADDER-07 — GI Distress Ladder — Training or Daily}
+
+Primary Signal: nausea, diarrhea, bloating, reflux, or significant GI discomfort interfering with training or daily function.\\
+Confirm With Data: symptom notes + novelty check (new foods, fiber load changes, new electrolyte concentration, new caffeine pattern); hydration notes (10.C); illness flags.\\
+Stop Conditions Safety: severe GI distress, persistent vomiting/diarrhea, dizziness/near-syncope, dehydration symptoms.\\
+Review Cadence: Weekly; immediate action if severe.\\
+Do Not Do: introduce new “fix” foods; add multiple changes; change fiber dramatically near gates.\\
+Steps in order:
+
+\begin{itemize}
+\item Step 0 — Verify signal quality
+  \begin{itemize}
+  \item Trend window: last 72 hours for acute; last 7 days for pattern.
+  \item Compliance thresholds still apply for structural macro changes; GI stability is a safety constraint.
+  \end{itemize}
+\item Step 1 — Lowest-cost correction
+  \begin{itemize}
+  \item Remove novelty: revert to familiar GI-safe staples; stabilize fiber to the prior known-tolerated level; hold caffeine routine (no changes near gates).
+  \end{itemize}
+\item Step 2 — Next correction
+  \begin{itemize}
+  \item Reduce high-risk items for GI tolerance (education-only posture): excessive fat boluses, large late meals, untested sugar alcohols; maintain protein target without adding new products.
+  \end{itemize}
+\item Step 3 — Macro adjustment
+  \begin{itemize}
+  \item If GI distress is driven by volume or timing and compliance is high: redistribute calories across the day without changing totals; if severe and persistent, hold deficit and consider maintenance reset.
+  \end{itemize}
+\item Step 4 — Escalation, hold, refer
+  \begin{itemize}
+  \item Severe/persistent symptoms → stop and seek evaluation posture; reslot tests per Stage 3; do not attempt gate tests under GI distress.
+  \item Hold Period Before Next Change: 7 days after any structural posture change; immediate escalation if severe.
+  \item What to Log: symptom type/severity, novelty check, hydration/electrolyte use, actions taken, gate proximity Y/N.
+  \item Worked Example:
+    \begin{itemize}
+    \item Step 0: GI distress began after new high-fiber food 5 days before a planned test.
+    \item Step 1: revert to prior staples; hold; no new products.
+    \item Step 4: if symptoms persist, reslot test and seek evaluation posture.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\subsection*{LADDER-08 — Cramping/Dehydration Symptoms Ladder — 10.C Linkage}
+\phantomsection
+\addcontentsline{toc}{subsection}{LADDER-08 — Cramping/Dehydration Symptoms Ladder — 10.C Linkage}
+
+Primary Signal: cramping, dizziness, headache, unusual fatigue, or thirst issues during/after sessions.\\
+Confirm With Data: 10.C intake posture (baseline + session top-ups), environment (heat/cold), electrolyte trigger conditions, symptom logs.\\
+Stop Conditions Safety: confusion, fainting/near-fainting, chest pain/pressure, severe dizziness, suspected heat illness, persistent vomiting/diarrhea.\\
+Review Cadence: Weekly; immediate action for safety triggers.\\
+Do Not Do: chugging; exceed 32 oz/hr; new electrolyte product or concentration near gates; stimulant-combined electrolyte products.\\
+Steps in order:
+
+\begin{itemize}
+\item Step 0 — Verify signal quality
+  \begin{itemize}
+  \item Trend window: last 7 days; check whether symptoms are isolated or recurring.
+  \item Confirm environment category and whether per-hour fluid bands were respected; confirm no forced drinking and not exceeding 32 oz/hr.
+  \end{itemize}
+\item Step 1 — Lowest-cost correction
+  \begin{itemize}
+  \item Apply 10.C baseline hydration distribution rule and session sip model within 8–16 oz/hr cool/indoor or 16–24 oz/hr hot/outdoor.
+  \end{itemize}
+\item Step 2 — Next correction
+  \begin{itemize}
+  \item If $\geq$90 min duration or heavy sweat/heat or ruck: activate electrolyte posture per 10.C bands (do not invent new targets).
+  \item Maintain stable product type and mixing posture; no novelty near gates/test weeks.
+  \end{itemize}
+\item Step 3 — Macro adjustment
+  \begin{itemize}
+  \item If repeated symptoms coincide with energy deficit and recovery collapse: apply 10.B maintenance reset 7 days; do not cut further.
+  \end{itemize}
+\item Step 4 — Escalation, hold, refer
+  \begin{itemize}
+  \item If heat triggers are exceeded (10.C.5): reslot tests; substitute indoors; do not test.
+  \item If red-flag symptoms occur: stop and seek evaluation posture.
+  \item Hold Period Before Next Change: 7 days after any maintenance reset; electrolyte changes held stable through protected windows.
+  \item What to Log: environment category, fluid estimates, electrolytes Y/N, symptom flags, any reslot decisions, gate proximity Y/N.
+  \item Worked Example:
+    \begin{itemize}
+    \item Step 0: cramps occurred on a 2-hour hot outdoor session; intake was minimal; no electrolytes used.
+    \item Step 1: apply 16–24 oz/hr sip model next similar session.
+    \item Step 2: activate electrolytes per 10.C trigger; maintain stable mixing.
+    \item Step 4: if heat index exceeds 95\textdegree F, reslot and move indoors.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\subsection*{LADDER-09 — Test-Week Performance Dip Ladder — Validity Protection}
+\phantomsection
+\addcontentsline{toc}{subsection}{LADDER-09 — Test-Week Performance Dip Ladder — Validity Protection}
+
+Primary Signal: test-week output dips or perceived underperformance during protected windows.\\
+Confirm With Data: confirm validity conditions were met (Stage 2.E logging complete; no novelty); confirm deload/test nutrition posture applied (10.B maintenance week rule).\\
+Stop Conditions Safety: illness, heat triggers exceeded, red-flag symptoms; validity compromised → do not use for gate credit.\\
+Review Cadence: Weekly; immediate reslot decision when validity is compromised.\\
+Do Not Do: cut calories during test week; add new supplements; change caffeine pattern within 14 days.\\
+Steps in order:
+
+\begin{itemize}
+\item Step 0 — Verify signal quality
+  \begin{itemize}
+  \item Confirm test was \textbf{VALID} and logged correctly; if \textbf{INVALID} or missing required fields, treat as not yet tested and reslot per Stage 3.
+  \item Confirm no novelty foods/products were introduced in the final 7–10 days pre-gate.
+  \end{itemize}
+\item Step 1 — Lowest-cost correction
+  \begin{itemize}
+  \item Apply test-week posture: calories at maintenance; protein stable; no novelty; hydration stable per 10.C.
+  \end{itemize}
+\item Step 2 — Next correction
+  \begin{itemize}
+  \item If test day: apply 10.B test-day carb redistribution (+50–100 g carbs offset by fats) only if already within allowed window and using familiar foods.
+  \end{itemize}
+\item Step 3 — Macro adjustment
+  \begin{itemize}
+  \item Do not adjust macros for a single test week dip; hold 7–14 days and reassess trend and recovery markers.
+  \item If repeated dips with recovery collapse: maintenance reset 7 days (10.B).
+  \end{itemize}
+\item Step 4 — Escalation, hold, refer
+  \begin{itemize}
+  \item Reslot tests when heat/illness/safety conditions invalidate validity per Stage 3; do not force.
+  \item Hold Period Before Next Change: 7–14 days; no structural changes within protected windows.
+  \item What to Log: validity tag, conditions notes, novelty check, maintenance week confirmation, test-day carb offset used Y/N.
+  \item Worked Example:
+    \begin{itemize}
+    \item Step 0: performance dip occurred but Pool \textbf{ID} missing; test is inadmissible → reslot, no macro change.
+    \item Step 1: ensure maintenance week posture next attempt; keep diet stable.
+    \item Step 2: apply carb offset on test day if already established and GI-safe.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\subsection*{LADDER-10 — Budget Constraint / Food Access Instability Ladder}
+\phantomsection
+\addcontentsline{toc}{subsection}{LADDER-10 — Budget Constraint / Food Access Instability Ladder}
+
+Primary Signal: inability to obtain or prepare planned foods consistently; repeated off-plan days due to access constraints.\\
+Confirm With Data: on-plan day counts; whether misses are access-driven; weight trend and recovery markers.\\
+Stop Conditions Safety: restrictive behavior escalation; severe under-eating due to access.\\
+Review Cadence: Weekly.\\
+Do Not Do: treat budget constraints as justification for starvation; do not cut further when access is unstable.\\
+Steps in order:
+
+\begin{itemize}
+\item Step 0 — Verify signal quality
+  \begin{itemize}
+  \item Trend window: last 7 days for compliance; 14 days for weight trend.
+  \item Compliance thresholds apply: structural changes require $\geq$12/14; if not met, simplify first.
+  \end{itemize}
+\item Step 1 — Lowest-cost correction
+  \begin{itemize}
+  \item Switch to staple-based minimal execution posture (no meal plans): simple, repeatable foods; consistent protein anchor; stable hydration.
+  \end{itemize}
+\item Step 2 — Next correction
+  \begin{itemize}
+  \item Reduce variety and reduce “special” items; prioritize the smallest set of repeatable foods that hit protein and calorie posture.
+  \end{itemize}
+\item Step 3 — Macro adjustment
+  \begin{itemize}
+  \item If access instability prevents consistent deficit execution, move to maintenance temporarily; hold 7 days, then reassess.
+  \end{itemize}
+\item Step 4 — Escalation, hold, refer
+  \begin{itemize}
+  \item If restrictive behavior risk increases or under-eating becomes persistent: maintenance reset and professional support posture; do not intensify restriction.
+  \item Hold Period Before Next Change: 7 days at maintenance if executed; then weekly reassess.
+  \item What to Log: access constraint, simplified staple posture adopted, compliance counts, any maintenance reset.
+  \item Worked Example:
+    \begin{itemize}
+    \item Step 0: on-plan 3/7 due to food access; weight trend unclear.
+    \item Step 1: adopt staple-based baseline and stabilize for 7 days.
+    \item Step 3: hold maintenance until access stabilizes.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\subsection*{LADDER-11 — Travel / Schedule Disruption Ladder}
+\phantomsection
+\addcontentsline{toc}{subsection}{LADDER-11 — Travel / Schedule Disruption Ladder}
+
+Primary Signal: travel/work disruption causing missed tracking, irregular meals, and hydration drift.\\
+Confirm With Data: on-plan day count, logging completeness (Stage 2.E posture), hydration fields, sleep markers.\\
+Stop Conditions Safety: red-flag symptoms; severe sleep deprivation; illness flags.\\
+Review Cadence: Weekly; travel week treated as “stability week.”\\
+Do Not Do: attempt aggressive deficit changes while travel disrupts compliance; change caffeine pattern within 14 days of gates.\\
+Steps in order:
+
+\begin{itemize}
+\item Step 0 — Verify signal quality
+  \begin{itemize}
+  \item Determine whether missing logs are present; missing logs are treated as \textbf{MISSING}/\textbf{UNKNOWN}, not inferred.
+  \item Compliance thresholds govern any macro change; if thresholds unmet, no structural change.
+  \end{itemize}
+\item Step 1 — Lowest-cost correction
+  \begin{itemize}
+  \item Portable baseline concept: repeatable “default meal structure” posture with minimal decision points; maintain protein anchor and calorie posture.
+  \end{itemize}
+\item Step 2 — Next correction
+  \begin{itemize}
+  \item Hydration continuity per 10.C: baseline + session top-ups; electrolytes only if triggered; no novelty.
+  \end{itemize}
+\item Step 3 — Macro adjustment
+  \begin{itemize}
+  \item \textbf{HOLD} macro changes during travel unless safety dictates; if travel causes repeated under-eating and fatigue, use maintenance reset 7 days.
+  \end{itemize}
+\item Step 4 — Escalation, hold, refer
+  \begin{itemize}
+  \item Reslot gate tests if travel compromises validity or protected windows; do not compress make-ups per Stage 3.
+  \item Hold Period Before Next Change: 7 days post-travel stabilization.
+  \item What to Log: travel flag, compliance counts, hydration estimate, sleep markers, any reslots.
+  \item Worked Example:
+    \begin{itemize}
+    \item Step 0: travel week missing logs 3 days; compliance cannot be verified.
+    \item Step 1: portable baseline for remaining days; no macro changes.
+    \item Step 4: reslot any planned test week impacted.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\subsection*{LADDER-12 — Water Retention Perception Ladder — Education-Only Trend Discipline}
+\phantomsection
+\addcontentsline{toc}{subsection}{LADDER-12 — Water Retention Perception Ladder — Education-Only Trend Discipline}
+
+Primary Signal: perceived water retention, scale volatility, frustration-driven urge to cut aggressively.\\
+Confirm With Data: weekly average trend (\textbf{MET-2B-001}) across 7–14 days; sodium/carb swings; sleep and fatigue markers.\\
+Stop Conditions Safety: restrictive behavior escalation; dehydration tactics attempted.\\
+Review Cadence: Weekly.\\
+Do Not Do: reactive cutting; dehydration practices; extreme sodium restriction; chugging/overhydration.\\
+Steps in order:
+
+\begin{itemize}
+\item Step 0 — Verify signal quality
+  \begin{itemize}
+  \item Trend window: 7–14 days; decisions require weekly average trend, not single weigh-ins.
+  \item Compliance threshold: structural changes only if $\geq$12/14 on-plan days.
+  \end{itemize}
+\item Step 1 — Lowest-cost correction
+  \begin{itemize}
+  \item Stabilize inputs: consistent sodium/carb patterns; stable meal timing; stable hydration routine per 10.C.
+  \end{itemize}
+\item Step 2 — Next correction
+  \begin{itemize}
+  \item Verify no novelty near gates; remove novelty foods that change GI and water retention perception.
+  \end{itemize}
+\item Step 3 — Macro adjustment
+  \begin{itemize}
+  \item Only if 14-day trend confirms true upward drift under high compliance: apply one calorie step (-150 to -250) and hold 7–14 days.
+  \end{itemize}
+\item Step 4 — Escalation, hold, refer
+  \begin{itemize}
+  \item If restrictive behavior distress escalates: maintenance reset 7 days; seek professional support posture; do not intensify restriction.
+  \item Hold Period Before Next Change: 7–14 days after Step 3.
+  \item What to Log: trend window, novelty events, compliance counts, hydration stability, action taken.
+  \item Worked Example:
+    \begin{itemize}
+    \item Step 0: scale up 4 lb after salty meal; weekly average unchanged.
+    \item Step 1: stabilize sodium/carb for 7 days; no cuts.
+    \item Step 3: not applied because trend not confirmed.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\section*{10.D.3 — Quick Reference Decision Tables}
+\phantomsection
+\addcontentsline{toc}{section}{10.D.3 — Quick Reference Decision Tables}
+
+\subsection*{Symptom/Signal to Default Action}
+\phantomsection
+\addcontentsline{toc}{subsection}{Symptom/Signal to Default Action}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    X[l,3.45]
+    X[l,2.45]
+    X[l,3.10]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Signal} &
+\Hdr{Default Action} &
+\Hdr{Notes} \\
+Chest pain/pressure, syncope/near-syncope, confusion, severe dizziness &
+Stop and seek evaluation per governance &
+Red-flag symptom stop posture overrides all ladders \\
+Suspected heat illness signs &
+Stop; cool down; seek evaluation; reslot tests &
+Apply 10.C heat triggers; Stage 3 reslot discipline \\
+Persistent vomiting/diarrhea &
+Stop; seek evaluation; hold nutrition changes &
+Hydration safety is primary; no forced drinking \\
+Illness flags/systemic symptoms &
+Hold deficit; maintenance reset if needed; reslot tests &
+Do not test through illness; validity protection \\
+\textgreater0.75\% \textbf{BW}/week loss $\times$ 2 weeks &
+Increase calories +150–250; hold &
+Protect recovery and validity; no novelty \\
+Plateau definition met &
+Simplify; then -150–250 if compliant; hold &
+Requires $\geq$12/14 compliance and waist method consistency \\
+Poor sleep trend &
+Hold deficit; maintenance reset if collapsing &
+No caffeine pattern change within 14 days of gates \\
+Cramping/dehydration symptoms &
+Apply 10.C sip model and electrolyte triggers &
+Do not exceed 32 oz/hr; no chugging; no novelty products \\
+Deload/Test week &
+Calories to maintenance; no novelty &
+Test-day carb redistribution allowed per 10.B \\
+Gate proximity within 7–10 days &
+Hold major changes &
+Stability is the control; log any unavoidable change \\
+\end{longtblr}
+
+\endgroup
+
+\subsection*{Problem Type to Allowed Change Type by Week Type}
+\phantomsection
+\addcontentsline{toc}{subsection}{Problem Type to Allowed Change Type by Week Type}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=1.30in]
+    X[l,3.05]
+    X[l,2.65]
+    X[l,2.80]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Problem} &
+\Hdr{Normal Training Week} &
+\Hdr{Deload/Test Week} &
+\Hdr{Notes} \\
+Plateau &
+Compliance simplification; then -150–250 if $\geq$12/14 &
+No structural cuts; maintenance posture applies &
+Reslot if validity would be contaminated \\
+Too-fast loss &
++150–250 or maintenance reset if needed &
+Maintenance posture applies &
+Protect performance evidence \\
+Hunger/cravings &
+Simplify + distribution tweaks; +150 if persistent &
+Maintenance posture; no novelty &
+Avoid punitive restriction \\
+Low energy/high RPE &
+Maintenance reset 7 days &
+Maintenance posture mandatory &
+Do not cut during recovery collapse \\
+GI distress &
+Remove novelty; stabilize; hold &
+No novelty; stabilize &
+Reslot tests if symptoms invalidate validity \\
+Heat/cold hazards &
+Substitute/reslot; hydration per 10.C &
+Reslot tests; indoor substitution &
+Safety and validity override schedule \\
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\section*{10.D.4 — Documentation Templates}
+\phantomsection
+\addcontentsline{toc}{section}{10.D.4 — Documentation Templates}
+
+Troubleshooting Action Log template:
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+  width=\linewidth,
+  rowhead=1,
+  colspec = {
+    Q[l,wd=0.35in]
+    Q[l,wd=0.55in]
+    Q[l,wd=.50in]
+    Q[l,wd=.50in]
+    Q[l,wd=.65in]
+    X[l,wd=.65in]
+    Q[l,wd=0.5in]
+    Q[l,wd=0.5in]
+    Q[l,wd=0.5in]
+    Q[l,wd=0.5in]
+  },
+  hlines,
+  vlines,
+  cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+  row{odd} = {bg=white},
+  row{even} = {bg=LightGray},
+  row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Date} &
+\Hdr{Phase/Week} &
+\Hdr{Problem} &
+\Hdr{Ladder Used} &
+\Hdr{Step Executed} &
+\Hdr{Change Made} &
+\Hdr{Hold Period} &
+\Hdr{Review Date} &
+\Hdr{Outcome} &
+\Hdr{Notes} \\
+\end{longtblr}
+
+\endgroup
+
+Rules:
+
+\begin{itemize}
+\item Change Made must reflect 10.B levers:
+  \begin{itemize}
+  \item compliance fix,
+  \item distribution tweak,
+  \item $\pm$150–250 kcal/day,
+  \item maintenance reset,
+  \item hold and reslot.
+  \end{itemize}
+\item Notes must include Gate proximity field:
+  \begin{itemize}
+  \item within 14 days of gate windows Y/N,
+  \item if Y, confirm no novelty posture applied.
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\section*{10.D.5 — Integrity Checks}
+\phantomsection
+\addcontentsline{toc}{section}{10.D.5 — Integrity Checks}
+
+\begin{itemize}
+\item Trend-based verification precedes action; no single-day decisions.
+\item Compliance/system fixes precede macro changes; thresholds ($\geq$6/7 and $\geq$12/14) gate changes.
+\item Calorie changes use small-step control ($\pm$150–250) with 7–14 day hold periods.
+\item Maintenance reset is exactly 7 days at maintenance and is used when recovery collapse or restrictive behavior risk appears.
+\item No extreme restriction and no dehydration practices; water cuts are prohibited.
+\item No novelty near gates/test weeks is enforced, including caffeine pattern change prohibition within 14 days of gate windows.
+\item Deload/test weeks use maintenance-calorie posture and allow only test-day carb redistribution per 10.B.
+\item Logging is required for every action using the Troubleshooting Action Log template; missing data is recorded as \textbf{MISSING}/\textbf{UNKNOWN}.
+\item Escalation triggers and stop conditions are explicit and non-medical; red flags override ladders.
+\item Ladders remain feasible under start-from-zero constraints and Stage 7.13 tooling posture.
+\item Hydration references do not invent new targets; they use 10.C bands, triggers, ceilings, and reslot rules.
+\end{itemize}
+
+\end{document}

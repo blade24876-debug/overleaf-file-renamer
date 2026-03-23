@@ -1,0 +1,618 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 12.C — Environment Recording Standards}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 12.C — Environment Recording Standards}
+
+\subsection*{12.C.1 Environment Unit Concept — Route, Pool, Machine IDs}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.C.1 Environment Unit Concept — Route, Pool, Machine IDs}
+
+\begin{itemize}
+\item Environment Unit IDs are crosswalk keys used to preserve comparability and admissibility for tests.
+\item Environment Unit IDs \textbf{MUST} be recorded on Test Event Logs for any test where environment affects validity.
+\item A change of environment \textbf{MUST} NOT be treated as equivalent:
+\begin{itemize}
+\item any substitution requires a new Environment Unit \textbf{ID}
+\item baseline comparability must restart under the new \textbf{ID}
+\end{itemize}
+\item If an admissible test is executed without the correct Environment Unit \textbf{ID}, the test is inadmissible for gate credit and \textbf{MUST} be treated as \textbf{INVALID}.
+\end{itemize}
+
+\begin{landscape}
+
+\subsection*{12.C.2 Route Unit Standard — Route Card Template}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.C.2 Route Unit Standard — Route Card Template}
+
+Route Card template:
+
+\begin{itemize}
+\item \textbf{ROUTE} \textbf{ID}:
+\item Route Type:
+\item Distance:
+\item Units:
+\item Surface:
+\item Elevation/Grade:
+\item Typical Hazards:
+\item Start Landmark:
+\item Finish Landmark:
+\item Safe Parking/Access Notes:
+\item Lighting Profile:
+\item Traffic Interaction:
+\item Notes:
+\end{itemize}
+
+Route Type allowed values:
+
+\begin{itemize}
+\item Outdoor Loop
+\item Track
+\item Treadmill Profile
+\end{itemize}
+
+Route Condition Log template:
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+width=\linewidth,
+rowhead=1,
+colspec = {
+Q[l,wd=1.05in]
+Q[l,wd=0.60in]
+Q[l,wd=.6in]
+Q[l,wd=0.6in]
+Q[l,wd=0.95in]
+Q[l,wd=1.05in]
+Q[l,wd=0.90in]
+Q[l,wd=1.00in]
+X[l,2.10]
+},
+hlines,
+vlines,
+cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+row{odd} = {bg=white},
+row{even} = {bg=LightGray},
+}
+\Hdr{Timestamp ISO 8601} &
+\Hdr{\textbf{ROUTE} \textbf{ID}} &
+\Hdr{Weather} &
+\Hdr{Temp} &
+\Hdr{Temp Band} &
+\Hdr{Wind} &
+\Hdr{Surface Condition} &
+\Hdr{Visibility} &
+\Hdr{Notes} \\
+\end{longtblr}
+
+\endgroup
+
+Rules:
+
+\begin{itemize}
+\item Timestamp must include timezone offset.
+\item Temp °F/°C may be \textbf{UNKNOWN} when not known; Temp Band remains required.
+\item If surface condition is ice or visibility is night and visibility controls are not satisfied, treat as unsafe and reslot per Stage 3.
+\end{itemize}
+
+\newpage
+\subsection*{12.C.3 Pool Unit Standard — Pool Card Template}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.C.3 Pool Unit Standard — Pool Card Template}
+
+Pool Card template:
+
+\begin{itemize}
+\item \textbf{POOL} \textbf{ID}:
+\item Lane Length:
+\item Lane Length Units:
+\item Typical Access Hours:
+\item Crowding Risk:
+\item Water Temperature:
+\item Rules Affecting Testing:
+\item Notes:
+\end{itemize}
+
+Crowding Risk allowed values:
+
+\begin{itemize}
+\item Low
+\item Med
+\item High
+\end{itemize}
+
+Pool Session Log template:
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+width=\linewidth,
+rowhead=1,
+colspec = {
+Q[l,wd=1.05in]
+Q[l,wd=0.5in]
+Q[l,wd=0.55in]
+Q[l,wd=0.85in]
+X[l,2.20]
+X[l,2.20]
+},
+hlines,
+vlines,
+cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+row{odd} = {bg=white},
+row{even} = {bg=LightGray},
+}
+\Hdr{Timestamp ISO 8601} &
+\Hdr{\textbf{POOL} \textbf{ID}} &
+\Hdr{Lane Length} &
+\Hdr{Stroke Standard} &
+\Hdr{Conditions Notes} &
+\Hdr{Notes} \\
+\end{longtblr}
+
+\endgroup
+
+Rule note required:
+
+\begin{itemize}
+\item Lane Length Verified must be Y for gate-admissible swim test events.
+\item Lane Length Verified N makes the test \textbf{INVALID} for gate credit. Reslot and retest in the next admissible window.
+\end{itemize}
+
+\newpage
+\subsection*{12.C.4 Machine Unit Standard — Machine Card Template}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.C.4 Machine Unit Standard — Machine Card Template}
+
+Machine Card template:
+
+\begin{itemize}
+\item \textbf{MACH} \textbf{ID}:
+\item Type:
+\item Make/Model:
+\item Location:
+\item Calibration/Consistency Notes:
+\item Required Settings Fields:
+\begin{itemize}
+\item Speed:
+\item Speed Units:
+\item Incline/Grade Percent:
+\item Resistance Level/Scale:
+\end{itemize}
+\item Notes:
+\end{itemize}
+
+Type allowed values:
+
+\begin{itemize}
+\item Treadmill
+\item Bike
+\item Rower
+\item Elliptical
+\end{itemize}
+
+Rules:
+
+\begin{itemize}
+\item Machine records must include:
+\begin{itemize}
+\item Incline/Grade Percent
+\item Speed with units
+\item Resistance Level/Scale (or explicitly N/A when not applicable)
+\end{itemize}
+\item If any required settings field is \textbf{MISSING}, any test event relying on the machine is inadmissible for gate credit.
+\end{itemize}
+
+\newpage
+\subsection*{12.C.5 Environment Validity Rules}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.C.5 Environment Validity Rules}
+
+\begin{itemize}
+\item Invalid environment conditions for gate-admissible tests include:
+\begin{itemize}
+\item wrong or missing Environment Unit \textbf{ID} (\textbf{ROUTE}-##, \textbf{POOL}-##, \textbf{MACH}-## as applicable)
+\item pool Lane Length Verified N for any swim test used for gate credit
+\item missing machine required settings fields (incline/grade percent, speed + units, resistance level/scale or N/A)
+\item unsafe conditions that compromise safety or validity (ice glaze, lightning risk, whiteout/near-zero visibility, official air quality warning, extreme heat posture)
+\end{itemize}
+\item Mandatory relabeling and baseline restart:
+\begin{itemize}
+\item any substitution of route, pool, or machine requires a new Environment Unit \textbf{ID}
+\item material changes require a new \textbf{ID} and baseline restart, including:
+\begin{itemize}
+\item construction detours or route closures
+\item route surface class change (e.g., asphalt to gravel) when it alters comparability
+\item pool lane length change or pool signage inconsistency
+\item machine replacement or machine relocation when identity/behavior changes
+\end{itemize}
+\end{itemize}
+\item Weather and hazard posture:
+\begin{itemize}
+\item unsafe conditions require reslot or substitution per Stage 3 adjustment doctrine
+\item do not compare performance across materially different environments without separate IDs and conditions notes
+\end{itemize}
+\item Treadmill dual-\textbf{ID} rule (binding):
+\begin{itemize}
+\item treadmill tests \textbf{MUST} log both:
+\begin{itemize}
+\item \textbf{MACH}-## treadmill unit
+\item \textbf{ROUTE}-## treadmill profile descriptor
+\end{itemize}
+\item missing either \textbf{ID} is an admissibility failure for gate use
+\end{itemize}
+\item Allowed substitutions rule (binding):
+\begin{itemize}
+\item no equivalent route substitutions under the same \textbf{ROUTE} \textbf{ID}
+\item any substitution requires new \textbf{ID} and new baseline; do not “carry over” comparability claims across different IDs
+\end{itemize}
+\end{itemize}
+
+\newpage
+\subsection*{12.C.6 Worked Examples — Fully Filled}
+\phantomsection
+\addcontentsline{toc}{subsection}{12.C.6 Worked Examples — Fully Filled}
+
+\begin{enumerate}
+\item Completed Route Card \textbf{ROUTE-01} plus one Route Condition Log row
+
+\begin{itemize}
+\item \textbf{ROUTE} \textbf{ID}: \textbf{ROUTE-01}
+\item Route Type: Outdoor Loop
+\item Distance: 1.50
+\item Units: mi
+\item Surface: asphalt
+\item Elevation/Grade: \textbf{UNKNOWN}
+\item Typical Hazards: two traffic crossings; dogs possible; uneven sidewalk seams
+\item Start Landmark: apartment entrance gate
+\item Finish Landmark: apartment entrance gate
+\item Safe Parking/Access Notes: start is walk-out; vehicle parking N/A
+\item Lighting Profile: streetlights partial coverage
+\item Traffic Interaction: sidewalks adjacent to low-speed roads
+\item Allowed Substitutions:
+\begin{itemize}
+\item None. Substitution requires new \textbf{ROUTE} \textbf{ID}.
+\end{itemize}
+\item Notes: use daylight when possible; avoid ice glaze; log detours as new \textbf{ROUTE} \textbf{ID}
+\end{itemize}
+
+Route Condition Log example row:
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+width=\linewidth,
+rowhead=1,
+colspec = {
+Q[l,wd=1.05in]
+Q[l,wd=0.60in]
+Q[l,wd=.6in]
+Q[l,wd=0.6in]
+Q[l,wd=0.95in]
+Q[l,wd=1.05in]
+Q[l,wd=0.90in]
+Q[l,wd=1.00in]
+X[l,2.10]
+},
+hlines,
+vlines,
+cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+row{odd} = {bg=white},
+row{even} = {bg=LightGray},
+}
+\Hdr{Timestamp ISO 8601} &
+\Hdr{\textbf{ROUTE} \textbf{ID}} &
+\Hdr{Weather} &
+\Hdr{Temp} &
+\Hdr{Temp Band} &
+\Hdr{Wind} &
+\Hdr{Surface Condition} &
+\Hdr{Visibility} &
+\Hdr{Notes} \\
+2026-02-11T06:45:00-06:00 &
+\textbf{ROUTE-01} &
+Overcast &
+12°F / -11°C &
+Cold &
+Med &
+ice &
+dawn &
+Ice glaze observed on shaded sections. Outdoor test postponed. Indoor substitute used per Stage 3. \\
+\end{longtblr}
+
+\endgroup
+
+\item Completed Pool Card \textbf{POOL-01} plus one Pool Session Log row
+
+\begin{itemize}
+\item \textbf{POOL} \textbf{ID}: \textbf{POOL-01}
+\item Lane Length: 25
+\item Lane Length Units: yd
+\item Typical Access Hours: \textbf{MISSING}
+\item Crowding Risk: Med
+\item Water Temperature: \textbf{UNKNOWN}
+\item Rules Affecting Testing: lane lines present; no standing on bottom during test; rest via tread only; wall push-offs allowed
+\item Notes: confirm posted lane length signage each visit
+\end{itemize}
+
+Pool Session Log example row:
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+width=\linewidth,
+rowhead=1,
+colspec = {
+Q[l,wd=1.05in]
+Q[l,wd=0.5in]
+Q[l,wd=0.55in]
+Q[l,wd=0.85in]
+X[l,2.20]
+X[l,2.20]
+},
+hlines,
+vlines,
+cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=t},
+row{odd} = {bg=white},
+row{even} = {bg=LightGray},
+}
+\Hdr{Timestamp ISO 8601} &
+\Hdr{\textbf{POOL} \textbf{ID}} &
+\Hdr{Lane Length} &
+\Hdr{Stroke Standard} &
+\Hdr{Conditions Notes} &
+\Hdr{Notes} \\
+2026-06-18T18:10:00-06:00 &
+\textbf{POOL-01} &
+Y &
+Combat side stroke &
+Moderate crowding; shared lane; clear wall access &
+Lane length verified from posted signage and staff confirmation. \\
+\end{longtblr}
+
+\endgroup
+
+\item Completed Machine Card \textbf{MACH-01}
+
+\begin{itemize}
+\item \textbf{MACH} \textbf{ID}: \textbf{MACH-01}
+\item Type: Treadmill
+\item Make/Model: \textbf{UNKNOWN}
+\item Location: apartment complex gym
+\item Calibration/Consistency Notes: machine display distance used; no external calibration available
+\item Required Settings Fields:
+\begin{itemize}
+\item Speed: variable by test protocol
+\item Speed Units: mph
+\item Incline/Grade Percent: 1.0
+\item Resistance Level/Scale: N/A
+\end{itemize}
+\item Notes: record any pauses as an invalidation cause for gate use unless the protocol explicitly allows them
+\end{itemize}
+
+\item Treadmill dual-\textbf{ID} logging example: Completed Route Card \textbf{ROUTE-02} (treadmill profile descriptor)
+
+\begin{itemize}
+\item \textbf{ROUTE} \textbf{ID}: \textbf{ROUTE-02}
+\item Route Type: Treadmill Profile
+\item Distance: 2.00
+\item Units: mi
+\item Surface: treadmill
+\item Elevation/Grade: 1.0 percent
+\item Typical Hazards: belt slip risk; handrail gripping invalidates gate use unless authorized by protocol
+\item Start Landmark: in-motion start after warm-up
+\item Finish Landmark: machine display shows distance complete
+\item Safe Parking/Access Notes: indoor gym access; hours variable
+\item Lighting Profile: indoor
+\item Traffic Interaction: none
+\item Allowed Substitutions:
+\begin{itemize}
+\item None. Substitution requires new \textbf{ROUTE} \textbf{ID}.
+\end{itemize}
+\item Notes: used only with \textbf{MACH-01}; any different treadmill requires new \textbf{MACH} \textbf{ID}
+\end{itemize}
+
+Dual-\textbf{ID} statement (binding):
+
+\begin{itemize}
+\item Any treadmill-based test event must record both:
+\begin{itemize}
+\item \textbf{MACH-01} treadmill unit
+\item \textbf{ROUTE-02} treadmill profile
+\end{itemize}
+\item Missing either \textbf{ID} makes the test inadmissible for gate credit.
+\end{itemize}
+
+\end{enumerate}
+
+\end{landscape}
+
+\end{document}

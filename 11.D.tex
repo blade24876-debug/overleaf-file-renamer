@@ -1,0 +1,540 @@
+\documentclass[10pt]{article}
+
+% ---------- Document Identity (update these only) ----------
+\newcommand{\DocStage}{}
+\newcommand{\DocTitle}{Your Road to Tier One \textbf{SOF}}
+\newcommand{\ProgramName}{182-Week Civilian-to-Selection Readiness Pipeline}
+\newcommand{\ProgramSubtitle}{}
+
+% ---------- Page ----------
+\usepackage[legalpaper,left=0.5in,right=0.5in,top=0.6in,bottom=0.45in]{geometry}
+
+% ---------- Typography ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\AtBeginDocument{\color{black}}
+\AtBeginDocument{\pagecolor{white}}
+\AtBeginDocument{\justifying}
+
+% ---------- Landscape pages ----------
+\usepackage{pdflscape}
+
+% ---------- Color ----------
+\usepackage[table]{xcolor}
+\definecolor{StageBlue}{HTML}{1F4E79}
+\definecolor{StageBlueDark}{HTML}{163A5A}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{MidGray}{HTML}{D9DEE5}
+\definecolor{RuleGray}{HTML}{C7CED8}
+\definecolor{HeaderInk}{HTML}{000000}
+\definecolor{Ink}{HTML}{000000}
+
+% ---------- Utility ----------
+\usepackage{enumitem}
+\sloppy
+\setlength{\emergencystretch}{2em}
+
+% ---------- Boxes / UI ----------
+\usepackage[most]{tcolorbox}
+
+\tcbset{
+  charterTitle/.style={
+    enhanced,
+    colback=StageBlue!4,
+    colframe=StageBlue,
+    boxrule=1.25pt,
+    arc=3pt,
+    left=16pt,right=16pt,top=14pt,bottom=14pt,
+    borderline north={3.2pt}{0pt}{StageBlue},
+    borderline west={4pt}{0pt}{StageBlue},
+    borderline south={1.25pt}{0pt}{StageBlue},
+    drop shadow={black!25!white},
+  },
+  charterRule/.style={
+    enhanced,
+    colback=LightGray,
+    colframe=RuleGray,
+    boxrule=0.85pt,
+    arc=3pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    borderline west={3pt}{0pt}{StageBlue},
+  },
+  charterBadge/.style={
+    enhanced,
+    colback=StageBlue,
+    coltext=white,
+    colframe=StageBlueDark,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,
+  }
+}
+\newtcbox{\Badge}{nobeforeafter,charterBadge}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.25em, topsep=0.25em}
+
+% ---------- TOC ----------
+\usepackage{tocloft}
+\setcounter{tocdepth}{3}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.25em}
+\setlength{\cftsubsubsecindent}{2.8em}
+\setlength{\cftsecnumwidth}{2.1em}
+\setlength{\cftsubsecnumwidth}{2.8em}
+\setlength{\cftsubsubsecnumwidth}{3.6em}
+
+% Remove the built-in TOC heading so only the custom heading is shown
+\makeatletter
+\renewcommand{\tableofcontents}{\@starttoc{toc}}
+\makeatother
+
+% ---------- Header/Footer: page number only ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Ink}}
+  {\thesection}{0.6em}{}
+  [\vspace{0.25em}\textcolor{StageBlue}{\rule{\linewidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{Ink}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{Ink}}
+  {\thesubsubsection}{0.6em}{}
+
+\titlespacing*{\section}{0pt}{0.95em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.55em}{0.2em}
+
+% ---------- Table engine ----------
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% ---------- tabularray: GLOBAL table treatment ----------
+\SetTblrInner{
+  cells = {fg=black, bg=white, valign=t},
+}
+
+% ---------- Header helpers ----------
+\newcommand{\Hdr}[1]{\shortstack[c]{\strut #1\strut}}
+
+% ---------- Lines ----------
+\newcommand{\TitleLine}{\textcolor{StageBlue}{\rule{0.98\linewidth}{0.95pt}}}
+\newcommand{\SubTitleLine}{\textcolor{RuleGray}{\rule{0.98\linewidth}{0.65pt}}}
+
+% ---------- Continued on next page ----------
+\newcommand{\ContinuedOnNextPageInline}{%
+  \par
+  \vfill
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}\vspace{-2pt}
+  \noindent\hfill\textit{Continued on next page}\par\vspace{-10pt}
+  \noindent\textcolor{RuleGray}{\rule{\linewidth}{1pt}}
+  \clearpage
+}
+
+% ---------- PDF hyperlinks ----------
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  linktoc=all,
+  pdftitle={\DocTitle},
+  pdfauthor={\ProgramName}
+}
+
+% =========================================================
+\begin{document}
+
+\section*{Stage 11.D — Nutritional Adjustments for Final Selection}
+\phantomsection
+\addcontentsline{toc}{section}{Stage 11.D — Nutritional Adjustments for Final Selection}
+
+\subsection*{11.D.1 Purpose and Scope}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.D.1 Purpose and Scope}
+
+11.D defines how to apply the Stage 10 Nutrition Operating System in the final selection approach period so recovery, performance, and test validity remain stable during high-consequence phases and protected gate windows. The purpose is to reduce variance, prevent last-minute nutrition-driven validity contamination, and ensure that admissible performance evidence is not confounded by avoidable nutrition and hydration drift.
+
+Exclusions:
+
+\begin{itemize}
+\item No meal plans, recipes, or grocery lists.
+\item No new macro rules beyond Stage 10.
+\item No supplement dosing, stacks, cycling, procurement guidance, or product recommendations.
+\end{itemize}
+
+\newpage
+
+\subsection*{11.D.2 Late-Phase Nutrition Posture — Implementation Only}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.D.2 Late-Phase Nutrition Posture — Implementation Only}
+
+\begin{itemize}
+\item Late phases (Phase 11–Phase 13) \textbf{MUST} apply Stage 10 macro posture with a stability-first bias:
+\begin{itemize}
+\item reduce volatility in calories and macronutrient distribution,
+\item protect performance and recovery as consequence rises,
+\item avoid aggressive deficit behavior when readiness and validity are primary objectives.
+\end{itemize}
+\item Trend-based decisions only:
+\begin{itemize}
+\item decisions \textbf{MUST} be based on weekly bodyweight average and weekly circumference suite trends plus recovery markers, not single-day scale movement.
+\end{itemize}
+\item Changes \textbf{MUST} comply with Stage 10.2 controls:
+\begin{itemize}
+\item calorie step size limited to ±150–250 kcal/day for structural adjustments,
+\item hold period of 7–14 days after macro changes unless safety requires reversal,
+\item structural calorie changes require ≥12/14 on-plan days,
+\item minor tweaks require ≥6/7 on-plan days.
+\end{itemize}
+\item Deload/Test weeks \textbf{MUST} follow the Stage 10.2 binding rule:
+\begin{itemize}
+\item calories set to maintenance.
+\end{itemize}
+\item If recovery markers degrade or restrictive behaviors appear:
+\begin{itemize}
+\item maintenance reset is applied as defined in Stage 10.2 (7 days at maintenance),
+\item exit the reset only when readiness stabilizes using Stage 2 recovery markers,
+\item do not intensify restriction in response to late-phase anxiety.
+\end{itemize}
+\end{itemize}
+
+\newpage
+
+\subsection*{11.D.3 Test-Window Execution Rules — Stage 3 Alignment}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.D.3 Test-Window Execution Rules — Stage 3 Alignment}
+
+Operational rules for protected windows (implementation of Stage 10 and Stage 3; no new rules created):
+
+Deload/Test weeks (protected windows)
+
+\begin{itemize}
+\item Calories \textbf{MUST} be set to maintenance per Stage 10.2.
+\item Protein posture remains stable per Stage 10.A (do not reduce protein to “make room”).
+\item Fat remains within the 20–30% floor band except for the test-day carb redistribution offset mechanism.
+\item Test-day carb redistribution is allowed per Stage 10.2:
+\begin{itemize}
+\item +50–100 g carbs on test day(s),
+\item offset equal calories reduced from fats,
+\item no novelty foods/products.
+\end{itemize}
+\item No novelty posture applies:
+\begin{itemize}
+\item no new foods, no new electrolyte products/concentrations/timing practices, no new supplement categories, no caffeine pattern changes.
+\end{itemize}
+\end{itemize}
+
+Gate proximity posture (final 7–10 days before major gate windows)
+
+\begin{itemize}
+\item No major diet structure change is permitted.
+\item Caffeine pattern changes are prohibited within the Stage 10 novelty window:
+\begin{itemize}
+\item no caffeine pattern changes within 14 days of gate windows.
+\end{itemize}
+\item Any unavoidable logistical change \textbf{MUST} be logged with date, reason, and expected effect and treated as a validity confounder for conservative interpretation.
+\end{itemize}
+
+Reslot posture
+
+\begin{itemize}
+\item If nutrition disruption (GI distress, dehydration/heat illness risk, severe sleep collapse) contributes to invalid testing conditions, tests are reslotted to the next protected window per Stage 3.
+\item No stacking make-ups; do not compress missed test attempts into unsafe density.
+\end{itemize}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+width=\linewidth,
+rowhead=1,
+colspec = {
+X[l,2.10]
+X[l,2.10]
+X[l,3.05]
+X[l,2.85]
+X[l,2.70]
+},
+hlines,
+vlines,
+cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+row{odd} = {bg=white},
+row{even} = {bg=LightGray},
+row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Week Type} &
+\Hdr{Goal} &
+\Hdr{Allowed Changes} &
+\Hdr{Not Allowed} &
+\Hdr{What to Log} \
+Normal training week (late phases) &
+Stable performance support with low variance &
+Minor distribution tweaks if ≥6/7 on-plan; structural changes only if ≥12/14 on-plan and not near gate window &
+Single-day reactive cuts; multi-change weeks; novelty changes near gates &
+Weekly \textbf{BW} avg + waist/circ suite; on-plan count; sleep/fatigue; any change date/hold/review \
+Deload/Test week (Stage 3 protected) &
+Validity protection and recovery &
+Calories to maintenance; test-day carb redistribution (+50–100 g carbs offset by fats); protein stable; hydration stable per 10.3 &
+New restrictive cuts; new foods/products; new supplement category; new electrolyte routine; caffeine pattern changes &
+Maintenance posture confirmation; test-day carb offset Y/N; novelty Y/N; hydration notes \
+7–10 days pre-gate window &
+Controlled-variable stability &
+\textbf{HOLD} posture; only safety-required corrections; maintain stable routine &
+Any major macro shift; new food class; fiber overhaul; new supplement category; caffeine pattern change &
+Gate proximity Y/N; novelty events; reason for any unavoidable change \
+Post-test week (immediate) &
+Resume stable execution without rebound extremes &
+Resume prior posture only if recovery markers stable; maintenance reset if recovery collapsed &
+Aggressive deficit “payback” &
+Recovery markers; decision and hold period \
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\subsection*{11.D.4 Travel and Access Instability Posture — Late Phase}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.D.4 Travel and Access Instability Posture — Late Phase}
+
+This section implements Stage 10.2 life-constraint posture in final phases with strict validity protection and logging continuity.
+
+Rules (binding):
+
+\begin{itemize}
+\item Minimum viable execution is permitted:
+\begin{itemize}
+\item prioritize protein adequacy and calorie stability using simple, repeatable staples.
+\end{itemize}
+\item Portable baseline concept:
+\begin{itemize}
+\item use a small set of repeatable, predictable foods; reduce decision points.
+\end{itemize}
+\item Hydration continuity \textbf{MUST} follow Stage 10.3:
+\begin{itemize}
+\item baseline plus session top-ups,
+\item electrolyte activation only when triggers apply,
+\item no new electrolyte products or mixing practices in protected windows.
+\end{itemize}
+\item Log continuity \textbf{MUST} follow Stage 2.E:
+\begin{itemize}
+\item if fields cannot be recorded, record \textbf{UNKNOWN}/\textbf{MISSING}; no inference.
+\end{itemize}
+\item If travel disrupts a planned protected window:
+\begin{itemize}
+\item reslot the affected test to the next protected window; do not compress or stack.
+\end{itemize}
+\end{itemize}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.12}
+
+\begin{longtblr}{
+width=\linewidth,
+rowhead=1,
+colspec = {
+X[l,2.35]
+X[l,2.55]
+X[l,2.55]
+X[l,2.90]
+X[l,2.65]
+},
+hlines,
+vlines,
+cells = {hsep=6pt, vsep=6pt, halign=l, valign=t},
+row{odd} = {bg=white},
+row{even} = {bg=LightGray},
+row{1} = {bg=StageBlue!15, fg=black, font=\bfseries, halign=l, valign=m},
+}
+\Hdr{Constraint} &
+\Hdr{Immediate Action} &
+\Hdr{72-Hour Posture} &
+\Hdr{7-Day Stabilization Posture} &
+\Hdr{When to Escalate} \
+Travel disruption (hotel/work) &
+Activate portable baseline; maintain hydration baseline &
+Hold macro changes; avoid novelty foods; log compliance daily &
+Resume stable routine; if under-eating/fatigue rises, apply maintenance reset per Stage 10.2 &
+Red-flag symptoms; persistent severe sleep collapse; repeated missed logs affecting admissibility \
+Food access instability &
+Simplify to staples; protect protein and calories &
+Hold deficit escalation; focus on consistency over optimization &
+Stabilize intake; structural changes deferred until ≥12/14 on-plan days achieved &
+Restrictive behavior risk; persistent under-eating; illness flags \
+Schedule volatility (late nights/early starts) &
+Maintain stable meal timing where possible; avoid late boluses &
+Hydration distribution rule; avoid caffeine pattern changes near gates &
+If recovery markers degrade, maintenance reset 7 days &
+Severe fatigue trend; repeated \textbf{MODIFIED}/\textbf{INVALID} sessions due to collapse \
+Facility limitations (no prep tools) &
+Operate within 7.13 minimal tooling posture &
+Assembly posture; no meal plan; avoid new foods &
+Re-establish stable routine as soon as tools return &
+GI distress or dehydration symptoms persist \
+\end{longtblr}
+
+\endgroup
+
+\newpage
+
+\subsection*{11.D.5 GI Risk and Novelty Control — Validity Protection}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.D.5 GI Risk and Novelty Control — Validity Protection}
+
+Operational rules (implementation of Stage 10.4 GI ladder and Stage 3 no-novelty posture):
+
+\begin{itemize}
+\item Fiber and unfamiliar foods \textbf{MUST} remain stable near tests and gate windows:
+\begin{itemize}
+\item do not introduce new high-fiber loads, new sweeteners, or unusual volume spikes in the final 7–10 days before major gates.
+\end{itemize}
+\item Avoid novelty that commonly disrupts GI tolerance:
+\begin{itemize}
+\item new sugar alcohols,
+\item novel “performance foods,”
+\item unusually high-fat novelty meals,
+\item sudden large increases in raw vegetables/legumes if not already tolerated.
+\end{itemize}
+\item Severe GI distress is a safety and validity disruptor:
+\begin{itemize}
+\item follow Stage 10.4 GI distress ladder posture,
+\item reslot tests if symptoms compromise validity or safety,
+\item do not “push through” gate attempts under active GI distress.
+\end{itemize}
+\end{itemize}
+
+Final-phase Do Not Do list (GI/validity specific):
+
+\begin{itemize}
+\item Do not introduce new foods/products during Deload/Test weeks.
+\item Do not change electrolyte product type or concentration during protected windows.
+\item Do not use last-minute restrictive cuts to “feel lighter” for tests.
+\item Do not change caffeine patterns within 14 days of gate windows.
+\item Do not interpret acute GI distress as a reason to add multiple new changes; simplify and stabilize first.
+\end{itemize}
+
+\newpage
+
+\subsection*{11.D.6 Optional Supplements Interface — Category Links Only}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.D.6 Optional Supplements Interface — Category Links Only}
+
+\begin{itemize}
+\item Supplements are optional, category-level references only:
+\begin{itemize}
+\item 7.03 Foundational Supplements (optional),
+\item 7.04 Additional Supplements / auxiliary session adjuncts (optional),
+\item 7.05 Cognitive & Energy Enhancers (optional; do not change caffeine patterns near gates),
+\item 7.06 Recovery & Sleep Aids (optional).
+\end{itemize}
+\item Dosing guidance and stack prescriptions are prohibited in Stage 11.D.
+\item No novelty near gates:
+\begin{itemize}
+\item do not introduce new supplement categories, new products, or new timing practices inside Deload/Test weeks or within the final 7–10 days before major gates.
+\end{itemize}
+\item 7.02 Hormone Support & Adaptogens is education-only and never required.
+\end{itemize}
+
+Requires Stage 8 review flags (if encountered):
+
+\begin{itemize}
+\item Any upstream phase card or implementation artifact that treats supplements as required for deployability.
+\item Any upstream artifact that implies 7.02 is required.
+\end{itemize}
+
+\newpage
+
+\subsection*{11.D.7 Logging and Change Control — Late Phase}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.D.7 Logging and Change Control — Late Phase}
+
+Required documentation (binding; implements Stage 10.2 and Stage 2.E):
+
+\begin{itemize}
+\item All nutrition changes \textbf{MUST} be logged using Stage 10.2 change-log posture:
+\begin{itemize}
+\item date,
+\item phase/week,
+\item change made,
+\item trigger(s),
+\item intended outcome,
+\item hold period,
+\item review date,
+\item owner role.
+\end{itemize}
+\item Gate proximity field \textbf{MUST} be included:
+\begin{itemize}
+\item within 14 days of gate windows Y/N,
+\item if Y: confirm no novelty posture was applied and explain any unavoidable deviation.
+\end{itemize}
+\item Compliance tracking \textbf{MUST} be maintained:
+\begin{itemize}
+\item ≥6/7 on-plan days for minor tweaks,
+\item ≥12/14 on-plan days for structural calorie changes.
+\end{itemize}
+\item Missing-data posture is binding:
+\begin{itemize}
+\item record \textbf{UNKNOWN} / \textbf{MISSING}; no inference; do not reconstruct by memory for gate decision use.
+\end{itemize}
+\item If logging completeness fails near gates:
+\begin{itemize}
+\item default posture is \textbf{HOLD} for decisions dependent on the missing evidence; reslot tests per Stage 3 if validity is compromised.
+\end{itemize}
+\end{itemize}
+
+Requires Stage 8 review flags (if encountered):
+
+\begin{itemize}
+\item Any attempt to apply a nutrition rule that contradicts Stage 10 (e.g., planned refeeds/diet breaks, extreme weight-loss rates, water cuts).
+\item Any attempt to alter deload/test week maintenance posture or no-novelty posture.
+\end{itemize}
+
+\newpage
+
+\subsection*{11.D.8 Compliance Checklist — Pass/Fail}
+\phantomsection
+\addcontentsline{toc}{subsection}{11.D.8 Compliance Checklist — Pass/Fail}
+
+\begin{itemize}
+\item \textbf{PASS}/\textbf{FAIL}: No meal plans, recipes, or grocery lists included.
+\item \textbf{PASS}/\textbf{FAIL}: No supplement dosing, stacks, cycling, procurement, or product recommendations included.
+\item \textbf{PASS}/\textbf{FAIL}: No new macro rules introduced; Stage 10 is implemented only (10.A–10.D referenced by posture, not rewritten).
+\item \textbf{PASS}/\textbf{FAIL}: Deload/Test weeks maintenance-calorie posture is stated and treated as binding; test-day carb redistribution posture is referenced as allowed where applicable.
+\item \textbf{PASS}/\textbf{FAIL}: No novelty near gates posture is stated and enforced, including caffeine novelty window (no caffeine pattern changes within 14 days of gate windows).
+\item \textbf{PASS}/\textbf{FAIL}: Logging and change-control posture is stated and aligned to Stage 10.2 and Stage 2.E missing-data doctrine (\textbf{UNKNOWN}/\textbf{MISSING}; no inference).
+\item \textbf{PASS}/\textbf{FAIL}: Travel/access instability and GI risk posture included without redefining Stage 10; reslot posture per Stage 3 is explicit.
+\item \textbf{PASS}/\textbf{FAIL}: Any mismatch is flagged "Requires Stage 8 review" in 11.D.6 and 11.D.7 rather than silently fixed.
+\end{itemize}
+
+\end{document}
